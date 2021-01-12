@@ -35,6 +35,8 @@ enumeratedImages = dir([stimuliFolder '*.jpg']);
 NumImage = length(enumeratedImages);
 scoremat = zeros(NumImage, arraysize);
 
+prejsonstructs = [];
+
 for i = 1:NumImage
     
     trialname = enumeratedImages(i).name;
@@ -74,7 +76,7 @@ for i = 1:NumImage
     end
     
     wholeimg = squeeze(mean(wholeimg,1));
-        
+      
     %apply Inhibiton Of Return
     found = 0;
     fixtime = 1;
@@ -106,6 +108,11 @@ for i = 1:NumImage
         end
         fixatedPlace = gt(fixatedPlace_leftx:fixatedPlace_rightx, fixatedPlace_lefty:fixatedPlace_righty);
         fixatedRGB = img(fixatedPlace_leftx:fixatedPlace_rightx, fixatedPlace_lefty:fixatedPlace_righty,:);
+        
+  
+   
+
+        
         
         %%%%%%%%%%%%%%% display the search process %%%%%%%%%%%%%%%
         displaysalimg = imresize( salimg, [480 640]);
@@ -149,6 +156,10 @@ for i = 1:NumImage
         
     end
     
+    %%json encoding
+    prejsonStruct = struct('X', posx , 'Y', posy, 'dataset', 'VisualSearchZeroShot Natural Design Dataset', 'image', [imgID '.jpg'], 'split', 'unique', 'subject', 'VisualSearchZeroShot Model', 'target', 'te la debo');
+    prejsonstructs = [prejsonstructs; prejsonStruct];
+    
     Fix_posx = [Fix_posx posy'];
     Fix_posy = [Fix_posy posx'];
     display(['img id: '  num2str(i) '; target found at fixation step: ' num2str(fixtime) ]);
@@ -157,6 +168,17 @@ for i = 1:NumImage
     end
     
 end
+jsonStructs = jsonencode(prejsonstructs);
+
+
+jsonStructsFile = fopen('scanpaths.json','w');
+  
+
+
+fprintf(jsonStructsFile,jsonStructs);
+
+
+fclose(jsonStructsFile);
 
 FixData.Fix_posx = Fix_posx;
 FixData.Fix_posy = Fix_posy;
