@@ -37,10 +37,10 @@ scoremat = zeros(NumImage, arraysize);
 
 for i = 1:NumImage
     
-    trialname = enumeratedImages(j).name;
+    trialname = enumeratedImages(i).name;
     imgID = trialname(4:end-4);
     
-    path = [stimuliFolder 'gt/' imgID '.jpg' ];
+    path = [stimuliFolder 'gt/img' imgID '.jpg' ];
     gt = imread(path);
     gt = imresize(gt,[w,h]);
     gt = mat2gray(gt);
@@ -60,8 +60,8 @@ for i = 1:NumImage
     for l = 1: length(LayerList)
         for j = 1: length(piecedir)
             %j
-            input = load(['choppednaturaldesign/' piecedir(j).name]);
-            comp = imread(['choppednaturaldesign/' piecedir(j).name(1:end-17) '.jpg' ]);
+            input = load([ piecedir(j).name]);
+            comp = imread([piecedir(j).name(1:end-17) '.jpg' ]);
             input = input.x;
             input = imresize(input, [size(comp,1) size(comp,2)]);
             C = strsplit(piecedir(j).name,'_');        
@@ -115,7 +115,7 @@ for i = 1:NumImage
         imshow(displaystimuli);
         title('stimuli');
         subplot(2,2,2);
-        displaygt = imread([stimuliFolder 'gt/' imgID '.jpg']);
+        displaygt = imread([stimuliFolder 'gt/img' imgID '.jpg']);
         imshow(displaygt);
         title('target');
         subplot(2,2,3);
