@@ -60,8 +60,8 @@ for i = 1:NumImage
     for l = 1: length(LayerList)
         for j = 1: length(piecedir)
             %j
-            input = load([ piecedir(j).name]);
-            comp = imread([piecedir(j).name(1:end-17) '.jpg' ]);
+            input = load(['choppednaturaldesign/img' imgID '/' piecedir(j).name]);
+            comp = imread(['choppednaturaldesign/img' imgID '/' piecedir(j).name(1:end-17) '.jpg' ]);
             input = input.x;
             input = imresize(input, [size(comp,1) size(comp,2)]);
             C = strsplit(piecedir(j).name,'_');        
