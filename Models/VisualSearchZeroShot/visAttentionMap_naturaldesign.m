@@ -28,25 +28,30 @@ arraysize = 80; %maximum number of fixations;
 w = 1024;
 h = 1280;
 
-NumImage = 1; %1 natural image only
+stimuliFolder = 'stimuli/';
+enumeratedImages = dir([stimuliFolder '*.jpg']);
+
+
+NumImage = length(enumeratedImages);
 scoremat = zeros(NumImage, arraysize);
 
 for i = 1:NumImage
     
-    trialname = 'gray004.jpg';
+    trialname = enumeratedImages(j).name;
+    imgID = trialname(4:end-4);
     
-    path = ['sampleimg/gt' num2str(str2num(trialname(5:end-4))) '.jpg' ];
+    path = [stimuliFolder 'gt/' imgID '.jpg' ];
     gt = imread(path);
     gt = imresize(gt,[w,h]);
     gt = mat2gray(gt);
     gt = im2bw(gt,0.5);
     gt = double(gt);
     
-    img = imread(['sampleimg/' trialname]);
+    img = imread([ stimuliFolder trialname]);
     img = imresize(img, [w, h]);
     display(['img: ' num2str(i)]);
     
-    piecedir = dir(['choppednaturaldesign/img_id' trialname(5:end-4)  '_*_layertopdown.mat']);
+    piecedir = dir(['choppednaturaldesign/img' imgID '/img_id' imgID  '_*_layertopdown.mat']);
     wholeimg = zeros(length(LayerList),size(img,1), size(img,2));
    
     posx = [];
@@ -105,12 +110,12 @@ for i = 1:NumImage
         %%%%%%%%%%%%%%% display the search process %%%%%%%%%%%%%%%
         displaysalimg = imresize( salimg, [480 640]);
         subplot(2,2,1);
-        displaystimuli = imread(['sampleimg/' trialname ]);
+        displaystimuli = imread([stimuliFolder trialname ]);
         displaystimuli = imresize(displaystimuli, [480 640]);
         imshow(displaystimuli);
         title('stimuli');
         subplot(2,2,2);
-        displaygt = imread(['sampleimg/gt' num2str(str2num(trialname(5:end-4))) '.jpg']);
+        displaygt = imread([stimuliFolder 'gt/' imgID '.jpg']);
         imshow(displaygt);
         title('target');
         subplot(2,2,3);
