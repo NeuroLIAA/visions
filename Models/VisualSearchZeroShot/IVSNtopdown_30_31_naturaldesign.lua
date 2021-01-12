@@ -10,7 +10,7 @@ require 'paths'
 require 'image'
 require 'loadcaffe'
 local matio = require 'matio'
-tds = require 'tds'
+--tds = require 'tds'
 
 local t = require './transforms'
 local imagenetLabel = require './imagenet'
@@ -34,7 +34,7 @@ model_target = nn.Sequential()
 ConvSize = 1
 NumTemplates = 512   
 MyLayer = 31   
-for i=1, 30 do       
+for i = 1, 30 do       
 	model_stimuli:add(cmodel:get(i))
 end
 --model_stimuli = model_stimuli:cuda()
@@ -42,7 +42,7 @@ print(model_stimuli)
 -- Evaluate mode
 model_stimuli:evaluate()
 
-for i=1,MyLayer do      
+for i = 1, MyLayer do      
 	model_target:add(cmodel:get(i))
 end
 --model_target = model_target:cuda()
@@ -66,54 +66,64 @@ function preprocess(img)
   return img
 end
 
-
-ImageStrList = tds.Vec()
-TotalNumImg = 0
-TextFile = 'croppednaturaldesign_img.txt'
-for line in io.lines(TextFile) do    
-    TotalNumImg = TotalNumImg+1
-    ImageStrList:insert(line)
+-- To list the images to be used
+function scandir(directory)
+  local i, t, popen = 0, {}, io.popen
+  local pfile = popen('ls -p "'..directory..'" | grep -v /')
+  for filename in pfile:lines() do
+      i = i + 1
+      t[i] = filename
+  end
+  pfile:close()
+  return t
 end
-print('total Num Img: ' .. TotalNumImg)
 
+-- target and stimuli size are the same for all images
 targetsize = 28
 stimulisize = 224
 
-target = image.load('sampleimg/targetgray004.jpg', 1, 'double')   
-target = image.scale(target, targetsize, targetsize)
-target = torch.cat({target, target, target}, 1) 
-target = preprocess(target)
+stimuliList = scandir('stimuli/')
+for stimuliIndex = 1, #stimuliList do
+  currentStimuliID = (stimuliList[stimuliIndex]):sub(4, -5)
+  choppedDir = 'choppednaturaldesign/img' .. currentStimuliID
+  choppedImages = scandir(choppedDir)
+  print('total Num Img: ' .. #choppedImages)
 
+  print('Loading ' .. 'target/t' ..currentStimuliID.. '.jpg')
+  target = image.rgb2y(image.load('target/t' ..currentStimuliID.. '.jpg', 3, 'double'))
+  target = image.scale(target, targetsize, targetsize)
+  target = torch.cat({target, target, target}, 1) 
+  target = preprocess(target)
 
-for i=1,TotalNumImg do
+  for i = 1, #choppedImages do
+    -- load the image as a RGB float tensor with values 0..1
+    imagename_stimuli = choppedDir .. '/' .. choppedImages[i]
+    print(imagename_stimuli)
+    local stimuli = image.load(imagename_stimuli, 1, 'double')   
+    stimuli = torch.cat({stimuli, stimuli, stimuli}, 1)   
+    stimuli = image.scale(stimuli, stimulisize, stimulisize)
+    stimuli = preprocess(stimuli)
 
-   -- load the image as a RGB float tensor with values 0..1
-   imagename_stimuli = ImageStrList[i]
-   
-   local stimuli = image.load(imagename_stimuli, 1, 'double')   
-   stimuli = torch.cat({stimuli, stimuli, stimuli}, 1)   
-   stimuli = image.scale(stimuli, stimulisize, stimulisize)
-   stimuli = preprocess(stimuli)
+    -- View as mini-batch of size 1
+    local batch_stimuli = stimuli:view(1, table.unpack(stimuli:size():totable()))
+    local batch_target = target:view(1, table.unpack(target:size():totable()))
 
-   -- View as mini-batch of size 1
-   local batch_stimuli = stimuli:view(1, table.unpack(stimuli:size():totable()))
-   local batch_target = target:view(1, table.unpack(target:size():totable()))
+    -- Get the output of the softmax
+    --local output_stimuli = model_stimuli:forward(batch_stimuli:cuda()):squeeze()  
+    --local output_target = model_target:forward(batch_target:cuda())
+    local output_stimuli = model_stimuli:forward(batch_stimuli):squeeze()  
+    local output_target = model_target:forward(batch_target)
+    
+    MMconv.weight = output_target
+    
+    out = MMconv:forward(output_stimuli:view(1, table.unpack(output_stimuli:size():totable()))):squeeze()
+    --print(out:size())
 
-   -- Get the output of the softmax
-   --local output_stimuli = model_stimuli:forward(batch_stimuli:cuda()):squeeze()  
-   --local output_target = model_target:forward(batch_target:cuda())
-   local output_stimuli = model_stimuli:forward(batch_stimuli):squeeze()  
-   local output_target = model_target:forward(batch_target)
-   
-   MMconv.weight = output_target
-   
-   out = MMconv:forward(output_stimuli:view(1, table.unpack(output_stimuli:size():totable()))):squeeze()
-   --print(out:size())
-
-   print('trial#: ' .. i)
-   savefile = string.sub(ImageStrList[i],1,-5) .. '_layertopdown.mat'
-   matio.save(savefile,out)
-   
+    print('trial#: ' .. i)
+    savefile = string.sub(imagename_stimuli,1,-5) .. '_layertopdown.mat'
+    matio.save(savefile,out)
+    
+  end
 end
 
 os.exit()
