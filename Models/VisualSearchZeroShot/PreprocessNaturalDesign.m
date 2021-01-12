@@ -8,25 +8,28 @@ close all;
 clc;
 
 
-imagesFolder = 'Images/';
-enumeratedImages = dir([imagesFolder '*.jpg']);
+stimuliFolder = 'stimuli/';
+enumeratedImages = dir([stimuliFolder '*.jpg']);
+objfileID = fopen('croppednaturaldesign_img.txt','w');
+
 for j = 1: length(enumeratedImages)
     trialname = enumeratedImages(j).name;
-    img = imread([imagesFolder trialname]);
-    img = imresize(img, [1028 1280]) ;
+    img = imread([stimuliFolder trialname]);
+    img = imresize(img, [1028 1280]);
     
-    fun = @(block_struct) imwrite(block_struct.data,['choppednaturaldesign/img_id' trialname(5:end-4) '_' num2str(block_struct.location(1)) '_' num2str(block_struct.location(2)) '.jpg']);    
+    imgID = trialname(4:end-4);
+    mkdir('choppednaturaldesign/', ['img' imgID]);
+    
+    fun = @(block_struct) imwrite(block_struct.data,['choppednaturaldesign/img' imgID '/img_id' imgID '_' num2str(block_struct.location(1)) '_' num2str(block_struct.location(2)) '.jpg']);    
     blockproc(img,[224 224],fun);
     
-    objfileID = fopen('croppednaturaldesign_img.txt','w');
-    
-    chopdir = dir(['choppednaturaldesign/img_id' trialname(5:end-4) '_*.jpg']);
+    chopdir = dir(['choppednaturaldesign/img' imgID '/img_id' imgID '_*.jpg']);
     for i = 1: length(chopdir)
-        fprintf(objfileID,'%s\n',['choppednaturaldesign/' chopdir(i).name]);
+        fprintf(objfileID,'%s\n',['choppednaturaldesign/img' imgID '/' chopdir(i).name]);
     end
-
-	fclose(objfileID);
 end
+
+fclose(objfileID);
 
 
 
