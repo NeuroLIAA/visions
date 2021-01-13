@@ -69,7 +69,7 @@ end
 -- To list the images to be used
 function scandir(directory)
   local i, t, popen = 0, {}, io.popen
-  local pfile = popen('ls -p "'..directory..'" | grep -v /')
+  local pfile = popen('ls -p "'..directory..'" | grep -v / | grep -v mat')
   for filename in pfile:lines() do
       i = i + 1
       t[i] = filename
@@ -87,9 +87,9 @@ for stimuliIndex = 1, #stimuliList do
   currentStimuliID = (stimuliList[stimuliIndex]):sub(4, -5)
   choppedDir = 'choppednaturaldesign/img' .. currentStimuliID
   choppedImages = scandir(choppedDir)
-  print('total Num Img: ' .. #choppedImages)
 
-  print('Loading ' .. 'target/t' ..currentStimuliID.. '.jpg')
+  print("Working on img" .. currentStimuliID)
+
   target = image.rgb2y(image.load('target/t' ..currentStimuliID.. '.jpg', 3, 'double'))
   target = image.scale(target, targetsize, targetsize)
   target = torch.cat({target, target, target}, 1) 
@@ -98,7 +98,6 @@ for stimuliIndex = 1, #stimuliList do
   for i = 1, #choppedImages do
     -- load the image as a RGB float tensor with values 0..1
     imagename_stimuli = choppedDir .. '/' .. choppedImages[i]
-    print(imagename_stimuli)
     local stimuli = image.load(imagename_stimuli, 1, 'double')   
     stimuli = torch.cat({stimuli, stimuli, stimuli}, 1)   
     stimuli = image.scale(stimuli, stimulisize, stimulisize)
