@@ -149,11 +149,8 @@ for i = 1:NumImage
                       
             fixtime = fixtime + 1;
             salimg(fixatedPlace_leftx:fixatedPlace_rightx, fixatedPlace_lefty:fixatedPlace_righty) = 0;
-            salimg = mat2gray(salimg);
-            
-            
+            salimg = mat2gray(salimg);    
         end
-        
     end
     
     %%json encoding
@@ -168,16 +165,15 @@ for i = 1:NumImage
     end
     
 end
-jsonStructs = jsonencode(prejsonstructs);
 
+jsonStructs = jsonencode(prejsonstructs);
+jsonStructs = strrep(jsonStructs, ',"', sprintf(',\r"'));
+jsonStructs = strrep(jsonStructs, '},', sprintf('},\r'));
+jsonStructs = strrep(jsonStructs, '[{', sprintf('[\r{\r'));
+jsonStructs = strrep(jsonStructs, '}]', sprintf('\r}\r]'));
 
 jsonStructsFile = fopen('scanpaths.json','w');
-  
-
-
 fprintf(jsonStructsFile,jsonStructs);
-
-
 fclose(jsonStructsFile);
 
 FixData.Fix_posx = Fix_posx;
