@@ -5,7 +5,7 @@ from skimage import io, color, transform, img_as_ubyte
 def main():
     # Preprocessing of images (conversion to grayscale, resizing and dividing into blocks)
     preprocess_images()
-    
+
     run_model()
 
 def run_model():
@@ -60,7 +60,7 @@ def divide_into_blocks(image, imgID, save_path):
             to_y = from_y + block_size[0]
             to_x = from_x + block_size[1]
             img_crop = image[from_y:to_y, from_x:to_x]
-            io.imsave(save_path + '/img_id' + imgID + '_' + str(block_number) + '.jpg', img_as_ubyte(img_crop), check_contrast=False)
+            io.imsave(save_path + '/img_id' + imgID + '_' + str(from_y + 1) + '_' + str(from_x + 1) + '.jpg', img_as_ubyte(img_crop), check_contrast=False)
             block_number += 1
 
 
