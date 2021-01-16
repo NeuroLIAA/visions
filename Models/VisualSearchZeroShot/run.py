@@ -1,9 +1,15 @@
+import subprocess
 from os import mkdir, listdir, path
 from skimage import io, color, transform, img_as_ubyte
 
 def main():
     # Preprocessing of images (conversion to grayscale, resizing and dividing into blocks)
     preprocess_images()
+    
+    run_model()
+
+def run_model():
+    subprocess.run("th IVSNtopdown_30_31_naturaldesign.lua", shell=True, check=True)
 
 def preprocess_images():
     stimuliFolder = 'stimuli/'
