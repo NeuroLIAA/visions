@@ -47,7 +47,6 @@ def divide_into_blocks(image, imgID, save_path):
         extra_column_width = img_width % block_width
         amount_of_columns += 1
     
-    block_number = 1
     for row in range(amount_of_rows):
         block_size = (block_height, block_width)
         if (extra_row and (row + 1) == amount_of_rows):
@@ -61,7 +60,5 @@ def divide_into_blocks(image, imgID, save_path):
             to_x = from_x + block_size[1]
             img_crop = image[from_y:to_y, from_x:to_x]
             io.imsave(save_path + '/img_id' + imgID + '_' + str(from_y + 1) + '_' + str(from_x + 1) + '.jpg', img_as_ubyte(img_crop), check_contrast=False)
-            block_number += 1
-
 
 main()
