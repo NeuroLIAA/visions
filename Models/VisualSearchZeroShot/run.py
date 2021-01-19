@@ -1,6 +1,7 @@
 import subprocess
 import scipy.io
 import numpy as np
+import json
 from os import mkdir, listdir, path
 from skimage import io, color, transform, img_as_ubyte, exposure
 
@@ -10,7 +11,7 @@ def main():
     choppedDir = 'choppednaturaldesign/'
     stimuliSize = (1028, 1280)
 
-    preprocess_images(stimuliDir, stimuliSize)
+    preprocess_images(stimuliDir, choppedDir, stimuliSize)
     run_model()
     compute_scanpaths(stimuliDir, choppedDir, stimuliSize)
 
@@ -47,8 +48,21 @@ def compute_scanpaths(stimuliDir, choppedDir, stimuliSize):
             # For debugging
             io.imsave(imgID + '_saliency.jpg', saliencyImg)
 
-        # Compute scanpaths from saliency image
+            # Compute scanpaths from saliency image
+            xCoordFixationOrder = []
+            yCoordFixationOrder = []
+            # json encoding
+            prejsonStruct = { "X" : xCoordFixationOrder , "Y" : yCoordFixationOrder, "dataset" : "VisualSearchZeroShot Natural Design Dataset", "image" : imgID + ".jpg", "split" : "test", "subject" : "VisualSearchZeroShot Model" , "target" : "te la debo" }
+            prejsonstructs = prejsonstructs.append(prejsonStruct)
+    
 
+
+    jsonStructs = json.dumps(prejsonstructs,indent = 4)
+
+
+    jsonStructsFile = open("scanpathspython.json","w")
+    jsonStructsFile.write(jsonStructs)
+    jsonStructsFile.close();
 
 
 def run_model():
