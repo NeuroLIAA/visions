@@ -92,7 +92,7 @@ def compute_scanpaths(stimuliDir, choppedDir, stimuliSize):
             print(imageName + "; target found at fixation step " + str(fixationNumber + 1))
         # JSON encoding
         prejsonstructs.append({ "X" : xCoordFixationOrder, "Y" : yCoordFixationOrder, "dataset" : "VisualSearchZeroShot Natural Design Dataset", "image" : imgID + ".jpg", "split" : "test", "subject" : "VisualSearchZeroShot Model" , "target" : "te la debo" })
-        print(prejsonstructs)
+
 
     
     jsonStructsFile = open('scanpathspython.json', 'w')
