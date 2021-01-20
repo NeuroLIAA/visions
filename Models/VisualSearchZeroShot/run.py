@@ -24,7 +24,7 @@ def compute_scanpaths(stimuliDir, choppedDir, stimuliSize):
             continue
         
         imgID = imageName[3:-4]
-        choppedImgDir = choppedDir + 'img' + imgID
+        choppedImgDir = choppedDir + 'img' + imgID + '/'
         choppedData = listdir(choppedImgDir)
         template    = np.zeros([stimuliSize[0], stimuliSize[1]])
         for layer in range(len(layerList)):
@@ -33,9 +33,9 @@ def compute_scanpaths(stimuliDir, choppedDir, stimuliSize):
                     continue
 
                 imgName    = choppedSaliencyData[:-17]
-                choppedImg = io.imread(choppedImgDir + '/' + imgName + '.jpg')
+                choppedImg = io.imread(choppedImgDir + imgName + '.jpg')
                 # Load data computed by the model
-                choppedSaliencyImg = scipy.io.loadmat(choppedImgDir + '/' + choppedSaliencyData)
+                choppedSaliencyImg = scipy.io.loadmat(choppedImgDir + choppedSaliencyData)
                 choppedSaliencyImg = choppedSaliencyImg['x']
                 choppedSaliencyImg = transform.resize(choppedSaliencyImg, choppedImg.shape)
                 # Get coordinate information from the chopped image name
@@ -48,21 +48,55 @@ def compute_scanpaths(stimuliDir, choppedDir, stimuliSize):
             # For debugging
             io.imsave(imgID + '_saliency.jpg', saliencyImg)
 
-            # Compute scanpaths from saliency image
-            xCoordFixationOrder = []
-            yCoordFixationOrder = []
-            # json encoding
-            prejsonStruct = { "X" : xCoordFixationOrder , "Y" : yCoordFixationOrder, "dataset" : "VisualSearchZeroShot Natural Design Dataset", "image" : imgID + ".jpg", "split" : "test", "subject" : "VisualSearchZeroShot Model" , "target" : "te la debo" }
-            prejsonstructs = prejsonstructs.append(prejsonStruct)
+        maxFixations  = 80
+        receptiveSize = 200
+        target_location = io.imread(stimuliDir + 'gt/' + imageName)
+        target_location = color.rgb2gray(transform.resize(target_location, stimuliSize))
+        target_location = target_location > 0.5
+        # Target coordinates are True values in target_location
+        target_found = False
+        # Compute scanpaths from saliency image
+        xCoordFixationOrder = []
+        yCoordFixationOrder = []
+        prejsonstructs = []
+        for fixationNumber in range(maxFixations):
+            coordinates = np.where(saliencyImg == np.amax(saliencyImg))
+            posX = coordinates[0][0]
+            posY = coordinates[1][0]
+            print("Fixation step: " + str(fixationNumber + 1) + "; X: " + str(posX) + " Y: " + str(posY))
+
+            xCoordFixationOrder.append(posX)
+            yCoordFixationOrder.append(posY)
+
+            fixatedPlace_leftX  = posX - receptiveSize // 2 + 1
+            fixatedPlace_rightX = posX + receptiveSize // 2
+            fixatedPlace_leftY  = posY - receptiveSize // 2 + 1
+            fixatedPlace_rightY = posY + receptiveSize // 2
+
+            if fixatedPlace_leftX < 0: fixatedPlace_leftX = 0
+            if fixatedPlace_leftY < 0: fixatedPlace_leftY = 0
+            if fixatedPlace_rightX > stimuliSize[0]: fixatedPlace_rightX = stimuliSize[0]
+            if fixatedPlace_rightY > stimuliSize[1]: fixatedPlace_rightY = stimuliSize[1]
+
+            fixatedPlace = target_location[fixatedPlace_leftX:fixatedPlace_rightX, fixatedPlace_leftY:fixatedPlace_rightY]
+
+            if (np.sum(fixatedPlace) > 0):
+                target_found = True
+                break
+            else:
+                # Apply inhibition of return
+                saliencyImg[fixatedPlace_leftX:fixatedPlace_rightX, fixatedPlace_leftY:fixatedPlace_rightY] = 0
+                
+        if (target_found):
+            print(imageName + "; target found at fixation step " + str(fixationNumber + 1))
+        # JSON encoding
+        prejsonStruct  = { "X" : xCoordFixationOrder, "Y" : yCoordFixationOrder, "dataset" : "VisualSearchZeroShot Natural Design Dataset", "image" : imgID + ".jpg", "split" : "test", "subject" : "VisualSearchZeroShot Model" , "target" : "te la debo" }
+        prejsonstructs = prejsonstructs.append(prejsonStruct)
     
-
-
-    jsonStructs = json.dumps(prejsonstructs,indent = 4)
-
-
-    jsonStructsFile = open("scanpathspython.json","w")
+    jsonStructs = json.dumps(prejsonstructs, indent = 4)
+    jsonStructsFile = open('scanpathspython.json', 'w')
     jsonStructsFile.write(jsonStructs)
-    jsonStructsFile.close();
+    jsonStructsFile.close()
 
 
 def run_model():
