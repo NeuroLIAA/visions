@@ -64,7 +64,6 @@ def compute_scanpaths(stimuliDir, choppedDir, stimuliSize):
             coordinates = np.where(saliencyImg == np.amax(saliencyImg))
             posX = coordinates[0][0]
             posY = coordinates[1][0]
-            print("Fixation step: " + str(fixationNumber + 1) + "; X: " + str(posX) + " Y: " + str(posY))
 
             xCoordFixationOrder.append(str(posX))
             yCoordFixationOrder.append(str(posY))
@@ -92,8 +91,6 @@ def compute_scanpaths(stimuliDir, choppedDir, stimuliSize):
             print(imageName + "; target found at fixation step " + str(fixationNumber + 1))
         # JSON encoding
         prejsonstructs.append({ "X" : xCoordFixationOrder, "Y" : yCoordFixationOrder, "dataset" : "VisualSearchZeroShot Natural Design Dataset", "image" : imgID + ".jpg", "split" : "test", "subject" : "VisualSearchZeroShot Model" , "target" : "te la debo" })
-
-
     
     jsonStructsFile = open('scanpathspython.json', 'w')
     json.dump(prejsonstructs, jsonStructsFile, indent = 4)
