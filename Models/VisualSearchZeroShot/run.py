@@ -18,7 +18,7 @@ def main():
 def compute_scanpaths(stimuliDir, choppedDir, stimuliSize):
     enumeratedImages = listdir(stimuliDir)
     layerList = np.array([1])
-
+    prejsonstructs = []
     for imageName in enumeratedImages:
         if not(imageName.endswith('.jpg')):
             continue
@@ -58,15 +58,16 @@ def compute_scanpaths(stimuliDir, choppedDir, stimuliSize):
         # Compute scanpaths from saliency image
         xCoordFixationOrder = []
         yCoordFixationOrder = []
-        prejsonstructs = []
+        
+
         for fixationNumber in range(maxFixations):
             coordinates = np.where(saliencyImg == np.amax(saliencyImg))
             posX = coordinates[0][0]
             posY = coordinates[1][0]
             print("Fixation step: " + str(fixationNumber + 1) + "; X: " + str(posX) + " Y: " + str(posY))
 
-            xCoordFixationOrder.append(posX)
-            yCoordFixationOrder.append(posY)
+            xCoordFixationOrder.append(str(posX))
+            yCoordFixationOrder.append(str(posY))
 
             fixatedPlace_leftX  = posX - receptiveSize // 2 + 1
             fixatedPlace_rightX = posX + receptiveSize // 2
@@ -90,12 +91,12 @@ def compute_scanpaths(stimuliDir, choppedDir, stimuliSize):
         if (target_found):
             print(imageName + "; target found at fixation step " + str(fixationNumber + 1))
         # JSON encoding
-        prejsonStruct  = { "X" : xCoordFixationOrder, "Y" : yCoordFixationOrder, "dataset" : "VisualSearchZeroShot Natural Design Dataset", "image" : imgID + ".jpg", "split" : "test", "subject" : "VisualSearchZeroShot Model" , "target" : "te la debo" }
-        prejsonstructs = prejsonstructs.append(prejsonStruct)
+        prejsonstructs.append({ "X" : xCoordFixationOrder, "Y" : yCoordFixationOrder, "dataset" : "VisualSearchZeroShot Natural Design Dataset", "image" : imgID + ".jpg", "split" : "test", "subject" : "VisualSearchZeroShot Model" , "target" : "te la debo" })
+
+
     
-    jsonStructs = json.dumps(prejsonstructs, indent = 4)
     jsonStructsFile = open('scanpathspython.json', 'w')
-    jsonStructsFile.write(jsonStructs)
+    json.dump(prejsonstructs, jsonStructsFile, indent = 4)
     jsonStructsFile.close()
 
 
