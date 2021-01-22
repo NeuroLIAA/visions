@@ -66,7 +66,7 @@ def compute_scanpaths():
         if (target_found):
             print(imageName + "; target found at fixation step " + str(fixationNumber + 1))
         # JSON encoding
-        scanpaths.append({ "X" : xCoordFixationOrder, "Y" : yCoordFixationOrder, "dataset" : "VisualSearchZeroShot Natural Design Dataset", "image" : imageName, "split" : "test", "subject" : "VisualSearchZeroShot Model" , "target" : "te la debo" })
+        scanpaths.append({ "X" : xCoordFixationOrder, "Y" : yCoordFixationOrder, "dataset" : "VisualSearchZeroShot Natural Design Dataset", "image" : imageName, "split" : "test", "subject" : "VisualSearchZeroShot Model" , "target object" : "te la debo" , "maximum fixations" : str(maxFixations) , "target found"  : str(target_found) })
     
     jsonStructsFile = open(resultsDir + 'scanpathspython.json', 'w')
     json.dump(scanpaths, jsonStructsFile, indent = 4)
