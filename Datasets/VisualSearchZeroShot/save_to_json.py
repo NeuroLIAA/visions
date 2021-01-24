@@ -20,7 +20,7 @@ for subjectDataFile in subjectsFiles:
 
     subjectNumber = subjectDataFile[4:6]
     currentSubjectData = loadmat(subjectsFilesDir + subjectDataFile)
-    stimuliProcessed = np.empty()
+    stimuliProcessed = np.empty(numImages*17)
     for trialNumber in range(len(trialsSequence)):
         stimuli = trialsSequence[trialNumber]
         if (stimuli in stimuliProcessed):
@@ -34,7 +34,7 @@ for subjectDataFile in subjectsFiles:
         target_found = bool(currentSubjectData['FixData']['TargetFound'][0][0][trialNumber][(number_of_fixations - 1)])
 
         fix_startTime = currentSubjectData['FixData']['Fix_starttime'][0][0][trialNumber][0].flatten()
-        fix_endTime = currentSubjectData['FixData']['Fix_Time'][0][0][trialNumber][0].flatten()
+        fix_endTime = currentSubjectData['FixData']['Fix_time'][0][0][trialNumber][0].flatten()
         fix_time = fix_endTime - fix_startTime
 
         if (stimuli == 0): stimuli = 240
@@ -46,7 +46,7 @@ for subjectDataFile in subjectsFiles:
         imageName = 'img' + str(stimuliName) + '.jpg'
 
         subjectsTrialsInfo.append({ "X" : fix_posX, "Y" : fix_posY, "T" : fix_time, "dataset" : "VisualSearchZeroShot Natural Design Dataset", "image" : imageName, "split" : "valid", "subject" : subjectNumber, "target object" : "te la debo", "maximum fixations" : "80", "target found"  : str(target_found) })
-        stimuliProcessed.append(stimuli)
+        np.append(stimuliProcessed,[stimuli])
 
 jsonStructsFile = open(subjectsFilesDir + 'human_scanpaths.json', 'w')
 json.dump(scanpaths, jsonStructsFile, indent = 4)
