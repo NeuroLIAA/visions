@@ -1,5 +1,4 @@
 from scipy.io import loadmat
-import pandas as pd
 import numpy as np
 import json
 from os import listdir
@@ -33,7 +32,7 @@ for subjectDataFile in subjectsFiles:
         # First fixation is always at the center of the stimuli, it isn't taken into account in the number of fixations
         number_of_fixations = len(fix_posX) - 1
         target_found = False
-        # Target found matrix has only 74 columns
+        # TargetFound matrix only has 74 columns
         if (number_of_fixations < 74):
             target_found = bool(currentSubjectData['FixData']['TargetFound'][0][0][trialNumber][(number_of_fixations - 1)])
 
@@ -49,7 +48,8 @@ for subjectDataFile in subjectsFiles:
             stimuliName = '0' + stimuliName
         imageName = 'img' + str(stimuliName) + '.jpg'
 
-        subjectsTrialsInfo.append({ "X" : fix_posX.tolist(), "Y" : fix_posY.tolist(), "T" : fix_time.tolist(), "dataset" : "VisualSearchZeroShot Natural Design Dataset", "image" : imageName, "split" : "valid", "subject" : subjectNumber, "target object" : "te la debo", "maximum fixations" : "80", "target found"  : str(target_found) })
+        subjectsTrialsInfo.append({ "X" : fix_posX.tolist(), "Y" : fix_posY.tolist(), "T" : fix_time.tolist(), "dataset" : "VisualSearchZeroShot Natural Design Dataset", \
+            "image" : imageName, "split" : "valid", "subject" : subjectNumber, "target object" : "te la debo", "maximum fixations" : "80", "target found"  : str(target_found) })
         np.append(stimuliProcessed, [stimuli])
 
 jsonStructsFile = open(subjectsFilesDir + 'human_scanpaths.json', 'w')
