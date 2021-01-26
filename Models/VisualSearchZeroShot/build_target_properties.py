@@ -12,7 +12,7 @@ def getName(imgID, _type):
     if (_type == 'image'):
         name = 'img' + strNumber + '.jpg'
     else:
-        name = 'tg' + strNumber + '.jpg'
+        name = 't' + strNumber + '.jpg'
 
     return name
 
@@ -39,9 +39,9 @@ for gt in gtFiles:
     tgName  = getName(imgID, 'target')
 
     target_positions.append({ "image" : imgName, "template" : tgName, "matched_row" : start_row, "matched_column" : start_column, "target_side_length" : target_side_length, \
-         "target_columns" : target_columns, "image_height" : img_height, "image_width" : img_width})
+         "target_columns" : target_columns, "image_height" : img_height, "image_width" : img_width, "dataset" : "VisualSearchZeroShot Natural Design Dataset"})
     imgID += 1
 
-jsonStructsFile = open('target_positions.json', 'w')
+jsonStructsFile = open('targets_positions.json', 'w')
 json.dump(target_positions, jsonStructsFile, indent = 4)
 jsonStructsFile.close()
