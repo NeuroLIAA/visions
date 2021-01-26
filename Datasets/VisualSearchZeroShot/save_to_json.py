@@ -25,6 +25,8 @@ trialsSequence = trialsSequence % numImages
 
 subjectsFiles = listdir(subjectsFilesDir)
 subjectsTrialsInfo = []
+targets_found = 0
+wrong_targets_found = 0
 for subjectDataFile in subjectsFiles:
     if (subjectDataFile.endswith('_oracle.mat') or not(subjectDataFile.endswith('.mat'))):
         continue
@@ -64,8 +66,12 @@ for subjectDataFile in subjectsFiles:
         last_fixation_X = fix_posX[len(fix_posX) - 1]
         last_fixation_Y = fix_posY[len(fix_posY) - 1]
         between_bounds = ((rescaled_tg_start_row - 10 < last_fixation_Y) and (rescaled_tg_end_row + 10 > last_fixation_Y)) and ((rescaled_tg_start_column - 10 < last_fixation_X) and (rescaled_tg_end_column + 10 > last_fixation_X))
+        if (target_found):
+            targets_found += 1
         if (target_found and not(between_bounds)):
             print("Subject: " + subjectNumber + ", stimuli: " + str(stimuli) + ". Last fixation doesn't match target bounds")
+            wrong_targets_found += 1
+
 
         fix_startTime = currentSubjectData['FixData']['Fix_starttime'][0][0][trialNumber][0].flatten()
         fix_endTime = currentSubjectData['FixData']['Fix_time'][0][0][trialNumber][0].flatten()
@@ -78,10 +84,11 @@ for subjectDataFile in subjectsFiles:
             stimuliName = '0' + stimuliName
         imageName = 'img' + str(stimuliName) + '.jpg'
 
-        subjectsTrialsInfo.append({ "subject" : subjectNumber, "image" : imageName, "image_height" : 1028, "image_width" : 1280, "X" : fix_posX.tolist(), "Y" : fix_posY.tolist(), "T" : fix_time.tolist(), "target_bbox" : target_bounding_box, "dataset" : "VisualSearchZeroShot Natural Design Dataset", \
-            "split" : "valid", "target object" : "te la debo", "maximum fixations" : "80", "target found"  : str(target_found) })
+        subjectsTrialsInfo.append({ "subject" : subjectNumber, "image" : imageName, "dataset" : "VisualSearchZeroShot Natural Design Dataset", "image_height" : 1028, "image_width" : 1280, "target_found" : str(target_found), \
+            "target_bbox" : target_bounding_box, "X" : fix_posX.tolist(), "Y" : fix_posY.tolist(), "T" : fix_time.tolist(), "split" : "valid", "target_object" : "te la debo", "max_fixations" : "80"})
         np.append(stimuliProcessed, stimuli)
 
+print("Targets found: " + str(targets_found) + ". Wrong targets found: " + str(wrong_targets_found))
 jsonStructsFile = open(subjectsFilesDir + 'human_scanpaths.json', 'w')
 json.dump(subjectsTrialsInfo, jsonStructsFile, indent = 4)
 jsonStructsFile.close()
