@@ -1,6 +1,13 @@
 from skimage import io, measure, color, transform
-import json
 from os import listdir
+import json
+import re
+
+
+def sorted_alphanumeric(data):
+    convert = lambda text: int(text) if text.isdigit() else text.lower()
+    alphanum_key = lambda key: [ convert(c) for c in re.split('([0-9]+)', key) ] 
+    return sorted(data, key=alphanum_key)
 
 def getName(imgID, _type):
     strNumber = str(imgID)
@@ -17,11 +24,11 @@ def getName(imgID, _type):
     return name
 
 gtDir = 'stimuli/gt/'
-gtFiles = listdir(gtDir)
+gtFiles = sorted_alphanumeric(listdir(gtDir))
 
-imgID = 1
 target_positions = []
 for gt in gtFiles:
+    imgID = gt[2:-4]
     gtImg = io.imread(gtDir + gt)
     mask = color.rgb2gray(gtImg) > 0.5
     # Label target region
@@ -35,12 +42,11 @@ for gt in gtFiles:
     img_height = gtImg.shape[0]
     img_width  = gtImg.shape[1]
 
-    imgName = getName(imgID, 'image')
-    tgName  = getName(imgID, 'target')
+    imgName = getName(int(imgID), 'image')
+    tgName  = getName(int(imgID), 'target')
 
-    target_positions.append({ "image" : imgName, "template" : tgName, "matched_row" : start_row, "matched_column" : start_column, "target_side_length" : target_side_length, \
-         "target_columns" : target_columns, "image_height" : img_height, "image_width" : img_width, "dataset" : "VisualSearchZeroShot Natural Design Dataset"})
-    imgID += 1
+    target_positions.append({ "image" : imgName, "template" : tgName, "dataset" : "VisualSearchZeroShot Natural Design Dataset", "matched_row" : start_row, "matched_column" : start_column, \
+         "target_side_length" : target_side_length, "target_columns" : target_columns, "image_height" : img_height, "image_width" : img_width})
 
 jsonStructsFile = open('targets_positions.json', 'w')
 json.dump(target_positions, jsonStructsFile, indent = 4)
