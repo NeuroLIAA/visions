@@ -11,7 +11,8 @@ def main():
     jsonMatlabFile.close()
     jsonPythonFile.close()
     differences = []
-    differentScanpaths = 0
+    differentLengthScanpaths = 0
+    sameLengthDifferentScanpaths = 0
     for pythonStruct in jsonPythonStructs:
         for matlabStruct in jsonMatlabStructs:
             if pythonStruct['image'][3:6] == matlabStruct['image'][0:3]: #me fijo que estoy comparando scanpaths de la misma imagen
@@ -21,9 +22,12 @@ def main():
                 lengthDifference = abs(len(pythonStruct['X']) - len(matlabStruct['X'])) #comparo las longitudes, si son distintas ya hay algún problema
                 xData = compareStructs(pythonStruct, matlabStruct, 'X', 'X', lengthDifference > 0)
                 yData = compareStructs(pythonStruct, matlabStruct, 'Y', 'Y', lengthDifference > 0)
-                differentScanpaths+=xData['different lengths?']
+                if lengthDifference > 0:
+                    differentLengthScanpaths+=xData['different lengths?']
+                else:
+                    sameLengthDifferentScanpaths+=xData['different paths?']
                 differences.append({ "image" : pythonStruct['image'], "length difference" :lengthDifference, "X Python" : xData['python coords'], "X Matlab" : xData['matlab coords'], "Y Python" : yData['python coords'], "Y Matlab" : yData['matlab coords'], "fixations X distance" : xData['coords distance'], "fixations Y distance" : yData['coords distance']})
-    differences.append({"different scanpaths" : differentScanpaths})
+    differences.append({"scanpaths with different lengths" : differentLengthScanpaths, "scanpaths with same length but different paths" : sameLengthDifferentScanpaths})
     jsonDifferencesFile = open(resultsDir + 'scanpathsDifferences.json', 'w')
     json.dump(differences, jsonDifferencesFile, indent = 4)
     jsonDifferencesFile.close()
@@ -36,9 +40,13 @@ def compareStructs(firstStruct, secondStruct, fieldFirstStruct, fieldSecondStruc
     inMatlab = secondStruct[fieldSecondStruct]
     if isNotSameLength :
         coordsDistance = "the scanpaths don't have the same length" #si los scanpaths no tienen la misma longitud, no me importa el camino que hicieron
+        differentPaths = False
     else:
         #si los scanpaths tienen la misma longitud, me fijo cuanto difieren ambos recorridos (medida en valor absoluto)
         coordsDistance = list(map(abs, [x - y for x, y in zip(inPython, inMatlab)]))
+        differentPaths = bool(sum(list(map(lambda x: int(x> 100), coordsDistance))))
         #map() no devuelve una lista, por eso uso list()
-    return{"python coords" :inPython, "matlab coords" : inMatlab, "coords distance" : coordsDistance, "different lengths?" : int(isNotSameLength)}
+    return{"python coords" :inPython, "matlab coords" : inMatlab, "coords distance" : coordsDistance, "different lengths?" : int(isNotSameLength), "different paths?" : differentPaths}
+    
+
 main()
