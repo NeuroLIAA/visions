@@ -3,7 +3,7 @@ import scipy.io
 import numpy as np
 import json
 from os import mkdir, listdir, path
-from skimage import io, color, transform, img_as_ubyte, exposure
+from skimage import io, color, transform, exposure
 
 stimuliDir = 'stimuli/'
 choppedDir = 'choppednaturaldesign/'
@@ -102,9 +102,10 @@ def load_model_data(imageName):
             to_column = from_column + choppedImg_width
             # Replace in template
             template[from_row:to_row, from_column:to_column] = choppedSaliencyImg
-        saliencyImg = img_as_ubyte(exposure.rescale_intensity(template))
+        saliencyImg = exposure.rescale_intensity(template)
     
     return saliencyImg
+
 
 def run_model():
     subprocess.run("th IVSNtopdown_30_31_naturaldesign.lua", shell=True, check=True)
