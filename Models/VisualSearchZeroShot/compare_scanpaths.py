@@ -11,7 +11,8 @@ def main():
     jsonMatlabFile.close()
     jsonPythonFile.close()
     differences = []
-    differentLengthScanpaths = 0
+    differentLengthScanpathsBy3OrMore = 0
+    differentLengthScanpathsBy2OrLess = 0
     sameLengthDifferentScanpaths = 0
     for pythonStruct in jsonPythonStructs:
         for matlabStruct in jsonMatlabStructs:
@@ -23,11 +24,14 @@ def main():
                 xData = compareStructs(pythonStruct, matlabStruct, 'X', 'X', lengthDifference > 0)
                 yData = compareStructs(pythonStruct, matlabStruct, 'Y', 'Y', lengthDifference > 0)
                 if lengthDifference > 0:
-                    differentLengthScanpaths+=xData['different lengths?']
+                    if lengthDifference > 3:
+                        differentLengthScanpathsBy3OrMore+=1
+                    else:                        
+                        differentLengthScanpathsBy2OrLess+=1                        
                 else:
                     sameLengthDifferentScanpaths+=xData['different paths?']
                 differences.append({ "image" : pythonStruct['image'], "length difference" :lengthDifference, "X Python" : xData['python coords'], "X Matlab" : xData['matlab coords'], "Y Python" : yData['python coords'], "Y Matlab" : yData['matlab coords'], "fixations X distance" : xData['coords distance'], "fixations Y distance" : yData['coords distance']})
-    differences.append({"scanpaths with different lengths" : differentLengthScanpaths, "scanpaths with same length but different paths" : sameLengthDifferentScanpaths})
+    differences.append({"scanpaths with different lengths by 3 or more fixations" : differentLengthScanpathsBy3OrMore, "scanpaths with different lengths by 2 or less fixations" : differentLengthScanpathsBy2OrLess, "scanpaths with same length but different paths" : sameLengthDifferentScanpaths})
     jsonDifferencesFile = open(resultsDir + 'scanpathsDifferences.json', 'w')
     json.dump(differences, jsonDifferencesFile, indent = 4)
     jsonDifferencesFile.close()
@@ -46,7 +50,7 @@ def compareStructs(firstStruct, secondStruct, fieldFirstStruct, fieldSecondStruc
         coordsDistance = list(map(abs, [x - y for x, y in zip(inPython, inMatlab)]))
         differentPaths = bool(sum(list(map(lambda x: int(x> 100), coordsDistance))))
         #map() no devuelve una lista, por eso uso list()
-    return{"python coords" :inPython, "matlab coords" : inMatlab, "coords distance" : coordsDistance, "different lengths?" : int(isNotSameLength), "different paths?" : differentPaths}
+    return{"python coords" :inPython, "matlab coords" : inMatlab, "coords distance" : coordsDistance, "different paths?" : differentPaths}
     
 
 main()
