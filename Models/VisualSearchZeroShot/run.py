@@ -1,7 +1,9 @@
 import subprocess
 import scipy.io
 import numpy as np
+import pandas as pd
 import json
+import cv2 as ocv
 from os import mkdir, listdir, path
 from skimage import io, color, transform, img_as_ubyte, exposure
 
@@ -24,6 +26,7 @@ def compute_scanpaths():
             continue
         
         saliencyImg = load_model_data(imageName)
+        io.imsave("saliency004_python.jpg", saliencyImg)
 
         maxFixations  = 80
         receptiveSize = 200
@@ -85,7 +88,6 @@ def load_model_data(imageName):
         for choppedSaliencyData in choppedData:
             if (choppedSaliencyData.endswith('.jpg')):
                 continue
-
             choppedImgName = choppedSaliencyData[:-17]
             choppedImg     = io.imread(choppedImgDir + choppedImgName + '.jpg')
             choppedImg_height = choppedImg.shape[0]
@@ -93,7 +95,8 @@ def load_model_data(imageName):
             # Load data computed by the model
             choppedSaliencyImg = scipy.io.loadmat(choppedImgDir + choppedSaliencyData)
             choppedSaliencyImg = choppedSaliencyImg['x']
-            choppedSaliencyImg = transform.resize(choppedSaliencyImg, (choppedImg_height, choppedImg_width))
+            #choppedSaliencyImg = transform.resize(choppedSaliencyImg, (choppedImg_height, choppedImg_width), order=3, anti_aliasing=True)
+            choppedSaliencyImg = ocv.resize(choppedSaliencyImg, (choppedImg_width, choppedImg_height), interpolation=ocv.INTER_CUBIC)
             # Get coordinate information from the chopped image name
             choppedImgNameSplit = choppedImgName.split('_')
             from_row    = int(choppedImgNameSplit[2])
@@ -102,7 +105,9 @@ def load_model_data(imageName):
             to_column = from_column + choppedImg_width
             # Replace in template
             template[from_row:to_row, from_column:to_column] = choppedSaliencyImg
-        saliencyImg = img_as_ubyte(exposure.rescale_intensity(template))
+        saliencyImg = exposure.rescale_intensity(template, out_range=(0, 1))
+        #df = pd.DataFrame(saliencyImg)
+        #df.to_csv("saliency_python.csv", index=False)
     
     return saliencyImg
 
