@@ -3,7 +3,7 @@ import scipy.io
 import numpy as np
 import json
 from os import mkdir, listdir, path
-from skimage import io, color, transform, exposure
+from skimage import io, color, transform, img_as_ubyte, exposure
 
 stimuliDir = 'stimuli/'
 choppedDir = 'choppednaturaldesign/'
@@ -66,8 +66,8 @@ def compute_scanpaths():
         if (target_found):
             print(imageName + "; target found at fixation step " + str(fixationNumber + 1))
         # JSON encoding
-        scanpaths.append({ "image" : imageName, "dataset" : "VisualSearchZeroShot Natural Design Dataset", "target_found"  : str(target_found), "X" : xCoordFixationOrder, "Y" : yCoordFixationOrder,  "split" : "test", \
-            "subject" : "VisualSearchZeroShot Model" , "target_object" : "te la debo" , "max_fixations" : str(maxFixations)})
+        scanpaths.append({ "image" : imageName, "dataset" : "VisualSearchZeroShot Natural Design Dataset", "subject" : "VisualSearchZeroShot Model", "target_found"  : str(target_found), "X" : xCoordFixationOrder, "Y" : yCoordFixationOrder,  "split" : "test", \
+            "image_height" : stimuliSize[0], "image_width" : stimuliSize[1], "target_object" : "te la debo" , "max_fixations" : str(maxFixations)})
     
     jsonStructsFile = open(resultsDir + 'scanpathspython.json', 'w')
     json.dump(scanpaths, jsonStructsFile, indent = 4)
@@ -102,10 +102,9 @@ def load_model_data(imageName):
             to_column = from_column + choppedImg_width
             # Replace in template
             template[from_row:to_row, from_column:to_column] = choppedSaliencyImg
-        saliencyImg = exposure.rescale_intensity(template)
+        saliencyImg = img_as_ubyte(exposure.rescale_intensity(template))
     
     return saliencyImg
-
 
 def run_model():
     subprocess.run("th IVSNtopdown_30_31_naturaldesign.lua", shell=True, check=True)
