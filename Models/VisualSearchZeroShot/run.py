@@ -26,7 +26,7 @@ def compute_scanpaths():
             continue
         
         saliencyImg = load_model_data(imageName)
-        io.imsave("saliency004_python.jpg", saliencyImg)
+        #io.imsave("saliency004_python.jpg", saliencyImg)
 
         maxFixations  = 80
         receptiveSize = 200
