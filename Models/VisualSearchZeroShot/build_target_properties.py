@@ -48,6 +48,6 @@ for gt in gtFiles:
     target_positions.append({ "image" : imgName, "template" : tgName, "dataset" : "VisualSearchZeroShot Natural Design Dataset", "matched_row" : start_row, "matched_column" : start_column, \
          "target_side_length" : target_side_length, "target_columns" : target_columns, "image_height" : img_height, "image_width" : img_width})
 
-jsonStructsFile = open('targets_positions.json', 'w')
+jsonStructsFile = open('targets_locations.json', 'w')
 json.dump(target_positions, jsonStructsFile, indent = 4)
 jsonStructsFile.close()
