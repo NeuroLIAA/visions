@@ -19,21 +19,28 @@ def main():
 
 def compute_scanpaths():
     enumeratedImages = listdir(stimuliDir)
-    scanpaths = []
+    targetsLocationsFile = open('targets_locations.json')
+    targetsLocations = json.load(targetsLocationsFile)
 
+    scanpaths = []
     for imageName in enumeratedImages:
         if not(imageName.endswith('.jpg')):
             continue
-        
-        saliencyImg = load_model_data(imageName)
-        #io.imsave("saliency004_python.jpg", saliencyImg)
+
+        imgID = imageName[3:-4]
+        saliencyImg = load_model_data(imgID)
 
         maxFixations  = 80
         receptiveSize = 200
-        # Target coordinates are True values in target_location
-        target_location = io.imread(stimuliDir + 'gt/' + imageName)
-        target_location = color.rgb2gray(transform.resize(target_location, stimuliSize))
-        target_location = target_location > 0.5
+        # Load target's boundaries
+        target_properties = targetsLocations[int(imgID) - 1]
+        target_bbox = (target_properties['matched_row'], target_properties['matched_column'], target_properties['target_side_length'] + target_properties['matched_row'], \
+            target_properties['target_columns'] + target_properties['matched_column'])
+        # Rescale according to stimuli size
+        target_bbox = rescaleCoordinates(target_bbox[0], target_bbox[1], target_bbox[2], target_bbox[3], target_properties['image_height'], target_properties['image_width'], stimuliSize[0], stimuliSize[1])
+        # Create template of stimuli's size where there are ones in target's box and zeros elsewhere
+        targetTemplate = np.zeros(stimuliSize)
+        targetTemplate[target_bbox[0]:target_bbox[2], target_bbox[1]:target_bbox[3]] = 1
 
         xCoordFixationOrder = []
         yCoordFixationOrder = []
@@ -57,7 +64,8 @@ def compute_scanpaths():
             if fixatedPlace_rightX > stimuliSize[0]: fixatedPlace_rightX = stimuliSize[0]
             if fixatedPlace_rightY > stimuliSize[1]: fixatedPlace_rightY = stimuliSize[1]
 
-            fixatedPlace = target_location[fixatedPlace_leftX:fixatedPlace_rightX, fixatedPlace_leftY:fixatedPlace_rightY]
+            # Check if target's box overlaps with the fixated place
+            fixatedPlace = targetTemplate[fixatedPlace_leftX:fixatedPlace_rightX, fixatedPlace_leftY:fixatedPlace_rightY]
 
             if (np.sum(fixatedPlace) > 0):
                 target_found = True
@@ -76,9 +84,16 @@ def compute_scanpaths():
     json.dump(scanpaths, jsonStructsFile, indent = 4)
     jsonStructsFile.close()
 
-def load_model_data(imageName):
+def rescaleCoordinates(start_row, start_column, end_row, end_column, img_height, img_width, new_img_height, new_img_width):
+    rescaled_start_row = round((start_row / img_height) * new_img_height)
+    rescaled_start_column = round((start_column / img_width) * new_img_width)
+    rescaled_end_row = round((end_row / img_height) * new_img_height)
+    rescaled_end_column = round((end_column / img_width) * new_img_width)
+
+    return rescaled_start_row, rescaled_start_column, rescaled_end_row, rescaled_end_column
+
+def load_model_data(imgID):
     # Get saliency map for stimuli
-    imgID = imageName[3:-4]
     choppedImgDir = choppedDir + 'img' + imgID + '/'
     choppedData = listdir(choppedImgDir)
 
@@ -95,7 +110,7 @@ def load_model_data(imageName):
             # Load data computed by the model
             choppedSaliencyImg = scipy.io.loadmat(choppedImgDir + choppedSaliencyData)
             choppedSaliencyImg = choppedSaliencyImg['x']
-            #choppedSaliencyImg = transform.resize(choppedSaliencyImg, (choppedImg_height, choppedImg_width), order=3, anti_aliasing=True)
+            #choppedSaliencyImg = transform.resize(choppedSaliencyImg, (choppedImg_height, choppedImg_width))
             choppedSaliencyImg = ocv.resize(choppedSaliencyImg, (choppedImg_width, choppedImg_height), interpolation=ocv.INTER_CUBIC)
             # Get coordinate information from the chopped image name
             choppedImgNameSplit = choppedImgName.split('_')

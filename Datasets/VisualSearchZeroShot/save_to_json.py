@@ -3,18 +3,10 @@ import numpy as np
 import json
 from os import listdir
 
-def rescaleCoordinates(start_row, start_column, end_row, end_column, img_height, img_width, new_img_height, new_img_width):
-    rescaled_start_row = round((start_row / img_height) * new_img_height)
-    rescaled_start_column = round((start_column / img_width) * new_img_width)
-    rescaled_end_row = round((end_row / img_height) * new_img_height)
-    rescaled_end_column = round((end_column / img_width) * new_img_width)
-
-    return rescaled_start_row, rescaled_start_column, rescaled_end_row, rescaled_end_column
-
 subjectsFilesDir = 'psy/ProcessScanpath_naturaldesign/'
 trialsSequenceFile = 'psy/naturaldesign_seq.mat'
-# Load targets positions
-targetsPropertiesFile = open('../../Models/VisualSearchZeroShot/targets_positions.json')
+# Load targets locations
+targetsPropertiesFile = open('../../Models/VisualSearchZeroShot/targets_locations.json')
 targetsPropertiesData = json.load(targetsPropertiesFile)
 
 numImages = 240
