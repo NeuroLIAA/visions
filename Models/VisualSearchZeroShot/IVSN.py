@@ -35,3 +35,15 @@ print(model_target)
 # Set models in evaluation mode
 model_stimuli.eval()
 model_target.eval()
+
+MMconv = nn.Conv2d(numTemplates, 1, convSize, padding=1)
+# torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, bias=True, padding_mode='zeros')
+
+# The model was trained with this input normalization
+def preprocessImage(img):
+	mean_pixel = torch.DoubleTensor([103.939, 116.779, 123.68])
+	perm = torch.LongTensor([3, 2, 1])
+	img = torch.index_select(img, 0, perm) * 256.
+	mean_pixel = mean_pixel.view(3, 1, 1).expand_as(img)
+	img = img - mean_pixel
+	return img
