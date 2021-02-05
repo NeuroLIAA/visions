@@ -1,17 +1,26 @@
 import torch
 import torch.nn as nn
+import torchvision.models as models
 import caffemodel2pytorch
 import numpy as np
+from skimage import io, transform, color
+from os import listdir
+
+# Config
+stimuliDir = 'stimuli/'
+targetDir = 'target/'
+choppedDir = 'choppednaturaldesign/'
+targetHeight, targetWidth = 28, 28
+stimuliChoppedHeight, stimuliChoppedWidth = 224, 224
 
 # Load the model
-model = caffemodel2pytorch.Net(
-	prototxt = 'Models/caffevgg16/VGG_ILSVRC_16_layers_deploy.prototxt',
-	weights = 'Models/caffevgg16/VGG_ILSVRC_16_layers.caffemodel',
-	caffe_proto = 'https://raw.githubusercontent.com/BVLC/caffe/master/src/caffe/proto/caffe.proto'
-)
+model = models.vgg16(pretrained=True)
+# model = caffemodel2pytorch.Net(
+# 	prototxt = 'Models/caffevgg16/VGG_ILSVRC_16_layers_deploy.prototxt',
+# 	weights = 'Models/caffevgg16/VGG_ILSVRC_16_layers.caffemodel',
+# 	caffe_proto = 'https://raw.githubusercontent.com/BVLC/caffe/master/src/caffe/proto/caffe.proto'
+# )
 
-model_stimuli = nn.Sequential()
-model_target  = nn.Sequential()
 # Ignore first module since it's the net itself
 layers = [module for module in model.modules()][1:]
 """
@@ -27,8 +36,12 @@ layers: 31, 512, 1
 convSize = 1
 numLayers = 31
 numTemplates = 512
-model_stimuli = nn.Sequential(*layers[:(numLayers - 1)])
-model_target  = nn.Sequential(*layers[:numLayers])
+
+stimuliLayers = list(layers[0])[:-1]
+targetLayers = list(layers[0])
+model_stimuli = nn.Sequential(*stimuliLayers)
+model_target = nn.Sequential(*targetLayers)
+
 print(model_stimuli)
 print(model_target)
 
@@ -42,8 +55,46 @@ MMconv = nn.Conv2d(numTemplates, 1, convSize, padding=1)
 # The model was trained with this input normalization
 def preprocessImage(img):
 	mean_pixel = torch.DoubleTensor([103.939, 116.779, 123.68])
-	perm = torch.LongTensor([3, 2, 1])
-	img = torch.index_select(img, 0, perm) * 256.
+	permutation = torch.LongTensor([2, 1, 0])
+	img = torch.index_select(img, 0, permutation) * 256.
 	mean_pixel = mean_pixel.view(3, 1, 1).expand_as(img)
 	img = img - mean_pixel
 	return img
+
+stimuliFiles = listdir(stimuliDir)
+for stimuliName in stimuliFiles:
+	if not(stimuliName.endswith('.jpg')):
+		continue
+
+	stimuliID = stimuliName[3:-4]
+	targetName = 't' + stimuliID + '.jpg'
+	target = io.imread(targetDir + targetName, as_gray=True)
+	target = transform.resize(target, (targetHeight, targetWidth))
+	# add channel dimension
+	target = np.expand_dims(target, axis=0)
+	target = torch.from_numpy(target)
+	target = torch.cat([target, target, target])
+	target = preprocessImage(target)
+
+	currentChoppedDir = choppedDir + 'img' + stimuliID + '/'
+	choppedFiles= listdir(currentChoppedDir)
+	for choppedStimuliName in choppedFiles:
+		if not(choppedStimuliName.endswith('.jpg')):
+			continue
+
+		choppedStimuli = io.imread(currentChoppedDir + choppedStimuliName)
+		choppedStimuli = transform.resize(choppedStimuli, (stimuliChoppedHeight, stimuliChoppedWidth))
+		# add channel dimension
+		choppedStimuli = np.expand_dims(choppedStimuli, axis=0)
+		choppedStimuli = torch.from_numpy(choppedStimuli)
+		choppedStimuli = torch.cat([choppedStimuli, choppedStimuli, choppedStimuli])
+		choppedStimuli = preprocessImage(choppedStimuli)
+
+		# View as mini-batch of size 1
+		# cast as 32-bit float since the model parameters are 32-bit floats
+		batch_stimuli = choppedStimuli.unsqueeze(0).float()
+		batch_target  = target.unsqueeze(0).float()
+
+		# Get the output of the softmax
+		output_stimuli = model_stimuli(batch_stimuli).squeeze()
+		output_target  = model_target(batch_target)
