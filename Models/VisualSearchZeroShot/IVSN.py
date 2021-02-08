@@ -1,9 +1,10 @@
 import torch
 import torch.nn as nn
 import torchvision.models as models
-import caffemodel2pytorch
 import numpy as np
+import caffemodel2pytorch as caffe
 from skimage import io, transform, color
+from scipy.io import savemat, loadmat
 from os import listdir
 
 # Config
@@ -15,14 +16,11 @@ stimuliChoppedHeight, stimuliChoppedWidth = 224, 224
 
 # Load the model
 model = models.vgg16(pretrained=True)
-# model = caffemodel2pytorch.Net(
-# 	prototxt = 'Models/caffevgg16/VGG_ILSVRC_16_layers_deploy.prototxt',
-# 	weights = 'Models/caffevgg16/VGG_ILSVRC_16_layers.caffemodel',
+# model = caffe.Net(
+# 	prototxt = './Models/caffevgg16/VGG_ILSVRC_16_layers_deploy_old.prototxt',
+# 	weights = './Models/caffevgg16/VGG_ILSVRC_16_layers_old.caffemodel',
 # 	caffe_proto = 'https://raw.githubusercontent.com/BVLC/caffe/master/src/caffe/proto/caffe.proto'
 # )
-
-# Ignore first module since it's the net itself
-layers = [module for module in model.modules()][1:]
 """
 layers: numlayer, numtemplates, convsize
 layers: 5, 64, 14
@@ -34,13 +32,14 @@ layers: 30, 512, 2
 layers: 31, 512, 1
 """
 convSize = 1
-numLayers = 31
+numLayers = 30
 numTemplates = 512
 
-stimuliLayers = list(layers[0])[:-1]
-targetLayers = list(layers[0])
-model_stimuli = nn.Sequential(*stimuliLayers)
-model_target = nn.Sequential(*targetLayers)
+# model_target = nn.Sequential(*model.layers[:-8])
+# model_stimuli = nn.Sequential(*model.layers[:-9])
+
+model_target  = nn.Sequential(*list(model.features.children())[:numLayers])
+model_stimuli = nn.Sequential(*list(model.features.children())[:numLayers])
 
 print(model_stimuli)
 print(model_target)
@@ -49,7 +48,7 @@ print(model_target)
 model_stimuli.eval()
 model_target.eval()
 
-MMconv = nn.Conv2d(numTemplates, 1, convSize, padding=1)
+MMConv = nn.Conv2d(numTemplates, 1, convSize, padding=1)
 # torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, bias=True, padding_mode='zeros')
 
 # The model was trained with this input normalization
@@ -95,6 +94,15 @@ for stimuliName in stimuliFiles:
 		batch_stimuli = choppedStimuli.unsqueeze(0).float()
 		batch_target  = target.unsqueeze(0).float()
 
-		# Get the output of the softmax
-		output_stimuli = model_stimuli(batch_stimuli).squeeze()
-		output_target  = model_target(batch_target)
+		with torch.no_grad():
+			# Get the feature maps
+			output_stimuli = model_stimuli(batch_stimuli).squeeze()
+			output_target  = model_target(batch_target)
+
+			MMConv.weight = nn.parameter.Parameter(output_target, False)
+			# Output is the convolution of both representations
+			out = MMConv(output_stimuli.unsqueeze(0)).squeeze()
+
+		saveFile = currentChoppedDir + choppedStimuliName[:-4] + '_layertopdown.mat'
+		matData = {'x': out.numpy()}
+		savemat(saveFile, matData)
