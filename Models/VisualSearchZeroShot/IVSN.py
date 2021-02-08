@@ -2,7 +2,6 @@ import torch
 import torch.nn as nn
 import torchvision.models as models
 import numpy as np
-import caffemodel2pytorch as caffe
 from skimage import io, transform, color
 from scipy.io import savemat, loadmat
 from os import listdir
@@ -11,16 +10,11 @@ from os import listdir
 stimuliDir = 'stimuli/'
 targetDir = 'target/'
 choppedDir = 'choppednaturaldesign/'
-targetHeight, targetWidth = 28, 28
+targetHeight, targetWidth = 32, 32
 stimuliChoppedHeight, stimuliChoppedWidth = 224, 224
 
 # Load the model
 model = models.vgg16(pretrained=True)
-# model = caffe.Net(
-# 	prototxt = './Models/caffevgg16/VGG_ILSVRC_16_layers_deploy_old.prototxt',
-# 	weights = './Models/caffevgg16/VGG_ILSVRC_16_layers_old.caffemodel',
-# 	caffe_proto = 'https://raw.githubusercontent.com/BVLC/caffe/master/src/caffe/proto/caffe.proto'
-# )
 """
 layers: numlayer, numtemplates, convsize
 layers: 5, 64, 14
@@ -32,14 +26,11 @@ layers: 30, 512, 2
 layers: 31, 512, 1
 """
 convSize = 1
-numLayers = 30
+numLayers = 31
 numTemplates = 512
 
-# model_target = nn.Sequential(*model.layers[:-8])
-# model_stimuli = nn.Sequential(*model.layers[:-9])
-
 model_target  = nn.Sequential(*list(model.features.children())[:numLayers])
-model_stimuli = nn.Sequential(*list(model.features.children())[:numLayers])
+model_stimuli = nn.Sequential(*list(model.features.children())[:(numLayers - 1)])
 
 print(model_stimuli)
 print(model_target)
@@ -74,6 +65,10 @@ for stimuliName in stimuliFiles:
 	target = torch.from_numpy(target)
 	target = torch.cat([target, target, target])
 	target = preprocessImage(target)
+
+	# target = loadmat('target.mat')
+	# target = target['x']
+	# target = torch.from_numpy(target)
 
 	currentChoppedDir = choppedDir + 'img' + stimuliID + '/'
 	choppedFiles= listdir(currentChoppedDir)
