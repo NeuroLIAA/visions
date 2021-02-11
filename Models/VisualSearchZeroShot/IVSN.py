@@ -2,9 +2,8 @@ import torch
 import torch.nn as nn
 import torchvision.models as models
 from torchvision import transforms
-import numpy as np
 import caffemodel2pytorch
-from scipy.io import savemat, loadmat
+from scipy.io import savemat
 from os import listdir
 from PIL import Image
 
@@ -23,6 +22,7 @@ def run_model():
 	#	weights = './Models/caffevgg16/VGG_ILSVRC_16_layers.caffemodel',
 	#	caffe_proto = 'https://raw.githubusercontent.com/BVLC/caffe/master/src/caffe/proto/caffe.proto'
 	#)
+	print('Successfully loaded VGG16 model')
 	"""
 	layers: numlayer, numtemplates, convsize
 	layers: 5, 64, 14
@@ -41,9 +41,6 @@ def run_model():
 	#model_stimuli = nn.Sequential(*list(model.layers[:(numLayers - 1)]))
 	model_target  = nn.Sequential(*list(model.features.children())[:numLayers])
 	model_stimuli = nn.Sequential(*list(model.features.children())[:(numLayers - 1)])
-
-	print(model_stimuli)
-	print(model_target)
 
 	# Set models in evaluation mode
 	model_stimuli.eval()
@@ -70,9 +67,8 @@ def run_model():
 
 		stimuliID = stimuliName[3:-4]
 		targetName = 't' + stimuliID + '.jpg'
-		target = Image.open(targetDir + targetName)
+		target = Image.open(targetDir + targetName).convert('RGB')
 		target_transformation = transforms.Compose([
-			transforms.Grayscale(num_output_channels=3), 
 			transforms.Resize((targetHeight, targetWidth)),
 			transforms.ToTensor(),
 			transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])])
