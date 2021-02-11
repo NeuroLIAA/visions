@@ -4,12 +4,14 @@ import numpy as np
 import pandas as pd
 import json
 import cv2 as ocv
+import IVSN
 from os import mkdir, listdir, path
 from skimage import io, color, transform, img_as_ubyte, exposure
 
 stimuliDir = 'stimuli/'
 choppedDir = 'choppednaturaldesign/'
 resultsDir = 'results/'
+resultsFile = 'scanpathspython_pytorch_normalized.json'
 stimuliSize = (1028, 1280)
 
 def main():
@@ -18,7 +20,7 @@ def main():
     compute_scanpaths()
 
 def compute_scanpaths():
-    enumeratedImages = listdir(stimuliDir)
+    enumeratedImages = sorted(listdir(stimuliDir))
     targetsLocationsFile = open('targets_locations.json')
     targetsLocations = json.load(targetsLocationsFile)
 
@@ -80,7 +82,7 @@ def compute_scanpaths():
         scanpaths.append({ "image" : imageName, "dataset" : "VisualSearchZeroShot Natural Design Dataset", "subject" : "VisualSearchZeroShot Model", "target_found"  : str(target_found), "X" : xCoordFixationOrder, "Y" : yCoordFixationOrder,  "split" : "test", \
             "image_height" : stimuliSize[0], "image_width" : stimuliSize[1], "target_object" : "te la debo" , "max_fixations" : str(maxFixations)})
     
-    jsonStructsFile = open(resultsDir + 'scanpathspython.json', 'w')
+    jsonStructsFile = open(resultsDir + resultsFile, 'w')
     json.dump(scanpaths, jsonStructsFile, indent = 4)
     jsonStructsFile.close()
 
@@ -110,8 +112,8 @@ def load_model_data(imgID):
             # Load data computed by the model
             choppedSaliencyImg = scipy.io.loadmat(choppedImgDir + choppedSaliencyData)
             choppedSaliencyImg = choppedSaliencyImg['x']
-            #choppedSaliencyImg = transform.resize(choppedSaliencyImg, (choppedImg_height, choppedImg_width))
-            choppedSaliencyImg = ocv.resize(choppedSaliencyImg, (choppedImg_width, choppedImg_height), interpolation=ocv.INTER_CUBIC)
+            choppedSaliencyImg = transform.resize(choppedSaliencyImg, (choppedImg_height, choppedImg_width))
+            #choppedSaliencyImg = ocv.resize(choppedSaliencyImg, (choppedImg_width, choppedImg_height), interpolation=ocv.INTER_CUBIC)
             # Get coordinate information from the chopped image name
             choppedImgNameSplit = choppedImgName.split('_')
             from_row    = int(choppedImgNameSplit[2])
@@ -127,11 +129,12 @@ def load_model_data(imgID):
     return saliencyImg
 
 def run_model():
-    subprocess.run("th IVSNtopdown_30_31_naturaldesign.lua", shell=True, check=True)
+    IVSN.run_model()
 
 def preprocess_images():
+    print('Preprocessing images...')
     # Preprocessing of images (conversion to grayscale, resizing and dividing into blocks)
-    enumeratedImages = listdir(stimuliDir)
+    enumeratedImages = sorted(listdir(stimuliDir))
 
     for imageName in enumeratedImages:
         if not(imageName.endswith('.jpg')):
