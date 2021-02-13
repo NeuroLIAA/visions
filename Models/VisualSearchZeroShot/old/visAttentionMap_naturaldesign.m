@@ -46,7 +46,7 @@ for i = 1:NumImage
     gt = imread(path);
     gt = imresize(gt,[w,h]);
     gt = mat2gray(gt);
-    gt = im2bw(gt,0.5);
+    gt = imbinarize(gt,0.5);
     gt = double(gt);
     
     img = imread([ stimuliFolder trialname]);
@@ -65,18 +65,19 @@ for i = 1:NumImage
             input = load(['choppednaturaldesign/img' imgID '/' piecedir(j).name]);
             comp = imread(['choppednaturaldesign/img' imgID '/' piecedir(j).name(1:end-17) '.jpg' ]);
             input = input.x;
-            input = imresize(input, [size(comp,1) size(comp,2)]);
+            input = imresize(input, [size(comp,1) size(comp,2)], 'AntiAliasing',false);
             C = strsplit(piecedir(j).name,'_');        
-            startpos = str2num(C{3});
-            endpos = str2num(C{4});
+            startpos = str2num(C{3}) + 1;
+            endpos = str2num(C{4}) + 1;
             wholeimg(l,startpos: startpos+size(comp,1) - 1, endpos: endpos+size(comp,2) - 1) = input;
             
         end
+        wholeimg_squeeze = squeeze(wholeimg);
         wholeimg(l,:,:) = mat2gray(wholeimg(l,:,:));
     end
     
     wholeimg = squeeze(mean(wholeimg,1));
-      
+
     %apply Inhibiton Of Return
     found = 0;
     fixtime = 1;

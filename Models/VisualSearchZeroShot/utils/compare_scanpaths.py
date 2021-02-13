@@ -4,7 +4,8 @@ from os import mkdir, listdir, path
 resultsDir = 'results/'
 
 def main():
-    jsonPythonFile = open(resultsDir + 'scanpathspython.json', 'r')
+    jsonPythonFile = open(resultsDir + 'scanpathspython_pytorch.json', 'r')
+    #jsonMatlabFile = open(resultsDir + 'scanpaths.json', 'r')
     jsonMatlabFile = open(resultsDir + 'scanpaths.json', 'r')
     jsonPythonStructs = json.load(jsonPythonFile)
     jsonMatlabStructs = json.load(jsonMatlabFile)
@@ -43,7 +44,7 @@ def main():
     print("Python version has " + str(shorterScanpathsPython) + " scanpaths with less fixations than its counterpart in the MATLAB version")
     print("MATLAB version has " + str(shorterScanpathsMatlab) + " scanpaths with less fixations than its counterpart in the Python version")
     differences.append({"scanpaths with different lengths by 3 or more fixations" : differentLengthScanpathsBy3OrMore, "scanpaths with different lengths by 2 or less fixations" : differentLengthScanpathsBy2OrLess, "scanpaths with same length but different paths" : sameLengthDifferentScanpaths})
-    jsonDifferencesFile = open(resultsDir + 'scanpathsDifferences.json', 'w')
+    jsonDifferencesFile = open(resultsDir + 'scanpathsDifferences_pytorch.json', 'w')
     json.dump(differences, jsonDifferencesFile, indent = 4)
     jsonDifferencesFile.close()
 
@@ -51,8 +52,8 @@ def main():
 
 
 def compareStructs(firstStruct, secondStruct, fieldFirstStruct, fieldSecondStruct, isNotSameLength):
-    inPython = list(map(int,firstStruct[fieldFirstStruct])) # Estaban almacenados como strings, los paso a ints
-    inMatlab = secondStruct[fieldSecondStruct]
+    inPython = list(map(int, firstStruct[fieldFirstStruct])) # Estaban almacenados como strings, los paso a ints
+    inMatlab = list(map(int, secondStruct[fieldSecondStruct]))
     if isNotSameLength:
         coordsDistance = "the scanpaths don't have the same length" # Si los scanpaths no tienen la misma longitud, no me importa el camino que hicieron
         differentPaths = False
