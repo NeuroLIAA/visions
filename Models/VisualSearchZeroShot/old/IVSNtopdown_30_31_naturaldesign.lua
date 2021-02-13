@@ -16,8 +16,8 @@ local t = require './transforms'
 local imagenetLabel = require './imagenet'
 
 -- Load the model
-local cmodel = loadcaffe.load('Models/caffevgg16/VGG_ILSVRC_16_layers_deploy.prototxt', 'Models/caffevgg16/VGG_ILSVRC_16_layers.caffemodel', 'nn')
---print(cmodel)
+local cmodel = loadcaffe.load('Models/caffevgg16/VGG_ILSVRC_16_layers_deploy_old.prototxt', 'Models/caffevgg16/VGG_ILSVRC_16_layers_old.caffemodel', 'nn')
+print(cmodel)
 
 model_stimuli = nn.Sequential()
 model_target = nn.Sequential()
@@ -30,15 +30,14 @@ model_target = nn.Sequential()
 -- layers: 30, 512, 2
 -- layers: 31, 512, 1
 
-
 ConvSize = 1
 NumTemplates = 512   
 MyLayer = 31   
-for i = 1, 30 do       
+for i = 1, 30 do    
 	model_stimuli:add(cmodel:get(i))
 end
 --model_stimuli = model_stimuli:cuda()
-print(model_stimuli)
+--print(model_stimuli)
 -- Evaluate mode
 model_stimuli:evaluate()
 
@@ -46,7 +45,7 @@ for i = 1, MyLayer do
 	model_target:add(cmodel:get(i))
 end
 --model_target = model_target:cuda()
-print(model_target)
+--print(model_target)
 
 -- Evaluate mode
 model_stimuli:evaluate()
@@ -78,6 +77,7 @@ function scandir(directory)
   return t
 end
 
+
 -- target and stimuli size are the same for all images
 targetsize = 28
 stimulisize = 224
@@ -102,17 +102,16 @@ for stimuliIndex = 1, #stimuliList do
     stimuli = torch.cat({stimuli, stimuli, stimuli}, 1)   
     stimuli = image.scale(stimuli, stimulisize, stimulisize)
     stimuli = preprocess(stimuli)
-
+    
     -- View as mini-batch of size 1
     local batch_stimuli = stimuli:view(1, table.unpack(stimuli:size():totable()))
     local batch_target = target:view(1, table.unpack(target:size():totable()))
-
     -- Get the output of the softmax
     --local output_stimuli = model_stimuli:forward(batch_stimuli:cuda()):squeeze()  
     --local output_target = model_target:forward(batch_target:cuda())
     local output_stimuli = model_stimuli:forward(batch_stimuli):squeeze()  
     local output_target = model_target:forward(batch_target)
-    
+
     MMconv.weight = output_target
     
     out = MMconv:forward(output_stimuli:view(1, table.unpack(output_stimuli:size():totable()))):squeeze()
