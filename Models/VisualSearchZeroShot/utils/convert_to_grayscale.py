@@ -1,8 +1,8 @@
 from os import listdir
 from skimage import io, color
 
-stimuliDir = './stimuli/'
-targetDir = './target/'
+stimuliDir = '../stimuli/'
+targetDir = '../target/'
 
 stimuliFiles = sorted(listdir(stimuliDir))
 targetFiles = sorted(listdir(targetDir))

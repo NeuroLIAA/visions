@@ -4,7 +4,7 @@ from numpy import *
 import math
 import matplotlib.pyplot as plt
 
-resultsDir = 'results/'
+resultsDir = '../results/'
 maxScanpathLength = 30
 totalStimuli = 240
 
