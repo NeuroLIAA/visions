@@ -1,12 +1,11 @@
 import json
 from os import mkdir, listdir, path
 
-resultsDir = 'results/'
+resultsDir = '../results/'
 
 def main():
-    jsonPythonFile = open(resultsDir + 'scanpathspython_pytorch.json', 'r')
-    #jsonMatlabFile = open(resultsDir + 'scanpaths.json', 'r')
-    jsonMatlabFile = open(resultsDir + 'scanpaths.json', 'r')
+    jsonPythonFile = open(resultsDir + 'Scanpaths_Pytorch with VGG16.json', 'r')
+    jsonMatlabFile = open(resultsDir + 'Scanpaths_Original model.json', 'r')
     jsonPythonStructs = json.load(jsonPythonFile)
     jsonMatlabStructs = json.load(jsonMatlabFile)
     jsonMatlabFile.close()

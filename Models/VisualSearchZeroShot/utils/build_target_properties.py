@@ -23,7 +23,7 @@ def getName(imgID, _type):
 
     return name
 
-gtDir = 'stimuli/gt/'
+gtDir = '../stimuli/gt/'
 gtFiles = sorted_alphanumeric(listdir(gtDir))
 
 target_positions = []
