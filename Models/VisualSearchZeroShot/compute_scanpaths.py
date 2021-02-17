@@ -1,5 +1,4 @@
 import json
-import scipy.io
 import numpy as np
 from os import listdir
 from skimage import io, transform, exposure
@@ -98,15 +97,15 @@ def load_model_data(chopped_dir, imgID, stimuli_size):
         for choppedSaliencyData in choppedData:
             if (choppedSaliencyData.endswith('.jpg')):
                 continue
-            choppedImgName = choppedSaliencyData[:-17]
+            choppedImgName = choppedSaliencyData[:-18]
             choppedImg     = io.imread(choppedImgDir + choppedImgName + '.jpg')
             choppedImg_height = choppedImg.shape[0]
             choppedImg_width  = choppedImg.shape[1]
             # Load data computed by the model
-            choppedAttentionMap = scipy.io.loadmat(choppedImgDir + choppedSaliencyData)
-            choppedAttentionMap = choppedAttentionMap['x']
+            with open(choppedImgDir + choppedSaliencyData, 'r') as fp:
+                choppedAttentionMap = json.load(fp)
+            choppedAttentionMap = np.asarray(choppedAttentionMap['x'])
             choppedAttentionMap = transform.resize(choppedAttentionMap, (choppedImg_height, choppedImg_width))
-            #choppedAttentionMap = ocv.resize(choppedAttentionMap, (choppedImg_width, choppedImg_height), interpolation=ocv.INTER_CUBIC)
             # Get coordinate information from the chopped image name
             choppedImgNameSplit = choppedImgName.split('_')
             from_row    = int(choppedImgNameSplit[2])
