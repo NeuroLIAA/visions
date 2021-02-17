@@ -1,15 +1,15 @@
 import torch
 import torch.nn as nn
 import torchvision.models as models
+import json
 from torchvision import transforms
-import caffemodel2pytorch
-from scipy.io import savemat
+from utils import caffemodel2pytorch
 from os import listdir
 from PIL import Image
 
 """
 Runs the CNN feature extraction layers on each of the chopped stimuli images, alongside the target image.
-The results are attention maps, which are then stored in the same folder as the chopped images, in MAT format.
+The results are attention maps, which are then stored in the same folder as the chopped images, in JSON format.
 """
 
 # Config
@@ -109,6 +109,7 @@ def run(stimuli_dir, target_dir, chopped_dir):
 				# Output is the convolution of both representations
 				out = MMConv(output_stimuli.unsqueeze(0)).squeeze()
 
-			saveFile = currentchopped_dir + choppedStimuliName[:-4] + '_layertopdown.mat'
-			matData = {'x': out.numpy()}
-			savemat(saveFile, matData)
+			saveFile = currentchopped_dir + choppedStimuliName[:-4] + '_layertopdown.json'
+			output = {'x': out.numpy().tolist()}
+			with open(saveFile, 'w') as fp:
+				json.dump(output, fp)

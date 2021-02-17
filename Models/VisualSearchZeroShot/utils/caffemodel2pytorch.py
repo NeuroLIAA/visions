@@ -96,8 +96,6 @@ class Net(nn.Module):
 				module.caffe_optimization_params = caffe_optimization_params
 				for optim_param, p in zip(caffe_optimization_params, module.parameters()):
 					p.requires_grad = optim_param.get('lr_mult', 1) != 0
-			else:
-				print('Skipping layer [{}, {}, {}]: not found in caffemodel2pytorch.modules dict'.format(layer.name, layer_type, layer.type))
 
 		if weights is not None:
 			self.copy_from(weights)
@@ -136,7 +134,7 @@ class Net(nn.Module):
 					state_dict[k].resize_(v.shape).copy_(torch.from_numpy(numpy.array(v)))
 			print('caffemodel2pytorch: loaded model from [{}] in HDF5 format'.format(weights))
 		except Exception as e:
-			print('caffemodel2pytorch: loading model from [{}] in HDF5 format failed [{}], falling back to caffemodel format'.format(weights, e))
+			#print('caffemodel2pytorch: loading model from [{}] in HDF5 format failed [{}], falling back to caffemodel format'.format(weights, e))
 			bytes_weights = open(weights, 'rb').read()
 			bytes_parsed = self.net_param.ParseFromString(bytes_weights)
 			if bytes_parsed != len(bytes_weights):
