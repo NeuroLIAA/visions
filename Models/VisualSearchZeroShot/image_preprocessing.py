@@ -7,14 +7,15 @@ Stimuli is divided into blocks of size 224x224, which are then fed to the CNN.
 Files are saved in chopped_dir.
 """
 
-def chop_stimuli(stimuli_dir, chopped_dir, stimuli_size):
-    enumeratedImages = sorted(listdir(stimuli_dir))
+def chop_stimuli(stimuli_dir, chopped_dir, stimuli_size,targetsLocations):
+    
 
-    for imageName in enumeratedImages:
+    for struct in targetsLocations:
+        imageName = struct['image']
         if not(imageName.endswith('.jpg')):
             continue
 
-        imgID = imageName[3:-4]
+        imgID = imageName[:-4]
         img = io.imread(stimuli_dir + imageName)
         if len(img.shape) >= 3:
             img = color.rgb2gray(img)
@@ -23,7 +24,7 @@ def chop_stimuli(stimuli_dir, chopped_dir, stimuli_size):
         if not(path.exists(chopped_dir)):
             mkdir(chopped_dir)
 
-        choppedImgDir = chopped_dir + 'img' + imgID
+        choppedImgDir = chopped_dir + imgID
         if not(path.exists(choppedImgDir)):
             mkdir(choppedImgDir)
 
@@ -57,4 +58,4 @@ def divide_into_blocks(image, imgID, save_path):
             to_row    = from_row + current_block_size[0]
             to_column = from_column + current_block_size[1]
             img_crop = image[from_row:to_row, from_column:to_column]
-            io.imsave(save_path + '/img_id' + imgID + '_' + str(from_row) + '_' + str(from_column) + '.jpg', img_as_ubyte(img_crop), check_contrast=False)
+            io.imsave(save_path + '/' + imgID + '_' + str(from_row) + '_' + str(from_column) + '.jpg', img_as_ubyte(img_crop), check_contrast=False)

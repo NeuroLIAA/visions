@@ -16,7 +16,7 @@ The results are attention maps, which are then stored in the same folder as the 
 targetHeight, targetWidth = 32, 32
 stimuliChoppedHeight, stimuliChoppedWidth = 224, 224
 
-def run(stimuli_dir, target_dir, chopped_dir):
+def run(stimuli_dir, target_dir, chopped_dir,targetsLocations):
 	# Load the model
 	model = models.vgg16(pretrained=True)
 	# model = caffemodel2pytorch.Net(
@@ -60,56 +60,57 @@ def run(stimuli_dir, target_dir, chopped_dir):
 		img = img - mean_pixel
 		return img
 
-	stimuliFiles = sorted(listdir(stimuli_dir))
-	for stimuliName in stimuliFiles:
-		if not(stimuliName.endswith('.jpg')):
-			continue
+	
+	for struct in targetsLocations:
+            stimuliName = struct['image']
+            if not(stimuliName.endswith('.jpg')):
+                continue
 
-		print('Working on ' + stimuliName)
+            print('Working on ' + stimuliName)
 
-		stimuliID = stimuliName[3:-4]
-		targetName = 't' + stimuliID + '.jpg'
-		target = Image.open(target_dir + targetName).convert('RGB')
-		target_transformation = transforms.Compose([
-			transforms.Resize((targetHeight, targetWidth)),
-			transforms.ToTensor(),
-			transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
-			])
-		target = target_transformation(target)
-		#target = torch.cat([target, target, target])
-		#target = preprocessImage(target)
+            stimuliID = stimuliName[:-4]
+            targetName = struct['template']
+            target = Image.open(target_dir + targetName).convert('RGB')
+            target_transformation = transforms.Compose([
+                transforms.Resize((targetHeight, targetWidth)),
+                transforms.ToTensor(),
+                transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+            ])
+            target = target_transformation(target)
+            #target = torch.cat([target, target, target])
+            #target = preprocessImage(target)
 
-		currentchopped_dir = chopped_dir + 'img' + stimuliID + '/'
-		choppedFiles= listdir(currentchopped_dir)
-		for choppedStimuliName in choppedFiles:
-			if not(choppedStimuliName.endswith('.jpg')):
-				continue
+            currentchopped_dir = chopped_dir + stimuliID + '/'
+            choppedFiles= listdir(currentchopped_dir)
+            for choppedStimuliName in choppedFiles:
+                if not(choppedStimuliName.endswith('.jpg')):
+                    continue
 
-			choppedStimuli = Image.open(currentchopped_dir + choppedStimuliName).convert('RGB')
-			stimuli_transformation = transforms.Compose([
-				transforms.Resize((stimuliChoppedHeight, stimuliChoppedWidth)),
-				transforms.ToTensor(),
-				transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
-			])
-			choppedStimuli = stimuli_transformation(choppedStimuli)
-			#choppedStimuli = torch.cat([choppedStimuli, choppedStimuli, choppedStimuli])
-			#choppedStimuli = preprocessImage(choppedStimuli)
+                choppedStimuli = Image.open(currentchopped_dir + choppedStimuliName).convert('RGB')
+                stimuli_transformation = transforms.Compose([
+                    transforms.Resize((stimuliChoppedHeight, stimuliChoppedWidth)),
+                    transforms.ToTensor(),
+                    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+                ])
+                choppedStimuli = stimuli_transformation(choppedStimuli)
+                #choppedStimuli = torch.cat([choppedStimuli, choppedStimuli, choppedStimuli])
+                #choppedStimuli = preprocessImage(choppedStimuli)
 
-			# View as mini-batch of size 1
-			# cast as 32-bit float since the model parameters are 32-bit floats
-			batch_stimuli = choppedStimuli.unsqueeze(0).float()
-			batch_target  = target.unsqueeze(0).float()
+                # View as mini-batch of size 1
+                # cast as 32-bit float since the model parameters are 32-bit floats
+                batch_stimuli = choppedStimuli.unsqueeze(0).float()
+                batch_target  = target.unsqueeze(0).float()
 
-			with torch.no_grad():
-				# Get the feature maps
-				output_stimuli = model_stimuli(batch_stimuli).squeeze()
-				output_target  = model_target(batch_target)
+                with torch.no_grad():
+                    # Get the feature maps
+                    output_stimuli = model_stimuli(batch_stimuli).squeeze()
+                    output_target  = model_target(batch_target)
 
-				MMConv.weight = nn.parameter.Parameter(output_target, requires_grad=False)
-				# Output is the convolution of both representations
-				out = MMConv(output_stimuli.unsqueeze(0)).squeeze()
+                    MMConv.weight = nn.parameter.Parameter(output_target, requires_grad=False)
+                    # Output is the convolution of both representations
+                    out = MMConv(output_stimuli.unsqueeze(0)).squeeze()
 
-			saveFile = currentchopped_dir + choppedStimuliName[:-4] + '_layertopdown.json'
-			output = {'x': out.numpy().tolist()}
-			with open(saveFile, 'w') as fp:
-				json.dump(output, fp)
+                saveFile = currentchopped_dir + choppedStimuliName[:-4] + '_layertopdown.json'
+                output = {'x': out.numpy().tolist()}
+                with open(saveFile, 'w') as fp:
+                    json.dump(output, fp)

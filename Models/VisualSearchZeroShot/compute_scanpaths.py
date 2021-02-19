@@ -1,6 +1,7 @@
 import json
 import numpy as np
 from os import listdir
+import os
 from skimage import io, transform, exposure
 
 """
@@ -8,27 +9,24 @@ Puts together data produced by the CNN and creates an attention map for the stim
 Scanpaths are saved in a JSON file.
 """
 
-def parse_model_data(stimuli_dir, chopped_dir, stimuli_size, max_fixations, receptive_size, save_path):
-    targetsLocationsFile = open('targets_locations.json')
-    targetsLocations = json.load(targetsLocationsFile)
+def parse_model_data(stimuli_dir, chopped_dir, stimuli_size, max_fixations, receptive_size, save_path, targetsLocations):
 
     scanpaths = []
-    enumeratedImages = sorted(listdir(stimuli_dir))
-    for imageName in enumeratedImages:
+    for struct in targetsLocations:
+        imageName = struct['image']
         if not(imageName.endswith('.jpg')):
             continue
 
-        imgID = imageName[3:-4]
+        imgID = imageName[:-4]
         attentionMap = load_model_data(chopped_dir, imgID, stimuli_size)
-        create_scanpath(scanpaths, imgID, attentionMap, targetsLocations, stimuli_size, max_fixations, receptive_size)
+        create_scanpath(scanpaths, struct, attentionMap, targetsLocations, stimuli_size, max_fixations, receptive_size)
     
     json_file = open(save_path, 'w')
     json.dump(scanpaths, json_file, indent = 4)
     json_file.close()
 
-def create_scanpath(scanpaths, imgID, attentionMap, targetsLocations, stimuli_size, max_fixations, receptive_size):
+def create_scanpath(scanpaths, target_properties, attentionMap, targetsLocations, stimuli_size, max_fixations, receptive_size):
     # Load target's boundaries
-    target_properties = targetsLocations[int(imgID) - 1]
     target_bbox = (target_properties['matched_row'], target_properties['matched_column'], target_properties['target_side_length'] + target_properties['matched_row'], \
         target_properties['target_columns'] + target_properties['matched_column'])
     # Rescale according to stimuli size
@@ -69,7 +67,7 @@ def create_scanpath(scanpaths, imgID, attentionMap, targetsLocations, stimuli_si
             # Apply inhibition of return
             attentionMap[fixatedPlace_leftX:fixatedPlace_rightX, fixatedPlace_leftY:fixatedPlace_rightY] = 0
     
-    imageName = 'img' + imgID + '.jpg'
+    imageName = target_properties['image']
     if (target_found):
         print(imageName + "; target found at fixation step " + str(fixationNumber + 1))
     else:
@@ -88,13 +86,14 @@ def rescale_coordinates(start_row, start_column, end_row, end_column, img_height
 
 def load_model_data(chopped_dir, imgID, stimuli_size):
     # Get attention map for stimuli
-    choppedImgDir = chopped_dir + 'img' + imgID + '/'
+    choppedImgDir = chopped_dir + imgID + '/'
     choppedData = listdir(choppedImgDir)
 
     template  = np.zeros([stimuli_size[0], stimuli_size[1]])
     layerList = np.array([1])
     for layer in range(len(layerList)):
         for choppedSaliencyData in choppedData:
+        
             if (choppedSaliencyData.endswith('.jpg')):
                 continue
             choppedImgName = choppedSaliencyData[:-18]
@@ -108,8 +107,8 @@ def load_model_data(chopped_dir, imgID, stimuli_size):
             choppedAttentionMap = transform.resize(choppedAttentionMap, (choppedImg_height, choppedImg_width))
             # Get coordinate information from the chopped image name
             choppedImgNameSplit = choppedImgName.split('_')
-            from_row    = int(choppedImgNameSplit[2])
-            from_column = int(choppedImgNameSplit[3])
+            from_row    = int(choppedImgNameSplit[1])
+            from_column = int(choppedImgNameSplit[2])
             to_row    = from_row + choppedImg_height
             to_column = from_column + choppedImg_width
             # Replace in template
