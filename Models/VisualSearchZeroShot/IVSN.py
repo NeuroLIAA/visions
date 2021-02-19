@@ -18,12 +18,12 @@ stimuliChoppedHeight, stimuliChoppedWidth = 224, 224
 
 def run(stimuli_dir, target_dir, chopped_dir):
 	# Load the model
-	#model = models.vgg16(pretrained=True)
-	model = caffemodel2pytorch.Net(
-		prototxt = './Models/caffevgg16/VGG_ILSVRC_16_layers_deploy.prototxt',
-		weights = './Models/caffevgg16/VGG_ILSVRC_16_layers.caffemodel',
-		caffe_proto = 'https://raw.githubusercontent.com/BVLC/caffe/master/src/caffe/proto/caffe.proto'
-	)
+	model = models.vgg16(pretrained=True)
+	# model = caffemodel2pytorch.Net(
+	# 	prototxt = './Models/caffevgg16/VGG_ILSVRC_16_layers_deploy.prototxt',
+	# 	weights = './Models/caffevgg16/VGG_ILSVRC_16_layers.caffemodel',
+	# 	caffe_proto = 'https://raw.githubusercontent.com/BVLC/caffe/master/src/caffe/proto/caffe.proto'
+	# )
 	print('Successfully loaded VGG16 model')
 	"""
 	layers: numlayer, numtemplates, convsize
@@ -39,10 +39,10 @@ def run(stimuli_dir, target_dir, chopped_dir):
 	numLayers = 31
 	numTemplates = 512
 
-	model_target = nn.Sequential(*list(model.layers[:numLayers]))
-	model_stimuli = nn.Sequential(*list(model.layers[:(numLayers - 1)]))
-	#model_target  = nn.Sequential(*list(model.features.children())[:numLayers])
-	#model_stimuli = nn.Sequential(*list(model.features.children())[:(numLayers - 1)])
+	#model_target = nn.Sequential(*list(model.layers[:numLayers]))
+	#model_stimuli = nn.Sequential(*list(model.layers[:(numLayers - 1)]))
+	model_target  = nn.Sequential(*list(model.features.children())[:numLayers])
+	model_stimuli = nn.Sequential(*list(model.features.children())[:(numLayers - 1)])
 
 	# Set models in evaluation mode
 	model_stimuli.eval()
@@ -73,11 +73,11 @@ def run(stimuli_dir, target_dir, chopped_dir):
 		target_transformation = transforms.Compose([
 			transforms.Resize((targetHeight, targetWidth)),
 			transforms.ToTensor(),
-			#transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+			transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 			])
 		target = target_transformation(target)
 		#target = torch.cat([target, target, target])
-		target = preprocessImage(target)
+		#target = preprocessImage(target)
 
 		currentchopped_dir = chopped_dir + 'img' + stimuliID + '/'
 		choppedFiles= listdir(currentchopped_dir)
@@ -89,11 +89,11 @@ def run(stimuli_dir, target_dir, chopped_dir):
 			stimuli_transformation = transforms.Compose([
 				transforms.Resize((stimuliChoppedHeight, stimuliChoppedWidth)),
 				transforms.ToTensor(),
-				#transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+				transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 			])
 			choppedStimuli = stimuli_transformation(choppedStimuli)
-			# choppedStimuli = torch.cat([choppedStimuli, choppedStimuli, choppedStimuli])
-			choppedStimuli = preprocessImage(choppedStimuli)
+			#choppedStimuli = torch.cat([choppedStimuli, choppedStimuli, choppedStimuli])
+			#choppedStimuli = preprocessImage(choppedStimuli)
 
 			# View as mini-batch of size 1
 			# cast as 32-bit float since the model parameters are 32-bit floats
