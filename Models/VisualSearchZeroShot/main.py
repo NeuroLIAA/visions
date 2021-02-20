@@ -5,7 +5,7 @@ import json
 
 stimuli_dir = '../../Datasets/VisualSearchZeroShot/stimuli/'
 target_dir = '../../Datasets/VisualSearchZeroShot/target/'
-targets_locations_file = 'targets_locations.json'
+targets_locations_file = '../../Datasets/targets_locations.json'
 chopped_dir = 'choppednaturaldesign/'
 save_path = 'results/Scanpaths.json'
 stimuli_size = (1028, 1280)
