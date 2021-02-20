@@ -7,18 +7,12 @@ Stimuli is divided into blocks of size 224x224, which are then fed to the CNN.
 Files are saved in chopped_dir.
 """
 
-def chop_stimuli(stimuli_dir, chopped_dir, stimuli_size,targetsLocations):
-    
+def chop_stimuli(stimuli_dir, chopped_dir, stimuli_size, targets_locations):
+    for struct in targets_locations:
+        image_name = struct['image']
 
-    for struct in targetsLocations:
-        imageName = struct['image']
-        if not(imageName.endswith('.jpg')):
-            continue
-
-        imgID = imageName[:-4]
-        img = io.imread(stimuli_dir + imageName)
-        if len(img.shape) >= 3:
-            img = color.rgb2gray(img)
+        imgID = image_name[:-4]
+        img = io.imread(stimuli_dir + image_name)
         img = transform.resize(img, stimuli_size)
 
         if not(path.exists(chopped_dir)):

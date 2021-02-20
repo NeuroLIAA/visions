@@ -1,7 +1,6 @@
 import json
 import numpy as np
 from os import listdir
-import os
 from skimage import io, transform, exposure
 
 """
@@ -9,23 +8,19 @@ Puts together data produced by the CNN and creates an attention map for the stim
 Scanpaths are saved in a JSON file.
 """
 
-def parse_model_data(stimuli_dir, chopped_dir, stimuli_size, max_fixations, receptive_size, save_path, targetsLocations):
-
+def parse_model_data(stimuli_dir, chopped_dir, stimuli_size, max_fixations, receptive_size, save_path, targets_locations):
     scanpaths = []
-    for struct in targetsLocations:
+    for struct in targets_locations:
         imageName = struct['image']
-        if not(imageName.endswith('.jpg')):
-            continue
 
         imgID = imageName[:-4]
         attentionMap = load_model_data(chopped_dir, imgID, stimuli_size)
-        create_scanpath(scanpaths, struct, attentionMap, targetsLocations, stimuli_size, max_fixations, receptive_size)
+        create_scanpath(scanpaths, struct, attentionMap, targets_locations, stimuli_size, max_fixations, receptive_size)
     
-    json_file = open(save_path, 'w')
-    json.dump(scanpaths, json_file, indent = 4)
-    json_file.close()
+    with open(save_path, 'w') as json_file:
+        json.dump(scanpaths, json_file, indent = 4)
 
-def create_scanpath(scanpaths, target_properties, attentionMap, targetsLocations, stimuli_size, max_fixations, receptive_size):
+def create_scanpath(scanpaths, target_properties, attentionMap, targets_locations, stimuli_size, max_fixations, receptive_size):
     # Load target's boundaries
     target_bbox = (target_properties['matched_row'], target_properties['matched_column'], target_properties['target_side_length'] + target_properties['matched_row'], \
         target_properties['target_columns'] + target_properties['matched_column'])
@@ -73,7 +68,7 @@ def create_scanpath(scanpaths, target_properties, attentionMap, targetsLocations
     else:
         print(imageName + "; target NOT FOUND!")
     scanpaths.append({ "image" : imageName, "dataset" : "VisualSearchZeroShot Natural Design Dataset", "subject" : "VisualSearchZeroShot Model", "target_found"  : str(target_found), "X" : xCoordFixationOrder, "Y" : yCoordFixationOrder,  "split" : "test", \
-        "image_height" : stimuli_size[0], "image_width" : stimuli_size[1], "target_object" : "TBD" , "max_fixations" : str(max_fixations)})
+        "image_height" : stimuli_size[0], "image_width" : stimuli_size[1], "target_object" : "TBD", "max_fixations" : str(max_fixations)})
 
 
 def rescale_coordinates(start_row, start_column, end_row, end_column, img_height, img_width, new_img_height, new_img_width):
@@ -89,30 +84,28 @@ def load_model_data(chopped_dir, imgID, stimuli_size):
     choppedImgDir = chopped_dir + imgID + '/'
     choppedData = listdir(choppedImgDir)
 
-    template  = np.zeros([stimuli_size[0], stimuli_size[1]])
-    layerList = np.array([1])
-    for layer in range(len(layerList)):
-        for choppedSaliencyData in choppedData:
-        
-            if (choppedSaliencyData.endswith('.jpg')):
-                continue
-            choppedImgName = choppedSaliencyData[:-18]
-            choppedImg     = io.imread(choppedImgDir + choppedImgName + '.jpg')
-            choppedImg_height = choppedImg.shape[0]
-            choppedImg_width  = choppedImg.shape[1]
-            # Load data computed by the model
-            with open(choppedImgDir + choppedSaliencyData, 'r') as fp:
-                choppedAttentionMap = json.load(fp)
-            choppedAttentionMap = np.asarray(choppedAttentionMap['x'])
-            choppedAttentionMap = transform.resize(choppedAttentionMap, (choppedImg_height, choppedImg_width))
-            # Get coordinate information from the chopped image name
-            choppedImgNameSplit = choppedImgName.split('_')
-            from_row    = int(choppedImgNameSplit[1])
-            from_column = int(choppedImgNameSplit[2])
-            to_row    = from_row + choppedImg_height
-            to_column = from_column + choppedImg_width
-            # Replace in template
-            template[from_row:to_row, from_column:to_column] = choppedAttentionMap
-        attentionMap = exposure.rescale_intensity(template, out_range=(0, 1))
+    template = np.zeros([stimuli_size[0], stimuli_size[1]])
+    for choppedSaliencyData in choppedData:
+        if (choppedSaliencyData.endswith('.jpg')):
+            continue
+
+        choppedImgName = choppedSaliencyData[:-18]
+        choppedImg     = io.imread(choppedImgDir + choppedImgName + '.jpg')
+        choppedImg_height = choppedImg.shape[0]
+        choppedImg_width  = choppedImg.shape[1]
+        # Load data computed by the model
+        with open(choppedImgDir + choppedSaliencyData, 'r') as json_attention_map:
+            choppedAttentionMap = json.load(json_attention_map)
+        choppedAttentionMap = np.asarray(choppedAttentionMap['x'])
+        choppedAttentionMap = transform.resize(choppedAttentionMap, (choppedImg_height, choppedImg_width))
+        # Get coordinate information from the chopped image name
+        choppedImgNameSplit = choppedImgName.split('_')
+        from_row    = int(choppedImgNameSplit[len(choppedImgNameSplit) - 2])
+        from_column = int(choppedImgNameSplit[len(choppedImgNameSplit) - 1])
+        to_row    = from_row + choppedImg_height
+        to_column = from_column + choppedImg_width
+        # Replace in template
+        template[from_row:to_row, from_column:to_column] = choppedAttentionMap
+    attentionMap = exposure.rescale_intensity(template, out_range=(0, 1))
     
     return attentionMap
