@@ -20,6 +20,8 @@ for subject_file in subjects_files:
 
     split_subject_filename = subject_file.split('_')
     subject_id = split_subject_filename[len(split_subject_filename) - 1][:-4]
+    if (int(subject_id) < 10):
+        subject_id = '0' + subject_id
 
     json_subject = []
     for record in range(len(subject_info[0])):
