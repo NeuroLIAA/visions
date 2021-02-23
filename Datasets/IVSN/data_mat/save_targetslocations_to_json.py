@@ -45,7 +45,7 @@ for gt in gtFiles:
     imgName = getName(int(imgID), 'image')
     tgName  = getName(int(imgID), 'target')
 
-    target_positions.append({ "image" : imgName, "template" : tgName, "dataset" : "VisualSearchZeroShot Natural Design Dataset", "matched_row" : start_row, "matched_column" : start_column, \
+    target_positions.append({ "image" : imgName, "template" : tgName, "dataset" : "IVSN Natural Design Dataset", "matched_row" : start_row, "matched_column" : start_column, \
          "target_side_length" : target_side_length, "target_columns" : target_columns, "image_height" : img_height, "image_width" : img_width})
 
 jsonStructsFile = open('targets_locations.json', 'w')
