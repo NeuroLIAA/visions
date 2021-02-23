@@ -1,0 +1,4502 @@
+[
+    {
+        "subject": "37",
+        "image": "grayscale_11_opensource.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            560,
+            229,
+            632,
+            301
+        ],
+        "X": [
+            731.5,
+            579.9,
+            941.1
+        ],
+        "Y": [
+            768.0,
+            452.8,
+            526.2
+        ],
+        "T": [
+            222,
+            427,
+            243
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 2
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_100_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            382,
+            714,
+            454,
+            786
+        ],
+        "X": [
+            416.29999999999995,
+            510.20000000000005,
+            690.2,
+            574.0,
+            756.9
+        ],
+        "Y": [
+            346.7,
+            340.8,
+            383.5,
+            310.6,
+            429.6
+        ],
+        "T": [
+            1712,
+            247,
+            189,
+            307,
+            303
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 8
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_16_housebeautiful.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            422,
+            159,
+            494,
+            231
+        ],
+        "X": [
+            194.7,
+            496.3,
+            734.4,
+            961.3,
+            888.2
+        ],
+        "Y": [
+            252.3,
+            428.8,
+            624.1,
+            594.4,
+            568.4
+        ],
+        "T": [
+            855,
+            148,
+            263,
+            199,
+            1426
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 4
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_18_housebeautiful.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            401,
+            798,
+            473,
+            870
+        ],
+        "X": [
+            510.20000000000005,
+            716.0,
+            839.4
+        ],
+        "Y": [
+            317.6,
+            388.5,
+            433.4
+        ],
+        "T": [
+            1190,
+            188,
+            294
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 4
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_17_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            491,
+            187,
+            563,
+            259
+        ],
+        "X": [
+            231.8,
+            410.6,
+            236.7,
+            237.10000000000002
+        ],
+        "Y": [
+            178.8,
+            411.0,
+            484.79999999999995,
+            512.4
+        ],
+        "T": [
+            1534,
+            272,
+            241,
+            3547
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 2
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_13_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            139,
+            786,
+            211,
+            858
+        ],
+        "X": [
+            606.9,
+            767.5,
+            854.9,
+            762.8,
+            600.4,
+            748.8
+        ],
+        "Y": [
+            446.4,
+            505.3,
+            499.0,
+            549.4,
+            570.3,
+            541.1
+        ],
+        "T": [
+            1778,
+            227,
+            152,
+            237,
+            315,
+            1108
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 4
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_58_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            312,
+            940,
+            384,
+            1012
+        ],
+        "X": [
+            859.1,
+            667.9,
+            786.5,
+            964.4000000000001
+        ],
+        "Y": [
+            34.69999999999999,
+            233.89999999999998,
+            330.7,
+            354.2
+        ],
+        "T": [
+            1751,
+            205,
+            225,
+            285
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 8
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_1_housebeautiful.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            156,
+            131,
+            228,
+            203
+        ],
+        "X": [
+            625.9,
+            627.6,
+            485.5,
+            1024.0,
+            746.6,
+            277.0,
+            329.7,
+            361.5,
+            554.7,
+            505.3
+        ],
+        "Y": [
+            264.8,
+            388.9,
+            436.6,
+            665.3,
+            639.1,
+            768.0,
+            707.0,
+            396.5,
+            489.7,
+            558.4
+        ],
+        "T": [
+            1445,
+            164,
+            253,
+            326,
+            252,
+            352,
+            65,
+            298,
+            262,
+            1211
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 8
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_10_kitchen.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            498,
+            852,
+            570,
+            924
+        ],
+        "X": [
+            804.9,
+            982.4,
+            1024.0,
+            1024.0,
+            554.5,
+            378.2
+        ],
+        "Y": [
+            409.7,
+            455.7,
+            414.9,
+            222.2,
+            328.0,
+            414.4
+        ],
+        "T": [
+            1470,
+            235,
+            187,
+            320,
+            149,
+            534
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 4
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_15_opensource.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            327,
+            402,
+            399,
+            474
+        ],
+        "X": [
+            312.1,
+            650.6,
+            895.2,
+            1024.0,
+            1019.4
+        ],
+        "Y": [
+            754.9,
+            573.8,
+            483.1,
+            466.0,
+            286.5
+        ],
+        "T": [
+            418,
+            292,
+            139,
+            178,
+            414
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 4
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_23_housebeautiful.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            648,
+            562,
+            720,
+            634
+        ],
+        "X": [
+            1024.0,
+            859.4,
+            412.9,
+            522.8
+        ],
+        "Y": [
+            650.0,
+            621.0,
+            748.4,
+            768.0
+        ],
+        "T": [
+            1249,
+            178,
+            197,
+            131
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 2
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_5_opensource.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            597,
+            696,
+            669,
+            768
+        ],
+        "X": [
+            976.0,
+            787.8,
+            192.7,
+            255.89999999999998,
+            773.1,
+            735.4
+        ],
+        "Y": [
+            386.5,
+            399.20000000000005,
+            394.4,
+            366.2,
+            678.6,
+            636.8
+        ],
+        "T": [
+            1168,
+            185,
+            285,
+            104,
+            131,
+            1221
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 4
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_86_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            345,
+            827,
+            417,
+            899
+        ],
+        "X": [
+            818.7,
+            628.4,
+            194.2
+        ],
+        "Y": [
+            757.0,
+            413.3,
+            419.1
+        ],
+        "T": [
+            175,
+            173,
+            297
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 2
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_18_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            382,
+            648,
+            454,
+            720
+        ],
+        "X": [
+            866.5,
+            547.8,
+            699.1
+        ],
+        "Y": [
+            745.7,
+            440.4,
+            432.79999999999995
+        ],
+        "T": [
+            1436,
+            297,
+            1022
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 8
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_3_kitchen.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            245,
+            54,
+            317,
+            126
+        ],
+        "X": [
+            470.8,
+            515.5,
+            647.8,
+            1022.9,
+            986.3
+        ],
+        "Y": [
+            684.5,
+            580.6,
+            496.7,
+            485.6,
+            435.2
+        ],
+        "T": [
+            1551,
+            64,
+            143,
+            158,
+            393
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_16_opensource.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            365,
+            930,
+            437,
+            1002
+        ],
+        "X": [
+            1024.0,
+            708.5,
+            1024.0
+        ],
+        "Y": [
+            206.2,
+            371.0,
+            540.2
+        ],
+        "T": [
+            422,
+            155,
+            945
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 2
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_85_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            257,
+            861,
+            329,
+            933
+        ],
+        "X": [
+            920.2,
+            552.3,
+            895.7,
+            905.3,
+            887.4
+        ],
+        "Y": [
+            677.1,
+            373.6,
+            365.2,
+            208.0,
+            252.8
+        ],
+        "T": [
+            1430,
+            291,
+            241,
+            243,
+            240
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_7_kitchen.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            75,
+            630,
+            147,
+            702
+        ],
+        "X": [
+            755.2,
+            503.5,
+            533.1,
+            787.1,
+            854.1,
+            629.6
+        ],
+        "Y": [
+            472.1,
+            359.3,
+            358.1,
+            156.60000000000002,
+            101.0,
+            117.0
+        ],
+        "T": [
+            1285,
+            275,
+            169,
+            195,
+            345,
+            146
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 8
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_23_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            483,
+            794,
+            555,
+            866
+        ],
+        "X": [
+            593.2,
+            616.9,
+            769.7,
+            1021.5
+        ],
+        "Y": [
+            665.3,
+            561.1,
+            449.7,
+            597.1
+        ],
+        "T": [
+            1733,
+            171,
+            134,
+            2780
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 2
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_77_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            92,
+            29,
+            164,
+            101
+        ],
+        "X": [
+            347.5,
+            619.3,
+            527.2,
+            529.3,
+            253.7,
+            256.9,
+            89.69999999999999,
+            87.19999999999999
+        ],
+        "Y": [
+            359.3,
+            437.6,
+            434.6,
+            413.20000000000005,
+            282.3,
+            358.8,
+            180.10000000000002,
+            131.60000000000002
+        ],
+        "T": [
+            1356,
+            245,
+            181,
+            334,
+            181,
+            328,
+            148,
+            1246
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 8
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_50_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            131,
+            472,
+            203,
+            544
+        ],
+        "X": [
+            844.5,
+            628.4,
+            937.1,
+            805.6
+        ],
+        "Y": [
+            601.6,
+            536.0,
+            499.9,
+            503.7
+        ],
+        "T": [
+            1359,
+            197,
+            278,
+            376
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 2
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_21_housebeautiful.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            374,
+            64,
+            446,
+            136
+        ],
+        "X": [
+            517.3,
+            749.7,
+            521.1,
+            308.2,
+            68.0
+        ],
+        "Y": [
+            328.8,
+            429.1,
+            575.6,
+            651.4,
+            412.0
+        ],
+        "T": [
+            607,
+            191,
+            201,
+            241,
+            360
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 4
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_70_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            371,
+            808,
+            443,
+            880
+        ],
+        "X": [
+            841.2,
+            521.7,
+            821.1
+        ],
+        "Y": [
+            768.0,
+            407.79999999999995,
+            389.4
+        ],
+        "T": [
+            1421,
+            161,
+            214
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_9_other.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            293,
+            808,
+            365,
+            880
+        ],
+        "X": [
+            602.5,
+            781.0,
+            648.3,
+            289.4,
+            305.4,
+            755.9
+        ],
+        "Y": [
+            422.9,
+            492.7,
+            382.2,
+            451.7,
+            632.0,
+            768.0
+        ],
+        "T": [
+            1556,
+            157,
+            339,
+            260,
+            129,
+            501
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 4
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_22_housebeautiful.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            268,
+            137,
+            340,
+            209
+        ],
+        "X": [
+            532.8,
+            644.3,
+            959.2,
+            1024.0,
+            1024.0
+        ],
+        "Y": [
+            213.7,
+            369.9,
+            540.5,
+            448.3,
+            503.3
+        ],
+        "T": [
+            1405,
+            115,
+            297,
+            179,
+            340
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_7_housebeautiful.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            453,
+            501,
+            525,
+            573
+        ],
+        "X": [
+            368.5,
+            699.0,
+            725.0,
+            366.2
+        ],
+        "Y": [
+            416.3,
+            582.8,
+            636.4,
+            697.7
+        ],
+        "T": [
+            1158,
+            188,
+            80,
+            587
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 2
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_83_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            562,
+            952,
+            634,
+            1024
+        ],
+        "X": [
+            690.2,
+            735.3,
+            968.0
+        ],
+        "Y": [
+            424.5,
+            499.70000000000005,
+            562.0
+        ],
+        "T": [
+            1376,
+            202,
+            182
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 8
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_4_other.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            325,
+            181,
+            397,
+            253
+        ],
+        "X": [
+            181.6,
+            649.0,
+            804.8,
+            736.2,
+            503.6,
+            225.5,
+            260.7,
+            227.4,
+            295.2,
+            284.7
+        ],
+        "Y": [
+            196.4,
+            451.4,
+            587.5,
+            579.8,
+            582.6,
+            560.5,
+            727.8,
+            702.4,
+            768.0,
+            768.0
+        ],
+        "T": [
+            1151,
+            127,
+            231,
+            135,
+            169,
+            286,
+            142,
+            322,
+            320,
+            82
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 8
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_21_kitchen.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            342,
+            748,
+            414,
+            820
+        ],
+        "X": [
+            1012.4000000000001,
+            544.8,
+            650.3,
+            777.2
+        ],
+        "Y": [
+            105.1,
+            401.6,
+            525.2,
+            369.8
+        ],
+        "T": [
+            1466,
+            144,
+            139,
+            1006
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 2
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_64_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            313,
+            215,
+            385,
+            287
+        ],
+        "X": [
+            717.9,
+            981.3,
+            1024.0,
+            433.8
+        ],
+        "Y": [
+            552.8,
+            542.8,
+            495.7,
+            447.0
+        ],
+        "T": [
+            300,
+            164,
+            384,
+            558
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_15_housebeautiful.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            588,
+            753,
+            660,
+            825
+        ],
+        "X": [
+            452.0,
+            684.8,
+            498.0,
+            787.0
+        ],
+        "Y": [
+            578.5,
+            512.9,
+            356.5,
+            634.5
+        ],
+        "T": [
+            973,
+            345,
+            212,
+            3447
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 8
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_6_other.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            203,
+            744,
+            275,
+            816
+        ],
+        "X": [
+            546.4,
+            552.6,
+            646.6,
+            967.3,
+            1024.0,
+            418.8,
+            353.7,
+            369.4,
+            322.5
+        ],
+        "Y": [
+            267.7,
+            541.9,
+            591.9,
+            597.0,
+            596.7,
+            412.3,
+            455.7,
+            479.8,
+            663.4
+        ],
+        "T": [
+            716,
+            193,
+            249,
+            184,
+            354,
+            228,
+            206,
+            338,
+            533
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 8
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_30_opensource.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            241,
+            801,
+            313,
+            873
+        ],
+        "X": [
+            620.9,
+            764.8,
+            932.6,
+            814.6
+        ],
+        "Y": [
+            345.2,
+            428.6,
+            588.3,
+            615.1
+        ],
+        "T": [
+            575,
+            149,
+            237,
+            419
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_14_kitchen.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            345,
+            2,
+            417,
+            74
+        ],
+        "X": [
+            416.4,
+            598.8,
+            733.3,
+            785.6,
+            230.2,
+            57.19999999999999
+        ],
+        "Y": [
+            541.9,
+            489.9,
+            370.4,
+            361.8,
+            280.9,
+            360.1
+        ],
+        "T": [
+            345,
+            210,
+            294,
+            104,
+            147,
+            317
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 8
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_65_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            234,
+            899,
+            306,
+            971
+        ],
+        "X": [
+            615.5,
+            764.2,
+            865.6,
+            945.5999999999999
+        ],
+        "Y": [
+            452.4,
+            362.8,
+            308.8,
+            265.8
+        ],
+        "T": [
+            1258,
+            165,
+            167,
+            2095
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 8
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_14_housebeautiful.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            579,
+            51,
+            651,
+            123
+        ],
+        "X": [
+            474.4,
+            583.8,
+            885.6,
+            843.7,
+            86.0,
+            24.099999999999994,
+            40.69999999999999,
+            79.4
+        ],
+        "Y": [
+            383.4,
+            517.7,
+            497.0,
+            232.7,
+            324.7,
+            660.2,
+            599.4,
+            626.9
+        ],
+        "T": [
+            162,
+            156,
+            292,
+            409,
+            207,
+            137,
+            244,
+            959
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 8
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_31_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            228,
+            615,
+            300,
+            687
+        ],
+        "X": [
+            287.2,
+            692.7,
+            713.4,
+            632.1
+        ],
+        "Y": [
+            192.3,
+            361.1,
+            186.5,
+            274.6
+        ],
+        "T": [
+            1451,
+            181,
+            136,
+            2424
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 4
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_52_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            425,
+            75,
+            497,
+            147
+        ],
+        "X": [
+            291.7,
+            681.7,
+            1009.2,
+            1024.0,
+            884.2,
+            863.0
+        ],
+        "Y": [
+            223.0,
+            439.4,
+            602.5,
+            733.0,
+            700.3,
+            678.4
+        ],
+        "T": [
+            1472,
+            161,
+            323,
+            271,
+            179,
+            374
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 4
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_94_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            216,
+            870,
+            288,
+            942
+        ],
+        "X": [
+            994.9000000000001,
+            569.2,
+            795.2,
+            883.8
+        ],
+        "Y": [
+            608.2,
+            475.9,
+            379.4,
+            230.5
+        ],
+        "T": [
+            1622,
+            187,
+            226,
+            1857
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_2_opensource.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            267,
+            882,
+            339,
+            954
+        ],
+        "X": [
+            649.4,
+            506.9,
+            742.1,
+            909.7
+        ],
+        "Y": [
+            562.7,
+            441.4,
+            453.29999999999995,
+            296.0
+        ],
+        "T": [
+            1480,
+            192,
+            164,
+            2347
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_44_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            317,
+            299,
+            389,
+            371
+        ],
+        "X": [
+            757.1,
+            687.3,
+            924.3,
+            658.4,
+            529.2
+        ],
+        "Y": [
+            349.2,
+            454.0,
+            500.1,
+            712.7,
+            685.4
+        ],
+        "T": [
+            801,
+            184,
+            257,
+            191,
+            569
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 4
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_27_opensource.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            376,
+            441,
+            448,
+            513
+        ],
+        "X": [
+            916.3,
+            978.6,
+            1024.0,
+            1024.0
+        ],
+        "Y": [
+            661.0,
+            568.5,
+            450.4,
+            396.0
+        ],
+        "T": [
+            1697,
+            135,
+            218,
+            77
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 2
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_40_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            394,
+            17,
+            466,
+            89
+        ],
+        "X": [
+            1.0999999999999943,
+            604.5,
+            190.89999999999998,
+            352.7,
+            29.400000000000006
+        ],
+        "Y": [
+            81.6,
+            411.1,
+            494.20000000000005,
+            444.5,
+            452.1
+        ],
+        "T": [
+            1097,
+            209,
+            285,
+            106,
+            199
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 8
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_61_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            81,
+            160,
+            153,
+            232
+        ],
+        "X": [
+            654.2,
+            674.9,
+            950.2,
+            1024.0,
+            252.0
+        ],
+        "Y": [
+            334.2,
+            458.1,
+            661.2,
+            467.4,
+            535.1
+        ],
+        "T": [
+            1509,
+            114,
+            121,
+            215,
+            178
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_12_housebeautiful.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            419,
+            741,
+            491,
+            813
+        ],
+        "X": [
+            422.9,
+            698.1,
+            755.9
+        ],
+        "Y": [
+            340.7,
+            430.0,
+            444.1
+        ],
+        "T": [
+            1367,
+            321,
+            2488
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 2
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_28_housebeautiful.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            524,
+            95,
+            596,
+            167
+        ],
+        "X": [
+            372.4,
+            290.9,
+            111.6
+        ],
+        "Y": [
+            306.3,
+            517.6,
+            575.4
+        ],
+        "T": [
+            1525,
+            174,
+            151
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 4
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_34_housebeautiful.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            339,
+            75,
+            411,
+            147
+        ],
+        "X": [
+            713.7,
+            800.6,
+            1019.9,
+            929.7,
+            223.8
+        ],
+        "Y": [
+            375.5,
+            388.3,
+            660.5,
+            647.4,
+            571.5
+        ],
+        "T": [
+            649,
+            156,
+            139,
+            87,
+            2436
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 4
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_4_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            70,
+            333,
+            142,
+            405
+        ],
+        "X": [
+            817.1,
+            571.2,
+            386.0,
+            179.7
+        ],
+        "Y": [
+            363.1,
+            477.6,
+            551.5,
+            362.6
+        ],
+        "T": [
+            1539,
+            217,
+            190,
+            413
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 2
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_14_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            288,
+            809,
+            360,
+            881
+        ],
+        "X": [
+            1024.0,
+            802.6,
+            1024.0,
+            368.6,
+            396.5
+        ],
+        "Y": [
+            768.0,
+            566.8,
+            496.1,
+            520.0,
+            537.9
+        ],
+        "T": [
+            1597,
+            362,
+            378,
+            280,
+            50
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 4
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_49_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            302,
+            795,
+            374,
+            867
+        ],
+        "X": [
+            846.6,
+            920.6,
+            711.2,
+            378.4,
+            235.5,
+            406.7,
+            308.5,
+            843.7
+        ],
+        "Y": [
+            632.4,
+            536.0,
+            379.9,
+            405.1,
+            464.0,
+            227.3,
+            220.2,
+            520.7
+        ],
+        "T": [
+            292,
+            43,
+            358,
+            148,
+            224,
+            188,
+            419,
+            1362
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 8
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_6_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            176,
+            596,
+            248,
+            668
+        ],
+        "X": [
+            1009.4,
+            815.4,
+            846.9,
+            889.9
+        ],
+        "Y": [
+            580.7,
+            580.9,
+            566.4,
+            597.9
+        ],
+        "T": [
+            1175,
+            254,
+            170,
+            577
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 2
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_81_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            471,
+            928,
+            543,
+            1000
+        ],
+        "X": [
+            649.3,
+            868.0,
+            942.5999999999999
+        ],
+        "Y": [
+            313.0,
+            435.29999999999995,
+            508.29999999999995
+        ],
+        "T": [
+            484,
+            231,
+            1131
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 8
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_39_housebeautiful.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            567,
+            580,
+            639,
+            652
+        ],
+        "X": [
+            900.4000000000001,
+            666.9,
+            416.5,
+            36.5,
+            68.4,
+            614.3
+        ],
+        "Y": [
+            415.5,
+            404.6,
+            387.29999999999995,
+            506.9,
+            605.9,
+            627.8
+        ],
+        "T": [
+            410,
+            145,
+            111,
+            205,
+            287,
+            309
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 8
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_33_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            358,
+            73,
+            430,
+            145
+        ],
+        "X": [
+            446.70000000000005,
+            627.8,
+            125.6,
+            126.30000000000001
+        ],
+        "Y": [
+            302.0,
+            374.9,
+            442.6,
+            414.0
+        ],
+        "T": [
+            1764,
+            189,
+            350,
+            1510
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_14_airbnb.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            257,
+            78,
+            329,
+            150
+        ],
+        "X": [
+            381.7,
+            576.5,
+            809.6,
+            994.2,
+            273.0,
+            140.2
+        ],
+        "Y": [
+            66.6,
+            320.3,
+            356.3,
+            367.1,
+            533.0,
+            304.7
+        ],
+        "T": [
+            1404,
+            130,
+            304,
+            240,
+            274,
+            172
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 4
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_1_opensource.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            377,
+            701,
+            449,
+            773
+        ],
+        "X": [
+            891.2,
+            914.5,
+            1024.0,
+            1024.0
+        ],
+        "Y": [
+            621.7,
+            492.6,
+            486.2,
+            447.2
+        ],
+        "T": [
+            160,
+            162,
+            247,
+            430
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 4
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_16_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            173,
+            678,
+            245,
+            750
+        ],
+        "X": [
+            777.4,
+            650.7,
+            813.3,
+            703.8
+        ],
+        "Y": [
+            563.7,
+            406.9,
+            331.9,
+            210.7
+        ],
+        "T": [
+            1647,
+            156,
+            175,
+            302
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_38_housebeautiful.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            403,
+            910,
+            475,
+            982
+        ],
+        "X": [
+            709.0,
+            696.4,
+            434.9,
+            153.3,
+            644.6
+        ],
+        "Y": [
+            510.7,
+            546.6,
+            556.8,
+            586.5,
+            494.8
+        ],
+        "T": [
+            1276,
+            41,
+            226,
+            252,
+            618
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_8_kitchen.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            187,
+            156,
+            259,
+            228
+        ],
+        "X": [
+            653.2,
+            608.0,
+            873.9,
+            219.4
+        ],
+        "Y": [
+            250.1,
+            420.2,
+            503.5,
+            544.7
+        ],
+        "T": [
+            1483,
+            141,
+            163,
+            389
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 2
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_13_other.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            323,
+            736,
+            395,
+            808
+        ],
+        "X": [
+            472.20000000000005,
+            533.8,
+            785.6
+        ],
+        "Y": [
+            153.3,
+            350.7,
+            399.0
+        ],
+        "T": [
+            1566,
+            159,
+            231
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 4
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_36_housebeautiful.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            550,
+            535,
+            622,
+            607
+        ],
+        "X": [
+            527.1,
+            575.3,
+            728.0,
+            536.0
+        ],
+        "Y": [
+            255.39999999999998,
+            389.0,
+            475.79999999999995,
+            571.1
+        ],
+        "T": [
+            761,
+            150,
+            178,
+            183
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_38_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            212,
+            486,
+            284,
+            558
+        ],
+        "X": [
+            274.4,
+            463.9,
+            807.3,
+            909.5,
+            612.4
+        ],
+        "Y": [
+            398.1,
+            595.5,
+            569.6,
+            463.0,
+            425.4
+        ],
+        "T": [
+            1467,
+            153,
+            189,
+            121,
+            167
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_34_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            619,
+            127,
+            691,
+            199
+        ],
+        "X": [
+            471.4,
+            740.9,
+            946.9,
+            894.0
+        ],
+        "Y": [
+            468.2,
+            515.1,
+            706.4,
+            704.9
+        ],
+        "T": [
+            803,
+            365,
+            222,
+            361
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_24_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            346,
+            4,
+            418,
+            76
+        ],
+        "X": [
+            339.2,
+            633.7,
+            807.2,
+            1024.0,
+            1024.0
+        ],
+        "Y": [
+            215.6,
+            476.3,
+            413.4,
+            409.7,
+            398.7
+        ],
+        "T": [
+            1076,
+            185,
+            108,
+            208,
+            81
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_13_kitchen.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            445,
+            789,
+            517,
+            861
+        ],
+        "X": [
+            886.4,
+            661.4,
+            559.6,
+            645.8,
+            629.9,
+            361.9,
+            466.5,
+            471.0,
+            241.7,
+            219.7
+        ],
+        "Y": [
+            269.8,
+            475.5,
+            554.6,
+            543.8,
+            533.0,
+            573.4,
+            540.1,
+            524.0,
+            558.8,
+            602.8
+        ],
+        "T": [
+            1253,
+            171,
+            222,
+            169,
+            376,
+            254,
+            246,
+            171,
+            320,
+            259
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 8
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_6_opensource.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            173,
+            366,
+            245,
+            438
+        ],
+        "X": [
+            756.8,
+            832.5,
+            906.8
+        ],
+        "Y": [
+            586.4,
+            568.3,
+            697.7
+        ],
+        "T": [
+            692,
+            174,
+            3791
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 2
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_20_opensource.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            167,
+            371,
+            239,
+            443
+        ],
+        "X": [
+            592.3,
+            797.2,
+            371.3,
+            747.1,
+            589.5
+        ],
+        "Y": [
+            543.8,
+            465.1,
+            422.2,
+            304.7,
+            226.5
+        ],
+        "T": [
+            474,
+            199,
+            136,
+            288,
+            1735
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 4
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_10_housebeautiful.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            521,
+            31,
+            593,
+            103
+        ],
+        "X": [
+            490.5,
+            708.2,
+            835.2,
+            626.0,
+            214.7
+        ],
+        "Y": [
+            520.5,
+            589.8,
+            663.8,
+            668.8,
+            713.7
+        ],
+        "T": [
+            1444,
+            181,
+            212,
+            133,
+            369
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_30_housebeautiful.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            261,
+            681,
+            333,
+            753
+        ],
+        "X": [
+            453.5,
+            575.2,
+            688.4
+        ],
+        "Y": [
+            389.5,
+            312.6,
+            269.7
+        ],
+        "T": [
+            689,
+            399,
+            996
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 4
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_6_airbnb.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            592,
+            135,
+            664,
+            207
+        ],
+        "X": [
+            613.9,
+            598.9,
+            950.8,
+            812.4
+        ],
+        "Y": [
+            768.0,
+            563.1,
+            567.0,
+            555.7
+        ],
+        "T": [
+            1556,
+            202,
+            199,
+            190
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 2
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_29_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            329,
+            875,
+            401,
+            947
+        ],
+        "X": [
+            560.9,
+            794.6,
+            874.2,
+            900.5
+        ],
+        "Y": [
+            494.29999999999995,
+            472.79999999999995,
+            312.3,
+            353.4
+        ],
+        "T": [
+            1810,
+            146,
+            164,
+            2192
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_32_opensource.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            441,
+            758,
+            513,
+            830
+        ],
+        "X": [
+            1009.4,
+            641.4,
+            1004.5,
+            368.7,
+            331.1,
+            201.2
+        ],
+        "Y": [
+            281.8,
+            458.6,
+            407.6,
+            344.9,
+            348.9,
+            348.6
+        ],
+        "T": [
+            1626,
+            167,
+            327,
+            156,
+            186,
+            389
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 4
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_1_kitchen.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            271,
+            856,
+            343,
+            928
+        ],
+        "X": [
+            824.5,
+            812.5,
+            1024.0,
+            1024.0,
+            534.6
+        ],
+        "Y": [
+            743.3,
+            556.4,
+            604.4,
+            653.0,
+            385.1
+        ],
+        "T": [
+            1631,
+            160,
+            440,
+            138,
+            454
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_56_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            359,
+            726,
+            431,
+            798
+        ],
+        "X": [
+            662.9,
+            643.4,
+            738.7,
+            249.2,
+            176.9
+        ],
+        "Y": [
+            768.0,
+            508.7,
+            510.4,
+            556.5,
+            579.6
+        ],
+        "T": [
+            1308,
+            340,
+            135,
+            177,
+            342
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_62_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            361,
+            266,
+            433,
+            338
+        ],
+        "X": [
+            768.9,
+            903.8,
+            308.3,
+            245.2
+        ],
+        "Y": [
+            544.8,
+            596.4,
+            569.1,
+            575.7
+        ],
+        "T": [
+            1254,
+            187,
+            231,
+            462
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 2
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_3_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            337,
+            742,
+            409,
+            814
+        ],
+        "X": [
+            1024.0,
+            675.0,
+            780.5,
+            997.2,
+            965.8
+        ],
+        "Y": [
+            227.7,
+            490.4,
+            531.6,
+            488.8,
+            434.7
+        ],
+        "T": [
+            1443,
+            153,
+            135,
+            230,
+            372
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_54_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            311,
+            865,
+            383,
+            937
+        ],
+        "X": [
+            686.1,
+            690.4,
+            251.9,
+            338.3
+        ],
+        "Y": [
+            379.8,
+            470.0,
+            471.8,
+            510.0
+        ],
+        "T": [
+            1555,
+            288,
+            257,
+            339
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 2
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_63_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            322,
+            700,
+            394,
+            772
+        ],
+        "X": [
+            822.9,
+            768.0,
+            748.3
+        ],
+        "Y": [
+            712.4,
+            490.6,
+            377.2
+        ],
+        "T": [
+            1443,
+            128,
+            190
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 4
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_11_kitchen.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            320,
+            136,
+            392,
+            208
+        ],
+        "X": [
+            650.4,
+            830.3,
+            1024.0,
+            1013.9
+        ],
+        "Y": [
+            517.6,
+            548.9,
+            515.3,
+            499.4
+        ],
+        "T": [
+            1821,
+            179,
+            229,
+            861
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 2
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_35_housebeautiful.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            369,
+            193,
+            441,
+            265
+        ],
+        "X": [
+            522.0,
+            674.2,
+            773.7,
+            296.2,
+            242.2,
+            305.7,
+            229.0
+        ],
+        "Y": [
+            226.39999999999998,
+            403.6,
+            576.0,
+            475.4,
+            317.1,
+            358.6,
+            386.0
+        ],
+        "T": [
+            1608,
+            160,
+            157,
+            54,
+            149,
+            111,
+            2133
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 8
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_2_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            307,
+            952,
+            379,
+            1024
+        ],
+        "X": [
+            985.0,
+            653.9,
+            337.5,
+            1024.0
+        ],
+        "Y": [
+            147.5,
+            465.7,
+            437.0,
+            478.8
+        ],
+        "T": [
+            1019,
+            146,
+            144,
+            1814
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 2
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_74_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            191,
+            493,
+            263,
+            565
+        ],
+        "X": [
+            883.6,
+            732.7,
+            433.7,
+            1024.0,
+            1024.0
+        ],
+        "Y": [
+            626.6,
+            534.3,
+            472.4,
+            479.2,
+            526.3
+        ],
+        "T": [
+            1407,
+            168,
+            115,
+            168,
+            365
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_5_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            121,
+            567,
+            193,
+            639
+        ],
+        "X": [
+            1024.0,
+            708.0,
+            875.9,
+            220.0,
+            173.8,
+            370.0
+        ],
+        "Y": [
+            280.8,
+            480.8,
+            546.4,
+            523.8,
+            590.7,
+            754.9
+        ],
+        "T": [
+            1508,
+            163,
+            265,
+            258,
+            257,
+            566
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 4
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_8_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            173,
+            18,
+            245,
+            90
+        ],
+        "X": [
+            460.8,
+            912.6,
+            1024.0
+        ],
+        "Y": [
+            612.6,
+            525.8,
+            583.7
+        ],
+        "T": [
+            764,
+            153,
+            294
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 2
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_55_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            145,
+            206,
+            217,
+            278
+        ],
+        "X": [
+            714.7,
+            615.1,
+            793.1,
+            1024.0,
+            908.7,
+            163.6
+        ],
+        "Y": [
+            301.0,
+            453.2,
+            512.8,
+            534.3,
+            503.7,
+            521.3
+        ],
+        "T": [
+            1488,
+            145,
+            126,
+            210,
+            95,
+            278
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 4
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_1_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            606,
+            107,
+            678,
+            179
+        ],
+        "X": [
+            487.70000000000005,
+            747.1,
+            939.3,
+            152.3,
+            172.39999999999998
+        ],
+        "Y": [
+            705.3,
+            366.8,
+            386.29999999999995,
+            582.5,
+            609.4
+        ],
+        "T": [
+            1101,
+            163,
+            171,
+            244,
+            1420
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 8
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_10_opensource.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            357,
+            571,
+            429,
+            643
+        ],
+        "X": [
+            1024.0,
+            702.7,
+            308.9
+        ],
+        "Y": [
+            659.7,
+            571.6,
+            569.4
+        ],
+        "T": [
+            823,
+            122,
+            174
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 2
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_17_opensource.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            315,
+            823,
+            387,
+            895
+        ],
+        "X": [
+            869.3,
+            767.7,
+            399.79999999999995,
+            510.6,
+            550.9,
+            878.0
+        ],
+        "Y": [
+            731.3,
+            547.2,
+            391.4,
+            450.0,
+            441.9,
+            323.1
+        ],
+        "T": [
+            1433,
+            169,
+            125,
+            217,
+            378,
+            233
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 4
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_15_kitchen.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            271,
+            895,
+            343,
+            967
+        ],
+        "X": [
+            962.0999999999999,
+            629.2,
+            877.4,
+            960.8,
+            911.3,
+            916.9000000000001
+        ],
+        "Y": [
+            688.8,
+            350.5,
+            389.79999999999995,
+            424.70000000000005,
+            343.5,
+            329.6
+        ],
+        "T": [
+            1446,
+            163,
+            150,
+            188,
+            374,
+            2546
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 8
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_11_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            217,
+            687,
+            289,
+            759
+        ],
+        "X": [
+            953.4,
+            673.5,
+            364.8,
+            333.8,
+            444.2,
+            593.1
+        ],
+        "Y": [
+            742.4,
+            536.7,
+            577.5,
+            516.0,
+            669.6,
+            661.2
+        ],
+        "T": [
+            1634,
+            181,
+            182,
+            193,
+            280,
+            38
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 4
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_71_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            358,
+            347,
+            430,
+            419
+        ],
+        "X": [
+            836.4,
+            952.8,
+            935.1,
+            304.6
+        ],
+        "Y": [
+            648.3,
+            571.9,
+            710.7,
+            619.7
+        ],
+        "T": [
+            1162,
+            181,
+            133,
+            1114
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 2
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_59_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            473,
+            801,
+            545,
+            873
+        ],
+        "X": [
+            481.29999999999995,
+            715.8,
+            746.2,
+            823.1
+        ],
+        "Y": [
+            589.8,
+            356.4,
+            513.3,
+            528.4
+        ],
+        "T": [
+            1246,
+            190,
+            248,
+            2738
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 4
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_20_housebeautiful.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            436,
+            657,
+            508,
+            729
+        ],
+        "X": [
+            871.0,
+            521.3,
+            605.6,
+            683.4
+        ],
+        "Y": [
+            177.39999999999998,
+            411.5,
+            407.5,
+            474.1
+        ],
+        "T": [
+            1427,
+            239,
+            59,
+            273
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_45_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            659,
+            419,
+            731,
+            491
+        ],
+        "X": [
+            236.0,
+            699.3,
+            873.5,
+            932.3
+        ],
+        "Y": [
+            708.1,
+            620.6,
+            606.5,
+            467.7
+        ],
+        "T": [
+            1475,
+            171,
+            173,
+            426
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 2
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_84_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            264,
+            747,
+            336,
+            819
+        ],
+        "X": [
+            611.2,
+            683.6,
+            763.0,
+            929.5,
+            828.2
+        ],
+        "Y": [
+            622.0,
+            560.6,
+            487.1,
+            397.8,
+            334.5
+        ],
+        "T": [
+            1096,
+            92,
+            216,
+            193,
+            301
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_20_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            205,
+            49,
+            277,
+            121
+        ],
+        "X": [
+            498.3,
+            708.3,
+            946.0,
+            453.9,
+            512.6
+        ],
+        "Y": [
+            165.9,
+            452.8,
+            547.7,
+            619.7,
+            572.7
+        ],
+        "T": [
+            1197,
+            169,
+            325,
+            199,
+            446
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_10_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            311,
+            1,
+            383,
+            73
+        ],
+        "X": [
+            578.8,
+            808.6,
+            968.1,
+            682.5,
+            733.9,
+            652.8,
+            615.9,
+            702.0,
+            230.9
+        ],
+        "Y": [
+            658.2,
+            595.5,
+            631.5,
+            626.1,
+            679.8,
+            629.7,
+            561.1,
+            474.8,
+            566.5
+        ],
+        "T": [
+            178,
+            214,
+            164,
+            235,
+            320,
+            1151,
+            281,
+            220,
+            241
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 8
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_5_housebeautiful.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            240,
+            434,
+            312,
+            506
+        ],
+        "X": [
+            272.2,
+            802.6,
+            714.9
+        ],
+        "Y": [
+            283.8,
+            550.2,
+            430.9
+        ],
+        "T": [
+            607,
+            151,
+            771
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 2
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_75_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            326,
+            5,
+            398,
+            77
+        ],
+        "X": [
+            515.1,
+            649.4,
+            833.7,
+            1024.0,
+            796.6
+        ],
+        "Y": [
+            578.0,
+            492.3,
+            341.7,
+            380.5,
+            283.6
+        ],
+        "T": [
+            1801,
+            136,
+            127,
+            234,
+            78
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_18_opensource.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            218,
+            747,
+            290,
+            819
+        ],
+        "X": [
+            456.70000000000005,
+            702.2,
+            729.8,
+            770.6
+        ],
+        "Y": [
+            411.6,
+            352.5,
+            305.5,
+            255.0
+        ],
+        "T": [
+            1653,
+            288,
+            226,
+            2181
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_27_housebeautiful.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            471,
+            99,
+            543,
+            171
+        ],
+        "X": [
+            190.10000000000002,
+            576.0,
+            836.9,
+            141.2
+        ],
+        "Y": [
+            154.89999999999998,
+            409.20000000000005,
+            548.3,
+            543.8
+        ],
+        "T": [
+            1067,
+            227,
+            269,
+            688
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 4
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_29_housebeautiful.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            133,
+            208,
+            205,
+            280
+        ],
+        "X": [
+            652.4,
+            837.9,
+            703.9,
+            1024.0,
+            1024.0,
+            1024.0,
+            535.1,
+            653.7
+        ],
+        "Y": [
+            517.9,
+            566.9,
+            607.9,
+            398.6,
+            768.0,
+            756.7,
+            695.6,
+            710.4
+        ],
+        "T": [
+            623,
+            426,
+            149,
+            385,
+            120,
+            222,
+            215,
+            466
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 8
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_42_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            106,
+            229,
+            178,
+            301
+        ],
+        "X": [
+            575.0,
+            554.0,
+            667.8,
+            764.2,
+            952.5,
+            952.0,
+            363.3,
+            252.10000000000002
+        ],
+        "Y": [
+            339.7,
+            285.6,
+            227.10000000000002,
+            225.2,
+            389.70000000000005,
+            436.4,
+            112.69999999999999,
+            126.5
+        ],
+        "T": [
+            775,
+            45,
+            268,
+            177,
+            285,
+            114,
+            231,
+            164
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 8
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_28_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            495,
+            827,
+            567,
+            899
+        ],
+        "X": [
+            567.1,
+            753.9,
+            918.7,
+            961.8,
+            825.0
+        ],
+        "Y": [
+            401.4,
+            385.20000000000005,
+            530.1,
+            539.0,
+            533.1
+        ],
+        "T": [
+            767,
+            115,
+            175,
+            142,
+            166
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 8
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_15_oliva.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            417,
+            662,
+            489,
+            734
+        ],
+        "X": [
+            366.4,
+            608.2,
+            631.1,
+            801.4,
+            751.9,
+            842.2,
+            875.7,
+            784.3,
+            677.8
+        ],
+        "Y": [
+            591.0,
+            450.70000000000005,
+            497.1,
+            493.20000000000005,
+            445.6,
+            524.3,
+            521.7,
+            502.20000000000005,
+            450.9
+        ],
+        "T": [
+            1688,
+            210,
+            179,
+            259,
+            218,
+            209,
+            261,
+            249,
+            612
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 8
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_2_housebeautiful.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "True",
+        "target_bbox": [
+            500,
+            448,
+            572,
+            520
+        ],
+        "X": [
+            820.9,
+            613.8,
+            412.20000000000005,
+            474.0,
+            495.1
+        ],
+        "Y": [
+            466.6,
+            397.29999999999995,
+            424.29999999999995,
+            489.79999999999995,
+            521.5
+        ],
+        "T": [
+            1154,
+            204,
+            184,
+            313,
+            2828
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 8
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_18_kitchen.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            257,
+            507,
+            329,
+            579
+        ],
+        "X": [
+            944.9,
+            603.7,
+            326.5,
+            626.4
+        ],
+        "Y": [
+            198.0,
+            428.2,
+            437.2,
+            419.3
+        ],
+        "T": [
+            1411,
+            274,
+            105,
+            55
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 2
+    },
+    {
+        "subject": "37",
+        "image": "grayscale_3_other.jpg",
+        "dataset": "cIBS Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 1024,
+        "screen_width": 1280,
+        "window_height": 32,
+        "window_width": 32,
+        "target_found": "False",
+        "target_bbox": [
+            405,
+            212,
+            477,
+            284
+        ],
+        "X": [
+            414.5,
+            805.7,
+            462.6,
+            638.7
+        ],
+        "Y": [
+            228.9,
+            618.2,
+            551.4,
+            548.7
+        ],
+        "T": [
+            1193,
+            201,
+            189,
+            262
+        ],
+        "split": "valid",
+        "target_object": "TBD",
+        "max_fixations": 2
+    }
+]
