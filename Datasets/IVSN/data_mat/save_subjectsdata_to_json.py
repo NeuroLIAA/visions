@@ -20,7 +20,6 @@ trialsSequence = trialsSequence['seq'].flatten()
 trialsSequence = trialsSequence % numImages
 
 subjectsFiles = listdir(subjectsFilesDir)
-subjectTrialsInfo = []
 targets_found = 0
 wrong_targets_found = 0
 for subjectDataFile in subjectsFiles:
@@ -29,11 +28,11 @@ for subjectDataFile in subjectsFiles:
     
     print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
     print("Processing " + subjectDataFile)
-    print('\n')
 
     subjectNumber = subjectDataFile[4:6]
 
     currentSubjectData = loadmat(subjectsFilesDir + subjectDataFile)
+    subjectTrialsInfo = []
     stimuliProcessed = []
     for trialNumber in range(len(trialsSequence)):
         stimuli = trialsSequence[trialNumber]
@@ -93,7 +92,7 @@ for subjectDataFile in subjectsFiles:
             stimuliName = '0' + stimuliName
         imageName = 'img' + str(stimuliName) + '.jpg'
 
-        subjectTrialsInfo.append({ "subject" : subjectNumber, "image" : imageName, "dataset" : "VisualSearchZeroShot Natural Design Dataset", "image_height" : image_size[0], "image_width" : image_size[1], "screen_height" : screen_size[0], "screen_width" : screen_size[1], "window_height" : window_size[0], "window_width" : window_size[1], \
+        subjectTrialsInfo.append({ "subject" : subjectNumber, "image" : imageName, "dataset" : "IVSN Dataset", "image_height" : image_size[0], "image_width" : image_size[1], "screen_height" : screen_size[0], "screen_width" : screen_size[1], "window_height" : window_size[0], "window_width" : window_size[1], \
             "target_found" : str(target_found), "target_bbox" : target_bounding_box, "X" : fix_posX.tolist(), "Y" : fix_posY.tolist(), "T" : fix_time.tolist(), "split" : "valid", "target_object" : "TBD", "max_fixations" : 80})
         stimuliProcessed.append(stimuli)
     subject_save_file = 'subj' + subjectNumber + '_scanpaths.json'
