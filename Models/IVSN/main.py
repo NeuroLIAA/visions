@@ -3,14 +3,23 @@ import image_preprocessing
 import compute_scanpaths
 import json
 
+chopped_dir = 'choppednaturaldesign/'
+
 stimuli_dir = '../../Datasets/IVSN/stimuli/'
 target_dir = '../../Datasets/IVSN/target/'
 targets_locations_file = '../../Datasets/IVSN/targets_locations.json'
-chopped_dir = 'choppednaturaldesign/'
-save_path = 'results/Scanpaths.json'
+save_path = '../Results/IVSN/IVSN_dataset/Scanpaths.json'
 stimuli_size = (1028, 1280)
 max_fixations  = 80
 receptive_size = 200
+
+# stimuli_dir = '../../Datasets/cIBS/images/'
+# target_dir = '../../Datasets/cIBS/templates/'
+# targets_locations_file = '../../Datasets/cIBS/targets_locations.json'
+# save_path = '../Results/cIBS/cIBS_dataset/Scanpaths.json'
+# stimuli_size = (768, 1024)
+# max_fixations  = 80
+# receptive_size = 32
 
 def main():
     with open(targets_locations_file) as fp:
