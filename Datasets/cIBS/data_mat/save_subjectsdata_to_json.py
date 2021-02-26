@@ -67,5 +67,6 @@ for subject_file in subjects_files:
     subject_json_filename = 'subj' + subject_id + '_scanpaths.json'
     with open(save_path + subject_json_filename, 'w') as fp:
         json.dump(json_subject, fp, indent = 4)
+        fp.close()
 
 print("Targets found: " + str(targets_found) + ". Wrong targets found: " + str(wrong_targets_found))

@@ -25,3 +25,4 @@ for record in range(len(targets_positions_mat[0])):
 
 with open('../targets_locations.json', 'w') as fp:
     json.dump(targets_positions_json, fp, indent=4)
+    fp.close()
