@@ -19,7 +19,7 @@ def main():
     print('Preprocessing images...')
     image_preprocessing.chop_stimuli(stimuli_dir, chopped_dir, stimuli_size, targets_locations)
     print('Running model...')
-    #IVSN.run(stimuli_dir, target_dir, chopped_dir, targets_locations)
+    IVSN.run(stimuli_dir, target_dir, chopped_dir, targets_locations)
     print('Computing scanpaths...')
     compute_scanpaths.parse_model_data(stimuli_dir, chopped_dir, stimuli_size, max_fixations, receptive_size, save_path, targets_locations)
 

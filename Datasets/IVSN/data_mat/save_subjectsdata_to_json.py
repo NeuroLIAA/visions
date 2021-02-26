@@ -100,5 +100,6 @@ for subjectDataFile in subjectsFiles:
         mkdir(save_path)
     with open(save_path + subject_save_file, 'w') as fp:
         json.dump(subjectTrialsInfo, fp, indent = 4)
+        fp.close()
 
 print("Targets found: " + str(targets_found) + ". Wrong targets found: " + str(wrong_targets_found))

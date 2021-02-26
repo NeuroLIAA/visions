@@ -19,6 +19,7 @@ def parse_model_data(stimuli_dir, chopped_dir, stimuli_size, max_fixations, rece
     
     with open(save_path, 'w') as json_file:
         json.dump(scanpaths, json_file, indent = 4)
+        json_file.close()
 
 def create_scanpath(scanpaths, target_properties, attentionMap, targets_locations, stimuli_size, max_fixations, receptive_size):
     # Load target's boundaries
