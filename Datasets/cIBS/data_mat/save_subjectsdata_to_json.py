@@ -23,7 +23,7 @@ for subject_file in subjects_files:
     if (int(subject_id) < 10):
         subject_id = '0' + subject_id
 
-    json_subject = []
+    json_subject = dict()
     for record in range(len(subject_info[0])):
         image_name   = subject_info['image_name'][0][record][0]
         image_height = int(subject_info['image_size'][0][record][0][0])
@@ -59,8 +59,8 @@ for subject_file in subjects_files:
                 wrong_targets_found += 1
                 target_found = False
 
-        json_subject.append({ "subject" : subject_id, "image" : image_name, "dataset" : "cIBS Dataset", "image_height" : image_height, "image_width" : image_width, "screen_height" : screen_height, "screen_width" : screen_width, "window_height" : window_size[0], "window_width" : window_size[1], \
-            "target_found" : str(target_found), "target_bbox" : target_bbox.tolist(), "X" : fix_posX.tolist(), "Y" : fix_posY.tolist(), "T" : fix_time.tolist(), "split" : "valid", "target_object" : "TBD", "max_fixations" : max_fixations})
+        json_subject[image_name] = {"subject" : subject_id, "dataset" : "cIBS Dataset", "image_height" : image_height, "image_width" : image_width, "screen_height" : screen_height, "screen_width" : screen_width, "window_height" : window_size[0], "window_width" : window_size[1], \
+            "target_found" : str(target_found), "target_bbox" : target_bbox.tolist(), "X" : fix_posX.tolist(), "Y" : fix_posY.tolist(), "T" : fix_time.tolist(), "split" : "valid", "target_object" : "TBD", "max_fixations" : max_fixations}
     
     if not(os.path.exists(save_path)):
         os.mkdir(save_path)
