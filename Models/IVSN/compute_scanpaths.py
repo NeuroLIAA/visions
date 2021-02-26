@@ -19,7 +19,6 @@ def parse_model_data(stimuli_dir, chopped_dir, stimuli_size, max_fixations, rece
     
     with open(save_path, 'w') as json_file:
         json.dump(scanpaths, json_file, indent = 4)
-        json_file.close()
 
 def create_scanpath(scanpaths, target_properties, attentionMap, targets_locations, stimuli_size, max_fixations, receptive_size):
     # Load target's boundaries
@@ -68,8 +67,8 @@ def create_scanpath(scanpaths, target_properties, attentionMap, targets_location
         print(imageName + "; target found at fixation step " + str(fixationNumber + 1))
     else:
         print(imageName + "; target NOT FOUND!")
-    scanpaths[imageName] = { "dataset" : "VisualSearchZeroShot Natural Design Dataset", "subject" : "VisualSearchZeroShot Model", "target_found"  : str(target_found), "X" : xCoordFixationOrder, "Y" : yCoordFixationOrder,  "split" : "test", \
-        "image_height" : stimuli_size[0], "image_width" : stimuli_size[1], "target_object" : "TBD", "max_fixations" : str(max_fixations)}
+    scanpaths[imageName] = { "dataset" : "IVSN Dataset", "subject" : "IVSN Model", "target_found"  : str(target_found), "X" : xCoordFixationOrder, "Y" : yCoordFixationOrder,  "split" : "test", \
+        "image_height" : stimuli_size[0], "image_width" : stimuli_size[1], "target_object" : "TBD", "max_fixations" : max_fixations}
 
 
 def rescale_coordinates(start_row, start_column, end_row, end_column, img_height, img_width, new_img_height, new_img_width):
