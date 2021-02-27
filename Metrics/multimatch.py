@@ -1,5 +1,6 @@
 import multimatch_gaze as mm
 import json
+import math
 import numpy as np
 import pandas as pd
 from os import listdir
@@ -12,17 +13,15 @@ def compute_human_average_per_image(dataset_scanpaths_dir):
     " Returns dictionary with image names as keys and multimatch arrays as values "
     subjects_scanpaths_files = listdir(dataset_scanpaths_dir)
     Multimatch_values_per_image = {}
-
+    total_values_per_image = {}
     # Compute multimatch for each image for every pair of subjects
     for subject_filename in subjects_scanpaths_files:
         subjects_scanpaths_files.remove(subject_filename) #solo me interesa comparar sujetos distintos y una sola vez por cada par de sujetos
         with open(dataset_scanpaths_dir + subject_filename, 'r') as fp:
             subject_scanpaths = json.load(fp)
-            fp.close()
         for subject_to_compare_filename in subjects_scanpaths_files:
             with open(dataset_scanpaths_dir + subject_filename, 'r') as fp:
                 subject_to_compare_scanpaths = json.load(fp)
-                fp.close()
             for image_name in subject_scanpaths.keys():
                 subject_trial_info = subject_scanpaths[image_name]
                 target_found = bool(subject_trial_info['target_found'])
@@ -52,8 +51,12 @@ def compute_human_average_per_image(dataset_scanpaths_dir):
 
                 if image_name in Multimatch_values_per_image:
                     trial_multimatch_average = Multimatch_values_per_image[image_name]
-                    Multimatch_values_per_image[image_name] = np.add(trial_multimatch_average, trial_multimatch_result) / 2
+                    Multimatch_values_per_image[image_name] = np.add(trial_multimatch_average, trial_multimatch_result)
+                    total_values_per_image[image_name] +=1 
                 else:
                     Multimatch_values_per_image[image_name] = trial_multimatch_result
-    
+                    total_values_per_image[image_name] = 1
+
+    for image_name in Multimatch_values_per_image.keys(): #debería usar un combinatorio para dividir pero como hay algunos scanpaths que faltan lo hice con un diccionario de contadores
+        Multimatch_values_per_image[image_name] = Multimatch_values_per_image[image_name]/total_values_per_image[image_name]
     return Multimatch_values_per_image
