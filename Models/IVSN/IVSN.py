@@ -16,7 +16,7 @@ The results are attention maps, which are then stored in the same folder as the 
 targetHeight, targetWidth = 32, 32
 stimuliChoppedHeight, stimuliChoppedWidth = 224, 224
 
-def run(stimuli_dir, target_dir, chopped_dir, targets_locations):
+def run(stimuli_dir, target_dir, chopped_dir, trials_properties):
     # Load the model
     model = models.vgg16(pretrained=True)
     # model = caffemodel2pytorch.Net(
@@ -60,12 +60,12 @@ def run(stimuli_dir, target_dir, chopped_dir, targets_locations):
     # 	img = img - mean_pixel
     # 	return img  
 
-    for struct in targets_locations:
-        stimuliName = struct['image']   
+    for trial_properties in trials_properties:
+        stimuliName = trial_properties['image']   
         print('Working on ' + stimuliName)  
 
         stimuliID = stimuliName[:-4]
-        target_name = struct['template']
+        target_name = trial_properties['target']
         target = Image.open(target_dir + target_name).convert('RGB')
         target_transformation = transforms.Compose([
             transforms.Resize((targetHeight, targetWidth)),

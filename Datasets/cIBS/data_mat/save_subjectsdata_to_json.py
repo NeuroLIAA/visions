@@ -34,12 +34,13 @@ for subject_file in subjects_files:
 
         target_bbox = subject_info['target_rect'][0][record][0]
         # Swap values, new order is [lower_row, lower_column, upper_row, upper_column]
-        target_bbox[0], target_bbox[1], target_bbox[2], target_bbox[3] = target_bbox[1], target_bbox[0], target_bbox[3], target_bbox[2]
+        target_bbox[0], target_bbox[1], target_bbox[2], target_bbox[3] = target_bbox[1] - 1, target_bbox[0] - 1, target_bbox[3] - 1, target_bbox[2] - 1
         target_found = bool(subject_info['target_found'][0][record][0][0])
 
         max_fixations = int(subject_info['nsaccades_allowed'][0][record][0][0])
-        fix_posX = subject_info['x'][0][record][0]
-        fix_posY = subject_info['y'][0][record][0]
+        # Subtract one, since Python indexes images from zero
+        fix_posX = subject_info['x'][0][record][0] - 1
+        fix_posY = subject_info['y'][0][record][0] - 1
         fix_time = subject_info['dur'][0][record][0]
 
         if (len(fix_posX) == 0):
@@ -60,7 +61,7 @@ for subject_file in subjects_files:
                 target_found = False
 
         json_subject[image_name] = {"subject" : subject_id, "dataset" : "cIBS Dataset", "image_height" : image_height, "image_width" : image_width, "screen_height" : screen_height, "screen_width" : screen_width, "window_height" : window_size[0], "window_width" : window_size[1], \
-            "target_found" : str(target_found), "target_bbox" : target_bbox.tolist(), "X" : fix_posX.tolist(), "Y" : fix_posY.tolist(), "T" : fix_time.tolist(), "split" : "valid", "target_object" : "TBD", "max_fixations" : max_fixations}
+            "target_found" : target_found, "target_bbox" : target_bbox.tolist(), "X" : fix_posX.tolist(), "Y" : fix_posY.tolist(), "T" : fix_time.tolist(), "target_object" : "TBD", "max_fixations" : max_fixations}
     
     if not(os.path.exists(save_path)):
         os.mkdir(save_path)

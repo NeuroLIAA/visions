@@ -8,39 +8,44 @@ Puts together data produced by the CNN and creates an attention map for the stim
 Scanpaths are saved in a JSON file.
 """
 
-def parse_model_data(stimuli_dir, chopped_dir, stimuli_size, max_fixations, receptive_size, save_path, targets_locations):
+def parse_model_data(stimuli_dir, chopped_dir, stimuli_size, max_fixations, receptive_size, save_path, trials_properties):
     scanpaths = dict()
-    for struct in targets_locations:
-        imageName = struct['image']
+    for trial_properties in trials_properties:
+        imageName = trial_properties['image']
 
         imgID = imageName[:-4]
         attentionMap = load_model_data(chopped_dir, imgID, stimuli_size)
-        create_scanpath(scanpaths, struct, attentionMap, targets_locations, stimuli_size, max_fixations, receptive_size)
+        create_scanpath(trial_properties, attentionMap, stimuli_size, max_fixations, receptive_size, scanpaths)
     
     with open(save_path, 'w') as json_file:
         json.dump(scanpaths, json_file, indent = 4)
 
-def create_scanpath(scanpaths, target_properties, attentionMap, targets_locations, stimuli_size, max_fixations, receptive_size):
+def create_scanpath(trial_properties, attentionMap, stimuli_size, max_fixations, receptive_size, scanpaths):
     # Load target's boundaries
-    target_bbox = (target_properties['matched_row'], target_properties['matched_column'], target_properties['target_side_length'] + target_properties['matched_row'], \
-        target_properties['target_columns'] + target_properties['matched_column'])
+    target_bbox = (trial_properties['target_matched_row'], trial_properties['target_matched_column'], trial_properties['target_side_length'] + trial_properties['target_matched_row'], \
+        trial_properties['target_columns'] + trial_properties['target_matched_column'])
     # Rescale according to stimuli size
-    target_bbox = rescale_coordinates(target_bbox[0], target_bbox[1], target_bbox[2], target_bbox[3], target_properties['image_height'], target_properties['image_width'], stimuli_size[0], stimuli_size[1])
+    target_bbox = rescale_coordinates(target_bbox[0], target_bbox[1], target_bbox[2], target_bbox[3], trial_properties['image_height'], trial_properties['image_width'], stimuli_size[0], stimuli_size[1])
     # Create template of stimuli's size where there are ones in target's box and zeros elsewhere
     targetTemplate = np.zeros(stimuli_size)
     targetTemplate[target_bbox[0]:target_bbox[2], target_bbox[1]:target_bbox[3]] = 1
 
-    xCoordFixationOrder = []
-    yCoordFixationOrder = []
+    scanpath_x_coordinates = []
+    scanpath_y_coordinates = []
     target_found = False
+    first_fixation = True
     # Compute scanpaths from saliency image        
     for fixationNumber in range(max_fixations):
-        coordinates = np.where(attentionMap == np.amax(attentionMap))
-        posX = coordinates[0][0]
-        posY = coordinates[1][0]
+        if first_fixation:
+            posX = trial_properties['initial_fixation_x']
+            posY = trial_properties['initial_fixation_y']
+        else:
+            coordinates = np.where(attentionMap == np.amax(attentionMap))
+            posX = coordinates[0][0]
+            posY = coordinates[1][0]
 
-        xCoordFixationOrder.append(str(posX))
-        yCoordFixationOrder.append(str(posY))
+        scanpath_x_coordinates.append(posX)
+        scanpath_y_coordinates.append(posY)
 
         fixatedPlace_leftX  = posX - receptive_size // 2 + 1
         fixatedPlace_rightX = posX + receptive_size // 2
@@ -61,13 +66,15 @@ def create_scanpath(scanpaths, target_properties, attentionMap, targets_location
         else:
             # Apply inhibition of return
             attentionMap[fixatedPlace_leftX:fixatedPlace_rightX, fixatedPlace_leftY:fixatedPlace_rightY] = 0
+            
+        first_fixation = False
     
-    imageName = target_properties['image']
+    imageName = trial_properties['image']
     if (target_found):
         print(imageName + "; target found at fixation step " + str(fixationNumber + 1))
     else:
         print(imageName + "; target NOT FOUND!")
-    scanpaths[imageName] = { "dataset" : "IVSN Dataset", "subject" : "IVSN Model", "target_found"  : str(target_found), "X" : xCoordFixationOrder, "Y" : yCoordFixationOrder,  "split" : "test", \
+    scanpaths[imageName] = { "dataset" : "IVSN Natural Design Dataset", "subject" : "IVSN Model", "target_found"  : target_found, "X" : scanpath_x_coordinates, "Y" : scanpath_y_coordinates,  \
         "image_height" : stimuli_size[0], "image_width" : stimuli_size[1], "target_object" : "TBD", "max_fixations" : max_fixations}
 
 
