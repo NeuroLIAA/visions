@@ -7,7 +7,7 @@ subjectsFilesDir = 'ProcessScanpath_naturaldesign/'
 trialsSequenceFile = 'naturaldesign_seq.mat'
 save_path = '../human_scanpaths/'
 # Load targets locations
-targetsPropertiesFile = open('../targets_locations.json')
+targetsPropertiesFile = open('../trials_properties.json')
 targetsPropertiesData = json.load(targetsPropertiesFile)
 
 numImages = 240
@@ -52,8 +52,8 @@ for subjectDataFile in subjectsFiles:
 
         # Get target position information
         current_target = targetsPropertiesData[stimuli - 1]
-        target_start_row = current_target['matched_row']
-        target_start_column = current_target['matched_column']
+        target_start_row = current_target['target_matched_row']
+        target_start_column = current_target['target_matched_column']
         target_end_row = target_start_row + current_target['target_side_length']
         target_end_column = target_start_column + current_target['target_columns']
 
@@ -92,8 +92,8 @@ for subjectDataFile in subjectsFiles:
             stimuliName = '0' + stimuliName
         imageName = 'img' + str(stimuliName) + '.jpg'
 
-        subjectTrialsInfo[imageName] = { "subject" : subjectNumber, "dataset" : "IVSN Dataset", "image_height" : image_size[0], "image_width" : image_size[1], "screen_height" : screen_size[0], "screen_width" : screen_size[1], "window_height" : window_size[0], "window_width" : window_size[1], \
-            "target_found" : str(target_found), "target_bbox" : target_bounding_box, "X" : fix_posX.tolist(), "Y" : fix_posY.tolist(), "T" : fix_time.tolist(), "split" : "valid", "target_object" : "TBD", "max_fixations" : 80}
+        subjectTrialsInfo[imageName] = { "subject" : subjectNumber, "dataset" : "IVSN Natural Design Dataset", "image_height" : image_size[0], "image_width" : image_size[1], "screen_height" : screen_size[0], "screen_width" : screen_size[1], "window_height" : window_size[0], "window_width" : window_size[1], \
+            "target_found" : target_found, "target_bbox" : target_bounding_box, "X" : fix_posX.tolist(), "Y" : fix_posY.tolist(), "T" : fix_time.tolist(), "target_object" : "TBD", "max_fixations" : 80}
         stimuliProcessed.append(stimuli)
     subject_save_file = 'subj' + subjectNumber + '_scanpaths.json'
     if not(path.exists(save_path)):

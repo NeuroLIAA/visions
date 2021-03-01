@@ -28,7 +28,7 @@ def compute_human_average_per_image(dataset_scanpaths_dir):
                 subject_to_compare_trial_info = subject_to_compare_scanpaths[image_name]
 
                 # Only scanpaths where the target was found are taken into account
-                target_found = bool(subject_trial_info['target_found']) and bool(subject_to_compare_trial_info['target_found'])
+                target_found = subject_trial_info['target_found'] and subject_to_compare_trial_info['target_found']
                 if not(target_found):
                     continue
 
