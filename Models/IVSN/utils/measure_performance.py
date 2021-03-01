@@ -4,9 +4,9 @@ from numpy import *
 import math
 import matplotlib.pyplot as plt
 
-resultsDir = '../results/'
+resultsDir = '../results_python_matlab/'
 maxScanpathLength = 30
-totalStimuli = 240
+
 
 def main():
     jsonsToMeasure = listdir(resultsDir)
