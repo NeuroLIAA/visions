@@ -9,10 +9,10 @@ def compute_averages(model_scanpaths, dataset_scanpaths_dir, results_dir):
 
 def compute_human_average_per_image(dataset_scanpaths_dir):
     " Returns dictionary with image names as keys and multimatch arrays as values "
-    subjects_scanpaths_files = listdir(dataset_scanpaths_dir)
     Multimatch_values_per_image = {}
     total_values_per_image = {}
     # Compute multimatch for each image for every pair of subjects
+    subjects_scanpaths_files = listdir(dataset_scanpaths_dir)
     for subject_filename in subjects_scanpaths_files:
         subjects_scanpaths_files.remove(subject_filename) 
         with open(dataset_scanpaths_dir + subject_filename, 'r') as fp:
@@ -44,19 +44,14 @@ def compute_human_average_per_image(dataset_scanpaths_dir):
                 subject_to_compare_scanpath_Y = subject_to_compare_trial_info['Y']
                 subject_to_compare_scanpath_time = [t * 0.0001 for t in subject_to_compare_trial_info['T']]
 
+                # Multimatch can't be computed in scanpaths with length shorter than 3
+                if (len(subject_scanpath_X) < 3 or len(subject_to_compare_scanpath_X) < 3):
+                    continue
+
                 subject_scanpath = np.array(list(zip(subject_scanpath_X, subject_scanpath_Y, subject_scanpath_time)), dtype=[('start_x', '<f8'), ('start_y', '<f8'), ('duration', '<f8')])
                 subject_to_compare_scanpath = np.array(list(zip(subject_to_compare_scanpath_X, subject_to_compare_scanpath_Y, subject_to_compare_scanpath_time)), dtype=[('start_x', '<f8'), ('start_y', '<f8'), ('duration', '<f8')])
 
-                if (image_name == 'img212.jpg'):
-                    print('Subject 1:' + subject_filename)
-                    print('Subject 2: ' + subject_to_compare_filename)
-                    print('Scanpath 1: ' + str(subject_scanpath))
-                    print('Scanpath 2: ' + str(subject_to_compare_scanpath))
-
                 trial_multimatch_result = mm.docomparison(subject_scanpath, subject_to_compare_scanpath, screen_size)
-
-                if (image_name == 'img212.jpg'):
-                    print('Multimatch result: ' + str(trial_multimatch_result))
 
                 if image_name in Multimatch_values_per_image:
                     multimatch_trial_value_acum = Multimatch_values_per_image[image_name]
@@ -68,6 +63,6 @@ def compute_human_average_per_image(dataset_scanpaths_dir):
 
     # Compute average per image
     for image_name in Multimatch_values_per_image.keys():
-        Multimatch_values_per_image[image_name] = Multimatch_values_per_image[image_name] / total_values_per_image[image_name]
+        Multimatch_values_per_image[image_name] = np.divide(Multimatch_values_per_image[image_name], total_values_per_image[image_name])
 
     return Multimatch_values_per_image
