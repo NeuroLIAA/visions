@@ -1,7 +1,7 @@
 import json
 from os import mkdir, listdir, path
 
-resultsDir = '../results/'
+resultsDir = '../results_python_matlab/'
 
 def main():
     jsonPythonFile = open(resultsDir + 'Scanpaths_Pytorch with VGG16.json', 'r')
