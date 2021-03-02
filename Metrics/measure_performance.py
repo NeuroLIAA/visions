@@ -23,11 +23,11 @@ def main():
             for imageName in scanpaths.keys():
                 scanpathInfo = scanpaths[imageName]
 
-                if (len(scanpathInfo['X']) < maxScanpathLength + 1) and scanpathInfo['target_found'] == 'True': 
+                if (len(scanpathInfo['X']) < maxScanpathLength + 1) and scanpathInfo['target_found'] == True: 
                     for index in range(len(scanpathInfo['X']) - 1, maxScanpathLength): #el gráfico tiene que ser acumulativo, si se encontró con 2 fijaciones, también con 3,4,etc.
                         fixationsUntilTargetFound[index] += 1
         
-                cumulativePerformance = list(map(lambda x: float(x) / 240.0, fixationsUntilTargetFound))
+                cumulativePerformance = list(map(lambda x: float(x) / len(scanpaths.keys()), fixationsUntilTargetFound))
             label = datasetName
             ax.plot(range(1, maxScanpathLength + 1), cumulativePerformance, label = label)
     ax.legend()   
