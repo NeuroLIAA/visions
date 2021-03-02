@@ -1,5 +1,5 @@
 from skimage import io, color, transform, img_as_ubyte
-from os import listdir, path, mkdir
+from os import listdir, path, mkdir, makedirs
 
 """
 Preprocessing of images (resizing and dividing into blocks)
@@ -16,7 +16,7 @@ def chop_stimuli(stimuli_dir, chopped_dir, stimuli_size, trials_properties):
         img = transform.resize(img, stimuli_size)
 
         if not(path.exists(chopped_dir)):
-            mkdir(chopped_dir)
+            makedirs(chopped_dir)
 
         choppedImgDir = chopped_dir + imgID
         if not(path.exists(choppedImgDir)):

@@ -1,26 +1,28 @@
 import json
 import numpy as np
-from os import listdir
+from os import listdir, mkdir, path
 from skimage import io, transform, exposure
 
 """
-Puts together data produced by the CNN and creates an attention map for the stimuli, which is used to compute the scanpath, with a winner-takes-all strategy.
+Puts together data produced by the CNN and creates an attention map for the stimuli, which is used to compute the scanpaths, with a winner-takes-all strategy.
 Scanpaths are saved in a JSON file.
 """
 
-def parse_model_data(stimuli_dir, chopped_dir, stimuli_size, max_fixations, receptive_size, save_path, trials_properties):
+def parse_model_data(stimuli_dir, chopped_dir, stimuli_size, max_fixations, receptive_size, save_path, trials_properties, dataset_name):
     scanpaths = dict()
     for trial_properties in trials_properties:
         imageName = trial_properties['image']
 
         imgID = imageName[:-4]
         attentionMap = load_model_data(chopped_dir, imgID, stimuli_size)
-        create_scanpath(trial_properties, attentionMap, stimuli_size, max_fixations, receptive_size, scanpaths)
+        create_scanpath(trial_properties, attentionMap, stimuli_size, max_fixations, receptive_size, dataset_name, scanpaths)
     
-    with open(save_path, 'w') as json_file:
+    if not(path.exists(save_path)):
+        mkdir(save_path)
+    with open(save_path + 'Scanpaths.json', 'w') as json_file:
         json.dump(scanpaths, json_file, indent = 4)
 
-def create_scanpath(trial_properties, attentionMap, stimuli_size, max_fixations, receptive_size, scanpaths):
+def create_scanpath(trial_properties, attentionMap, stimuli_size, max_fixations, receptive_size, dataset_name, scanpaths):
     # Load target's boundaries
     target_bbox = (trial_properties['target_matched_row'], trial_properties['target_matched_column'], trial_properties['target_side_length'] + trial_properties['target_matched_row'], \
         trial_properties['target_columns'] + trial_properties['target_matched_column'])
@@ -44,8 +46,8 @@ def create_scanpath(trial_properties, attentionMap, stimuli_size, max_fixations,
             posX = coordinates[0][0]
             posY = coordinates[1][0]
 
-        scanpath_x_coordinates.append(posX)
-        scanpath_y_coordinates.append(posY)
+        scanpath_x_coordinates.append(int(posX))
+        scanpath_y_coordinates.append(int(posY))
 
         fixatedPlace_leftX  = posX - receptive_size // 2 + 1
         fixatedPlace_rightX = posX + receptive_size // 2
@@ -74,7 +76,7 @@ def create_scanpath(trial_properties, attentionMap, stimuli_size, max_fixations,
         print(imageName + "; target found at fixation step " + str(fixationNumber + 1))
     else:
         print(imageName + "; target NOT FOUND!")
-    scanpaths[imageName] = { "dataset" : "IVSN Natural Design Dataset", "subject" : "IVSN Model", "target_found"  : target_found, "X" : scanpath_x_coordinates, "Y" : scanpath_y_coordinates,  \
+    scanpaths[imageName] = { "dataset" : dataset_name, "subject" : "IVSN Model", "target_found"  : target_found, "X" : scanpath_x_coordinates, "Y" : scanpath_y_coordinates,  \
         "image_height" : stimuli_size[0], "image_width" : stimuli_size[1], "target_object" : "TBD", "max_fixations" : max_fixations}
 
 
