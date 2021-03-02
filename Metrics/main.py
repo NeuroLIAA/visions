@@ -7,6 +7,7 @@ results_dir  = '../Results/'
 datasets_dir = '../Datasets/'
 models = listdir(results_dir)
 
+# TODO: Iterar según dataset y no por modelo
 for model in models:
     model_results_path = results_dir + model + '/'
 

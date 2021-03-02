@@ -1,38 +1,38 @@
 import json
-from os import mkdir, listdir, path
-from numpy import *
-import math
 import matplotlib.pyplot as plt
+from os import listdir
 
-resultsDir = '../Results/'
-maxScanpathLength = 30
-
+results_dir = '../Results/'
+max_scanpath_length = 30
 
 def main():
-    amountOfModels = listdir(resultsDir)
-    fig, ax = plt.subplots()
-    for modelFolderName in amountOfModels:
-        modelResultsPath = resultsDir + modelFolderName + '/'
-        datasetsPerModel = listdir(modelResultsPath)
-        for datasetName in datasetsPerModel:
-            with open(modelResultsPath + datasetName + '/Scanpaths.json', 'r') as fp:
-                scanpaths = json.load(fp)
-            fixationsUntilTargetFound = []
-            for index in range(0, maxScanpathLength): # los índices irían en el eje X y los valores del índice correspondiente en el eje Y
-                fixationsUntilTargetFound.append(0)
-            for imageName in scanpaths.keys():
-                scanpathInfo = scanpaths[imageName]
+    datasets_results_dirs = listdir(results_dir)
+    for dataset_name in datasets_results_dirs:
+        models_results_dirs = listdir(results_dir + dataset_name)
+        fig, ax = plt.subplots()
+        for model_name in models_results_dirs:
+            model_scanpaths_file = results_dir + dataset_name + '/' + model_name + '/Scanpaths.json'
+            with open(model_scanpaths_file, 'r') as fp:
+                model_scanpaths = json.load(fp)
+            fixations_until_target_found = []
+            for index in range(0, max_scanpath_length):
+                fixations_until_target_found.append(0)
+            for image_name in model_scanpaths.keys():
+                scanpath_info = model_scanpaths[image_name]
+                scanpath_length = len(scanpath_info['X'])
 
-                if (len(scanpathInfo['X']) < maxScanpathLength + 1) and scanpathInfo['target_found'] == True: 
-                    for index in range(len(scanpathInfo['X']) - 1, maxScanpathLength): #el gráfico tiene que ser acumulativo, si se encontró con 2 fijaciones, también con 3,4,etc.
-                        fixationsUntilTargetFound[index] += 1
-        
-                cumulativePerformance = list(map(lambda x: float(x) / len(scanpaths.keys()), fixationsUntilTargetFound))
-            label = datasetName
-            ax.plot(range(1, maxScanpathLength + 1), cumulativePerformance, label = label)
-    ax.legend()   
-    plt.xlabel('Number of fixations')
-    plt.ylabel('Cummulative performance')
-    plt.show()
+                if (scanpath_length < max_scanpath_length + 1) and scanpath_info['target_found']:
+                    for index in range(scanpath_length - 1, max_scanpath_length):
+                        fixations_until_target_found[index] += 1
+                
+                cumulative_performance = list(map(lambda x: float(x) / len(model_scanpaths.keys()), fixations_until_target_found))
+            
+            ax.plot(range(1, max_scanpath_length + 1), cumulative_performance, label = model_name)
+        ax.legend()  
+        dataset_name = dataset_name.replace('_', ' ') 
+        plt.title(dataset_name)
+        plt.xlabel('Number of fixations')
+        plt.ylabel('Cumulative performance')
+        plt.show()
 
 main()
