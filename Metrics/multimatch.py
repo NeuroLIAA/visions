@@ -9,7 +9,7 @@ def compute_averages(model_scanpaths, dataset_scanpaths_dir, results_dir):
 
 def compute_human_average_per_image(dataset_scanpaths_dir):
     " Returns dictionary with image names as keys and multimatch arrays as values "
-    Multimatch_values_per_image = {}
+    multimatch_values_per_image = {}
     total_values_per_image = {}
     # Compute multimatch for each image for every pair of subjects
     subjects_scanpaths_files = listdir(dataset_scanpaths_dir)
@@ -53,16 +53,16 @@ def compute_human_average_per_image(dataset_scanpaths_dir):
 
                 trial_multimatch_result = mm.docomparison(subject_scanpath, subject_to_compare_scanpath, screen_size)
 
-                if image_name in Multimatch_values_per_image:
-                    multimatch_trial_value_acum = Multimatch_values_per_image[image_name]
-                    Multimatch_values_per_image[image_name] = np.add(multimatch_trial_value_acum, trial_multimatch_result)
+                if image_name in multimatch_values_per_image:
+                    multimatch_trial_value_acum = multimatch_values_per_image[image_name]
+                    multimatch_values_per_image[image_name] = np.add(multimatch_trial_value_acum, trial_multimatch_result)
                     total_values_per_image[image_name] += 1 
                 else:
-                    Multimatch_values_per_image[image_name] = trial_multimatch_result
+                    multimatch_values_per_image[image_name] = trial_multimatch_result
                     total_values_per_image[image_name] = 1
 
     # Compute average per image
-    for image_name in Multimatch_values_per_image.keys():
-        Multimatch_values_per_image[image_name] = np.divide(Multimatch_values_per_image[image_name], total_values_per_image[image_name])
+    for image_name in multimatch_values_per_image.keys():
+        multimatch_values_per_image[image_name] = np.divide(multimatch_values_per_image[image_name], total_values_per_image[image_name])
 
-    return Multimatch_values_per_image
+    return multimatch_values_per_image
