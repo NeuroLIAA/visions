@@ -3,23 +3,23 @@ import image_preprocessing
 import compute_scanpaths
 import json
 
-dataset_name = 'IVSN Natural Design'
-stimuli_dir = '../../Datasets/IVSN/stimuli/'
-target_dir = '../../Datasets/IVSN/target/'
-trials_properties_file = '../../Datasets/IVSN/trials_properties.json'
-save_path = '../../Results/IVSN_dataset/IVSN/'
-stimuli_size = (1028, 1280)
-max_fixations  = 80
-receptive_size = 200
+# dataset_name = 'IVSN Natural Design'
+# stimuli_dir = '../../Datasets/IVSN/stimuli/'
+# target_dir = '../../Datasets/IVSN/target/'
+# trials_properties_file = '../../Datasets/IVSN/trials_properties.json'
+# save_path = '../../Results/IVSN_dataset/IVSN/'
+# stimuli_size = (1028, 1280)
+# max_fixations  = 80
+# receptive_size = 200
 
-# dataset_name = 'cIBS'
-# stimuli_dir = '../../Datasets/cIBS/images/'
-# target_dir = '../../Datasets/cIBS/templates/'
-# trials_properties_file = '../../Datasets/cIBS/trials_properties.json'
-# save_path = '../../Results/cIBS_dataset/IVSN/'
-# stimuli_size = (768, 1024)
-# max_fixations  = 15
-# receptive_size = 32
+dataset_name = 'cIBS'
+stimuli_dir = '../../Datasets/cIBS/images/'
+target_dir = '../../Datasets/cIBS/templates/'
+trials_properties_file = '../../Datasets/cIBS/trials_properties.json'
+save_path = '../../Results/cIBS_dataset/IVSN/'
+stimuli_size = (768, 1024)
+max_fixations  = 16
+receptive_size = 32
 
 def main():
     with open(trials_properties_file) as fp:
