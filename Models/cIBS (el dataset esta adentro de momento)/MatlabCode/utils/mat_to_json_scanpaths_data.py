@@ -60,8 +60,8 @@ for cfg_file in cfg_files:
     scanpath_y = []
     for i in range(number_of_fixations):
         i_fixation = mapCellToFixation(scanpath[i].astype(int), image_height, image_width, delta)
-        scanpath_x.append(int(i_fixation[0]))
-        scanpath_y.append(int(i_fixation[1]))
+        scanpath_x.append(int(i_fixation[0]) -1 )
+        scanpath_y.append(int(i_fixation[1]) -1)
 
     scanpath_data[image_name] = {"dataset" : "cIBS Dataset", "subject" : "cIBS model", "target_found" : target_found, "X" : scanpath_x, "Y" : scanpath_y, "image_height" : image_height, \
         "image_width" : image_width, "target_object" : "TBD", "max_fixations" : max_fixations}
