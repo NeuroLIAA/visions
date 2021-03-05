@@ -1,68 +1,72 @@
 import multimatch_gaze as mm
 import json
 import numpy as np
-from os import listdir
+from os import listdir, path
 
-def compute_averages(model_scanpaths, dataset_scanpaths_dir, results_dir):
-    multimatch_humans_average_per_image = compute_human_average_per_image(dataset_scanpaths_dir)
-    print(multimatch_humans_average_per_image)
-
-def compute_human_average_per_image(dataset_scanpaths_dir):
+def compute_human_average_per_image(dataset_scanpaths_dir, dataset_result_dir):
     " Returns dictionary with image names as keys and multimatch arrays as values "
-    multimatch_values_per_image = {}
-    total_values_per_image = {}
-    # Compute multimatch for each image for every pair of subjects
-    subjects_scanpaths_files = listdir(dataset_scanpaths_dir)
-    for subject_filename in subjects_scanpaths_files:
-        subjects_scanpaths_files.remove(subject_filename) 
-        with open(dataset_scanpaths_dir + subject_filename, 'r') as fp:
-            subject_scanpaths = json.load(fp)
-        for subject_to_compare_filename in subjects_scanpaths_files:
-            with open(dataset_scanpaths_dir + subject_to_compare_filename, 'r') as fp:
-                subject_to_compare_scanpaths = json.load(fp)
-            for image_name in subject_scanpaths.keys():
-                if not(image_name in subject_to_compare_scanpaths):
-                    continue
+    multimatch_human_average_per_image = {}
+    # Check if it was already computed
+    multimatch_human_average_json_file = dataset_result_dir + 'multimatch_human_average_per_image.json'
+    if path.exists(multimatch_human_average_json_file):
+        with open(multimatch_human_average_json_file, 'r') as fp:
+            multimatch_human_average_per_image = json.load(fp)
+    else:
+        total_values_per_image = {}
+        # Compute multimatch for each image for every pair of subjects
+        subjects_scanpaths_files = listdir(dataset_scanpaths_dir)
+        for subject_filename in list(subjects_scanpaths_files):
+            subjects_scanpaths_files.remove(subject_filename) 
+            with open(dataset_scanpaths_dir + subject_filename, 'r') as fp:
+                subject_scanpaths = json.load(fp)
+            for subject_to_compare_filename in subjects_scanpaths_files:
+                with open(dataset_scanpaths_dir + subject_to_compare_filename, 'r') as fp:
+                    subject_to_compare_scanpaths = json.load(fp)
+                for image_name in subject_scanpaths.keys():
+                    if not(image_name in subject_to_compare_scanpaths):
+                        continue
 
-                subject_trial_info = subject_scanpaths[image_name]
-                subject_to_compare_trial_info = subject_to_compare_scanpaths[image_name]
+                    subject_trial_info = subject_scanpaths[image_name]
+                    subject_to_compare_trial_info = subject_to_compare_scanpaths[image_name]
 
-                # Only scanpaths where the target was found are taken into account
-                target_found = subject_trial_info['target_found'] and subject_to_compare_trial_info['target_found']
-                if not(target_found):
-                    continue
+                    target_found = subject_trial_info['target_found'] and subject_to_compare_trial_info['target_found']
+                    if not(target_found):
+                        continue
 
-                screen_size = [subject_trial_info['image_width'], subject_trial_info['image_height']]
+                    screen_size = [subject_trial_info['image_width'], subject_trial_info['image_height']]
 
-                # Al computar con aquellos de los modelos, agregar if para reescalar el scanpath del otro sujeto si difiere en el tamaño de la imagen (Zhang usa 1028x1280 para el modelo y 1024x1280 para los humanos)
+                    # Al computar con aquellos de los modelos, agregar if para reescalar el scanpath del otro sujeto si difiere en el tamaño de la imagen (Zhang usa 1028x1280 para el modelo y 1024x1280 para los humanos)
 
-                subject_scanpath_X = subject_trial_info['X']
-                subject_scanpath_Y = subject_trial_info['Y']
-                subject_scanpath_time = [t * 0.0001 for t in subject_trial_info['T']]
+                    subject_scanpath_X = subject_trial_info['X']
+                    subject_scanpath_Y = subject_trial_info['Y']
+                    subject_scanpath_time = [t * 0.0001 for t in subject_trial_info['T']]
 
-                subject_to_compare_scanpath_X = subject_to_compare_trial_info['X']
-                subject_to_compare_scanpath_Y = subject_to_compare_trial_info['Y']
-                subject_to_compare_scanpath_time = [t * 0.0001 for t in subject_to_compare_trial_info['T']]
+                    subject_to_compare_scanpath_X = subject_to_compare_trial_info['X']
+                    subject_to_compare_scanpath_Y = subject_to_compare_trial_info['Y']
+                    subject_to_compare_scanpath_time = [t * 0.0001 for t in subject_to_compare_trial_info['T']]
 
-                # Multimatch can't be computed in scanpaths with length shorter than 3
-                if (len(subject_scanpath_X) < 3 or len(subject_to_compare_scanpath_X) < 3):
-                    continue
+                    # Multimatch can't be computed for scanpaths with length shorter than 3
+                    if (len(subject_scanpath_X) < 3 or len(subject_to_compare_scanpath_X) < 3):
+                        continue
 
-                subject_scanpath = np.array(list(zip(subject_scanpath_X, subject_scanpath_Y, subject_scanpath_time)), dtype=[('start_x', '<f8'), ('start_y', '<f8'), ('duration', '<f8')])
-                subject_to_compare_scanpath = np.array(list(zip(subject_to_compare_scanpath_X, subject_to_compare_scanpath_Y, subject_to_compare_scanpath_time)), dtype=[('start_x', '<f8'), ('start_y', '<f8'), ('duration', '<f8')])
+                    subject_scanpath = np.array(list(zip(subject_scanpath_X, subject_scanpath_Y, subject_scanpath_time)), dtype=[('start_x', '<f8'), ('start_y', '<f8'), ('duration', '<f8')])
+                    subject_to_compare_scanpath = np.array(list(zip(subject_to_compare_scanpath_X, subject_to_compare_scanpath_Y, subject_to_compare_scanpath_time)), dtype=[('start_x', '<f8'), ('start_y', '<f8'), ('duration', '<f8')])
 
-                trial_multimatch_result = mm.docomparison(subject_scanpath, subject_to_compare_scanpath, screen_size)
+                    trial_multimatch_result = mm.docomparison(subject_scanpath, subject_to_compare_scanpath, screen_size)
 
-                if image_name in multimatch_values_per_image:
-                    multimatch_trial_value_acum = multimatch_values_per_image[image_name]
-                    multimatch_values_per_image[image_name] = np.add(multimatch_trial_value_acum, trial_multimatch_result)
-                    total_values_per_image[image_name] += 1 
-                else:
-                    multimatch_values_per_image[image_name] = trial_multimatch_result
-                    total_values_per_image[image_name] = 1
+                    if image_name in multimatch_human_average_per_image:
+                        multimatch_trial_value_acum = multimatch_human_average_per_image[image_name]
+                        multimatch_human_average_per_image[image_name] = np.add(multimatch_trial_value_acum, trial_multimatch_result)
+                        total_values_per_image[image_name] += 1 
+                    else:
+                        multimatch_human_average_per_image[image_name] = trial_multimatch_result
+                        total_values_per_image[image_name] = 1
 
-    # Compute average per image
-    for image_name in multimatch_values_per_image.keys():
-        multimatch_values_per_image[image_name] = np.divide(multimatch_values_per_image[image_name], total_values_per_image[image_name])
+        # Compute average per image
+        for image_name in multimatch_human_average_per_image.keys():
+            multimatch_human_average_per_image[image_name] = (np.divide(multimatch_human_average_per_image[image_name], total_values_per_image[image_name])).tolist()
+        
+        with open(multimatch_human_average_json_file, 'w') as fp:
+            json.dump(multimatch_human_average_per_image, fp, indent = 4)
 
-    return multimatch_values_per_image
+    return multimatch_human_average_per_image

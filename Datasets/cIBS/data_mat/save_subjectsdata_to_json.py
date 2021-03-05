@@ -1,6 +1,7 @@
 from scipy.io import loadmat
 import json
 import os
+import numpy as np
 
 subjects_dir = 'sinfo_subj/'
 subjects_files = os.listdir(subjects_dir)
@@ -38,10 +39,15 @@ for subject_file in subjects_files:
         target_found = bool(subject_info['target_found'][0][record][0][0])
 
         max_fixations = int(subject_info['nsaccades_allowed'][0][record][0][0])
+
         # Subtract one, since Python indexes images from zero
-        fix_posX = subject_info['x'][0][record][0] - 1
-        fix_posY = subject_info['y'][0][record][0] - 1
+        fix_posX = subject_info['x'][0][record][0].astype(float) - 1
+        fix_posY = subject_info['y'][0][record][0].astype(float) - 1
         fix_time = subject_info['dur'][0][record][0]
+
+        # Truncate negative values
+        fix_posX = np.where(fix_posX < 0, 0, fix_posX)
+        fix_posY = np.where(fix_posY < 0, 0, fix_posY)
 
         if (len(fix_posX) == 0):
             print("Subject: " + subject_id + "; stimuli: " + image_name + "; trial: " + str(record + 1) + ". Empty scanpath")

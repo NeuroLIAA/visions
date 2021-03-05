@@ -8,7 +8,7 @@ cfg_dir = '../out_models/deepgaze/correlation/a_3_b_4_tam_celda_32/cfg/'
 scanpaths_dir= '../out_models/deepgaze/correlation/a_3_b_4_tam_celda_32/scanpath/'
 cfg_files = os.listdir(cfg_dir)
 scanpaths_files = os.listdir(scanpaths_dir)
-save_path = '../../../../Results/cIBS/cIBS_dataset/'
+save_path = '../../../../Results/cIBS_dataset/cIBS/'
 
 window_size = (32, 32)
 
