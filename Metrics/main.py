@@ -1,7 +1,7 @@
 import json
 import numpy as np
 import multimatch
-from os import listdir
+from os import listdir, path
 
 results_dir  = '../Results/'
 datasets_dir = '../Datasets/'
@@ -12,12 +12,17 @@ for dataset in dataset_results_dirs:
     dataset_scanpaths_dir = datasets_dir + dataset_name + '/human_scanpaths/'
     dataset_result_dir = results_dir + dataset + '/'
 
-    mm_humans = multimatch.compute_human_average_per_image(dataset_scanpaths_dir, dataset_result_dir)
+    mm_humans = multimatch.human_average_per_image(dataset_scanpaths_dir, dataset_result_dir)
 
-# for model in models:
-#     model_results_path = results_dir + model + '/'
-#     # Load model's output (scanpaths) for each dataset
-#     for dataset_result_dir in datasets_results_dirs:
-#         model_scanpaths_file = model_results_path + dataset_result_dir + '/Scanpaths.json'
-#         with open(model_scanpaths_file) as fp:
-#             model_scanpaths = json.load(fp)
+    models = listdir(dataset_result_dir)
+    for model in models:
+        if not(path.isdir(path.join(dataset_result_dir, model))):
+            continue
+
+        model_scanpaths_file = dataset_result_dir + model + '/Scanpaths.json'
+        with open(model_scanpaths_file, 'r') as fp:
+            model_scanpaths = json.load(fp)
+        
+        mm_model_vs_humans = multimatch.model_vs_humans_average_per_image(model_scanpaths, dataset_scanpaths_dir)
+
+        multimatch.plot(model, dataset_name, mm_model_vs_humans, mm_humans)
