@@ -39,7 +39,7 @@ def main():
         target_bbox = rescale_coordinates(target_bbox[0], target_bbox[1], target_bbox[2], target_bbox[3], trial_properties['image_height'], trial_properties['image_width'], stimuli_size[0], stimuli_size[1])
         template = image_resized[target_bbox[0]:target_bbox[2], target_bbox[1]:target_bbox[3]]       
         io.imsave(targetsDir + image_file[:-4] + '_template.jpg', img_as_ubyte(template), check_contrast=False)
-        target_positions["target_positions"].append({ "image" : image_file, "template" : image_file[:-4] + '_template.jpg', "matched_column" : target_bbox[1] + 1, "matched_row" : target_bbox[0] + 1, "template_side_length" : target_bbox[2] - target_bbox[0], "template_matched_column" : target_bbox[3] - target_bbox[1] }) #side length y matched column son distancias, no hace falta sumar 1
+        target_positions["target_positions"].append({ "image" : image_file, "template" : image_file[:-4] + '_template.jpg', "matched_column" : target_bbox[1] + 1, "matched_row" : target_bbox[0] + 1, "template_side_length" : target_bbox[2] - target_bbox[0], "template_columns" : target_bbox[3] - target_bbox[1] }) #side length y columns son distancias, no hace falta sumar 1
         initial_fixations["initial_fixations"].append({"image" : image_file, "initial_fix" : (trial_properties['initial_fixation_x'],trial_properties['initial_fixation_y'])})
     savemat("target_positions_filtered.mat", target_positions)
     savemat("initial_fixations.mat", initial_fixations)
