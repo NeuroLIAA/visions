@@ -48,7 +48,7 @@ function main(incfg)
     
     cfg.img_quantity    = 134;
     cfg.nsaccades_thr   = 15; %10; 
-    cfg.target_size     = [72 72];
+    %cfg.target_size     = [72 72];
     cfg.image_size      = [768 1024];
     cfg.out_models_path = ['../out_models/' cfg.static_model '/' cfg.dinamic_model '/a_' num2str(cfg.a) '_b_' num2str(cfg.b) '_tam_celda_' num2str(cfg.delta)];
 
@@ -69,6 +69,7 @@ function main(incfg)
         fprintf('\nImage: %d  \n', imgnum);
         cfg.initial_fix   = initial_fixations(imgnum).initial_fix;
         cfg.imgnum        = imgnum;
+        cfg.target_size   = [target_positions(imgnum).template_side_length target_positions(imgnum).template_matched_column];
         cfg.imgname       = initial_fixations(imgnum).image;    
         cfg.target_center = [target_positions(imgnum).matched_row target_positions(imgnum).matched_column] + cfg.target_size/2;
         
