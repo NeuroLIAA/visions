@@ -1,9 +1,9 @@
 import json
 import matplotlib.pyplot as plt
-from os import listdir
+from os import listdir, path
 
 results_dir = '../Results/'
-max_scanpath_length = 30
+max_scanpath_length = 16
 
 def main():
     datasets_results_dirs = listdir(results_dir)
@@ -11,6 +11,8 @@ def main():
         models_results_dirs = listdir(results_dir + dataset_name)
         fig, ax = plt.subplots()
         for model_name in models_results_dirs:
+            if not(path.isdir(path.join(results_dir + dataset_name, model_name))):
+                continue
             model_scanpaths_file = results_dir + dataset_name + '/' + model_name + '/Scanpaths.json'
             with open(model_scanpaths_file, 'r') as fp:
                 model_scanpaths = json.load(fp)
