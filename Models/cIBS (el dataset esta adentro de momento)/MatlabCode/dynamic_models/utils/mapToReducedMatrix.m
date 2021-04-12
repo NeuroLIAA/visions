@@ -9,5 +9,5 @@ function mappedFix = mapToReducedMatrix(fixation, delta, image_size)
     grid_size = floor(image_size / delta);
     offset = floor((image_size - grid_size*delta) / 2);
     
-    mappedFix = ceil((fixation - offset) / delta);
+    mappedFix = ceil((double(fixation) - offset) / delta);
 end

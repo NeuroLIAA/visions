@@ -2,14 +2,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.ndimage import zoom
 from scipy.special import logsumexp
-from skimage import io, color
+from skimage import io, color, img_as_ubyte
 from os import listdir, mkdir
 
 import tensorflow.compat.v1 as tf
 # To make tf 2.0 compatible with tf1.0 code, we disable the tf2.0 functionalities
 tf.disable_eager_execution()
 # Ignore warnings
-tf.logging.set_verbosity(tf.logging.WARNING)
+tf.logging.set_verbosity(tf.logging.ERROR)
 
 img_size = (768, 1024)
 # load precomputed log density over a 1024x1024 image
@@ -48,3 +48,6 @@ for image_name in images:
         })
 
     plt.imsave(save_path + image_name, np.exp(log_density_prediction[0, :, :, 0]), cmap=plt.cm.gray)
+    # Remove channels and keep one
+    img = io.imread(save_path + image_name)
+    io.imsave(save_path + image_name, img_as_ubyte(color.rgb2gray(img)))
