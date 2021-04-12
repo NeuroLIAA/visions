@@ -11,8 +11,8 @@ def plot(model, dataset, multimatch_values_per_image_x, multimatch_values_per_im
         if not(image_name in multimatch_values_per_image_y):
             continue
 
-        shape_value_x = multimatch_values_per_image_x[image_name][0]
-        shape_value_y = multimatch_values_per_image_y[image_name][0]
+        shape_value_x = np.mean(multimatch_values_per_image_x[image_name][:-1])
+        shape_value_y = np.mean(multimatch_values_per_image_y[image_name][:-1])
 
         x_vector.append(shape_value_x)
         y_vector.append(shape_value_y)
@@ -20,10 +20,10 @@ def plot(model, dataset, multimatch_values_per_image_x, multimatch_values_per_im
     fig, ax = plt.subplots()
     ax.scatter(x_vector, y_vector, color='red', alpha=0.5)
     ax.plot([0, 1], [0, 1], color='black', transform=ax.transAxes, linestyle='dashed')
-    plt.xlabel('Model vs human average scanpath shape')
-    plt.ylabel('Human average scanpath shape')
-    plt.xlim(0, 1)
-    plt.ylim(0, 1)
+    plt.xlabel('Model vs human average multimatch')
+    plt.ylabel('Human average multimatch')
+    #plt.xlim(0, 1)
+    #plt.ylim(0, 1)
     plt.title(model + ' (' + dataset + ' dataset)')
     plt.show()
 
