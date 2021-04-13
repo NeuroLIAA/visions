@@ -1,4 +1,4 @@
-function bayesianSaliencyModel(cfg)
+    function bayesianSaliencyModel(cfg)
     % BAYESIANSALIENCYMODEL: visual search model based on Najemnik and Geisler 2005
     
     % Input:

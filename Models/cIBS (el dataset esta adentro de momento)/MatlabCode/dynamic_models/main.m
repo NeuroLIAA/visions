@@ -46,7 +46,7 @@ function main(incfg)
         end
     end
     
-    cfg.img_quantity    = 134;
+    cfg.img_quantity    = 240;
     cfg.nsaccades_thr   = 15; %10; 
     %cfg.target_size     = [72 72];
     cfg.image_size      = [768 1024];
@@ -67,11 +67,11 @@ function main(incfg)
     for imgnum = cfg.iniimg:cfg.img_quantity
         % Parameter configuration for each image
         fprintf('\nImage: %d  \n', imgnum);
-        cfg.initial_fix   = initial_fixations(imgnum).initial_fix;
+        cfg.initial_fix   = double(initial_fixations(imgnum).initial_fix);
         cfg.imgnum        = imgnum;
-        cfg.target_size   = [target_positions(imgnum).template_side_length target_positions(imgnum).template_columns];
+        cfg.target_size   = [double(target_positions(imgnum).template_side_length) double(target_positions(imgnum).template_columns)];
         cfg.imgname       = initial_fixations(imgnum).image;    
-        cfg.target_center = [target_positions(imgnum).matched_row target_positions(imgnum).matched_column] + cfg.target_size/2;
+        cfg.target_center = [double(target_positions(imgnum).matched_row) double(target_positions(imgnum).matched_column)] + cfg.target_size/2;
         
         
         % Run bayesian model
