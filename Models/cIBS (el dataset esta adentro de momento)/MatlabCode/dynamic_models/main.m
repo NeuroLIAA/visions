@@ -47,7 +47,7 @@ function main(incfg)
     end
     
     cfg.img_quantity    = 240;
-    cfg.nsaccades_thr   = 15; %10; 
+    cfg.nsaccades_thr   = 30; %10; 
     %cfg.target_size     = [72 72];
     cfg.image_size      = [768 1024];
     cfg.out_models_path = ['../out_models/' cfg.static_model '/' cfg.dinamic_model '/a_' num2str(cfg.a) '_b_' num2str(cfg.b) '_tam_celda_' num2str(cfg.delta)];

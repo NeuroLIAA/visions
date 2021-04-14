@@ -20,7 +20,7 @@ clear all
 
 % Flat
 incfg.dinamic_model   = 'correlation';
-incfg.iniimg 	      = 1;
+incfg.iniimg 	      = 61;
 incfg.delta           = 32;
 incfg.a               = 3;            % integers (?)   
 incfg.b               = 4;            % integers (?)

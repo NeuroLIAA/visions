@@ -46,7 +46,7 @@ function W = templateResponse(cfg, visibility_map)
         template = imread(['../data_images/templates/' tmp.name]);
 
         correlation = normxcorr2(template, img);
-        correlation = correlation(cfg.target_size(1)/2:size(correlation, 1)-cfg.target_size(1)/2, cfg.target_size(1)/2:size(correlation, 2)-cfg.target_size(1)/2);
+        correlation = correlation(floor(cfg.target_size(1)/2):size(correlation, 1)-floor(cfg.target_size(1)/2), floor(cfg.target_size(2)/2):size(correlation, 2)-floor(cfg.target_size(2)/2));
         correlation = reduceMatrix(correlation, cfg.delta, 'max');
 
         correlation = correlation - min(correlation(:));
