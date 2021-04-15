@@ -3,7 +3,6 @@ import torch.nn as nn
 import torchvision.models as models
 import json
 from torchvision import transforms
-#from utils import caffemodel2pytorch
 from os import listdir
 from PIL import Image
 
@@ -19,11 +18,6 @@ stimuliChoppedHeight, stimuliChoppedWidth = 224, 224
 def run(stimuli_dir, target_dir, chopped_dir, trials_properties):
     # Load the model
     model = models.vgg16(pretrained=True)
-    # model = caffemodel2pytorch.Net(
-    # 	prototxt = './Models/caffevgg16/VGG_ILSVRC_16_layers_deploy.prototxt',
-    # 	weights = './Models/caffevgg16/VGG_ILSVRC_16_layers.caffemodel',
-    # 	caffe_proto = 'https://raw.githubusercontent.com/BVLC/caffe/master/src/caffe/proto/caffe.proto'
-    # )
     print('Successfully loaded VGG16 model')
     """
     layers: numlayer, numtemplates, convsize
@@ -39,8 +33,6 @@ def run(stimuli_dir, target_dir, chopped_dir, trials_properties):
     numLayers = 31
     numTemplates = 512  
 
-    #model_target = nn.Sequential(*list(model.layers[:numLayers]))
-    #model_stimuli = nn.Sequential(*list(model.layers[:(numLayers - 1)]))
     model_target  = nn.Sequential(*list(model.features.children())[:numLayers])
     model_stimuli = nn.Sequential(*list(model.features.children())[:(numLayers - 1)])   
 
@@ -50,15 +42,6 @@ def run(stimuli_dir, target_dir, chopped_dir, trials_properties):
 
     MMConv = nn.Conv2d(numTemplates, 1, convSize, padding=1)
     # torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, bias=True, padding_mode='zeros')   
-
-    # The model was trained with this input normalization
-    # def preprocessImage(img):
-    # 	mean_pixel = torch.DoubleTensor([103.939, 116.779, 123.68])
-    # 	permutation = torch.LongTensor([2, 1, 0])
-    # 	img = torch.index_select(img, 0, permutation) * 256.
-    # 	mean_pixel = mean_pixel.view(3, 1, 1).expand_as(img)
-    # 	img = img - mean_pixel
-    # 	return img  
 
     for trial_properties in trials_properties:
         stimuliName = trial_properties['image']   
@@ -73,8 +56,6 @@ def run(stimuli_dir, target_dir, chopped_dir, trials_properties):
             transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
         ])
         target = target_transformation(target)
-        #target = torch.cat([target, target, target])
-        #target = preprocessImage(target)   
 
         currentchopped_dir = chopped_dir + stimuliID + '/'
         choppedFiles = listdir(currentchopped_dir)
@@ -89,8 +70,6 @@ def run(stimuli_dir, target_dir, chopped_dir, trials_properties):
                 transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
             ])
             choppedStimuli = stimuli_transformation(choppedStimuli)
-            #choppedStimuli = torch.cat([choppedStimuli, choppedStimuli, choppedStimuli])
-            #choppedStimuli = preprocessImage(choppedStimuli)   
 
             # View as mini-batch of size 1
             # cast as 32-bit float since the model parameters are 32-bit floats
