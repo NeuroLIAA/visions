@@ -9,8 +9,8 @@ class Cumulative_performance:
         self.max_scanpath_length = max_scanpath_length
         self.dataset_name = dataset_name
 
-    def add_model(self, model_name, scanpaths):
-        model_cumulative_performance = self.compute_cumulative_performance(scanpaths)
+    def add_model(self, model_name, model_scanpaths):
+        model_cumulative_performance = self.compute_cumulative_performance(model_scanpaths)
         self.subjects_cumulative_performance.append({'subject': model_name, 'cumulative_performance': model_cumulative_performance})
     
     def add_human_average(self, humans_scanpaths_dir):
@@ -21,7 +21,21 @@ class Cumulative_performance:
                 human_scanpaths = json.load(fp)
             humans_cumulative_performance.append(self.compute_cumulative_performance(human_scanpaths))
         
-        humans_cumulative_performance_average = np.mean(np.array(humans_cumulative_performance), axis=0)
+        # cIBS dataset caps the number of maximum saccades for humans at 2, 4, 8 and 12
+        # Therefore, cumulative performance is calculated at fixation number 3, 5, 9 and 13
+        if self.dataset_name == 'cIBS':
+            number_of_subjects = len(humans_scanpaths_files)
+            humans_cumulative_performance_average = [np.empty(n) for n in np.repeat(number_of_subjects, 4)]
+            subject_index = 0
+            for subject_cumulative_performance in humans_cumulative_performance:
+                humans_cumulative_performance_average[0][subject_index] = subject_cumulative_performance[3]
+                humans_cumulative_performance_average[1][subject_index] = subject_cumulative_performance[5]
+                humans_cumulative_performance_average[2][subject_index] = subject_cumulative_performance[9]
+                humans_cumulative_performance_average[3][subject_index] = subject_cumulative_performance[13]
+                subject_index += 1
+            print(humans_cumulative_performance_average)
+        else:
+            humans_cumulative_performance_average = np.mean(np.array(humans_cumulative_performance), axis=0)
         self.subjects_cumulative_performance.append({'subject': 'Humans', 'cumulative_performance': humans_cumulative_performance_average})
 
     def compute_cumulative_performance(self, scanpaths):
@@ -38,7 +52,7 @@ class Cumulative_performance:
                 for index in range(scanpath_length - 1, self.max_scanpath_length):
                     targets_found_at_fixation_number[index] += 1
             
-            subject_cumulative_performance = list(map(lambda x: float(x) / len(scanpaths.keys()), targets_found_at_fixation_number))
+        subject_cumulative_performance = list(map(lambda x: float(x) / len(scanpaths.keys()), targets_found_at_fixation_number))
         
         return subject_cumulative_performance
 
@@ -47,11 +61,15 @@ class Cumulative_performance:
         for subject in self.subjects_cumulative_performance:
             subject_name = subject['subject']
             subject_cumulative_performance = subject['cumulative_performance'] 
-        
-            ax.plot(range(1, self.max_scanpath_length + 1), subject_cumulative_performance, label = subject_name)
+
+            if subject_name == 'Humans' and self.dataset_name == 'cIBS':
+                ax.boxplot(subject_cumulative_performance, notch=True, vert=True, positions=[3, 5, 9, 13])
+            else:
+                ax.plot(range(1, self.max_scanpath_length + 1), subject_cumulative_performance, label = subject_name)
 
         ax.legend()  
         dataset_name = self.dataset_name + ' dataset'
+
         plt.title(dataset_name)
         plt.xlabel('Number of fixations')
         plt.ylabel('Cumulative performance')

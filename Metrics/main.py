@@ -6,7 +6,6 @@ from os import listdir, path
 
 results_dir  = '../Results/'
 datasets_dir = '../Datasets/'
-max_scanpath_length = 31 # Esto hay que levantarlo del JSON de configuración de cada dataset
 
 dataset_results_dirs = listdir(results_dir)
 for dataset in dataset_results_dirs:
@@ -14,13 +13,19 @@ for dataset in dataset_results_dirs:
     human_scanpaths_dir = datasets_dir + dataset_name + '/human_scanpaths/'
     dataset_result_dir = results_dir + dataset + '/'
 
+    # Esto hay que levantarlo del JSON de configuración de cada dataset
+    if dataset_name == 'cIBS':
+        max_scanpath_length = 16
+    else:
+        max_scanpath_length = 31
+
     # Compute human subjects metrics
     mm_humans = multimatch.human_average_per_image(human_scanpaths_dir, dataset_result_dir)
 
     subjects_cumulative_performance = Cumulative_performance(dataset_name, max_scanpath_length)
     subjects_cumulative_performance.add_human_average(human_scanpaths_dir)
 
-    # Compute models metrics and compare with human subjects
+    # Compute models metrics and compare them with human subjects metrics
     models = listdir(dataset_result_dir)
     for model_name in models:
         if not(path.isdir(path.join(dataset_result_dir, model_name))):
