@@ -38,7 +38,7 @@ for subject_file in subjects_files:
         target_bbox[0], target_bbox[1], target_bbox[2], target_bbox[3] = target_bbox[1] - 1, target_bbox[0] - 1, target_bbox[3] - 1, target_bbox[2] - 1
         target_found = bool(subject_info['target_found'][0][record][0][0])
 
-        max_fixations = int(subject_info['nsaccades_allowed'][0][record][0][0])
+        max_fixations = int(subject_info['nsaccades_allowed'][0][record][0][0]) + 1
 
         # Subtract one, since Python indexes images from zero
         fix_posX = subject_info['x'][0][record][0].astype(float) - 1
