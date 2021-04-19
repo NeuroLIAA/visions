@@ -7,10 +7,12 @@ subjects_dir = 'sinfo_subj/'
 subjects_files = os.listdir(subjects_dir)
 save_path = '../human_scanpaths/'
 
-window_size = (32, 32)
+receptive_size = (32, 32)
+max_scanpath_length = 13
 
 targets_found = 0
 wrong_targets_found = 0
+number_of_truncated_scanpaths = 0
 for subject_file in subjects_files:
     subject_info = loadmat(subjects_dir + subject_file)
     subject_info = subject_info['info_per_subj']
@@ -38,7 +40,7 @@ for subject_file in subjects_files:
         target_bbox[0], target_bbox[1], target_bbox[2], target_bbox[3] = target_bbox[1] - 1, target_bbox[0] - 1, target_bbox[3] - 1, target_bbox[2] - 1
         target_found = bool(subject_info['target_found'][0][record][0][0])
 
-        max_fixations = int(subject_info['nsaccades_allowed'][0][record][0][0]) + 1
+        trial_max_fixations = int(subject_info['nsaccades_allowed'][0][record][0][0]) + 1
 
         # Subtract one, since Python indexes images from zero
         fix_posX = subject_info['x'][0][record][0].astype(float) - 1
@@ -53,12 +55,24 @@ for subject_file in subjects_files:
             print("Subject: " + subject_id + "; stimuli: " + image_name + "; trial: " + str(record + 1) + ". Empty scanpath")
             continue
 
-        number_of_fixations = len(fix_posX)
-        last_fixation_X = fix_posX[number_of_fixations - 1]
-        last_fixation_Y = fix_posY[number_of_fixations - 1]
-        between_bounds = (target_bbox[0] - window_size[0] <= last_fixation_Y) and (target_bbox[2] + window_size[0] >= last_fixation_Y) and (target_bbox[1] - window_size[1] <= last_fixation_X) and (target_bbox[3] + window_size[1] >= last_fixation_X)
-        if (target_found):
-            if (between_bounds):
+        scanpath_length = len(fix_posX)
+        if trial_max_fixations > max_scanpath_length:
+            trial_max_fixations = max_scanpath_length
+            if scanpath_length > max_scanpath_length:
+                # Truncate scanpath
+                fix_posX = fix_posX[:max_scanpath_length]
+                fix_posY = fix_posY[:max_scanpath_length]
+                scanpath_length = max_scanpath_length
+                if target_found:
+                    target_found = False
+            number_of_truncated_scanpaths += 1
+                    
+
+        last_fixation_X = fix_posX[scanpath_length - 1]
+        last_fixation_Y = fix_posY[scanpath_length - 1]
+        between_bounds = (target_bbox[0] - receptive_size[0] <= last_fixation_Y) and (target_bbox[2] + receptive_size[0] >= last_fixation_Y) and (target_bbox[1] - receptive_size[1] <= last_fixation_X) and (target_bbox[3] + receptive_size[1] >= last_fixation_X)
+        if target_found:
+            if between_bounds:
                 targets_found += 1
             else:
                 print("Subject: " + subject_id + "; stimuli: " + image_name + "; trial: " + str(record + 1) + ". Last fixation doesn't match target's bounds")
@@ -66,8 +80,8 @@ for subject_file in subjects_files:
                 wrong_targets_found += 1
                 target_found = False
 
-        json_subject[image_name] = {"subject" : subject_id, "dataset" : "cIBS Dataset", "image_height" : image_height, "image_width" : image_width, "screen_height" : screen_height, "screen_width" : screen_width, "window_height" : window_size[0], "window_width" : window_size[1], \
-            "target_found" : target_found, "target_bbox" : target_bbox.tolist(), "X" : fix_posX.tolist(), "Y" : fix_posY.tolist(), "T" : fix_time.tolist(), "target_object" : "TBD", "max_fixations" : max_fixations}
+        json_subject[image_name] = {"subject" : subject_id, "dataset" : "cIBS Dataset", "image_height" : image_height, "image_width" : image_width, "screen_height" : screen_height, "screen_width" : screen_width, "receptive_height" : receptive_size[0], "receptive_width" : receptive_size[1], \
+            "target_found" : target_found, "target_bbox" : target_bbox.tolist(), "X" : fix_posX.tolist(), "Y" : fix_posY.tolist(), "T" : fix_time.tolist(), "target_object" : "TBD", "max_fixations" : trial_max_fixations}
     
     if not(os.path.exists(save_path)):
         os.mkdir(save_path)
@@ -77,3 +91,4 @@ for subject_file in subjects_files:
         fp.close()
 
 print("Targets found: " + str(targets_found) + ". Wrong targets found: " + str(wrong_targets_found))
+print("Truncated scanpaths: " + str(number_of_truncated_scanpaths))

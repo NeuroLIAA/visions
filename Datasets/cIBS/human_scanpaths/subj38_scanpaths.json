@@ -6,8 +6,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             138,
@@ -37,7 +37,7 @@
             1338
         ],
         "target_object": "TBD",
-        "max_fixations": 65
+        "max_fixations": 13
     },
     "grayscale_100_oliva.jpg": {
         "subject": "38",
@@ -46,8 +46,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             381,
@@ -83,8 +83,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             559,
@@ -129,7 +129,7 @@
             364
         ],
         "target_object": "TBD",
-        "max_fixations": 17
+        "max_fixations": 13
     },
     "grayscale_17_oliva.jpg": {
         "subject": "38",
@@ -138,8 +138,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             490,
@@ -175,9 +175,9 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
-        "target_found": true,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
         "target_bbox": [
             400,
             797,
@@ -197,32 +197,7 @@
             703.2,
             278.2,
             138.60000000000002,
-            115.0,
-            420.6,
-            504.9,
-            633.1,
-            644.5,
-            425.29999999999995,
-            305.0,
-            108.19999999999999,
-            103.69999999999999,
-            333.6,
-            466.4,
-            462.29999999999995,
-            425.70000000000005,
-            25.0,
-            533.6,
-            522.9,
-            621.2,
-            449.1,
-            431.79999999999995,
-            360.9,
-            343.1,
-            650.9,
-            799.2,
-            662.7,
-            850.4,
-            849.3
+            115.0
         ],
         "Y": [
             276.1,
@@ -237,32 +212,7 @@
             340.6,
             432.1,
             491.0,
-            463.9,
-            539.0,
-            522.0,
-            520.5,
-            638.4,
-            661.6,
-            668.9,
-            502.1,
-            454.79999999999995,
-            466.0,
-            394.5,
-            254.7,
-            153.10000000000002,
-            298.1,
-            433.6,
-            475.4,
-            525.5,
-            532.5,
-            589.7,
-            619.7,
-            638.5,
-            674.9,
-            525.7,
-            660.0,
-            675.7,
-            429.70000000000005
+            463.9
         ],
         "T": [
             211,
@@ -305,7 +255,7 @@
             290
         ],
         "target_object": "TBD",
-        "max_fixations": 65
+        "max_fixations": 13
     },
     "grayscale_16_housebeautiful.jpg": {
         "subject": "38",
@@ -314,8 +264,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             421,
@@ -354,8 +304,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             325,
@@ -391,8 +341,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             499,
@@ -431,8 +381,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             345,
@@ -465,8 +415,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             292,
@@ -502,8 +452,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             381,
@@ -536,8 +486,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             357,
@@ -570,8 +520,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             440,
@@ -592,58 +542,7 @@
             350.4,
             235.7,
             321.5,
-            291.5,
-            290.7,
-            272.7,
-            329.1,
-            611.2,
-            655.3,
-            950.8,
-            997.8,
-            1023.0,
-            807.3,
-            847.9,
-            797.8,
-            927.4,
-            917.3,
-            921.8,
-            911.0,
-            883.1,
-            897.6,
-            904.0,
-            917.6,
-            899.3,
-            906.9,
-            916.4,
-            897.5,
-            905.5,
-            899.6,
-            894.5,
-            905.7,
-            874.1,
-            904.3,
-            821.5,
-            904.6,
-            911.7,
-            886.7,
-            908.2,
-            904.1,
-            908.0,
-            896.9,
-            803.3,
-            506.6,
-            435.2,
-            856.6,
-            552.3,
-            896.2,
-            896.5,
-            881.8,
-            898.0,
-            904.7,
-            898.9,
-            884.6,
-            892.6,
-            895.0
+            291.5
         ],
         "Y": [
             514.7,
@@ -658,58 +557,7 @@
             406.2,
             325.5,
             767.0,
-            767.0,
-            284.9,
-            304.5,
-            295.4,
-            447.9,
-            441.3,
-            431.6,
-            441.6,
-            381.4,
-            559.0,
-            662.4,
-            673.4,
-            564.2,
-            556.5,
-            558.4,
-            547.9,
-            554.4,
-            554.6,
-            542.4,
-            532.5,
-            487.9,
-            523.2,
-            523.1,
-            503.8,
-            510.1,
-            510.1,
-            484.4,
-            505.4,
-            491.5,
-            501.6,
-            458.8,
-            506.2,
-            500.4,
-            494.9,
-            503.8,
-            485.3,
-            494.2,
-            513.6,
-            489.2,
-            414.9,
-            264.4,
-            541.2,
-            332.7,
-            566.4,
-            542.8,
-            520.4,
-            513.6,
-            494.6,
-            494.7,
-            463.8,
-            494.7,
-            521.7
+            767.0
         ],
         "T": [
             731,
@@ -778,7 +626,7 @@
             800
         ],
         "target_object": "TBD",
-        "max_fixations": 65
+        "max_fixations": 13
     },
     "grayscale_4_other.jpg": {
         "subject": "38",
@@ -787,8 +635,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             324,
@@ -827,8 +675,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             172,
@@ -876,8 +724,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             605,
@@ -931,8 +779,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             202,
@@ -962,8 +810,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             416,
@@ -1002,8 +850,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             74,
@@ -1036,8 +884,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             658,
@@ -1076,8 +924,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             263,
@@ -1104,7 +952,7 @@
             247
         ],
         "target_object": "TBD",
-        "max_fixations": 17
+        "max_fixations": 13
     },
     "grayscale_5_oliva.jpg": {
         "subject": "38",
@@ -1113,8 +961,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             120,
@@ -1156,8 +1004,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             326,
@@ -1196,8 +1044,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             549,
@@ -1236,8 +1084,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             319,
@@ -1282,8 +1130,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             482,
@@ -1319,8 +1167,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             591,
@@ -1353,8 +1201,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             172,
@@ -1387,8 +1235,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             364,
@@ -1430,7 +1278,7 @@
             1491
         ],
         "target_object": "TBD",
-        "max_fixations": 65
+        "max_fixations": 13
     },
     "grayscale_54_oliva.jpg": {
         "subject": "38",
@@ -1439,8 +1287,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             310,
@@ -1473,8 +1321,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             357,
@@ -1510,8 +1358,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             267,
@@ -1544,8 +1392,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             301,
@@ -1587,8 +1435,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             321,
@@ -1621,8 +1469,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             452,
@@ -1658,8 +1506,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             587,
@@ -1701,7 +1549,7 @@
             287
         ],
         "target_object": "TBD",
-        "max_fixations": 65
+        "max_fixations": 13
     },
     "grayscale_14_airbnb.jpg": {
         "subject": "38",
@@ -1710,8 +1558,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             256,
@@ -1750,7 +1598,7 @@
             244
         ],
         "target_object": "TBD",
-        "max_fixations": 17
+        "max_fixations": 13
     },
     "grayscale_55_oliva.jpg": {
         "subject": "38",
@@ -1759,8 +1607,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             144,
@@ -1793,8 +1641,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             175,
@@ -1827,8 +1675,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             370,
@@ -1864,8 +1712,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             322,
@@ -1898,8 +1746,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             336,
@@ -1920,10 +1768,7 @@
             1019.9,
             987.5,
             373.0,
-            305.6,
-            334.6,
-            293.6,
-            299.0
+            305.6
         ],
         "Y": [
             365.7,
@@ -1938,10 +1783,7 @@
             412.2,
             504.3,
             610.0,
-            677.5,
-            767.0,
-            520.4,
-            471.6
+            677.5
         ],
         "T": [
             397,
@@ -1962,7 +1804,7 @@
             402
         ],
         "target_object": "TBD",
-        "max_fixations": 17
+        "max_fixations": 13
     },
     "grayscale_28_housebeautiful.jpg": {
         "subject": "38",
@@ -1971,8 +1813,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             523,
@@ -2011,9 +1853,9 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
-        "target_found": true,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
         "target_bbox": [
             186,
             155,
@@ -2033,10 +1875,7 @@
             195.5,
             180.60000000000002,
             195.39999999999998,
-            186.39999999999998,
-            177.5,
-            185.39999999999998,
-            177.2
+            186.39999999999998
         ],
         "Y": [
             299.3,
@@ -2051,10 +1890,7 @@
             155.0,
             149.10000000000002,
             153.2,
-            185.7,
-            178.39999999999998,
-            176.3,
-            194.10000000000002
+            185.7
         ],
         "T": [
             667,
@@ -2075,7 +1911,7 @@
             1332
         ],
         "target_object": "TBD",
-        "max_fixations": 17
+        "max_fixations": 13
     },
     "grayscale_94_oliva.jpg": {
         "subject": "38",
@@ -2084,8 +1920,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             215,
@@ -2121,8 +1957,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             233,
@@ -2155,8 +1991,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             375,
@@ -2201,8 +2037,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             470,
@@ -2229,7 +2065,7 @@
             892
         ],
         "target_object": "TBD",
-        "max_fixations": 17
+        "max_fixations": 13
     },
     "grayscale_34_oliva.jpg": {
         "subject": "38",
@@ -2238,8 +2074,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             618,
@@ -2272,7 +2108,7 @@
             1516
         ],
         "target_object": "TBD",
-        "max_fixations": 17
+        "max_fixations": 13
     },
     "grayscale_86_oliva.jpg": {
         "subject": "38",
@@ -2281,8 +2117,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             344,
@@ -2312,8 +2148,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             494,
@@ -2349,8 +2185,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             424,
@@ -2380,7 +2216,7 @@
             174
         ],
         "target_object": "TBD",
-        "max_fixations": 17
+        "max_fixations": 13
     },
     "grayscale_30_opensource.jpg": {
         "subject": "38",
@@ -2389,8 +2225,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             240,
@@ -2429,8 +2265,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             69,
@@ -2472,8 +2308,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             647,
@@ -2506,8 +2342,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             404,
@@ -2534,7 +2370,7 @@
             206
         ],
         "target_object": "TBD",
-        "max_fixations": 65
+        "max_fixations": 13
     },
     "grayscale_14_oliva.jpg": {
         "subject": "38",
@@ -2543,8 +2379,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             287,
@@ -2568,7 +2404,7 @@
             625
         ],
         "target_object": "TBD",
-        "max_fixations": 17
+        "max_fixations": 13
     },
     "grayscale_74_oliva.jpg": {
         "subject": "38",
@@ -2577,8 +2413,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             190,
@@ -2617,7 +2453,7 @@
             974
         ],
         "target_object": "TBD",
-        "max_fixations": 17
+        "max_fixations": 13
     },
     "grayscale_10_opensource.jpg": {
         "subject": "38",
@@ -2626,8 +2462,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             356,
@@ -2654,8 +2490,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             227,
@@ -2685,8 +2521,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             561,
@@ -2722,8 +2558,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             393,
@@ -2756,7 +2592,7 @@
             626
         ],
         "target_object": "TBD",
-        "max_fixations": 17
+        "max_fixations": 13
     },
     "grayscale_29_housebeautiful.jpg": {
         "subject": "38",
@@ -2765,8 +2601,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             132,
@@ -2799,7 +2635,7 @@
             294
         ],
         "target_object": "TBD",
-        "max_fixations": 65
+        "max_fixations": 13
     },
     "grayscale_59_oliva.jpg": {
         "subject": "38",
@@ -2808,8 +2644,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             472,
@@ -2845,8 +2681,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             216,
@@ -2879,8 +2715,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             497,
@@ -2916,8 +2752,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             341,
@@ -2947,8 +2783,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             130,
@@ -2978,8 +2814,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             310,
@@ -3021,8 +2857,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             211,
@@ -3058,8 +2894,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             266,
@@ -3107,8 +2943,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             360,
@@ -3141,8 +2977,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             578,
@@ -3181,8 +3017,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             256,
@@ -3200,7 +3036,7 @@
             221
         ],
         "target_object": "TBD",
-        "max_fixations": 65
+        "max_fixations": 13
     },
     "grayscale_64_oliva.jpg": {
         "subject": "38",
@@ -3209,8 +3045,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             312,
@@ -3240,8 +3076,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             314,
@@ -3271,8 +3107,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             344,
@@ -3320,8 +3156,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             328,
@@ -3345,7 +3181,7 @@
             155
         ],
         "target_object": "TBD",
-        "max_fixations": 65
+        "max_fixations": 13
     },
     "grayscale_34_housebeautiful.jpg": {
         "subject": "38",
@@ -3354,8 +3190,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             338,
@@ -3391,8 +3227,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             311,
@@ -3425,8 +3261,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             520,
@@ -3468,8 +3304,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             566,
@@ -3517,8 +3353,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             155,
@@ -3557,8 +3393,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             80,
@@ -3591,8 +3427,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             270,
@@ -3625,8 +3461,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             596,
@@ -3662,8 +3498,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             105,
@@ -3699,7 +3535,7 @@
             163
         ],
         "target_object": "TBD",
-        "max_fixations": 17
+        "max_fixations": 13
     },
     "grayscale_21_housebeautiful.jpg": {
         "subject": "38",
@@ -3708,8 +3544,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             373,
@@ -3763,8 +3599,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             316,
@@ -3797,8 +3633,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             306,
@@ -3834,8 +3670,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             418,
@@ -3865,8 +3701,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             260,
@@ -3902,8 +3738,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             166,
@@ -3930,7 +3766,7 @@
             280
         ],
         "target_object": "TBD",
-        "max_fixations": 65
+        "max_fixations": 13
     },
     "grayscale_1_opensource.jpg": {
         "subject": "38",
@@ -3939,8 +3775,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             376,
@@ -3973,8 +3809,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             444,
@@ -4025,7 +3861,7 @@
             315
         ],
         "target_object": "TBD",
-        "max_fixations": 65
+        "max_fixations": 13
     },
     "grayscale_6_opensource.jpg": {
         "subject": "38",
@@ -4034,9 +3870,9 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
-        "target_found": true,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
         "target_bbox": [
             172,
             365,
@@ -4056,20 +3892,7 @@
             387.29999999999995,
             394.1,
             382.6,
-            395.6,
-            378.7,
-            395.79999999999995,
-            382.9,
-            372.6,
-            390.20000000000005,
-            383.79999999999995,
-            389.5,
-            716.5,
-            853.8,
-            939.7,
-            953.5999999999999,
-            405.9,
-            375.0
+            395.6
         ],
         "Y": [
             364.7,
@@ -4084,20 +3907,7 @@
             85.69999999999999,
             124.19999999999999,
             126.1,
-            136.60000000000002,
-            135.60000000000002,
-            142.3,
-            111.5,
-            128.39999999999998,
-            128.39999999999998,
-            129.3,
-            111.1,
-            197.7,
-            248.2,
-            456.5,
-            637.3,
-            633.6,
-            245.60000000000002
+            136.60000000000002
         ],
         "T": [
             444,
@@ -4128,7 +3938,7 @@
             205
         ],
         "target_object": "TBD",
-        "max_fixations": 65
+        "max_fixations": 13
     },
     "grayscale_77_oliva.jpg": {
         "subject": "38",
@@ -4137,8 +3947,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             91,
@@ -4177,8 +3987,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             368,
@@ -4205,7 +4015,7 @@
             2263
         ],
         "target_object": "TBD",
-        "max_fixations": 17
+        "max_fixations": 13
     },
     "grayscale_56_oliva.jpg": {
         "subject": "38",
@@ -4214,8 +4024,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             358,
@@ -4266,8 +4076,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             239,
@@ -4300,7 +4110,7 @@
             207
         ],
         "target_object": "TBD",
-        "max_fixations": 17
+        "max_fixations": 13
     },
     "grayscale_18_opensource.jpg": {
         "subject": "38",
@@ -4309,8 +4119,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             217,
@@ -4346,8 +4156,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             435,
@@ -4383,8 +4193,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             470,
@@ -4420,8 +4230,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             270,
@@ -4448,8 +4258,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             204,
@@ -4485,8 +4295,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             402,
@@ -4522,8 +4332,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
         "target_bbox": [
             256,
@@ -4553,8 +4363,8 @@
         "image_width": 1024,
         "screen_height": 1024,
         "screen_width": 1280,
-        "window_height": 32,
-        "window_width": 32,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
         "target_bbox": [
             244,
@@ -4602,6 +4412,6 @@
             199
         ],
         "target_object": "TBD",
-        "max_fixations": 65
+        "max_fixations": 13
     }
 }
