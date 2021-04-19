@@ -8,7 +8,7 @@ import json
 # target_dir = '../../Datasets/IVSN/target/'
 # trials_properties_file = '../../Datasets/IVSN/trials_properties.json'
 # save_path = '../../Results/IVSN_dataset/IVSN/'
-# stimuli_size = (1028, 1280)
+# stimuli_size = (1024, 1280)
 # max_fixations  = 80
 # receptive_size = 200
 
