@@ -110,6 +110,7 @@ class Cumulative_performance:
         dataset_name = self.dataset_name + ' dataset'
 
         plt.title(dataset_name)
+        plt.yticks(np.arange(0, 1, 0.1))
         plt.xlabel('Number of fixations')
         plt.ylabel('Cumulative performance')
         plt.show()
