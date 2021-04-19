@@ -19,11 +19,15 @@ def plot(model, dataset, multimatch_values_per_image_x, multimatch_values_per_im
     
     fig, ax = plt.subplots()
     ax.scatter(x_vector, y_vector, color='red', alpha=0.5)
-    ax.plot([0, 1], [0, 1], color='black', transform=ax.transAxes, linestyle='dashed')
+    lims = [np.min([ax.get_xlim(), ax.get_ylim()]), np.max([ax.get_xlim(), ax.get_ylim()])]
+    ax.plot(lims, lims, linestyle='dashed', c='.3')
+    ax.set_aspect(1.0 / ax.get_data_ratio(), adjustable='box')
     plt.xlabel('Model vs human average multimatch')
     plt.ylabel('Human average multimatch')
-    #plt.xlim(0, 1)
-    #plt.ylim(0, 1)
+    min_coord = min(min(ax.get_xlim()), min(ax.get_ylim()))
+    max_coord = max(max(ax.get_xlim()), max(ax.get_ylim()))
+    #plt.xlim(min_coord, max_coord)
+    #plt.ylim(min_coord, max_coord)
     plt.title(model + ' (' + dataset + ' dataset)')
     plt.show()
 

@@ -91,7 +91,7 @@ for subjectDataFile in subjectsFiles:
             shortest_distance_between_consecutive_fixations = min(distance_between_consecutive_fixations)
             fixation_number = distance_between_consecutive_fixations.index(shortest_distance_between_consecutive_fixations)
             coordinate_difference_of_shortest_consecutive_fixations = (abs(fix_posX[fixation_number] - fix_posX[fixation_number + 1]), abs(fix_posY[fixation_number] - fix_posY[fixation_number + 1]))
-            if coordinate_difference_of_shortest_consecutive_fixations[0] < (receptive_size[1] / 2) and coordinate_difference_of_shortest_consecutive_fixations[1] < (receptive_size[0] / 2):
+            if coordinate_difference_of_shortest_consecutive_fixations[0] < (receptive_size[0] / 2) and coordinate_difference_of_shortest_consecutive_fixations[1] < (receptive_size[1] / 2):
                 scanpaths_with_shorter_distance_than_receptive_size += 1
                 if coordinate_difference_of_shortest_consecutive_fixations[0] < shortest_consecutive_fixations_coord_difference[0] \
                     and coordinate_difference_of_shortest_consecutive_fixations[1] < shortest_consecutive_fixations_coord_difference[1]:
