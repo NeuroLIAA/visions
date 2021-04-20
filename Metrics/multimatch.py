@@ -24,10 +24,6 @@ def plot(model, dataset, multimatch_values_per_image_x, multimatch_values_per_im
     ax.set_aspect(1.0 / ax.get_data_ratio(), adjustable='box')
     plt.xlabel('Model vs human average multimatch')
     plt.ylabel('Human average multimatch')
-    min_coord = min(min(ax.get_xlim()), min(ax.get_ylim()))
-    max_coord = max(max(ax.get_xlim()), max(ax.get_ylim()))
-    #plt.xlim(min_coord, max_coord)
-    #plt.ylim(min_coord, max_coord)
     plt.title(model + ' (' + dataset + ' dataset)')
     plt.show()
 
