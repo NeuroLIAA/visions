@@ -25,6 +25,11 @@ def plot(model, dataset, multimatch_values_per_image_x, multimatch_values_per_im
     plt.xlabel('Model vs human average multimatch')
     plt.ylabel('Human average multimatch')
     plt.title(model + ' (' + dataset + ' dataset)')
+    
+    m, b = np.polyfit(x_vector, y_vector, 1)
+ 
+    plt.plot(x_vector, m*np.array(x_vector) + b)
+    
     plt.show()
 
 def model_vs_humans_average_per_image(model_scanpaths, dataset_scanpaths_dir):
