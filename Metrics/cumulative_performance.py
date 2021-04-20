@@ -13,7 +13,7 @@ class Cumulative_performance:
         model_cumulative_performance = self.compute_cumulative_performance(model_scanpaths)
         self.subjects_cumulative_performance.append({'subject': model_name, 'cumulative_performance': model_cumulative_performance})
     
-    def add_human_average(self, humans_scanpaths_dir):
+    def add_human_mean(self, humans_scanpaths_dir):
         humans_cumulative_performance = []
         humans_scanpaths_files = listdir(humans_scanpaths_dir)
         for human_scanpaths_file in humans_scanpaths_files:
@@ -28,17 +28,17 @@ class Cumulative_performance:
         # Therefore, cumulative performance is calculated at fixation number 3, 5, 9 and 13
         if self.dataset_name == 'cIBS':
             number_of_subjects = len(humans_scanpaths_files)
-            humans_cumulative_performance_average = [np.empty(n) for n in np.repeat(number_of_subjects, 4)]
+            humans_cumulative_performance_mean = [np.empty(n) for n in np.repeat(number_of_subjects, 4)]
             subject_index = 0
             for subject_cumulative_performance in humans_cumulative_performance:
-                humans_cumulative_performance_average[0][subject_index] = subject_cumulative_performance[3]
-                humans_cumulative_performance_average[1][subject_index] = subject_cumulative_performance[5]
-                humans_cumulative_performance_average[2][subject_index] = subject_cumulative_performance[9]
-                humans_cumulative_performance_average[3][subject_index] = subject_cumulative_performance[13]
+                humans_cumulative_performance_mean[0][subject_index] = subject_cumulative_performance[3]
+                humans_cumulative_performance_mean[1][subject_index] = subject_cumulative_performance[5]
+                humans_cumulative_performance_mean[2][subject_index] = subject_cumulative_performance[9]
+                humans_cumulative_performance_mean[3][subject_index] = subject_cumulative_performance[13]
                 subject_index += 1
         else:
-            humans_cumulative_performance_average = np.mean(np.array(humans_cumulative_performance), axis=0)
-        self.subjects_cumulative_performance.append({'subject': 'Humans', 'cumulative_performance': humans_cumulative_performance_average})
+            humans_cumulative_performance_mean = np.mean(np.array(humans_cumulative_performance), axis=0)
+        self.subjects_cumulative_performance.append({'subject': 'Humans', 'cumulative_performance': humans_cumulative_performance_mean})
 
     def compute_cumulative_performance(self, scanpaths):
         # At index i, this array holds the number of targets found in i or less fixations
