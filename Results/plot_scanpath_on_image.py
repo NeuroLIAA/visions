@@ -40,12 +40,13 @@ def pick_three_scanpaths_to_plot(scanpaths):
         if i ==3:
             break
             
-results_dir  = curdir + '/'
+results_dir  =  curdir + '/'
 dataset_results_dirs = listdir(results_dir)
 for dataset in dataset_results_dirs:
+    if not(path.isdir(path.join(results_dir, dataset))):
+        continue
     dataset_name = dataset.split('_')[0]
     dataset_results_dir = results_dir + dataset + '/'
-
     models = listdir(dataset_results_dir)
     for model_name in models:
         if not(path.isdir(path.join(dataset_results_dir, model_name))):
