@@ -95,7 +95,7 @@ class Cumulative_performance:
 
         return cumulative_performance_at_particular_fixations
 
-    def plot(self):
+    def plot(self, save_path):
         fig, ax = plt.subplots()
         for subject in self.subjects_cumulative_performance:
             subject_name = subject['subject']
@@ -113,4 +113,5 @@ class Cumulative_performance:
         plt.yticks(np.arange(0, 1, 0.1))
         plt.xlabel('Number of fixations')
         plt.ylabel('Cumulative performance')
+        plt.savefig(save_path + 'Cumulative performance.png')
         plt.show()
