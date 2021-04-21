@@ -9,8 +9,8 @@ def sorted_alphanumeric(data):
     alphanum_key = lambda key: [ convert(c) for c in re.split('([0-9]+)', key) ] 
     return sorted(data, key=alphanum_key)
 
-cfg_dir = '../out_models/deepgaze/correlation/a_3_b_4_tam_celda_160/cfg/'
-scanpaths_dir= '../out_models/deepgaze/correlation/a_3_b_4_tam_celda_160/scanpath/'
+cfg_dir = '../out_models/deepgaze/correlation/a_3_b_4_tam_celda_32/cfg/'
+scanpaths_dir= '../out_models/deepgaze/correlation/a_3_b_4_tam_celda_32/scanpath/'
 cfg_files = sorted_alphanumeric(os.listdir(cfg_dir))
 save_path = '../../../../Results/IVSN_dataset/cIBS/'
 
@@ -77,7 +77,7 @@ for cfg_file in cfg_files:
 if not(os.path.exists(save_path)):
     os.mkdir(save_path)
 
-with open(save_path + 'Scanpaths_delta_160.json', 'w') as fp:
+with open(save_path + 'Scanpaths.json', 'w') as fp:
     json.dump(scanpath_data, fp, indent = 4)
 
 

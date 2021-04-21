@@ -1,8 +1,18 @@
 {
     "img001.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            192,
+            896,
+            288,
+            960
+        ],
         "X": [
             639,
             415,
@@ -53,15 +63,23 @@
             863,
             895
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img002.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
+        "target_bbox": [
+            736,
+            32,
+            768,
+            192
+        ],
         "X": [
             639,
             511,
@@ -128,15 +146,23 @@
             383,
             351
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img003.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            576,
+            256,
+            608,
+            288
+        ],
         "X": [
             639,
             415,
@@ -159,15 +185,23 @@
             319,
             287
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img004.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            704,
+            768,
+            768,
+            832
+        ],
         "X": [
             639,
             415,
@@ -194,15 +228,23 @@
             799,
             799
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img005.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            448,
+            288,
+            480,
+            320
+        ],
         "X": [
             639,
             543,
@@ -225,15 +267,23 @@
             287,
             287
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img006.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            480,
+            416,
+            512,
+            480
+        ],
         "X": [
             639,
             447,
@@ -248,15 +298,23 @@
             415,
             415
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img007.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            576,
+            640,
+            704,
+            768
+        ],
         "X": [
             639,
             415,
@@ -281,15 +339,23 @@
             575,
             703
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img008.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            544,
+            320,
+            608,
+            416
+        ],
         "X": [
             639,
             415,
@@ -322,15 +388,23 @@
             159,
             415
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img009.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            704,
+            928,
+            768,
+            992
+        ],
         "X": [
             639,
             351,
@@ -377,15 +451,23 @@
             927,
             927
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img010.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            640,
+            96,
+            704,
+            256
+        ],
         "X": [
             639,
             351,
@@ -412,15 +494,23 @@
             511,
             255
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img011.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            608,
+            256,
+            704,
+            352
+        ],
         "X": [
             639,
             415,
@@ -449,15 +539,23 @@
             319,
             319
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img012.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            448,
+            768,
+            608,
+            992
+        ],
         "X": [
             639,
             383,
@@ -484,15 +582,23 @@
             735,
             767
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img013.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            544,
+            672,
+            608,
+            736
+        ],
         "X": [
             639,
             415,
@@ -519,15 +625,23 @@
             863,
             671
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img014.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            640,
+            160,
+            704,
+            224
+        ],
         "X": [
             639,
             351,
@@ -568,15 +682,23 @@
             191,
             223
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img015.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            608,
+            512,
+            736,
+            768
+        ],
         "X": [
             639,
             319,
@@ -587,15 +709,23 @@
             479,
             511
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img016.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            576,
+            864,
+            736,
+            1024
+        ],
         "X": [
             639,
             543,
@@ -638,15 +768,23 @@
             927,
             927
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img017.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            32,
+            672,
+            160,
+            768
+        ],
         "X": [
             639,
             447,
@@ -679,15 +817,23 @@
             287,
             703
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img018.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            224,
+            64,
+            320,
+            128
+        ],
         "X": [
             639,
             255,
@@ -732,15 +878,23 @@
             863,
             127
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img019.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            608,
+            416,
+            672,
+            512
+        ],
         "X": [
             639,
             511,
@@ -751,15 +905,23 @@
             575,
             511
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img020.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            672,
+            192,
+            768,
+            320
+        ],
         "X": [
             639,
             255,
@@ -804,15 +966,23 @@
             319,
             319
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img021.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            480,
+            416,
+            544,
+            448
+        ],
         "X": [
             639,
             383,
@@ -833,15 +1003,23 @@
             351,
             415
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img022.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            320,
+            928,
+            448,
+            1024
+        ],
         "X": [
             639,
             319,
@@ -884,15 +1062,23 @@
             895,
             927
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img023.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            64,
+            64,
+            160,
+            256
+        ],
         "X": [
             639,
             415,
@@ -943,15 +1129,23 @@
             127,
             191
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img024.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            640,
+            256,
+            736,
+            384
+        ],
         "X": [
             639,
             383,
@@ -988,15 +1182,23 @@
             863,
             319
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img025.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
+        "target_bbox": [
+            128,
+            192,
+            224,
+            224
+        ],
         "X": [
             639,
             287,
@@ -1063,15 +1265,23 @@
             895,
             959
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img026.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            320,
+            256,
+            416,
+            352
+        ],
         "X": [
             639,
             415,
@@ -1086,15 +1296,23 @@
             383,
             319
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img027.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            320,
+            352,
+            416,
+            544
+        ],
         "X": [
             639,
             383,
@@ -1107,15 +1325,23 @@
             511,
             511
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img028.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            512,
+            672,
+            576,
+            800
+        ],
         "X": [
             639,
             383,
@@ -1144,15 +1370,23 @@
             447,
             735
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img029.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            192,
+            512,
+            224,
+            544
+        ],
         "X": [
             639,
             319,
@@ -1167,15 +1401,23 @@
             479,
             543
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img030.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            448,
+            864,
+            544,
+            960
+        ],
         "X": [
             639,
             383,
@@ -1214,15 +1456,23 @@
             191,
             863
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img031.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            128,
+            320,
+            288,
+            416
+        ],
         "X": [
             639,
             351,
@@ -1235,15 +1485,23 @@
             447,
             383
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img032.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            160,
+            96,
+            224,
+            160
+        ],
         "X": [
             639,
             415,
@@ -1280,15 +1538,23 @@
             863,
             159
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img033.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            224,
+            800,
+            224,
+            864
+        ],
         "X": [
             639,
             287,
@@ -1331,15 +1597,23 @@
             735,
             799
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img034.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            576,
+            384,
+            640,
+            608
+        ],
         "X": [
             639,
             447,
@@ -1350,15 +1624,23 @@
             479,
             511
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img035.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            384,
+            704,
+            416,
+            704
+        ],
         "X": [
             639,
             511,
@@ -1383,15 +1665,23 @@
             671,
             703
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img036.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            352,
+            224,
+            416,
+            224
+        ],
         "X": [
             639,
             159,
@@ -1418,15 +1708,23 @@
             255,
             223
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img037.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            320,
+            384,
+            544,
+            480
+        ],
         "X": [
             639,
             447,
@@ -1437,15 +1735,23 @@
             511,
             447
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img038.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            32,
+            864,
+            128,
+            960
+        ],
         "X": [
             639,
             319,
@@ -1508,15 +1814,23 @@
             895,
             895
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img039.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            32,
+            160,
+            128,
+            288
+        ],
         "X": [
             639,
             255,
@@ -1547,15 +1861,23 @@
             543,
             255
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img040.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            640,
+            288,
+            768,
+            384
+        ],
         "X": [
             639,
             415,
@@ -1584,15 +1906,23 @@
             383,
             383
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img041.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            32,
+            352,
+            448,
+            576
+        ],
         "X": [
             639,
             319,
@@ -1603,15 +1933,23 @@
             671,
             511
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img042.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            288,
+            224,
+            416,
+            352
+        ],
         "X": [
             639,
             319,
@@ -1630,15 +1968,23 @@
             479,
             319
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img043.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            288,
+            832,
+            384,
+            928
+        ],
         "X": [
             639,
             415,
@@ -1657,15 +2003,23 @@
             767,
             831
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img044.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            160,
+            352,
+            352,
+            576
+        ],
         "X": [
             639,
             447,
@@ -1676,15 +2030,23 @@
             415,
             447
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img045.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            128,
+            896,
+            224,
+            928
+        ],
         "X": [
             639,
             319,
@@ -1739,15 +2101,23 @@
             639,
             895
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img046.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            576,
+            160,
+            768,
+            416
+        ],
         "X": [
             639,
             223,
@@ -1770,15 +2140,23 @@
             255,
             415
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img048.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            544,
+            480,
+            768,
+            768
+        ],
         "X": [
             639,
             415,
@@ -1789,15 +2167,23 @@
             575,
             511
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img049.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            64,
+            640,
+            224,
+            736
+        ],
         "X": [
             639,
             223,
@@ -1814,15 +2200,23 @@
             703,
             703
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img050.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            384,
+            800,
+            576,
+            960
+        ],
         "X": [
             639,
             511,
@@ -1843,15 +2237,23 @@
             575,
             799
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img051.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            640,
+            416,
+            736,
+            512
+        ],
         "X": [
             639,
             671
@@ -1860,15 +2262,23 @@
             511,
             479
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img052.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            512,
+            192,
+            576,
+            384
+        ],
         "X": [
             639,
             415,
@@ -1883,15 +2293,23 @@
             479,
             287
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img053.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            32,
+            512,
+            224,
+            704
+        ],
         "X": [
             639,
             383,
@@ -1916,15 +2334,23 @@
             735,
             607
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img054.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            672,
+            544,
+            736,
+            576
+        ],
         "X": [
             639,
             383,
@@ -1935,15 +2361,23 @@
             703,
             543
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img055.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            480,
+            576,
+            576,
+            704
+        ],
         "X": [
             639,
             511
@@ -1952,15 +2386,23 @@
             511,
             607
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img056.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            640,
+            416,
+            768,
+            608
+        ],
         "X": [
             639,
             415,
@@ -1971,15 +2413,23 @@
             863,
             511
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img057.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            480,
+            736,
+            736,
+            960
+        ],
         "X": [
             639,
             543,
@@ -2000,15 +2450,23 @@
             671,
             831
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img058.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            416,
+            96,
+            448,
+            128
+        ],
         "X": [
             639,
             415,
@@ -2051,15 +2509,23 @@
             159,
             127
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img059.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            224,
+            224,
+            320,
+            384
+        ],
         "X": [
             639,
             415,
@@ -2074,15 +2540,23 @@
             415,
             383
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img060.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            32,
+            480,
+            224,
+            640
+        ],
         "X": [
             639,
             383,
@@ -2103,15 +2577,23 @@
             799,
             511
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img061.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            288,
+            128,
+            352,
+            256
+        ],
         "X": [
             639,
             415,
@@ -2138,15 +2620,23 @@
             287,
             255
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img062.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            160,
+            736,
+            256,
+            864
+        ],
         "X": [
             639,
             447,
@@ -2171,15 +2661,23 @@
             351,
             767
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img063.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            416,
+            832,
+            544,
+            992
+        ],
         "X": [
             639,
             383,
@@ -2200,15 +2698,23 @@
             799,
             831
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img064.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            224,
+            416,
+            256,
+            448
+        ],
         "X": [
             639,
             415,
@@ -2227,15 +2733,23 @@
             479,
             447
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img065.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            704,
+            480,
+            768,
+            512
+        ],
         "X": [
             639,
             383,
@@ -2250,15 +2764,23 @@
             415,
             511
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img066.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            544,
+            576,
+            544,
+            608
+        ],
         "X": [
             639,
             287,
@@ -2305,15 +2827,23 @@
             575,
             575
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img067.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            224,
+            704,
+            288,
+            768
+        ],
         "X": [
             639,
             447,
@@ -2330,15 +2860,23 @@
             383,
             735
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img068.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            96,
+            736,
+            160,
+            768
+        ],
         "X": [
             639,
             287,
@@ -2381,15 +2919,23 @@
             639,
             767
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img069.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
+        "target_bbox": [
+            256,
+            1024,
+            288,
+            1024
+        ],
         "X": [
             639,
             383,
@@ -2456,15 +3002,23 @@
             959,
             991
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img070.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            128,
+            64,
+            224,
+            160
+        ],
         "X": [
             639,
             319,
@@ -2499,15 +3053,23 @@
             863,
             159
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img071.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            416,
+            320,
+            512,
+            416
+        ],
         "X": [
             639,
             479,
@@ -2518,15 +3080,23 @@
             511,
             383
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img072.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            192,
+            256,
+            352,
+            288
+        ],
         "X": [
             639,
             319,
@@ -2541,15 +3111,23 @@
             351,
             255
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img073.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            544,
+            32,
+            640,
+            64
+        ],
         "X": [
             639,
             383,
@@ -2602,15 +3180,23 @@
             127,
             63
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img074.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            480,
+            480,
+            608,
+            544
+        ],
         "X": [
             639,
             479,
@@ -2625,15 +3211,23 @@
             511,
             511
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img075.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            192,
+            416,
+            224,
+            480
+        ],
         "X": [
             639,
             479,
@@ -2656,15 +3250,23 @@
             735,
             447
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img076.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            384,
+            224,
+            480,
+            256
+        ],
         "X": [
             639,
             511,
@@ -2681,15 +3283,23 @@
             191,
             223
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img077.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            640,
+            768,
+            736,
+            832
+        ],
         "X": [
             639,
             319,
@@ -2720,15 +3330,23 @@
             351,
             767
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img078.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            320,
+            864,
+            384,
+            896
+        ],
         "X": [
             639,
             447,
@@ -2751,15 +3369,23 @@
             671,
             863
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img079.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            576,
+            864,
+            640,
+            896
+        ],
         "X": [
             639,
             511,
@@ -2798,15 +3424,23 @@
             575,
             863
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img080.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            288,
+            640,
+            320,
+            672
+        ],
         "X": [
             639,
             447,
@@ -2831,15 +3465,23 @@
             703,
             639
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img081.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            160,
+            704,
+            320,
+            800
+        ],
         "X": [
             639,
             351,
@@ -2850,15 +3492,23 @@
             703,
             735
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img082.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            512,
+            128,
+            544,
+            192
+        ],
         "X": [
             639,
             255,
@@ -2897,15 +3547,23 @@
             863,
             127
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img083.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            544,
+            992,
+            608,
+            1024
+        ],
         "X": [
             639,
             415,
@@ -2940,15 +3598,23 @@
             639,
             991
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img084.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            160,
+            256,
+            192,
+            288
+        ],
         "X": [
             639,
             447,
@@ -2985,15 +3651,23 @@
             511,
             255
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img085.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            384,
+            192,
+            448,
+            256
+        ],
         "X": [
             639,
             415,
@@ -3014,15 +3688,23 @@
             831,
             223
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img086.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            576,
+            672,
+            672,
+            736
+        ],
         "X": [
             639,
             351,
@@ -3041,15 +3723,23 @@
             255,
             671
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img087.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            384,
+            64,
+            448,
+            160
+        ],
         "X": [
             639,
             319,
@@ -3076,15 +3766,23 @@
             831,
             127
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img088.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            320,
+            576,
+            544,
+            800
+        ],
         "X": [
             639,
             415
@@ -3093,15 +3791,23 @@
             511,
             575
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img089.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            352,
+            192,
+            448,
+            256
+        ],
         "X": [
             639,
             383,
@@ -3126,15 +3832,23 @@
             287,
             255
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img090.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            288,
+            288,
+            352,
+            352
+        ],
         "X": [
             639,
             287,
@@ -3153,15 +3867,23 @@
             607,
             319
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img091.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            352,
+            576,
+            480,
+            736
+        ],
         "X": [
             639,
             415
@@ -3170,15 +3892,23 @@
             511,
             639
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img092.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            32,
+            288,
+            96,
+            320
+        ],
         "X": [
             639,
             287,
@@ -3237,15 +3967,23 @@
             543,
             287
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img093.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            704,
+            512,
+            736,
+            544
+        ],
         "X": [
             639,
             479,
@@ -3258,15 +3996,23 @@
             543,
             511
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img094.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            352,
+            64,
+            384,
+            96
+        ],
         "X": [
             639,
             415,
@@ -3309,15 +4055,23 @@
             127,
             95
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img095.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            544,
+            736,
+            576,
+            768
+        ],
         "X": [
             639,
             255,
@@ -3372,15 +4126,23 @@
             511,
             735
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img096.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            256,
+            192,
+            288,
+            256
+        ],
         "X": [
             639,
             383,
@@ -3411,15 +4173,23 @@
             671,
             223
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img097.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            384,
+            288,
+            416,
+            320
+        ],
         "X": [
             639,
             479,
@@ -3434,15 +4204,23 @@
             319,
             287
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img098.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            128,
+            800,
+            320,
+            960
+        ],
         "X": [
             639,
             415,
@@ -3459,15 +4237,23 @@
             287,
             799
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img099.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            416,
+            224,
+            416,
+            256
+        ],
         "X": [
             639,
             479,
@@ -3508,15 +4294,23 @@
             287,
             255
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img100.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            288,
+            256,
+            320,
+            288
+        ],
         "X": [
             639,
             383,
@@ -3531,15 +4325,23 @@
             319,
             287
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img101.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            416,
+            256,
+            448,
+            288
+        ],
         "X": [
             639,
             255,
@@ -3552,15 +4354,23 @@
             607,
             255
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img102.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            512,
+            544,
+            544,
+            640
+        ],
         "X": [
             639,
             383,
@@ -3583,15 +4393,23 @@
             575,
             607
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img103.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            256,
+            928,
+            320,
+            960
+        ],
         "X": [
             639,
             319,
@@ -3630,15 +4448,23 @@
             383,
             927
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img104.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            352,
+            384,
+            416,
+            448
+        ],
         "X": [
             639,
             287,
@@ -3657,15 +4483,23 @@
             703,
             383
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img105.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            576,
+            320,
+            608,
+            448
+        ],
         "X": [
             639,
             479,
@@ -3680,15 +4514,23 @@
             479,
             447
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img106.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            224,
+            224,
+            384,
+            320
+        ],
         "X": [
             639,
             415,
@@ -3699,15 +4541,23 @@
             799,
             319
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img107.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            480,
+            608,
+            480,
+            640
+        ],
         "X": [
             639,
             447,
@@ -3718,15 +4568,23 @@
             575,
             607
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img108.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            576,
+            448,
+            608,
+            576
+        ],
         "X": [
             639,
             511,
@@ -3737,15 +4595,23 @@
             511,
             511
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img109.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            608,
+            512,
+            672,
+            608
+        ],
         "X": [
             639,
             639
@@ -3754,15 +4620,23 @@
             511,
             543
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img110.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            480,
+            480,
+            544,
+            576
+        ],
         "X": [
             639,
             511
@@ -3771,15 +4645,23 @@
             511,
             511
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img111.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            416,
+            416,
+            480,
+            480
+        ],
         "X": [
             639,
             447,
@@ -3790,15 +4672,23 @@
             543,
             447
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img112.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            608,
+            128,
+            768,
+            416
+        ],
         "X": [
             639,
             447,
@@ -3835,15 +4725,23 @@
             255,
             319
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img113.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            160,
+            800,
+            224,
+            864
+        ],
         "X": [
             639,
             287,
@@ -3862,15 +4760,23 @@
             767,
             799
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img114.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            480,
+            512,
+            576,
+            544
+        ],
         "X": [
             639,
             415,
@@ -3881,15 +4787,23 @@
             447,
             543
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img115.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            384,
+            512,
+            416,
+            512
+        ],
         "X": [
             639,
             159,
@@ -3906,15 +4820,23 @@
             543,
             511
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img116.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            224,
+            288,
+            256,
+            320
+        ],
         "X": [
             639,
             319,
@@ -3931,15 +4853,23 @@
             703,
             287
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img117.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            448,
+            96,
+            448,
+            128
+        ],
         "X": [
             639,
             287,
@@ -3974,15 +4904,23 @@
             319,
             127
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img118.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            416,
+            896,
+            480,
+            960
+        ],
         "X": [
             639,
             319,
@@ -4001,15 +4939,23 @@
             447,
             927
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img119.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            608,
+            928,
+            672,
+            992
+        ],
         "X": [
             639,
             383,
@@ -4062,15 +5008,23 @@
             639,
             959
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img120.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            224,
+            544,
+            448,
+            576
+        ],
         "X": [
             639,
             543,
@@ -4085,15 +5039,23 @@
             639,
             543
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img121.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            608,
+            608,
+            672,
+            704
+        ],
         "X": [
             639,
             319,
@@ -4104,15 +5066,23 @@
             415,
             639
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img122.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            640,
+            32,
+            704,
+            160
+        ],
         "X": [
             639,
             415,
@@ -4139,15 +5109,23 @@
             159,
             159
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img123.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            512,
+            512,
+            544,
+            576
+        ],
         "X": [
             639,
             383,
@@ -4162,15 +5140,23 @@
             479,
             543
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img124.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
+        "target_bbox": [
+            32,
+            32,
+            96,
+            128
+        ],
         "X": [
             639,
             415,
@@ -4237,15 +5223,23 @@
             127,
             863
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img125.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            256,
+            704,
+            320,
+            768
+        ],
         "X": [
             639,
             447,
@@ -4260,15 +5254,23 @@
             543,
             735
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img126.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            352,
+            768,
+            384,
+            768
+        ],
         "X": [
             639,
             287,
@@ -4311,15 +5313,23 @@
             735,
             767
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img127.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            448,
+            800,
+            480,
+            832
+        ],
         "X": [
             639,
             351,
@@ -4332,15 +5342,23 @@
             511,
             831
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img128.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            608,
+            704,
+            704,
+            928
+        ],
         "X": [
             639,
             415,
@@ -4365,15 +5383,23 @@
             607,
             863
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img129.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            256,
+            352,
+            320,
+            384
+        ],
         "X": [
             639,
             415,
@@ -4398,15 +5424,23 @@
             863,
             351
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img130.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            480,
+            320,
+            512,
+            384
+        ],
         "X": [
             639,
             447,
@@ -4429,15 +5463,23 @@
             575,
             383
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img131.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            384,
+            704,
+            544,
+            768
+        ],
         "X": [
             639,
             255,
@@ -4460,15 +5502,23 @@
             799,
             735
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img132.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            576,
+            960,
+            608,
+            1024
+        ],
         "X": [
             639,
             351,
@@ -4507,15 +5557,23 @@
             671,
             959
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img133.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            352,
+            448,
+            384,
+            480
+        ],
         "X": [
             639,
             383,
@@ -4526,15 +5584,23 @@
             511,
             479
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img134.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            448,
+            640,
+            640,
+            672
+        ],
         "X": [
             639,
             351,
@@ -4555,15 +5621,23 @@
             607,
             639
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img135.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            288,
+            928,
+            352,
+            960
+        ],
         "X": [
             639,
             415,
@@ -4580,15 +5654,23 @@
             895,
             927
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img136.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            416,
+            896,
+            448,
+            928
+        ],
         "X": [
             639,
             479,
@@ -4613,15 +5695,23 @@
             255,
             895
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img137.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            288,
+            960,
+            320,
+            992
+        ],
         "X": [
             639,
             255,
@@ -4654,15 +5744,23 @@
             191,
             959
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img138.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            448,
+            864,
+            480,
+            896
+        ],
         "X": [
             639,
             319,
@@ -4699,15 +5797,23 @@
             831,
             863
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img139.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            352,
+            672,
+            416,
+            704
+        ],
         "X": [
             639,
             351,
@@ -4720,15 +5826,23 @@
             639,
             671
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img140.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            480,
+            416,
+            608,
+            544
+        ],
         "X": [
             639,
             383,
@@ -4741,15 +5855,23 @@
             735,
             479
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img141.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            480,
+            160,
+            672,
+            256
+        ],
         "X": [
             639,
             319,
@@ -4778,15 +5900,23 @@
             127,
             159
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img142.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            192,
+            672,
+            256,
+            736
+        ],
         "X": [
             639,
             447,
@@ -4819,15 +5949,23 @@
             255,
             703
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img143.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            672,
+            480,
+            768,
+            544
+        ],
         "X": [
             639,
             319,
@@ -4838,15 +5976,23 @@
             703,
             511
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img144.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            256,
+            32,
+            416,
+            64
+        ],
         "X": [
             639,
             351,
@@ -4909,15 +6055,23 @@
             95,
             63
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img145.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            288,
+            96,
+            288,
+            128
+        ],
         "X": [
             639,
             351,
@@ -4972,15 +6126,23 @@
             735,
             127
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img146.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            416,
+            128,
+            480,
+            160
+        ],
         "X": [
             639,
             447,
@@ -4999,15 +6161,23 @@
             735,
             159
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img147.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            224,
+            128,
+            256,
+            160
+        ],
         "X": [
             639,
             383,
@@ -5038,15 +6208,23 @@
             383,
             159
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img148.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            704,
+            544,
+            768,
+            768
+        ],
         "X": [
             639,
             351,
@@ -5065,15 +6243,23 @@
             255,
             543
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img149.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            480,
+            768,
+            512,
+            800
+        ],
         "X": [
             639,
             479
@@ -5082,15 +6268,23 @@
             511,
             767
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img150.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
+        "target_bbox": [
+            704,
+            288,
+            736,
+            352
+        ],
         "X": [
             639,
             351,
@@ -5157,15 +6351,23 @@
             447,
             479
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img151.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            544,
+            800,
+            608,
+            896
+        ],
         "X": [
             639,
             447,
@@ -5184,15 +6386,23 @@
             767,
             831
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img152.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            224,
+            960,
+            288,
+            1024
+        ],
         "X": [
             639,
             447,
@@ -5243,15 +6453,23 @@
             927,
             959
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img153.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            480,
+            352,
+            608,
+            608
+        ],
         "X": [
             639,
             383,
@@ -5262,15 +6480,23 @@
             511,
             479
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img154.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            384,
+            800,
+            416,
+            832
+        ],
         "X": [
             639,
             223,
@@ -5291,15 +6517,23 @@
             767,
             799
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img155.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            416,
+            608,
+            480,
+            672
+        ],
         "X": [
             639,
             383,
@@ -5318,15 +6552,23 @@
             575,
             607
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img156.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            480,
+            608,
+            608,
+            704
+        ],
         "X": [
             639,
             383,
@@ -5341,15 +6583,23 @@
             575,
             639
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img157.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            448,
+            608,
+            576,
+            672
+        ],
         "X": [
             639,
             415,
@@ -5364,15 +6614,23 @@
             639,
             607
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img158.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            384,
+            192,
+            416,
+            224
+        ],
         "X": [
             639,
             223,
@@ -5397,15 +6655,23 @@
             191,
             223
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img159.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            480,
+            448,
+            512,
+            544
+        ],
         "X": [
             639,
             383,
@@ -5416,15 +6682,23 @@
             511,
             543
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img160.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            192,
+            896,
+            352,
+            960
+        ],
         "X": [
             639,
             287,
@@ -5453,15 +6727,23 @@
             863,
             895
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img161.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            576,
+            448,
+            672,
+            544
+        ],
         "X": [
             639,
             383,
@@ -5472,15 +6754,23 @@
             447,
             479
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img162.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            448,
+            576,
+            512,
+            704
+        ],
         "X": [
             639,
             415,
@@ -5493,15 +6783,23 @@
             223,
             639
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img163.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            352,
+            832,
+            416,
+            896
+        ],
         "X": [
             639,
             351,
@@ -5522,15 +6820,23 @@
             511,
             831
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img164.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            608,
+            608,
+            704,
+            672
+        ],
         "X": [
             639,
             383,
@@ -5565,15 +6871,23 @@
             895,
             639
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img165.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            352,
+            480,
+            384,
+            608
+        ],
         "X": [
             639,
             351
@@ -5582,15 +6896,23 @@
             511,
             511
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img166.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            96,
+            128,
+            128,
+            192
+        ],
         "X": [
             639,
             287,
@@ -5625,15 +6947,23 @@
             799,
             191
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img167.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            224,
+            544,
+            256,
+            608
+        ],
         "X": [
             639,
             447,
@@ -5644,15 +6974,23 @@
             639,
             607
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img168.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            448,
+            64,
+            544,
+            224
+        ],
         "X": [
             639,
             351,
@@ -5673,15 +7011,23 @@
             671,
             191
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img169.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            608,
+            640,
+            736,
+            672
+        ],
         "X": [
             639,
             383,
@@ -5712,15 +7058,23 @@
             607,
             639
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img170.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            544,
+            544,
+            608,
+            608
+        ],
         "X": [
             639,
             319,
@@ -5733,15 +7087,23 @@
             479,
             543
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img171.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            384,
+            640,
+            512,
+            832
+        ],
         "X": [
             639,
             319,
@@ -5758,15 +7120,23 @@
             703,
             671
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img172.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            320,
+            288,
+            448,
+            416
+        ],
         "X": [
             639,
             287,
@@ -5781,15 +7151,23 @@
             575,
             383
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img173.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            480,
+            640,
+            544,
+            672
+        ],
         "X": [
             639,
             415,
@@ -5802,15 +7180,23 @@
             703,
             671
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img174.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            544,
+            544,
+            608,
+            640
+        ],
         "X": [
             639,
             383,
@@ -5823,15 +7209,23 @@
             415,
             575
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img175.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            608,
+            64,
+            704,
+            128
+        ],
         "X": [
             639,
             415,
@@ -5898,15 +7292,23 @@
             223,
             127
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img176.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            512,
+            384,
+            608,
+            576
+        ],
         "X": [
             639,
             415,
@@ -5919,15 +7321,23 @@
             479,
             511
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img177.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            512,
+            608,
+            672,
+            768
+        ],
         "X": [
             639,
             383,
@@ -5946,15 +7356,23 @@
             447,
             671
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img178.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            544,
+            384,
+            608,
+            416
+        ],
         "X": [
             639,
             319,
@@ -5979,15 +7397,23 @@
             383,
             415
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img179.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            320,
+            544,
+            416,
+            608
+        ],
         "X": [
             639,
             383
@@ -5996,15 +7422,23 @@
             511,
             543
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img180.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            160,
+            128,
+            192,
+            192
+        ],
         "X": [
             639,
             479,
@@ -6039,15 +7473,23 @@
             447,
             191
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img181.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
+        "target_bbox": [
+            736,
+            256,
+            768,
+            320
+        ],
         "X": [
             639,
             415,
@@ -6114,15 +7556,23 @@
             895,
             895
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img182.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            352,
+            384,
+            416,
+            416
+        ],
         "X": [
             639,
             351,
@@ -6135,15 +7585,23 @@
             447,
             415
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img183.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            352,
+            512,
+            384,
+            544
+        ],
         "X": [
             639,
             383,
@@ -6154,15 +7612,23 @@
             319,
             543
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img184.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            512,
+            352,
+            576,
+            416
+        ],
         "X": [
             639,
             479,
@@ -6189,15 +7655,23 @@
             255,
             383
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img185.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            512,
+            736,
+            512,
+            768
+        ],
         "X": [
             639,
             287,
@@ -6220,15 +7694,23 @@
             319,
             735
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img186.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            352,
+            768,
+            384,
+            832
+        ],
         "X": [
             639,
             415,
@@ -6239,15 +7721,23 @@
             799,
             767
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img187.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            608,
+            544,
+            672,
+            608
+        ],
         "X": [
             639,
             415,
@@ -6258,15 +7748,23 @@
             511,
             543
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img188.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            640,
+            960,
+            768,
+            1024
+        ],
         "X": [
             639,
             415,
@@ -6317,15 +7815,23 @@
             191,
             959
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img189.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            256,
+            576,
+            320,
+            672
+        ],
         "X": [
             639,
             415,
@@ -6338,15 +7844,23 @@
             543,
             575
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img190.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            256,
+            832,
+            416,
+            928
+        ],
         "X": [
             639,
             415,
@@ -6365,15 +7879,23 @@
             735,
             863
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img191.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            512,
+            576,
+            640,
+            736
+        ],
         "X": [
             639,
             511,
@@ -6388,15 +7910,23 @@
             479,
             575
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img192.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            384,
+            416,
+            480,
+            480
+        ],
         "X": [
             639,
             415,
@@ -6407,15 +7937,23 @@
             511,
             447
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img193.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            512,
+            896,
+            576,
+            992
+        ],
         "X": [
             639,
             415,
@@ -6440,15 +7978,23 @@
             319,
             927
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img194.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            224,
+            320,
+            288,
+            352
+        ],
         "X": [
             639,
             351,
@@ -6461,15 +8007,23 @@
             383,
             351
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img195.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            416,
+            608,
+            480,
+            640
+        ],
         "X": [
             639,
             383,
@@ -6480,15 +8034,23 @@
             575,
             607
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img196.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            640,
+            384,
+            672,
+            416
+        ],
         "X": [
             639,
             415,
@@ -6507,15 +8069,23 @@
             415,
             415
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img197.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            288,
+            896,
+            352,
+            960
+        ],
         "X": [
             639,
             447,
@@ -6540,15 +8110,23 @@
             767,
             895
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img198.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            544,
+            288,
+            576,
+            352
+        ],
         "X": [
             639,
             447,
@@ -6571,15 +8149,23 @@
             479,
             351
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img199.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            640,
+            256,
+            672,
+            320
+        ],
         "X": [
             639,
             383,
@@ -6614,15 +8200,23 @@
             287,
             287
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img200.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            672,
+            640,
+            736,
+            736
+        ],
         "X": [
             639,
             287,
@@ -6643,15 +8237,23 @@
             319,
             671
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img201.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            480,
+            672,
+            576,
+            736
+        ],
         "X": [
             639,
             223,
@@ -6664,15 +8266,23 @@
             511,
             671
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img202.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            512,
+            256,
+            704,
+            320
+        ],
         "X": [
             639,
             415,
@@ -6693,15 +8303,23 @@
             383,
             287
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img203.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            416,
+            544,
+            480,
+            640
+        ],
         "X": [
             639,
             383,
@@ -6718,15 +8336,23 @@
             511,
             575
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img204.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            608,
+            320,
+            704,
+            416
+        ],
         "X": [
             639,
             415,
@@ -6749,15 +8375,23 @@
             735,
             383
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img205.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            448,
+            928,
+            480,
+            960
+        ],
         "X": [
             639,
             287,
@@ -6792,15 +8426,23 @@
             927,
             927
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img206.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            480,
+            832,
+            544,
+            864
+        ],
         "X": [
             639,
             287,
@@ -6823,15 +8465,23 @@
             639,
             831
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img207.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            320,
+            928,
+            416,
+            992
+        ],
         "X": [
             639,
             383,
@@ -6858,15 +8508,23 @@
             831,
             927
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img208.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            608,
+            448,
+            640,
+            480
+        ],
         "X": [
             639,
             479,
@@ -6877,15 +8535,23 @@
             511,
             479
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img209.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            128,
+            416,
+            256,
+            448
+        ],
         "X": [
             639,
             479,
@@ -6904,15 +8570,23 @@
             383,
             415
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img210.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            480,
+            512,
+            544,
+            608
+        ],
         "X": [
             639,
             287,
@@ -6935,15 +8609,23 @@
             351,
             511
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img211.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            608,
+            448,
+            704,
+            512
+        ],
         "X": [
             639,
             639
@@ -6952,15 +8634,23 @@
             511,
             479
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img212.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            512,
+            256,
+            544,
+            288
+        ],
         "X": [
             639,
             447,
@@ -6981,15 +8671,23 @@
             351,
             255
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img213.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            128,
+            800,
+            320,
+            896
+        ],
         "X": [
             639,
             383,
@@ -7004,15 +8702,23 @@
             767,
             799
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img214.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": false,
+        "target_bbox": [
+            32,
+            32,
+            32,
+            64
+        ],
         "X": [
             639,
             159,
@@ -7079,15 +8785,23 @@
             767,
             511
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img215.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            640,
+            864,
+            736,
+            928
+        ],
         "X": [
             639,
             415,
@@ -7134,15 +8848,23 @@
             863,
             863
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img216.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            352,
+            640,
+            448,
+            768
+        ],
         "X": [
             639,
             319,
@@ -7155,15 +8877,23 @@
             447,
             671
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img217.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            352,
+            576,
+            448,
+            672
+        ],
         "X": [
             639,
             255,
@@ -7176,15 +8906,23 @@
             543,
             575
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img218.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            608,
+            128,
+            768,
+            288
+        ],
         "X": [
             639,
             415,
@@ -7231,15 +8969,23 @@
             415,
             287
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img219.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            608,
+            640,
+            704,
+            800
+        ],
         "X": [
             639,
             479,
@@ -7272,15 +9018,23 @@
             319,
             703
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img220.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            160,
+            224,
+            320,
+            512
+        ],
         "X": [
             639,
             383,
@@ -7295,15 +9049,23 @@
             607,
             447
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img221.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            544,
+            128,
+            640,
+            256
+        ],
         "X": [
             639,
             159,
@@ -7322,15 +9084,23 @@
             895,
             255
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img222.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            256,
+            832,
+            384,
+            864
+        ],
         "X": [
             639,
             447,
@@ -7367,15 +9137,23 @@
             799,
             831
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img223.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            160,
+            800,
+            288,
+            960
+        ],
         "X": [
             639,
             351,
@@ -7402,15 +9180,23 @@
             767,
             863
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img224.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            32,
+            96,
+            160,
+            160
+        ],
         "X": [
             639,
             447,
@@ -7449,15 +9235,23 @@
             95,
             159
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img225.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            512,
+            32,
+            672,
+            192
+        ],
         "X": [
             639,
             415,
@@ -7516,15 +9310,23 @@
             223,
             159
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img226.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            576,
+            32,
+            704,
+            96
+        ],
         "X": [
             639,
             351,
@@ -7585,15 +9387,23 @@
             127,
             95
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img227.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            672,
+            896,
+            736,
+            960
+        ],
         "X": [
             639,
             383,
@@ -7638,15 +9448,23 @@
             671,
             927
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img228.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            576,
+            960,
+            672,
+            1024
+        ],
         "X": [
             639,
             383,
@@ -7693,15 +9511,23 @@
             383,
             959
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img229.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            224,
+            448,
+            288,
+            480
+        ],
         "X": [
             639,
             319,
@@ -7716,15 +9542,23 @@
             511,
             479
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img230.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            288,
+            32,
+            320,
+            160
+        ],
         "X": [
             639,
             415,
@@ -7753,15 +9587,23 @@
             191,
             159
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img231.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            96,
+            32,
+            288,
+            160
+        ],
         "X": [
             639,
             383,
@@ -7794,15 +9636,23 @@
             159,
             159
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img232.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            576,
+            416,
+            640,
+            480
+        ],
         "X": [
             639,
             479,
@@ -7813,15 +9663,23 @@
             511,
             479
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img233.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            608,
+            576,
+            640,
+            704
+        ],
         "X": [
             639,
             415,
@@ -7840,15 +9698,23 @@
             703,
             607
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img234.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            352,
+            544,
+            416,
+            608
+        ],
         "X": [
             639,
             319,
@@ -7861,15 +9727,23 @@
             223,
             575
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img235.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            640,
+            448,
+            736,
+            512
+        ],
         "X": [
             639,
             639
@@ -7878,15 +9752,23 @@
             511,
             479
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img236.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            128,
+            896,
+            160,
+            960
+        ],
         "X": [
             639,
             383,
@@ -7941,15 +9823,23 @@
             895,
             927
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img237.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            96,
+            672,
+            160,
+            704
+        ],
         "X": [
             639,
             351,
@@ -7980,15 +9870,23 @@
             639,
             671
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img238.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            416,
+            992,
+            512,
+            1024
+        ],
         "X": [
             639,
             383,
@@ -8025,15 +9923,23 @@
             959,
             991
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img239.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            160,
+            480,
+            224,
+            544
+        ],
         "X": [
             639,
             351,
@@ -8056,15 +9962,23 @@
             575,
             511
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     },
     "img240.jpg": {
-        "dataset": "IVSN Natural Design",
         "subject": "cIBS model",
+        "dataset": "IVSN Natural Design Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "receptive_height": 32,
+        "receptive_width": 32,
         "target_found": true,
+        "target_bbox": [
+            544,
+            256,
+            608,
+            320
+        ],
         "X": [
             639,
             447,
@@ -8085,8 +9999,6 @@
             319,
             287
         ],
-        "image_height": 768,
-        "image_width": 1024,
         "target_object": "TBD",
         "max_fixations": 31
     }
