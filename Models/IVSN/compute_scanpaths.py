@@ -76,8 +76,8 @@ def create_scanpath(trial_properties, attentionMap, stimuli_size, max_fixations,
         print(imageName + "; target found at fixation step " + str(fixationNumber + 1))
     else:
         print(imageName + "; target NOT FOUND!")
-    scanpaths[imageName] = { "dataset" : dataset_name, "subject" : "IVSN Model", "target_found"  : target_found, "X" : scanpath_x_coordinates, "Y" : scanpath_y_coordinates,  \
-        "image_height" : stimuli_size[0], "image_width" : stimuli_size[1], "target_object" : "TBD", "max_fixations" : max_fixations}
+    scanpaths[imageName] = { "subject" : "IVSN Model", "dataset" : dataset_name, "image_height" : stimuli_size[0], "image_width" : stimuli_size[1], "receptive_height" : receptive_size, "receptive_width": receptive_size, \
+        "target_found" : target_found, "target_bbox" : target_bbox, "X" : scanpath_x_coordinates, "Y" : scanpath_y_coordinates, "target_object" : "TBD", "max_fixations" : max_fixations}
 
 
 def rescale_coordinates(start_row, start_column, end_row, end_column, img_height, img_width, new_img_height, new_img_width):
