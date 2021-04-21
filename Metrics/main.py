@@ -39,5 +39,5 @@ for dataset in dataset_results_dirs:
         subjects_cumulative_performance.add_model(model_name, model_scanpaths)
         multimatch.add_model_vs_humans_mean_per_image(model_name, model_scanpaths)
     
-    subjects_cumulative_performance.plot()
-    multimatch.plot()
+    subjects_cumulative_performance.plot(save_path=dataset_results_dir)
+    multimatch.plot(save_path=dataset_results_dir)

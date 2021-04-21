@@ -12,7 +12,7 @@ class Multimatch:
         self.human_scanpaths_dir = human_scanpaths_dir
         self.dataset_results_dir = dataset_results_dir
 
-    def plot(self):
+    def plot(self, save_path):
         number_of_models = len(self.models_vs_humans_multimatch)
         fig, axs = plt.subplots(1, number_of_models)
 
@@ -38,7 +38,7 @@ class Multimatch:
         fig.suptitle(self.dataset_name + ' dataset')
         plt.xlim(min_x, max_x)
         plt.ylim(min_y, max_y)
-        plt.plot()    
+        plt.savefig(save_path + 'Multimatch against humans.png')    
         plt.show()
 
     def add_to_plot(self, ax, model_name, multimatch_values_per_image_x, multimatch_values_per_image_y):
@@ -63,6 +63,7 @@ class Multimatch:
         # Plot linear regression
         m, b = np.polyfit(x_vector, y_vector, 1)
         ax.plot(x_vector, m * np.array(x_vector) + b, linestyle=(0, (5, 5)), color='purple', alpha=0.5)
+
         ax.set_aspect(1.0 / ax.get_data_ratio(), adjustable='box')
         ax.set_title(model_name)
 
