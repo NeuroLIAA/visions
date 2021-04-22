@@ -28,12 +28,8 @@ class Multimatch:
         for ax in axs:
             ax.set(xlabel='Model vs human multimatch mean', ylabel='Human multimatch mean')
             ax.label_outer()
-            ax_min_x, ax_max_x = min(ax.get_xlim()), max(ax.get_xlim())
-            ax_min_y, ax_max_y = min(ax.get_ylim()), max(ax.get_ylim())
-            if ax_min_x < min_x: min_x = ax_min_x
-            if ax_max_x > max_x: max_x = ax_max_x
-            if ax_min_y < min_y: min_y = ax_min_y
-            if ax_max_y > max_y: max_y = ax_max_y
+            min_x, max_x = min(min(ax.get_xlim()), min_x), max(max(ax.get_xlim()), max_x)
+            min_y, max_y = min(min(ax.get_ylim()), min_y), max(max(ax.get_ylim()), max_y)
 
         fig.suptitle(self.dataset_name + ' dataset')
         plt.xlim(min_x, max_x)
