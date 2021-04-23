@@ -60,7 +60,8 @@ def run(stimuli_dir, target_dir, chopped_dir, trials_properties):
         currentchopped_dir = chopped_dir + stimuliID + '/'
         choppedFiles = listdir(currentchopped_dir)
         for choppedStimuliName in choppedFiles:
-            if not(choppedStimuliName.endswith('.jpg')):
+            # Check for precomputed files
+            if choppedStimuliName.endswith('_layertopdown.json'):
                 continue    
 
             choppedStimuli = Image.open(currentchopped_dir + choppedStimuliName).convert('RGB')

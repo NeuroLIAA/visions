@@ -4,7 +4,7 @@ from os import listdir, path, mkdir, makedirs
 """
 Preprocessing of images (resizing and dividing into blocks)
 Stimuli is divided into blocks of size 224x224, which are then fed to the CNN.
-Files are saved in chopped_dir.
+Block files are saved in chopped_dir, inside the corresponding dataset and image folder.
 """
 
 def chop_stimuli(stimuli_dir, chopped_dir, stimuli_size, trials_properties):
@@ -43,13 +43,15 @@ def divide_into_blocks(image, imgID, save_path):
         current_block_size = (default_block_height, default_block_width)
         if (extra_row and (row + 1) == number_of_rows):
             current_block_size = (extra_row_height, current_block_size[1])
-        for column in range(number_of_columns):
+        for column in range(number_of_columns):            
             if (extra_column and (column + 1) == number_of_columns):
                 current_block_size = (current_block_size[0], extra_column_width)
-            
             from_row    = row * default_block_height
             from_column = column * default_block_width
             to_row    = from_row + current_block_size[0]
             to_column = from_column + current_block_size[1]
             img_crop = image[from_row:to_row, from_column:to_column]
-            io.imsave(save_path + '/' + imgID + '_' + str(from_row) + '_' + str(from_column) + '.jpg', img_as_ubyte(img_crop), check_contrast=False)
+            
+            block_filename = save_path + '/' + imgID + '_' + str(from_row) + '_' + str(from_column) + '.jpg'
+            if not(path.exists(block_filename)):
+                io.imsave(block_filename, img_as_ubyte(img_crop), check_contrast=False)
