@@ -43,12 +43,12 @@ def run(stimuli_dir, target_dir, chopped_dir, trials_properties):
     MMConv = nn.Conv2d(numTemplates, 1, convSize, padding=1)
     # torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, bias=True, padding_mode='zeros')   
 
-    for trial_properties in trials_properties:
-        stimuliName = trial_properties['image']   
+    for trial in trials_properties:
+        stimuliName = trial['image']   
         print('Working on ' + stimuliName)  
 
         stimuliID = stimuliName[:-4]
-        target_name = trial_properties['target']
+        target_name = trial['target']
         target = Image.open(target_dir + target_name).convert('RGB')
         target_transformation = transforms.Compose([
             transforms.Resize((targetHeight, targetWidth)),
