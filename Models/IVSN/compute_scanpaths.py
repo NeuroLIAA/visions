@@ -24,8 +24,8 @@ def parse_model_data(stimuli_dir, chopped_dir, stimuli_size, max_fixations, rece
 
 def create_scanpath(trial_properties, attentionMap, stimuli_size, max_fixations, receptive_size, dataset_name, scanpaths):
     # Load target's boundaries
-    target_bbox = (trial_properties['target_matched_row'], trial_properties['target_matched_column'], trial_properties['target_side_length'] + trial_properties['target_matched_row'], \
-        trial_properties['target_columns'] + trial_properties['target_matched_column'])
+    target_bbox = (trial_properties['target_matched_row'], trial_properties['target_matched_column'], trial_properties['target_height'] + trial_properties['target_matched_row'], \
+        trial_properties['target_width'] + trial_properties['target_matched_column'])
     # Rescale according to stimuli size
     target_bbox = rescale_coordinates(target_bbox[0], target_bbox[1], target_bbox[2], target_bbox[3], trial_properties['image_height'], trial_properties['image_width'], stimuli_size[0], stimuli_size[1])
     # Create template of stimuli's size where there are ones in target's box and zeros elsewhere

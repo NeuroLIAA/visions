@@ -23,7 +23,7 @@ def getName(imgID, _type):
 
     return name
 
-gtDir = '../stimuli/gt/'
+gtDir = '../gt/'
 gtFiles = sorted_alphanumeric(listdir(gtDir))
 
 target_positions = []
@@ -36,8 +36,8 @@ for gt in gtFiles:
     # Get target region
     target = measure.regionprops(label_gtImg)
     start_row, start_column, end_row, end_column = target[0].bbox
-    target_side_length = end_row - start_row
-    target_columns = end_column - start_column
+    target_height = end_row - start_row
+    target_width = end_column - start_column
 
     img_height = gtImg.shape[0]
     img_width  = gtImg.shape[1]
@@ -46,7 +46,7 @@ for gt in gtFiles:
     tgName  = getName(int(imgID), 'target')
 
     target_positions.append({ "image" : imgName, "target" : tgName, "dataset" : "IVSN Natural Design Dataset", "target_matched_row" : start_row, "target_matched_column" : start_column, \
-         "target_side_length" : target_side_length, "target_columns" : target_columns, "image_height" : img_height, "image_width" : img_width, "initial_fixation_x" : 639, "initial_fixation_y" : 511})
+         "target_height" : target_height, "target_width" : target_width, "image_height" : img_height, "image_width" : img_width, "initial_fixation_x" : 639, "initial_fixation_y" : 511})
 
 jsonStructsFile = open('../trials_properties.json', 'w')
 json.dump(target_positions, jsonStructsFile, indent = 4)
