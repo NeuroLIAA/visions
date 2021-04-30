@@ -21,12 +21,7 @@ def main():
         mkdir(targetsDirOld)
     with open(trials_properties_file) as fp:
         trials_properties = json.load(fp)
-    
-    # for template_file in listdir(targetsDir):
-    #     if not(template_file.endswith('.jpg')):
-    #         continue
-    #     rename(targetsDir + template_file, targetsDirOld + template_file)
-
+        
     for trial_properties in trials_properties:
         image_file = trial_properties['image']
         rename(datasetDir + image_file, datasetDirOld + image_file)
@@ -34,8 +29,8 @@ def main():
         #image_resized = color.rgb2gray(image_resized)
         image_resized = transform.resize(image_resized, stimuli_size)
         io.imsave(datasetDir + image_file, img_as_ubyte(image_resized), check_contrast=False)
-        target_bbox = (trial_properties['target_matched_row'], trial_properties['target_matched_column'], trial_properties['target_side_length'] + trial_properties['target_matched_row'], \
-        trial_properties['target_columns'] + trial_properties['target_matched_column'])
+        target_bbox = (trial_properties['target_matched_row'], trial_properties['target_matched_column'], trial_properties['target_height'] + trial_properties['target_matched_row'], \
+        trial_properties['target_width'] + trial_properties['target_matched_column'])
         target_bbox = rescale_coordinates(target_bbox[0], target_bbox[1], target_bbox[2], target_bbox[3], trial_properties['image_height'], trial_properties['image_width'], stimuli_size[0], stimuli_size[1])
         template = image_resized[target_bbox[0]:target_bbox[2], target_bbox[1]:target_bbox[3]]       
         io.imsave(targetsDir + image_file[:-4] + '_template.jpg', img_as_ubyte(template), check_contrast=False)
