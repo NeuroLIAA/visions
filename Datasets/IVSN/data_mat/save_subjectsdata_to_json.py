@@ -58,12 +58,12 @@ for subjectDataFile in subjectsFiles:
         current_target = targetsPropertiesData[stimuli - 1]
         target_start_row = current_target['target_matched_row']
         target_start_column = current_target['target_matched_column']
-        target_end_row = target_start_row + current_target['target_side_length']
-        target_end_column = target_start_column + current_target['target_columns']
+        target_end_row = target_start_row + current_target['target_height']
+        target_end_column = target_start_column + current_target['target_width']
 
         target_bounding_box = [target_start_row, target_start_column, target_end_row, target_end_column]
 
-        target_center = (target_start_row + (current_target['target_side_length'] // 2), target_start_column + (current_target['target_columns'] // 2))
+        target_center = (target_start_row + (current_target['target_height'] // 2), target_start_column + (current_target['target_width'] // 2))
         target_lower_row_bound  = target_center[0] - receptive_size[0]
         target_upper_row_bound  = target_center[0] + receptive_size[0]
         target_lower_column_bound = target_center[1] - receptive_size[1]
