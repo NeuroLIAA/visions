@@ -24,11 +24,11 @@ for record in range(len(targets_positions_mat[0])):
     target_height = int(targets_positions_mat['template_side_length'][0][record][0][0])
     target_width  = int(targets_positions_mat['template_columns'][0][record][0][0])
 
-    initial_fixation_x = int(initial_fixations_mat['initial_fix'][0][record][0][0]) - 1
-    initial_fixation_y = int(initial_fixations_mat['initial_fix'][0][record][0][1]) - 1
+    initial_fixation_row    = int(initial_fixations_mat['initial_fix'][0][record][0][0]) - 1
+    initial_fixation_column = int(initial_fixations_mat['initial_fix'][0][record][0][1]) - 1
 
     targets_positions_json.append({ "image" : image_name, "target" : template_name, "dataset" : "cIBS Dataset", "target_matched_row" : matched_row, "target_matched_column" : matched_column, \
-         "target_height" : target_height, "target_width" : target_width, "image_height" : image_height, "image_width" : image_width, "initial_fixation_x" : initial_fixation_x, "initial_fixation_y" : initial_fixation_y})
+         "target_height" : target_height, "target_width" : target_width, "image_height" : image_height, "image_width" : image_width, "initial_fixation_row" : initial_fixation_row, "initial_fixation_column" : initial_fixation_column})
 
 with open('../trials_properties.json', 'w') as fp:
     json.dump(targets_positions_json, fp, indent=4)
