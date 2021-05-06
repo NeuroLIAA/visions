@@ -39,8 +39,8 @@ def create_scanpath(trial_properties, attentionMap, stimuli_size, max_fixations,
     # Compute scanpaths from saliency image        
     for fixationNumber in range(max_fixations):
         if first_fixation:
-            posX = trial_properties['initial_fixation_x']
-            posY = trial_properties['initial_fixation_y']
+            posX = trial_properties['initial_fixation_column']
+            posY = trial_properties['initial_fixation_row']
         else:
             coordinates = np.where(attentionMap == np.amax(attentionMap))
             posX = coordinates[0][0]
