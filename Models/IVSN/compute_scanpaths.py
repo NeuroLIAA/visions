@@ -39,12 +39,12 @@ def create_scanpath(trial_properties, attentionMap, stimuli_size, max_fixations,
     # Compute scanpaths from saliency image        
     for fixationNumber in range(max_fixations):
         if first_fixation:
-            posX = trial_properties['initial_fixation_row']
-            posY = trial_properties['initial_fixation_column']
+            posY = trial_properties['initial_fixation_row']
+            posX = trial_properties['initial_fixation_column']
         else:
             coordinates = np.where(attentionMap == np.amax(attentionMap))
-            posX = coordinates[0][0]
-            posY = coordinates[1][0]
+            posY = coordinates[0][0]
+            posX = coordinates[1][0]
 
         scanpath_x_coordinates.append(int(posX))
         scanpath_y_coordinates.append(int(posY))
@@ -56,18 +56,18 @@ def create_scanpath(trial_properties, attentionMap, stimuli_size, max_fixations,
 
         if fixatedPlace_leftX < 0: fixatedPlace_leftX = 0
         if fixatedPlace_leftY < 0: fixatedPlace_leftY = 0
-        if fixatedPlace_rightX > stimuli_size[0]: fixatedPlace_rightX = stimuli_size[0]
-        if fixatedPlace_rightY > stimuli_size[1]: fixatedPlace_rightY = stimuli_size[1]
+        if fixatedPlace_rightY > stimuli_size[0]: fixatedPlace_rightY = stimuli_size[0]
+        if fixatedPlace_rightX > stimuli_size[1]: fixatedPlace_rightX = stimuli_size[1]
 
         # Check if target's box overlaps with the fixated place
-        fixatedPlace = targetTemplate[fixatedPlace_leftX:fixatedPlace_rightX, fixatedPlace_leftY:fixatedPlace_rightY]
+        fixatedPlace = targetTemplate[fixatedPlace_leftY:fixatedPlace_rightY, fixatedPlace_leftX:fixatedPlace_rightX]
 
         if (np.sum(fixatedPlace) > 0):
             target_found = True
             break
         else:
             # Apply inhibition of return
-            attentionMap[fixatedPlace_leftX:fixatedPlace_rightX, fixatedPlace_leftY:fixatedPlace_rightY] = 0
+            attentionMap[fixatedPlace_leftY:fixatedPlace_rightY, fixatedPlace_leftX:fixatedPlace_rightX] = 0
             
         first_fixation = False
     
