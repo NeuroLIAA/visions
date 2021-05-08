@@ -18,12 +18,16 @@ for dataset in dataset_results_dirs:
         max_scanpath_length = 16
     else:
         max_scanpath_length = 31
+    if dataset_name == 'cIBS':
+        number_of_images = 134
+    else:
+        number_of_images = 240
 
     # Compute human subjects metrics
     multimatch = Multimatch(dataset_name, human_scanpaths_dir, dataset_results_dir)
     multimatch.load_human_mean_per_image()
 
-    subjects_cumulative_performance = Cumulative_performance(dataset_name, max_scanpath_length)
+    subjects_cumulative_performance = Cumulative_performance(dataset_name, number_of_images, max_scanpath_length)
     subjects_cumulative_performance.add_human_mean(human_scanpaths_dir)
 
     # Compute models metrics and compare them with human subjects metrics

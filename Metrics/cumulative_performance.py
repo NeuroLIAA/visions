@@ -4,10 +4,12 @@ import numpy as np
 from os import listdir
 
 class Cumulative_performance:
-    def __init__(self, dataset_name, max_scanpath_length):
-        self.subjects_cumulative_performance = []
-        self.max_scanpath_length = max_scanpath_length
+    def __init__(self, dataset_name, number_of_images, max_scanpath_length):
         self.dataset_name = dataset_name
+        self.number_of_images = number_of_images
+        self.max_scanpath_length = max_scanpath_length
+
+        self.subjects_cumulative_performance = []
 
     def add_model(self, model_name, model_scanpaths):
         model_cumulative_performance = self.compute_cumulative_performance(model_scanpaths)
@@ -54,7 +56,7 @@ class Cumulative_performance:
                 for index in range(scanpath_length, self.max_scanpath_length + 1):
                     targets_found_at_fixation_number[index] += 1
             
-        subject_cumulative_performance = list(map(lambda x: float(x) / len(scanpaths.keys()), targets_found_at_fixation_number))
+        subject_cumulative_performance = list(map(lambda x: float(x) / self.number_of_images), targets_found_at_fixation_number)
         
         return subject_cumulative_performance
 
