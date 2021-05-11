@@ -57,8 +57,9 @@ class Multimatch:
         lims = [np.min([ax.get_xlim(), ax.get_ylim()]), np.max([ax.get_xlim(), ax.get_ylim()])]
         ax.plot(lims, lims, linestyle='dashed', c='.3')
         # Plot linear regression
-        m, b = np.polyfit(x_vector, y_vector, 1)
-        ax.plot(x_vector, m * np.array(x_vector) + b, linestyle=(0, (5, 5)), color='purple', alpha=0.5)
+        x_linear   = np.array(x_vector)[:, np.newaxis]
+        m, _, _, _ = np.linalg.lstsq(x_linear, y_vector, rcond=None)
+        ax.plot(x_vector, m * x_linear, linestyle=(0, (5, 5)), color='purple', alpha=0.5)
 
         ax.set_aspect(1.0 / ax.get_data_ratio(), adjustable='box')
         ax.set_title(model_name)
