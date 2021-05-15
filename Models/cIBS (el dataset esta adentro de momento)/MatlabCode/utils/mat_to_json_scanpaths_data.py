@@ -63,12 +63,17 @@ for cfg_file in cfg_files:
     number_of_fixations = len(scanpath)
     last_fixation = scanpath[number_of_fixations - 1]
 
-    if (number_of_fixations < 31) and np.all(between_bounds):
+    max_fixations = int(cfg_info['nsaccades_thr'][0][0][0][0]) + 1
+
+    if (number_of_fixations < max_fixations) and np.all(between_bounds):
         target_found = True
     else:
-        target_found = False
+        if (number_of_fixations <max_fixations) and not(np.all(between_bounds)):
+            print("Error en imagen" + image_name + ", está por fuera del bounding box y el modelo terminó antes de la fijación " + max_fixations)
+        else:
+            target_found = False
 
-    max_fixations = int(cfg_info['nsaccades_thr'][0][0][0][0]) + 1
+    
 
     # Convert to pixels
     scanpath_x = []
