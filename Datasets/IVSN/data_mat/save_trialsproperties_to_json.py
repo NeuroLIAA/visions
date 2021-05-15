@@ -23,12 +23,12 @@ def getName(imgID, _type):
 
     return name
 
-gtDir = '../gt/'
+gtDir = '../stimuli/gt/'
 gtFiles = sorted_alphanumeric(listdir(gtDir))
 
 target_positions = []
 for gt in gtFiles:
-    imgID = gt[2:-4]
+    imgID = gt[3:-4]
     gtImg = io.imread(gtDir + gt)
     mask = color.rgb2gray(gtImg) > 0.5
     # Label target region
@@ -45,7 +45,7 @@ for gt in gtFiles:
     imgName = getName(int(imgID), 'image')
     tgName  = getName(int(imgID), 'target')
 
-    target_positions.append({ "image" : imgName, "target" : tgName, "dataset" : "IVSN Natural Design Dataset", "target_matched_row" : start_row, "target_matched_column" : start_column, \
+    target_positions.append({ "image" : imgName, "target" : tgName, "dataset" : "IVSN Natural Design Dataset", "target_matched_row" : start_row - 1, "target_matched_column" : start_column -1, \
          "target_height" : target_height, "target_width" : target_width, "image_height" : img_height, "image_width" : img_width, "initial_fixation_row" : 511, "initial_fixation_column" : 639})
 
 jsonStructsFile = open('../trials_properties.json', 'w')

@@ -2,6 +2,7 @@ from skimage import io, transform, img_as_ubyte, color
 from os import listdir, path, mkdir, rename
 from scipy.io import savemat
 import json
+from math import floor
 
 datasetDir = '../data_images/images/'
 targetsDir = '../data_images/templates/'
@@ -32,7 +33,7 @@ def main():
         target_bbox = (trial_properties['target_matched_row'], trial_properties['target_matched_column'], trial_properties['target_height'] + trial_properties['target_matched_row'], \
         trial_properties['target_width'] + trial_properties['target_matched_column'])
         target_bbox = rescale_coordinates(target_bbox[0], target_bbox[1], target_bbox[2], target_bbox[3], trial_properties['image_height'], trial_properties['image_width'], stimuli_size[0], stimuli_size[1])
-        template = image_resized[target_bbox[0]:target_bbox[2], target_bbox[1]:target_bbox[3]]       
+        template = image_resized[target_bbox[0]:target_bbox[2], target_bbox[1]:target_bbox[3]]     
         io.imsave(targetsDir + image_file[:-4] + '_template.jpg', img_as_ubyte(template), check_contrast=False)
         target_positions["target_positions"].append({ "image" : image_file, "template" : image_file[:-4] + '_template.jpg', "matched_column" : target_bbox[1] + 1, "matched_row" : target_bbox[0] + 1, "template_side_length" : target_bbox[2] - target_bbox[0], "template_columns" : target_bbox[3] - target_bbox[1] }) #side length y columns son distancias, no hace falta sumar 1
         initial_fixations["initial_fixations"].append({"image" : image_file, "initial_fix" : (trial_properties['initial_fixation_row'] + 1, trial_properties['initial_fixation_column'] + 1)})
@@ -42,9 +43,9 @@ def main():
 def rescale_coordinates(start_row, start_column, end_row, end_column, img_height, img_width, new_img_height, new_img_width):
     rescaled_start_row = round((start_row / img_height) * new_img_height)
     rescaled_start_column = round((start_column / img_width) * new_img_width)
-    rescaled_end_row = round((end_row / img_height) * new_img_height)
-    rescaled_end_column = round((end_column / img_width) * new_img_width)
+    rescaled_end_row = floor((end_row / img_height) * new_img_height)
+    rescaled_end_column = floor((end_column / img_width) * new_img_width)
 
-    return rescaled_start_row, rescaled_start_column, rescaled_end_row, rescaled_end_column
+    return (rescaled_start_row, rescaled_start_column, rescaled_end_row, rescaled_end_column)
     
 main()
