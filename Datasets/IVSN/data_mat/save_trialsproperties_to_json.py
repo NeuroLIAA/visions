@@ -36,8 +36,8 @@ for gt in gtFiles:
     # Get target region
     target = measure.regionprops(label_gtImg)
     start_row, start_column, end_row, end_column = target[0].bbox
-    target_height = end_row - start_row
-    target_width = end_column - start_column
+    target_height = end_row - start_row - 1
+    target_width = end_column - start_column - 1
 
     img_height = gtImg.shape[0]
     img_width  = gtImg.shape[1]
@@ -45,7 +45,7 @@ for gt in gtFiles:
     imgName = getName(int(imgID), 'image')
     tgName  = getName(int(imgID), 'target')
 
-    target_positions.append({ "image" : imgName, "target" : tgName, "dataset" : "IVSN Natural Design Dataset", "target_matched_row" : start_row - 1, "target_matched_column" : start_column -1, \
+    target_positions.append({ "image" : imgName, "target" : tgName, "dataset" : "IVSN Natural Design Dataset", "target_matched_row" : start_row, "target_matched_column" : start_column, \
          "target_height" : target_height, "target_width" : target_width, "image_height" : img_height, "image_width" : img_width, "initial_fixation_row" : 511, "initial_fixation_column" : 639})
 
 jsonStructsFile = open('../trials_properties.json', 'w')
