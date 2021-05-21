@@ -1,0 +1,10 @@
+{
+	"name"					 : "cIBS dataset",
+	"images_dir" 			 : "../../Datasets/cIBS/images/",
+	"targets_dir"			 : "../../Datasets/cIBS/templates/",
+	"saliency_dir" 			 : "data/saliency/cIBS dataset/",
+	"trials_properties_file" : "../../Datasets/cIBS/trials_properties.json",
+	"save_path" 			 : "../../Results/cIBS_dataset/cIBS/",
+	"image_height" 		     : 768,
+	"image_width"  			 : 1024
+}
