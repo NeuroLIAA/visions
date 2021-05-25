@@ -31,6 +31,8 @@ def gen_scanpaths(generator,
                   test_img_loader,
                   patch_num,
                   max_traj_len,
+                  im_w,
+                  im_h,
                   num_sample=10):
     all_actions = []
     for i_sample in range(num_sample):
@@ -51,9 +53,10 @@ def gen_scanpaths(generator,
                 all_actions.extend([(cat_names_batch[i], img_names_batch[i],
                                      'present', trajs['actions'][:, i])
                                     for i in range(env_test.batch_size)])
-
-    scanpaths = utils.actions2scanpaths(all_actions, patch_num)
+            
+    scanpaths = utils.actions2scanpaths(all_actions, patch_num, im_w, im_h)
     utils.cutFixOnTarget(scanpaths, bbox_annos)
+        
 
     return scanpaths
 
@@ -101,7 +104,7 @@ if __name__ == '__main__':
     img_loader = DataLoader(dataset['img_test'],
                             batch_size=64,
                             shuffle=False,
-                            num_workers=16)
+                            num_workers=4)
     print('num of test images =', len(dataset['img_test']))
 
     # load trained model
@@ -131,9 +134,11 @@ if __name__ == '__main__':
                                 img_loader,
                                 hparams.Data.patch_num,
                                 hparams.Data.max_traj_length,
-                                num_sample=10)
+                                hparams.Data.im_w,
+                                hparams.Data.im_h,
+                                num_sample=1)
 
-    print('evaulating model...')
+    print('evaluating model...')
     # evaluate predictions
     mean_cdf, _ = utils.compute_search_cdf(predictions, bbox_annos,
                                            hparams.Data.max_traj_length)
@@ -158,9 +163,19 @@ if __name__ == '__main__':
     mm_score = metrics.compute_mm(dataset['gt_scanpaths'], predictions,
                                   hparams.Data.im_w, hparams.Data.im_h)
 
+    
+
+    #para que no putee el json al dumpear scanpaths xd
+    for prediction in predictions:
+        prediction['X']= list(prediction['X'])
+        prediction['Y']= list(prediction['Y'])
+    predictions = list(predictions)
+
+    
     # print and save outputs
     print('results:')
     results = {
+        'scanpaths': predictions,
         'cdf': list(mean_cdf),
         'sp_ratios': sp_ratio,
         'probability_mismatch': prob_mismatch,

@@ -101,7 +101,7 @@ class JsonConfig(dict):
             json_name = self.date_name()
         json_path = os.path.join(dir_path, json_name)
         with open(json_path, "w") as fout:
-            print(str(self))
+            #print(str(self))
             json.dump(self.to_dict(), fout, indent=JsonConfig.Indent)
 
     def to_dict(self):
