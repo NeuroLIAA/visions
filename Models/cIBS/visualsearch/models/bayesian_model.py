@@ -135,15 +135,16 @@ class BayesianModel:
         m[target_location_row, target_location_column] = 0
         b[target_location_row, target_location_column] = 1000000
 
-        # Check the limits of the integral (normcdf(-20) = 0 and so will be the product)
-        try:
-            min_w = max(np.max((-20 - masked_b[m > 0]) / m[m > 0]), -20)
-        except ValueError:
+        # Check the limits of the integral (normcdf(-20) = 0 and so will be the product)        
+        if masked_b[m > 0].size == 0 or m[m > 0].size == 0:
             min_w = -20
-        try:
-            max_w = min(np.min((-20 - masked_b[m < 0]) / m[m < 0]), 20)
-        except ValueError:
+        else:
+            min_w = max(np.max((-20 - masked_b[m > 0]) / m[m > 0]), -20)
+
+        if masked_b[m < 0].size == 0 or m[m < 0].size == 0:
             max_w = 20
+        else:
+            max_w = min(np.min((-20 - masked_b[m < 0]) / m[m < 0]), 20)
 
         if min_w >= max_w: return 0
 
