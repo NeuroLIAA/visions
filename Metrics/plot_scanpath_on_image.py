@@ -1,4 +1,5 @@
 import json
+from skimage import io, transform, img_as_ubyte
 from os import listdir, path, curdir
 import math
 from PIL import Image, ImageDraw, ImageFont
@@ -8,11 +9,14 @@ def plot_scanpath(scanpath_data,image_name):
         dataset_image_path = '../Datasets/cIBS/images/'
     elif scanpath_data['dataset'] == 'IVSN Natural Design' or scanpath_data['dataset'] == 'IVSN Natural Design Dataset':
         dataset_image_path = '../Datasets/IVSN/stimuli/' #estandaricemos los nombres que aparecen en el json
-    with Image.open(dataset_image_path + image_name) as im:
+ 
+        im = io.imread(dataset_image_path + image_name)
+        im = img_as_ubyte(transform.resize(im, (scanpath_data['image_height'],scanpath_data['image_width'])))
+        im = Image.fromarray(im)
         im = im.convert("RGBA")
         target_bbox = scanpath_data['target_bbox']
-        target_top_left_coordinates = (target_bbox[0],target_bbox[1])
-        target_bottom_right_coordinates = (target_bbox[2],target_bbox[3])
+        target_top_left_coordinates = (target_bbox[1],target_bbox[0])
+        target_bottom_right_coordinates = (target_bbox[3],target_bbox[2])
         target_shape = [target_top_left_coordinates, target_bottom_right_coordinates] 
         
         image_with_scanpath_plotted = ImageDraw.Draw(im)
