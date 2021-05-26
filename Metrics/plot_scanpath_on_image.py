@@ -34,18 +34,21 @@ def plot_scanpath(scanpath_data,image_name):
             image_with_scanpath_plotted.rectangle(fixation_shape, fill ='#ff0000ff', outline ="red")
         for fixation_shape in fixation_shapes: #por último agrego los números. Todo esto para que las lineas y los cuadrados no sean tapados
             image_with_scanpath_plotted.text(fixations[fixation_shapes.index(fixation_shape)], str(fixation_shapes.index(fixation_shape)+1), font=fixation_order_font, fill='#000000ff')
+        
+        im.save(image_name[0:-4] + ".png")
         im.show()
-
-
+	
 def pick_three_scanpaths_to_plot(scanpaths):
-    i = 0
+   # i = 0
     for image_name in scanpaths.keys():
-        i += 1
-        plot_scanpath(scanpaths[image_name],image_name)
-        if i ==3:
-            break
+        #i += 1
+        struct = scanpaths[image_name]
+        if struct['target_found'] == False and struct['dataset'] == 'IVSN Natural Design Dataset' and struct['subject'] == 'cIBS model':
+        	plot_scanpath(scanpaths[image_name],image_name)
+        #if i ==3:
+         #   break
             
-results_dir  = curdir + '/'
+results_dir  = '../Results/'
 dataset_results_dirs = listdir(results_dir)
 for dataset in dataset_results_dirs:
     if not(path.isdir(path.join(results_dir, dataset))):
