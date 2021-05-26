@@ -32,6 +32,7 @@ def plot_scanpath(scanpath_data,image_name):
             fixation_shapes.append(fixation_shape)   
         for fixation_shape in fixation_shapes: #segundo agrego los cuadrados
             image_with_scanpath_plotted.rectangle(fixation_shape, fill ='#ff0000ff', outline ="red")
+        image_with_scanpath_plotted.rectangle(target_shape, fill ='#0000ffff', outline ="green")
         for fixation_shape in fixation_shapes: #por último agrego los números. Todo esto para que las lineas y los cuadrados no sean tapados
             image_with_scanpath_plotted.text(fixations[fixation_shapes.index(fixation_shape)], str(fixation_shapes.index(fixation_shape)+1), font=fixation_order_font, fill='#000000ff')
         
