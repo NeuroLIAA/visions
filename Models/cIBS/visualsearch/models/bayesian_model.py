@@ -103,6 +103,8 @@ class BayesianModel:
         " Computes the probability of being correct at each fixation on the given subset of rows of the matrix probability_at_each_fixation "
         # Ignore user warnings due to masked values
         warnings.filterwarnings('ignore', category=UserWarning)
+        # Ignore invalid and divide by zero warnings, they'll be dealt with later
+        np.seterr(divide='ignore', invalid='ignore', over='ignore')
 
         probability_of_being_correct = np.empty(shape=self.grid_size)
         for possible_nextfix_row in rows: 
@@ -121,9 +123,6 @@ class BayesianModel:
         posterior_at_target_location      = posterior[target_location_row, target_location_column]
         visibility_map_at_target_location = visibility_map_at_fixation[target_location_row, target_location_column]
 
-        # Ignore invalid and divide by zero warnings, they'll be dealt with later
-        np.seterr(divide='ignore', invalid='ignore', over='ignore')
-
         b = (-2 * np.log(posterior / posterior_at_target_location) + np.square(visibility_map_at_fixation) \
              + np.square(visibility_map_at_target_location)) / (2 * visibility_map_at_fixation)
         m =  visibility_map_at_target_location /  visibility_map_at_fixation
@@ -136,15 +135,25 @@ class BayesianModel:
         b[target_location_row, target_location_column] = 1000000
 
         # Check the limits of the integral (normcdf(-20) = 0 and so will be the product)        
-        if masked_b[m > 0].size == 0 or m[m > 0].size == 0:
+        if not np.any(m):
             min_w = -20
         else:
-            min_w = max(np.max((-20 - masked_b[m > 0]) / m[m > 0]), -20)
+            masked_m = np.ma.array(m)
+            masked_b[target_location_row, target_location_column] = np.ma.masked
+            masked_m[target_location_row, target_location_column] = np.ma.masked
+            min_w = max(np.max((-20 - masked_b) / masked_m), -20)
+        
+        max_w = 20
 
-        if masked_b[m < 0].size == 0 or m[m < 0].size == 0:
-            max_w = 20
-        else:
-            max_w = min(np.min((-20 - masked_b[m < 0]) / m[m < 0]), 20)
+        # if masked_b[m > 0].size == 0 or m[m > 0].size == 0:
+        #     min_w = -20
+        # else:
+        #     min_w = max(np.max((-20 - masked_b[m > 0]) / m[m > 0]), -20)
+
+        # if masked_b[m < 0].size == 0 or m[m < 0].size == 0:
+        #     max_w = 20
+        # else:
+        #     max_w = min(np.min((-20 - masked_b[m < 0]) / m[m < 0]), 20)
 
         if min_w >= max_w: return 0
 
