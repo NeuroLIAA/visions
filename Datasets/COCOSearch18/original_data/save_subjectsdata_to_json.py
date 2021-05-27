@@ -61,8 +61,8 @@ for scanpath in human_scanpaths:
                      target_bbox[1] <= last_fixation_x and target_bbox[3] >= last_fixation_x
     if target_found and not between_bounds:
         print('Subject: ' + str(current_subject) + '; trial: ' + image_name + '. Last fixation doesn\'t fall between target\'s bounds')
+        print('Target bbox: ' + str(target_bbox) + '. Last fixation: ' + str((last_fixation_y, last_fixation_x)) + '\n')
         target_found   = False
-        targets_found -= 1
         wrong_targets_found += 1
 
     if current_subject < 10:
@@ -74,13 +74,16 @@ for scanpath in human_scanpaths:
         'screen_height' : screen_height, 'screen_width' : screen_width, 'receptive_height' : 'definir!!', 'receptive_width' : 'definir!!', 'target_found' : target_found, \
             'target_bbox' : target_bbox, 'X' : scanpath_x, 'Y' : scanpath_y, 'T' : scanpath['T'], 'target_object' : scanpath['task'], 'max_fixations' : 'definir!!'}
 
-
 # Save a file for each subject
 for subject in subjects:
     if subject < 10:
         subject_string = '0' + str(subject)
     else:
         subject_string = str(subject)
+
     subject_scanpaths_file = 'subj' + subject_string + '_scanpaths.json'
     with open(save_path + subject_scanpaths_file, 'w') as fp:
         json.dump(subjects[subject], fp, indent=4)
+
+
+print('Total targets found: ' + str(targets_found) + '. Wrong targets found: ' + str(wrong_targets_found))
