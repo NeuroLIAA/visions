@@ -16,7 +16,7 @@ screen_width  = 1650
 receptive_height = 54
 receptive_width  = 54
 
-# max_fixations = ??
+max_fixations = 45
 
 if not os.path.exists(save_path):
     os.mkdir(save_path)
@@ -97,8 +97,8 @@ for scanpath in human_scanpaths:
             scanpaths_with_shorter_distance_than_receptive_size += 1
 
     subject_scanpaths[image_name] = {'subject' : current_subject_string, 'dataset' : 'COCOSearch18 Dataset', 'image_height' : image_height, 'image_width' : image_width, \
-        'screen_height' : screen_height, 'screen_width' : screen_width, 'receptive_height' : 'definir!!', 'receptive_width' : 'definir!!', 'target_found' : target_found, \
-            'target_bbox' : target_bbox, 'X' : scanpath_x, 'Y' : scanpath_y, 'T' : scanpath['T'], 'target_object' : scanpath['task'], 'max_fixations' : 'definir!!'}
+        'screen_height' : screen_height, 'screen_width' : screen_width, 'receptive_height' : receptive_height, 'receptive_width' : receptive_width, 'target_found' : target_found, \
+            'target_bbox' : target_bbox, 'X' : scanpath_x, 'Y' : scanpath_y, 'T' : scanpath['T'], 'target_object' : scanpath['task'], 'max_fixations' : max_fixations}
 
 # Save a file for each subject
 for subject in subjects:
@@ -113,6 +113,6 @@ for subject in subjects:
 
 
 print('Total targets found: ' + str(targets_found) + '. Wrong targets found: ' + str(wrong_targets_found))
+print('Largest scanpath: ' + str(largest_scanpath))
 print('Number of repeated images: ' + str(len(repeated_images)))
 print('Scanpaths with shorter distance than ' + str((receptive_height, receptive_width)) + ': ' + str(scanpaths_with_shorter_distance_than_receptive_size))
-print('Largest scanpath: ' + str(largest_scanpath))
