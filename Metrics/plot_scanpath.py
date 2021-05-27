@@ -26,8 +26,20 @@ def plot_scanpath(img, xs, ys, bbox=None, title=None):
         plt.annotate("{}".format(i + 1), xy=(xs[i], ys[i] + 3), fontsize=10, ha="center", va="center")
 
     if bbox is not None:
-        rect = Rectangle((bbox[1], bbox[0]), bbox[2], bbox[3], alpha=0.5, edgecolor='yellow', facecolor='none', linewidth=2)
+        rect = Rectangle((bbox[1], bbox[0]), bbox[2], bbox[3], alpha=0.7, edgecolor='red', facecolor='none', linewidth=2)
         ax.add_patch(rect)
+
+    # Para graficar grilla, en el caso de cIBS
+    # box_size = 128
+    # box_x = 0
+    # box_y = 0
+    # for row in range(6):
+    #     box_y = box_size * row
+    #     for column in range(8):
+    #         box_x = box_size * column
+    #         rect = Rectangle((box_x, box_y), box_size, box_size, alpha=0.5, edgecolor='yellow', facecolor='none', linewidth=2)
+    #         ax.add_patch(rect)
+
 
     ax.axis('off')
     if title is not None:
