@@ -11,8 +11,8 @@ targetsPropertiesFile = open('../trials_properties.json')
 targetsPropertiesData = json.load(targetsPropertiesFile)
 
 numImages = 240
-receptive_size = (200, 200)
-image_size = (1024, 1280)
+receptive_size = (45, 45)
+image_size  = (1024, 1280)
 screen_size = (1024, 1280)
 
 trialsSequence = loadmat(trialsSequenceFile)
@@ -24,7 +24,7 @@ targets_found = 0
 wrong_targets_found = 0
 
 scanpaths_with_shorter_distance_than_receptive_size = 0
-shortest_consecutive_fixations_coord_difference = (9999, 9999)
+shortest_consecutive_fixations_coord_difference     = (9999, 9999)
 for subjectDataFile in subjectsFiles:
     if (not(subjectDataFile.endswith('_oracle.mat')) or not(subjectDataFile.endswith('.mat'))):
         continue
@@ -64,10 +64,10 @@ for subjectDataFile in subjectsFiles:
         target_bounding_box = [target_start_row, target_start_column, target_end_row, target_end_column]
 
         target_center = (target_start_row + (current_target['target_height'] // 2), target_start_column + (current_target['target_width'] // 2))
-        target_lower_row_bound  = target_center[0] - receptive_size[0]
-        target_upper_row_bound  = target_center[0] + receptive_size[0]
-        target_lower_column_bound = target_center[1] - receptive_size[1]
-        target_upper_column_bound = target_center[1] + receptive_size[1]
+        target_lower_row_bound  = target_center[0] - 200
+        target_upper_row_bound  = target_center[0] + 200
+        target_lower_column_bound = target_center[1] - 200
+        target_upper_column_bound = target_center[1] + 200
         if (target_lower_row_bound < 0): target_lower_row_bound = 0
         if (target_upper_row_bound > image_size[0]): target_upper_row_bound = image_size[0]
         if (target_lower_column_bound < 0): target_lower_column_bound = 0
@@ -75,7 +75,8 @@ for subjectDataFile in subjectsFiles:
 
         last_fixation_X = fix_posX[number_of_fixations - 1]
         last_fixation_Y = fix_posY[number_of_fixations - 1]
-        between_bounds = (target_lower_row_bound <= last_fixation_Y) and (target_upper_row_bound >= last_fixation_Y) and (target_lower_column_bound <= last_fixation_X) and (target_upper_column_bound >= last_fixation_X)
+        between_bounds = (target_lower_row_bound <= last_fixation_Y) and (target_upper_row_bound >= last_fixation_Y) and \
+                         (target_lower_column_bound <= last_fixation_X) and (target_upper_column_bound >= last_fixation_X)
         if target_found:
             if between_bounds:
                 targets_found += 1
@@ -90,13 +91,13 @@ for subjectDataFile in subjectsFiles:
             distance_between_consecutive_fixations = [np.linalg.norm(np.array(fix_1) - np.array(fix_2)) for fix_1, fix_2 in zip(fixations, fixations[1:])]
             shortest_distance_between_consecutive_fixations = min(distance_between_consecutive_fixations)
             fixation_number = distance_between_consecutive_fixations.index(shortest_distance_between_consecutive_fixations)
-            coordinate_difference_of_shortest_consecutive_fixations = (abs(fix_posX[fixation_number] - fix_posX[fixation_number + 1]), abs(fix_posY[fixation_number] - fix_posY[fixation_number + 1]))
-            if coordinate_difference_of_shortest_consecutive_fixations[0] < (receptive_size[0] / 2) and coordinate_difference_of_shortest_consecutive_fixations[1] < (receptive_size[1] / 2):
+            shortest_consecutive_fixations_distance = (abs(fix_posX[fixation_number] - fix_posX[fixation_number + 1]), abs(fix_posY[fixation_number] - fix_posY[fixation_number + 1]))
+            if shortest_consecutive_fixations_distance[0] < (receptive_size[0] / 2) and shortest_consecutive_fixations_distance[1] < (receptive_size[1] / 2):
                 scanpaths_with_shorter_distance_than_receptive_size += 1
-                if coordinate_difference_of_shortest_consecutive_fixations[0] < shortest_consecutive_fixations_coord_difference[0] \
-                    and coordinate_difference_of_shortest_consecutive_fixations[1] < shortest_consecutive_fixations_coord_difference[1]:
-                    shortest_consecutive_fixations_coord_difference = coordinate_difference_of_shortest_consecutive_fixations
-                    print("Subject: " + subjectNumber + "; stimuli: " + str(stimuli) + "; trial: " + str(trialNumber) + ". Fixation numbers: " + str(fixation_number + 1) + " " + str(fixation_number + 2) + ". Coord. difference: " + str(coordinate_difference_of_shortest_consecutive_fixations))
+                if shortest_consecutive_fixations_distance[0] < shortest_consecutive_fixations_coord_difference[0] \
+                    and shortest_consecutive_fixations_distance[1] < shortest_consecutive_fixations_coord_difference[1]:
+                    shortest_consecutive_fixations_coord_difference = shortest_consecutive_fixations_distance
+                    print("Subject: " + subjectNumber + "; stimuli: " + str(stimuli) + "; trial: " + str(trialNumber) + ". Fixation numbers: " + str(fixation_number + 1) + " " + str(fixation_number + 2) + ". Coord. difference: " + str(shortest_consecutive_fixations_distance))
 
         fix_startTime = currentSubjectData['FixData']['Fix_starttime'][0][0][trialNumber][0].flatten()
         fix_endTime = currentSubjectData['FixData']['Fix_time'][0][0][trialNumber][0].flatten()
@@ -112,13 +113,15 @@ for subjectDataFile in subjectsFiles:
         subjectTrialsInfo[imageName] = { "subject" : subjectNumber, "dataset" : "IVSN Natural Design Dataset", "image_height" : image_size[0], "image_width" : image_size[1], "screen_height" : screen_size[0], "screen_width" : screen_size[1], "receptive_height" : receptive_size[0], "receptive_width" : receptive_size[1], \
             "target_found" : target_found, "target_bbox" : target_bounding_box, "X" : fix_posX.tolist(), "Y" : fix_posY.tolist(), "T" : fix_time.tolist(), "target_object" : "TBD", "max_fixations" : 80}
         stimuliProcessed.append(stimuli)
+
     subject_save_file = 'subj' + subjectNumber + '_scanpaths.json'
     if not(path.exists(save_path)):
         mkdir(save_path)
+
     with open(save_path + subject_save_file, 'w') as fp:
-        json.dump(subjectTrialsInfo, fp, indent = 4)
+        json.dump(subjectTrialsInfo, fp, indent=4)
         fp.close()
 
-print("Targets found: " + str(targets_found) + ". Wrong targets found: " + str(wrong_targets_found))
-print("Scanpaths with consecutive fixations in a shorter distance than 200x200: " + str(scanpaths_with_shorter_distance_than_receptive_size))
+print("Total targets found: " + str(targets_found) + ". Wrong targets found: " + str(wrong_targets_found))
+print("Scanpaths with consecutive fixations in a shorter distance than " + str(receptive_size) + ": " + str(scanpaths_with_shorter_distance_than_receptive_size))
 print("Min. coordinate difference in consecutive fixations:" + str(shortest_consecutive_fixations_coord_difference))
