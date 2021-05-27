@@ -29,6 +29,7 @@ with open(human_scanpaths_valid_file, 'r') as fp:
 human_scanpaths = human_scanpaths_train + human_scanpaths_valid
 
 subjects = {}
+repeated_images     = []
 targets_found       = 0
 wrong_targets_found = 0
 for scanpath in human_scanpaths:
@@ -41,6 +42,12 @@ for scanpath in human_scanpaths:
         subjects[current_subject] = subject_scanpaths
 
     image_name      = scanpath['name']
+    if image_name in subject_scanpaths:
+        print('Repeated trial in subject ' + str(current_subject) + '. There is more than one scanpath for ' + image_name)
+        if not image_name in repeated_images:
+            repeated_images.append(image_name)
+        continue
+
     scanpath_x      = scanpath['X']
     scanpath_y      = scanpath['Y']
     scanpath_length = scanpath['length']
@@ -87,3 +94,4 @@ for subject in subjects:
 
 
 print('Total targets found: ' + str(targets_found) + '. Wrong targets found: ' + str(wrong_targets_found))
+print('Number of repeated images: ' + str(len(repeated_images)))
