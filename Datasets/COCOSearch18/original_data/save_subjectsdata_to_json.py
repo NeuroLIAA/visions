@@ -72,8 +72,8 @@ for scanpath in human_scanpaths:
     last_fixation_x = scanpath_x[scanpath_length - 1]
     last_fixation_y = scanpath_y[scanpath_length - 1]
     # Sanity check
-    between_bounds = target_bbox[0] <= last_fixation_y and target_bbox[2] >= last_fixation_y and \
-                     target_bbox[1] <= last_fixation_x and target_bbox[3] >= last_fixation_x
+    between_bounds = target_bbox[0] <= last_fixation_y + receptive_height and target_bbox[2] >= last_fixation_y - receptive_height and \
+                     target_bbox[1] <= last_fixation_x + receptive_width  and target_bbox[3] >= last_fixation_x - receptive_width
     if target_found and not between_bounds:
         print('Subject: ' + str(current_subject) + '; trial: ' + image_name + '. Last fixation doesn\'t fall between target\'s bounds')
         print('Target bbox: ' + str(target_bbox) + '. Last fixation: ' + str((last_fixation_y, last_fixation_x)) + '\n')
