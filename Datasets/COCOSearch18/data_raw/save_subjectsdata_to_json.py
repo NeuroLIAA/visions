@@ -37,8 +37,8 @@ with open(human_scanpaths_valid_file, 'r') as fp:
 
 human_scanpaths = human_scanpaths_train + human_scanpaths_valid
 
-images_tasks   = {}
-renamed_images = 0
+images_tasks  = {}
+unused_images = 0
 
 # TODO: Calcular fijación inicial promedio
 
@@ -78,7 +78,6 @@ for scanpath in human_scanpaths:
                 image_info['new_name'] = new_name
                 images_tasks[new_name] = { 'task' : task, 'new_name' : None }
                 shutil.copyfile(images_dir + image_name, images_dir + new_name)
-                renamed_images += 1
 
             image_info = images_tasks[new_name]
             image_name = new_name
@@ -141,8 +140,14 @@ for subject in subjects:
     with open(save_path + subject_scanpaths_file, 'w') as fp:
         json.dump(subjects[subject], fp, indent=4)
 
+# Clean up unused images
+categories = [filename for filename in os.listdir(images_dir) if os.path.isdir(images_dir + filename)]
+for category in categories:
+    unused_images += len(os.listdir(images_dir + category))
+    shutil.rmtree(images_dir + category)
+
 
 print('Total targets found: ' + str(targets_found) + '. Wrong targets found: ' + str(wrong_targets_found))
-print('Number of renamed images: ' + str(renamed_images))
+print('Number of unused images: ' + str(unused_images))
 print('Largest target found scanpath: ' + str(largest_scanpath))
-print('Scanpaths with shorter distance than ' + str((receptive_height, receptive_width)) + ': ' + str(scanpaths_with_shorter_distance_than_receptive_size))
+print('Scanpaths where saccades have shorter distance than ' + str((receptive_height, receptive_width)) + ': ' + str(scanpaths_with_shorter_distance_than_receptive_size))
