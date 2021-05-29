@@ -1,11 +1,19 @@
 import os
+import shutil
 import json
 import numpy as np
+
+""" This script requires that the COCOSearch18 images are in the folder ../images.
+    Since the same image can be used for several tasks, those images are renamed as separate files for each task.
+    Images are also extracted from the category folder and placed in ../images.
+    Only 80% of the dataset is available, so there are some images that are never used in the human trials files.
+"""
 
 human_scanpaths_train_file = './coco_search18_fixations_TP_train_split1.json' 
 human_scanpaths_valid_file = './coco_search18_fixations_TP_validation_split1.json'
 
-save_path = '../human_scanpaths/'
+images_dir = '../images/'
+save_path  = '../human_scanpaths/'
 image_height = 1050
 image_width  = 1680
 
@@ -29,14 +37,17 @@ with open(human_scanpaths_valid_file, 'r') as fp:
 
 human_scanpaths = human_scanpaths_train + human_scanpaths_valid
 
-subjects = {}
+images_tasks   = {}
+renamed_images = 0
 
-repeated_images     = []
+# TODO: Calcular fijación inicial promedio
+
 targets_found       = 0
 wrong_targets_found = 0
 largest_scanpath    = 0
 scanpaths_with_shorter_distance_than_receptive_size = 0
 
+subjects = {}
 for scanpath in human_scanpaths:
     current_subject = scanpath['subject']
 
@@ -47,12 +58,30 @@ for scanpath in human_scanpaths:
         subjects[current_subject] = subject_scanpaths
 
     image_name = scanpath['name']
+    task       = scanpath['task']
+    
+    # Check if the task of the trial is different this time for this image
+    if not image_name in images_tasks:
+        images_tasks[image_name] = { 'task' : task, 'new_name' : None }
+        shutil.move(images_dir + task + '/' + image_name, images_dir + image_name)
+    else:
+        image_info = images_tasks[image_name]
+        while task != image_info['task']:
+            # Remove file from subfolder
+            image_path = images_dir + task + '/' + image_name
+            if os.path.exists(image_path):
+                os.remove(image_path)
+            # Iterate through dict to define a new name for the file
+            new_name = image_info['new_name']
+            if new_name is None:
+                new_name = str(int(image_name[0]) + 1) + image_name[1:]
+                image_info['new_name'] = new_name
+                images_tasks[new_name] = { 'task' : task, 'new_name' : None }
+                shutil.copyfile(images_dir + image_name, images_dir + new_name)
+                renamed_images += 1
 
-    if image_name in subject_scanpaths:
-        print('Repeated trial in subject ' + str(current_subject) + '. There is more than one scanpath for ' + image_name)
-        if not image_name in repeated_images:
-            repeated_images.append(image_name)
-        continue
+            image_info = images_tasks[new_name]
+            image_name = new_name
 
     scanpath_x      = scanpath['X']
     scanpath_y      = scanpath['Y']
@@ -60,8 +89,6 @@ for scanpath in human_scanpaths:
     target_bbox     = scanpath['bbox']
     # New target bounding box shape will be [first row, first column, last row, last column]
     target_bbox = [target_bbox[1], target_bbox[0], target_bbox[1] + target_bbox[3], target_bbox[0] + target_bbox[2]]
-
-    if scanpath_length > largest_scanpath: largest_scanpath = scanpath_length
 
     if scanpath['correct'] == 1:
         target_found = True
@@ -77,8 +104,11 @@ for scanpath in human_scanpaths:
     if target_found and not between_bounds:
         print('Subject: ' + str(current_subject) + '; trial: ' + image_name + '. Last fixation doesn\'t fall between target\'s bounds')
         print('Target bbox: ' + str(target_bbox) + '. Last fixation: ' + str((last_fixation_y, last_fixation_x)) + '\n')
-        target_found   = False
+        target_found = False
         wrong_targets_found += 1
+
+    if target_found and scanpath_length > largest_scanpath: 
+        largest_scanpath = scanpath_length
 
     if current_subject < 10:
         current_subject_string = '0' + str(current_subject)
@@ -93,7 +123,7 @@ for scanpath in human_scanpaths:
 
         fixation_number = distance_between_consecutive_fixations.index(shortest_distance_between_consecutive_fixations)
         shortest_consecutive_fixations_distance = (abs(scanpath_x[fixation_number] - scanpath_x[fixation_number + 1]), abs(scanpath_y[fixation_number] - scanpath_y[fixation_number + 1]))
-        if shortest_consecutive_fixations_distance[0] < receptive_height / 2 and shortest_consecutive_fixations_distance[1] < receptive_width / 2:
+        if shortest_consecutive_fixations_distance[0] < receptive_height // 2 and shortest_consecutive_fixations_distance[1] < receptive_width // 2:
             scanpaths_with_shorter_distance_than_receptive_size += 1
 
     subject_scanpaths[image_name] = {'subject' : current_subject_string, 'dataset' : 'COCOSearch18 Dataset', 'image_height' : image_height, 'image_width' : image_width, \
@@ -113,6 +143,6 @@ for subject in subjects:
 
 
 print('Total targets found: ' + str(targets_found) + '. Wrong targets found: ' + str(wrong_targets_found))
-print('Largest scanpath: ' + str(largest_scanpath))
-print('Number of repeated images: ' + str(len(repeated_images)))
+print('Number of renamed images: ' + str(renamed_images))
+print('Largest target found scanpath: ' + str(largest_scanpath))
 print('Scanpaths with shorter distance than ' + str((receptive_height, receptive_width)) + ': ' + str(scanpaths_with_shorter_distance_than_receptive_size))
