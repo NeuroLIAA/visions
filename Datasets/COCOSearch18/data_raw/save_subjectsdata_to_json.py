@@ -153,6 +153,6 @@ for category in categories:
 
 print('Total targets found: ' + str(targets_found) + '. Wrong targets found: ' + str(wrong_targets_found))
 print('Number of unused images: ' + str(unused_images))
-print('Initial fixation average: ' + str(round(np.mean(initial_fixations_y), 2), round(np.mean(initial_fixations_x), 2)))
+print('Initial fixation mean: ' + str(round(np.mean(initial_fixations_y), 2), round(np.mean(initial_fixations_x), 2)))
 print('Largest target found scanpath: ' + str(largest_scanpath))
 print('Scanpaths where saccades have shorter distance than ' + str((receptive_height, receptive_width)) + ': ' + str(scanpaths_with_shorter_distance_than_receptive_size))
