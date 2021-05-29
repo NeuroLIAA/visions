@@ -40,7 +40,8 @@ human_scanpaths = human_scanpaths_train + human_scanpaths_valid
 images_tasks  = {}
 unused_images = 0
 
-# TODO: Calcular fijación inicial promedio
+initial_fixations_x = []
+initial_fixations_y = []
 
 targets_found       = 0
 wrong_targets_found = 0
@@ -94,6 +95,9 @@ for scanpath in human_scanpaths:
         targets_found += 1
     else:
         target_found = False
+
+    initial_fixations_x.append(scanpath_x[0])
+    initial_fixations_y.append(scanpath_y[0])
     
     last_fixation_x = scanpath_x[scanpath_length - 1]
     last_fixation_y = scanpath_y[scanpath_length - 1]
@@ -149,5 +153,6 @@ for category in categories:
 
 print('Total targets found: ' + str(targets_found) + '. Wrong targets found: ' + str(wrong_targets_found))
 print('Number of unused images: ' + str(unused_images))
+print('Initial fixation average: ' + str(round(np.mean(initial_fixations_y), 2), round(np.mean(initial_fixations_x), 2)))
 print('Largest target found scanpath: ' + str(largest_scanpath))
 print('Scanpaths where saccades have shorter distance than ' + str((receptive_height, receptive_width)) + ': ' + str(scanpaths_with_shorter_distance_than_receptive_size))
