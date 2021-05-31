@@ -138,6 +138,8 @@ for scanpath in human_scanpaths:
 
 initial_fixation_mean = (round(np.mean(initial_fixations_y)), round(np.mean(initial_fixations_x)))
 
+trials_properties = []
+trials_processed  = []
 for subject in subjects:
     if subject < 10:
         subject_string = '0' + str(subject)
@@ -150,14 +152,12 @@ for subject in subjects:
         json.dump(subjects[subject], fp, indent=4)
 
     # Build trials properties from human scanpaths
-    trials_properties = []
-    trials_processed  = []
     subject_trials = subjects[subject]
     for trial in subject_trials:
         if trial in trials_processed:
             continue
 
-        image_name = trial
+        image_name  = trial
         target_name = image_name[:-4] + '_template' + image_name[-4:]
         target_matched_row    = trial['bbox'][0]
         target_matched_column = trial['bbox'][1]
@@ -170,16 +170,20 @@ for subject in subjects:
         # Crop target
         image    = io.imread(images_dir + image)
         template = image[target_bbox[0]:target_bbox[2], target_bbox[1]:target_bbox[3]]
+        if not os.path.exists(targets_dir):
+            os.mkdir(targets_dir)
         io.imsave(targets_dir + target_name, template)
 
         trials_processed.append(image_name)        
+
+with open('../trials_properties.json', 'w') as fp:
+    json.dump(trials_properties, fp)
 
 # Clean up unused images
 categories = [filename for filename in os.listdir(images_dir) if os.path.isdir(images_dir + filename)]
 for category in categories:
     unused_images += len(os.listdir(images_dir + category))
     shutil.rmtree(images_dir + category)
-
 
 print('Total targets found: ' + str(targets_found) + '. Wrong targets found: ' + str(wrong_targets_found))
 print('Initial fixation mean: ' + str(initial_fixation_mean))
