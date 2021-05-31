@@ -2,6 +2,7 @@ import os
 import shutil
 import json
 import numpy as np
+from skimage import io
 
 """ This script requires that the COCOSearch18 images are in the folder ../images.
     Since the same image can be used for several tasks, those images are renamed as separate files for each task.
@@ -12,8 +13,9 @@ import numpy as np
 human_scanpaths_train_file = './coco_search18_fixations_TP_train_split1.json' 
 human_scanpaths_valid_file = './coco_search18_fixations_TP_validation_split1.json'
 
-images_dir = '../images/'
-save_path  = '../human_scanpaths/'
+images_dir      = '../images/'
+targets_dir     = '../templates/'
+scanpaths_dir   = '../human_scanpaths/'
 image_height = 1050
 image_width  = 1680
 
@@ -24,10 +26,10 @@ screen_width  = 1650
 receptive_height = 54
 receptive_width  = 54
 
-max_fixations = 45
+max_fixations = 45  
 
-if not os.path.exists(save_path):
-    os.mkdir(save_path)
+if not os.path.exists(scanpaths_dir):
+    os.mkdir(scanpaths_dir)
 
 with open(human_scanpaths_train_file, 'r') as fp:
     human_scanpaths_train = json.load(fp)
@@ -143,8 +145,8 @@ for subject in subjects:
         subject_string = str(subject)
 
     # Save a file for each subject
-    subject_scanpaths_file = 'subj' + subject_string + '_scanpaths.json'
-    with open(save_path + subject_scanpaths_file, 'w') as fp:
+    subject_scanpaths_file   = 'subj' + subject_string + '_scanpaths.json'
+    with open(scanpaths_dir + subject_scanpaths_file, 'w') as fp:
         json.dump(subjects[subject], fp, indent=4)
 
     # Build trials properties from human scanpaths
@@ -156,14 +158,19 @@ for subject in subjects:
             continue
 
         image_name = trial
-        target     = image_name[:-4] + '_template' + image_name[-4:]
+        target_name = image_name[:-4] + '_template' + image_name[-4:]
         target_matched_row    = trial['bbox'][0]
         target_matched_column = trial['bbox'][1]
         target_height         = trial['bbox'][2] - target_matched_row
         target_width          = trial['bbox'][3] - target_matched_column
-        trials_properties.append({'image' : image_name, 'target' : target, 'dataset' : 'COCOSearch18 Dataset', \
+        trials_properties.append({'image' : image_name, 'target' : target_name, 'dataset' : 'COCOSearch18 Dataset', \
             'target_matched_row' : target_matched_row, 'target_matched_column' : target_matched_column, 'target_height' : target_height, 'target_width' : target_width, \
                 'image_height' : image_height, 'image_width' : image_width, 'initial_fixation_row' : initial_fixation_mean[0], 'initial_fixation_column' : initial_fixation_mean[1]})
+
+        # Crop target
+        image    = io.imread(images_dir + image)
+        template = image[target_bbox[0]:target_bbox[2], target_bbox[1]:target_bbox[3]]
+        io.imsave(targets_dir + target_name, template)
 
         trials_processed.append(image_name)        
 
