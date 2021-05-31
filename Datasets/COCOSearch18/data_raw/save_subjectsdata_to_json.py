@@ -133,16 +133,39 @@ for scanpath in human_scanpaths:
         'screen_height' : screen_height, 'screen_width' : screen_width, 'receptive_height' : receptive_height, 'receptive_width' : receptive_width, 'target_found' : target_found, \
             'target_bbox' : target_bbox, 'X' : scanpath_x, 'Y' : scanpath_y, 'T' : scanpath['T'], 'target_object' : scanpath['task'], 'max_fixations' : max_fixations}
 
-# Save a file for each subject
+
+initial_fixation_mean = (round(np.mean(initial_fixations_y)), round(np.mean(initial_fixations_x)))
+
 for subject in subjects:
     if subject < 10:
         subject_string = '0' + str(subject)
     else:
         subject_string = str(subject)
 
+    # Save a file for each subject
     subject_scanpaths_file = 'subj' + subject_string + '_scanpaths.json'
     with open(save_path + subject_scanpaths_file, 'w') as fp:
         json.dump(subjects[subject], fp, indent=4)
+
+    # Build trials properties from human scanpaths
+    trials_properties = []
+    trials_processed  = []
+    subject_trials = subjects[subject]
+    for trial in subject_trials:
+        if trial in trials_processed:
+            continue
+
+        image_name = trial
+        target     = image_name[:-4] + '_template' + image_name[-4:]
+        target_matched_row    = trial['bbox'][0]
+        target_matched_column = trial['bbox'][1]
+        target_height         = trial['bbox'][2] - target_matched_row
+        target_width          = trial['bbox'][3] - target_matched_column
+        trials_properties.append({'image' : image_name, 'target' : target, 'dataset' : 'COCOSearch18 Dataset', \
+            'target_matched_row' : target_matched_row, 'target_matched_column' : target_matched_column, 'target_height' : target_height, 'target_width' : target_width, \
+                'image_height' : image_height, 'image_width' : image_width, 'initial_fixation_row' : initial_fixation_mean[0], 'initial_fixation_column' : initial_fixation_mean[1]})
+
+        trials_processed.append(image_name)        
 
 # Clean up unused images
 categories = [filename for filename in os.listdir(images_dir) if os.path.isdir(images_dir + filename)]
@@ -152,7 +175,7 @@ for category in categories:
 
 
 print('Total targets found: ' + str(targets_found) + '. Wrong targets found: ' + str(wrong_targets_found))
+print('Initial fixation mean: ' + str(initial_fixation_mean))
 print('Number of unused images: ' + str(unused_images))
-print('Initial fixation mean: ' + str(round(np.mean(initial_fixations_y), 2), round(np.mean(initial_fixations_x), 2)))
 print('Largest target found scanpath: ' + str(largest_scanpath))
 print('Scanpaths where saccades have shorter distance than ' + str((receptive_height, receptive_width)) + ': ' + str(scanpaths_with_shorter_distance_than_receptive_size))
