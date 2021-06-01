@@ -3,9 +3,6 @@ from .visual_searcher import VisualSearcher
 from .grid import Grid
 from .utils import utils
 from . import prior
-from multiprocessing import Process
-from multiprocessing.managers import SyncManager
-from os import cpu_count
 import numpy as np
 import time
 import sys
