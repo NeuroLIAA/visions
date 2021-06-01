@@ -44,11 +44,16 @@ unused_images = 0
 
 initial_fixations_x = []
 initial_fixations_y = []
+# Computed from previous iterations
+initial_fixation = (509, 816)
 
 targets_found       = 0
 wrong_targets_found = 0
 largest_scanpath    = 0
 scanpaths_with_shorter_distance_than_receptive_size = 0
+
+trials_properties = []
+trials_processed  = []
 
 subjects = {}
 for scanpath in human_scanpaths:
@@ -66,21 +71,21 @@ for scanpath in human_scanpaths:
     # Check if the task of the trial is different this time for this image
     if not image_name in images_tasks:
         images_tasks[image_name] = { 'task' : task, 'new_name' : None }
-        shutil.move(images_dir + task + '/' + image_name, images_dir + image_name)
+        # shutil.move(images_dir + task + '/' + image_name, images_dir + image_name)
     else:
         image_info = images_tasks[image_name]
         while task != image_info['task']:
             # Remove file from subfolder
-            image_path = images_dir + task + '/' + image_name
-            if os.path.exists(image_path):
-                os.remove(image_path)
+            # image_path = images_dir + task + '/' + image_name
+            # if os.path.exists(image_path):
+            #     os.remove(image_path)
             # Iterate through dict to define a new name for the file
             new_name = image_info['new_name']
             if new_name is None:
                 new_name = str(int(image_name[0]) + 1) + image_name[1:]
                 image_info['new_name'] = new_name
                 images_tasks[new_name] = { 'task' : task, 'new_name' : None }
-                shutil.copyfile(images_dir + image_name, images_dir + new_name)
+                # shutil.copyfile(images_dir + image_name, images_dir + new_name)
 
             image_info = images_tasks[new_name]
             image_name = new_name
@@ -120,6 +125,28 @@ for scanpath in human_scanpaths:
     else:
         current_subject_string = str(current_subject)
 
+    if not image_name in trials_processed:
+        # Save trial info
+        target_name = image_name[:-4] + '_template' + image_name[-4:]
+        target_matched_row    = target_bbox[0]
+        target_matched_column = target_bbox[1]
+        target_height         = target_bbox[2] - target_matched_row
+        target_width          = target_bbox[3] - target_matched_column
+        trials_properties.append({'image' : image_name, 'target' : target_name, 'dataset' : 'COCOSearch18 Dataset', \
+            'target_matched_row' : target_matched_row, 'target_matched_column' : target_matched_column, 'target_height' : target_height, 'target_width' : target_width, \
+                'image_height' : image_height, 'image_width' : image_width, 'initial_fixation_row' : initial_fixation[0], 'initial_fixation_column' : initial_fixation[1], \
+                    'target_object' : task})
+
+        # Crop target
+        image    = io.imread(images_dir + image_name)
+        template = image[target_bbox[0]:target_bbox[2], target_bbox[1]:target_bbox[3]]
+        if not os.path.exists(targets_dir):
+            os.mkdir(targets_dir)
+        
+        io.imsave(targets_dir + target_name, template, check_contrast=False)
+
+        trials_processed.append(image_name)
+
     # Check for distance between consecutive fixations
     if target_found and scanpath_length > 1:
         fixations = [fix for fix in zip(scanpath_x, scanpath_y)]
@@ -135,55 +162,28 @@ for scanpath in human_scanpaths:
         'screen_height' : screen_height, 'screen_width' : screen_width, 'receptive_height' : receptive_height, 'receptive_width' : receptive_width, 'target_found' : target_found, \
             'target_bbox' : target_bbox, 'X' : scanpath_x, 'Y' : scanpath_y, 'T' : scanpath['T'], 'target_object' : scanpath['task'], 'max_fixations' : max_fixations}
 
+# Save trials properties
+with open('../trials_properties.json', 'w') as fp:
+    json.dump(trials_properties, fp, indent=4)
 
-initial_fixation_mean = (round(np.mean(initial_fixations_y)), round(np.mean(initial_fixations_x)))
-
-trials_properties = []
-trials_processed  = []
+# Save a human_scanpaths file for each subject
 for subject in subjects:
     if subject < 10:
         subject_string = '0' + str(subject)
     else:
         subject_string = str(subject)
 
-    # Save a file for each subject
     subject_scanpaths_file   = 'subj' + subject_string + '_scanpaths.json'
     with open(scanpaths_dir + subject_scanpaths_file, 'w') as fp:
         json.dump(subjects[subject], fp, indent=4)
-
-    # Build trials properties from human scanpaths
-    subject_trials = subjects[subject]
-    for trial in subject_trials:
-        if trial in trials_processed:
-            continue
-
-        image_name  = trial
-        target_name = image_name[:-4] + '_template' + image_name[-4:]
-        target_matched_row    = trial['bbox'][0]
-        target_matched_column = trial['bbox'][1]
-        target_height         = trial['bbox'][2] - target_matched_row
-        target_width          = trial['bbox'][3] - target_matched_column
-        trials_properties.append({'image' : image_name, 'target' : target_name, 'dataset' : 'COCOSearch18 Dataset', \
-            'target_matched_row' : target_matched_row, 'target_matched_column' : target_matched_column, 'target_height' : target_height, 'target_width' : target_width, \
-                'image_height' : image_height, 'image_width' : image_width, 'initial_fixation_row' : initial_fixation_mean[0], 'initial_fixation_column' : initial_fixation_mean[1]})
-
-        # Crop target
-        image    = io.imread(images_dir + image)
-        template = image[target_bbox[0]:target_bbox[2], target_bbox[1]:target_bbox[3]]
-        if not os.path.exists(targets_dir):
-            os.mkdir(targets_dir)
-        io.imsave(targets_dir + target_name, template)
-
-        trials_processed.append(image_name)        
-
-with open('../trials_properties.json', 'w') as fp:
-    json.dump(trials_properties, fp)
 
 # Clean up unused images
 categories = [filename for filename in os.listdir(images_dir) if os.path.isdir(images_dir + filename)]
 for category in categories:
     unused_images += len(os.listdir(images_dir + category))
     shutil.rmtree(images_dir + category)
+
+initial_fixation_mean = (round(np.mean(initial_fixations_y)), round(np.mean(initial_fixations_x)))
 
 print('Total targets found: ' + str(targets_found) + '. Wrong targets found: ' + str(wrong_targets_found))
 print('Initial fixation mean: ' + str(initial_fixation_mean))
