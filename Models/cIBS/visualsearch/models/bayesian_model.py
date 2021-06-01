@@ -127,9 +127,6 @@ class BayesianModel:
              + np.square(visibility_map_at_target_location)) / (2 * visibility_map_at_fixation)
         m =  visibility_map_at_target_location /  visibility_map_at_fixation
 
-        # Ignore possible inf or NaN values
-        masked_b = np.ma.masked_invalid(b)
-
         # We ensure the product is only for i != j (normcdf(1000000) = 1)
         m[target_location_row, target_location_column] = 0
         b[target_location_row, target_location_column] = 1000000
@@ -138,10 +135,7 @@ class BayesianModel:
         if not np.any(m):
             min_w = -20
         else:
-            masked_m = np.ma.array(m)
-            masked_b[target_location_row, target_location_column] = np.ma.masked
-            masked_m[target_location_row, target_location_column] = np.ma.masked
-            min_w = max(np.max((-20 - masked_b) / masked_m), -20)
+            min_w = max(np.max((-20 - b[m > 0]) / m[m > 0]), -20)
         
         max_w = 20
 
