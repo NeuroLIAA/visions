@@ -20,7 +20,7 @@ class VisualSearcher:
                     scale_factor          (int)    : ??? default value is 3
                     additive_shift        (int)    : ??? default value is 4
                     save_probability_maps (bool)   : indicates whether to save the posterior to a file after each saccade or not
-                    multiprocessing       (bool)   : if true, bayesian search is carried out in a parallelized form
+                    proc_number           (int)    : number of processes on which to execute bayesian search
                 grid           (Grid)          : representation of an image with cells instead of pixels
                 visibility_map (VisibilityMap) : visibility map with the size of the grid
                 Output path    (string)        : folder path where scanpaths and probability maps will be stored
@@ -32,7 +32,7 @@ class VisualSearcher:
         self.seed                   = config['seed']
         self.save_posterior         = config['save_probability_maps']
         self.visibility_map         = visibility_map
-        self.search_model           = self.initialize_model(config['search_model'], self.grid.size(), visibility_map, config['norm_cdf_tolerance'], config['multiprocessing'])
+        self.search_model           = self.initialize_model(config['search_model'], self.grid.size(), visibility_map, config['norm_cdf_tolerance'], config['proc_number'])
         self.target_similarity_name = config['target_similarity']
         self.output_path            = output_path       
 
@@ -145,11 +145,11 @@ class VisualSearcher:
 
         return [fixations_as_list[fix_number] for fix_number in range(axis, len(fixations_as_list), 2)]
 
-    def initialize_model(self, search_model, grid_size, visibility_map, norm_cdf_tolerance, multiprocessing):
+    def initialize_model(self, search_model, grid_size, visibility_map, norm_cdf_tolerance, number_of_processes):
         if search_model == 'greedy':
             return GreedyModel()
         else:
-            return BayesianModel(grid_size, visibility_map, norm_cdf_tolerance, multiprocessing)
+            return BayesianModel(grid_size, visibility_map, norm_cdf_tolerance, number_of_processes)
 
     def initialize_target_similarity_map(self, target_similarity_name, image, target, target_bbox_, seed, grid):
         if target_similarity_name == 'geisler':

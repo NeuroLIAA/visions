@@ -20,9 +20,8 @@ def run(config, dataset_info, trials_properties, output_path, sigma):
                 scale_factor      (int)      : ??? default value is 3
                 additive_shift    (int)      : ??? default value is 4
                 save_probability_maps (bool) : indicates whether to save the posterior to a file after each saccade or not
-                multiprocessing   (bool)     : if true, bayesian search is carried out in a parallelized form
+                proc_number       (int)      : number of processes on which to execute bayesian search
             Dataset info (dict). One entry. Fields:
-                name          (string) : name of the dataset
                 images_dir    (string) : folder path where search images are stored
                 targets_dir   (string) : folder path where the targets are stored
                 saliency_dir  (string) : folder path where the saliency maps are stored
@@ -43,7 +42,6 @@ def run(config, dataset_info, trials_properties, output_path, sigma):
             Output_path/scanpaths/Scanpaths.json: Dictionary indexed by image name where each entry contains the scanpath for that given image, alongside the configuration used.
             Output_path/probability_maps/image_name/: In this folder, the probability map computed for each saccade is stored. This is done for every image in trials_properties.
     """
-    dataset_name  = dataset_info['name']
     images_dir    = dataset_info['images_dir']
     targets_dir   = dataset_info['targets_dir']
     saliency_dir  = dataset_info['saliency_dir']
@@ -79,7 +77,7 @@ def run(config, dataset_info, trials_properties, output_path, sigma):
 
             if trial_scanpath:
                 # If there were no errors, save the scanpath
-                utils.add_scanpath_to_dict(image_name, image_size, trial_scanpath, target_bbox, config, dataset_name, scanpaths)
+                utils.add_scanpath_to_dict(image_name, image_size, trial_scanpath, target_bbox, config, scanpaths)
                 if trial_scanpath['target_found']:
                     targets_found += 1
     except KeyboardInterrupt:

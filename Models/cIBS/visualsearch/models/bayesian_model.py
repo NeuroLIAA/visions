@@ -6,11 +6,11 @@ from multiprocessing import Process, shared_memory
 from os import cpu_count
 
 class BayesianModel:
-    def __init__(self, grid_size, visibility_map, norm_cdf_tolerance, multiprocessing):
+    def __init__(self, grid_size, visibility_map, norm_cdf_tolerance, number_of_processes):
         self.grid_size      = grid_size
         self.visibility_map = visibility_map
         self.norm_cdf_table = self.create_norm_cdf_table(norm_cdf_tolerance)
-        self.multiprocess   = multiprocessing
+        self.number_of_processes = number_of_processes
     
     def create_norm_cdf_table(self, norm_cdf_tolerance):
         # TODO: Agregar para qué sirve
@@ -36,7 +36,7 @@ class BayesianModel:
         alpha = 1 
         probability_at_each_fixation = np.empty(shape=self.grid_size)
 
-        if self.multiprocess:
+        if self.number_of_processes > 1:
             self.parallelize_probability_computation(probability_at_each_fixation, posterior)
         else:
             self.compute_probability_on_rows(probability_at_each_fixation, posterior, rows=range(self.grid_size[0]))
@@ -48,15 +48,15 @@ class BayesianModel:
         return next_fix      
     
     def parallelize_probability_computation(self, probability_at_each_fixation, posterior):
-        " It divides the computation of the rows of the matrix probability_at_each_fixation in subprocesses "
-        " (This method is only executed if self.multiprocess is True.) "
+        " This method is only executed if self.number_of_processes is greater than one "
+        " It divides the computation of the rows of the matrix probability_at_each_fixation in self.number_of_processes processes "
         """ Input: 
                 probability_at_each_fixation (2D array) : matrix of the size of the grid which will hold the values of the probability of being correct at each location
                 posterior (2D array) : probability map of the size of the grid
         """
         try:
             # Processes will iterate over the rows of probability_at_each_fixation. Divide the rows in equal chunks.
-            number_of_procs  = cpu_count()
+            number_of_procs  = self.number_of_processes
             number_of_rows   = self.grid_size[0]
             remainder        = number_of_rows % number_of_procs
             indexes          = list(range(number_of_rows)) 
@@ -85,7 +85,7 @@ class BayesianModel:
             shared_mem.unlink()
     
     def proc_compute_probability_on_chunk(self, matrix_pointer, posterior, chunk):
-        " This method is executed by each process, were self.multiprocess to be True "
+        " This method is executed by each process, were self.number_of_processes to be greater than one "
         " It runs on a subset of the rows on probability_at_each_fixation, which is stored at matrix_pointer "
         try:
             # Attach to existing shared memory block
@@ -120,24 +120,27 @@ class BayesianModel:
 
     def compute_conditional_probability(self, target_location_row, target_location_column, posterior, visibility_map_at_fixation, alpha):
         " Computes the probability of being correct given the visibility map of the next fixation and that the true target location is (target_location_row, target_location_column) "
-        posterior_at_target_location      = posterior[target_location_row, target_location_column]
-        visibility_map_at_target_location = visibility_map_at_fixation[target_location_row, target_location_column]
+        posterior_at_target_location  = posterior[target_location_row, target_location_column]
+        visibility_at_target_location = visibility_map_at_fixation[target_location_row, target_location_column]
 
         b = (-2 * np.log(posterior / posterior_at_target_location) + np.square(visibility_map_at_fixation) \
-             + np.square(visibility_map_at_target_location)) / (2 * visibility_map_at_fixation)
-        m =  visibility_map_at_target_location /  visibility_map_at_fixation
+             + np.square(visibility_at_target_location)) / (2 * visibility_map_at_fixation)
+        m =  visibility_at_target_location /  visibility_map_at_fixation
 
         # We ensure the product is only for i != j (normcdf(1000000) = 1)
         m[target_location_row, target_location_column] = 0
         b[target_location_row, target_location_column] = 1000000
 
         # Check the limits of the integral (normcdf(-20) = 0 and so will be the product)        
-        if not np.any(m):
+        if not visibility_at_target_location:
             min_w = -20
         else:
             min_w = max(np.max((-20 - b[m > 0]) / m[m > 0]), -20)
         
         max_w = 20
+
+        # Ignore possible inf or NaN values
+        # masked_b = np.ma.masked_invalid(b)
 
         # if masked_b[m > 0].size == 0 or m[m > 0].size == 0:
         #     min_w = -20

@@ -1,5 +1,5 @@
 import json
-from os import makedirs, path, remove
+from os import makedirs, path, remove, cpu_count
 
 def load_checkpoint(output_path):
     checkpoint = {}
@@ -18,11 +18,17 @@ def load_checkpoint(output_path):
     
     return checkpoint
 
-def load_config(config_dir, config_name, checkpoint):
+def load_config(config_dir, config_name, number_of_processes, checkpoint):
     if checkpoint:
         config = checkpoint['configuration']
     else:
         config = load_dict_from_json(config_dir + config_name + '.json')
+
+    if number_of_processes == 'all':
+        config['proc_number'] = cpu_count()
+    else:
+        config['proc_number'] = int(number_of_processes)
+
     print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
     if checkpoint:
         print('Successfully loaded previously used configuration')
@@ -36,8 +42,8 @@ def load_config(config_dir, config_name, checkpoint):
     print('Scale factor: ' + str(config['scale_factor']))
     print('Additive shift: ' + str(config['additive_shift']))
     print('Random seed: ' + str(config['seed']))
-    if config['multiprocessing']:
-        print('Multiprocessing is ENABLED')
+    if config['proc_number'] > 1:
+        print('Multiprocessing is ENABLED!')
     else:
         print('Multiprocessing is DISABLED')
     if config['save_probability_maps']:
@@ -49,14 +55,14 @@ def load_dataset_info(dataset_info_file):
     return load_dict_from_json(dataset_info_file)
 
 def load_trials_properties(trials_properties_file, image_name, image_range, checkpoint):
+    trials_properties = load_dict_from_json(trials_properties_file)
+    
     if checkpoint:
         trials_properties = checkpoint['trials_properties']
     elif image_name is not None:
         trials_properties = get_trial_properties_for_image(trials_properties, image_name)
     elif image_range is not None:
         trials_properties = get_trial_properties_in_range(trials_properties, image_range)
-    else:
-        trials_properties = load_dict_from_json(trials_properties_file)
 
     return trials_properties
 
