@@ -54,11 +54,14 @@ def load_from_json(json_file_path):
     with open(json_file_path, 'r') as json_file:
         return json.load(json_file)
 
-def load_image(path, name, image_size):
+def load_image(path, name, image_size='default'):
     img = io.imread(path + name)
-    # Resize image, if necessary
-    img_resized = transform.resize(img, image_size)
-    return img_resized
+
+    if image_size != 'default':
+        # Resize image, if necessary
+        img = transform.resize(img, image_size)
+
+    return img
 
 def save_probability_map(output_path, image_name, probability_map, fixation_number):
     save_path = output_path + '/probability_maps/' + image_name + '/'

@@ -22,6 +22,7 @@ def run(config, dataset_info, trials_properties, output_path, sigma):
                 save_probability_maps (bool) : indicates whether to save the posterior to a file after each saccade or not
                 proc_number       (int)      : number of processes on which to execute bayesian search
             Dataset info (dict). One entry. Fields:
+                name          (string) : name of the dataset
                 images_dir    (string) : folder path where search images are stored
                 targets_dir   (string) : folder path where the targets are stored
                 saliency_dir  (string) : folder path where the saliency maps are stored
@@ -77,7 +78,7 @@ def run(config, dataset_info, trials_properties, output_path, sigma):
 
             if trial_scanpath:
                 # If there were no errors, save the scanpath
-                utils.add_scanpath_to_dict(image_name, image_size, trial_scanpath, target_bbox, config, scanpaths)
+                utils.add_scanpath_to_dict(image_name, image_size, trial_scanpath, target_bbox, config, dataset_info['name'], scanpaths)
                 if trial_scanpath['target_found']:
                     targets_found += 1
     except KeyboardInterrupt:
