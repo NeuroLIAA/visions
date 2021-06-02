@@ -11,7 +11,6 @@ import sys
 import tensorflow.compat.v1 as tf
 
 def create_saliencymap_for_image(image, save_path):
-    breakpoint()
     # Ignore warnings
     tf.logging.set_verbosity(tf.logging.ERROR)
     # To make tf 2.0 compatible with tf1.0 code, we disable the tf2.0 functionalities
