@@ -2,13 +2,16 @@ import os
 import shutil
 import json
 import numpy as np
-from skimage import io
+from skimage import io, transform
 
 """ This script requires that the COCOSearch18 images are in the folder ../images.
     Since the same image can be used for several tasks, those images are renamed as separate files for each task.
     Images are also extracted from the category folder and placed in ../images.
     Only 80% of the dataset is available, so there are some images that are never used in the human trials files.
 """
+
+def rescale_coordinate(value, old_size, new_size):
+    return (value / old_size) * new_size
 
 human_scanpaths_train_file = './coco_search18_fixations_TP_train_split1.json' 
 human_scanpaths_valid_file = './coco_search18_fixations_TP_validation_split1.json'
@@ -22,7 +25,7 @@ image_width  = 1680
 screen_height = 1050
 screen_width  = 1650
 
-# TODO: Definir valores, según lo que indique el paper
+# Estimated value from IRL's model patch size
 receptive_height = 54
 receptive_width  = 54
 
@@ -142,7 +145,7 @@ for scanpath in human_scanpaths:
         template = image[target_bbox[0]:target_bbox[2], target_bbox[1]:target_bbox[3]]
         if not os.path.exists(targets_dir):
             os.mkdir(targets_dir)
-        
+
         io.imsave(targets_dir + target_name, template, check_contrast=False)
 
         trials_processed.append(image_name)
