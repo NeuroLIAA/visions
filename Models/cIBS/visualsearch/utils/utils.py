@@ -59,7 +59,7 @@ def load_image(path, name, image_size='default'):
 
     if image_size != 'default':
         # Resize image, if necessary
-        img = transform.resize(img, image_size)
+        img = transform.resize(img, image_size, preserve_range=True)
 
     return img
 

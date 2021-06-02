@@ -68,7 +68,7 @@ def run(config, dataset_info, trials_properties, output_path, sigma):
             target_name = trial['target'] 
             image       = utils.load_image(images_dir, image_name, image_size)
             target      = utils.load_image(targets_dir, target_name)
-            image_prior = prior.load(image_name, image_size, prior_name, saliency_dir)
+            image_prior = prior.load(image, image_name, image_size, prior_name, saliency_dir)
             
             initial_fixation = (trial['initial_fixation_row'], trial['initial_fixation_column'])
             target_bbox      = [trial['target_matched_row'], trial['target_matched_column'], \

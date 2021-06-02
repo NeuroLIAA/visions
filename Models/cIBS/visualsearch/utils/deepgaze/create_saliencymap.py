@@ -4,20 +4,22 @@ import matplotlib.pyplot as plt
 from scipy.ndimage import zoom
 from scipy.special import logsumexp
 from skimage import io, color, img_as_ubyte
-from os import listdir, mkdir, path, environ
+from os import listdir, mkdir, path, environ, getcwd
 # Ignore tensorflow messages
 environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import sys
 import tensorflow.compat.v1 as tf
 
 def create_saliencymap_for_image(image, save_path):
+    breakpoint()
     # Ignore warnings
     tf.logging.set_verbosity(tf.logging.ERROR)
     # To make tf 2.0 compatible with tf1.0 code, we disable the tf2.0 functionalities
     tf.disable_eager_execution()
 
     # load precomputed log density over a 1024x1024 image
-    centerbias_template = np.load('centerbias.npy')  
+    script_path = path.dirname(__file__)
+    centerbias_template = np.load(path.join(script_path, 'centerbias.npy'))
     # rescale to match image size
     img_size   = (image.shape[0], image.shape[1])
     centerbias = zoom(centerbias_template, (img_size[0]/1024, img_size[1]/1024), order=0, mode='nearest')
@@ -28,7 +30,7 @@ def create_saliencymap_for_image(image, save_path):
 
     tf.reset_default_graph()
     check_point = 'DeepGazeII.ckpt'  # DeepGaze II
-    new_saver   = tf.train.import_meta_graph('{}.meta'.format(check_point))
+    new_saver   = tf.train.import_meta_graph(path.join(script_path, '{}.meta'.format(check_point)))
 
     input_tensor      = tf.get_collection('input_tensor')[0]
     centerbias_tensor = tf.get_collection('centerbias_tensor')[0]
@@ -39,7 +41,7 @@ def create_saliencymap_for_image(image, save_path):
     image_data = image[np.newaxis, :, :, :]  # BHWC, three channels (RGB)
 
     with tf.Session() as sess:
-        new_saver.restore(sess, check_point)
+        new_saver.restore(sess, path.join(script_path, check_point))
         
         log_density_prediction = sess.run(log_density, {
             input_tensor: image_data,
