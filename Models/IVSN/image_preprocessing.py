@@ -13,7 +13,8 @@ def chop_stimuli(stimuli_dir, chopped_dir, stimuli_size, trials_properties):
 
         imgID = image_name[:-4]
         img = io.imread(stimuli_dir + image_name)
-        img = transform.resize(img, stimuli_size)
+        if (img.shape[0], img.shape[1]) != stimuli_size:
+            img = transform.resize(img, stimuli_size)
 
         if not(path.exists(chopped_dir)):
             makedirs(chopped_dir)

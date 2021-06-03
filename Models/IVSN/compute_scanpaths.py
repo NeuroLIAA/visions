@@ -1,6 +1,6 @@
 import json
 import numpy as np
-from os import listdir, mkdir, path
+from os import listdir, makedirs, path
 from skimage import io, transform, exposure
 
 """
@@ -18,7 +18,7 @@ def parse_model_data(stimuli_dir, chopped_dir, stimuli_size, max_fixations, rece
         create_scanpath(trial_properties, attentionMap, stimuli_size, max_fixations, receptive_size, dataset_name, scanpaths)
     
     if not(path.exists(save_path)):
-        mkdir(save_path)
+        makedirs(save_path)
     with open(save_path + 'Scanpaths.json', 'w') as json_file:
         json.dump(scanpaths, json_file, indent = 4)
 
