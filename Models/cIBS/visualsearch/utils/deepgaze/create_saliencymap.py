@@ -4,13 +4,14 @@ import matplotlib.pyplot as plt
 from scipy.ndimage import zoom
 from scipy.special import logsumexp
 from skimage import io, color, img_as_ubyte
-from os import listdir, mkdir, path, environ, getcwd
+from os import listdir, makedirs, path, environ, getcwd
 # Ignore tensorflow messages
 environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import sys
 import tensorflow.compat.v1 as tf
 
 def create_saliencymap_for_image(image, save_path):
+    print('Creating saliency map for search image...')
     # Ignore warnings
     tf.logging.set_verbosity(tf.logging.ERROR)
     # To make tf 2.0 compatible with tf1.0 code, we disable the tf2.0 functionalities
@@ -47,6 +48,8 @@ def create_saliencymap_for_image(image, save_path):
             centerbias_tensor: centerbias_data,
         })
 
+    if not path.exists(path.dirname(save_path)):
+        makedirs(path.dirname(save_path))
     plt.imsave(save_path, np.exp(log_density_prediction[0, :, :, 0]), cmap=plt.cm.gray)
     # Remove channels and keep one
     image = io.imread(save_path)

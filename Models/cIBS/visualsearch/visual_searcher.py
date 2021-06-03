@@ -52,7 +52,7 @@ class VisualSearcher:
                 probability_maps (csv files) : if self.save_posterior is True, the posterior of each saccade is stored in a .csv file inside a folder in self.output_path 
         """
         # Check if image size coincides with that of the dataset
-        if not(image.shape == image_size):
+        if not((image.shape[0], image.shape[1]) == image_size):
             print(image_name + ': image size doesn\'t match dataset\'s dimensions')
             return {}
 

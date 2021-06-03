@@ -33,6 +33,11 @@ class Correlation():
                 mu[row, column] = np.ones(shape=grid_size) * 0.5
         
         cross_correlation = match_template(image, target, pad_input=True)
+        if len(cross_correlation.shape) > 2:
+            # If it's coloured, convert to single channel using skimage rgb2gray formula
+            cross_correlation = cross_correlation[:, :, 0] * 0.2125 + \
+                                cross_correlation[:, :, 1] * 0.7154 + \
+                                cross_correlation[:, :, 2] * 0.0721
         # Reduce to grid
         cross_correlation = grid.reduce(cross_correlation, mode='max')
 

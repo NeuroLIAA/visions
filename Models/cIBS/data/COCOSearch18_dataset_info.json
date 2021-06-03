@@ -1,0 +1,10 @@
+{
+	"name"					 : "COCOSearch18 Dataset",
+	"images_dir" 			 : "../../Datasets/COCOSearch18/images/",
+	"targets_dir"			 : "../../Datasets/COCOSearch18/templates_resized/",
+	"saliency_dir" 			 : "data/saliency/COCOSearch18 dataset/",
+	"trials_properties_file" : "../../Datasets/COCOSearch18/trials_properties_resized.json",
+	"save_path" 			 : "../../Results/COCOSearch18_dataset/cIBS/",
+	"image_height" 		     : 768,
+	"image_width"  			 : 1024
+}
