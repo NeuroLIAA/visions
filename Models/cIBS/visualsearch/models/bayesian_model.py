@@ -157,7 +157,7 @@ class BayesianModel:
         # TODO: Explicar ese 50 mágico
         w_range = np.linspace(min_w, max_w, 50)
 
-        values_for_normcdf = np.matmul(m.flatten()[:, np.newaxis], (w_range[:, np.newaxis].T)) + np.tile(b.flatten()[:, np.newaxis], (1, len(w_range)))
+        values_for_normcdf = np.matmul(m.flatten()[:, np.newaxis], w_range[np.newaxis, :]) + np.tile(b.flatten()[:, np.newaxis], (1, len(w_range)))
         values_for_normcdf[np.isnan(values_for_normcdf)] = 1
 
         # Use the previously computed normcdf table to get the values needed
