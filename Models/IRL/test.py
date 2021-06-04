@@ -20,8 +20,10 @@ from irl_dcb.config import JsonConfig
 from torch.utils.data import DataLoader
 from irl_dcb.models import LHF_Policy_Cond_Small
 from irl_dcb.environment import IRL_Env4LHF
-from irl_dcb import metrics
+
 from irl_dcb import utils
+from utils import scanpath_representation
+
 torch.manual_seed(42619)
 np.random.seed(42619)
 
@@ -66,6 +68,7 @@ if __name__ == '__main__':
     device = torch.device('cpu')
     hparams = args["<hparams>"]
     dataset_root = args["<dataset_root>"]
+    dataset_name = args["<dataset_root>"]
     #https://drive.google.com/drive/folders/1spD2_Eya5S5zOBO3NKILlAjMEC3_gKWc de ahí se baja todo lo que iría en dataset_root
     checkpoint = args["<checkpoint_dir>"]
     hparams = JsonConfig(hparams)
@@ -128,7 +131,7 @@ if __name__ == '__main__':
                            inhibit_return=True)
 
     # generate scanpaths
-    print('sample scanpaths (10 for each testing image)...')
+    print('sample scanpaths (1 for each testing image)...')
     predictions = gen_scanpaths(generator,
                                 env_test,
                                 img_loader,
@@ -138,7 +141,22 @@ if __name__ == '__main__':
                                 hparams.Data.im_h,
                                 num_sample=1)
 
-    print('evaluating model...')
+   
+    
+    results = {}
+    
+    output_path = '../../Results/' + dataset_name + '/IRL_Model/'
+    #el bbox este esta en formato: (top_left_x, top_left_y, width, height)
+    for prediction in predictions:
+        
+        prediction['scanpath_x']= list(prediction['scanpath_x'])#para que no putee el json al dumpear scanpaths xd
+        prediction['scanpath_y']= list(prediction['scanpath_y'])
+        scanpath_representation.add_scanpath_to_dict('IRL Model', prediction['name'], prediction['image_size'], prediction, prediction['bbox'], hparams.Data.patch_size[0], hparams.Data.max_traj_length, dataset_name, results)
+        
+    scanpath_representation.save_scanpaths(output_path, results)
+
+''' 
+ print('evaluating model...')
     # evaluate predictions
     mean_cdf, _ = utils.compute_search_cdf(predictions, bbox_annos,
                                            hparams.Data.max_traj_length)
@@ -163,15 +181,6 @@ if __name__ == '__main__':
     mm_score = metrics.compute_mm(dataset['gt_scanpaths'], predictions,
                                   hparams.Data.im_w, hparams.Data.im_h)
 
-    
-
-    #para que no putee el json al dumpear scanpaths xd
-    for prediction in predictions:
-        prediction['X']= list(prediction['X'])
-        prediction['Y']= list(prediction['Y'])
-    predictions = list(predictions)
-
-    
     # print and save outputs
     print('results:')
     results = {
@@ -189,4 +198,4 @@ if __name__ == '__main__':
     if not os.path.exists(save_path):
         os.makedirs(save_path)
     results.dump(save_path)
-    print('results successfully saved to {}'.format(save_path))
+    print('results successfully saved to {}'.format(save_path))'''
