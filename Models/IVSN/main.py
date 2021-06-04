@@ -27,7 +27,7 @@ target_dir = '../../Datasets/COCOSearch18/templates/'
 trials_properties_file = '../../Datasets/COCOSearch18/trials_properties.json'
 save_path = '../../Results/COCOSearch18_dataset/IVSN/'
 stimuli_size = (1050, 1680)
-max_fixations  = 16
+max_fixations  = 10
 receptive_size = 54
 
 def main():
