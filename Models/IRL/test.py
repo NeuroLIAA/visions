@@ -15,7 +15,7 @@ import json
 from tqdm import tqdm
 from docopt import docopt
 from os.path import join
-from dataset import process_data
+from dataset import process_eval_data
 from irl_dcb.config import JsonConfig
 from torch.utils.data import DataLoader
 from irl_dcb.models import LHF_Policy_Cond_Small
@@ -76,34 +76,25 @@ if __name__ == '__main__':
     # dir of pre-computed beliefs
     DCB_dir_HR = join(dataset_root, 'DCBs/HR/')
     DCB_dir_LR = join(dataset_root, 'DCBs/LR/')
-    data_name = '{}x{}'.format(hparams.Data.im_w, hparams.Data.im_h)
+    
 
     # bounding box of the target object (for search efficiency evaluation)
     bbox_annos = np.load(join(dataset_root, 'bbox_annos.npy'),
                          allow_pickle=True).item()
     #hay que ver como computar esto, ni idea
 
-    # load ground-truth human scanpaths
-    with open(join(dataset_root,
-                   'human_scanpaths_TP_trainval_train.json')) as json_file:
-                   #esto dependerá del dataset, pero solo sirve para calcular métricas
-        human_scanpaths = json.load(json_file)
+    
+    with open('../../Datasets/COCOSearch18/trials_properties_resized.json', 'r') as json_file:
+        trials_properties = json.load(json_file)
+    
 
-    human_scanpaths = list(filter(lambda x: x['correct'] == 1, human_scanpaths))
-
-
-
-    # loading test fixation clusters (for computing sequence score)
-    #fix_clusters = np.load(join('./data', 'clusters.npy'), allow_pickle=True).item()
-    #esto lo saque porque no se a que se refiere y lo pedía 
 
     # process fixation data
-    dataset = process_data(human_scanpaths,
+    dataset = process_eval_data(trials_properties,
                            DCB_dir_HR,
                            DCB_dir_LR,
                            bbox_annos,
-                           hparams,
-                           is_testing=True)
+                           hparams)
     img_loader = DataLoader(dataset['img_test'],
                             batch_size=64,
                             shuffle=False,
@@ -156,6 +147,13 @@ if __name__ == '__main__':
     scanpath_representation.save_scanpaths(output_path, results)
 
 ''' 
+# load ground-truth human scanpaths
+    with open(join(dataset_root,
+                   'human_scanpaths_TP_trainval_train.json')) as json_file:
+                   #esto dependerá del dataset, pero solo sirve para calcular métricas
+        human_scanpaths = json.load(json_file)
+
+    human_scanpaths = list(filter(lambda x: x['correct'] == 1, human_scanpaths))
  print('evaluating model...')
     # evaluate predictions
     mean_cdf, _ = utils.compute_search_cdf(predictions, bbox_annos,
@@ -164,6 +162,11 @@ if __name__ == '__main__':
     # scanpath ratio
     sp_ratio = metrics.compute_avgSPRatio(predictions, bbox_annos,
                                           hparams.Data.max_traj_length)
+
+    # loading test fixation clusters (for computing sequence score)
+    fix_clusters = np.load(join('./data', 'clusters.npy'), allow_pickle=True).item()
+    
+
 
     # probability mismatch
     prob_mismatch = metrics.compute_prob_mismatch(mean_cdf,

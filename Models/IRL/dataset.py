@@ -2,6 +2,31 @@ import numpy as np
 from irl_dcb.data import LHF_IRL, LHF_Human_Gaze
 from irl_dcb.utils import compute_search_cdf, preprocess_fixations
 
+def process_eval_data(trials_properties,
+                 DCB_HR_dir,
+                 DCB_LR_dir,
+                 target_annos,
+                 hparams):
+    target_init_fixs = {}
+    for image_data in trials_properties:
+        key = image_data['target_object'] + '_' + image_data['image']
+        target_init_fixs[key] = (image_data['initial_fixation_column'] / hparams.Data.im_w,
+                                 image_data['initial_fixation_row'] / hparams.Data.im_h)
+    target_objects = list(np.unique([x['target_object'] for x in trials_properties]))
+    catIds = dict(zip(target_objects, list(range(len(target_objects)))))
+
+    test_task_img_pair = np.unique(
+            [traj['target_object'] + '_' + traj['image'] for traj in trials_properties])
+
+        # load image data
+    test_img_dataset = LHF_IRL(DCB_HR_dir, DCB_LR_dir, target_init_fixs,
+                                   test_task_img_pair, target_annos,
+                                   hparams.Data, catIds)
+    return {
+            'catIds': catIds,
+            'img_test': test_img_dataset,
+        }
+
 
 def process_data(target_trajs,
                  DCB_HR_dir,
