@@ -56,8 +56,8 @@ def gen_scanpaths(generator,
                                      'present', trajs['actions'][:, i])
                                     for i in range(env_test.batch_size)])
             
-    scanpaths = utils.actions2scanpaths(all_actions, patch_num, im_w, im_h)
-    utils.cutFixOnTarget(scanpaths, bbox_annos)
+    scanpaths = scanpath_representation.actions2scanpaths(all_actions, patch_num, im_w, im_h, dataset_name, hparams.Data.patch_size[0], max_traj_len + 1)
+    scanpath_representation.cutFixOnTarget(scanpaths, bbox_annos)
         
 
     return scanpaths
@@ -134,17 +134,10 @@ if __name__ == '__main__':
 
    
     
-    results = {}
-    
+
     output_path = '../../Results/' + dataset_name + '/IRL_Model/'
-    #el bbox este esta en formato: (top_left_x, top_left_y, width, height)
-    for prediction in predictions:
-        
-        prediction['scanpath_x']= list(prediction['scanpath_x'])#para que no putee el json al dumpear scanpaths xd
-        prediction['scanpath_y']= list(prediction['scanpath_y'])
-        scanpath_representation.add_scanpath_to_dict('IRL Model', prediction['name'], prediction['image_size'], prediction, prediction['bbox'], hparams.Data.patch_size[0], hparams.Data.max_traj_length, dataset_name, results)
-        
-    scanpath_representation.save_scanpaths(output_path, results)
+
+    scanpath_representation.save_scanpaths(output_path, predictions)
 
 ''' 
 # load ground-truth human scanpaths
