@@ -64,8 +64,8 @@ class LHF_IRL(Dataset):
     def __getitem__(self, idx):
         cat_name, img_name = self.img_info[idx].split('_')
         feat_name = img_name[:-3] + 'pth.tar'
-        lr_path = join(self.LR_dir, cat_name.replace(' ', '_'), feat_name)
-        hr_path = join(self.HR_dir, cat_name.replace(' ', '_'), feat_name)
+        lr_path = join(self.LR_dir, feat_name)
+        hr_path = join(self.HR_dir, feat_name)
         lr = torch.load(lr_path)
         hr = torch.load(hr_path)
         imgId = cat_name + '_' + img_name

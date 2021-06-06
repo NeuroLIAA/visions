@@ -8,7 +8,7 @@ Options:
   --cuda=<id>   id of the cuda device [default: 0].
 """
 
-import os
+
 import torch
 import numpy as np
 import json
@@ -84,7 +84,7 @@ if __name__ == '__main__':
     #hay que ver como computar esto, ni idea
 
     
-    with open('../../Datasets/COCOSearch18/trials_properties_resized.json', 'r') as json_file:
+    with open('../../Datasets/COCOSearch18/trials_properties.json', 'r') as json_file:
         trials_properties = json.load(json_file)
     
 
