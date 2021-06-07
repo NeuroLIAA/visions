@@ -10,8 +10,8 @@ def process_eval_data(trials_properties,
     target_init_fixs = {}
     for image_data in trials_properties:
         key = image_data['target_object'] + '_' + image_data['image']
-        target_init_fixs[key] = (256 / hparams.Data.im_w, #de momento le hardcodeo el initial fix
-                                 160 / hparams.Data.im_h)
+        target_init_fixs[key] = (image_data['initial_fixation_column'] / image_data['image_width'],
+                                image_data['initial_fixation_row'] / image_data['image_height'])
     target_objects = list(np.unique([x['target_object'] for x in trials_properties]))
     catIds = dict(zip(target_objects, list(range(len(target_objects)))))
 

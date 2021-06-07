@@ -19,14 +19,14 @@ def cutFixOnTarget(trajs, target_annos):
         for i, traj in enumerate(task_trajs):
             key = traj['task'] + '_' + traj['name']
             bbox = target_annos[key]
-            traj_len = get_num_step2target(traj['scanpath_x'], traj['scanpath_y'], bbox)
+            traj_len = get_num_step2target(traj['X'], traj['Y'], bbox)
             if traj_len != 1000:
                 traj['target_found'] = True
             else:
                 traj['target_found'] = False
             num_steps_task[i] = traj_len
-            traj['scanpath_x'] = traj['scanpath_x'][:traj_len]
-            traj['scanpath_y'] = traj['scanpath_y'][:traj_len]
+            traj['X'] = traj['X'][:traj_len]
+            traj['Y'] = traj['Y'][:traj_len]
             traj['bbox'] = bbox
 
 def pos_to_action(center_x, center_y, patch_size, patch_num):
@@ -351,8 +351,8 @@ def actions2scanpaths(actions, patch_num, im_w, im_h):
                                fixs.cpu().numpy()],
                               axis=1)
         scanpaths.append({
-            'scanpath_x': fixs[0] * im_w,
-            'scanpath_y': fixs[1] * im_h,
+            'X': fixs[0] * im_w,
+            'Y': fixs[1] * im_h,
             'name': img_name,
             'task': task_name,
             'condition': condition,

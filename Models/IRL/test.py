@@ -9,6 +9,7 @@ Options:
 """
 
 
+
 import torch
 import numpy as np
 import json
@@ -77,18 +78,24 @@ if __name__ == '__main__':
     DCB_dir_HR = join(dataset_root, 'DCBs/HR/')
     DCB_dir_LR = join(dataset_root, 'DCBs/LR/')
     
-
-    # bounding box of the target object (for search efficiency evaluation)
-    bbox_annos = np.load(join(dataset_root, 'bbox_annos.npy'),
-                         allow_pickle=True).item()
-    #hay que ver como computar esto, ni idea
-
-    
     with open('../../Datasets/COCOSearch18/trials_properties.json', 'r') as json_file:
         trials_properties = json.load(json_file)
     
 
 
+    bbox_annos = {}
+    for image_data in trials_properties:
+        image_data['target_matched_column'] = scanpath_representation.rescale_coordinate(image_data['target_matched_column'],1680,512)
+        image_data['target_matched_row'] = scanpath_representation.rescale_coordinate(image_data['target_matched_row'],1050,320)
+        image_data['target_height'] = scanpath_representation.rescale_coordinate(image_data['target_height'],1050,320)
+        image_data['target_width'] = scanpath_representation.rescale_coordinate(image_data['target_width'],1680,512)
+        image_data['initial_fixation_column'] = scanpath_representation.rescale_coordinate(image_data['initial_fixation_column'],1680,512)
+        image_data['initial_fixation_row'] = scanpath_representation.rescale_coordinate(image_data['initial_fixation_row'],1050,320)
+        image_data['image_height'] = 320
+        image_data['image_width'] = 512
+        
+        key = image_data['target_object'] + '_' + image_data['image']
+        bbox_annos[key] = (image_data['target_matched_column'],image_data['target_matched_row'], image_data['target_width'], image_data['target_height'])
     # process fixation data
     dataset = process_eval_data(trials_properties,
                            DCB_dir_HR,
