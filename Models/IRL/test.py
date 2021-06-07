@@ -57,7 +57,7 @@ def gen_scanpaths(generator,
                                      'present', trajs['actions'][:, i])
                                     for i in range(env_test.batch_size)])
             
-    scanpaths = scanpath_representation.actions2scanpaths(all_actions, patch_num, im_w, im_h, dataset_name, hparams.Data.patch_size[0], max_traj_len + 1)
+    scanpaths = scanpath_representation.actions2scanpaths(all_actions, patch_num, im_w, im_h, dataset_name, hparams.Data.patch_size[0], max_traj_len)
     scanpath_representation.cutFixOnTarget(scanpaths, bbox_annos)
         
 
