@@ -6,6 +6,9 @@ setup_logger()
 import numpy as np
 import os, sys, cv2
 import argparse
+# Ignore deprecated warning
+import warnings
+warnings.simplefilter('ignore', UserWarning)
 
 # import some common detectron2 utilities
 from detectron2 import model_zoo
@@ -18,11 +21,9 @@ def run_detectron(image, visualize=False):
     cfg = get_cfg()
     cfg.merge_from_file(model_zoo.get_config_file("COCO-PanopticSegmentation/panoptic_fpn_R_50_3x.yaml"))
     cfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url("COCO-PanopticSegmentation/panoptic_fpn_R_50_3x.yaml")
-    cfg.MODEL.DEVICE  ='cpu'
+    cfg.MODEL.DEVICE  = 'cpu'
     predictor = DefaultPredictor(cfg)
     panoptic_seg, segments_info = predictor(image)["panoptic_seg"]
-
-    breakpoint()
 
     if visualize:
         v   = Visualizer(image[:, :, ::-1], MetadataCatalog.get(cfg.DATASETS.TRAIN[0]), scale=1.2)
