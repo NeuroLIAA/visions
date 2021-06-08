@@ -24,7 +24,6 @@ for trial in trials_properties:
                     continue
 
                 if np.any(another_belief_map):
-                    breakpoint()
                     overlap = np.any(another_belief_map[belief_map > 0])
                     if overlap:
                         print(image_name + ': overlap of categories ' + str(nested_index) + ' and ' + str(index))
