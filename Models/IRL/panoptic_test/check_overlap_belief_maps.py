@@ -16,8 +16,14 @@ for trial in trials_properties:
     belief_maps = torch.load(hr_file).numpy()
 
     index = 0
+    complete_matrix = np.zeros(shape=belief_maps.shape[1:3])
     for belief_map in belief_maps:
         if np.any(belief_map):    
+            true_values = np.where(belief_map > 0)
+            true_coords = list(zip(true_values[0], true_values[1]))
+            for coord in true_coords:
+                complete_matrix[coord[0], coord[1]] = 1
+
             nested_index = 0    
             for another_belief_map in belief_maps:
                 if index == nested_index:
@@ -27,6 +33,10 @@ for trial in trials_properties:
                     overlap = np.any(another_belief_map[belief_map > 0])
                     if overlap:
                         print(image_name + ': overlap of categories ' + str(nested_index) + ' and ' + str(index))
+
                 nested_index += 1
         index += 1
+    
+    if np.all(complete_matrix):
+        print('Image: ' + image_name + ' has a category for every pixel')
         
