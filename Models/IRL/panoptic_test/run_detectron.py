@@ -53,8 +53,6 @@ def run_detectron(image, output_shape=None, visualize=False):
 
         cv2.imshow('image', out.get_image()[:, :, ::-1])
         cv2.waitKey(0)
-        cv2.destroyAllWindows()
-        cv2.waitKey(1)
 
     return panoptic_seg, segments_info
 
