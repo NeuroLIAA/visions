@@ -88,7 +88,6 @@ class VisualSearcher:
         posterior  = np.zeros(shape=grid_size)
 
         # Search
-        print('Searching in image ' + image_name + '...')
         print('Fixation:', end=' ')
         target_found = False
         start = time.time()

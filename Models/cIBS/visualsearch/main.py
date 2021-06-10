@@ -61,11 +61,16 @@ def run(config, dataset_info, trials_properties, output_path, sigma):
     # If resuming execution, load previously generated data
     scanpaths, targets_found, previous_time = utils.load_data_from_checkpoint(output_path)
 
+    trial_number = len(scanpaths.keys())
+    total_trials = len(trials_properties) + trial_number
     start = time.time()
     try:
         for trial in trials_properties:
+            trial_number += 1
             image_name  = trial['image']
             target_name = trial['target'] 
+            print('Searching in image ' + image_name + ' (' + str(trial_number) + '/' + str(total_trials) + ')...')
+            
             image       = utils.load_image(images_dir, image_name, image_size)
             target      = utils.load_image(targets_dir, target_name)
             image_prior = prior.load(image, image_name, image_size, prior_name, saliency_dir)
