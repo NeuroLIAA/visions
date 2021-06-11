@@ -1,13 +1,11 @@
-import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
-import numpy as np
-import argparse
-import json
-import sys
 from os import path, listdir
 from random import randint
 from skimage import io, transform
+import argparse
+import json
+import sys
 
 """ The main method of this script (plot_scanpath) belongs to https://github.com/cvlab-stonybrook/Scanpath_Prediction/plot_scanpath.py """
 
