@@ -7,6 +7,7 @@ import json
 import sys
 from os import path, listdir
 from random import randint
+from skimage import io, transform
 
 """ The main method of this script (plot_scanpath) belongs to https://github.com/cvlab-stonybrook/Scanpath_Prediction/plot_scanpath.py """
 
@@ -31,7 +32,7 @@ def plot_scanpath(img, xs, ys, bbox=None, title=None):
         plt.annotate("{}".format(i + 1), xy=(xs[i], ys[i] + 3), fontsize=10, ha="center", va="center")
 
     if bbox is not None:
-        rect = Rectangle((bbox[1], bbox[0]), bbox[2], bbox[3], alpha=0.7, edgecolor='red', facecolor='none', linewidth=2)
+        rect = Rectangle((bbox[0], bbox[1]), bbox[2], bbox[3], alpha=0.7, edgecolor='red', facecolor='none', linewidth=2)
         ax.add_patch(rect)
 
     # Para graficar grilla, en el caso de cIBS
@@ -119,7 +120,7 @@ if __name__ == '__main__':
     bbox = img_scanpath['target_bbox']
     target_height = bbox[2] - bbox[0]
     target_width  = bbox[3] - bbox[1]
-    bbox = [bbox[0], bbox[1], target_width, target_height]
+    bbox = [bbox[1], bbox[0], target_width, target_height]
     
     # TODO: Levantar del JSON del dataset
     if args.dataset == 'IVSN':
@@ -127,8 +128,10 @@ if __name__ == '__main__':
     else:
         image_folder = 'images'
 
+    image_size = (img_scanpath['image_height'], img_scanpath['image_width'])
     image_file = datasets_dir + args.dataset + '/' + image_folder + '/' + args.img
-    img = mpimg.imread(image_file)
+    img = io.imread(image_file)
+    img = transform.resize(img, image_size)
 
     title = name + ' ' + args.img
     plot_scanpath(img, X, Y, bbox, title)
