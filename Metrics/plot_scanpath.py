@@ -89,6 +89,7 @@ if __name__ == '__main__':
         human_scanpaths_files = listdir(human_scanpaths_dir)
         number_of_subjects    = len(human_scanpaths_files)
         human_subject         = randint(0, number_of_subjects - 1)
+        human_scanpaths_files.sort()
 
         target_found = False
         checked_subjects = []
@@ -110,7 +111,7 @@ if __name__ == '__main__':
                 while human_subject in checked_subjects:
                     human_subject = randint(0, number_of_subjects - 1)
         
-        name = 'Human subject ' + str(human_subject)
+        name = 'Human subject ' + str(human_subject + 1)
 
     X = img_scanpath['X']
     Y = img_scanpath['Y']
