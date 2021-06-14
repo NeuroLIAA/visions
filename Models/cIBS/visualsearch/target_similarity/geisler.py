@@ -8,6 +8,7 @@ class Geisler():
         #self.random_generator = np.random.default_rng()
         np.random.seed(seed)
         
+        self.grid_size = grid_size
         self.sigma, self.mu = self.create_target_similarity_map(visibility_map, scale_factor, additive_shift, grid_size, target_bbox)
 
     def create_target_similarity_map(self, visibility_map, scale_factor, additive_shift, grid_size, target_bbox):
@@ -35,7 +36,7 @@ class Geisler():
 
         return sigma, mu
 
-    def at_fixation(self, fixation, grid_size):
+    def at_fixation(self, fixation):
         " Given a fixation in the grid, it returns the target similarity map, represented as a 2D array of scalars with added random noise "
         """ Input:
                 fixation (int, int) : cell in the grid on which the observer is fixating
@@ -43,7 +44,7 @@ class Geisler():
                 target_similarity_map (2D array of floats) : matrix the size of the grid, where each value is a scalar which represents how similar the position is to the target
         """
         # For backwards compatibility with MATLAB, it's necessary to transpose the matrix
-        random_noise = np.transpose(np.random.standard_normal((grid_size[1], grid_size[0])))
+        random_noise = np.transpose(np.random.standard_normal((self.grid_size[1], self.grid_size[0])))
 
         #return self.sigma[:, :, fixation[0], fixation[1]] * self.random_generator.standard_normal(self.grid_size) + self.mu[:, :, fixation[0], fixation[1]]
         return self.sigma[:, :, fixation[0], fixation[1]] * random_noise + self.mu[:, :, fixation[0], fixation[1]]

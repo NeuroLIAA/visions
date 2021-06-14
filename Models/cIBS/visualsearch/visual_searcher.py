@@ -52,7 +52,7 @@ class VisualSearcher:
                 probability_maps (csv files) : if self.save_posterior is True, the posterior of each saccade is stored in a .csv file inside a folder in self.output_path 
         """
         # Check if image size coincides with that of the dataset
-        if not((image.shape[0], image.shape[1]) == image_size):
+        if not(image.shape[:2] == image_size):
             print(image_name + ': image size doesn\'t match dataset\'s dimensions')
             return {}
 
@@ -105,15 +105,12 @@ class VisualSearcher:
                 break
 
             if fixation_number == 0:
-                likelihood = target_similarity_map.at_fixation(current_fixation, grid_size) * (np.square(self.visibility_map.at_fixation(current_fixation)))
+                likelihood = target_similarity_map.at_fixation(current_fixation) * (np.square(self.visibility_map.at_fixation(current_fixation)))
                 likelihood_times_prior = image_prior * np.exp(likelihood)
             else:
-                likelihood = likelihood + target_similarity_map.at_fixation(current_fixation, grid_size) * (np.square(self.visibility_map.at_fixation(current_fixation)))
+                likelihood = likelihood + target_similarity_map.at_fixation(current_fixation) * (np.square(self.visibility_map.at_fixation(current_fixation)))
                 likelihood_times_prior = posterior * np.exp(likelihood)
-                
-                #likelihood_times_prior = sum_of_all_probs * posterior * np.exp(likelihood)
-                #saqué el sum of all probs porque entiendo que aparece como factor en el numerador y en el denominador al hacer la división por el marginal
-                #debugueandolo parece que tenía razón
+
             marginal  = np.sum(likelihood_times_prior)
             posterior = likelihood_times_prior / marginal
 
