@@ -40,16 +40,19 @@ class Multimatch:
     def add_to_plot(self, ax, model_name, multimatch_values_per_image_x, multimatch_values_per_image_y):
         x_vector = []
         y_vector = []
+        trials_names = []
         for image_name in multimatch_values_per_image_x.keys():
             if not(image_name in multimatch_values_per_image_y):
                 continue
 
             # Exclude temporal dimension and compute the mean of all the others dimensions
-            shape_value_x = np.mean(multimatch_values_per_image_x[image_name][:-1])
-            shape_value_y = np.mean(multimatch_values_per_image_y[image_name][:-1])
+            value_x = np.mean(multimatch_values_per_image_x[image_name][:-1])
+            value_y = np.mean(multimatch_values_per_image_y[image_name][:-1])
 
-            x_vector.append(shape_value_x)
-            y_vector.append(shape_value_y)
+            trials_names.append(image_name)
+
+            x_vector.append(value_x)
+            y_vector.append(value_y)
 
         # Plot multimatch
         ax.scatter(x_vector, y_vector, color='red', alpha=0.5)
@@ -63,6 +66,30 @@ class Multimatch:
 
         ax.set_aspect(1.0 / ax.get_data_ratio(), adjustable='box')
         ax.set_title(model_name)
+
+        # Get most-similar to less-similar trials names
+        scores_diff = np.array(x_vector) - np.array(y_vector)
+        self.print_trials_names_in_similarity_order(scores_diff, trials_names)
+
+    def print_trials_names_in_similarity_order(self, scores_diff, trials_names):
+        scores_diff = list(zip(scores_diff, trials_names))
+        scores_right_half = []
+        scores_left_half  = []
+        for trial in scores_diff:
+            if trial[0] > 0:
+                scores_right_half.append(trial)
+            else:
+                scores_left_half.append((abs(trial[0]), trial[1]))
+
+        scores_right_half.sort(key=lambda elem: elem[0])
+        scores_left_half.sort(key=lambda elem: elem[0])
+        print('Dataset: ' + self.dataset_name + '. Model: ' + model_name + '. Most similar to less similar trials')
+        print('Right half:')
+        print(scores_right_half)
+        print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+        print('Left half:')
+        print(scores_left_half)
+        print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
 
     def add_model_vs_humans_mean_per_image(self, model_name, model_scanpaths):
         " For each scanpath produced by the model, multimatch is calculated against the scanpath of that same image for every human subject "

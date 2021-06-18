@@ -16,12 +16,16 @@ for dataset in dataset_results_dirs:
     # Esto hay que levantarlo del JSON de configuración de cada dataset
     if dataset_name == 'cIBS':
         max_scanpath_length = 16
-    else:
+    elif dataset_name == 'IVSN':
         max_scanpath_length = 31
+    else:
+        max_scanpath_length = 10
     if dataset_name == 'cIBS':
         number_of_images = 134
-    else:
+    elif dataset_name == 'IVSN':
         number_of_images = 240
+    else:
+        number_of_images = 2489
 
     # Compute human subjects metrics
     multimatch = Multimatch(dataset_name, human_scanpaths_dir, dataset_results_dir)
