@@ -69,9 +69,9 @@ class Multimatch:
 
         # Get most-similar to less-similar trials names
         scores_diff = np.array(x_vector) - np.array(y_vector)
-        self.print_trials_names_in_similarity_order(scores_diff, trials_names)
+        self.print_trials_names_in_similarity_order(scores_diff, trials_names, model_name)
 
-    def print_trials_names_in_similarity_order(self, scores_diff, trials_names):
+    def print_trials_names_in_similarity_order(self, scores_diff, trials_names, model_name):
         scores_diff = list(zip(scores_diff, trials_names))
         scores_right_half = []
         scores_left_half  = []
