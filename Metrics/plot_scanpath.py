@@ -12,7 +12,7 @@ import sys
 datasets_dir = '../Datasets/'
 results_dir  = '../Results/'
 
-def plot_scanpath(img, xs, ys, bbox=None, title=None):
+def plot_scanpath(img, xs, ys, fixation_size, bbox=None, title=None):
     fig, ax = plt.subplots()
     ax.imshow(img, cmap=plt.cm.gray)
 
@@ -22,7 +22,7 @@ def plot_scanpath(img, xs, ys, bbox=None, title=None):
 
     for i in range(len(xs)):
         circle = plt.Circle((xs[i], ys[i]),
-                            radius=30,
+                            radius=fixation_size // 2,
                             edgecolor='red',
                             facecolor='yellow',
                             alpha=0.5)
@@ -34,12 +34,14 @@ def plot_scanpath(img, xs, ys, bbox=None, title=None):
         ax.add_patch(rect)
 
     # Para graficar grilla, en el caso de cIBS
-    # box_size = 128
+    # box_size = 32
     # box_x = 0
     # box_y = 0
-    # for row in range(6):
+    # rows = round(img.shape[0] / box_size)
+    # columns = round(img.shape[1] / box_size)
+    # for row in range(rows):
     #     box_y = box_size * row
-    #     for column in range(8):
+    #     for column in range(columns):
     #         box_x = box_size * column
     #         rect = Rectangle((box_x, box_y), box_size, box_size, alpha=0.5, edgecolor='yellow', facecolor='none', linewidth=2)
     #         ax.add_patch(rect)
@@ -120,6 +122,8 @@ if __name__ == '__main__':
     target_height = bbox[2] - bbox[0]
     target_width  = bbox[3] - bbox[1]
     bbox = [bbox[1], bbox[0], target_width, target_height]
+
+    fixation_size = img_scanpath['receptive_width']
     
     # TODO: Levantar del JSON del dataset
     if args.dataset == 'IVSN':
@@ -133,4 +137,4 @@ if __name__ == '__main__':
     img = transform.resize(img, image_size)
 
     title = name + ' ' + args.img
-    plot_scanpath(img, X, Y, bbox, title)
+    plot_scanpath(img, X, Y, fixation_size, bbox, title)
