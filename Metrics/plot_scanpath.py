@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
-from os import path, listdir
+from os import mkdir, path, listdir
 from random import randint
 from skimage import io, transform
 import argparse
@@ -50,8 +50,10 @@ def plot_scanpath(img, xs, ys, fixation_size, bbox=None, title=None):
     ax.axis('off')
     if title is not None:
         ax.set_title(title)
-    plt.show()
-
+    if not(path.exists('Plots/')):
+        mkdir('Plots')
+    plt.savefig('Plots/' +  title + '.png')
+    plt.close()
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -63,6 +65,33 @@ def parse_args():
 
     args = parser.parse_args()
     return args
+
+def process_image(img_scanpath,name,image_path,dataset_name):
+    X = img_scanpath['X']
+    Y = img_scanpath['Y']
+
+    bbox = img_scanpath['target_bbox']
+    target_height = bbox[2] - bbox[0]
+    target_width  = bbox[3] - bbox[1]
+    bbox = [bbox[1], bbox[0], target_width, target_height]
+
+    fixation_size = img_scanpath['receptive_width']
+    
+    # TODO: Levantar del JSON del dataset
+    if dataset_name == 'IVSN':
+        image_folder = 'stimuli'
+    else:
+        image_folder = 'images'
+
+    image_size = (img_scanpath['image_height'], img_scanpath['image_width'])
+    image_file = datasets_dir + dataset_name + '/' + image_folder + '/' + image_path
+    img = io.imread(image_file)
+    img = transform.resize(img, image_size)
+
+    title = dataset_name + '_dataset_' + name + '_' + image_path[:-4]
+    plot_scanpath(img, X, Y, fixation_size, bbox, title)
+
+
 
 if __name__ == '__main__':
     args = parse_args()
@@ -77,10 +106,11 @@ if __name__ == '__main__':
         with open(scanpaths_file, 'r') as fp:
             scanpaths = json.load(fp)
         
-        if not args.img in scanpaths:
-            print('Image not found in ' + args.model + ' scanpaths')
-            sys.exit(0)
-        img_scanpath = scanpaths[args.img]
+        if args.img != 'notfound':
+            if not args.img in scanpaths:
+                print('Image not found in ' + args.model + ' scanpaths')
+                sys.exit(0)
+            img_scanpath = scanpaths[args.img]
         name = args.model
     else:
         human_scanpaths_dir = path.join(datasets_dir + args.dataset, 'human_scanpaths')
@@ -115,26 +145,9 @@ if __name__ == '__main__':
         
         name = 'Human subject ' + str(human_subject + 1)
 
-    X = img_scanpath['X']
-    Y = img_scanpath['Y']
-
-    bbox = img_scanpath['target_bbox']
-    target_height = bbox[2] - bbox[0]
-    target_width  = bbox[3] - bbox[1]
-    bbox = [bbox[1], bbox[0], target_width, target_height]
-
-    fixation_size = img_scanpath['receptive_width']
-    
-    # TODO: Levantar del JSON del dataset
-    if args.dataset == 'IVSN':
-        image_folder = 'stimuli'
+    if args.img == 'notfound' and not args.human:
+        for image_name in scanpaths.keys():
+            if not scanpaths[image_name]['target_found']:
+                process_image(scanpaths[image_name],name,image_name, args.dataset)
     else:
-        image_folder = 'images'
-
-    image_size = (img_scanpath['image_height'], img_scanpath['image_width'])
-    image_file = datasets_dir + args.dataset + '/' + image_folder + '/' + args.img
-    img = io.imread(image_file)
-    img = transform.resize(img, image_size)
-
-    title = name + ' ' + args.img
-    plot_scanpath(img, X, Y, fixation_size, bbox, title)
+        process_image(img_scanpath,name,args.img,args.dataset)
