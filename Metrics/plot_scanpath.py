@@ -88,11 +88,11 @@ def process_image(img_scanpath, subject, image_path, dataset_name):
     img = io.imread(image_file)
     img = transform.resize(img, image_size)
 
-    save_path = path.join('Plots', dataset_name)
+    save_path = path.join('Plots', path.join(dataset_name + '_dataset', image_path[:-4]))
     if not path.exists(save_path):
         makedirs(save_path)
 
-    title = subject.replace(' ', '_') + '_' + image_path[:-4]
+    title = image_path[:-4] + '_' + subject.replace(' ', '_')
 
     plot_scanpath(img, X, Y, fixation_size, bbox, title, save_path)
 
