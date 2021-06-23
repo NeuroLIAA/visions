@@ -14,7 +14,7 @@ class Multimatch:
 
     def plot(self, save_path):
         number_of_models = len(self.models_vs_humans_multimatch)
-        fig, axs = plt.subplots(1, number_of_models)
+        fig, axs = plt.subplots(1, number_of_models, sharex=True, sharey=True, figsize=(10, 5))
 
         ax_index = 0
         for model in self.models_vs_humans_multimatch:
@@ -23,17 +23,23 @@ class Multimatch:
             self.add_to_plot(axs[ax_index], model_name, model_vs_human_multimatch, self.humans_multimatch)
             ax_index += 1
 
+        # Get plot limits
         min_x, max_x = (1, 0)
         min_y, max_y = (1, 0)
         for ax in axs:
-            ax.set(xlabel='Model vs human multimatch mean', ylabel='Human multimatch mean')
-            ax.label_outer()
             min_x, max_x = min(min(ax.get_xlim()), min_x), max(max(ax.get_xlim()), max_x)
             min_y, max_y = min(min(ax.get_ylim()), min_y), max(max(ax.get_ylim()), max_y)
+        
+        for ax in axs:
+            # Plot diagonal
+            lims = [np.min([min_x, min_y]), np.max([max_x, max_y])]
+            ax.plot(lims, lims, linestyle='dashed', c='.3')
+
+            ax.set(xlabel='Model vs human multimatch mean', ylabel='Human multimatch mean')
+            ax.label_outer()
+            ax.set_box_aspect(1)
 
         fig.suptitle(self.dataset_name + ' dataset')
-        plt.xlim(min_x, max_x)
-        plt.ylim(min_y, max_y)
         plt.savefig(save_path + 'Multimatch against humans.png')    
         plt.show()
 
@@ -56,15 +62,12 @@ class Multimatch:
 
         # Plot multimatch
         ax.scatter(x_vector, y_vector, color='red', alpha=0.5)
-        # Plot y = x function
-        lims = [np.min([ax.get_xlim(), ax.get_ylim()]), np.max([ax.get_xlim(), ax.get_ylim()])]
-        ax.plot(lims, lims, linestyle='dashed', c='.3')
+
         # Plot linear regression
         x_linear   = np.array(x_vector)[:, np.newaxis]
         m, _, _, _ = np.linalg.lstsq(x_linear, y_vector, rcond=None)
-        ax.plot(x_vector, m * x_linear, linestyle=(0, (5, 5)), color='purple', alpha=0.5)
+        ax.plot(x_vector, m * x_linear, linestyle=(0, (5, 5)), color='purple', alpha=0.6)
 
-        ax.set_aspect(1.0 / ax.get_data_ratio(), adjustable='box')
         ax.set_title(model_name)
 
         # Get most-similar to less-similar trials names
@@ -126,7 +129,7 @@ class Multimatch:
         # Compute mean per image
         for image_name in multimatch_model_vs_humans_mean_per_image.keys():
             multimatch_model_vs_humans_mean_per_image[image_name] = (np.divide(multimatch_model_vs_humans_mean_per_image[image_name], total_values_per_image[image_name])).tolist()
-        
+
         self.models_vs_humans_multimatch.append({'model_name': model_name, 'results': multimatch_model_vs_humans_mean_per_image})
 
     def load_human_mean_per_image(self):
@@ -176,7 +179,7 @@ class Multimatch:
                 multimatch_human_mean_per_image[image_name] = (np.divide(multimatch_human_mean_per_image[image_name], total_values_per_image[image_name])).tolist()
             
             with open(multimatch_human_mean_json_file, 'w') as fp:
-                json.dump(multimatch_human_mean_per_image, fp, indent = 4)
+                json.dump(multimatch_human_mean_per_image, fp, indent=4)
 
         self.humans_multimatch = multimatch_human_mean_per_image
 
