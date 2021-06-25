@@ -5,7 +5,7 @@ import numpy as np
 
 class Geisler():
     def __init__(self, visibility_map, scale_factor, additive_shift, grid_size, target_bbox, seed):
-        #self.random_generator = np.random.default_rng()
+        # Set the seed for generating random noise
         np.random.seed(seed)
         
         self.grid_size = grid_size
@@ -15,13 +15,12 @@ class Geisler():
         " Creates a target similarity map for a given visibility map and target. The output's shape is grid_size x grid_size "
         """ Input:
                 visibility_map (VisibilityMap) : visibility map which indicates how focus decays over distance from the fovea
-                scale_factor (int)   : ???
-                additive_shift (int) : ???
+                scale_factor   (int) : modulates the inverse of the visibility and prevents the variance from diverging
+                additive_shift (int) : modulates the inverse of the visibility and prevents the variance from diverging
                 grid_size (int, int) : size of the grid
                 target_bbox (int array of length four) : target bounding box (top left row, top left column, bottom right row, bottom right column) represented as cells in the grid 
             Output:
-                target_similarity_map [a, b, c, d] (4D array) : where target_similarity_map[:, :, c, d] represents how similar each position [a, b] is to the target, according to the observer,
-                    who is fixing his view in (c, d)
+                sigma, mu (4D arrays) : values of the normal distribution for each possible fixation in the grid
         """
         # Initialize mu, where each cell has a value of 0.5 if the target is present and -0.5 otherwise
         mu = np.ones(shape=(grid_size[0], grid_size[1], grid_size[0], grid_size[1])) * (-0.5)
@@ -30,8 +29,8 @@ class Geisler():
                 mu[row, column] = np.ones(shape=grid_size) * 0.5
         
         # Initialize sigma
-        # TODO: Describir qué hace el additive shift y el scale factor
         sigma = np.ones(shape=mu.shape)
+        # Variance now depends on the visibility
         sigma = sigma / (visibility_map.normalized_at_every_fixation() * scale_factor + additive_shift)
 
         return sigma, mu

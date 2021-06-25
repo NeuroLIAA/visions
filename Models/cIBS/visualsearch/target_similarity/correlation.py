@@ -1,7 +1,7 @@
 import numpy as np
 from skimage.feature import match_template
 
-""" TODO: agregar descripción sobre el comportamiento de este en particular
+""" Computes target similarity for each possible fixation in the grid by using normalized cross correlation
 """
 
 class Correlation():
@@ -13,18 +13,18 @@ class Correlation():
         self.sigma, self.mu = self.create_target_similarity_map(image, target, visibility_map, scale_factor, additive_shift, grid, target_bbox)
     
     def create_target_similarity_map(self, image, target, visibility_map, scale_factor, additive_shift, grid, target_bbox):
-        " Creates a target similarity map for a given visibility map and target, using cross coorrelation. The output's shape is grid_size x grid_size "
+        " Creates a target similarity map for a given visibility map and target, using cross correlation. "
+        " The output is a normal distribution, which depends upon target similarity and visibility "
         """ Input:
                 image  (2D array)    : image where the target is
                 target (2D array)    : target image
                 visibility_map (VisibilityMap) : visibility map which indicates how focus decays over distance from the fovea
-                scale_factor (int)   : ???
-                additive_shift (int) : ???
+                scale_factor   (int) : modulates the inverse of the visibility and prevents the variance from diverging
+                additive_shift (int) : modulates the inverse of the visibility and prevents the variance from diverging
                 grid (Grid) : representation of an image with cells instead of pixels 
                 target_bbox (int array of length four) : target bounding box (top left row, top left column, bottom right row, bottom right column) represented as cells in the grid 
             Output:
-                target_similarity_map [a, b, c, d] (4D array) : where target_similarity_map[:, :, c, d] represents how similar each position [a, b] is to the target, according to the observer,
-                    who is fixing his view in (c, d)
+                sigma, mu (4D arrays) : values of the normal distribution for each possible fixation in the grid
         """
         grid_size = grid.size()
         # Initialize mu, where each cell has a value of 0.5 if the target is present and -0.5 otherwise
@@ -42,18 +42,19 @@ class Correlation():
         # Reduce to grid
         cross_correlation = grid.reduce(cross_correlation, mode='max')
 
-        # TODO: Explicar estas cuentas
+        # Convert values to the interval [-0.5, 0.5] 
         cross_correlation = cross_correlation - np.min(cross_correlation)
         cross_correlation = cross_correlation / np.max(cross_correlation) - 0.5
         # Make it the same shape as mu
         cross_correlation = np.tile(cross_correlation[:, :, np.newaxis, np.newaxis], (1, 1, grid_size[0], grid_size[1]))
 
-        # TODO: Explicar estas cuentas
+        # Modify mu in order to incorporate target similarity and visibility
         mu = mu * (visibility_map.normalized_at_every_fixation() + 0.5) + cross_correlation * (1 - visibility_map.normalized_at_every_fixation() + 0.5)
-        # TODO: Explicar por qué se divide por dos
+        # Convert values to the interval [-1, 1]
         mu = mu / 2
+
         sigma = np.ones(shape=mu.shape)
-        # TODO: Describir qué hace el additive shift y el scale factor
+        # Variance now depends on the visibility
         sigma = sigma / (visibility_map.normalized_at_every_fixation() * scale_factor + additive_shift)
 
         return sigma, mu
