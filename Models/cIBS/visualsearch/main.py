@@ -17,8 +17,8 @@ def run(config, dataset_info, trials_properties, output_path, sigma):
                 prior             (string)   : deepgaze, mlnet, flat, center
                 max_saccades      (int)      : maximum number of saccades allowed
                 cell_size         (int)      : size (in pixels) of the cells in the grid
-                scale_factor      (int)      : ??? default value is 3
-                additive_shift    (int)      : ??? default value is 4
+                scale_factor      (int)      : modulates the variance of target similarity and prevents 1 / d' from diverging in bayesian search
+                additive_shift    (int)      : modulates the variance of target similarity and prevents 1 / d' from diverging in bayesian search
                 save_probability_maps (bool) : indicates whether to save the posterior to a file after each saccade or not
                 proc_number       (int)      : number of processes on which to execute bayesian search
             Dataset info (dict). One entry. Fields:
