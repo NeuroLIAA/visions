@@ -10,22 +10,14 @@ datasets_dir = '../Datasets/'
 dataset_results_dirs = listdir(results_dir)
 for dataset in dataset_results_dirs:
     dataset_name = dataset.split('_')[0]
-    human_scanpaths_dir = datasets_dir + dataset_name + '/human_scanpaths/'
+    dataset_path = path.join(datasets_dir, dataset_name)
+    human_scanpaths_dir = dataset_path + '/human_scanpaths/'
     dataset_results_dir = results_dir + dataset + '/'
+    with open(path.join(dataset_path, 'dataset_info.json')) as fp:
+        dataset_info = json.load(fp)
 
-    # Esto hay que levantarlo del JSON de configuración de cada dataset
-    if dataset_name == 'cIBS':
-        max_scanpath_length = 16
-    elif dataset_name == 'IVSN':
-        max_scanpath_length = 31
-    else:
-        max_scanpath_length = 10
-    if dataset_name == 'cIBS':
-        number_of_images = 134
-    elif dataset_name == 'IVSN':
-        number_of_images = 240
-    else:
-        number_of_images = 2489
+    max_scanpath_length = dataset_info['max_scanpath_length']
+    number_of_images    = dataset_info['number_of_images']
 
     # Initialize objects
     multimatch = Multimatch(dataset_name, human_scanpaths_dir, dataset_results_dir)

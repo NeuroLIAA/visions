@@ -66,33 +66,33 @@ def parse_args():
     args = parser.parse_args()
     return args
 
-def process_image(img_scanpath, subject, image_path, dataset_name):
-    X = img_scanpath['X']
-    Y = img_scanpath['Y']
+def rescale_coordinate(value, old_size, new_size):
+        return (value / old_size) * new_size
+
+def process_image(img_scanpath, subject, image_name, dataset_name, images_path):
+    image_file = path.join(images_path, image_name)
+    img        = io.imread(image_file)
+    # Rescale scanpath to original coordinates
+    original_img_size = img.shape[:2]
+    scanpath_img_size = (img_scanpath['image_height'], img_scanpath['image_width'])
+
+    X = [rescale_coordinate(x, scanpath_img_size[1], original_img_size[1]) for x in img_scanpath['X']]
+    Y = [rescale_coordinate(y, scanpath_img_size[0], original_img_size[0]) for y in img_scanpath['Y']]
 
     bbox = img_scanpath['target_bbox']
+    bbox[0], bbox[2] = [rescale_coordinate(pos, scanpath_img_size[0], original_img_size[0]) for pos in (bbox[0], bbox[2])]
+    bbox[1], bbox[3] = [rescale_coordinate(pos, scanpath_img_size[1], original_img_size[1]) for pos in (bbox[1], bbox[3])]
     target_height = bbox[2] - bbox[0]
     target_width  = bbox[3] - bbox[1]
     bbox = [bbox[1], bbox[0], target_width, target_height]
 
-    fixation_size = img_scanpath['receptive_width']
-    
-    # TODO: Levantar del JSON del dataset
-    if dataset_name == 'IVSN':
-        image_folder = 'stimuli'
-    else:
-        image_folder = 'images'
+    fixation_size = img_scanpath['receptive_width']    
 
-    image_size = (img_scanpath['image_height'], img_scanpath['image_width'])
-    image_file = datasets_dir + dataset_name + '/' + image_folder + '/' + image_path
-    img = io.imread(image_file)
-    img = transform.resize(img, image_size)
-
-    save_path = path.join('Plots', path.join(dataset_name + '_dataset', image_path[:-4]))
+    save_path = path.join('Plots', path.join(dataset_name + '_dataset', image_name[:-4]))
     if not path.exists(save_path):
         makedirs(save_path)
 
-    title = image_path[:-4] + '_' + subject.replace(' ', '_')
+    title = image_name[:-4] + '_' + subject.replace(' ', '_')
 
     plot_scanpath(img, X, Y, fixation_size, bbox, title, save_path)
 
@@ -147,10 +147,16 @@ if __name__ == '__main__':
                     human_subject = randint(0, number_of_subjects - 1)
         
         subject = 'Human subject ' + str(human_subject + 1)
+    
+    dataset_path = path.join(datasets_dir, args.dataset)
+    with open(path.join(dataset_path, 'dataset_info.json')) as fp:
+        dataset_info = json.load(fp)
+    
+    images_path = path.join(dataset_path, dataset_info['images_dir'])
 
     if args.img == 'notfound' and not args.human:
         for image_name in scanpaths.keys():
             if not scanpaths[image_name]['target_found']:
-                process_image(scanpaths[image_name], subject, image_name, args.dataset)
+                process_image(scanpaths[image_name], subject, image_name, args.dataset, images_path)
     else:
-        process_image(img_scanpath, subject, args.img, args.dataset)
+        process_image(img_scanpath, subject, args.img, args.dataset, images_path)
