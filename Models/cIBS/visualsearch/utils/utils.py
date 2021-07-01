@@ -85,13 +85,15 @@ def add_white_gaussian_noise(image, snr_db):
 
     return noisy_image
 
-def add_scanpath_to_dict(image_name, image_size, image_scanpath, target_bbox, config, dataset_name, dict_):
+def add_scanpath_to_dict(image_name, image_scanpath, target_bbox, grid, config, dataset_name, dict_):
     target_found = image_scanpath['target_found']
     scanpath_x   = image_scanpath['scanpath_x']
     scanpath_y   = image_scanpath['scanpath_y']
+    target_bbox_[0], target_bbox_[1] = grid.map_to_cell((target_bbox[0], target_bbox[1]))
+    target_bbox_[2], target_bbox_[3] = grid.map_to_cell((target_bbox[2], target_bbox[3]))
 
-    dict_[image_name] = {'subject' : 'cIBS model', 'dataset' : dataset_name, 'image_height' : image_size[0], 'image_width' : image_size[1], \
-        'receptive_height' : config['cell_size'], 'receptive_width' : config['cell_size'], 'target_found' : target_found, 'target_bbox' : target_bbox, \
+    dict_[image_name] = {'subject' : 'cIBS model', 'dataset' : dataset_name, 'image_height' : grid.size[0], 'image_width' : grid.size[1], \
+        'receptive_height' : config['cell_size'], 'receptive_width' : config['cell_size'], 'target_found' : target_found, 'target_bbox' : target_bbox_, \
                  'X' : list(map(int, scanpath_x)), 'Y' : list(map(int, scanpath_y)), 'target_object' : 'TBD', 'max_fixations' : config['max_saccades'] + 1
         }
 

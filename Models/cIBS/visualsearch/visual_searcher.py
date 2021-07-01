@@ -128,7 +128,7 @@ class VisualSearcher:
         print('Time elapsed: ' + str(end - start) + '\n')
 
         # Revert back to pixels
-        fixations = [self.grid.map_cell_to_pixels(fixation) for fixation in fixations]
+        # fixations = [self.grid.map_cell_to_pixels(fixation) for fixation in fixations]
 
         # Note: each x coordinate refers to a column in the image, and each y coordinate refers to a row in the image
         scanpath_x_coordinates = self.get_coordinates(fixations, axis=1)
