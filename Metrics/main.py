@@ -27,9 +27,8 @@ for dataset in dataset_results_dirs:
     else:
         number_of_images = 2489
 
-    # Compute human subjects metrics
+    # Initialize objects
     multimatch = Multimatch(dataset_name, human_scanpaths_dir, dataset_results_dir)
-    multimatch.load_human_mean_per_image()
 
     subjects_cumulative_performance = Cumulative_performance(dataset_name, number_of_images, max_scanpath_length)
     subjects_cumulative_performance.add_human_mean(human_scanpaths_dir)
@@ -45,6 +44,9 @@ for dataset in dataset_results_dirs:
             model_scanpaths = json.load(fp)
         
         subjects_cumulative_performance.add_model(model_name, model_scanpaths)
+
+        # Human multimatch scores are different for each model, since each model uses different image sizes
+        multimatch.load_human_mean_per_image(model_name, model_scanpaths)
         multimatch.add_model_vs_humans_mean_per_image(model_name, model_scanpaths)
     
     subjects_cumulative_performance.plot(save_path=dataset_results_dir)
