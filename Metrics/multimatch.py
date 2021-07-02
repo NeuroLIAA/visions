@@ -6,21 +6,22 @@ from os import listdir, path
 
 class Multimatch:
     def __init__(self, dataset_name, human_scanpaths_dir, dataset_results_dir):
-        self.models_vs_humans_multimatch = []
-        self.humans_multimatch = {}
+        self.multimatch_values = {}
         self.dataset_name = dataset_name
         self.human_scanpaths_dir = human_scanpaths_dir
         self.dataset_results_dir = dataset_results_dir
 
     def plot(self, save_path):
-        number_of_models = len(self.models_vs_humans_multimatch)
+        number_of_models = len(self.multimatch_values.keys())
         fig, axs = plt.subplots(1, number_of_models, sharex=True, sharey=True, figsize=(10, 5))
 
         ax_index = 0
-        for model in self.models_vs_humans_multimatch:
-            model_name = model['model_name']
-            model_vs_human_multimatch = model['results']
-            self.add_to_plot(axs[ax_index], model_name, model_vs_human_multimatch, self.humans_multimatch)
+        for model in self.multimatch_values:
+            model_name = model
+            model_vs_human_multimatch = self.multimatch_values[model]['model_vs_humans']
+            humans_multimatch         = self.multimatch_values[model]['human_mean']
+
+            self.add_to_plot(axs[ax_index], model_name, model_vs_human_multimatch, humans_multimatch)
             ax_index += 1
 
         # Get plot limits
@@ -109,10 +110,13 @@ class Multimatch:
                 if not(image_name in subject_scanpaths):
                     continue
 
-                model_trial_info = model_scanpaths[image_name]
+                model_trial_info   = model_scanpaths[image_name]
                 subject_trial_info = subject_scanpaths[image_name]
 
-                trial_multimatch_result = self.compute_multimatch(subject_trial_info, model_trial_info)
+                screen_height = model_scanpaths[image_name]['image_height']
+                screen_width  = model_scanpaths[image_name]['image_width']
+
+                trial_multimatch_result = self.compute_multimatch(subject_trial_info, model_trial_info, (screen_width, screen_height))
 
                 # Check if result is empty
                 if not trial_multimatch_result:
@@ -130,15 +134,16 @@ class Multimatch:
         for image_name in multimatch_model_vs_humans_mean_per_image.keys():
             multimatch_model_vs_humans_mean_per_image[image_name] = (np.divide(multimatch_model_vs_humans_mean_per_image[image_name], total_values_per_image[image_name])).tolist()
 
-        self.models_vs_humans_multimatch.append({'model_name': model_name, 'results': multimatch_model_vs_humans_mean_per_image})
+        self.multimatch_values[model_name]['model_vs_humans'] = multimatch_model_vs_humans_mean_per_image
 
-    def load_human_mean_per_image(self):
+    def load_human_mean_per_image(self, model_name, model_scanpaths):
         " For each human subject, multimatch is computed against every other human subject, for each trial "
+        " To be consistent with the model's scanpaths, human scanpaths are rescaled to match the model's size "
         " The mean is computed for each trial (i.e. for each image) "
         " Output is a dictionary where the image names are the keys and the multimatch means are the values "
         multimatch_human_mean_per_image = {}
         # Check if it was already computed
-        multimatch_human_mean_json_file = self.dataset_results_dir + 'multimatch_human_mean_per_image.json'
+        multimatch_human_mean_json_file = path.join(path.join(self.dataset_results_dir, model_name), 'multimatch_human_mean_per_image.json')
         if path.exists(multimatch_human_mean_json_file):
             with open(multimatch_human_mean_json_file, 'r') as fp:
                 multimatch_human_mean_per_image = json.load(fp)
@@ -154,13 +159,16 @@ class Multimatch:
                     with open(self.human_scanpaths_dir + subject_to_compare_filename, 'r') as fp:
                         subject_to_compare_scanpaths = json.load(fp)
                     for image_name in subject_scanpaths.keys():
-                        if not(image_name in subject_to_compare_scanpaths):
+                        if not(image_name in subject_to_compare_scanpaths) or not(image_name in model_scanpaths):
                             continue
 
                         subject_trial_info = subject_scanpaths[image_name]
                         subject_to_compare_trial_info = subject_to_compare_scanpaths[image_name]
 
-                        trial_multimatch_result = self.compute_multimatch(subject_trial_info, subject_to_compare_trial_info)
+                        screen_height = model_scanpaths[image_name]['image_height']
+                        screen_width  = model_scanpaths[image_name]['image_width']
+
+                        trial_multimatch_result = self.compute_multimatch(subject_trial_info, subject_to_compare_trial_info, (screen_width, screen_height))
 
                         # Check if result is empty
                         if not trial_multimatch_result:
@@ -181,17 +189,17 @@ class Multimatch:
             with open(multimatch_human_mean_json_file, 'w') as fp:
                 json.dump(multimatch_human_mean_per_image, fp, indent=4)
 
-        self.humans_multimatch = multimatch_human_mean_per_image
+        self.multimatch_values[model_name] = {'human_mean' : multimatch_human_mean_per_image} 
 
-    def compute_multimatch(self, trial_info, trial_to_compare_info):
+    def compute_multimatch(self, trial_info, trial_to_compare_info, screen_size):
         target_found = trial_info['target_found'] and trial_to_compare_info['target_found']
         if not(target_found):
             return []
 
-        screen_size = [trial_info['image_width'], trial_info['image_height']]
-
         trial_scanpath_X = trial_info['X']
         trial_scanpath_Y = trial_info['Y']
+        trial_image_width  = trial_info['image_width']
+        trial_image_height = trial_info['image_height']
         trial_scanpath_length = len(trial_scanpath_X)
         trial_scanpath_time = self.get_scanpath_time(trial_info, trial_scanpath_length)
 
@@ -204,6 +212,8 @@ class Multimatch:
         trial_to_compare_scanpath_time = self.get_scanpath_time(trial_to_compare_info, trial_to_compare_scanpath_length)
 
         # Rescale accordingly
+        trial_scanpath_X = [self.rescale_coordinate(x, trial_image_width, screen_size[0]) for x in trial_scanpath_X]
+        trial_scanpath_Y = [self.rescale_coordinate(y, trial_image_height, screen_size[1]) for y in trial_scanpath_Y]
         trial_to_compare_scanpath_X = [self.rescale_coordinate(x, trial_to_compare_image_width, screen_size[0]) for x in trial_to_compare_scanpath_X]
         trial_to_compare_scanpath_Y = [self.rescale_coordinate(y, trial_to_compare_image_height, screen_size[1]) for y in trial_to_compare_scanpath_Y]
 

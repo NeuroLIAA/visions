@@ -10,26 +10,17 @@ datasets_dir = '../Datasets/'
 dataset_results_dirs = listdir(results_dir)
 for dataset in dataset_results_dirs:
     dataset_name = dataset.split('_')[0]
-    human_scanpaths_dir = datasets_dir + dataset_name + '/human_scanpaths/'
+    dataset_path = path.join(datasets_dir, dataset_name)
+    human_scanpaths_dir = dataset_path + '/human_scanpaths/'
     dataset_results_dir = results_dir + dataset + '/'
+    with open(path.join(dataset_path, 'dataset_info.json')) as fp:
+        dataset_info = json.load(fp)
 
-    # Esto hay que levantarlo del JSON de configuración de cada dataset
-    if dataset_name == 'cIBS':
-        max_scanpath_length = 16
-    elif dataset_name == 'IVSN':
-        max_scanpath_length = 31
-    else:
-        max_scanpath_length = 10
-    if dataset_name == 'cIBS':
-        number_of_images = 134
-    elif dataset_name == 'IVSN':
-        number_of_images = 240
-    else:
-        number_of_images = 2489
+    max_scanpath_length = dataset_info['max_scanpath_length']
+    number_of_images    = dataset_info['number_of_images']
 
-    # Compute human subjects metrics
+    # Initialize objects
     multimatch = Multimatch(dataset_name, human_scanpaths_dir, dataset_results_dir)
-    multimatch.load_human_mean_per_image()
 
     subjects_cumulative_performance = Cumulative_performance(dataset_name, number_of_images, max_scanpath_length)
     subjects_cumulative_performance.add_human_mean(human_scanpaths_dir)
@@ -45,6 +36,9 @@ for dataset in dataset_results_dirs:
             model_scanpaths = json.load(fp)
         
         subjects_cumulative_performance.add_model(model_name, model_scanpaths)
+
+        # Human multimatch scores are different for each model, since each model uses different image sizes
+        multimatch.load_human_mean_per_image(model_name, model_scanpaths)
         multimatch.add_model_vs_humans_mean_per_image(model_name, model_scanpaths)
     
     subjects_cumulative_performance.plot(save_path=dataset_results_dir)
