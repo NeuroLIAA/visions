@@ -7,8 +7,8 @@ subjectsFilesDir = 'ProcessScanpath_naturaldesign/'
 trialsSequenceFile = 'naturaldesign_seq.mat'
 save_path = '../human_scanpaths/'
 # Load targets locations
-targetsPropertiesFile = open('../trials_properties.json')
-targetsPropertiesData = json.load(targetsPropertiesFile)
+with open('../trials_properties.json', 'r') as fp:
+    trials_properties = json.load(fp)
 
 numImages = 240
 receptive_size = (45, 45)
@@ -22,6 +22,8 @@ trialsSequence = trialsSequence % numImages
 subjectsFiles = listdir(subjectsFilesDir)
 targets_found = 0
 wrong_targets_found = 0
+
+skipped_trials = {}
 
 scanpaths_with_shorter_distance_than_receptive_size = 0
 shortest_consecutive_fixations_coord_difference     = (9999, 9999)
@@ -43,7 +45,8 @@ for subjectDataFile in subjectsFiles:
         # Only first trials are taken into account
         if (stimuli in stimuliProcessed):
             continue
-        
+
+        stimuliProcessed.append(stimuli)        
         # Get fixation coordinates for the current trial; minus one, since Python indexes images from zero.
         fix_posX = currentSubjectData['FixData']['Fix_posx'][0][0][trialNumber][0].flatten() - 1
         fix_posY = currentSubjectData['FixData']['Fix_posy'][0][0][trialNumber][0].flatten() - 1
@@ -55,7 +58,7 @@ for subjectDataFile in subjectsFiles:
             target_found = bool(currentSubjectData['FixData']['TargetFound'][0][0][trialNumber][(number_of_fixations - 1)])
 
         # Get target position information
-        current_target = targetsPropertiesData[stimuli - 1]
+        current_target = trials_properties[stimuli - 1]
         target_start_row = current_target['target_matched_row']
         target_start_column = current_target['target_matched_column']
         target_end_row = target_start_row + current_target['target_height']
@@ -112,7 +115,7 @@ for subjectDataFile in subjectsFiles:
 
         subjectTrialsInfo[imageName] = { "subject" : subjectNumber, "dataset" : "IVSN Natural Design Dataset", "image_height" : image_size[0], "image_width" : image_size[1], "screen_height" : screen_size[0], "screen_width" : screen_size[1], "receptive_height" : receptive_size[0], "receptive_width" : receptive_size[1], \
             "target_found" : target_found, "target_bbox" : target_bounding_box, "X" : fix_posX.tolist(), "Y" : fix_posY.tolist(), "T" : fix_time.tolist(), "target_object" : "TBD", "max_fixations" : 80}
-        stimuliProcessed.append(stimuli)
+        
 
     subject_save_file = 'subj' + subjectNumber + '_scanpaths.json'
     if not(path.exists(save_path)):
@@ -120,7 +123,6 @@ for subjectDataFile in subjectsFiles:
 
     with open(save_path + subject_save_file, 'w') as fp:
         json.dump(subjectTrialsInfo, fp, indent=4)
-        fp.close()
 
 print("Total targets found: " + str(targets_found) + ". Wrong targets found: " + str(wrong_targets_found))
 print("Scanpaths with consecutive fixations in a shorter distance than " + str(receptive_size) + ": " + str(scanpaths_with_shorter_distance_than_receptive_size))
