@@ -22,8 +22,7 @@ trialsSequence = trialsSequence % numImages
 subjectsFiles = listdir(subjectsFilesDir)
 targets_found = 0
 wrong_targets_found = 0
-
-skipped_trials = {}
+min_scanpath_length = 2
 
 scanpaths_with_shorter_distance_than_receptive_size = 0
 shortest_consecutive_fixations_coord_difference     = (9999, 9999)
@@ -52,6 +51,9 @@ for subjectDataFile in subjectsFiles:
         fix_posY = currentSubjectData['FixData']['Fix_posy'][0][0][trialNumber][0].flatten() - 1
 
         number_of_fixations = len(fix_posX)
+        # Skip short scanpaths
+        if number_of_fixations < min_scanpath_length:
+            continue
         target_found = False
         # TargetFound matrix has only 74 columns
         if number_of_fixations < 74:
