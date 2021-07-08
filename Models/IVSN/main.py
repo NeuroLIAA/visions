@@ -12,23 +12,23 @@ import json
 # max_fixations  = 80
 # receptive_size = 200
 
-# dataset_name = 'cIBS Dataset'
-# stimuli_dir = '../../Datasets/cIBS/images/'
-# target_dir = '../../Datasets/cIBS/templates/'
-# trials_properties_file = '../../Datasets/cIBS/trials_properties.json'
-# save_path = '../../Results/cIBS_dataset/IVSN/'
-# stimuli_size = (768, 1024)
-# max_fixations  = 16
-# receptive_size = 32
+dataset_name = 'cIBS Dataset'
+stimuli_dir = '../../Datasets/cIBS/images/'
+target_dir = '../../Datasets/cIBS/templates/'
+trials_properties_file = '../../Datasets/cIBS/trials_properties.json'
+save_path = '../../Results/cIBS_dataset/IVSN/'
+stimuli_size = (768, 1024)
+max_fixations  = 16
+receptive_size = 72
 
-dataset_name = 'COCOSearch18 Dataset'
-stimuli_dir = '../../Datasets/COCOSearch18/images/'
-target_dir = '../../Datasets/COCOSearch18/templates/'
-trials_properties_file = '../../Datasets/COCOSearch18/trials_properties.json'
-save_path = '../../Results/COCOSearch18_dataset/IVSN/'
-stimuli_size = (1050, 1680)
-max_fixations  = 10
-receptive_size = 54
+# dataset_name = 'COCOSearch18 Dataset'
+# stimuli_dir = '../../Datasets/COCOSearch18/images/'
+# target_dir = '../../Datasets/COCOSearch18/templates/'
+# trials_properties_file = '../../Datasets/COCOSearch18/trials_properties.json'
+# save_path = '../../Results/COCOSearch18_dataset/IVSN/'
+# stimuli_size = (1050, 1680)
+# max_fixations  = 10
+# receptive_size = 54
 
 def main():
     with open(trials_properties_file) as fp:
