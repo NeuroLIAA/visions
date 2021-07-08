@@ -18,7 +18,7 @@ def load_checkpoint(output_path):
     
     return checkpoint
 
-def load_config(config_dir, config_name, number_of_processes, checkpoint):
+def load_config(config_dir, config_name, number_of_processes, save_probability_maps, checkpoint):
     if checkpoint:
         config = checkpoint['configuration']
     else:
@@ -28,6 +28,8 @@ def load_config(config_dir, config_name, number_of_processes, checkpoint):
         config['proc_number'] = cpu_count()
     else:
         config['proc_number'] = int(number_of_processes)
+
+    config['save_probability_maps'] = save_probability_maps
 
     print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
     if checkpoint:
@@ -50,6 +52,7 @@ def load_config(config_dir, config_name, number_of_processes, checkpoint):
         print('Probability maps will be saved for each saccade')
     print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n')
     return config
+
 
 def load_dataset_info(dataset_info_file):
     return load_dict_from_json(dataset_info_file)

@@ -5,11 +5,11 @@ from scripts import loader, constants
 
 " Runs visualsearch/main.py according to the supplied parameters "
 
-def main(config_name, image_name, image_range, number_of_processes):
+def main(config_name, image_name, image_range, number_of_processes, save_probability_maps):
     dataset_info      = loader.load_dataset_info(constants.DATASET_INFO_FILE)
     output_path       = loader.create_output_folders(dataset_info['save_path'], config_name, image_name, image_range)
     checkpoint        = loader.load_checkpoint(output_path)
-    config            = loader.load_config(constants.CONFIG_DIR, config_name, number_of_processes, checkpoint)
+    config            = loader.load_config(constants.CONFIG_DIR, config_name, number_of_processes, save_probability_maps, checkpoint)
     trials_properties = loader.load_trials_properties(dataset_info['trials_properties_file'], image_name, image_range, checkpoint)
 
     visualsearch.run(config, dataset_info, trials_properties, output_path, constants.SIGMA)
@@ -17,7 +17,7 @@ def main(config_name, image_name, image_range, number_of_processes):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description='Run the Visual Search model')
-    parser.add_argument('--cfg', '--config', type=str, default='default', help='Name of configuration setup. Examples: greedy, flat, geisler. Default is bayesian, with correlation \
+    parser.add_argument('--cfg', '--config', type=str, default='default', help='Name of configuration setup. Examples: greedy, ssim, ivsn. Default is bayesian, with correlation \
         and deepgaze as prior.', metavar='cfg')
     group = parser.add_mutually_exclusive_group()
     group.add_argument('--img', '--image_name', type=str, default=None, help='Name of the image on which to run the model', metavar='img')
@@ -25,6 +25,8 @@ if __name__ == "__main__":
          For example, 1 100 runs the model on the image 1 through 100', metavar='rng')
     parser.add_argument('--m', '--multiprocess', nargs='?', const='all', default=1, \
          help='Number of processes on which to run the model. Leave blank to use all cores available.')
+    parser.add_argument('--s', '--save_prob_map', action='store_true', \
+         help='Save probability map for each saccade')
 
     args = parser.parse_args()
 
@@ -32,4 +34,4 @@ if __name__ == "__main__":
         print('Invalid value for --multiprocess argument')
         sys.exit(-1)
 
-    main(args.cfg, args.img, args.rng, args.m)
+    main(args.cfg, args.img, args.rng, args.m, args.s)
