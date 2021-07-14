@@ -22,7 +22,7 @@ def plot_scanpath(img, xs, ys, fixation_size, bbox=None, title=None, save_path=N
 
     for i in range(len(xs)):
         circle = plt.Circle((xs[i], ys[i]),
-                            radius=fixation_size // 2,
+                            radius=fixation_size[1] // 2,
                             edgecolor='red',
                             facecolor='yellow',
                             alpha=0.5)
@@ -66,27 +66,48 @@ def parse_args():
     args = parser.parse_args()
     return args
 
-def rescale_coordinate(value, old_size, new_size):
+def get_trial_info(image_name, trials_properties):
+    for trial in trials_properties:
+        if trial['image'] == image_name:
+            return trial        
+
+    raise NameError('Image name must be in the dataset')
+
+def rescale_coordinate(value, old_size, new_size, fixation_size, is_grid=False):
+    if is_grid:
+        # Rescale fixation to center of the cell in the grid
+        return value * fixation_size + (fixation_size // 2)
+    else:
         return (value / old_size) * new_size
 
-def process_image(img_scanpath, subject, image_name, dataset_name, images_path):
-    image_file = path.join(images_path, image_name)
-    img        = io.imread(image_file)
-    # Rescale scanpath to original coordinates
-    original_img_size = img.shape[:2]
+def process_image(img_scanpath, subject, image_name, dataset_name, trial_info, images_path):
+    fixation_size     = (img_scanpath['receptive_height'], img_scanpath['receptive_width'])
     scanpath_img_size = (img_scanpath['image_height'], img_scanpath['image_width'])
 
-    X = [rescale_coordinate(x, scanpath_img_size[1], original_img_size[1]) for x in img_scanpath['X']]
-    Y = [rescale_coordinate(y, scanpath_img_size[0], original_img_size[0]) for y in img_scanpath['Y']]
+    image_file = path.join(images_path, image_name)
+    img        = io.imread(image_file)
+    img_size_used = scanpath_img_size
 
-    bbox = img_scanpath['target_bbox']
-    bbox[0], bbox[2] = [rescale_coordinate(pos, scanpath_img_size[0], original_img_size[0]) for pos in (bbox[0], bbox[2])]
-    bbox[1], bbox[3] = [rescale_coordinate(pos, scanpath_img_size[1], original_img_size[1]) for pos in (bbox[1], bbox[3])]
+    is_grid = False
+    # cIBS uses a grid for images, it's necessary to upscale it
+    if subject == 'cIBS':
+        is_grid = True
+        img_size_used = (fixation_size[0] * scanpath_img_size[0], fixation_size[1] * scanpath_img_size[1])
+
+    img = transform.resize(img, img_size_used)
+    # Rescale scanpath if necessary
+    X = [rescale_coordinate(x, scanpath_img_size[1], img_size_used[1], fixation_size[1], is_grid) for x in img_scanpath['X']]
+    Y = [rescale_coordinate(y, scanpath_img_size[0], img_size_used[0], fixation_size[0], is_grid) for y in img_scanpath['Y']]
+
+    bbox = [trial_info['target_matched_row'], trial_info['target_matched_column'], trial_info['target_matched_row'] + trial_info['target_height'], \
+        trial_info['target_matched_column'] + trial_info['target_width']]
+    
+    if not is_grid:
+        bbox[0], bbox[2] = [rescale_coordinate(pos, scanpath_img_size[0], img_size_used[0], fixation_size[1]) for pos in (bbox[0], bbox[2])]
+        bbox[1], bbox[3] = [rescale_coordinate(pos, scanpath_img_size[1], img_size_used[1], fixation_size[0]) for pos in (bbox[1], bbox[3])]
     target_height = bbox[2] - bbox[0]
     target_width  = bbox[3] - bbox[1]
     bbox = [bbox[1], bbox[0], target_width, target_height]
-
-    fixation_size = img_scanpath['receptive_width']    
 
     save_path = path.join('Plots', path.join(dataset_name + '_dataset', image_name[:-4]))
     if not path.exists(save_path):
@@ -154,9 +175,19 @@ if __name__ == '__main__':
     
     images_path = path.join(dataset_path, dataset_info['images_dir'])
 
+    if args.model == 'cIBS' and args.dataset != 'cIBS':
+        trials_properties_file = path.join(dataset_path, 'trials_properties_resized.json')
+    else:
+        trials_properties_file = path.join(dataset_path, 'trials_properties.json')
+
+    with open(trials_properties_file, 'r') as fp:
+        trials_properties = json.load(fp)
+    
+    trial_info = get_trial_info(args.img, trials_properties)
+
     if args.img == 'notfound' and not args.human:
         for image_name in scanpaths.keys():
             if not scanpaths[image_name]['target_found']:
-                process_image(scanpaths[image_name], subject, image_name, args.dataset, images_path)
+                process_image(scanpaths[image_name], subject, image_name, args.dataset, trial_info, images_path)
     else:
-        process_image(img_scanpath, subject, args.img, args.dataset, images_path)
+        process_image(img_scanpath, subject, args.img, args.dataset, trial_info, images_path)
