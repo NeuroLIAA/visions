@@ -1,40 +1,47 @@
 import numpy as np
 import torch
-from copy import copy
-from torch.distributions import Categorical
+import json
 import warnings
 import os
-import re
-from shutil import copyfile
+from math import floor
+from torch.distributions import Categorical
 warnings.filterwarnings("ignore", category=UserWarning)
 
+def rescale_coordinate(value, old_size, new_size):
+    return floor((value / old_size) * new_size)
+
+def add_scanpath_to_dict(model_name, image_name, image_size, scanpath_x, scanpath_y, target_object, cell_size, max_saccades, dataset_name, dict_):
+    dict_[image_name] = {'subject' : model_name, 'dataset' : dataset_name, 'image_height' : image_size[0], 'image_width' : image_size[1], \
+        'receptive_height' : cell_size, 'receptive_width' : cell_size, 'target_found' : False, 'target_bbox' : np.zeros(shape=4), \
+                 'X' : list(map(int, scanpath_x)), 'Y' : list(map(int, scanpath_y)), 'target_object' : target_object, 'max_fixations' : max_saccades + 1
+        }
+
+def save_scanpaths(output_path, scanpaths):
+    if not os.path.exists(output_path):
+        os.makedirs(output_path)
+    save_to_json(output_path + 'Scanpaths.json', scanpaths)
+
+def save_to_json(file, data):
+    with open(file, 'w') as json_file:
+        json.dump(data, json_file, indent=4)
 
 def cutFixOnTarget(trajs, target_annos):
-    task_names = np.unique([traj['task'] for traj in trajs])
-    if 'condition' in trajs[0].keys():
-        trajs = list(filter(lambda x: x['condition'] == 'present', trajs))
-    for task in task_names:
-        task_trajs = list(filter(lambda x: x['task'] == task, trajs))
-        num_steps_task = np.ones(len(task_trajs), dtype=np.uint8)
-        for i, traj in enumerate(task_trajs):
-            key = traj['task'] + '_' + traj['name']
-            bbox = target_annos[key]
-            traj_len = get_num_step2target(traj['X'], traj['Y'], bbox)
-            if traj_len != 1000:
-                traj['target_found'] = True
-            else:
-                traj['target_found'] = False
-            num_steps_task[i] = traj_len
-            traj['X'] = traj['X'][:traj_len]
-            traj['Y'] = traj['Y'][:traj_len]
-            traj['bbox'] = bbox
+    for image_name in trajs:
+        traj = trajs[image_name]
+        key = traj['target_object'] + '_' + image_name
+        bbox = target_annos[key]
+        traj_len = get_num_step2target(traj['X'], traj['Y'], bbox)
+        if traj_len != 1000:
+            traj['target_found'] = True
+        traj['X'] = traj['X'][:traj_len]
+        traj['Y'] = traj['Y'][:traj_len]
+        traj['target_bbox'] = [bbox[1],bbox[0],bbox[1] + bbox[3], bbox[0] + bbox[2]]
 
 def pos_to_action(center_x, center_y, patch_size, patch_num):
     x = center_x // patch_size[0]
     y = center_y // patch_size[1]
 
     return int(patch_num[0] * y + x)
-
 
 def action_to_pos(acts, patch_size, patch_num):
     patch_y = acts // patch_num[0]
@@ -43,7 +50,6 @@ def action_to_pos(acts, patch_size, patch_num):
     pixel_x = patch_x * patch_size[0] + patch_size[0] / 2
     pixel_y = patch_y * patch_size[1] + patch_size[1] / 2
     return pixel_x, pixel_y
-
 
 def select_action(obs, policy, sample_action, action_mask=None,
                   softmask=False, eps=1e-12):
@@ -71,7 +77,6 @@ def select_action(obs, policy, sample_action, action_mask=None,
         probs_new[action_mask.view(probs_new.size(0), -1)] = 0
         actions = torch.argmax(probs_new, dim=1)
         return actions.view(-1), None, None, None
-
 
 def collect_trajs(env,
                   policy,
@@ -166,7 +171,6 @@ def collect_trajs(env,
 
     return trajs
 
-
 def compute_return_advantage(rewards, values, gamma, mtd='CRITIC', tau=0.96):
     device = rewards.device
     acc_reward = torch.zeros_like(rewards, dtype=torch.float, device=device)
@@ -189,7 +193,6 @@ def compute_return_advantage(rewards, values, gamma, mtd='CRITIC', tau=0.96):
         raise NotImplementedError
 
     return acc_reward.squeeze(), advs.squeeze()
-
 
 def process_trajs(trajs, gamma, mtd='CRITIC', tau=0.96):
     # compute discounted cummulative reward
@@ -228,7 +231,6 @@ def process_trajs(trajs, gamma, mtd='CRITIC', tau=0.96):
 
     return avg_return / len(trajs)
 
-
 def get_num_step2target(X, Y, bbox):
     X, Y = np.array(X), np.array(Y)
     on_target_X = np.logical_and(X > bbox[0], X < bbox[0] + bbox[2])
@@ -239,15 +241,6 @@ def get_num_step2target(X, Y, bbox):
         return first_on_target_idx + 1
     else:
         return 1000  # some big enough number
-
-
-def get_CDF(num_steps, max_step):
-    cdf = np.zeros(max_step)
-    total = float(len(num_steps))
-    for i in range(1, max_step + 1):
-        cdf[i - 1] = np.sum(num_steps <= i) / total
-    return cdf
-
 
 def get_num_steps(trajs, target_annos, task_names):
     num_steps = {}
@@ -263,27 +256,6 @@ def get_num_steps(trajs, target_annos, task_names):
             traj['Y'] = traj['Y'][:step_num]
         num_steps[task] = num_steps_task
     return num_steps
-
-
-def get_mean_cdf(num_steps, task_names, max_step):
-    cdf_tasks = []
-    for task in task_names:
-        cdf_tasks.append(get_CDF(num_steps[task], max_step))
-    return cdf_tasks
-
-
-def compute_search_cdf(scanpaths, annos, max_step, return_by_task=False):
-    # compute search CDF
-    task_names = np.unique([traj['task'] for traj in scanpaths])
-    num_steps = get_num_steps(scanpaths, annos, task_names)
-    cdf_tasks = get_mean_cdf(num_steps, task_names, max_step + 1)
-    if return_by_task:
-        return dict(zip(task_names, cdf_tasks))
-    else:
-        mean_cdf = np.mean(cdf_tasks, axis=0)
-        std_cdf = np.std(cdf_tasks, axis=0)
-        return mean_cdf, std_cdf
-
 
 def calc_overlap_ratio(bbox, patch_size, patch_num):
     """
@@ -313,13 +285,11 @@ def calc_overlap_ratio(bbox, patch_size, patch_num):
 
     return aoi_ratio
 
-
 def foveal2mask(x, y, r, h, w):
     Y, X = np.ogrid[:h, :w]
     dist = np.sqrt((X - x)**2 + (Y - y)**2)
     mask = dist <= r
     return mask.astype(np.float32)
-
 
 def multi_hot_coding(bbox, patch_size, patch_num):
     """
@@ -337,10 +307,8 @@ def multi_hot_coding(bbox, patch_size, patch_num):
 
     return aoi_ratio[0]
 
-
-def actions2scanpaths(actions, patch_num, im_w, im_h):
-    # convert actions to scanpaths
-    scanpaths = []
+def actions2scanpaths(actions, patch_num, im_w, im_h, dataset_name, patch_size, max_saccades):
+    scanpaths = {}
     for traj in actions:
         task_name, img_name, condition, actions = traj
         actions = actions.to(dtype=torch.float32)
@@ -350,109 +318,11 @@ def actions2scanpaths(actions, patch_num, im_w, im_h):
         fixs = np.concatenate([np.array([[0.5], [0.5]]),
                                fixs.cpu().numpy()],
                               axis=1)
-        scanpaths.append({
-            'X': fixs[0] * im_w,
-            'Y': fixs[1] * im_h,
-            'name': img_name,
-            'task': task_name,
-            'condition': condition,
-            'image_size': (im_h,im_w)
-        })
+        add_scanpath_to_dict('IRL Model', img_name, (im_h,im_w), fixs[0] * im_w, fixs[1] * im_h, task_name, patch_size, max_saccades, dataset_name, scanpaths)
     return scanpaths
-
-
-def preprocess_fixations(trajs,
-                         patch_size,
-                         patch_num,
-                         im_h,
-                         im_w,
-                         truncate_num=-1,
-                         need_label=True):
-    fix_labels = []
-    for traj in trajs:
-        # first fixations are fixed at the screen center
-        traj['X'][0], traj['Y'][0] = im_w / 2, im_h / 2
-        label = pos_to_action(traj['X'][0], traj['Y'][0], patch_size,
-                              patch_num)
-        tar_x, tar_y = action_to_pos(label, patch_size, patch_num)
-        fixs = [(tar_x, tar_y)]
-        label_his = [label]
-        if truncate_num < 1:
-            traj_len = len(traj['X'])
-        else:
-            traj_len = min(truncate_num, len(traj['X']))
-
-        for i in range(1, traj_len):
-            label = pos_to_action(traj['X'][i], traj['Y'][i], patch_size,
-                                  patch_num)
-
-            # remove returning fixations (enforce inhibition of return)
-            if label in label_his:
-                continue
-            label_his.append(label)
-            fix_label = (traj['name'], traj['task'], copy(fixs), label)
-
-            # discretize fixations
-            tar_x, tar_y = action_to_pos(label, patch_size, patch_num)
-            fixs.append((tar_x, tar_y))
-
-            fix_labels.append(fix_label)
-
-    return fix_labels
-
-
-def _file_at_step(step, name):
-    return "save_{}_{}k{}.pkg".format(name, int(step // 1000),
-                                      int(step % 1000))
-
-
+                                      
 def _file_best(name):
     return "trained_{}.pkg".format(name)
-
-
-def save(global_step,
-         model,
-         optim,
-         name,
-         pkg_dir="",
-         is_best=False,
-         max_checkpoints=None):
-    if optim is None:
-        raise ValueError("cannot save without optimzier")
-    state = {
-        "global_step":
-        global_step,
-        # DataParallel wrap model in attr `module`.
-        "model":
-        model.module.state_dict()
-        if hasattr(model, "module") else model.state_dict(),
-        "optim":
-        optim.state_dict(),
-    }
-    save_path = os.path.join(pkg_dir, _file_at_step(global_step, name))
-    best_path = os.path.join(pkg_dir, _file_best(name))
-    torch.save(state, save_path)
-    print("[Checkpoint]: save to {} successfully".format(save_path))
-
-    if is_best:
-        copyfile(save_path, best_path)
-    if max_checkpoints is not None:
-        history = []
-        for file_name in os.listdir(pkg_dir):
-            if re.search("save_{}_\d*k\d*\.pkg".format(name), file_name):
-                digits = file_name.replace("save_{}_".format(name),
-                                           "").replace(".pkg", "").split("k")
-                number = int(digits[0]) * 1000 + int(digits[1])
-                history.append(number)
-        history.sort()
-        while len(history) > max_checkpoints:
-            path = os.path.join(pkg_dir, _file_at_step(history[0], name))
-            print("[Checkpoint]: remove {} to keep {} checkpoints".format(
-                path, max_checkpoints))
-            if os.path.exists(path):
-                os.remove(path)
-            history.pop(0)
-
 
 def load(step_or_path, model, name, optim=None, pkg_dir="", device=None):
     step = step_or_path
@@ -481,5 +351,5 @@ def load(step_or_path, model, name, optim=None, pkg_dir="", device=None):
     if optim is not None:
         optim.load_state_dict(state["optim"])
 
-    print("[Checkpoint]: Load {} successfully".format(save_path))
+    print("Loaded {} successfully".format(save_path))
     return global_step

@@ -34,10 +34,10 @@ class IRL_Env4LHF:
         if self.step_id > 0:
             # update state with high-res feature
             remap_ratio = self.pa.patch_num[0] / float(self.states.size(-1))
-            lastest_fixation_on_feats = self.fixations[:, self.step_id].to(
+            latest_fixation_on_feats = self.fixations[:, self.step_id].to(
                 dtype=torch.float32) / remap_ratio
-            px = lastest_fixation_on_feats[:, 0]
-            py = lastest_fixation_on_feats[:, 1]
+            px = latest_fixation_on_feats[:, 0]
+            py = latest_fixation_on_feats[:, 1]
             masks = []
             for i in range(self.batch_size):
                 mask = foveal2mask(px[i].item(), py[i].item(),
@@ -141,11 +141,13 @@ class IRL_Env4LHF:
 
         self.history_map = self.init_history_map.clone()
         
+        breakpoint()
         # random initialization
         if self.init == 'random':
             raise NotImplementedError
         # center initialization
         elif self.init == 'center':
+            breakpoint()
             self.fixations[:, 0] = torch.tensor(
                 [[self.pa.patch_num[0] / 2, self.pa.patch_num[1] / 2]],
                 dtype=torch.long,

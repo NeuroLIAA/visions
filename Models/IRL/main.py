@@ -22,7 +22,7 @@ from irl_dcb.environment import IRL_Env4LHF
 from irl_dcb.build_belief_maps import build_belief_maps
 
 from irl_dcb import utils
-from utils import scanpath_representation
+# from utils import utils
 
 torch.manual_seed(42619)
 np.random.seed(42619)
@@ -58,8 +58,8 @@ def gen_scanpaths(generator,
                                      'present', trajs['actions'][:, i])
                                     for i in range(env_test.batch_size)])
             
-    scanpaths = scanpath_representation.actions2scanpaths(all_actions, patch_num, im_w, im_h, dataset_name, hparams.Data.patch_size[0], max_traj_len)
-    scanpath_representation.cutFixOnTarget(scanpaths, bbox_annos)
+    scanpaths = utils.actions2scanpaths(all_actions, patch_num, im_w, im_h, dataset_name, hparams.Data.patch_size[0], max_traj_len)
+    utils.cutFixOnTarget(scanpaths, bbox_annos)
 
     return scanpaths
 
@@ -95,17 +95,17 @@ if __name__ == '__main__':
         original_image_height = image_data['image_height']
         original_image_width  = image_data['image_width']
         # Rescale everything to image size used
-        image_data['target_matched_column'] = scanpath_representation.rescale_coordinate(image_data['target_matched_column'], original_image_width, hparams.Data.im_w)
-        image_data['target_matched_row']    = scanpath_representation.rescale_coordinate(image_data['target_matched_row'], original_image_height, hparams.Data.im_h)
-        image_data['target_width']  = scanpath_representation.rescale_coordinate(image_data['target_width'], original_image_width, hparams.Data.im_w)
-        image_data['target_height'] = scanpath_representation.rescale_coordinate(image_data['target_height'], original_image_height, hparams.Data.im_h)
-        image_data['initial_fixation_column'] = scanpath_representation.rescale_coordinate(image_data['initial_fixation_column'], original_image_width, hparams.Data.im_w)
-        image_data['initial_fixation_row']    = scanpath_representation.rescale_coordinate(image_data['initial_fixation_row'], original_image_height, hparams.Data.im_h)
+        image_data['target_matched_column'] = utils.rescale_coordinate(image_data['target_matched_column'], original_image_width, hparams.Data.im_w)
+        image_data['target_matched_row']    = utils.rescale_coordinate(image_data['target_matched_row'], original_image_height, hparams.Data.im_h)
+        image_data['target_width']  = utils.rescale_coordinate(image_data['target_width'], original_image_width, hparams.Data.im_w)
+        image_data['target_height'] = utils.rescale_coordinate(image_data['target_height'], original_image_height, hparams.Data.im_h)
+        image_data['initial_fixation_column'] = utils.rescale_coordinate(image_data['initial_fixation_column'], original_image_width, hparams.Data.im_w)
+        image_data['initial_fixation_row']    = utils.rescale_coordinate(image_data['initial_fixation_row'], original_image_height, hparams.Data.im_h)
         image_data['image_width']  = hparams.Data.im_w
         image_data['image_height'] = hparams.Data.im_h
         
         key = image_data['target_object'] + '_' + image_data['image']
-        bbox_annos[key] = (image_data['target_matched_column'],image_data['target_matched_row'], image_data['target_width'], image_data['target_height'])
+        bbox_annos[key] = (image_data['target_matched_column'], image_data['target_matched_row'], image_data['target_width'], image_data['target_height'])
 
         # Create belief maps for image if necessary
         img_belief_maps_file = image_data['image'][:-4] + '.pth.tar'
@@ -163,4 +163,4 @@ if __name__ == '__main__':
                                 num_sample=1)
 
     output_path = path.join(results_path, dataset_name + '_dataset' + '/IRL/')
-    scanpath_representation.save_scanpaths(output_path, predictions)
+    utils.save_scanpaths(output_path, predictions)
