@@ -149,7 +149,8 @@ if __name__ == '__main__':
                            mask_size=hparams.Data.IOR_size,
                            status_update_mtd=hparams.Train.stop_criteria,
                            device=device,
-                           inhibit_return=True)
+                           inhibit_return=True,
+                           init_mtd='manual')
 
     # Generate scanpaths
     print('Generating scanpaths...')

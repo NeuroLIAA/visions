@@ -141,13 +141,11 @@ class IRL_Env4LHF:
 
         self.history_map = self.init_history_map.clone()
         
-        breakpoint()
         # random initialization
         if self.init == 'random':
             raise NotImplementedError
         # center initialization
         elif self.init == 'center':
-            breakpoint()
             self.fixations[:, 0] = torch.tensor(
                 [[self.pa.patch_num[0] / 2, self.pa.patch_num[1] / 2]],
                 dtype=torch.long,
@@ -162,9 +160,21 @@ class IRL_Env4LHF:
                              1] = 1
 
             self.action_mask = self.action_mask.view(bs, -1)
+        # manual initializacion, where initial fixation is provided
         elif self.init == 'manual':
-            self.fixations[:, 0, 0] = self.init_fix[:, 0]
-            self.fixations[:, 0, 1] = self.init_fix[:, 1]
+            self.fixations[:, 0, 0] = torch.round(self.init_fix[:, 0] * self.pa.patch_num[0])
+            self.fixations[:, 0, 1] = torch.round(self.init_fix[:, 1] * self.pa.patch_num[1])
+            bs = self.action_mask.size(0)
+            self.action_mask = self.action_mask.view(bs, self.pa.patch_num[1],
+                                                     -1)
+
+            index = 0
+            for action_mask in self.action_mask:
+                px, py = int(torch.round(self.init_fix[index, 0] * self.pa.patch_num[0])), int(torch.round(self.init_fix[index, 1] * self.pa.patch_num[1]))
+                action_mask[py - self.mask_size:py + self.mask_size + 1, px - self.mask_size:px + self.mask_size + 1] = 1
+                index += 1
+
+            self.action_mask = self.action_mask.view(bs, -1)
         else:
             raise NotImplementedError
 
