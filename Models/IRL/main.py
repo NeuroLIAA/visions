@@ -22,7 +22,6 @@ from irl_dcb.environment import IRL_Env4LHF
 from irl_dcb.build_belief_maps import build_belief_maps
 
 from irl_dcb import utils
-# from utils import utils
 
 torch.manual_seed(42619)
 np.random.seed(42619)
