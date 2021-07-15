@@ -3,23 +3,23 @@ import image_preprocessing
 import compute_scanpaths
 import json
 
-# dataset_name = 'IVSN Natural Design Dataset'
-# stimuli_dir = '../../Datasets/IVSN/stimuli/'
-# target_dir = '../../Datasets/IVSN/target/'
-# trials_properties_file = '../../Datasets/IVSN/trials_properties.json'
-# save_path = '../../Results/IVSN_dataset/IVSN/'
-# stimuli_size = (1024, 1280)
-# max_fixations  = 80
-# receptive_size = 200
+dataset_name = 'IVSN Natural Design Dataset'
+stimuli_dir = '../../Datasets/IVSN/stimuli/'
+target_dir = '../../Datasets/IVSN/target/'
+trials_properties_file = '../../Datasets/IVSN/trials_properties.json'
+save_path = '../../Results/IVSN_dataset/IVSN/'
+stimuli_size = (1024, 1280)
+max_fixations  = 80
+receptive_size = 200
 
-dataset_name = 'cIBS Dataset'
-stimuli_dir = '../../Datasets/cIBS/images/'
-target_dir = '../../Datasets/cIBS/templates/'
-trials_properties_file = '../../Datasets/cIBS/trials_properties.json'
-save_path = '../../Results/cIBS_dataset/IVSN/'
-stimuli_size = (768, 1024)
-max_fixations  = 16
-receptive_size = 72
+# dataset_name = 'cIBS Dataset'
+# stimuli_dir = '../../Datasets/cIBS/images/'
+# target_dir = '../../Datasets/cIBS/templates/'
+# trials_properties_file = '../../Datasets/cIBS/trials_properties.json'
+# save_path = '../../Results/cIBS_dataset/IVSN/'
+# stimuli_size = (768, 1024)
+# max_fixations  = 16
+# receptive_size = 72
 
 # dataset_name = 'COCOSearch18 Dataset'
 # stimuli_dir = '../../Datasets/COCOSearch18/images/'

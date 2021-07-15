@@ -1,26 +1,25 @@
 
-"""Test script.
+""" Script which runs the IRL model on a given dataset
 Usage:
-  test.py <hparams> <checkpoint_dir> <dataset_root> [--cuda=<id>]
+  test.py <dataset_name>
   test.py -h | --help
 Options:
   -h --help     Show this screen.
   --cuda=<id>   id of the cuda device [default: 0].
 """
 
-
-
 import torch
 import numpy as np
 import json
 from tqdm import tqdm
 from docopt import docopt
-from os.path import join
+from os import path, cpu_count
 from dataset import process_eval_data
 from irl_dcb.config import JsonConfig
 from torch.utils.data import DataLoader
 from irl_dcb.models import LHF_Policy_Cond_Small
 from irl_dcb.environment import IRL_Env4LHF
+from irl_dcb.build_belief_maps import build_belief_maps
 
 from irl_dcb import utils
 from utils import scanpath_representation
@@ -28,6 +27,9 @@ from utils import scanpath_representation
 torch.manual_seed(42619)
 np.random.seed(42619)
 
+datasets_path = '../../Datasets/'
+results_path  = '../../Results/'
+dcbs_path = 'dataset_root/'
 
 def gen_scanpaths(generator,
                   env_test,
@@ -39,8 +41,7 @@ def gen_scanpaths(generator,
                   num_sample=10):
     all_actions = []
     for i_sample in range(num_sample):
-        progress = tqdm(test_img_loader,
-                        desc='trial ({}/{})'.format(i_sample + 1, num_sample))
+        progress = tqdm(test_img_loader)
         for i_batch, batch in enumerate(progress):
             env_test.set_data(batch)
             img_names_batch = batch['img_name']
@@ -59,44 +60,69 @@ def gen_scanpaths(generator,
             
     scanpaths = scanpath_representation.actions2scanpaths(all_actions, patch_num, im_w, im_h, dataset_name, hparams.Data.patch_size[0], max_traj_len)
     scanpath_representation.cutFixOnTarget(scanpaths, bbox_annos)
-        
 
     return scanpaths
-
 
 if __name__ == '__main__':
     args = docopt(__doc__)
     device = torch.device('cpu')
-    hparams = args["<hparams>"]
-    dataset_root = args["<dataset_root>"]
-    dataset_name = args["<dataset_root>"]
-    #https://drive.google.com/drive/folders/1spD2_Eya5S5zOBO3NKILlAjMEC3_gKWc de ahí se baja todo lo que iría en dataset_root
-    checkpoint = args["<checkpoint_dir>"]
+    dataset_name = args["<dataset_name>"]
+    checkpoint = 'trained_models/'
+    hparams = path.join('hparams', 'default.json')
     hparams = JsonConfig(hparams)
 
-    # dir of pre-computed beliefs
-    DCB_dir_HR = join(dataset_root, 'DCBs/HR/')
-    DCB_dir_LR = join(dataset_root, 'DCBs/LR/')
+    number_of_belief_maps = 134
+    # Sigma of the gaussian filter applied to the search image
+    sigma_blur = 2
+    dcbs_path = path.join(dcbs_path, dataset_name)
+    # Dir of pre-computed beliefs
+    DCB_dir_HR = path.join(dcbs_path, 'DCBs/HR/')
+    DCB_dir_LR = path.join(dcbs_path, 'DCBs/LR/')
     
-    with open('../../Datasets/COCOSearch18/trials_properties.json', 'r') as json_file:
+    dataset_path = path.join(datasets_path, dataset_name)
+    with open(path.join(dataset_path, 'trials_properties.json'), 'r') as json_file:
         trials_properties = json.load(json_file)
     
-
+    with open(path.join(dataset_path, 'dataset_info.json'), 'r') as json_file:
+        dataset_info = json.load(json_file)
+    
+    hparams.Data.max_traj_length = dataset_info['max_scanpath_length'] - 1
+    images_dir = path.join(dataset_path, dataset_info['images_dir'])
 
     bbox_annos = {}
+    iteration = 1
     for image_data in trials_properties:
-        image_data['target_matched_column'] = scanpath_representation.rescale_coordinate(image_data['target_matched_column'],1680,512)
-        image_data['target_matched_row'] = scanpath_representation.rescale_coordinate(image_data['target_matched_row'],1050,320)
-        image_data['target_height'] = scanpath_representation.rescale_coordinate(image_data['target_height'],1050,320)
-        image_data['target_width'] = scanpath_representation.rescale_coordinate(image_data['target_width'],1680,512)
-        image_data['initial_fixation_column'] = scanpath_representation.rescale_coordinate(image_data['initial_fixation_column'],1680,512)
-        image_data['initial_fixation_row'] = scanpath_representation.rescale_coordinate(image_data['initial_fixation_row'],1050,320)
-        image_data['image_height'] = 320
-        image_data['image_width'] = 512
+        original_image_height = image_data['image_height']
+        original_image_width  = image_data['image_width']
+        # Rescale everything to image size used
+        image_data['target_matched_column'] = scanpath_representation.rescale_coordinate(image_data['target_matched_column'], original_image_width, hparams.Data.im_w)
+        image_data['target_matched_row']    = scanpath_representation.rescale_coordinate(image_data['target_matched_row'], original_image_height, hparams.Data.im_h)
+        image_data['target_width']  = scanpath_representation.rescale_coordinate(image_data['target_width'], original_image_width, hparams.Data.im_w)
+        image_data['target_height'] = scanpath_representation.rescale_coordinate(image_data['target_height'], original_image_height, hparams.Data.im_h)
+        image_data['initial_fixation_column'] = scanpath_representation.rescale_coordinate(image_data['initial_fixation_column'], original_image_width, hparams.Data.im_w)
+        image_data['initial_fixation_row']    = scanpath_representation.rescale_coordinate(image_data['initial_fixation_row'], original_image_height, hparams.Data.im_h)
+        image_data['image_width']  = hparams.Data.im_w
+        image_data['image_height'] = hparams.Data.im_h
         
         key = image_data['target_object'] + '_' + image_data['image']
         bbox_annos[key] = (image_data['target_matched_column'],image_data['target_matched_row'], image_data['target_width'], image_data['target_height'])
-    # process fixation data
+
+        # Create belief maps for image if necessary
+        img_belief_maps_file = image_data['image'][:-4] + '.pth.tar'
+        if not (path.exists(path.join(DCB_dir_HR, img_belief_maps_file)) and path.exists(path.join(DCB_dir_LR, img_belief_maps_file))):
+            print('Building belief maps for image ' + image_data['image'] + ' (' + str(iteration) + '/' + str(len(trials_properties)) + ')')
+            build_belief_maps(image_data['image'], 
+                            images_dir,
+                            (hparams.Data.im_w, hparams.Data.im_h),
+                            (hparams.Data.patch_num[1], hparams.Data.patch_num[0]),
+                            sigma_blur,
+                            number_of_belief_maps,
+                            DCB_dir_HR,
+                            DCB_dir_LR)
+        
+        iteration += 1
+
+    # Process fixation data
     dataset = process_eval_data(trials_properties,
                            DCB_dir_HR,
                            DCB_dir_LR,
@@ -105,22 +131,19 @@ if __name__ == '__main__':
     img_loader = DataLoader(dataset['img_test'],
                             batch_size=64,
                             shuffle=False,
-                            num_workers=4)
-    print('num of test images =', len(dataset['img_test']))
+                            num_workers=cpu_count())
+    print('Number of images: ', len(dataset['img_test']))
 
-    # load trained model
-    input_size = 134  # number of belief maps
-    task_eye = torch.eye(len(dataset['catIds'])).to(device)
+    # Load trained model
+    task_eye  = torch.eye(len(dataset['catIds'])).to(device)
     generator = LHF_Policy_Cond_Small(hparams.Data.patch_count,
                                       len(dataset['catIds']), task_eye,
-                                      input_size).to(device)
-
+                                      number_of_belief_maps).to(device)
     
     utils.load('best', generator, 'generator', pkg_dir=checkpoint, device = device)
-    
     generator.eval()
 
-    # build environment
+    # Build environment
     env_test = IRL_Env4LHF(hparams.Data,
                            max_step=hparams.Data.max_traj_length,
                            mask_size=hparams.Data.IOR_size,
@@ -128,8 +151,8 @@ if __name__ == '__main__':
                            device=device,
                            inhibit_return=True)
 
-    # generate scanpaths
-    print('sample scanpaths (1 for each testing image)...')
+    # Generate scanpaths
+    print('Generating scanpaths...')
     predictions = gen_scanpaths(generator,
                                 env_test,
                                 img_loader,
@@ -139,66 +162,5 @@ if __name__ == '__main__':
                                 hparams.Data.im_h,
                                 num_sample=1)
 
-   
-    
-
-    output_path = '../../Results/' + dataset_name + '/IRL_Model/'
-
+    output_path = path.join(results_path, dataset_name + '_dataset' + '/IRL/')
     scanpath_representation.save_scanpaths(output_path, predictions)
-
-''' 
-# load ground-truth human scanpaths
-    with open(join(dataset_root,
-                   'human_scanpaths_TP_trainval_train.json')) as json_file:
-                   #esto dependerá del dataset, pero solo sirve para calcular métricas
-        human_scanpaths = json.load(json_file)
-
-    human_scanpaths = list(filter(lambda x: x['correct'] == 1, human_scanpaths))
- print('evaluating model...')
-    # evaluate predictions
-    mean_cdf, _ = utils.compute_search_cdf(predictions, bbox_annos,
-                                           hparams.Data.max_traj_length)
-
-    # scanpath ratio
-    sp_ratio = metrics.compute_avgSPRatio(predictions, bbox_annos,
-                                          hparams.Data.max_traj_length)
-
-    # loading test fixation clusters (for computing sequence score)
-    fix_clusters = np.load(join('./data', 'clusters.npy'), allow_pickle=True).item()
-    
-
-
-    # probability mismatch
-    prob_mismatch = metrics.compute_prob_mismatch(mean_cdf,
-                                                  dataset['human_mean_cdf'])
-
-    # TFP-AUC
-    tfp_auc = metrics.compute_cdf_auc(mean_cdf)
-
-    # sequence score
-    seq_score = 0#metrics.get_seq_score(predictions, fix_clusters,
-                                      #hparams.Data.max_traj_length)
-    #lo saqué porque pedía los clusters
-
-    # multimatch
-    mm_score = metrics.compute_mm(dataset['gt_scanpaths'], predictions,
-                                  hparams.Data.im_w, hparams.Data.im_h)
-
-    # print and save outputs
-    print('results:')
-    results = {
-        'scanpaths': predictions,
-        'cdf': list(mean_cdf),
-        'sp_ratios': sp_ratio,
-        'probability_mismatch': prob_mismatch,
-        'TFP-AUC': tfp_auc,
-        'sequence_score': seq_score,
-        'multimatch': list(mm_score)
-    }
-
-    results = JsonConfig(results)
-    save_path = join(checkpoint, '../results/')
-    if not os.path.exists(save_path):
-        os.makedirs(save_path)
-    results.dump(save_path)
-    print('results successfully saved to {}'.format(save_path))'''

@@ -43,8 +43,8 @@ class JsonConfig(dict):
             raise TypeError(("[JsonConfig]: Do not support given input"
                              " with type {}").format(type(arg)))
 
-    def __setattr__(self, attr, value):
-        raise Exception("[JsonConfig]: Can't set constant key {}".format(attr))
+    # def __setattr__(self, attr, value):
+    #     raise Exception("[JsonConfig]: Can't set constant key {}".format(attr))
 
     def __setitem__(self, item, value):
         raise Exception("[JsonConfig]: Can't set constant key {}".format(item))
