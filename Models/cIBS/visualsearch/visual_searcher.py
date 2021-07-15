@@ -1,7 +1,5 @@
 from .models.bayesian_model import BayesianModel
 from .models.greedy_model   import GreedyModel
-from .target_similarity.geisler import Geisler
-from .target_similarity.correlation import Correlation
 from .utils import utils
 from . import prior
 import numpy as np
@@ -25,16 +23,16 @@ class VisualSearcher:
                 visibility_map (VisibilityMap) : visibility map with the size of the grid
                 Output path    (string)        : folder path where scanpaths and probability maps will be stored
         """
-        self.max_saccades           = config['max_saccades']
-        self.grid                   = grid
-        self.scale_factor           = config['scale_factor']
-        self.additive_shift         = config['additive_shift']
-        self.seed                   = config['seed']
-        self.save_posterior         = config['save_probability_maps']
-        self.visibility_map         = visibility_map
-        self.search_model           = self.initialize_model(config['search_model'], self.grid.size(), visibility_map, config['norm_cdf_tolerance'], config['proc_number'])
-        self.target_similarity_name = config['target_similarity']
-        self.output_path            = output_path       
+        self.max_saccades             = config['max_saccades']
+        self.grid                     = grid
+        self.scale_factor             = config['scale_factor']
+        self.additive_shift           = config['additive_shift']
+        self.seed                     = config['seed']
+        self.save_posterior           = config['save_probability_maps']
+        self.visibility_map           = visibility_map
+        self.search_model             = self.initialize_model(config['search_model'], self.grid.size(), visibility_map, config['norm_cdf_tolerance'], config['proc_number'])
+        self.target_similarity_method = config['target_similarity']
+        self.output_path              = output_path        
 
     def search(self, image_name, image_size, image, image_prior, target, target_bbox, initial_fixation):
         " Given an image, a target, and a prior of that image, it looks for the object in the image, generating a scanpath "
@@ -67,10 +65,10 @@ class VisualSearcher:
         image_prior = prior.sum(image_prior, self.max_saccades)
       
         # Convert target bounding box to grid cells
-        target_bbox_ = np.empty(len(target_bbox), dtype=np.int)
-        target_bbox_[0], target_bbox_[1] = self.grid.map_to_cell((target_bbox[0], target_bbox[1]))
-        target_bbox_[2], target_bbox_[3] = self.grid.map_to_cell((target_bbox[2], target_bbox[3]))
-        if not(utils.are_within_boundaries((target_bbox_[0], target_bbox_[1]), (target_bbox_[2], target_bbox_[3]), np.zeros(2), grid_size)):
+        target_bbox_in_grid = np.empty(len(target_bbox), dtype=np.int)
+        target_bbox_in_grid[0], target_bbox_in_grid[1] = self.grid.map_to_cell((target_bbox[0], target_bbox[1]))
+        target_bbox_in_grid[2], target_bbox_in_grid[3] = self.grid.map_to_cell((target_bbox[2], target_bbox[3]))
+        if not(utils.are_within_boundaries((target_bbox_in_grid[0], target_bbox_in_grid[1]), (target_bbox_in_grid[2], target_bbox_in_grid[3]), np.zeros(2), grid_size)):
             print(image_name + ': target bounding box is outside of the grid')
             return {}
         
@@ -81,7 +79,7 @@ class VisualSearcher:
             print(image_name + ': initial fixation falls off the grid')
             return {}
 
-        target_similarity_map = self.initialize_target_similarity_map(self.target_similarity_name, image, target, target_bbox_, self.seed, self.grid)
+        target_similarity_map = self.initialize_target_similarity_map(image, target, target_bbox)
 
         # Initialize variables for computing each fixation        
         likelihood = np.zeros(shape=grid_size)
@@ -95,7 +93,7 @@ class VisualSearcher:
             current_fixation = fixations[fixation_number]
             print(fixation_number + 1, end=' ')
             
-            if utils.are_within_boundaries(current_fixation, current_fixation, (target_bbox_[0], target_bbox_[1]), (target_bbox_[2] + 1, target_bbox_[3] + 1)):
+            if utils.are_within_boundaries(current_fixation, current_fixation, (target_bbox_in_grid[0], target_bbox_in_grid[1]), (target_bbox_in_grid[2] + 1, target_bbox_in_grid[3] + 1)):
                 target_found = True
                 fixations = fixations[:fixation_number + 1]
                 break
@@ -147,8 +145,10 @@ class VisualSearcher:
         else:
             return BayesianModel(grid_size, visibility_map, norm_cdf_tolerance, number_of_processes)
 
-    def initialize_target_similarity_map(self, target_similarity_name, image, target, target_bbox_, seed, grid):
-        if target_similarity_name == 'geisler':
-            return Geisler(self.visibility_map, self.scale_factor, self.additive_shift, grid.size(), target_bbox_, seed)
-        else:
-            return Correlation(image, target, self.visibility_map, self.scale_factor, self.additive_shift, grid, target_bbox_, seed)
+    def initialize_target_similarity_map(self, image, target, target_bbox):
+        # Load corresponding module
+        module = importlib.import_module('.target_similarity.' + self.target_similarity_method.lower(), 'visualsearch')
+        # Get the class
+        target_similarity_class = getattr(module, self.target_similarity_method.capitalize())
+        target_similarity_map   = target_similarity_class(image, target, target_bbox, self.visibility_map, self.scale_factor, self.additive_shift, self.grid, self.seed)
+        return target_similarity_map
