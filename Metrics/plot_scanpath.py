@@ -87,6 +87,7 @@ def process_image(img_scanpath, subject, image_name, dataset_name, trial_info, i
     image_file = path.join(images_path, image_name)
     img        = io.imread(image_file)
     img_size_used = scanpath_img_size
+    original_img_size = img.shape[:2]
 
     is_grid = False
     # cIBS uses a grid for images, it's necessary to upscale it
@@ -103,8 +104,8 @@ def process_image(img_scanpath, subject, image_name, dataset_name, trial_info, i
         trial_info['target_matched_column'] + trial_info['target_width']]
     
     if not is_grid:
-        bbox[0], bbox[2] = [rescale_coordinate(pos, scanpath_img_size[0], img_size_used[0], fixation_size[1]) for pos in (bbox[0], bbox[2])]
-        bbox[1], bbox[3] = [rescale_coordinate(pos, scanpath_img_size[1], img_size_used[1], fixation_size[0]) for pos in (bbox[1], bbox[3])]
+        bbox[0], bbox[2] = [rescale_coordinate(pos, original_img_size[0], scanpath_img_size[0], fixation_size[1]) for pos in (bbox[0], bbox[2])]
+        bbox[1], bbox[3] = [rescale_coordinate(pos, original_img_size[1], scanpath_img_size[1], fixation_size[0]) for pos in (bbox[1], bbox[3])]
     target_height = bbox[2] - bbox[0]
     target_width  = bbox[3] - bbox[1]
     bbox = [bbox[1], bbox[0], target_width, target_height]

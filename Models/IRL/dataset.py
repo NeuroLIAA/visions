@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 from irl_dcb.data import LHF_IRL
 
 def process_eval_data(trials_properties,
@@ -11,7 +12,14 @@ def process_eval_data(trials_properties,
         key = image_data['target_object'] + '_' + image_data['image']
         target_init_fixs[key] = (image_data['initial_fixation_column'] / image_data['image_width'],
                                 image_data['initial_fixation_row'] / image_data['image_height'])
+
+    # categories_list = pd.read_csv('Lista categorías.csv')
+    # things = categories_list['things'].to_numpy(dtype=str)
+    # stuff  = categories_list['stuff'].to_numpy(dtype=str)[:-26]
+    # things_stuff = np.concatenate((things, stuff))
+
     target_objects = list(np.unique([x['target_object'] for x in trials_properties]))
+    # target_objects = things_stuff
     catIds = dict(zip(target_objects, list(range(len(target_objects)))))
 
     test_task_img_pair = np.unique(
