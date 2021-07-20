@@ -13,13 +13,11 @@ def process_eval_data(trials_properties,
         target_init_fixs[key] = (image_data['initial_fixation_column'] / image_data['image_width'],
                                 image_data['initial_fixation_row'] / image_data['image_height'])
 
-    # categories_list = pd.read_csv('Lista categorías.csv')
-    # things = categories_list['things'].to_numpy(dtype=str)
-    # stuff  = categories_list['stuff'].to_numpy(dtype=str)[:-26]
-    # things_stuff = np.concatenate((things, stuff))
+    # Since the model is trained for these specific categories, the list must always be the same, regardless of the dataset
+    target_objects = ['bottle', 'bowl', 'car', 'chair', 'clock', 'cup', 'fork', 'keyboard', 'knife', 'laptop', \
+        'microwave', 'mouse', 'oven', 'potted plant', 'sink', 'stop sign', 'toilet', 'tv']
 
-    target_objects = list(np.unique([x['target_object'] for x in trials_properties]))
-    # target_objects = things_stuff
+    # target_objects = list(np.unique([x['target_object'] for x in trials_properties]))
     catIds = dict(zip(target_objects, list(range(len(target_objects)))))
 
     test_task_img_pair = np.unique(

@@ -91,6 +91,10 @@ if __name__ == '__main__':
     bbox_annos = {}
     iteration = 1
     for image_data in trials_properties:
+        # If the target isn't categorized, remove it
+        if image_data['target_object'] == 'TBD':
+            trials_properties.remove(image_data)
+            
         original_image_height = image_data['image_height']
         original_image_width  = image_data['image_width']
         # Rescale everything to image size used
