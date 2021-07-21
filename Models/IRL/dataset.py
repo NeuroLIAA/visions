@@ -21,7 +21,7 @@ def process_eval_data(trials_properties,
     catIds = dict(zip(target_objects, list(range(len(target_objects)))))
 
     test_task_img_pair = np.unique(
-            [traj['target_object'] + '_' + traj['image'] for traj in trials_properties])
+            [traj['target_object'] + '-' + traj['image'] for traj in trials_properties])
 
     # Load image data
     test_img_dataset = LHF_IRL(DCB_HR_dir, DCB_LR_dir, target_init_fixs,

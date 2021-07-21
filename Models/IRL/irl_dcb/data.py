@@ -62,7 +62,7 @@ class LHF_IRL(Dataset):
         return len(self.img_info)
 
     def __getitem__(self, idx):
-        cat_name, img_name = self.img_info[idx].split('_')
+        cat_name, img_name = self.img_info[idx].split('-')
         feat_name = img_name[:-3] + 'pth.tar'
         lr_path = join(self.LR_dir, feat_name)
         hr_path = join(self.HR_dir, feat_name)

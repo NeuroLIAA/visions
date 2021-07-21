@@ -90,10 +90,11 @@ if __name__ == '__main__':
 
     bbox_annos = {}
     iteration = 1
-    for image_data in trials_properties:
+    for image_data in list(trials_properties):
         # If the target isn't categorized, remove it
         if image_data['target_object'] == 'TBD':
             trials_properties.remove(image_data)
+            continue
             
         original_image_height = image_data['image_height']
         original_image_width  = image_data['image_width']
@@ -131,8 +132,12 @@ if __name__ == '__main__':
                            DCB_dir_LR,
                            bbox_annos,
                            hparams)
+    
+    batch_size = 64
+    if len(trials_properties) < 64:
+        batch_size = len(trials_properties)
     img_loader = DataLoader(dataset['img_test'],
-                            batch_size=64,
+                            batch_size=batch_size,
                             shuffle=False,
                             num_workers=cpu_count())
     print('Number of images: ', len(dataset['img_test']))
@@ -143,7 +148,7 @@ if __name__ == '__main__':
                                       len(dataset['catIds']), task_eye,
                                       number_of_belief_maps).to(device)
     
-    utils.load('best', generator, 'generator', pkg_dir=checkpoint, device = device)
+    utils.load('best', generator, 'generator', pkg_dir=checkpoint, device=device)
     generator.eval()
 
     # Build environment

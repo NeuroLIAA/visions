@@ -151,10 +151,8 @@ class IRL_Env4LHF:
                 dtype=torch.long,
                 device=self.device)
             bs = self.action_mask.size(0)
-            self.action_mask = self.action_mask.view(bs, self.pa.patch_num[1],
-                                                     -1)
-            px, py = int(self.pa.patch_num[0] / 2), int(self.pa.patch_num[1] /
-                                                        2)
+            self.action_mask = self.action_mask.view(bs, self.pa.patch_num[1], -1)
+            px, py = int(self.pa.patch_num[0] / 2), int(self.pa.patch_num[1] / 2)
             self.action_mask[:, py - self.mask_size:py + self.mask_size +
                              1, px - self.mask_size:px + self.mask_size +
                              1] = 1
