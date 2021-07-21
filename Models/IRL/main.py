@@ -43,8 +43,9 @@ def gen_scanpaths(generator,
         progress = tqdm(test_img_loader)
         for i_batch, batch in enumerate(progress):
             env_test.set_data(batch)
-            img_names_batch = batch['img_name']
-            cat_names_batch = batch['cat_name']
+            img_names_batch   = batch['img_name']
+            cat_names_batch   = batch['cat_name']
+            initial_fix_batch = batch['init_fix']
             with torch.no_grad():
                 env_test.reset()
                 trajs = utils.collect_trajs(env_test,
@@ -53,7 +54,7 @@ def gen_scanpaths(generator,
                                             max_traj_len,
                                             is_eval=True,
                                             sample_action=True)
-                all_actions.extend([(cat_names_batch[i], img_names_batch[i],
+                all_actions.extend([(cat_names_batch[i], img_names_batch[i], initial_fix_batch[i],
                                      'present', trajs['actions'][:, i])
                                     for i in range(env_test.batch_size)])
             

@@ -35,7 +35,7 @@ def cutFixOnTarget(trajs, target_annos):
             traj['target_found'] = True
         traj['X'] = traj['X'][:traj_len]
         traj['Y'] = traj['Y'][:traj_len]
-        traj['target_bbox'] = [bbox[1],bbox[0],bbox[1] + bbox[3], bbox[0] + bbox[2]]
+        traj['target_bbox'] = [bbox[1], bbox[0], bbox[1] + bbox[3], bbox[0] + bbox[2]]
 
 def pos_to_action(center_x, center_y, patch_size, patch_num):
     x = center_x // patch_size[0]
@@ -82,7 +82,7 @@ def collect_trajs(env,
                   policy,
                   patch_num,
                   max_traj_length,
-                  is_eval=False,
+                  is_eval=True,
                   sample_action=True):
 
     rewards = []
@@ -116,120 +116,7 @@ def collect_trajs(env,
             'actions': torch.stack(actions)
         }
 
-    else:
-        IORs = []
-        IORs.append(
-            env.action_mask.to(dtype=torch.float).view(env.batch_size, 1,
-                                                       patch_num[1], -1))
-        while i < max_traj_length and env.status.min() < 1:
-            new_obs_fov, curr_status = env.step(act)
-
-            status.append(curr_status)
-            SASPs.append((obs_fov, act, new_obs_fov))
-            obs_fov = new_obs_fov
-
-            IORs.append(
-                env.action_mask.to(dtype=torch.float).view(
-                    env.batch_size, 1, patch_num[1], -1))
-
-            act, log_prob, value, prob_new = select_action(
-                (obs_fov, env.task_ids),
-                policy,
-                sample_action,
-                action_mask=env.action_mask)
-            values.append(value)
-            log_probs.append(log_prob)
-
-            rewards.append(torch.zeros(env.batch_size))
-
-            i = i + 1
-
-        S = torch.stack([sasp[0] for sasp in SASPs])
-        A = torch.stack([sasp[1] for sasp in SASPs])
-        V = torch.stack(values)
-        R = torch.stack(rewards)
-        LogP = torch.stack(log_probs[:-1])
-        status = torch.stack(status[1:])
-
-        bs = len(env.img_names)
-        trajs = []
-
-        for i in range(bs):
-            ind = (status[:, i] == 1).to(torch.int8).argmax().item() + 1
-            if status[:, i].sum() == 0:
-                ind = status.size(0)
-            trajs.append({
-                'curr_states': S[:ind, i],
-                'actions': A[:ind, i],
-                'values': V[:ind + 1, i],
-                'log_probs': LogP[:ind, i],
-                'rewards': R[:ind, i],
-                'task_id': env.task_ids[i].repeat(ind),
-                'img_name': [env.img_names[i]] * ind,
-                'length': ind
-            })
-
     return trajs
-
-def compute_return_advantage(rewards, values, gamma, mtd='CRITIC', tau=0.96):
-    device = rewards.device
-    acc_reward = torch.zeros_like(rewards, dtype=torch.float, device=device)
-    acc_reward[-1] = rewards[-1]
-    for i in reversed(range(acc_reward.size(0) - 1)):
-        acc_reward[i] = rewards[i] + gamma * acc_reward[i + 1]
-
-    # compute advantages
-    if mtd == 'MC':  # Monte-Carlo estimation
-        advs = acc_reward - values[:-1]
-    elif mtd == 'CRITIC':  # critic estimation
-        advs = rewards + gamma * values[1:] - values[:-1]
-    elif mtd == 'GAE':  # generalized advantage estimation
-        delta = rewards + gamma * values[1:] - values[:-1]
-        adv = torch.zeros_like(delta, dtype=torch.float, device=device)
-        adv[-1] = delta[-1]
-        for i in reversed(range(delta.size(0) - 1)):
-            adv[i] = delta[i] + gamma * tau * adv[i + 1]
-    else:
-        raise NotImplementedError
-
-    return acc_reward.squeeze(), advs.squeeze()
-
-def process_trajs(trajs, gamma, mtd='CRITIC', tau=0.96):
-    # compute discounted cummulative reward
-    device = trajs[0]['log_probs'].device
-    avg_return = 0
-    for traj in trajs:
-
-        acc_reward = torch.zeros_like(traj['rewards'],
-                                      dtype=torch.float,
-                                      device=device)
-        acc_reward[-1] = traj['rewards'][-1]
-        for i in reversed(range(acc_reward.size(0) - 1)):
-            acc_reward[i] = traj['rewards'][i] + gamma * acc_reward[i + 1]
-
-        traj['acc_rewards'] = acc_reward
-        avg_return += acc_reward[0]
-
-        values = traj['values']
-        # compute advantages
-        if mtd == 'MC':  # Monte-Carlo estimation
-            traj['advantages'] = traj['acc_rewards'] - values[:-1]
-
-        elif mtd == 'CRITIC':  # critic estimation
-            traj['advantages'] = traj[
-                'rewards'] + gamma * values[1:] - values[:-1]
-
-        elif mtd == 'GAE':  # generalized advantage estimation
-            delta = traj['rewards'] + gamma * values[1:] - values[:-1]
-            adv = torch.zeros_like(delta, dtype=torch.float, device=device)
-            adv[-1] = delta[-1]
-            for i in reversed(range(delta.size(0) - 1)):
-                adv[i] = delta[i] + gamma * tau * adv[i + 1]
-            traj['advantages'] = adv
-        else:
-            raise NotImplementedError
-
-    return avg_return / len(trajs)
 
 def get_num_step2target(X, Y, bbox):
     X, Y = np.array(X), np.array(Y)
@@ -310,15 +197,15 @@ def multi_hot_coding(bbox, patch_size, patch_num):
 def actions2scanpaths(actions, patch_num, im_w, im_h, dataset_name, patch_size, max_saccades):
     scanpaths = {}
     for traj in actions:
-        task_name, img_name, condition, actions = traj
+        task_name, img_name, initial_fix, condition, actions = traj
         actions = actions.to(dtype=torch.float32)
         py = (actions // patch_num[0]) / float(patch_num[1])
         px = (actions % patch_num[0]) / float(patch_num[0])
         fixs = torch.stack([px, py])
-        fixs = np.concatenate([np.array([[0.5], [0.5]]),
+        fixs = np.concatenate([np.array([[float(initial_fix[0])], [float(initial_fix[1])]]),
                                fixs.cpu().numpy()],
                               axis=1)
-        add_scanpath_to_dict('IRL Model', img_name, (im_h,im_w), fixs[0] * im_w, fixs[1] * im_h, task_name, patch_size, max_saccades, dataset_name, scanpaths)
+        add_scanpath_to_dict('IRL Model', img_name, (im_h, im_w), fixs[0] * im_w, fixs[1] * im_h, task_name, patch_size, max_saccades, dataset_name, scanpaths)
     return scanpaths
                                       
 def _file_best(name):
