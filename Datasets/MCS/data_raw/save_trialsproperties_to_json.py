@@ -1,6 +1,7 @@
 import json
 from os import listdir, path, mkdir
 from skimage import io, transform, img_as_ubyte
+from utils import rescale_coordinate, rename_image
 
 """ This script requires that all original images of the MCS dataset are placed in the '../images' folder """
 
@@ -19,20 +20,6 @@ trials_properties = []
 trials_properties_file = '../trials_properties.json'
 templates_save_path = '../templates/'
 images_save_path    = '../images/'
-
-def rescale_coordinate(value, old_size, new_size):
-    return (value / old_size) * new_size
-
-def rename_image(image_name, category):
-    for zeros in range(12 - len(image_name[:-4])):
-        image_name = '0' + image_name
-    
-    if category == 'microwave':
-        image_name = 'm' + image_name
-    else:
-        image_name = 'c' + image_name
-
-    return image_name
 
 test_images = listdir(test_images_dir)
 train_microwave_images = listdir(train_microwave_images_dir)
@@ -64,8 +51,6 @@ for index in range(len(images_files)):
 
         img_info = targets_bboxes[category][new_image_name[1:]]
         original_img_size = (img_info['image_height'], img_info['image_width'])
-        original_img_height = img_info['image_height']
-        original_img_width  = img_info['image_width']
         target_bbox = img_info['target_bbox']
 
         rescaled_target_bbox = [int(rescale_coordinate(target_bbox[i], original_img_size[i % 2 == 1], new_size[i % 2 == 1])) for i in range(len(target_bbox))]
