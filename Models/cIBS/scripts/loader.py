@@ -18,11 +18,13 @@ def load_checkpoint(output_path):
     
     return checkpoint
 
-def load_config(config_dir, config_name, number_of_processes, save_probability_maps, checkpoint):
+def load_config(config_dir, config_name, image_size, number_of_processes, save_probability_maps, checkpoint):
     if checkpoint:
         config = checkpoint['configuration']
     else:
         config = load_dict_from_json(config_dir + config_name + '.json')
+
+    config['image_size'] = image_size
 
     if number_of_processes == 'all':
         config['proc_number'] = cpu_count()

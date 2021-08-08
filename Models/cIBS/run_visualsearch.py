@@ -9,7 +9,7 @@ def main(config_name, image_name, image_range, number_of_processes, save_probabi
     dataset_info      = loader.load_dataset_info(constants.DATASET_INFO_FILE)
     output_path       = loader.create_output_folders(dataset_info['save_path'], config_name, image_name, image_range)
     checkpoint        = loader.load_checkpoint(output_path)
-    config            = loader.load_config(constants.CONFIG_DIR, config_name, number_of_processes, save_probability_maps, checkpoint)
+    config            = loader.load_config(constants.CONFIG_DIR, config_name, constants.IMAGE_SIZE, number_of_processes, save_probability_maps, checkpoint)
     trials_properties = loader.load_trials_properties(dataset_info['trials_properties_file'], image_name, image_range, checkpoint)
 
     visualsearch.run(config, dataset_info, trials_properties, output_path, constants.SIGMA)

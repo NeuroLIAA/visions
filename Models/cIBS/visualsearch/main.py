@@ -21,6 +21,7 @@ def run(config, dataset_info, trials_properties, output_path, sigma):
                 additive_shift    (int)      : modulates the variance of target similarity and prevents 1 / d' from diverging in bayesian search
                 save_probability_maps (bool) : indicates whether to save the posterior to a file after each saccade or not
                 proc_number       (int)      : number of processes on which to execute bayesian search
+                image_size        (int, int) : image size on which the model will operate
             Dataset info (dict). One entry. Fields:
                 name          (string) : name of the dataset
                 images_dir    (string) : folder path where search images are stored
@@ -50,10 +51,12 @@ def run(config, dataset_info, trials_properties, output_path, sigma):
     
     image_size = (dataset_info['image_height'], dataset_info['image_width'])
     cell_size  = config['cell_size']
+
+    model_image_size = config['image_size']
     
     # Initialize objects
-    grid            = Grid(np.array(image_size), cell_size)
-    visibility_map  = VisibilityMap(image_size, grid, sigma)
+    grid            = Grid(np.array(model_image_size), cell_size)
+    visibility_map  = VisibilityMap(model_image_size, grid, sigma)
     visual_searcher = VisualSearcher(config, grid, visibility_map, output_path)
 
     print('Press Ctrl + C to interrupt execution and save a checkpoint \n')
@@ -71,15 +74,17 @@ def run(config, dataset_info, trials_properties, output_path, sigma):
             target_name = trial['target'] 
             print('Searching in image ' + image_name + ' (' + str(trial_number) + '/' + str(total_trials) + ')...')
             
-            image       = utils.load_image(images_dir, image_name, image_size)
+            image       = utils.load_image(images_dir, image_name, model_image_size)
             target      = utils.load_image(targets_dir, target_name)
-            image_prior = prior.load(image, image_name, image_size, prior_name, saliency_dir)
+            image_prior = prior.load(image, image_name, model_image_size, prior_name, saliency_dir)
             
             initial_fixation = (trial['initial_fixation_row'], trial['initial_fixation_column'])
+            initial_fixation = [utils.rescale_coordinate(initial_fixation[i], image_size[i], model_image_size[i]) for i in range(len(initial_fixation))]
             target_bbox      = [trial['target_matched_row'], trial['target_matched_column'], \
                                     trial['target_height'] + trial['target_matched_row'], trial['target_width'] + trial['target_matched_column']]
+            target_bbox      = [utils.rescale_coordinate(target_bbox[i], image_size[i % 2 == 1], model_image_size[i % 2 == 1]) for i in range(len(target_bbox))]
 
-            trial_scanpath = visual_searcher.search(image_name, image_size, image, image_prior, target, target_bbox, initial_fixation)
+            trial_scanpath = visual_searcher.search(image_name, image, image_prior, target, target_bbox, initial_fixation)
 
             if trial_scanpath:
                 # If there were no errors, save the scanpath

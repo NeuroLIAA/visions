@@ -4,6 +4,9 @@ import json
 import numpy  as np
 import pandas as pd
 
+def rescale_coordinate(value, old_size, new_size):
+    return int((value / old_size) * new_size)
+
 def load_data_from_checkpoint(output_path):
     checkpoint_file = output_path + 'checkpoint.json'
     scanpaths     = {}
@@ -58,7 +61,6 @@ def load_image(path, name, image_size='default'):
     img = io.imread(path + name)
 
     if image_size != 'default':
-        # Resize image, if necessary
         img = transform.resize(img, image_size, preserve_range=True)
 
     return img

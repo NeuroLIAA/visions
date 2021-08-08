@@ -4,6 +4,7 @@ from .utils import utils
 from . import prior
 import numpy as np
 import time
+import importlib
 
 class VisualSearcher: 
     def __init__(self, config, grid, visibility_map, output_path):
@@ -34,26 +35,20 @@ class VisualSearcher:
         self.target_similarity_method = config['target_similarity']
         self.output_path              = output_path        
 
-    def search(self, image_name, image_size, image, image_prior, target, target_bbox, initial_fixation):
+    def search(self, image_name, image, image_prior, target, target_bbox, initial_fixation):
         " Given an image, a target, and a prior of that image, it looks for the object in the image, generating a scanpath "
         """ Input:
             Specifies the data of the image on which to run the visual search model. Fields:
                 image_name (string)         : name of the image
-                image_size (int, int)       : height and width of the image, respectively
-                image (2D array)            : grayscale search image of size image_size
+                image (2D array)            : search image
                 image_prior (2D array)      : grayscale image with values between 0 and 1 that serves as prior
-                target (2D array)           : grayscale target image
+                target (2D array)           : target image
                 target_bbox (array)         : bounding box (upper left row, upper left column, lower right row, lower right column) of the target inside the search image
                 initial_fixation (int, int) : row and column of the first fixation on the search image
             Output:
                 image_scanpath   (dict)      : scanpath made by the model on the search image, alongside a 'target_found' field which indicates if the target was found
                 probability_maps (csv files) : if self.save_posterior is True, the posterior of each saccade is stored in a .csv file inside a folder in self.output_path 
         """
-        # Check if image size coincides with that of the dataset
-        if not(image.shape[:2] == image_size):
-            print(image_name + ': image size doesn\'t match dataset\'s dimensions')
-            return {}
-
         # Convert prior to grid
         image_prior = self.grid.reduce(image_prior, mode='mean')
         grid_size   = self.grid.size()

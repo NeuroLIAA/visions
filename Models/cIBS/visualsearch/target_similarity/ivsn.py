@@ -8,7 +8,7 @@ from skimage import io, img_as_ubyte, exposure, transform
 from PIL import Image
 
 """ Use attention map built by the IVSN model as a target similarity map. """
-""" IVSN model was created by authors Mengmi Zhang, Jiashi Feng, Keng Teck Ma, Joo Hwee Lim, Qi Zhao, and Gabriel Kreiman """
+""" IVSN was created by authors Mengmi Zhang, Jiashi Feng, Keng Teck Ma, Joo Hwee Lim, Qi Zhao, and Gabriel Kreiman """
 """ Full code, including a link to the paper, can be found at https://github.com/kreimanlab/VisualSearchZeroShot """
 """ This code is an adaptation to PyTorch """
 

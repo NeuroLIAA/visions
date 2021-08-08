@@ -2,9 +2,16 @@ from .target_similarity import TargetSimilarity
 import numpy as np
 from skimage import io
 from skimage.metrics import structural_similarity as ssim
+from skimage import transform
 
 class Ssim(TargetSimilarity):
     def compute_target_similarity(self, image, target, target_bbox):
+        target_size = target.shape[:2]
+        # Rescale target to its size in the image
+        target_size_in_image = (target_bbox[2] - target_bbox[0], target_bbox[3] - target_bbox[1])
+        if target_size != target_size_in_image:
+            target = transform.resize(target, target_size)
+            
         target_size = np.shape(target)[:2]
         image_size  = np.shape(image)[:2]
         ssim_values = np.zeros(shape=image_size, dtype= np.dtype('float64'))
