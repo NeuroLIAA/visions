@@ -24,7 +24,6 @@ class Ssim(TargetSimilarity):
     
     
     def parallelize_ssim_computation(self, image, target, image_size, target_size):
-
         ssim_values     = np.zeros(shape=image_size, dtype=np.dtype('float32')) 
         off_bounds_area = self.get_image_off_bounds_area(target_size)
         

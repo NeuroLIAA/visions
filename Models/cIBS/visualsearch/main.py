@@ -22,6 +22,7 @@ def run(config, dataset_info, trials_properties, output_path, sigma):
                 save_probability_maps (bool) : indicates whether to save the posterior to a file after each saccade or not
                 proc_number       (int)      : number of processes on which to execute bayesian search
                 image_size        (int, int) : image size on which the model will operate
+                save_similarity_maps (bool)  : indicates whether to save the target similarity map for each image in bayesian search
             Dataset info (dict). One entry. Fields:
                 name          (string) : name of the dataset
                 images_dir    (string) : folder path where search images are stored
@@ -41,8 +42,9 @@ def run(config, dataset_info, trials_properties, output_path, sigma):
                 initial_fixation_column (int) : column of the first fixation on the image
             Output path (string) : folder path where scanpaths and the probability maps will be stored
         Output:
-            Output_path/scanpaths/Scanpaths.json: Dictionary indexed by image name where each entry contains the scanpath for that given image, alongside the configuration used.
-            Output_path/probability_maps/image_name/: In this folder, the probability map computed for each saccade is stored. This is done for every image in trials_properties.
+            Output_path/Scanpaths.json: Dictionary indexed by image name where each entry contains the scanpath for that given image, alongside the configuration used.
+            Output_path/probability_maps/: In this folder, the probability map computed for each saccade is stored. This is done for every image in trials_properties. (Only if save_probability_maps is true.)
+            Output_path/similarity_maps/: In this folder, the target similarity map computed for each image is stored. This is done for every image in trials_properties. (Only if save_similarity_maps is true.)
     """
     images_dir    = dataset_info['images_dir']
     targets_dir   = dataset_info['targets_dir']

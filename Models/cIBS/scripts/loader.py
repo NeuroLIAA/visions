@@ -101,12 +101,12 @@ def get_trial_properties_in_range(trials_properties, image_range):
     return trial_properties
 
 def create_output_folders(save_path, config_name, image_name, image_range):
-    output_path = save_path + '/'
+    output_path = save_path
 
     if image_name is not None:
-        output_path += image_name[:-4] + '/'
+        output_path = path.join(output_path, image_name[:-4] + '/')
     if image_range is not None:
-        output_path += 'range_' + str(image_range[0]) + '-' + str(image_range[1]) + '/'
+        output_path = path.join(output_path, 'range_' + str(image_range[0]) + '-' + str(image_range[1]) + '/')
 
     makedirs(output_path, exist_ok=True)
 

@@ -1,11 +1,19 @@
 import numpy as np
+from os import path
+from skimage import io
+from ..utils import utils
 
 class TargetSimilarity():
-    def __init__(self, image, target, target_bbox, visibility_map, scale_factor, additive_shift, grid, seed):
+    def __init__(self, image_name, image, target, target_bbox, visibility_map, scale_factor, additive_shift, grid, seed, number_of_processes, save_similarity_maps, output_path):
         # Set the seed for generating random noise
         np.random.seed(seed)
 
-        self.grid = grid
+        self.number_of_processes  = number_of_processes
+        self.save_similarity_maps = save_similarity_maps
+        self.grid                 = grid
+        self.image_name           = image_name
+        self.output_path          = output_path
+
         self.create_target_similarity_map(image, target, target_bbox, visibility_map, scale_factor, additive_shift)
 
     def create_target_similarity_map(self, image, target, target_bbox, visibility_map, scale_factor, additive_shift):
@@ -36,15 +44,21 @@ class TargetSimilarity():
         # Variance now depends on the visibility
         self.sigma = self.sigma / (visibility_map.normalized_at_every_fixation() * scale_factor + additive_shift)
 
-        # Calculate target similarity based on a specific method 
-        target_similarity_map = self.compute_target_similarity(image, target, target_bbox)
-
+        # Calculate target similarity based on a specific method        
+        save_path = path.join(self.output_path + 'similarity_maps/', self.__class__.__name__ + '_' + self.image_name + '.png')
+        if path.exists(save_path):
+            target_similarity_map = io.imread(save_path)
+        else:
+            target_similarity_map = self.compute_target_similarity(image, target, target_bbox)
+            if self.save_similarity_maps:
+                utils.save_similarity_map(self.output_path,self.image_name, self.__class__.__name__, target_similarity_map)
+        
         # Add target similarity and visibility info to mu
         self.add_info_to_mu(target_similarity_map, visibility_map)
 
         return
 
-    def compute_target_similarity(self, visibility_map):
+    def compute_target_similarity(self, image, target, target_bbox):
         """ Each subclass calculates the target similarity map with its own method """
         pass
 

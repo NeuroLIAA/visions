@@ -20,6 +20,7 @@ class VisualSearcher:
                     additive_shift        (int)    : modulates the variance of target similarity and prevents 1 / d' from diverging in bayesian search
                     save_probability_maps (bool)   : indicates whether to save the posterior to a file after each saccade or not
                     proc_number           (int)    : number of processes on which to execute bayesian search
+                    save_similarity_maps  (bool)   : indicates whether to save the target similarity map for each image in bayesian search
                 grid           (Grid)          : representation of an image with cells instead of pixels
                 visibility_map (VisibilityMap) : visibility map with the size of the grid
                 Output path    (string)        : folder path where scanpaths and probability maps will be stored
@@ -30,6 +31,8 @@ class VisualSearcher:
         self.additive_shift           = config['additive_shift']
         self.seed                     = config['seed']
         self.save_posterior           = config['save_probability_maps']
+        self.save_similarity_maps     = config['save_similarity_maps']
+        self.number_of_processes      = config['proc_number']
         self.visibility_map           = visibility_map
         self.search_model             = self.initialize_model(config['search_model'], self.grid.size(), visibility_map, config['norm_cdf_tolerance'], config['proc_number'])
         self.target_similarity_method = config['target_similarity']
@@ -48,6 +51,7 @@ class VisualSearcher:
             Output:
                 image_scanpath   (dict)      : scanpath made by the model on the search image, alongside a 'target_found' field which indicates if the target was found
                 probability_maps (csv files) : if self.save_posterior is True, the posterior of each saccade is stored in a .csv file inside a folder in self.output_path 
+                similarity_maps  (png files) : if self.save_similarity_maps is True, the target similarity map for each image is stored inside a folder in self.output_path
         """
         # Convert prior to grid
         image_prior = self.grid.reduce(image_prior, mode='mean')
@@ -74,7 +78,7 @@ class VisualSearcher:
             print(image_name + ': initial fixation falls off the grid')
             return {}
 
-        target_similarity_map = self.initialize_target_similarity_map(image, target, target_bbox)
+        target_similarity_map = self.initialize_target_similarity_map(image, target, target_bbox, image_name)
 
         # Initialize variables for computing each fixation        
         likelihood = np.zeros(shape=grid_size)
@@ -140,10 +144,11 @@ class VisualSearcher:
         else:
             return BayesianModel(grid_size, visibility_map, norm_cdf_tolerance, number_of_processes)
 
-    def initialize_target_similarity_map(self, image, target, target_bbox):
-        # Load corresponding module
+    def initialize_target_similarity_map(self, image, target, target_bbox, image_name):
+        # Load corresponding module, which has the same name in lower case
         module = importlib.import_module('.target_similarity.' + self.target_similarity_method.lower(), 'visualsearch')
         # Get the class
         target_similarity_class = getattr(module, self.target_similarity_method.capitalize())
-        target_similarity_map   = target_similarity_class(image, target, target_bbox, self.visibility_map, self.scale_factor, self.additive_shift, self.grid, self.seed)
+        target_similarity_map   = target_similarity_class(image_name, image, target, target_bbox, self.visibility_map, self.scale_factor, self.additive_shift, self.grid, self.seed, \
+            self.number_of_processes, self.save_similarity_maps, self.output_path)
         return target_similarity_map
