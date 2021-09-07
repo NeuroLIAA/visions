@@ -1,16 +1,22 @@
 import numpy as np
 import constants
-from os import path
+import json
+from os import path, listdir
 from irl_dcb import utils
 from irl_dcb.data import LHF_IRL
 from irl_dcb.build_belief_maps import build_belief_maps
 
-def process_trials(trials_properties, images_dir, new_image_size, grid_size, DCB_dir_HR, DCB_dir_LR):
+def process_trials(trials_properties, images_dir, human_scanpaths, new_image_size, grid_size, DCB_dir_HR, DCB_dir_LR):
     bbox_annos = {}
     iteration  = 1
     for image_data in list(trials_properties):
         # If the target isn't categorized, remove it
         if image_data['target_object'] == 'TBD':
+            trials_properties.remove(image_data)
+            continue
+        
+        # If the model is going to follow a given subject's scanpaths, only keep those scanpaths related to the subject
+        if human_scanpaths and not (image_data['image'] in human_scanpaths):
             trials_properties.remove(image_data)
             continue
             
@@ -79,3 +85,28 @@ def process_eval_data(trials_properties, DCB_HR_dir, DCB_LR_dir, target_annos, h
             'catIds': catIds,
             'img_test': test_img_dataset,
         }
+
+def load_human_scanpaths(human_scanpaths_dir, human_subject, grid_size, patch_size):
+    if human_subject is None:
+        return {}
+
+    human_scanpaths_files = listdir(human_scanpaths_dir)
+    human_subject_str     = str(human_subject)
+    if human_subject < 10: human_subject_str = '0' + human_subject_str
+    human_subject_file    = 'subj' + human_subject_str + '_scanpaths.json'
+    if not human_subject_file in human_scanpaths_files:
+        raise NameError('Scanpaths for human subject ' + human_subject_str + ' not found!')
+    
+    human_scanpaths = utils.load_dict_from_json(path.join(human_scanpaths_dir, human_subject_file))
+
+    rescale_scanpaths(human_scanpaths, grid_size, patch_size)
+
+    return human_scanpaths    
+
+def rescale_scanpaths(human_scanpaths, grid_size, patch_size):
+    for key in human_scanpaths.keys():        
+        scanpath = human_scanpaths[key]
+        scanpath['X'], scanpath['Y'] = [list(coords) for coords in zip(*list(map(utils.map_to_cell, zip(scanpath['X'], scanpath['Y']))))]
+        # Convert to int so it can be saved in JSON format
+        scanpath['X'] = [int(x_coord) for x_coord in scanpath['X']]
+        scanpath['Y'] = [int(y_coord) for y_coord in scanpath['Y']]

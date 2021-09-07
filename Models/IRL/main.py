@@ -11,7 +11,7 @@ import argparse
 import constants
 from tqdm import tqdm
 from os import path, cpu_count
-from dataset import process_eval_data, process_trials
+from dataset import process_eval_data, process_trials, load_human_scanpaths
 from irl_dcb.config import JsonConfig
 from torch.utils.data import DataLoader
 from irl_dcb.models import LHF_Policy_Cond_Small
@@ -21,27 +21,30 @@ from irl_dcb import utils
 torch.manual_seed(42619)
 np.random.seed(42619)
 
-def run_visualsearch(dataset_name, trained_models_dir, hparams, device):
+def run_visualsearch(dataset_name, human_subject, trained_models_dir, hparams, device):
     dcbs_path = path.join(constants.DCBS_PATH, dataset_name)
     # Dir of high and low res belief maps
     DCB_dir_HR = path.join(dcbs_path, 'DCBs/HR/')
     DCB_dir_LR = path.join(dcbs_path, 'DCBs/LR/')
     
     dataset_path = path.join(constants.DATASETS_PATH, dataset_name)
-    with open(path.join(dataset_path, 'trials_properties.json'), 'r') as json_file:
-        trials_properties = json.load(json_file)
-    
-    with open(path.join(dataset_path, 'dataset_info.json'), 'r') as json_file:
-        dataset_info = json.load(json_file)
-    
-    hparams.Data.max_traj_length = dataset_info['max_scanpath_length'] - 1
 
+    dataset_info      = utils.load_dict_from_json(path.join(dataset_path, 'dataset_info.json'))
+    trials_properties = utils.load_dict_from_json(path.join(dataset_path, 'trials_properties.json'))
+    
     images_dir     = path.join(dataset_path, dataset_info['images_dir'])
     new_image_size = (hparams.Data.im_h, hparams.Data.im_w)
     grid_size      = (hparams.Data.patch_num[1], hparams.Data.patch_num[0])
+    patch_size     = (hparams.Data.patch_size[1], hparams.Data.patch_size[0])
 
+    # For computing different metrics
+    human_scanpaths_dir = path.join(dataset_path, dataset_info['scanpaths_dir'])
+    human_scanpaths     = load_human_scanpaths(human_scanpaths_dir, human_subject, grid_size, patch_size)
+
+    hparams.Data.max_traj_length = dataset_info['max_scanpath_length'] - 1
+    
     # Process trials, creating belief maps when necessary, and get target's bounding box for each trial
-    bbox_annos = process_trials(trials_properties, images_dir, new_image_size, grid_size, DCB_dir_HR, DCB_dir_LR)
+    bbox_annos = process_trials(trials_properties, images_dir, human_scanpaths, new_image_size, grid_size, DCB_dir_HR, DCB_dir_LR)
 
     # Get categories and load image data
     dataset = process_eval_data(trials_properties, DCB_dir_HR, DCB_dir_LR, bbox_annos, hparams)
@@ -115,12 +118,15 @@ def gen_scanpaths(generator, env_test, test_img_loader, bbox_annos, patch_num, m
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Run the IRL visual search model')
     parser.add_argument('-dataset', type=str, help='Name of the dataset on which to run the model. Value must be one of cIBS, COCOSearch18, IVSN or MCS.')
+    parser.add_argument('--h', '--human_subject', type=int, default=None, help='Human subject on which the model will follow its scanpaths, saving the probability map for each saccade.\
+         Useful for computing different metrics. See "Kümmerer, M. & Bethge, M. (2021), State-of-the-Art in Human Scanpath Prediction" for more information')
     args = parser.parse_args()
 
     device             = torch.device('cpu')
     dataset_name       = args.dataset
+    human_subject      = args.h
     trained_models_dir = 'trained_models/'
     hparams            = path.join('hparams', 'default.json')
     hparams            = JsonConfig(hparams)
 
-    run_visualsearch(dataset_name, trained_models_dir, hparams, device)
+    run_visualsearch(dataset_name, human_subject, trained_models_dir, hparams, device)

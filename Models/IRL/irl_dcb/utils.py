@@ -7,6 +7,9 @@ from math import floor
 from torch.distributions import Categorical
 warnings.filterwarnings("ignore", category=UserWarning)
 
+def map_to_cell(pixel, patch_size):
+    return np.array(pixel, dtype=int) // np.array(patch_size)
+
 def rescale_coordinate(value, old_size, new_size):
     return floor((value / old_size) * new_size)
 
@@ -24,6 +27,10 @@ def save_scanpaths(output_path, scanpaths):
 def save_to_json(file, data):
     with open(file, 'w') as json_file:
         json.dump(data, json_file, indent=4)
+
+def load_dict_from_json(json_file_path):
+    with open(json_file_path, 'r') as json_file:
+        return json.load(json_file)
 
 def cutFixOnTarget(trajs, target_annos):
     for image_name in trajs:
