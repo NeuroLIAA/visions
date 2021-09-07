@@ -20,6 +20,7 @@ def create_categories_masks(number_of_categories, output_size, segments_info, pa
 
 def build_belief_maps(image_name, images_dir, image_size, output_size, sigma_blur, number_of_categories, save_path_HR, save_path_LR):
     """ Build belief maps for a given image """
+    """ Image size is in width x height """
     image = cv2.imread(path.join(images_dir, image_name))
     image = cv2.resize(image, image_size)
     blurred_image = gaussian_filter(image, (sigma_blur, sigma_blur, 0), mode='nearest')

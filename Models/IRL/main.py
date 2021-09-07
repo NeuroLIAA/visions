@@ -5,7 +5,6 @@ Usage:
   test.py -h | --help
 Options:
   -h --help     Show this screen.
-  --cuda=<id>   id of the cuda device [default: 0].
 """
 
 import torch
@@ -20,7 +19,6 @@ from torch.utils.data import DataLoader
 from irl_dcb.models import LHF_Policy_Cond_Small
 from irl_dcb.environment import IRL_Env4LHF
 from irl_dcb.build_belief_maps import build_belief_maps
-
 from irl_dcb import utils
 
 torch.manual_seed(42619)
@@ -29,15 +27,11 @@ np.random.seed(42619)
 datasets_path = '../../Datasets/'
 results_path  = '../../Results/'
 dcbs_path = 'dataset_root/'
+number_of_belief_maps = 134
+# Sigma of the gaussian filter applied to the search image
+sigma_blur = 2
 
-def gen_scanpaths(generator,
-                  env_test,
-                  test_img_loader,
-                  patch_num,
-                  max_traj_len,
-                  im_w,
-                  im_h,
-                  num_sample=10):
+def gen_scanpaths(generator, env_test, test_img_loader, patch_num, max_traj_len, im_w, im_h, num_sample=1):
     all_actions = []
     for i_sample in range(num_sample):
         progress = tqdm(test_img_loader)
@@ -63,6 +57,56 @@ def gen_scanpaths(generator,
 
     return scanpaths
 
+def process_trials(trials_properties, new_image_size, grid_size, DCB_dir_HR, DCB_dir_LR):
+    bbox_annos = {}
+    iteration  = 1
+    for image_data in list(trials_properties):
+        # If the target isn't categorized, remove it
+        if image_data['target_object'] == 'TBD':
+            trials_properties.remove(image_data)
+            continue
+            
+        old_image_size = (image_data['image_height'], image_data['image_width'])
+
+        # Rescale everything to image size used
+        rescale_coordinates(image_data, old_image_size, new_image_size)
+        
+        # Add trial's bounding box info to dict
+        category_and_image_name             = image_data['target_object'] + '_' + image_data['image']
+        bbox_annos[category_and_image_name] = (image_data['target_matched_column'], image_data['target_matched_row'], image_data['target_width'], image_data['target_height'])
+
+        # Create belief maps for image if necessary
+        check_and_build_belief_maps(image_data['image'], images_dir, DCB_dir_HR, DCB_dir_LR, new_image_size, grid_size, iteration, total=len(trials_properties))
+        
+        iteration += 1
+    
+    return bbox_annos
+
+def check_and_build_belief_maps(image_name, images_dir, DCB_dir_HR, DCB_dir_LR, new_image_size, grid_size, iter_number, total):
+    img_belief_maps_file = image_name[:-4] + '.pth.tar'
+    high_res_belief_maps = path.join(DCB_dir_HR, img_belief_maps_file)
+    low_res_belief_maps  = path.join(DCB_dir_LR, img_belief_maps_file)
+    if not (path.exists(high_res_belief_maps) and path.exists(low_res_belief_maps)):
+        print('Building belief maps for image ' + image_name + ' (' + str(iter_number) + '/' + str(total) + ')')
+        build_belief_maps(image_name, images_dir, (new_image_size[1], new_image_size[0]), grid_size, sigma_blur, number_of_belief_maps, DCB_dir_HR, DCB_dir_LR)    
+
+def rescale_coordinates(image_data, old_image_size, new_image_size):
+    old_image_height = old_image_size[0]
+    old_image_width  = old_image_size[1]
+    new_image_height = new_image_size[0]
+    new_image_width  = new_image_size[1]
+
+    image_data['target_matched_column']   = utils.rescale_coordinate(image_data['target_matched_column'], old_image_width, new_image_width)
+    image_data['target_matched_row']      = utils.rescale_coordinate(image_data['target_matched_row'], old_image_height, new_image_height)
+    image_data['target_width']            = utils.rescale_coordinate(image_data['target_width'], old_image_width, new_image_width)
+    image_data['target_height']           = utils.rescale_coordinate(image_data['target_height'], old_image_height, new_image_height)
+    image_data['initial_fixation_column'] = utils.rescale_coordinate(image_data['initial_fixation_column'], old_image_width, new_image_width)
+    image_data['initial_fixation_row']    = utils.rescale_coordinate(image_data['initial_fixation_row'], old_image_height, new_image_height)
+
+    # Save new image size
+    image_data['image_width']  = new_image_width
+    image_data['image_height'] = new_image_height
+
 if __name__ == '__main__':
     args = docopt(__doc__)
     device = torch.device('cpu')
@@ -71,11 +115,8 @@ if __name__ == '__main__':
     hparams = path.join('hparams', 'default.json')
     hparams = JsonConfig(hparams)
 
-    number_of_belief_maps = 134
-    # Sigma of the gaussian filter applied to the search image
-    sigma_blur = 2
     dcbs_path = path.join(dcbs_path, dataset_name)
-    # Dir of pre-computed beliefs
+    # Dir of high and low res belief maps
     DCB_dir_HR = path.join(dcbs_path, 'DCBs/HR/')
     DCB_dir_LR = path.join(dcbs_path, 'DCBs/LR/')
     
@@ -87,45 +128,13 @@ if __name__ == '__main__':
         dataset_info = json.load(json_file)
     
     hparams.Data.max_traj_length = dataset_info['max_scanpath_length'] - 1
-    images_dir = path.join(dataset_path, dataset_info['images_dir'])
 
-    bbox_annos = {}
-    iteration = 1
-    for image_data in list(trials_properties):
-        # If the target isn't categorized, remove it
-        if image_data['target_object'] == 'TBD':
-            trials_properties.remove(image_data)
-            continue
-            
-        original_image_height = image_data['image_height']
-        original_image_width  = image_data['image_width']
-        # Rescale everything to image size used
-        image_data['target_matched_column'] = utils.rescale_coordinate(image_data['target_matched_column'], original_image_width, hparams.Data.im_w)
-        image_data['target_matched_row']    = utils.rescale_coordinate(image_data['target_matched_row'], original_image_height, hparams.Data.im_h)
-        image_data['target_width']  = utils.rescale_coordinate(image_data['target_width'], original_image_width, hparams.Data.im_w)
-        image_data['target_height'] = utils.rescale_coordinate(image_data['target_height'], original_image_height, hparams.Data.im_h)
-        image_data['initial_fixation_column'] = utils.rescale_coordinate(image_data['initial_fixation_column'], original_image_width, hparams.Data.im_w)
-        image_data['initial_fixation_row']    = utils.rescale_coordinate(image_data['initial_fixation_row'], original_image_height, hparams.Data.im_h)
-        image_data['image_width']  = hparams.Data.im_w
-        image_data['image_height'] = hparams.Data.im_h
-        
-        key = image_data['target_object'] + '_' + image_data['image']
-        bbox_annos[key] = (image_data['target_matched_column'], image_data['target_matched_row'], image_data['target_width'], image_data['target_height'])
+    images_dir     = path.join(dataset_path, dataset_info['images_dir'])
+    new_image_size = (hparams.Data.im_h, hparams.Data.im_w)
+    grid_size      = (hparams.Data.patch_num[1], hparams.Data.patch_num[0])
 
-        # Create belief maps for image if necessary
-        img_belief_maps_file = image_data['image'][:-4] + '.pth.tar'
-        if not (path.exists(path.join(DCB_dir_HR, img_belief_maps_file)) and path.exists(path.join(DCB_dir_LR, img_belief_maps_file))):
-            print('Building belief maps for image ' + image_data['image'] + ' (' + str(iteration) + '/' + str(len(trials_properties)) + ')')
-            build_belief_maps(image_data['image'], 
-                            images_dir,
-                            (hparams.Data.im_w, hparams.Data.im_h),
-                            (hparams.Data.patch_num[1], hparams.Data.patch_num[0]),
-                            sigma_blur,
-                            number_of_belief_maps,
-                            DCB_dir_HR,
-                            DCB_dir_LR)
-        
-        iteration += 1
+    # Process trials, creating belief maps when necessary, and get target's bounding box for each trial
+    bbox_annos = process_trials(trials_properties, new_image_size, grid_size, DCB_dir_HR, DCB_dir_LR)
 
     # Process fixation data
     dataset = process_eval_data(trials_properties,
@@ -134,13 +143,12 @@ if __name__ == '__main__':
                            bbox_annos,
                            hparams)
     
-    batch_size = 64
-    if len(trials_properties) < 64:
-        batch_size = len(trials_properties)
+    batch_size = min(len(trials_properties), 64)
     img_loader = DataLoader(dataset['img_test'],
                             batch_size=batch_size,
                             shuffle=False,
                             num_workers=cpu_count())
+
     print('Number of images: ', len(dataset['img_test']))
 
     # Load trained model
@@ -169,8 +177,7 @@ if __name__ == '__main__':
                                 hparams.Data.patch_num,
                                 hparams.Data.max_traj_length,
                                 hparams.Data.im_w,
-                                hparams.Data.im_h,
-                                num_sample=1)
+                                hparams.Data.im_h)
 
     output_path = path.join(results_path, dataset_name + '_dataset' + '/IRL/')
     utils.save_scanpaths(output_path, predictions)
