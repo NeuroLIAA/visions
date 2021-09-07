@@ -10,6 +10,7 @@ Options:
 import torch
 import numpy as np
 import json
+import argparse
 from tqdm import tqdm
 from docopt import docopt
 from os import path, cpu_count
@@ -108,12 +109,15 @@ def rescale_coordinates(image_data, old_image_size, new_image_size):
     image_data['image_height'] = new_image_height
 
 if __name__ == '__main__':
-    args = docopt(__doc__)
-    device = torch.device('cpu')
-    dataset_name = args["<dataset_name>"]
-    checkpoint = 'trained_models/'
-    hparams = path.join('hparams', 'default.json')
-    hparams = JsonConfig(hparams)
+    parser = argparse.ArgumentParser(description='Run the IRL visual search model')
+    parser.add_argument('-dataset', type=str, help='Name of the dataset on which to run the model. Value must be one of cIBS, COCOSearch18, IVSN or MCS.')
+    args = parser.parse_args()
+
+    device        = torch.device('cpu')
+    dataset_name  = args.dataset
+    checkpoint    = 'trained_models/'
+    hparams       = path.join('hparams', 'default.json')
+    hparams       = JsonConfig(hparams)
 
     dcbs_path = path.join(dcbs_path, dataset_name)
     # Dir of high and low res belief maps
