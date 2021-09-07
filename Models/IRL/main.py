@@ -39,10 +39,10 @@ def run_visualsearch(dataset_name, human_subject, trained_models_dir, hparams, d
 
     # For computing different metrics
     human_scanpaths_dir = path.join(dataset_path, dataset_info['scanpaths_dir'])
-    human_scanpaths     = load_human_scanpaths(human_scanpaths_dir, human_subject, grid_size, patch_size)
+    human_scanpaths     = load_human_scanpaths(human_scanpaths_dir, human_subject, grid_size)
 
     hparams.Data.max_traj_length = dataset_info['max_scanpath_length'] - 1
-    
+
     # Process trials, creating belief maps when necessary, and get target's bounding box for each trial
     bbox_annos = process_trials(trials_properties, images_dir, human_scanpaths, new_image_size, grid_size, DCB_dir_HR, DCB_dir_LR)
 

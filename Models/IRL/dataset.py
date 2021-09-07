@@ -1,6 +1,7 @@
 import numpy as np
 import constants
 import json
+from itertools import repeat
 from os import path, listdir
 from irl_dcb import utils
 from irl_dcb.data import LHF_IRL
@@ -86,7 +87,7 @@ def process_eval_data(trials_properties, DCB_HR_dir, DCB_LR_dir, target_annos, h
             'img_test': test_img_dataset,
         }
 
-def load_human_scanpaths(human_scanpaths_dir, human_subject, grid_size, patch_size):
+def load_human_scanpaths(human_scanpaths_dir, human_subject, grid_size):
     if human_subject is None:
         return {}
 
@@ -99,14 +100,14 @@ def load_human_scanpaths(human_scanpaths_dir, human_subject, grid_size, patch_si
     
     human_scanpaths = utils.load_dict_from_json(path.join(human_scanpaths_dir, human_subject_file))
 
-    rescale_scanpaths(human_scanpaths, grid_size, patch_size)
+    rescale_scanpaths(human_scanpaths, grid_size)
 
     return human_scanpaths    
 
-def rescale_scanpaths(human_scanpaths, grid_size, patch_size):
+def rescale_scanpaths(human_scanpaths, grid_size):
     for key in human_scanpaths.keys():        
-        scanpath = human_scanpaths[key]
-        scanpath['X'], scanpath['Y'] = [list(coords) for coords in zip(*list(map(utils.map_to_cell, zip(scanpath['X'], scanpath['Y']))))]
-        # Convert to int so it can be saved in JSON format
-        scanpath['X'] = [int(x_coord) for x_coord in scanpath['X']]
-        scanpath['Y'] = [int(y_coord) for y_coord in scanpath['Y']]
+        scanpath     = human_scanpaths[key]
+        image_height = scanpath['image_height']
+        image_width  = scanpath['image_width']
+        scanpath['X'] = [int(utils.rescale_coordinate(x_coord, image_width, grid_size[1])) for x_coord in scanpath['X']]
+        scanpath['Y'] = [int(utils.rescale_coordinate(y_coord, image_height, grid_size[0])) for y_coord in scanpath['Y']]
