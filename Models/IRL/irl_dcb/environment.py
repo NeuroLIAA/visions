@@ -65,7 +65,6 @@ class IRL_Env4LHF:
     def step(self, act_batch, batch_human_scanpaths):
         self.step_id += 1
         assert self.step_id < self.max_step, "Error: Exceeding maximum step!"
-        breakpoint()
 
         # update fixation
         py, px = act_batch // self.pa.patch_num[0], act_batch % self.pa.patch_num[0]

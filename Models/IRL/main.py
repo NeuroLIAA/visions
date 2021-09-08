@@ -31,6 +31,7 @@ def run_visualsearch(dataset_name, human_subject, trained_models_dir, hparams, d
 
     dataset_info      = utils.load_dict_from_json(path.join(dataset_path, 'dataset_info.json'))
     trials_properties = utils.load_dict_from_json(path.join(dataset_path, 'trials_properties.json'))
+    output_path       = path.join(constants.RESULTS_PATH, dataset_name + '_dataset' + '/IRL/')
     
     images_dir     = path.join(dataset_path, dataset_info['images_dir'])
     new_image_size = (hparams.Data.im_h, hparams.Data.im_w)
@@ -85,13 +86,15 @@ def run_visualsearch(dataset_name, human_subject, trained_models_dir, hparams, d
                                 hparams.Data.max_traj_length,
                                 hparams.Data.im_w,
                                 hparams.Data.im_h,
-                                human_scanpaths)
+                                human_scanpaths,
+                                num_sample=1,
+                                output_path=output_path)
 
     #### TODO: Guardar scanpaths humanos reescalados
-    output_path = path.join(constants.RESULTS_PATH, dataset_name + '_dataset' + '/IRL/')
+    
     utils.save_scanpaths(output_path, predictions)
 
-def gen_scanpaths(generator, env_test, test_img_loader, bbox_annos, patch_num, max_traj_len, im_w, im_h, human_scanpaths, num_sample=1):
+def gen_scanpaths(generator, env_test, test_img_loader, bbox_annos, patch_num, max_traj_len, im_w, im_h, human_scanpaths, num_sample, output_path):
     all_actions = []
     for i_sample in range(num_sample):
         progress = tqdm(test_img_loader)
@@ -108,7 +111,7 @@ def gen_scanpaths(generator, env_test, test_img_loader, bbox_annos, patch_num, m
             env_test.set_data(batch, max_traj_len_batch)
             with torch.no_grad():
                 env_test.reset(max_traj_len_batch)
-                trajs = utils.collect_trajs(env_test,
+                trajs, probs = utils.collect_trajs(env_test,
                                             generator,
                                             img_names_batch,
                                             patch_num,
@@ -116,9 +119,13 @@ def gen_scanpaths(generator, env_test, test_img_loader, bbox_annos, patch_num, m
                                             human_scanpaths_batch,
                                             is_eval=True,
                                             sample_action=True)
+                
+                if human_scanpaths:
+                    utils.save_probability_maps(probs, human_scanpaths_batch, img_names_batch, output_path)
                 all_actions.extend([(cat_names_batch[i], img_names_batch[i], initial_fix_batch[i],
                                      'present', trajs['actions'][:, i])
                                     for i in range(env_test.batch_size)])
+            breakpoint()
             
     scanpaths = utils.actions2scanpaths(all_actions, patch_num, im_w, im_h, dataset_name, hparams.Data.patch_size[0], max_traj_len)
     utils.cutFixOnTarget(scanpaths, bbox_annos)

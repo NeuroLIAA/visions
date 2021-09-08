@@ -2,6 +2,7 @@ import numpy as np
 import torch
 import json
 import warnings
+import pandas as pd
 import os
 from math import floor
 from torch.distributions import Categorical
@@ -21,6 +22,22 @@ def add_scanpath_to_dict(model_name, image_name, image_size, scanpath_x, scanpat
         'receptive_height' : cell_size, 'receptive_width' : cell_size, 'target_found' : False, 'target_bbox' : np.zeros(shape=4), \
                  'X' : list(map(int, scanpath_x)), 'Y' : list(map(int, scanpath_y)), 'target_object' : target_object, 'max_fixations' : max_saccades + 1
         }
+
+def save_probability_maps(probs, human_scanpaths_batch, img_names_batch, output_path):
+    for index, trial in enumerate(human_scanpaths_batch):
+        trial_length    = len(trial['X'])
+        trial_img_name  = img_names_batch[index]
+        trial_prob_maps = [prob_batch[index] for prob_batch in probs[:trial_length]]
+        subject_id      = trial['subject']
+
+        save_path = os.path.join(output_path, 'human_subject_' + subject_id + '/' + trial_img_name[:-4])
+        if not os.path.exists(save_path):
+            os.makedirs(save_path)
+
+        for fix_number, prob_map in enumerate(trial_prob_maps):
+            prob_map_df = pd.DataFrame(prob_map.numpy())
+            prob_map_df.to_csv(os.path.join(save_path, 'fixation_' + str(fix_number + 1) + '.csv'))
+
 
 def save_scanpaths(output_path, scanpaths):
     if not os.path.exists(output_path):
@@ -78,6 +95,8 @@ def select_action(obs, policy, sample_action, action_mask=None,
                 
             m_new = Categorical(probs_new)
             actions = m_new.sample()
+
+            probs = probs_new
         else:
             actions = m.sample()
         log_probs = m.log_prob(actions)
@@ -102,10 +121,11 @@ def collect_trajs(env,
                                                policy,
                                                sample_action,
                                                action_mask=env.action_mask)
+
+    prob   = prob.view(prob.size(0), patch_num[1], -1)
     status = [env.status]
     values = [value]
-    log_probs = [log_prob]
-    breakpoint()
+    probs  = [prob]
     i = 0
     if is_eval:
         actions = []
@@ -114,12 +134,13 @@ def collect_trajs(env,
             status.append(curr_status)
             actions.append(act)
             obs_fov = new_obs_fov
-            act, log_prob, value, prob_new = select_action(
+            act, log_prob, value, prob = select_action(
                 (obs_fov, env.task_ids),
                 policy,
                 sample_action,
                 action_mask=env.action_mask)
-            #### TODO: Stackear log probs y guardarlos
+            
+            probs.append(prob.view(prob.size(0), patch_num[1], -1))
             i = i + 1
 
         trajs = {
@@ -127,7 +148,7 @@ def collect_trajs(env,
             'actions': torch.stack(actions)
         }
 
-    return trajs
+    return trajs, probs
 
 def get_num_step2target(X, Y, bbox):
     X, Y = np.array(X), np.array(Y)
