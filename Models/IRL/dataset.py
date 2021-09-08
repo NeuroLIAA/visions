@@ -62,12 +62,15 @@ def rescale_coordinates(image_data, old_image_size, new_image_size):
     image_data['image_width']  = new_image_width
     image_data['image_height'] = new_image_height
 
-def process_eval_data(trials_properties, DCB_HR_dir, DCB_LR_dir, target_annos, hparams):
+def process_eval_data(trials_properties, human_scanpaths, DCB_HR_dir, DCB_LR_dir, target_annos, grid_size, hparams):
     target_init_fixs = {}
     for image_data in trials_properties:
         key = image_data['target_object'] + '_' + image_data['image']
-        target_init_fixs[key] = (image_data['initial_fixation_column'] / image_data['image_width'],
-                                image_data['initial_fixation_row'] / image_data['image_height'])
+        if human_scanpaths:
+            initial_fix = (human_scanpaths[image_data['image']]['X'][0] / grid_size[1], human_scanpaths[image_data['image']]['Y'][0] / grid_size[0])
+        else:
+            initial_fix = (image_data['initial_fixation_column'] / image_data['image_width'], image_data['initial_fixation_row'] / image_data['image_height'])
+        target_init_fixs[key] = initial_fix
 
     # Since the model was trained for these specific categories, the list must always be the same, regardless of the dataset
     target_objects = ['bottle', 'bowl', 'car', 'chair', 'clock', 'cup', 'fork', 'keyboard', 'knife', 'laptop', \

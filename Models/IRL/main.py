@@ -47,7 +47,7 @@ def run_visualsearch(dataset_name, human_subject, trained_models_dir, hparams, d
     bbox_annos = process_trials(trials_properties, images_dir, human_scanpaths, new_image_size, grid_size, DCB_dir_HR, DCB_dir_LR)
 
     # Get categories and load image data
-    dataset = process_eval_data(trials_properties, DCB_dir_HR, DCB_dir_LR, bbox_annos, hparams)
+    dataset = process_eval_data(trials_properties, human_scanpaths, DCB_dir_HR, DCB_dir_LR, bbox_annos, grid_size, hparams)
     
     batch_size = min(len(trials_properties), 64)
     img_loader = DataLoader(dataset['img_test'],
@@ -84,12 +84,13 @@ def run_visualsearch(dataset_name, human_subject, trained_models_dir, hparams, d
                                 hparams.Data.patch_num,
                                 hparams.Data.max_traj_length,
                                 hparams.Data.im_w,
-                                hparams.Data.im_h)
+                                hparams.Data.im_h,
+                                human_scanpaths)
 
     output_path = path.join(constants.RESULTS_PATH, dataset_name + '_dataset' + '/IRL/')
     utils.save_scanpaths(output_path, predictions)
 
-def gen_scanpaths(generator, env_test, test_img_loader, bbox_annos, patch_num, max_traj_len, im_w, im_h, num_sample=1):
+def gen_scanpaths(generator, env_test, test_img_loader, bbox_annos, patch_num, max_traj_len, im_w, im_h, human_scanpaths, num_sample=1):
     all_actions = []
     for i_sample in range(num_sample):
         progress = tqdm(test_img_loader)
@@ -102,8 +103,10 @@ def gen_scanpaths(generator, env_test, test_img_loader, bbox_annos, patch_num, m
                 env_test.reset()
                 trajs = utils.collect_trajs(env_test,
                                             generator,
+                                            img_names_batch,
                                             patch_num,
                                             max_traj_len,
+                                            human_scanpaths,
                                             is_eval=True,
                                             sample_action=True)
                 all_actions.extend([(cat_names_batch[i], img_names_batch[i], initial_fix_batch[i],
