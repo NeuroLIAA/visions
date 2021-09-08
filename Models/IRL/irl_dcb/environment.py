@@ -68,12 +68,12 @@ class IRL_Env4LHF:
         breakpoint()
 
         # update fixation
-        #### TODO: Controlar para cuando se vaya de rango (termine el scanpath humano)
+        py, px = act_batch // self.pa.patch_num[0], act_batch % self.pa.patch_num[0]
         if batch_human_scanpaths:
-            py, px = list(map(list, zip(*[(scanpath['Y'][self.step_id], scanpath['X'][self.step_id]) for scanpath in batch_human_scanpaths])))
+            # If the current step exceeds the length of the human scanpath for a given image, the model's fixations are used instead
+            get_coord = lambda human_scanpath, model_coords, index: human_scanpath[self.step_id] if self.step_id < len(human_scanpath) else model_coords[index].item()
+            py, px = list(map(list, zip(*[(get_coord(scanpath['Y'], py, i), get_coord(scanpath['X'], px, i)) for i, scanpath in enumerate(batch_human_scanpaths)])))
             py, px = torch.tensor(py), torch.tensor(px)
-        else:
-            py, px = act_batch // self.pa.patch_num[0], act_batch % self.pa.patch_num[0]
         self.fixations[:, self.step_id, 1] = py
         self.fixations[:, self.step_id, 0] = px
 

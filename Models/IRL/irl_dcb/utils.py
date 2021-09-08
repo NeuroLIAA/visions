@@ -105,6 +105,7 @@ def collect_trajs(env,
     status = [env.status]
     values = [value]
     log_probs = [log_prob]
+    breakpoint()
     i = 0
     if is_eval:
         actions = []
