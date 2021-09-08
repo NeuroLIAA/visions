@@ -23,7 +23,6 @@ def run(config, dataset_info, trials_properties, human_scanpaths, output_path, s
                 proc_number       (int)      : number of processes on which to execute bayesian search
                 image_size        (int, int) : image size on which the model will operate
                 save_similarity_maps (bool)  : indicates whether to save the target similarity map for each image in bayesian search
-                human_scanpaths   (dict)     : if not empty, it contains the human scanpaths which the model will use as fixations
             Dataset info (dict). One entry. Fields:
                 name          (string) : name of the dataset
                 images_dir    (string) : folder path where search images are stored
@@ -41,7 +40,9 @@ def run(config, dataset_info, trials_properties, human_scanpaths, output_path, s
                 target_width (int)            : width of the target in pixels
                 initial_fixation_row (int)    : row of the first fixation on the image
                 initial_fixation_column (int) : column of the first fixation on the image
-            Output path (string) : folder path where scanpaths and the probability maps will be stored
+            human_scanpaths (dict) : if not empty, it contains the human scanpaths which the model will use as fixations
+            Output path (string)   : folder path where scanpaths and the probability maps will be stored
+            sigma (2D array)       : covariance matrix used for building the visibility map
         Output:
             Output_path/scanpaths/Scanpaths.json: Dictionary indexed by image name where each entry contains the scanpath for that given image, alongside the configuration used.
             Output_path/probability_maps/: In this folder, the probability map computed for each saccade is stored. This is done for every image in trials_properties. (Only if save_probability_maps is true.)
