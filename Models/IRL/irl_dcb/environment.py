@@ -65,6 +65,7 @@ class IRL_Env4LHF:
     def step(self, act_batch, batch_human_scanpaths):
         self.step_id += 1
         assert self.step_id < self.max_step, "Error: Exceeding maximum step!"
+        breakpoint()
 
         # update fixation
         #### TODO: Controlar para cuando se vaya de rango (termine el scanpath humano)
@@ -128,8 +129,9 @@ class IRL_Env4LHF:
         self.fixations[:, self.step_id] = 0
         self.step_id -= 1
 
-    def reset(self):
-        self.step_id = 0  # step id of the environment
+    def reset(self, max_traj_len_batch):
+        self.step_id  = 0  # step id of the environment
+        self.max_step = max_traj_len_batch + 1
         self.fixations = torch.zeros((self.batch_size, self.max_step, 2),
                                      dtype=torch.long,
                                      device=self.device)
@@ -179,7 +181,7 @@ class IRL_Env4LHF:
         else:
             raise NotImplementedError
 
-    def set_data(self, data):
+    def set_data(self, data, max_traj_len_batch):
         self.label_coding = data['label_coding'].to(self.device)
         self.img_names = data['img_name']
         self.cat_names = data['cat_name']
@@ -197,4 +199,4 @@ class IRL_Env4LHF:
             self.action_mask = torch.zeros(self.batch_size,
                                            self.pa.patch_count,
                                            dtype=torch.uint8)
-        self.reset()
+        self.reset(max_traj_len_batch)

@@ -7,12 +7,6 @@ from math import floor
 from torch.distributions import Categorical
 warnings.filterwarnings("ignore", category=UserWarning)
 
-def scanpaths_to_list(scanpaths):
-    if scanpaths:
-        return [scanpaths[image_name] for image_name in scanpaths.keys()]
-    else:
-        return []
-
 def get_max_scanpath_length(scanpaths_list):
     if scanpaths_list:
         return max(list(map(lambda scanpath: len(scanpath['X']), scanpaths_list)))
