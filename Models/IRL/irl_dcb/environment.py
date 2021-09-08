@@ -68,7 +68,6 @@ class IRL_Env4LHF:
 
         # update fixation
         #### TODO: Controlar para cuando se vaya de rango (termine el scanpath humano)
-        breakpoint()
         if batch_human_scanpaths:
             py, px = list(map(list, zip(*[(scanpath['Y'][self.step_id], scanpath['X'][self.step_id]) for scanpath in batch_human_scanpaths])))
             py, px = torch.tensor(py), torch.tensor(px)

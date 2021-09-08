@@ -40,6 +40,7 @@ def run_visualsearch(dataset_name, human_subject, trained_models_dir, hparams, d
     # For computing different metrics
     human_scanpaths_dir = path.join(dataset_path, dataset_info['scanpaths_dir'])
     human_scanpaths     = load_human_scanpaths(human_scanpaths_dir, human_subject, grid_size)
+    max_len_human_scanpath = utils.get_max_scanpath_length(utils.scanpaths_to_list(human_scanpaths))
 
     hparams.Data.max_traj_length = dataset_info['max_scanpath_length'] - 1
 
@@ -66,9 +67,14 @@ def run_visualsearch(dataset_name, human_subject, trained_models_dir, hparams, d
     utils.load('best', generator, 'generator', pkg_dir=trained_models_dir, device=device)
     generator.eval()
 
+    # If following a subject's scanpaths, those vary in length, so we set an upper limit
+    if human_scanpaths:
+        max_step = max_len_human_scanpath
+    else:
+        max_step = hparams.Data.max_traj_length
     # Build environment
     env_test = IRL_Env4LHF(hparams.Data,
-                           max_step=hparams.Data.max_traj_length,
+                           max_step=max_step,
                            mask_size=hparams.Data.IOR_size,
                            status_update_mtd=hparams.Train.stop_criteria,
                            device=device,
@@ -100,14 +106,19 @@ def gen_scanpaths(generator, env_test, test_img_loader, bbox_annos, patch_num, m
             img_names_batch   = batch['img_name']
             cat_names_batch   = batch['cat_name']
             initial_fix_batch = batch['init_fix']
+            human_scanpaths_batch = []
+            max_traj_len_batch    = max_traj_len
+            if human_scanpaths:
+                human_scanpaths_batch = [human_scanpaths[image_name] for image_name in img_names_batch]
+                max_traj_len_batch    = utils.get_max_scanpath_length(human_scanpaths_batch) - 1
             with torch.no_grad():
                 env_test.reset()
                 trajs = utils.collect_trajs(env_test,
                                             generator,
                                             img_names_batch,
                                             patch_num,
-                                            max_traj_len,
-                                            human_scanpaths,
+                                            max_traj_len_batch,
+                                            human_scanpaths_batch,
                                             is_eval=True,
                                             sample_action=True)
                 all_actions.extend([(cat_names_batch[i], img_names_batch[i], initial_fix_batch[i],

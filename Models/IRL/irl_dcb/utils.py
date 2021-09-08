@@ -7,6 +7,18 @@ from math import floor
 from torch.distributions import Categorical
 warnings.filterwarnings("ignore", category=UserWarning)
 
+def scanpaths_to_list(scanpaths):
+    if scanpaths:
+        return [scanpaths[image_name] for image_name in scanpaths.keys()]
+    else:
+        return []
+
+def get_max_scanpath_length(scanpaths_list):
+    if scanpaths_list:
+        return max(list(map(lambda scanpath: len(scanpath['X']), scanpaths_list)))
+    else:
+        return 0
+
 def rescale_coordinate(value, old_size, new_size):
     return floor((value / old_size) * new_size)
 
@@ -87,12 +99,9 @@ def collect_trajs(env,
                   img_names_batch,
                   patch_num,
                   max_traj_length,
-                  human_scanpaths,
+                  human_scanpaths_batch,
                   is_eval=True,
                   sample_action=True):
-    batch_human_scanpaths = []
-    if human_scanpaths:
-        batch_human_scanpaths = [human_scanpaths[image_name] for image_name in img_names_batch]
     rewards = []
     obs_fov = env.observe()
     act, log_prob, value, prob = select_action((obs_fov, env.task_ids),
@@ -102,12 +111,11 @@ def collect_trajs(env,
     status = [env.status]
     values = [value]
     log_probs = [log_prob]
-
     i = 0
     if is_eval:
         actions = []
         while i < max_traj_length:
-            new_obs_fov, curr_status = env.step(act, batch_human_scanpaths)
+            new_obs_fov, curr_status = env.step(act, human_scanpaths_batch)
             status.append(curr_status)
             actions.append(act)
             obs_fov = new_obs_fov
