@@ -87,6 +87,7 @@ def run_visualsearch(dataset_name, human_subject, trained_models_dir, hparams, d
                                 hparams.Data.im_h,
                                 human_scanpaths)
 
+    #### TODO: Guardar scanpaths humanos reescalados
     output_path = path.join(constants.RESULTS_PATH, dataset_name + '_dataset' + '/IRL/')
     utils.save_scanpaths(output_path, predictions)
 

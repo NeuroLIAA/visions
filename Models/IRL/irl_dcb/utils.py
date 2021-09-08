@@ -90,12 +90,11 @@ def collect_trajs(env,
                   human_scanpaths,
                   is_eval=True,
                   sample_action=True):
+    batch_human_scanpaths = []
     if human_scanpaths:
         batch_human_scanpaths = [human_scanpaths[image_name] for image_name in img_names_batch]
-    breakpoint()
     rewards = []
     obs_fov = env.observe()
-    # Generar action mask segun los scanpaths humanos, de ser necesario
     act, log_prob, value, prob = select_action((obs_fov, env.task_ids),
                                                policy,
                                                sample_action,
@@ -103,23 +102,21 @@ def collect_trajs(env,
     status = [env.status]
     values = [value]
     log_probs = [log_prob]
-    SASPs = []
 
     i = 0
     if is_eval:
         actions = []
         while i < max_traj_length:
-            new_obs_fov, curr_status = env.step(act)
+            new_obs_fov, curr_status = env.step(act, batch_human_scanpaths)
             status.append(curr_status)
             actions.append(act)
             obs_fov = new_obs_fov
-            # Generar action mask segun los scanpaths humanos, de ser necesario
             act, log_prob, value, prob_new = select_action(
                 (obs_fov, env.task_ids),
                 policy,
                 sample_action,
                 action_mask=env.action_mask)
-            # Stackear log_probs y guardarlos
+            #### TODO: Stackear log probs y guardarlos
             i = i + 1
 
         trajs = {

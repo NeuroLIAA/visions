@@ -62,13 +62,18 @@ class IRL_Env4LHF:
     def get_reward(self, prob_old, prob_new):
         return torch.zeros(self.batch_size, device=self.device)
 
-    def step(self, act_batch):
+    def step(self, act_batch, batch_human_scanpaths):
         self.step_id += 1
         assert self.step_id < self.max_step, "Error: Exceeding maximum step!"
 
         # update fixation
-        py, px = act_batch // self.pa.patch_num[
-            0], act_batch % self.pa.patch_num[0]
+        #### TODO: Controlar para cuando se vaya de rango (termine el scanpath humano)
+        breakpoint()
+        if batch_human_scanpaths:
+            py, px = list(map(list, zip(*[(scanpath['Y'][self.step_id], scanpath['X'][self.step_id]) for scanpath in batch_human_scanpaths])))
+            py, px = torch.tensor(py), torch.tensor(px)
+        else:
+            py, px = act_batch // self.pa.patch_num[0], act_batch % self.pa.patch_num[0]
         self.fixations[:, self.step_id, 1] = py
         self.fixations[:, self.step_id, 0] = px
 
