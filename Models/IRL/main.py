@@ -1,8 +1,5 @@
 
-""" Script which runs the IRL model on a given dataset
-Usage:
-  main.py -dataset <dataset_name>
-"""
+""" Script which runs the IRL model on a given dataset """
 
 import torch
 import numpy as np
@@ -41,6 +38,9 @@ def run_visualsearch(dataset_name, human_subject, trained_models_dir, hparams, d
     # For computing different metrics
     human_scanpaths_dir = path.join(dataset_path, dataset_info['scanpaths_dir'])
     human_scanpaths     = load_human_scanpaths(human_scanpaths_dir, human_subject, grid_size)
+    if human_scanpaths:
+        human_subject_str = '0' + str(human_subject) if human_subject < 10 else str(human_subject)
+        output_path = path.join(output_path, 'human_subject_' + human_subject_str)
 
     hparams.Data.max_traj_length = dataset_info['max_scanpath_length'] - 1
 
@@ -90,9 +90,10 @@ def run_visualsearch(dataset_name, human_subject, trained_models_dir, hparams, d
                                 num_sample=1,
                                 output_path=output_path)
 
-    #### TODO: Guardar scanpaths humanos reescalados
-    
-    utils.save_scanpaths(output_path, predictions)
+    if human_scanpaths:
+        utils.save_scanpaths(output_path, human_scanpaths, filename='Subject_scanpaths.json')
+    else:    
+        utils.save_scanpaths(output_path, predictions)
 
 def gen_scanpaths(generator, env_test, test_img_loader, bbox_annos, patch_num, max_traj_len, im_w, im_h, human_scanpaths, num_sample, output_path):
     all_actions = []
@@ -125,7 +126,6 @@ def gen_scanpaths(generator, env_test, test_img_loader, bbox_annos, patch_num, m
                 all_actions.extend([(cat_names_batch[i], img_names_batch[i], initial_fix_batch[i],
                                      'present', trajs['actions'][:, i])
                                     for i in range(env_test.batch_size)])
-            breakpoint()
             
     scanpaths = utils.actions2scanpaths(all_actions, patch_num, im_w, im_h, dataset_name, hparams.Data.patch_size[0], max_traj_len)
     utils.cutFixOnTarget(scanpaths, bbox_annos)

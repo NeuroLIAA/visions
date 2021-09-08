@@ -27,10 +27,9 @@ def save_probability_maps(probs, human_scanpaths_batch, img_names_batch, output_
     for index, trial in enumerate(human_scanpaths_batch):
         trial_length    = len(trial['X'])
         trial_img_name  = img_names_batch[index]
-        trial_prob_maps = [prob_batch[index] for prob_batch in probs[:trial_length]]
-        subject_id      = trial['subject']
+        trial_prob_maps = [prob_batch[index] for prob_batch in probs[:trial_length - 1]]
 
-        save_path = os.path.join(output_path, 'human_subject_' + subject_id + '/' + trial_img_name[:-4])
+        save_path = os.path.join(output_path, trial_img_name[:-4])
         if not os.path.exists(save_path):
             os.makedirs(save_path)
 
@@ -39,10 +38,11 @@ def save_probability_maps(probs, human_scanpaths_batch, img_names_batch, output_
             prob_map_df.to_csv(os.path.join(save_path, 'fixation_' + str(fix_number + 1) + '.csv'))
 
 
-def save_scanpaths(output_path, scanpaths):
+def save_scanpaths(output_path, scanpaths, filename='Scanpaths.json'):
     if not os.path.exists(output_path):
         os.makedirs(output_path)
-    save_to_json(output_path + 'Scanpaths.json', scanpaths)
+    
+    save_to_json(os.path.join(output_path, filename), scanpaths)
 
 def save_to_json(file, data):
     with open(file, 'w') as json_file:
