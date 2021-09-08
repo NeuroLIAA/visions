@@ -1,5 +1,5 @@
 from os import makedirs, path, remove
-from skimage import io, transform
+from skimage import io, transform, img_as_ubyte
 import json
 import numpy  as np
 import pandas as pd
@@ -46,8 +46,10 @@ def remove_trials_already_processed(trials_properties, scanpaths):
     
     return remaining_trials
 
-def save_scanpaths(output_path, scanpaths):
+def save_scanpaths(output_path, scanpaths, human_scanpaths):
     save_to_json(output_path + 'Scanpaths.json', scanpaths)
+    if human_scanpaths:
+        save_to_json(path.join(output_path, 'Subject_scanpaths.json'), human_scanpaths)
 
 def save_to_json(file, data):
     with open(file, 'w') as json_file:
@@ -61,12 +63,12 @@ def load_image(path, name, image_size='default'):
     img = io.imread(path + name)
 
     if image_size != 'default':
-        img = transform.resize(img, image_size, preserve_range=True)
+        img = img_as_ubyte(transform.resize(img, image_size))
 
     return img
 
 def save_probability_map(output_path, image_name, probability_map, fixation_number):
-    save_path = output_path + '/probability_maps/' + image_name + '/'
+    save_path = output_path + 'probability_maps/' + image_name[:-4] + '/'
     if not path.exists(save_path):
         makedirs(save_path)
 
@@ -103,3 +105,11 @@ def add_scanpath_to_dict(image_name, image_scanpath, target_bbox, grid, config, 
 def are_within_boundaries(top_left_coordinates, bottom_right_coordinates, top_left_coordinates_to_compare, bottom_right_coordinates_to_compare):
     return top_left_coordinates[0] >= top_left_coordinates_to_compare[0] and top_left_coordinates[1] >= top_left_coordinates_to_compare[1] \
          and bottom_right_coordinates[0] < bottom_right_coordinates_to_compare[0] and bottom_right_coordinates[1] < bottom_right_coordinates_to_compare[1]
+
+def rescale_scanpaths(grid, human_scanpaths):
+    for key in human_scanpaths.keys():        
+        scanpath = human_scanpaths[key]
+        scanpath['Y'], scanpath['X'] = [list(coords) for coords in zip(*list(map(grid.map_to_cell, zip(scanpath['Y'], scanpath['X']))))]
+        # Convert to int so it can be saved in JSON format
+        scanpath['X'] = [int(x_coord) for x_coord in scanpath['X']]
+        scanpath['Y'] = [int(y_coord) for y_coord in scanpath['Y']]

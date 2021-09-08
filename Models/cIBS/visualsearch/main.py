@@ -9,7 +9,7 @@ import sys
 
 " Runs the visual search model on the image/s specified with the supplied configuration "
 
-def run(config, dataset_info, trials_properties, output_path, sigma):
+def run(config, dataset_info, trials_properties, human_scanpaths, output_path, sigma):
     """ Input:
             Config (dict). One entry. Fields:
                 search_model      (string)   : bayesian, greedy
@@ -19,10 +19,11 @@ def run(config, dataset_info, trials_properties, output_path, sigma):
                 cell_size         (int)      : size (in pixels) of the cells in the grid
                 scale_factor      (int)      : modulates the variance of target similarity and prevents 1 / d' from diverging in bayesian search
                 additive_shift    (int)      : modulates the variance of target similarity and prevents 1 / d' from diverging in bayesian search
-                save_probability_maps (bool) : indicates whether to save the posterior to a file after each saccade or not
+                save_probability_maps (bool) : indicates whether to save the probability map to a file after each saccade or not
                 proc_number       (int)      : number of processes on which to execute bayesian search
                 image_size        (int, int) : image size on which the model will operate
                 save_similarity_maps (bool)  : indicates whether to save the target similarity map for each image in bayesian search
+                human_scanpaths   (dict)     : if not empty, it contains the human scanpaths which the model will use as fixations
             Dataset info (dict). One entry. Fields:
                 name          (string) : name of the dataset
                 images_dir    (string) : folder path where search images are stored
@@ -42,7 +43,7 @@ def run(config, dataset_info, trials_properties, output_path, sigma):
                 initial_fixation_column (int) : column of the first fixation on the image
             Output path (string) : folder path where scanpaths and the probability maps will be stored
         Output:
-            Output_path/Scanpaths.json: Dictionary indexed by image name where each entry contains the scanpath for that given image, alongside the configuration used.
+            Output_path/scanpaths/Scanpaths.json: Dictionary indexed by image name where each entry contains the scanpath for that given image, alongside the configuration used.
             Output_path/probability_maps/: In this folder, the probability map computed for each saccade is stored. This is done for every image in trials_properties. (Only if save_probability_maps is true.)
             Output_path/similarity_maps/: In this folder, the target similarity map computed for each image is stored. This is done for every image in trials_properties. (Only if save_similarity_maps is true.)
     """
@@ -59,7 +60,10 @@ def run(config, dataset_info, trials_properties, output_path, sigma):
     # Initialize objects
     grid            = Grid(np.array(model_image_size), cell_size)
     visibility_map  = VisibilityMap(model_image_size, grid, sigma)
-    visual_searcher = VisualSearcher(config, grid, visibility_map, output_path)
+    visual_searcher = VisualSearcher(config, grid, visibility_map, output_path, human_scanpaths)
+
+    # Rescale human scanpaths' coordinates (if any) to those of the grid
+    utils.rescale_scanpaths(grid, human_scanpaths)
 
     print('Press Ctrl + C to interrupt execution and save a checkpoint \n')
 
@@ -99,7 +103,7 @@ def run(config, dataset_info, trials_properties, output_path, sigma):
         sys.exit(0)
 
     time_elapsed = time.time() - start + previous_time
-    utils.save_scanpaths(output_path, scanpaths)
+    utils.save_scanpaths(output_path, scanpaths, human_scanpaths)
     utils.erase_checkpoint(output_path)
 
     print('Total targets found: ' + str(targets_found) + '/' + str(len(scanpaths.keys())))

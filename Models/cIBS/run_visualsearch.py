@@ -5,14 +5,15 @@ from scripts import loader, constants
 
 " Runs visualsearch/main.py according to the supplied parameters "
 
-def main(config_name, image_name, image_range, number_of_processes, save_probability_maps):
+def main(config_name, image_name, image_range, human_subject, number_of_processes, save_probability_maps):
     dataset_info      = loader.load_dataset_info(constants.DATASET_INFO_FILE)
-    output_path       = loader.create_output_folders(dataset_info['save_path'], config_name, image_name, image_range)
+    output_path       = loader.create_output_folders(dataset_info['save_path'], config_name, image_name, image_range, human_subject)
     checkpoint        = loader.load_checkpoint(output_path)
-    config            = loader.load_config(constants.CONFIG_DIR, config_name, constants.IMAGE_SIZE, number_of_processes, save_probability_maps, checkpoint)
-    trials_properties = loader.load_trials_properties(dataset_info['trials_properties_file'], image_name, image_range, checkpoint)
+    human_scanpaths   = loader.load_human_scanpaths(dataset_info['scanpaths_dir'], human_subject)
+    config            = loader.load_config(constants.CONFIG_DIR, config_name, constants.IMAGE_SIZE, number_of_processes, save_probability_maps, human_scanpaths, checkpoint)
+    trials_properties = loader.load_trials_properties(dataset_info['trials_properties_file'], image_name, image_range, human_scanpaths, checkpoint)
 
-    visualsearch.run(config, dataset_info, trials_properties, output_path, constants.SIGMA)
+    visualsearch.run(config, dataset_info, trials_properties, human_scanpaths, output_path, constants.SIGMA)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -26,7 +27,9 @@ if __name__ == "__main__":
     parser.add_argument('--m', '--multiprocess', nargs='?', const='all', default=1, \
          help='Number of processes on which to run the model. Leave blank to use all cores available.')
     parser.add_argument('--s', '--save_prob_map', action='store_true', \
-         help='Save probability map for each saccade')
+         help='Save probability map for each saccade. If human_subject is provided, this will always be true.')
+    parser.add_argument('--h', '--human_subject', type=int, default=None, help='Human subject on which the model will follow its scanpaths, saving the probability map for each saccade.\
+         Useful for computing different metrics. See "Kümmerer, M. & Bethge, M. (2021), State-of-the-Art in Human Scanpath Prediction" for more information')
 
     args = parser.parse_args()
 
@@ -34,4 +37,4 @@ if __name__ == "__main__":
         print('Invalid value for --multiprocess argument')
         sys.exit(-1)
 
-    main(args.cfg, args.img, args.rng, args.m, args.s)
+    main(args.cfg, args.img, args.rng, args.h, args.m, args.s)

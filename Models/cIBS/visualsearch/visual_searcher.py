@@ -7,7 +7,7 @@ import time
 import importlib
 
 class VisualSearcher: 
-    def __init__(self, config, grid, visibility_map, output_path):
+    def __init__(self, config, grid, visibility_map, output_path, human_scanpaths):
         " Creates a new instance of the visual search model "
         """ Input:
                 Config (dict). One entry. Fields:
@@ -18,25 +18,27 @@ class VisualSearcher:
                     cell_size             (int)    : size (in pixels) of the cells in the grid
                     scale_factor          (int)    : modulates the variance of target similarity and prevents 1 / d' from diverging in bayesian search
                     additive_shift        (int)    : modulates the variance of target similarity and prevents 1 / d' from diverging in bayesian search
-                    save_probability_maps (bool)   : indicates whether to save the posterior to a file after each saccade or not
+                    save_probability_maps (bool)   : indicates whether to save the probability map to a file after each saccade or not
                     proc_number           (int)    : number of processes on which to execute bayesian search
                     save_similarity_maps  (bool)   : indicates whether to save the target similarity map for each image in bayesian search
-                grid           (Grid)          : representation of an image with cells instead of pixels
-                visibility_map (VisibilityMap) : visibility map with the size of the grid
-                Output path    (string)        : folder path where scanpaths and probability maps will be stored
+                human_scanpaths (dict)          : if not empty, it contains the human scanpaths which the model will use as fixations
+                grid            (Grid)          : representation of an image with cells instead of pixels
+                visibility_map  (VisibilityMap) : visibility map with the size of the grid
+                Output path     (string)        : folder path where scanpaths and probability maps will be stored
         """
         self.max_saccades             = config['max_saccades']
         self.grid                     = grid
         self.scale_factor             = config['scale_factor']
         self.additive_shift           = config['additive_shift']
         self.seed                     = config['seed']
-        self.save_posterior           = config['save_probability_maps']
+        self.save_probability_maps    = config['save_probability_maps']
         self.save_similarity_maps     = config['save_similarity_maps']
         self.number_of_processes      = config['proc_number']
         self.visibility_map           = visibility_map
-        self.search_model             = self.initialize_model(config['search_model'], self.grid.size(), visibility_map, config['norm_cdf_tolerance'], config['proc_number'])
+        self.search_model             = self.initialize_model(config['search_model'], config['norm_cdf_tolerance'])
         self.target_similarity_method = config['target_similarity']
-        self.output_path              = output_path        
+        self.output_path              = output_path
+        self.human_scanpaths          = human_scanpaths
 
     def search(self, image_name, image, image_prior, target, target_bbox, initial_fixation):
         " Given an image, a target, and a prior of that image, it looks for the object in the image, generating a scanpath "
@@ -70,10 +72,19 @@ class VisualSearcher:
         if not(utils.are_within_boundaries((target_bbox_in_grid[0], target_bbox_in_grid[1]), (target_bbox_in_grid[2], target_bbox_in_grid[3]), np.zeros(2), grid_size)):
             print(image_name + ': target bounding box is outside of the grid')
             return {}
+
+        if self.human_scanpaths: 
+            # Get subject scanpath for this image
+            current_human_scanpath  = self.human_scanpaths[image_name]
+            current_human_fixations = np.array(list(zip(current_human_scanpath['Y'], current_human_scanpath['X'])))
+            self.max_saccades       = current_human_fixations.shape[0] - 1
         
         # Initialize fixations matrix
-        fixations    = np.empty(shape=(self.max_saccades + 1, 2), dtype=int)
-        fixations[0] = self.grid.map_to_cell(initial_fixation)
+        fixations = np.empty(shape=(self.max_saccades + 1, 2), dtype=int)
+        if self.human_scanpaths:
+            fixations[0] = current_human_fixations[0]
+        else:
+            fixations[0] = self.grid.map_to_cell(initial_fixation)
         if not(utils.are_within_boundaries(fixations[0], fixations[0], np.zeros(2), grid_size)):
             print(image_name + ': initial fixation falls off the grid')
             return {}
@@ -89,7 +100,11 @@ class VisualSearcher:
         target_found = False
         start = time.time()
         for fixation_number in range(self.max_saccades + 1):
-            current_fixation = fixations[fixation_number]
+            if self.human_scanpaths:
+                current_fixation = current_human_fixations[fixation_number]
+            else:
+                current_fixation = fixations[fixation_number]
+
             print(fixation_number + 1, end=' ')
             
             if utils.are_within_boundaries(current_fixation, current_fixation, (target_bbox_in_grid[0], target_bbox_in_grid[1]), (target_bbox_in_grid[2] + 1, target_bbox_in_grid[3] + 1)):
@@ -111,10 +126,7 @@ class VisualSearcher:
             marginal  = np.sum(likelihood_times_prior)
             posterior = likelihood_times_prior / marginal
 
-            if self.save_posterior:
-                utils.save_probability_map(self.output_path, image_name, posterior, fixation_number)
-
-            fixations[fixation_number + 1] = self.search_model.next_fixation(posterior)
+            fixations[fixation_number + 1] = self.search_model.next_fixation(posterior, image_name, fixation_number, self.output_path)
             
         end = time.time()
 
@@ -138,11 +150,11 @@ class VisualSearcher:
 
         return [fixations_as_list[fix_number] for fix_number in range(axis, len(fixations_as_list), 2)]
 
-    def initialize_model(self, search_model, grid_size, visibility_map, norm_cdf_tolerance, number_of_processes):
+    def initialize_model(self, search_model, norm_cdf_tolerance):
         if search_model == 'greedy':
-            return GreedyModel()
+            return GreedyModel(self.save_probability_maps)
         else:
-            return BayesianModel(grid_size, visibility_map, norm_cdf_tolerance, number_of_processes)
+            return BayesianModel(self.grid.size(), self.visibility_map, norm_cdf_tolerance, self.number_of_processes, self.save_probability_maps)
 
     def initialize_target_similarity_map(self, image, target, target_bbox, image_name):
         # Load corresponding module, which has the same name in lower case
@@ -152,3 +164,4 @@ class VisualSearcher:
         target_similarity_map   = target_similarity_class(image_name, image, target, target_bbox, self.visibility_map, self.scale_factor, self.additive_shift, self.grid, self.seed, \
             self.number_of_processes, self.save_similarity_maps, self.output_path)
         return target_similarity_map
+

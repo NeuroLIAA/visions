@@ -40,11 +40,11 @@ class Grid:
     def map_to_cell(self, pixel):
         " Given a pixel in the image, this function returns the corresponding coordinate of the pixel in the grid "
         """ Input:
-                pixel (int, int)      : row and column number of the pixel in the image
+                pixel (int, int) : row and column number of the pixel in the image
             Output:
-                cell (int, int) : corresponding cell of the pixel in the image
+                cell (int, int)  : corresponding cell of the pixel in the image
         """
-        return np.array(pixel) // self.cell_size
+        return np.array(pixel, dtype=int) // self.cell_size
 
     def map_cell_to_pixels(self, cell):
         " Given a cell in the grid, this function returns the corresponding pixel in the image, centered in the cell "

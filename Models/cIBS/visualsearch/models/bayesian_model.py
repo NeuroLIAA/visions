@@ -3,17 +3,19 @@ import warnings
 from scipy.stats import norm
 from scipy.interpolate import interp1d
 from multiprocessing import Process, shared_memory
+from ..utils import utils
 from os import cpu_count
 
 class BayesianModel:
-    def __init__(self, grid_size, visibility_map, norm_cdf_tolerance, number_of_processes):
+    def __init__(self, grid_size, visibility_map, norm_cdf_tolerance, number_of_processes, save_probability_maps):
         self.grid_size      = grid_size
         self.visibility_map = visibility_map
         self.norm_cdf_table = self.create_norm_cdf_table(norm_cdf_tolerance)
         self.number_of_processes = number_of_processes
+
+        self.save_probability_maps = save_probability_maps
     
     def create_norm_cdf_table(self, norm_cdf_tolerance):
-        # TODO: Agregar para qué sirve
         " Build normal curve table with default mean and variance. Row values go from norm_cdf_tolerance to 1 - norm_cdf_tolerance "
         """ Input:
                 norm_cdf_tolerance (float) : value from which to compute the normal distribution probabilities
@@ -25,21 +27,24 @@ class BayesianModel:
 
         return {'x': columns, 'y': rows}
     
-    def next_fixation(self, posterior):
+    def next_fixation(self, posterior, image_name, fixation_number, output_path):
         " Computes the next fixation according to the posterior, which size is equal to the grid "
         """ Input:
                 posterior (2D array) : probability map of the size of the grid
             Output:
                 next_fix (int, int) : cell in the grid which maximizes the probability of being correct about the target being in that cell in regard to the posterior
+
+            (The rest of the input arguments are used to save the probability map to a CSV file.)
         """
-        # Alpha está al pedo, se multiplica y resta por él cuando vale 1
-        alpha = 1 
         probability_at_each_fixation = np.empty(shape=self.grid_size)
 
         if self.number_of_processes > 1:
             self.parallelize_probability_computation(probability_at_each_fixation, posterior)
         else:
             self.compute_probability_on_rows(probability_at_each_fixation, posterior, rows=range(self.grid_size[0]))
+
+        if self.save_probability_maps:
+            utils.save_probability_map(output_path, image_name, probability_at_each_fixation, fixation_number)
         
         # Get the fixation which maximizes the probability of being correct
         coordinates = np.where(probability_at_each_fixation == np.max(probability_at_each_fixation))
@@ -113,12 +118,12 @@ class BayesianModel:
                 for possible_target_location_row in range(self.grid_size[0]):
                     for possible_target_location_column in range(self.grid_size[1]):
                         probability_of_being_correct[possible_target_location_row, possible_target_location_column] = \
-                            self.compute_conditional_probability(possible_target_location_row, possible_target_location_column, posterior, visibility_map_at_fixation, alpha=1)
+                            self.compute_conditional_probability(possible_target_location_row, possible_target_location_column, posterior, visibility_map_at_fixation)
 
                 probability_at_each_fixation[possible_nextfix_row, possible_nextfix_column] = np.nansum(posterior * probability_of_being_correct)
 
 
-    def compute_conditional_probability(self, target_location_row, target_location_column, posterior, visibility_map_at_fixation, alpha):
+    def compute_conditional_probability(self, target_location_row, target_location_column, posterior, visibility_map_at_fixation, alpha=1):
         " Computes the probability of being correct given the visibility map of the next fixation and that the true target location is (target_location_row, target_location_column) "
         posterior_at_target_location  = posterior[target_location_row, target_location_column]
         visibility_at_target_location = visibility_map_at_fixation[target_location_row, target_location_column]
@@ -139,22 +144,8 @@ class BayesianModel:
         
         max_w = 20
 
-        # Ignore possible inf or NaN values
-        # masked_b = np.ma.masked_invalid(b)
-
-        # if masked_b[m > 0].size == 0 or m[m > 0].size == 0:
-        #     min_w = -20
-        # else:
-        #     min_w = max(np.max((-20 - masked_b[m > 0]) / m[m > 0]), -20)
-
-        # if masked_b[m < 0].size == 0 or m[m < 0].size == 0:
-        #     max_w = 20
-        # else:
-        #     max_w = min(np.min((-20 - masked_b[m < 0]) / m[m < 0]), 20)
-
         if min_w >= max_w: return 0
 
-        # TODO: Explicar ese 50 mágico
         w_range = np.linspace(min_w, max_w, 50)
 
         values_for_normcdf = np.matmul(m.flatten()[:, np.newaxis], w_range[np.newaxis, :]) + np.tile(b.flatten()[:, np.newaxis], (1, len(w_range)))
