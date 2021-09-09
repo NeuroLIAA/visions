@@ -1,7 +1,7 @@
-from ivsn_model import image_preprocessing, IVSN, compute_scanpaths
 import argparse
 import constants
 import json
+from ivsn_model import image_preprocessing, IVSN, compute_scanpaths, utils
 from os import path
 
 """ Runs the IVSN model on a given dataset.
@@ -18,7 +18,7 @@ def main(dataset_name):
 
     images_dir        = path.join(dataset_path, dataset_info['images_dir'])
     targets_dir       = path.join(dataset_path, dataset_info['targets_dir'])
-    max_fixations     = path.join(dataset_path, dataset_info['max_scanpath_length'])
+    max_fixations     = dataset_info['max_scanpath_length']
     images_size       = (dataset_info['image_height'], dataset_info['image_width'])
     receptive_size    = dataset_info['receptive_size']
     dataset_full_name = dataset_info['dataset_name']
@@ -28,7 +28,7 @@ def main(dataset_name):
     print('Preprocessing images...')
     image_preprocessing.chop_images(images_dir, preprocessed_images_dir, images_size, trials_properties)
     print('Running model...')
-    IVSN.run(images_dir, targets_dir, preprocessed_images_dir, trials_properties)
+    IVSN.run(trials_properties, targets_dir, preprocessed_images_dir)
     print('Computing scanpaths...')
     compute_scanpaths.parse_model_data(preprocessed_images_dir, trials_properties, images_size, max_fixations, receptive_size, dataset_full_name, output_path)
 
