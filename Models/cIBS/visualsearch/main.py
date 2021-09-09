@@ -95,7 +95,7 @@ def run(config, dataset_info, trials_properties, human_scanpaths, output_path, s
 
             if trial_scanpath:
                 # If there were no errors, save the scanpath
-                utils.add_scanpath_to_dict(image_name, trial_scanpath, target_bbox, grid, config, dataset_info['name'], scanpaths)
+                utils.add_scanpath_to_dict(image_name, trial_scanpath, target_bbox, trial['target_object'], grid, config, dataset_info['name'], scanpaths)
                 if trial_scanpath['target_found']:
                     targets_found += 1
     except KeyboardInterrupt:
