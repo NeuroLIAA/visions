@@ -59,8 +59,8 @@ def load_from_json(json_file_path):
     with open(json_file_path, 'r') as json_file:
         return json.load(json_file)
 
-def load_image(path, name, image_size='default'):
-    img = io.imread(path + name)
+def load_image(img_path, name, image_size='default'):
+    img = io.imread(path.join(img_path, name))
 
     if image_size != 'default':
         img = img_as_ubyte(transform.resize(img, image_size))

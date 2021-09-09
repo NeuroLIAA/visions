@@ -15,7 +15,7 @@ def load(image, image_name, image_size, prior_name, prior_dir):
         Output:
             prior (2D array) : prior corresponding to the image, of the same size
     """
-    prior_path = prior_dir + prior_name + '/'
+    prior_path = path.join(prior_dir, prior_name)
     if prior_name == 'noisy':
         prior = utils.add_white_gaussian_noise(np.ones(shape=image_size), snr_db=25)
     else:

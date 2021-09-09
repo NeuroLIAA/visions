@@ -1,5 +1,6 @@
 import json
 from os import makedirs, listdir, path, remove, cpu_count
+from . import constants
 
 def load_checkpoint(output_path):
     checkpoint = {}
@@ -61,8 +62,18 @@ def load_config(config_dir, config_name, image_size, number_of_processes, save_p
     
     return config
 
-def load_dataset_info(dataset_info_file):
-    return load_dict_from_json(dataset_info_file)
+def load_dataset_info(dataset_path):
+    dataset_info_file = path.join(dataset_path, 'dataset_info.json')
+    dataset_info      = load_dict_from_json(dataset_info_file)
+
+    # Prepend dataset path to dirs
+    dataset_info['images_dir']    = path.join(dataset_path, dataset_info['images_dir'])
+    dataset_info['targets_dir']   = path.join(dataset_path, dataset_info['targets_dir'])
+    dataset_info['scanpaths_dir'] = path.join(dataset_path, dataset_info['scanpaths_dir'])
+    # Add saliency dir
+    dataset_info['saliency_dir']  = path.join(constants.SALIENCY_PATH, dataset_info['dataset_name'])
+
+    return dataset_info
 
 def load_human_scanpaths(human_scanpaths_dir, human_subject):
     if human_subject is None:

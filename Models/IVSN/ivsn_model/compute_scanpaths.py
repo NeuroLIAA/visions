@@ -74,7 +74,7 @@ def create_scanpath_for_trial(trial, attention_map, image_size, max_fixations, r
     else:
         print(image_name + "; target NOT FOUND!")
 
-    scanpath = { "subject" : "IVSN Model", "dataset" : dataset_name, "image_height" : image_size[0], "image_width" : image_size[1], "receptive_height" : receptive_size, "receptive_width": receptive_size, \
+    scanpath = {"subject" : "IVSN Model", "dataset" : dataset_name, "image_height" : image_size[0], "image_width" : image_size[1], "receptive_height" : receptive_size, "receptive_width": receptive_size, \
         "target_found" : target_found, "target_bbox" : target_bbox, "X" : scanpath_x, "Y" : scanpath_y, "target_object" : trial['target_object'], "max_fixations" : max_fixations}
     
     return scanpath

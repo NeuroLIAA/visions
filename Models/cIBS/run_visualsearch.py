@@ -1,23 +1,29 @@
+from scripts import loader, constants
 import argparse
 import visualsearch
 import sys
-from scripts import loader, constants
+from os import path
 
 " Runs visualsearch/main.py according to the supplied parameters "
 
-def main(config_name, image_name, image_range, human_subject, number_of_processes, save_probability_maps):
-    dataset_info      = loader.load_dataset_info(constants.DATASET_INFO_FILE)
-    output_path       = loader.create_output_folders(dataset_info['save_path'], config_name, image_name, image_range, human_subject)
+def main(dataset_name, config_name, image_name, image_range, human_subject, number_of_processes, save_probability_maps):
+    dataset_path = path.join(constants.DATASETS_PATH, dataset_name)
+    output_path  = path.join(constants.RESULTS_PATH, path.join(dataset_name + '_dataset', 'cIBS'))
+
+    trials_properties_file = path.join(dataset_path, 'trials_properties.json')
+
+    dataset_info      = loader.load_dataset_info(dataset_path)
+    output_path       = loader.create_output_folders(output_path, config_name, image_name, image_range, human_subject)
     checkpoint        = loader.load_checkpoint(output_path)
     human_scanpaths   = loader.load_human_scanpaths(dataset_info['scanpaths_dir'], human_subject)
     config            = loader.load_config(constants.CONFIG_DIR, config_name, constants.IMAGE_SIZE, number_of_processes, save_probability_maps, human_scanpaths, checkpoint)
-    trials_properties = loader.load_trials_properties(dataset_info['trials_properties_file'], image_name, image_range, human_scanpaths, checkpoint)
+    trials_properties = loader.load_trials_properties(trials_properties_file, image_name, image_range, human_scanpaths, checkpoint)
 
     visualsearch.run(config, dataset_info, trials_properties, human_scanpaths, output_path, constants.SIGMA)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-        description='Run the Visual Search model')
+    parser = argparse.ArgumentParser(description='Run the cIBS Visual Search model')
+    parser.add_argument('-dataset', type=str, help='Name of the dataset on which to run the model. Value must be one of cIBS, COCOSearch18, IVSN or MCS.')
     parser.add_argument('--cfg', '--config', type=str, default='default', help='Name of configuration setup. Examples: greedy, ssim, ivsn. Default is bayesian, with correlation \
         and deepgaze as prior.', metavar='cfg')
     group = parser.add_mutually_exclusive_group()
@@ -37,4 +43,4 @@ if __name__ == "__main__":
         print('Invalid value for --multiprocess argument')
         sys.exit(-1)
 
-    main(args.cfg, args.img, args.rng, args.h, args.m, args.s)
+    main(args.dataset, args.cfg, args.img, args.rng, args.h, args.m, args.s)
