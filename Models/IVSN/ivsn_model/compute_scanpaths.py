@@ -10,18 +10,23 @@ Scanpaths are saved in a JSON file.
 """
 
 def parse_model_data(preprocessed_images_dir, trials_properties, image_size, max_fixations, receptive_size, dataset_name, output_path):
-    scanpaths = dict()
+    scanpaths = {}
+    targets_found = 0
     for trial in trials_properties:
         image_name = trial['image']
         img_id     = image_name[:-4]
 
-        attention_map = load_model_data(preprocessed_images_dir, img_id, image_size)
+        attention_map  = load_model_data(preprocessed_images_dir, img_id, image_size)
+        trial_scanpath = create_scanpath_for_trial(trial, attention_map, image_size, max_fixations, receptive_size, dataset_name)
 
-        create_scanpath_for_trial(trial, attention_map, image_size, max_fixations, receptive_size, dataset_name, scanpaths)
+        scanpaths[image_name] = trial_scanpath
+        if trial_scanpath['target_found']:
+            targets_found += 1
     
+    print('Total targets found: ' + str(targets_found) + '/' + str(len(trials_properties)))
     utils.save_scanpaths(output_path, scanpaths)
 
-def create_scanpath_for_trial(trial, attention_map, image_size, max_fixations, receptive_size, dataset_name, scanpaths):
+def create_scanpath_for_trial(trial, attention_map, image_size, max_fixations, receptive_size, dataset_name):
     # Load target's boundaries
     target_bbox = (trial['target_matched_row'], trial['target_matched_column'], trial['target_height'] + trial['target_matched_row'], \
         trial['target_width'] + trial['target_matched_column'])
@@ -69,8 +74,10 @@ def create_scanpath_for_trial(trial, attention_map, image_size, max_fixations, r
     else:
         print(image_name + "; target NOT FOUND!")
 
-    scanpaths[image_name] = { "subject" : "IVSN Model", "dataset" : dataset_name, "image_height" : image_size[0], "image_width" : image_size[1], "receptive_height" : receptive_size, "receptive_width": receptive_size, \
+    scanpath = { "subject" : "IVSN Model", "dataset" : dataset_name, "image_height" : image_size[0], "image_width" : image_size[1], "receptive_height" : receptive_size, "receptive_width": receptive_size, \
         "target_found" : target_found, "target_bbox" : target_bbox, "X" : scanpath_x, "Y" : scanpath_y, "target_object" : trial['target_object'], "max_fixations" : max_fixations}
+    
+    return scanpath
 
 def load_model_data(preprocessed_images_dir, img_id, image_size):
     # Get attention map for the image
