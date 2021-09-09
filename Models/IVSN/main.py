@@ -28,9 +28,9 @@ def main(dataset_name):
     print('Preprocessing images...')
     image_preprocessing.chop_images(images_dir, preprocessed_images_dir, images_size, trials_properties)
     print('Running model...')
-    IVSN.run(images_dir, target_dir, preprocessed_images_dir, trials_properties)
+    IVSN.run(images_dir, targets_dir, preprocessed_images_dir, trials_properties)
     print('Computing scanpaths...')
-    compute_scanpaths.parse_model_data(images_dir, preprocessed_images_dir, images_size, max_fixations, receptive_size, output_path, trials_properties, dataset_full_name)
+    compute_scanpaths.parse_model_data(preprocessed_images_dir, trials_properties, images_size, max_fixations, receptive_size, dataset_full_name, output_path)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Run the IVSN visual search model')

@@ -8,76 +8,70 @@ Puts together data produced by the CNN and creates an attention map for the imag
 Scanpaths are saved in a JSON file.
 """
 
-def parse_model_data(stimuli_dir, chopped_dir, stimuli_size, max_fixations, receptive_size, save_path, trials_properties, dataset_name):
+def parse_model_data(preprocessed_images_dir, trials_properties, image_size, max_fixations, receptive_size, dataset_name, output_path):
     scanpaths = dict()
     for trial_properties in trials_properties:
-        imageName = trial_properties['image']
+        image_name = trial_properties['image']
+        img_id     = image_name[:-4]
 
-        imgID = imageName[:-4]
-        attentionMap = load_model_data(chopped_dir, imgID, stimuli_size)
-        create_scanpath(trial_properties, attentionMap, stimuli_size, max_fixations, receptive_size, dataset_name, scanpaths)
+        attention_map = load_model_data(preprocessed_images_dir, img_id, image_size)
+
+        create_scanpath(trial_properties, attention_map, image_size, max_fixations, receptive_size, dataset_name, scanpaths)
     
-    if not(path.exists(save_path)):
-        makedirs(save_path)
-    with open(save_path + 'Scanpaths.json', 'w') as json_file:
+    if not(path.exists(output_path)):
+        makedirs(output_path)
+    with open(output_path + 'Scanpaths.json', 'w') as json_file:
         json.dump(scanpaths, json_file, indent = 4)
 
-def create_scanpath(trial_properties, attentionMap, stimuli_size, max_fixations, receptive_size, dataset_name, scanpaths):
+def create_scanpath(trial_properties, attention_map, image_size, max_fixations, receptive_size, dataset_name, scanpaths):
     # Load target's boundaries
     target_bbox = (trial_properties['target_matched_row'], trial_properties['target_matched_column'], trial_properties['target_height'] + trial_properties['target_matched_row'], \
         trial_properties['target_width'] + trial_properties['target_matched_column'])
     # Rescale according to stimuli size
-    target_bbox = rescale_coordinates(target_bbox[0], target_bbox[1], target_bbox[2], target_bbox[3], trial_properties['image_height'], trial_properties['image_width'], stimuli_size[0], stimuli_size[1])
+    target_bbox = rescale_coordinates(target_bbox[0], target_bbox[1], target_bbox[2], target_bbox[3], trial_properties['image_height'], trial_properties['image_width'], image_size[0], image_size[1])
     # Create template of stimuli's size where there are ones in target's box and zeros elsewhere
-    targetTemplate = np.zeros(stimuli_size)
-    targetTemplate[target_bbox[0]:target_bbox[2], target_bbox[1]:target_bbox[3]] = 1
+    target_template = np.zeros(image_size)
+    target_template[target_bbox[0]:target_bbox[2], target_bbox[1]:target_bbox[3]] = 1
 
-    scanpath_x_coordinates = []
-    scanpath_y_coordinates = []
-    target_found = False
-    first_fixation = True
+    scanpath_x = []
+    scanpath_y = []
+    target_found   = False
     # Compute scanpaths from saliency image        
-    for fixationNumber in range(max_fixations):
-        if first_fixation:
+    for fixation_number in range(max_fixations):
+        if fixation_number == 0:
             posY = trial_properties['initial_fixation_row']
             posX = trial_properties['initial_fixation_column']
         else:
-            coordinates = np.where(attentionMap == np.amax(attentionMap))
+            coordinates = np.where(attention_map == np.amax(attention_map))
             posY = coordinates[0][0]
             posX = coordinates[1][0]
 
-        scanpath_x_coordinates.append(int(posX))
-        scanpath_y_coordinates.append(int(posY))
+        scanpath_x.append(int(posX))
+        scanpath_y.append(int(posY))
 
-        fixatedPlace_leftX  = posX - receptive_size // 2 + 1
-        fixatedPlace_rightX = posX + receptive_size // 2
-        fixatedPlace_leftY  = posY - receptive_size // 2 + 1
-        fixatedPlace_rightY = posY + receptive_size // 2
+        fixated_window_leftX  = max(posX - receptive_size // 2 + 1, 0)
+        fixated_window_leftY  = max(posY - receptive_size // 2 + 1, 0)
+        fixated_window_rightX = min(posX + receptive_size // 2, image_size[1])
+        fixated_window_rightY = min(posY + receptive_size // 2, image_size[0])
 
-        if fixatedPlace_leftX < 0: fixatedPlace_leftX = 0
-        if fixatedPlace_leftY < 0: fixatedPlace_leftY = 0
-        if fixatedPlace_rightY > stimuli_size[0]: fixatedPlace_rightY = stimuli_size[0]
-        if fixatedPlace_rightX > stimuli_size[1]: fixatedPlace_rightX = stimuli_size[1]
+        # Check if target's box overlaps with the fixated window
+        fixated_on_target = np.sum(target_template[fixated_window_leftY:fixated_window_rightY, fixated_window_leftX:fixated_window_rightX]) > 0
 
-        # Check if target's box overlaps with the fixated place
-        fixatedPlace = targetTemplate[fixatedPlace_leftY:fixatedPlace_rightY, fixatedPlace_leftX:fixatedPlace_rightX]
-
-        if (np.sum(fixatedPlace) > 0):
+        if fixated_on_target:
             target_found = True
             break
         else:
             # Apply inhibition of return
-            attentionMap[fixatedPlace_leftY:fixatedPlace_rightY, fixatedPlace_leftX:fixatedPlace_rightX] = 0
-            
-        first_fixation = False
+            attention_map[fixated_window_leftY:fixated_window_rightY, fixated_window_leftX:fixated_window_rightX] = 0
     
-    imageName = trial_properties['image']
+    image_name = trial_properties['image']
     if (target_found):
-        print(imageName + "; target found at fixation step " + str(fixationNumber + 1))
+        print(image_name + "; target found at fixation step " + str(fixation_number + 1))
     else:
-        print(imageName + "; target NOT FOUND!")
-    scanpaths[imageName] = { "subject" : "IVSN Model", "dataset" : dataset_name, "image_height" : stimuli_size[0], "image_width" : stimuli_size[1], "receptive_height" : receptive_size, "receptive_width": receptive_size, \
-        "target_found" : target_found, "target_bbox" : target_bbox, "X" : scanpath_x_coordinates, "Y" : scanpath_y_coordinates, "target_object" : "TBD", "max_fixations" : max_fixations}
+        print(image_name + "; target NOT FOUND!")
+
+    scanpaths[image_name] = { "subject" : "IVSN Model", "dataset" : dataset_name, "image_height" : image_size[0], "image_width" : image_size[1], "receptive_height" : receptive_size, "receptive_width": receptive_size, \
+        "target_found" : target_found, "target_bbox" : target_bbox, "X" : scanpath_x, "Y" : scanpath_y, "target_object" : trial_properties['target_object'], "max_fixations" : max_fixations}
 
 
 def rescale_coordinates(start_row, start_column, end_row, end_column, img_height, img_width, new_img_height, new_img_width):
@@ -88,33 +82,33 @@ def rescale_coordinates(start_row, start_column, end_row, end_column, img_height
 
     return rescaled_start_row, rescaled_start_column, rescaled_end_row, rescaled_end_column
 
-def load_model_data(chopped_dir, imgID, stimuli_size):
-    # Get attention map for stimuli
-    choppedImgDir = chopped_dir + imgID + '/'
-    choppedData = listdir(choppedImgDir)
+def load_model_data(preprocessed_images_dir, img_id, image_size):
+    # Get attention map for the image
+    chopped_img_dir = path.join(preprocessed_images_dir, img_id)
+    chopped_data    = listdir(chopped_img_dir)
 
-    template = np.zeros([stimuli_size[0], stimuli_size[1]])
-    for choppedSaliencyData in choppedData:
-        if (choppedSaliencyData.endswith('.jpg')):
+    template = np.zeros(shape=image_size)
+    for chopped_saliency_data in chopped_data:
+        if (chopped_saliency_data.endswith('.jpg')):
             continue
 
-        choppedImgName = choppedSaliencyData[:-18]
-        choppedImg     = io.imread(choppedImgDir + choppedImgName + '.jpg')
-        choppedImg_height = choppedImg.shape[0]
-        choppedImg_width  = choppedImg.shape[1]
+        chopped_img_name = chopped_saliency_data[:-18]
+        chopped_img      = io.imread(path.join(chopped_img_dir, chopped_img_name + '.jpg'))
+        chopped_img_height = chopped_img.shape[0]
+        chopped_img_width  = chopped_img.shape[1]
         # Load data computed by the model
-        with open(choppedImgDir + choppedSaliencyData, 'r') as json_attention_map:
-            choppedAttentionMap = json.load(json_attention_map)
-        choppedAttentionMap = np.asarray(choppedAttentionMap['x'])
-        choppedAttentionMap = transform.resize(choppedAttentionMap, (choppedImg_height, choppedImg_width))
+        with open(chopped_img_dir + chopped_saliency_data, 'r') as json_attention_map:
+            chopped_attention_map = json.load(json_attention_map)
+        chopped_attention_map = np.asarray(chopped_attention_map['x'])
+        chopped_attention_map = transform.resize(chopped_attention_map, (chopped_img_height, chopped_img_width))
         # Get coordinate information from the chopped image name
-        choppedImgNameSplit = choppedImgName.split('_')
-        from_row    = int(choppedImgNameSplit[len(choppedImgNameSplit) - 2])
-        from_column = int(choppedImgNameSplit[len(choppedImgNameSplit) - 1])
-        to_row    = from_row + choppedImg_height
-        to_column = from_column + choppedImg_width
+        chopped_img_name_split = chopped_img_name.split('_')
+        from_row    = int(chopped_img_name_split[len(chopped_img_name_split) - 2])
+        from_column = int(chopped_img_name_split[len(chopped_img_name_split) - 1])
+        to_row    = from_row + chopped_img_height
+        to_column = from_column + chopped_img_width
         # Replace in template
-        template[from_row:to_row, from_column:to_column] = choppedAttentionMap
-    attentionMap = exposure.rescale_intensity(template, out_range=(0, 1))
+        template[from_row:to_row, from_column:to_column] = chopped_attention_map
+    attention_map = exposure.rescale_intensity(template, out_range=(0, 1))
     
-    return attentionMap
+    return attention_map
