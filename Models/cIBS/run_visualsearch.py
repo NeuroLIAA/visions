@@ -16,7 +16,7 @@ def main(dataset_name, config_name, image_name, image_range, human_subject, numb
     output_path       = loader.create_output_folders(output_path, config_name, image_name, image_range, human_subject)
     checkpoint        = loader.load_checkpoint(output_path)
     human_scanpaths   = loader.load_human_scanpaths(dataset_info['scanpaths_dir'], human_subject)
-    config            = loader.load_config(constants.CONFIG_DIR, config_name, constants.IMAGE_SIZE, number_of_processes, save_probability_maps, human_scanpaths, checkpoint)
+    config            = loader.load_config(constants.CONFIG_DIR, config_name, constants.IMAGE_SIZE, dataset_info['max_scanpath_length'], number_of_processes, save_probability_maps, human_scanpaths, checkpoint)
     trials_properties = loader.load_trials_properties(trials_properties_file, image_name, image_range, human_scanpaths, checkpoint)
 
     visualsearch.run(config, dataset_info, trials_properties, human_scanpaths, output_path, constants.SIGMA)
