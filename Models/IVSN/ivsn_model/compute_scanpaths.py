@@ -4,7 +4,7 @@ from os import listdir, makedirs, path
 from skimage import io, transform, exposure
 
 """
-Puts together data produced by the CNN and creates an attention map for the stimuli, which is used to compute the scanpaths, with a winner-takes-all strategy.
+Puts together data produced by the CNN and creates an attention map for the image, which is used to compute the scanpaths, with a winner-takes-all strategy.
 Scanpaths are saved in a JSON file.
 """
 
