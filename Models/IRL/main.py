@@ -33,7 +33,6 @@ def run_visualsearch(dataset_name, human_subject, trained_models_dir, hparams, d
     images_dir     = path.join(dataset_path, dataset_info['images_dir'])
     new_image_size = (hparams.Data.im_h, hparams.Data.im_w)
     grid_size      = (hparams.Data.patch_num[1], hparams.Data.patch_num[0])
-    patch_size     = (hparams.Data.patch_size[1], hparams.Data.patch_size[0])
 
     # For computing different metrics
     human_scanpaths_dir = path.join(dataset_path, dataset_info['scanpaths_dir'])
@@ -84,6 +83,7 @@ def run_visualsearch(dataset_name, human_subject, trained_models_dir, hparams, d
                                 bbox_annos,
                                 hparams.Data.patch_num,
                                 hparams.Data.max_traj_length,
+                                hparams.Data.patch_size,
                                 hparams.Data.im_w,
                                 hparams.Data.im_h,
                                 human_scanpaths,
@@ -95,7 +95,7 @@ def run_visualsearch(dataset_name, human_subject, trained_models_dir, hparams, d
     else:    
         utils.save_scanpaths(output_path, predictions)
 
-def gen_scanpaths(generator, env_test, test_img_loader, bbox_annos, patch_num, max_traj_len, im_w, im_h, human_scanpaths, num_sample, output_path):
+def gen_scanpaths(generator, env_test, test_img_loader, bbox_annos, patch_num, patch_size, max_traj_len, im_w, im_h, human_scanpaths, num_sample, output_path):
     all_actions = []
     for i_sample in range(num_sample):
         progress = tqdm(test_img_loader)
@@ -127,7 +127,7 @@ def gen_scanpaths(generator, env_test, test_img_loader, bbox_annos, patch_num, m
                                      'present', trajs['actions'][:, i])
                                     for i in range(env_test.batch_size)])
             
-    scanpaths = utils.actions2scanpaths(all_actions, patch_num, im_w, im_h, dataset_name, hparams.Data.patch_size[0], max_traj_len)
+    scanpaths = utils.actions2scanpaths(all_actions, patch_num, patch_size, im_w, im_h, dataset_name, max_traj_len)
     utils.cutFixOnTarget(scanpaths, bbox_annos)
 
     return scanpaths

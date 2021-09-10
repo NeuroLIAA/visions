@@ -17,9 +17,9 @@ def get_max_scanpath_length(scanpaths_list):
 def rescale_coordinate(value, old_size, new_size):
     return floor((value / old_size) * new_size)
 
-def add_scanpath_to_dict(model_name, image_name, image_size, scanpath_x, scanpath_y, target_object, cell_size, max_saccades, dataset_name, dict_):
+def add_scanpath_to_dict(model_name, image_name, image_size, scanpath_x, scanpath_y, target_object, patch_size, max_saccades, dataset_name, dict_):
     dict_[image_name] = {'subject' : model_name, 'dataset' : dataset_name, 'image_height' : image_size[0], 'image_width' : image_size[1], \
-        'receptive_height' : cell_size, 'receptive_width' : cell_size, 'target_found' : False, 'target_bbox' : np.zeros(shape=4), \
+        'receptive_height' : patch_size[1], 'receptive_width' : patch_size[0], 'target_found' : False, 'target_bbox' : np.zeros(shape=4), \
                  'X' : list(map(int, scanpath_x)), 'Y' : list(map(int, scanpath_y)), 'target_object' : target_object, 'max_fixations' : max_saccades + 1
         }
 
@@ -115,16 +115,15 @@ def collect_trajs(env,
                   human_scanpaths_batch,
                   is_eval=True,
                   sample_action=True):
-    rewards = []
     obs_fov = env.observe()
-    act, log_prob, value, prob = select_action((obs_fov, env.task_ids),
+    act, _, value, prob = select_action((obs_fov, env.task_ids),
                                                policy,
                                                sample_action,
                                                action_mask=env.action_mask)
 
     prob   = prob.view(prob.size(0), patch_num[1], -1)
+    
     status = [env.status]
-    values = [value]
     probs  = [prob]
     i = 0
     if is_eval:
@@ -134,7 +133,7 @@ def collect_trajs(env,
             status.append(curr_status)
             actions.append(act)
             obs_fov = new_obs_fov
-            act, log_prob, value, prob = select_action(
+            act, _, value, prob = select_action(
                 (obs_fov, env.task_ids),
                 policy,
                 sample_action,
@@ -226,10 +225,10 @@ def multi_hot_coding(bbox, patch_size, patch_num):
 
     return aoi_ratio[0]
 
-def actions2scanpaths(actions, patch_num, im_w, im_h, dataset_name, patch_size, max_saccades):
+def actions2scanpaths(actions, patch_num, patch_size, im_w, im_h, dataset_name, max_saccades):
     scanpaths = {}
     for traj in actions:
-        task_name, img_name, initial_fix, condition, actions = traj
+        task_name, img_name, initial_fix, _, actions = traj
         actions = actions.to(dtype=torch.float32)
         py = (actions // patch_num[0]) / float(patch_num[1])
         px = (actions % patch_num[0]) / float(patch_num[0])
