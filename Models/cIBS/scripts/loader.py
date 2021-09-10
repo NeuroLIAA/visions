@@ -107,44 +107,44 @@ def load_trials_properties(trials_properties_file, image_name, image_range, huma
     return trials_properties
 
 def get_trial_properties_for_subject(trials_properties, human_scanpaths):
-    trial_properties = []
+    human_trials_properties = []
     for trial in trials_properties:
         if trial['image'] in human_scanpaths:
-            trial_properties.append(trial)
+            human_trials_properties.append(trial)
     
-    if not trial_properties:
+    if not human_trials_properties:
         raise ValueError('Human subject does not have any scanpaths for the images specified')
 
-    return trial_properties
+    return human_trials_properties
 
 def get_trial_properties_for_image(trials_properties, image_name):
-    trial_properties = []
+    image_trial_properties = []
     for trial in trials_properties:
         if trial['image'] == image_name:
-            trial_properties.append(trial)
+            image_trial_properties.append(trial)
             break        
     
-    if not trial_properties:
+    if not image_trial_properties:
         raise NameError('Image name must be in the dataset')
 
-    return trial_properties
+    return image_trial_properties
 
 def get_trial_properties_in_range(trials_properties, image_range):
-    trial_properties = []
+    images_trials_properties = []
     
     counter   = 1
     min_range = image_range[0]
     max_range = image_range[1]
     for trial in trials_properties:
         if counter >= min_range and counter <= max_range:
-            trial_properties.append(trial)
+            images_trials_properties.append(trial)
         
         counter += 1
     
-    if not trial_properties:
+    if not images_trials_properties:
         raise ValueError('Range outside of dataset\'s scope')
 
-    return trial_properties
+    return images_trials_properties
 
 def create_output_folders(save_path, config_name, image_name, image_range, human_subject):
     output_path = save_path
