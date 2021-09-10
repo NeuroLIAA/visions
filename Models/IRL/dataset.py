@@ -10,28 +10,28 @@ from irl_dcb.build_belief_maps import build_belief_maps
 def process_trials(trials_properties, images_dir, human_scanpaths, new_image_size, grid_size, DCB_dir_HR, DCB_dir_LR):
     bbox_annos = {}
     iteration  = 1
-    for image_data in list(trials_properties):
+    for trial in list(trials_properties):
         # If the target isn't categorized, remove it
-        if image_data['target_object'] == 'TBD':
-            trials_properties.remove(image_data)
+        if trial['target_object'] == 'TBD':
+            trials_properties.remove(trial)
             continue
         
         # If the model is going to follow a given subject's scanpaths, only keep those scanpaths related to the subject
-        if human_scanpaths and not (image_data['image'] in human_scanpaths):
-            trials_properties.remove(image_data)
+        if human_scanpaths and not (trial['image'] in human_scanpaths):
+            trials_properties.remove(trial)
             continue
             
-        old_image_size = (image_data['image_height'], image_data['image_width'])
+        old_image_size = (trial['image_height'], trial['image_width'])
 
         # Rescale everything to image size used
-        rescale_coordinates(image_data, old_image_size, new_image_size)
+        rescale_coordinates(trial, old_image_size, new_image_size)
         
         # Add trial's bounding box info to dict
-        category_and_image_name             = image_data['target_object'] + '_' + image_data['image']
-        bbox_annos[category_and_image_name] = (image_data['target_matched_column'], image_data['target_matched_row'], image_data['target_width'], image_data['target_height'])
+        category_and_image_name             = trial['target_object'] + '_' + trial['image']
+        bbox_annos[category_and_image_name] = (trial['target_matched_column'], trial['target_matched_row'], trial['target_width'], trial['target_height'])
 
         # Create belief maps for image if necessary
-        check_and_build_belief_maps(image_data['image'], images_dir, DCB_dir_HR, DCB_dir_LR, new_image_size, grid_size, iteration, total=len(trials_properties))
+        check_and_build_belief_maps(trial['image'], images_dir, DCB_dir_HR, DCB_dir_LR, new_image_size, grid_size, iteration, total=len(trials_properties))
         
         iteration += 1
     
@@ -45,31 +45,31 @@ def check_and_build_belief_maps(image_name, images_dir, DCB_dir_HR, DCB_dir_LR, 
         print('Building belief maps for image ' + image_name + ' (' + str(iter_number) + '/' + str(total) + ')')
         build_belief_maps(image_name, images_dir, (new_image_size[1], new_image_size[0]), grid_size, constants.SIGMA_BLUR, constants.NUMBER_OF_BELIEF_MAPS, DCB_dir_HR, DCB_dir_LR)    
 
-def rescale_coordinates(image_data, old_image_size, new_image_size):
+def rescale_coordinates(trial, old_image_size, new_image_size):
     old_image_height = old_image_size[0]
     old_image_width  = old_image_size[1]
     new_image_height = new_image_size[0]
     new_image_width  = new_image_size[1]
 
-    image_data['target_matched_column']   = utils.rescale_coordinate(image_data['target_matched_column'], old_image_width, new_image_width)
-    image_data['target_matched_row']      = utils.rescale_coordinate(image_data['target_matched_row'], old_image_height, new_image_height)
-    image_data['target_width']            = utils.rescale_coordinate(image_data['target_width'], old_image_width, new_image_width)
-    image_data['target_height']           = utils.rescale_coordinate(image_data['target_height'], old_image_height, new_image_height)
-    image_data['initial_fixation_column'] = utils.rescale_coordinate(image_data['initial_fixation_column'], old_image_width, new_image_width)
-    image_data['initial_fixation_row']    = utils.rescale_coordinate(image_data['initial_fixation_row'], old_image_height, new_image_height)
+    trial['target_matched_column']   = utils.rescale_coordinate(trial['target_matched_column'], old_image_width, new_image_width)
+    trial['target_matched_row']      = utils.rescale_coordinate(trial['target_matched_row'], old_image_height, new_image_height)
+    trial['target_width']            = utils.rescale_coordinate(trial['target_width'], old_image_width, new_image_width)
+    trial['target_height']           = utils.rescale_coordinate(trial['target_height'], old_image_height, new_image_height)
+    trial['initial_fixation_column'] = utils.rescale_coordinate(trial['initial_fixation_column'], old_image_width, new_image_width)
+    trial['initial_fixation_row']    = utils.rescale_coordinate(trial['initial_fixation_row'], old_image_height, new_image_height)
 
     # Save new image size
-    image_data['image_width']  = new_image_width
-    image_data['image_height'] = new_image_height
+    trial['image_width']  = new_image_width
+    trial['image_height'] = new_image_height
 
 def process_eval_data(trials_properties, human_scanpaths, DCB_HR_dir, DCB_LR_dir, target_annos, grid_size, hparams):
     target_init_fixs = {}
-    for image_data in trials_properties:
-        key = image_data['target_object'] + '_' + image_data['image']
+    for trial in trials_properties:
+        key = trial['target_object'] + '_' + trial['image']
         if human_scanpaths:
-            initial_fix = (human_scanpaths[image_data['image']]['X'][0] / grid_size[1], human_scanpaths[image_data['image']]['Y'][0] / grid_size[0])
+            initial_fix = (human_scanpaths[trial['image']]['X'][0] / grid_size[1], human_scanpaths[trial['image']]['Y'][0] / grid_size[0])
         else:
-            initial_fix = (image_data['initial_fixation_column'] / image_data['image_width'], image_data['initial_fixation_row'] / image_data['image_height'])
+            initial_fix = (trial['initial_fixation_column'] / trial['image_width'], trial['initial_fixation_row'] / trial['image_height'])
         target_init_fixs[key] = initial_fix
 
     # Since the model was trained for these specific categories, the list must always be the same, regardless of the dataset
