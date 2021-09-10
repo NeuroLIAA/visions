@@ -34,7 +34,7 @@ def run_visualsearch(dataset_name, human_subject, trained_models_dir, hparams, d
     new_image_size = (hparams.Data.im_h, hparams.Data.im_w)
     grid_size      = (hparams.Data.patch_num[1], hparams.Data.patch_num[0])
 
-    # For computing different metrics
+    # For computing different metrics; used only through argument --h
     human_scanpaths_dir = path.join(dataset_path, dataset_info['scanpaths_dir'])
     human_scanpaths     = load_human_scanpaths(human_scanpaths_dir, human_subject, grid_size)
     if human_scanpaths:

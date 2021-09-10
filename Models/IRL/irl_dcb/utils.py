@@ -116,7 +116,7 @@ def collect_trajs(env,
                   is_eval=True,
                   sample_action=True):
     obs_fov = env.observe()
-    act, _, value, prob = select_action((obs_fov, env.task_ids),
+    act, _, _, prob = select_action((obs_fov, env.task_ids),
                                                policy,
                                                sample_action,
                                                action_mask=env.action_mask)
@@ -133,7 +133,7 @@ def collect_trajs(env,
             status.append(curr_status)
             actions.append(act)
             obs_fov = new_obs_fov
-            act, _, value, prob = select_action(
+            act, _, _, prob = select_action(
                 (obs_fov, env.task_ids),
                 policy,
                 sample_action,
