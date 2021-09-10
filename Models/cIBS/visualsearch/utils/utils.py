@@ -8,7 +8,7 @@ def rescale_coordinate(value, old_size, new_size):
     return int((value / old_size) * new_size)
 
 def load_data_from_checkpoint(output_path):
-    checkpoint_file = output_path + 'checkpoint.json'
+    checkpoint_file = path.join(output_path, 'checkpoint.json')
     scanpaths     = {}
     targets_found = 0
     time_elapsed  = 0
@@ -33,7 +33,7 @@ def save_checkpoint(config, scanpaths, targets_found, trials_properties, time_el
     print('Run the script again to resume execution')
 
 def erase_checkpoint(output_path):
-    checkpoint_file = output_path + 'checkpoint.json'
+    checkpoint_file = path.join(output_path, 'checkpoint.json')
     if path.exists(checkpoint_file):
         remove(checkpoint_file)
 
@@ -47,7 +47,7 @@ def remove_trials_already_processed(trials_properties, scanpaths):
     return remaining_trials
 
 def save_scanpaths(output_path, scanpaths, human_scanpaths):
-    save_to_json(output_path + 'Scanpaths.json', scanpaths)
+    save_to_json(path.join(output_path, 'Scanpaths.json'), scanpaths)
     if human_scanpaths:
         save_to_json(path.join(output_path, 'Subject_scanpaths.json'), human_scanpaths)
 
@@ -68,12 +68,12 @@ def load_image(img_path, name, image_size='default'):
     return img
 
 def save_probability_map(output_path, image_name, probability_map, fixation_number):
-    save_path = output_path + 'probability_maps/' + image_name[:-4] + '/'
+    save_path = path.join(output_path, path.join('probability_maps', image_name[:-4]))
     if not path.exists(save_path):
         makedirs(save_path)
 
     posterior_df = pd.DataFrame(probability_map)
-    posterior_df.to_csv(save_path + 'fixation_' + str(fixation_number + 1) + '.csv')
+    posterior_df.to_csv(path.join(save_path, 'fixation_' + str(fixation_number + 1) + '.csv'))
 
 def add_white_gaussian_noise(image, snr_db):
     """ Input:
