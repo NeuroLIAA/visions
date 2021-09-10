@@ -25,7 +25,6 @@ def main(dataset_name, human_subject):
         output_path       = path.join(output_path, 'human_subject_' + human_subject_str)
         trials_properties = utils.keep_human_trials(human_scanpaths, trials_properties)
 
-    trials_properties = [trials_properties[0]]
     images_dir        = path.join(dataset_path, dataset_info['images_dir'])
     targets_dir       = path.join(dataset_path, dataset_info['targets_dir'])
     max_fixations     = dataset_info['max_scanpath_length']
