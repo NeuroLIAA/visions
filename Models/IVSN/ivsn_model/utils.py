@@ -1,4 +1,5 @@
 import json
+import pandas as pd
 from os import path, makedirs, listdir
 from math import floor
 
@@ -21,6 +22,14 @@ def keep_human_trials(human_scanpaths, trials_properties):
         raise ValueError('Human subject does not have any scanpaths for the images specified')
 
     return human_trials_properties
+
+def save_probability_map(fixation_number, image_name, probability_map, output_path):
+    save_path = path.join(output_path, path.join('probability_maps', image_name[:-4]))
+    if not path.exists(save_path):
+        makedirs(save_path)
+
+    posterior_df = pd.DataFrame(probability_map)
+    posterior_df.to_csv(path.join(save_path, 'fixation_' + str(fixation_number + 1) + '.csv'))
 
 def load_human_scanpaths(human_scanpaths_dir, human_subject):
     if human_subject is None:

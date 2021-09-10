@@ -19,16 +19,20 @@ def parse_model_data(preprocessed_images_dir, trials_properties, human_scanpaths
         human_trial_scanpath = utils.get_human_scanpath_for_trial(human_scanpaths, image_name)
 
         attention_map  = load_model_data(preprocessed_images_dir, img_id, image_size)
-        trial_scanpath = create_scanpath_for_trial(trial, attention_map, human_trial_scanpath, image_size, max_fixations, receptive_size, dataset_name)
+        trial_scanpath = create_scanpath_for_trial(trial, attention_map, human_trial_scanpath, image_size, max_fixations, receptive_size, dataset_name, output_path)
 
         scanpaths[image_name] = trial_scanpath
         if trial_scanpath['target_found']:
             targets_found += 1
     
     print('Total targets found: ' + str(targets_found) + '/' + str(len(trials_properties)))
-    utils.save_scanpaths(output_path, scanpaths)
 
-def create_scanpath_for_trial(trial, attention_map, human_trial_scanpath, image_size, max_fixations, receptive_size, dataset_name):
+    if human_scanpaths:
+        utils.save_scanpaths(output_path, human_scanpaths, filename='Subject_scanpaths.json')
+    else:
+        utils.save_scanpaths(output_path, scanpaths)
+
+def create_scanpath_for_trial(trial, attention_map, human_trial_scanpath, image_size, max_fixations, receptive_size, dataset_name, output_path):
     # Load target's boundaries
     target_bbox = (trial['target_matched_row'], trial['target_matched_column'], trial['target_height'] + trial['target_matched_row'], \
         trial['target_width'] + trial['target_matched_column'])
@@ -51,7 +55,7 @@ def create_scanpath_for_trial(trial, attention_map, human_trial_scanpath, image_
     scanpath_x = []
     scanpath_y = []
     target_found = False
-    # Compute scanpath from attention map
+    # Compute scanpath from attention_map or from human_fixations
     for fixation_number in range(max_fixations):
         posY, posX = get_current_fixation(fixation_number, initial_fixation, attention_map, human_fixations)
 
@@ -63,15 +67,19 @@ def create_scanpath_for_trial(trial, attention_map, human_trial_scanpath, image_
         fixated_window_rightX = min(posX + receptive_size // 2, image_size[1])
         fixated_window_rightY = min(posY + receptive_size // 2, image_size[0])
 
+        # Apply inhibition of return
+        attention_map[fixated_window_leftY:fixated_window_rightY, fixated_window_leftX:fixated_window_rightX] = 0
+
+        # Save the probability map for further usage in computing metrics
+        if human_fixations and fixation_number < max_fixations - 1:
+            utils.save_probability_map(fixation_number, trial['image'], attention_map, output_path)
+
         # Check if target's box overlaps with the fixated window
         fixated_on_target = np.sum(target_template[fixated_window_leftY:fixated_window_rightY, fixated_window_leftX:fixated_window_rightX]) > 0
 
         if fixated_on_target:
             target_found = True
             break
-        else:
-            # Apply inhibition of return
-            attention_map[fixated_window_leftY:fixated_window_rightY, fixated_window_leftX:fixated_window_rightX] = 0
     
     image_name = trial['image']
     if target_found:
