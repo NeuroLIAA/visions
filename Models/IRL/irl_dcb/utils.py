@@ -29,7 +29,7 @@ def save_probability_maps(probs, human_scanpaths_batch, img_names_batch, output_
         trial_img_name  = img_names_batch[index]
         trial_prob_maps = [prob_batch[index] for prob_batch in probs[:trial_length - 1]]
 
-        save_path = os.path.join(output_path, trial_img_name[:-4])
+        save_path = os.path.join(os.path.join(output_path, 'probability_maps'), trial_img_name[:-4])
         if not os.path.exists(save_path):
             os.makedirs(save_path)
 

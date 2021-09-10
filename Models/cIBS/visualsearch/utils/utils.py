@@ -28,7 +28,7 @@ def save_checkpoint(config, scanpaths, targets_found, trials_properties, time_el
     checkpoint['scanpaths']         = scanpaths
     checkpoint['trials_properties'] = remove_trials_already_processed(trials_properties, scanpaths)
 
-    save_to_json(output_path + 'checkpoint.json', checkpoint)
+    save_to_json(path.join(output_path, 'checkpoint.json'), checkpoint)
     print('\nCheckpoint saved at ' + output_path)
     print('Run the script again to resume execution')
 
