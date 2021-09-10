@@ -9,15 +9,17 @@ Puts together data produced by the CNN and creates an attention map for the imag
 Scanpaths are saved in a JSON file.
 """
 
-def parse_model_data(preprocessed_images_dir, trials_properties, image_size, max_fixations, receptive_size, dataset_name, output_path):
+def parse_model_data(preprocessed_images_dir, trials_properties, human_scanpaths, image_size, max_fixations, receptive_size, dataset_name, output_path):
     scanpaths = {}
     targets_found = 0
     for trial in trials_properties:
         image_name = trial['image']
         img_id     = image_name[:-4]
 
+        human_trial_scanpath = utils.get_human_scanpath_for_trial(human_scanpaths, image_name)
+
         attention_map  = load_model_data(preprocessed_images_dir, img_id, image_size)
-        trial_scanpath = create_scanpath_for_trial(trial, attention_map, image_size, max_fixations, receptive_size, dataset_name)
+        trial_scanpath = create_scanpath_for_trial(trial, attention_map, human_trial_scanpath, image_size, max_fixations, receptive_size, dataset_name)
 
         scanpaths[image_name] = trial_scanpath
         if trial_scanpath['target_found']:
@@ -26,7 +28,7 @@ def parse_model_data(preprocessed_images_dir, trials_properties, image_size, max
     print('Total targets found: ' + str(targets_found) + '/' + str(len(trials_properties)))
     utils.save_scanpaths(output_path, scanpaths)
 
-def create_scanpath_for_trial(trial, attention_map, image_size, max_fixations, receptive_size, dataset_name):
+def create_scanpath_for_trial(trial, attention_map, human_trial_scanpath, image_size, max_fixations, receptive_size, dataset_name):
     # Load target's boundaries
     target_bbox = (trial['target_matched_row'], trial['target_matched_column'], trial['target_height'] + trial['target_matched_row'], \
         trial['target_width'] + trial['target_matched_column'])
@@ -34,21 +36,24 @@ def create_scanpath_for_trial(trial, attention_map, image_size, max_fixations, r
     trial_img_size = (trial['image_height'], trial['image_width'])
     target_bbox    = [utils.rescale_coordinate(target_bbox[i], trial_img_size[i % 2 == 1], image_size[i % 2 == 1]) for i in range(len(target_bbox))]
     # Create template of image size, where there are ones in target's box and zeros elsewhere
+    # TODO: Cambiar a un mecanismo similar al de IRL y cIBS donde simplemente se fija que esté dentro del target bbox
     target_template = np.zeros(image_size)
     target_template[target_bbox[0]:target_bbox[2], target_bbox[1]:target_bbox[3]] = 1
+
+    initial_fixation = (trial['initial_fixation_row'], trial['initial_fixation_column'])
+    # If executed with --h argument, the model follows human's fixations instead of its own
+    human_fixations = []
+    if human_trial_scanpath:
+        human_fixations  = list(zip(human_trial_scanpath['Y'], human_trial_scanpath['X']))
+        initial_fixation = human_fixations[0]
+        max_fixations    = len(human_fixations)
 
     scanpath_x = []
     scanpath_y = []
     target_found = False
-    # Compute scanpaths from saliency image        
+    # Compute scanpath from attention map
     for fixation_number in range(max_fixations):
-        if fixation_number == 0:
-            posY = trial['initial_fixation_row']
-            posX = trial['initial_fixation_column']
-        else:
-            coordinates = np.where(attention_map == np.amax(attention_map))
-            posY = coordinates[0][0]
-            posX = coordinates[1][0]
+        posY, posX = get_current_fixation(fixation_number, initial_fixation, attention_map, human_fixations)
 
         scanpath_x.append(int(posX))
         scanpath_y.append(int(posY))
@@ -78,6 +83,18 @@ def create_scanpath_for_trial(trial, attention_map, image_size, max_fixations, r
         "target_found" : target_found, "target_bbox" : target_bbox, "X" : scanpath_x, "Y" : scanpath_y, "target_object" : trial['target_object'], "max_fixations" : max_fixations}
     
     return scanpath
+
+def get_current_fixation(fixation_number, initial_fixation, attention_map, human_fixations):
+    if fixation_number == 0:
+        posY, posX = initial_fixation
+    else:
+        if human_fixations:
+            posY, posX = human_fixations[fixation_number]
+        else:
+            max_attention_map = np.where(attention_map == np.amax(attention_map))
+            posY, posX  = max_attention_map[0][0], max_attention_map[1][0]
+    
+    return posY, posX
 
 def load_model_data(preprocessed_images_dir, img_id, image_size):
     # Get attention map for the image

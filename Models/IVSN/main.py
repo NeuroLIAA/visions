@@ -8,13 +8,22 @@ from os import path
     Running order is image_preprocessing.py first, IVSN.py next, and compute_scanpaths.py last.
 """
 
-def main(dataset_name):
+def main(dataset_name, human_subject):
     dataset_path = path.join(constants.DATASETS_PATH, dataset_name)
     output_path  = path.join(constants.RESULTS_PATH, path.join(dataset_name + '_dataset', 'IVSN'))
 
     # Load dataset information
     dataset_info      = utils.load_from_dataset(dataset_path, 'dataset_info.json')
-    trials_properties = utils.load_from_dataset(dataset_path, 'trials_properties.json')    
+    trials_properties = utils.load_from_dataset(dataset_path, 'trials_properties.json')
+
+    # For computing different metrics; used only through argument --h
+    human_scanpaths_dir = path.join(dataset_path, dataset_info['scanpaths_dir'])
+    human_scanpaths     = utils.load_human_scanpaths(human_scanpaths_dir, human_subject)
+    if human_scanpaths:
+        human_subject_str = '0' + str(human_subject) if human_subject < 10 else str(human_subject)
+
+        output_path       = path.join(output_path, 'human_subject_' + human_subject_str)
+        trials_properties = utils.keep_human_trials(human_scanpaths, trials_properties)
 
     images_dir        = path.join(dataset_path, dataset_info['images_dir'])
     targets_dir       = path.join(dataset_path, dataset_info['targets_dir'])
@@ -30,11 +39,14 @@ def main(dataset_name):
     print('Running model...')
     IVSN.run(trials_properties, targets_dir, preprocessed_images_dir)
     print('Computing scanpaths...')
-    compute_scanpaths.parse_model_data(preprocessed_images_dir, trials_properties, images_size, max_fixations, receptive_size, dataset_full_name, output_path)
+    compute_scanpaths.parse_model_data(preprocessed_images_dir, trials_properties, human_scanpaths, images_size, max_fixations, receptive_size, dataset_full_name, output_path)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Run the IVSN visual search model')
     parser.add_argument('-dataset', type=str, help='Name of the dataset on which to run the model. Value must be one of cIBS, COCOSearch18, IVSN or MCS.')
+    parser.add_argument('--h', '--human_subject', type=int, default=None, help='Human subject on which the model will follow its scanpaths, saving the probability map for each saccade.\
+         Useful for computing different metrics. See "Kümmerer, M. & Bethge, M. (2021), State-of-the-Art in Human Scanpath Prediction" for more information')
 
     args = parser.parse_args()
-    main(args.dataset)
+
+    main(args.dataset, args.h)
