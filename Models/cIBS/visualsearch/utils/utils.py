@@ -107,8 +107,8 @@ def are_within_boundaries(top_left_coordinates, bottom_right_coordinates, top_le
          and bottom_right_coordinates[0] < bottom_right_coordinates_to_compare[0] and bottom_right_coordinates[1] < bottom_right_coordinates_to_compare[1]
 
 def rescale_scanpaths(grid, human_scanpaths):
-    for key in human_scanpaths.keys():        
-        scanpath = human_scanpaths[key]
+    for trial in human_scanpaths:        
+        scanpath = human_scanpaths[trial]
         scanpath['Y'], scanpath['X'] = [list(coords) for coords in zip(*list(map(grid.map_to_cell, zip(scanpath['Y'], scanpath['X']))))]
         # Convert to int so it can be saved in JSON format
         scanpath['X'] = [int(x_coord) for x_coord in scanpath['X']]
