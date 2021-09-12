@@ -130,6 +130,7 @@ class IRL_Env4LHF:
 
     def reset(self, max_traj_len_batch):
         self.step_id  = 0  # step id of the environment
+
         self.max_step = max_traj_len_batch + 1
         self.fixations = torch.zeros((self.batch_size, self.max_step, 2),
                                      dtype=torch.long,
