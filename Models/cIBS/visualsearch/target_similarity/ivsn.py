@@ -14,6 +14,7 @@ from PIL import Image
 
 class Ivsn(TargetSimilarity):
     def compute_target_similarity(self, image, target, target_bbox):
+        print("Building target similarity map...")
         target_height, target_width = 32, 32
         block_height, block_width   = 224, 224
         # These blocks will be the input of the CNN
