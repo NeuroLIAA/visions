@@ -18,9 +18,9 @@ class Ssim(TargetSimilarity):
 
         image_size  = image.shape[:2]
         if self.number_of_processes == 1:
-            return self.compute_ssim_single_process(image, target, image_size, target_size)
+            return self.compute_ssim_single_process(image, target, image_size, target_size_in_image)
         else:
-            return self.parallelize_ssim_computation(image, target, image_size, target_size)
+            return self.parallelize_ssim_computation(image, target, image_size, target_size_in_image)
     
     
     def parallelize_ssim_computation(self, image, target, image_size, target_size):
