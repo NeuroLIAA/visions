@@ -16,7 +16,7 @@ class Correlation(TargetSimilarity):
         # Rescale target to its size in the image
         target_size_in_image = (target_bbox[2] - target_bbox[0], target_bbox[3] - target_bbox[1])
         if target_size != target_size_in_image:
-            target = img_as_ubyte(transform.resize(target, target_size))
+            target = img_as_ubyte(transform.resize(target, target_size_in_image))
             
         cross_correlation = match_template(image, target, pad_input=True)
         if len(cross_correlation.shape) > 2:
