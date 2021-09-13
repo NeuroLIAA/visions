@@ -5,8 +5,8 @@ scanpaths_file = 'Scanpaths.json'
 with open(scanpaths_file, 'r') as fp:
     scanpaths = json.load(fp)
 
-receptive_height = 4
-receptive_width  = 5
+receptive_height = 62
+receptive_width  = 80
 targets_found = 0
 
 for trial in scanpaths:
