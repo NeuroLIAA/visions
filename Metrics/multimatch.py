@@ -104,9 +104,9 @@ class Multimatch:
         total_values_per_image = {}
         subjects_scanpaths_files = listdir(self.human_scanpaths_dir)
         for subject_filename in subjects_scanpaths_files:
-            with open(self.human_scanpaths_dir + subject_filename, 'r') as fp:
+            with open(path.join(self.human_scanpaths_dir, subject_filename), 'r') as fp:
                 subject_scanpaths = json.load(fp)
-            for image_name in model_scanpaths.keys():
+            for image_name in model_scanpaths:
                 if not(image_name in subject_scanpaths):
                     continue
 
@@ -131,7 +131,7 @@ class Multimatch:
                     total_values_per_image[image_name] = 1
 
         # Compute mean per image
-        for image_name in multimatch_model_vs_humans_mean_per_image.keys():
+        for image_name in multimatch_model_vs_humans_mean_per_image:
             multimatch_model_vs_humans_mean_per_image[image_name] = (np.divide(multimatch_model_vs_humans_mean_per_image[image_name], total_values_per_image[image_name])).tolist()
 
         self.multimatch_values[model_name]['model_vs_humans'] = multimatch_model_vs_humans_mean_per_image
@@ -153,13 +153,13 @@ class Multimatch:
             subjects_scanpaths_files = listdir(self.human_scanpaths_dir)
             for subject_filename in list(subjects_scanpaths_files):
                 subjects_scanpaths_files.remove(subject_filename) 
-                with open(self.human_scanpaths_dir + subject_filename, 'r') as fp:
+                with open(path.join(self.human_scanpaths_dir, subject_filename), 'r') as fp:
                     subject_scanpaths = json.load(fp)
                 for subject_to_compare_filename in subjects_scanpaths_files:
-                    with open(self.human_scanpaths_dir + subject_to_compare_filename, 'r') as fp:
+                    with open(path.join(self.human_scanpaths_dir, subject_to_compare_filename), 'r') as fp:
                         subject_to_compare_scanpaths = json.load(fp)
                     for image_name in subject_scanpaths.keys():
-                        if not(image_name in subject_to_compare_scanpaths) or not(image_name in model_scanpaths):
+                        if not (image_name in subject_to_compare_scanpaths and image_name in model_scanpaths):
                             continue
 
                         subject_trial_info = subject_scanpaths[image_name]
@@ -183,7 +183,7 @@ class Multimatch:
                             total_values_per_image[image_name] = 1
 
             # Compute mean per image
-            for image_name in multimatch_human_mean_per_image.keys():
+            for image_name in multimatch_human_mean_per_image:
                 multimatch_human_mean_per_image[image_name] = (np.divide(multimatch_human_mean_per_image[image_name], total_values_per_image[image_name])).tolist()
             
             with open(multimatch_human_mean_json_file, 'w') as fp:
@@ -192,8 +192,10 @@ class Multimatch:
         self.multimatch_values[model_name] = {'human_mean' : multimatch_human_mean_per_image} 
 
     def compute_multimatch(self, trial_info, trial_to_compare_info, screen_size):
-        target_found = trial_info['target_found'] and trial_to_compare_info['target_found']
-        if not(target_found):
+        target_found   = trial_info['target_found'] and trial_to_compare_info['target_found']
+        # Due to the low numbers of targets found of the IRL model on cIBS dataset, multimatch is computed for all trials
+        is_irl_on_cibs = 'IRL' in trial_to_compare_info['subject'] and 'cIBS' in trial_to_compare_info['dataset']
+        if not (target_found or is_irl_on_cibs):
             return []
 
         trial_scanpath_X = trial_info['X']

@@ -5,7 +5,7 @@ from os import listdir
 
 class Cumulative_performance:
     def __init__(self, dataset_name, number_of_images, max_scanpath_length):
-        self.dataset_name = dataset_name
+        self.dataset_name     = dataset_name
         self.number_of_images = number_of_images
         self.max_scanpath_length = max_scanpath_length
 
@@ -19,7 +19,7 @@ class Cumulative_performance:
         humans_cumulative_performance = []
         humans_scanpaths_files = listdir(humans_scanpaths_dir)
         for human_scanpaths_file in humans_scanpaths_files:
-            with open(humans_scanpaths_dir + human_scanpaths_file, 'r') as fp:
+            with open(path.join(humans_scanpaths_dir, human_scanpaths_file), 'r') as fp:
                 human_scanpaths = json.load(fp)
             if self.dataset_name == 'cIBS':
                 humans_cumulative_performance.append(self.compute_human_cumulative_performance_cIBS(human_scanpaths))
@@ -52,7 +52,7 @@ class Cumulative_performance:
             scanpath_info   = scanpaths[image_name]
             scanpath_length = len(scanpath_info['X'])
 
-            if (scanpath_length <= self.max_scanpath_length) and scanpath_info['target_found']:
+            if scanpath_length <= self.max_scanpath_length and scanpath_info['target_found']:
                 for index in range(scanpath_length, self.max_scanpath_length + 1):
                     targets_found_at_fixation_number[index] += 1
             
@@ -61,9 +61,9 @@ class Cumulative_performance:
         return subject_cumulative_performance
 
     def compute_human_cumulative_performance_cIBS(self, scanpaths):
-        # Since the cIBS dataset limits the number of saccades a subject can do at a certain trial, 
-        # human cumulative performance is measured by counting the number of succesful trials in each specific limit (3, 5, 9 or 13 fixations)
-        # divided by the total number of trials with that limit.
+        """ Since the cIBS dataset limits the number of saccades a subject can do at a certain trial, 
+            human cumulative performance is measured by counting the number of succesful trials in each specific limit (3, 5, 9 or 13 fixations)
+            divided by the total number of trials with that limit. """
         cumulative_performance_at_particular_fixations = []
         for index in range(self.max_scanpath_length + 1):
             cumulative_performance_at_particular_fixations.append(0)
@@ -104,7 +104,8 @@ class Cumulative_performance:
             subject_cumulative_performance = subject['cumulative_performance'] 
 
             if subject_name == 'Humans' and self.dataset_name == 'cIBS':
-                ax.boxplot(subject_cumulative_performance, notch=True, vert=True, whiskerprops={'linestyle': (0, (5, 10))}, flierprops={'marker': '+', 'markeredgecolor': 'red'}, positions=[3, 5, 9, 13])
+                ax.boxplot(subject_cumulative_performance, notch=True, vert=True, whiskerprops={'linestyle': (0, (5, 10))}, \
+                    flierprops={'marker': '+', 'markeredgecolor': 'red'}, positions=[3, 5, 9, 13])
             else:
                 ax.plot(range(1, self.max_scanpath_length + 1), subject_cumulative_performance[1:], label = subject_name)
 
@@ -115,5 +116,5 @@ class Cumulative_performance:
         plt.yticks(np.arange(0, 1, 0.1))
         plt.xlabel('Number of fixations')
         plt.ylabel('Cumulative performance')
-        plt.savefig(save_path + 'Cumulative performance.png')
+        plt.savefig(path.join(save_path, 'Cumulative performance.png'))
         plt.show()

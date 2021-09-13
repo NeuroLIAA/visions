@@ -11,8 +11,8 @@ dataset_results_dirs = listdir(results_dir)
 for dataset in dataset_results_dirs:
     dataset_name = dataset.split('_')[0]
     dataset_path = path.join(datasets_dir, dataset_name)
-    human_scanpaths_dir = dataset_path + '/human_scanpaths/'
-    dataset_results_dir = results_dir + dataset + '/'
+    human_scanpaths_dir = path.join(dataset_path, 'human_scanpaths')
+    dataset_results_dir = path.join(results_dir, dataset)
     with open(path.join(dataset_path, 'dataset_info.json')) as fp:
         dataset_info = json.load(fp)
 
@@ -31,7 +31,7 @@ for dataset in dataset_results_dirs:
         if not(path.isdir(path.join(dataset_results_dir, model_name))):
             continue
 
-        model_scanpaths_file = dataset_results_dir + model_name + '/Scanpaths.json'
+        model_scanpaths_file = path.join(path.join(dataset_results_dir, model_name), 'Scanpaths.json')
         with open(model_scanpaths_file, 'r') as fp:
             model_scanpaths = json.load(fp)
         
