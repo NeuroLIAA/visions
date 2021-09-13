@@ -80,7 +80,7 @@ def save_similarity_map(output_path, image_name, method, target_similarity_map):
     if not path.exists(save_path):
         makedirs(save_path)
 
-    io.imsave(path.join(save_path, method + '_' + image_name + '.png'), img_as_ubyte(target_similarity_map))
+    io.imsave(path.join(save_path, method + '_' + image_name + '.png'), img_as_ubyte(target_similarity_map), check_contrast=False)
 
 def add_white_gaussian_noise(image, snr_db):
     """ Input:
