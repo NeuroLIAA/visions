@@ -37,7 +37,7 @@
         "image_width": 512,
         "receptive_height": 16,
         "receptive_width": 16,
-        "target_found": false,
+        "target_found": true,
         "target_bbox": [
             60,
             102,
@@ -59,8 +59,7 @@
             368,
             464,
             224,
-            128,
-            256
+            128
         ],
         "Y": [
             64,
@@ -77,8 +76,7 @@
             128,
             240,
             160,
-            96,
-            128
+            96
         ],
         "target_object": "bottle",
         "max_fixations": 16
@@ -196,7 +194,7 @@
         "image_width": 512,
         "receptive_height": 16,
         "receptive_width": 16,
-        "target_found": false,
+        "target_found": true,
         "target_bbox": [
             135,
             200,
@@ -206,38 +204,12 @@
         "X": [
             97,
             288,
-            240,
-            144,
-            336,
-            256,
-            368,
-            352,
-            336,
-            272,
-            192,
-            304,
-            240,
-            272,
-            112,
-            144
+            240
         ],
         "Y": [
             260,
             128,
-            160,
-            32,
-            256,
-            192,
-            176,
-            207,
-            143,
-            160,
-            143,
-            192,
-            128,
-            240,
-            143,
-            143
+            160
         ],
         "target_object": "bowl",
         "max_fixations": 16
@@ -365,30 +337,12 @@
         "X": [
             417,
             320,
-            256,
-            224,
-            352,
-            384,
-            224,
-            96,
-            384,
-            320,
-            432,
-            224
+            256
         ],
         "Y": [
             196,
             16,
-            192,
-            192,
-            32,
-            32,
-            160,
-            0,
-            80,
-            96,
-            32,
-            223
+            192
         ],
         "target_object": "bowl",
         "max_fixations": 16
@@ -400,7 +354,7 @@
         "image_width": 512,
         "receptive_height": 16,
         "receptive_width": 16,
-        "target_found": false,
+        "target_found": true,
         "target_bbox": [
             228,
             267,
@@ -422,8 +376,7 @@
             336,
             288,
             368,
-            304,
-            272
+            304
         ],
         "Y": [
             96,
@@ -440,8 +393,7 @@
             240,
             32,
             160,
-            256,
-            223
+            256
         ],
         "target_object": "bowl",
         "max_fixations": 16
@@ -453,7 +405,7 @@
         "image_width": 512,
         "receptive_height": 16,
         "receptive_width": 16,
-        "target_found": false,
+        "target_found": true,
         "target_bbox": [
             131,
             149,
@@ -462,39 +414,11 @@
         ],
         "X": [
             332,
-            160,
-            144,
-            144,
-            320,
-            288,
-            416,
-            192,
-            240,
-            0,
-            128,
-            16,
-            368,
-            192,
-            176,
-            208
+            160
         ],
         "Y": [
             88,
-            128,
-            240,
-            176,
-            240,
-            240,
-            207,
-            143,
-            240,
-            192,
-            143,
-            256,
-            207,
-            240,
-            176,
-            176
+            128
         ],
         "target_object": "bowl",
         "max_fixations": 16
@@ -506,7 +430,7 @@
         "image_width": 512,
         "receptive_height": 16,
         "receptive_width": 16,
-        "target_found": false,
+        "target_found": true,
         "target_bbox": [
             129,
             469,
@@ -524,12 +448,7 @@
             144,
             368,
             320,
-            464,
-            192,
-            352,
-            416,
-            496,
-            224
+            464
         ],
         "Y": [
             4,
@@ -542,12 +461,7 @@
             96,
             256,
             143,
-            128,
-            272,
-            128,
-            240,
-            128,
-            256
+            128
         ],
         "target_object": "bowl",
         "max_fixations": 16
@@ -719,11 +633,7 @@
             464,
             336,
             96,
-            416,
-            384,
-            272,
-            192,
-            448
+            416
         ],
         "Y": [
             270,
@@ -731,11 +641,7 @@
             303,
             96,
             64,
-            111,
-            160,
-            64,
-            0,
-            128
+            111
         ],
         "target_object": "bowl",
         "max_fixations": 16
@@ -800,7 +706,7 @@
         "image_width": 512,
         "receptive_height": 16,
         "receptive_width": 16,
-        "target_found": false,
+        "target_found": true,
         "target_bbox": [
             109,
             373,
@@ -812,34 +718,12 @@
             416,
             448,
             384,
-            416,
-            352,
-            432,
-            336,
-            480,
-            448,
-            480,
-            432,
-            400,
-            272,
-            304,
-            448
+            416
         ],
         "Y": [
             212,
             240,
             240,
-            240,
-            111,
-            160,
-            160,
-            240,
-            207,
-            207,
-            176,
-            272,
-            272,
-            176,
             240,
             111
         ],
@@ -853,7 +737,7 @@
         "image_width": 512,
         "receptive_height": 16,
         "receptive_width": 16,
-        "target_found": false,
+        "target_found": true,
         "target_bbox": [
             64,
             65,
@@ -870,13 +754,7 @@
             272,
             192,
             224,
-            64,
-            80,
-            80,
-            48,
-            48,
-            304,
-            96
+            64
         ],
         "Y": [
             46,
@@ -888,13 +766,7 @@
             207,
             16,
             64,
-            80,
-            48,
-            16,
-            16,
-            48,
-            192,
-            111
+            80
         ],
         "target_object": "clock",
         "max_fixations": 16
@@ -959,7 +831,7 @@
         "image_width": 512,
         "receptive_height": 16,
         "receptive_width": 16,
-        "target_found": false,
+        "target_found": true,
         "target_bbox": [
             240,
             25,
@@ -981,8 +853,7 @@
             464,
             368,
             496,
-            48,
-            336
+            48
         ],
         "Y": [
             312,
@@ -999,8 +870,7 @@
             111,
             80,
             240,
-            223,
-            176
+            223
         ],
         "target_object": "cup",
         "max_fixations": 16
@@ -1303,7 +1173,7 @@
         "image_width": 512,
         "receptive_height": 16,
         "receptive_width": 16,
-        "target_found": false,
+        "target_found": true,
         "target_bbox": [
             135,
             90,
@@ -1313,38 +1183,12 @@
         "X": [
             28,
             192,
-            128,
-            320,
-            64,
-            48,
-            272,
-            224,
-            384,
-            320,
-            416,
-            96,
-            240,
-            96,
-            48,
-            416
+            128
         ],
         "Y": [
             16,
             160,
-            176,
-            207,
-            223,
-            256,
-            207,
-            192,
-            240,
-            176,
-            160,
-            192,
-            160,
-            272,
-            287,
-            223
+            176
         ],
         "target_object": "cup",
         "max_fixations": 16
@@ -1621,7 +1465,7 @@
         "image_width": 512,
         "receptive_height": 16,
         "receptive_width": 16,
-        "target_found": false,
+        "target_found": true,
         "target_bbox": [
             174,
             370,
@@ -1632,37 +1476,13 @@
             219,
             400,
             48,
-            416,
-            192,
-            0,
-            176,
-            176,
-            144,
-            144,
-            192,
-            112,
-            144,
-            208,
-            256,
-            496
+            416
         ],
         "Y": [
             138,
             143,
             64,
-            176,
-            96,
-            192,
-            160,
-            128,
-            143,
-            176,
-            192,
-            176,
-            207,
-            160,
-            128,
-            256
+            176
         ],
         "target_object": "potted plant",
         "max_fixations": 16
@@ -1780,7 +1600,7 @@
         "image_width": 512,
         "receptive_height": 16,
         "receptive_width": 16,
-        "target_found": false,
+        "target_found": true,
         "target_bbox": [
             130,
             411,
@@ -1793,17 +1613,7 @@
             240,
             352,
             64,
-            400,
-            32,
-            480,
-            240,
-            16,
-            320,
-            272,
-            336,
-            368,
-            64,
-            48
+            400
         ],
         "Y": [
             293,
@@ -1811,17 +1621,7 @@
             111,
             128,
             240,
-            128,
-            160,
-            160,
-            176,
-            128,
-            96,
-            143,
-            192,
-            160,
-            64,
-            111
+            128
         ],
         "target_object": "potted plant",
         "max_fixations": 16
@@ -2003,27 +1803,13 @@
             234,
             416,
             400,
-            384,
-            416,
-            448,
-            368,
-            432,
-            352,
-            416,
             384
         ],
         "Y": [
             128,
             96,
             128,
-            80,
-            64,
-            80,
-            128,
-            143,
-            96,
-            32,
-            48
+            80
         ],
         "target_object": "potted plant",
         "max_fixations": 16
@@ -2048,8 +1834,7 @@
             272,
             96,
             496,
-            192,
-            176
+            192
         ],
         "Y": [
             93,
@@ -2057,8 +1842,7 @@
             143,
             32,
             207,
-            16,
-            48
+            16
         ],
         "target_object": "potted plant",
         "max_fixations": 16
