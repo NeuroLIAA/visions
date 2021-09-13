@@ -16,8 +16,8 @@ display_size_train = (800, 1280)
 display_size_test  = (1050, 1680)
 new_image_size     = (508, 564)
 # Estimated by measuring the distance between consecutive fixations
-receptive_height = 25
-receptive_width  = 25
+receptive_height = 20
+receptive_width  = 20
 # Unlimited
 max_fixations = 80
 
@@ -76,6 +76,9 @@ for index, row in train_scanpaths.iterrows():
         original_img_size = (img_info['image_height'], img_info['image_width'])
         target_bbox = img_info['target_bbox']
         rescaled_target_bbox = [int(rescale_coordinate(target_bbox[i], original_img_size[i % 2 == 1], new_image_size[i % 2 == 1])) for i in range(len(target_bbox))]
+        # Edge cases
+        rescaled_target_bbox[2] = min(new_image_size[0] - 1, rescaled_target_bbox[2])
+        rescaled_target_bbox[3] = min(new_image_size[1] - 1, rescaled_target_bbox[3])
 
         if subject_num < 10:
             subject_name = '0' + str(subject_num)
@@ -90,8 +93,8 @@ for index, row in train_scanpaths.iterrows():
     trial_scanpath['Y'].append(current_fix_y)
     trial_scanpath['T'].append(row['CURRENT_FIX_DURATION'])
 
-    target_found = (target_bbox[0] <= current_fix_y + receptive_height) and (target_bbox[2] >= current_fix_y - receptive_height) and \
-                    (target_bbox[1] <= current_fix_x + receptive_width) and (target_bbox[3] >= current_fix_x - receptive_width)
+    target_found = (rescaled_target_bbox[0] <= current_fix_y + receptive_height) and (rescaled_target_bbox[2] >= current_fix_y - receptive_height) and \
+                    (rescaled_target_bbox[1] <= current_fix_x + receptive_width) and (rescaled_target_bbox[3] >= current_fix_x - receptive_width)
 
     trial_scanpath['target_found'] = target_found
 
@@ -167,8 +170,8 @@ for index, row in test_scanpaths.iterrows():
     trial_scanpath['Y'].append(current_fix_y)
     trial_scanpath['T'].append(row['CURRENT_FIX_DURATION'])
 
-    target_found = (target_bbox[0] <= current_fix_y + receptive_height) and (target_bbox[2] >= current_fix_y - receptive_height) and \
-                    (target_bbox[1] <= current_fix_x + receptive_width) and (target_bbox[3] >= current_fix_x - receptive_width)
+    target_found = (rescaled_target_bbox[0] <= current_fix_y + receptive_height) and (rescaled_target_bbox[2] >= current_fix_y - receptive_height) and \
+                    (rescaled_target_bbox[1] <= current_fix_x + receptive_width) and (rescaled_target_bbox[3] >= current_fix_x - receptive_width)
 
     trial_scanpath['target_found'] = target_found
 
