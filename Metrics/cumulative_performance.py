@@ -12,8 +12,11 @@ class Cumulative_performance:
         self.subjects_cumulative_performance = []
 
     def add_model(self, model_name, model_scanpaths):
-        model_cumulative_performance = self.compute_cumulative_performance(model_scanpaths)
-        self.subjects_cumulative_performance.append({'subject': model_name, 'cumulative_performance': model_cumulative_performance})
+        # If a model has performed visual search on a small subset of images (less than 80%), it is not included in the metric
+        too_few_images = len(model_scanpaths.keys()) < self.number_of_images * 0.8)
+        if not too_few_images:
+            model_cumulative_performance = self.compute_cumulative_performance(model_scanpaths)
+            self.subjects_cumulative_performance.append({'subject': model_name, 'cumulative_performance': model_cumulative_performance})
     
     def add_human_mean(self, humans_scanpaths_dir):
         humans_cumulative_performance = []
@@ -43,7 +46,7 @@ class Cumulative_performance:
         self.subjects_cumulative_performance.append({'subject': 'Humans', 'cumulative_performance': humans_cumulative_performance_mean})
 
     def compute_cumulative_performance(self, scanpaths):
-        # At index i, this array holds the number of targets found in i or less fixations
+        """ At index i, this array holds the number of targets found in i or less fixations """
         targets_found_at_fixation_number = []
         for index in range(self.max_scanpath_length + 1):
             targets_found_at_fixation_number.append(0)
