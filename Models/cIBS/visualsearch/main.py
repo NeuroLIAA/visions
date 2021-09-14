@@ -104,7 +104,6 @@ def run(config, dataset_info, trials_properties, human_scanpaths, output_path, s
         sys.exit(0)
 
     time_elapsed = time.time() - start + previous_time
-    breakpoint()
     utils.save_scanpaths(output_path, scanpaths, human_scanpaths)
     utils.erase_checkpoint(output_path)
 
