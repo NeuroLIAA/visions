@@ -4,7 +4,7 @@ from . import constants
 
 def load_checkpoint(output_path):
     checkpoint = {}
-    checkpoint_file = output_path + 'checkpoint.json'
+    checkpoint_file = path.join(output_path, 'checkpoint.json')
     if path.exists(checkpoint_file):
         answer = input('Checkpoint found! Resume execution? (Y/N): ').upper()
         if answer not in ['Y', 'N']:
@@ -23,7 +23,7 @@ def load_config(config_dir, config_name, image_size, max_scanpath_length, number
     if checkpoint:
         config = checkpoint['configuration']
     else:
-        config = load_dict_from_json(config_dir + config_name + '.json')
+        config = load_dict_from_json(path.join(config_dir, config_name + '.json'))
 
     config['image_size']   = image_size
     config['max_saccades'] = max_scanpath_length - 1
