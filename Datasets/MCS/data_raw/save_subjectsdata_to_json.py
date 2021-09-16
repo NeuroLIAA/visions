@@ -1,6 +1,6 @@
 import json
 from os import listdir, path, mkdir
-from utils import rename_image, rescale_coordinate
+from utils import rename_image, rescale_coordinate, convert_coordinate
 import pandas as pd
 import numpy as np
 
@@ -15,6 +15,7 @@ with open(targets_bboxes_file, 'r') as fp:
 display_size_train = (800, 1280)
 display_size_test  = (1050, 1680)
 new_image_size     = (508, 564)
+
 # Estimated by measuring the distance between consecutive fixations
 receptive_height = 25
 receptive_width  = 25
@@ -86,8 +87,7 @@ for index, row in train_scanpaths.iterrows():
             'screen_height': display_size_train[0], 'screen_width': display_size_train[1],  'receptive_height': 10, 'receptive_width': 10, 'target_found': False, \
                 'target_bbox': rescaled_target_bbox, 'X': [], 'Y': [], 'T': [], 'target_object': category, 'max_fixations': max_fixations}
 
-    current_fix_x = rescale_coordinate(row['CURRENT_FIX_X'], display_size_train[1], new_image_size[1])
-    current_fix_y = rescale_coordinate(row['CURRENT_FIX_Y'], display_size_train[0], new_image_size[0])
+    current_fix_x, current_fix_y = convert_coordinate(row['CURRENT_FIX_X'], row['CURRENT_FIX_Y'], new_image_size[1], new_image_size[0], display_size_train, is_train=True)
 
     trial_scanpath['X'].append(current_fix_x)
     trial_scanpath['Y'].append(current_fix_y)
@@ -163,8 +163,7 @@ for index, row in test_scanpaths.iterrows():
             'screen_height': display_size_train[0], 'screen_width': display_size_train[1],  'receptive_height': 10, 'receptive_width': 10, 'target_found': False, \
                 'target_bbox': rescaled_target_bbox, 'X': [], 'Y': [], 'T': [], 'target_object': category, 'max_fixations': max_fixations}
 
-    current_fix_x = rescale_coordinate(row['CURRENT_FIX_X'], display_size_test[1], new_image_size[1])
-    current_fix_y = rescale_coordinate(row['CURRENT_FIX_Y'], display_size_test[0], new_image_size[0])
+    current_fix_x, current_fix_y = convert_coordinate(row['CURRENT_FIX_X'], row['CURRENT_FIX_Y'], new_image_size[1], new_image_size[0], display_size_test, is_train=False)
 
     trial_scanpath['X'].append(current_fix_x)
     trial_scanpath['Y'].append(current_fix_y)
