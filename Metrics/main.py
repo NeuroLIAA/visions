@@ -33,7 +33,7 @@ for dataset in dataset_results_dirs:
     for model_name in models:
         if not(path.isdir(path.join(dataset_results_dir, model_name))):
             continue
-        print('Model name: ' + model_name + ' color: ' + colors[color_index])
+
         model_scanpaths_file = path.join(path.join(dataset_results_dir, model_name), 'Scanpaths.json')
         with open(model_scanpaths_file, 'r') as fp:
             model_scanpaths = json.load(fp)

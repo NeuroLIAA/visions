@@ -16,8 +16,8 @@ display_size_train = (800, 1280)
 display_size_test  = (1050, 1680)
 new_image_size     = (508, 564)
 # Estimated by measuring the distance between consecutive fixations
-receptive_height = 20
-receptive_width  = 20
+receptive_height = 25
+receptive_width  = 25
 # Unlimited
 max_fixations = 80
 
