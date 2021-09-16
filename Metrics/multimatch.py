@@ -41,7 +41,7 @@ class Multimatch:
             ax.set_box_aspect(1)
 
         fig.suptitle(self.dataset_name + ' dataset')
-        plt.savefig(save_path + 'Multimatch against humans.png')    
+        plt.savefig(path.join(save_path, 'Multimatch against humans.png'))
         plt.show()
 
     def add_to_plot(self, ax, model_name, multimatch_values_per_image_x, multimatch_values_per_image_y):
@@ -89,10 +89,10 @@ class Multimatch:
         scores_left_half.sort(key=lambda elem: elem[0])
         print('Dataset: ' + self.dataset_name + '. Model: ' + model_name + '. Most similar to less similar trials')
         print('Right half:')
-        print(scores_right_half)
+        print(scores_right_half[:10])
         print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
         print('Left half:')
-        print(scores_left_half)
+        print(scores_left_half[:10])
         print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
 
     def add_model_vs_humans_mean_per_image(self, model_name, model_scanpaths):

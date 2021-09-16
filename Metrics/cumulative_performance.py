@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import json
 import numpy as np
-from os import listdir
+from os import listdir, path
 
 class Cumulative_performance:
     def __init__(self, dataset_name, number_of_images, max_scanpath_length):
@@ -11,12 +11,12 @@ class Cumulative_performance:
 
         self.subjects_cumulative_performance = []
 
-    def add_model(self, model_name, model_scanpaths):
+    def add_model(self, model_name, model_scanpaths, model_color):
         # If a model has performed visual search on a small subset of images (less than 80%), it is not included in the metric
-        too_few_images = len(model_scanpaths.keys()) < self.number_of_images * 0.8)
+        too_few_images = len(model_scanpaths.keys()) < self.number_of_images * 0.8
         if not too_few_images:
             model_cumulative_performance = self.compute_cumulative_performance(model_scanpaths)
-            self.subjects_cumulative_performance.append({'subject': model_name, 'cumulative_performance': model_cumulative_performance})
+            self.subjects_cumulative_performance.append({'subject': model_name, 'cumulative_performance': model_cumulative_performance, 'color': model_color})
     
     def add_human_mean(self, humans_scanpaths_dir):
         humans_cumulative_performance = []
@@ -43,7 +43,7 @@ class Cumulative_performance:
                 subject_index += 1
         else:
             humans_cumulative_performance_mean = np.mean(np.array(humans_cumulative_performance), axis=0)
-        self.subjects_cumulative_performance.append({'subject': 'Humans', 'cumulative_performance': humans_cumulative_performance_mean})
+        self.subjects_cumulative_performance.append({'subject': 'Humans', 'cumulative_performance': humans_cumulative_performance_mean, 'color': '#1f77b4'})
 
     def compute_cumulative_performance(self, scanpaths):
         """ At index i, this array holds the number of targets found in i or less fixations """
@@ -110,7 +110,7 @@ class Cumulative_performance:
                 ax.boxplot(subject_cumulative_performance, notch=True, vert=True, whiskerprops={'linestyle': (0, (5, 10))}, \
                     flierprops={'marker': '+', 'markeredgecolor': 'red'}, positions=[3, 5, 9, 13])
             else:
-                ax.plot(range(1, self.max_scanpath_length + 1), subject_cumulative_performance[1:], label = subject_name)
+                ax.plot(range(1, self.max_scanpath_length + 1), subject_cumulative_performance[1:], label=subject_name, color=subject['color'])
 
         ax.legend()  
         dataset_name = self.dataset_name + ' dataset'
