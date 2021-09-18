@@ -7,7 +7,8 @@ from os import listdir, path
 results_dir  = '../Results/'
 datasets_dir = '../Datasets/'
 # To ensure models have the same color in the plots across all datasets
-colors = ['#2ca02c', '#d62728', '#ff7f0e']
+models_colors = ['#2ca02c', '#d62728', '#ff7f0e']
+humans_color  = '#1f77b4'
 
 dataset_results_dirs = listdir(results_dir)
 for dataset in dataset_results_dirs:
@@ -25,7 +26,7 @@ for dataset in dataset_results_dirs:
     multimatch = Multimatch(dataset_name, human_scanpaths_dir, dataset_results_dir)
 
     subjects_cumulative_performance = Cumulative_performance(dataset_name, number_of_images, max_scanpath_length)
-    subjects_cumulative_performance.add_human_mean(human_scanpaths_dir)
+    subjects_cumulative_performance.add_human_mean(human_scanpaths_dir, humans_color)
 
     # Compute models metrics and compare them with human subjects metrics
     models = listdir(dataset_results_dir)
@@ -38,11 +39,11 @@ for dataset in dataset_results_dirs:
         with open(model_scanpaths_file, 'r') as fp:
             model_scanpaths = json.load(fp)
 
-        subjects_cumulative_performance.add_model(model_name, model_scanpaths, colors[color_index])
+        subjects_cumulative_performance.add_model(model_name, model_scanpaths, models_colors[color_index])
 
         # Human multimatch scores are different for each model, since each model uses different image sizes
         multimatch.load_human_mean_per_image(model_name, model_scanpaths)
-        multimatch.add_model_vs_humans_mean_per_image(model_name, model_scanpaths, colors[color_index])
+        multimatch.add_model_vs_humans_mean_per_image(model_name, model_scanpaths, models_colors[color_index])
 
         color_index += 1
     

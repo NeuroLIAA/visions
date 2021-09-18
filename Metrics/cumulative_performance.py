@@ -18,7 +18,7 @@ class Cumulative_performance:
             model_cumulative_performance = self.compute_cumulative_performance(model_scanpaths)
             self.subjects_cumulative_performance.append({'subject': model_name, 'cumulative_performance': model_cumulative_performance, 'color': model_color})
     
-    def add_human_mean(self, humans_scanpaths_dir):
+    def add_human_mean(self, humans_scanpaths_dir, humans_color):
         humans_cumulative_performance = []
         humans_scanpaths_files = listdir(humans_scanpaths_dir)
         for human_scanpaths_file in humans_scanpaths_files:
@@ -43,7 +43,7 @@ class Cumulative_performance:
                 subject_index += 1
         else:
             humans_cumulative_performance_mean = np.mean(np.array(humans_cumulative_performance), axis=0)
-        self.subjects_cumulative_performance.append({'subject': 'Humans', 'cumulative_performance': humans_cumulative_performance_mean, 'color': '#1f77b4'})
+        self.subjects_cumulative_performance.append({'subject': 'Humans', 'cumulative_performance': humans_cumulative_performance_mean, 'color': humans_color})
 
     def compute_cumulative_performance(self, scanpaths):
         """ At index i, this array holds the number of targets found in i or less fixations """
@@ -107,8 +107,8 @@ class Cumulative_performance:
             subject_cumulative_performance = subject['cumulative_performance'] 
 
             if subject_name == 'Humans' and self.dataset_name == 'cIBS':
-                ax.boxplot(subject_cumulative_performance, notch=True, vert=True, whiskerprops={'linestyle': (0, (5, 10))}, \
-                    flierprops={'marker': '+', 'markeredgecolor': 'red'}, positions=[3, 5, 9, 13])
+                ax.boxplot(subject_cumulative_performance, notch=True, vert=True, whiskerprops={'linestyle': (0, (5, 10)), 'color': subject['color']}, capprops={'color': subject['color']}, \
+                    boxprops={'color': subject['color']}, flierprops={'marker': '+', 'markeredgecolor': subject['color']}, medianprops={'color': subject['color']}, positions=[3, 5, 9, 13])
             else:
                 ax.plot(range(1, self.max_scanpath_length + 1), subject_cumulative_performance[1:], label=subject_name, color=subject['color'])
 
