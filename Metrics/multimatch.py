@@ -20,8 +20,9 @@ class Multimatch:
             model_name = model
             model_vs_human_multimatch = self.multimatch_values[model]['model_vs_humans']
             humans_multimatch         = self.multimatch_values[model]['human_mean']
+            model_color               = self.multimatch_values[model]['plot_color']
 
-            self.add_to_plot(axs[ax_index], model_name, model_vs_human_multimatch, humans_multimatch)
+            self.add_to_plot(axs[ax_index], model_name, model_vs_human_multimatch, humans_multimatch, model_color)
             ax_index += 1
 
         # Get plot limits
@@ -44,7 +45,7 @@ class Multimatch:
         plt.savefig(path.join(save_path, 'Multimatch against humans.png'))
         plt.show()
 
-    def add_to_plot(self, ax, model_name, multimatch_values_per_image_x, multimatch_values_per_image_y):
+    def add_to_plot(self, ax, model_name, multimatch_values_per_image_x, multimatch_values_per_image_y, plot_color):
         x_vector = []
         y_vector = []
         trials_names = []
@@ -62,7 +63,7 @@ class Multimatch:
             y_vector.append(value_y)
 
         # Plot multimatch
-        ax.scatter(x_vector, y_vector, color='red', alpha=0.5)
+        ax.scatter(x_vector, y_vector, color=plot_color, alpha=0.5)
 
         # Plot linear regression
         x_linear   = np.array(x_vector)[:, np.newaxis]
@@ -95,7 +96,7 @@ class Multimatch:
         print(scores_left_half[:10])
         print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
 
-    def add_model_vs_humans_mean_per_image(self, model_name, model_scanpaths):
+    def add_model_vs_humans_mean_per_image(self, model_name, model_scanpaths, model_color):
         " For each scanpath produced by the model, multimatch is calculated against the scanpath of that same image for every human subject "
         " The mean is computed for each image "
         " Output is a dictionary where the image names are the keys and the multimatch means are the values "
@@ -135,6 +136,7 @@ class Multimatch:
             multimatch_model_vs_humans_mean_per_image[image_name] = (np.divide(multimatch_model_vs_humans_mean_per_image[image_name], total_values_per_image[image_name])).tolist()
 
         self.multimatch_values[model_name]['model_vs_humans'] = multimatch_model_vs_humans_mean_per_image
+        self.multimatch_values[model_name]['plot_color'] = model_color
 
     def load_human_mean_per_image(self, model_name, model_scanpaths):
         " For each human subject, multimatch is computed against every other human subject, for each trial "

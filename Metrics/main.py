@@ -42,7 +42,7 @@ for dataset in dataset_results_dirs:
 
         # Human multimatch scores are different for each model, since each model uses different image sizes
         multimatch.load_human_mean_per_image(model_name, model_scanpaths)
-        multimatch.add_model_vs_humans_mean_per_image(model_name, model_scanpaths)
+        multimatch.add_model_vs_humans_mean_per_image(model_name, model_scanpaths, colors[color_index])
 
         color_index += 1
     
