@@ -176,10 +176,7 @@ if __name__ == '__main__':
     
     images_path = path.join(dataset_path, dataset_info['images_dir'])
 
-    if args.model == 'cIBS' and args.dataset != 'cIBS':
-        trials_properties_file = path.join(dataset_path, 'trials_properties_resized.json')
-    else:
-        trials_properties_file = path.join(dataset_path, 'trials_properties.json')
+    trials_properties_file = path.join(dataset_path, 'trials_properties.json')
 
     with open(trials_properties_file, 'r') as fp:
         trials_properties = json.load(fp)
