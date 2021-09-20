@@ -112,10 +112,11 @@ class Cumulative_performance:
             else:
                 ax.plot(range(1, self.max_scanpath_length + 1), subject_cumulative_performance[1:], label=subject_name, color=subject['color'])
 
-        ax.legend()  
+        ax.legend(loc='lower right')  
         dataset_name = self.dataset_name + ' dataset'
 
         plt.title(dataset_name)
+        plt.ylim(0, 1)
         plt.yticks(np.arange(0, 1, 0.1))
         plt.xlabel('Number of fixations')
         plt.ylabel('Cumulative performance')
