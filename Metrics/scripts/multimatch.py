@@ -1,16 +1,17 @@
 import multimatch_gaze as mm
-import json
 import numpy as np
 import matplotlib.pyplot as plt
+from . import utils
 from os import listdir, path
 
 class Multimatch:
-    def __init__(self, dataset_name, human_scanpaths_dir, dataset_results_dir, null_object):
+    def __init__(self, dataset_name, human_scanpaths_dir, dataset_results_dir, compute):
         self.multimatch_values = {}
         self.dataset_name = dataset_name
         self.human_scanpaths_dir = human_scanpaths_dir
         self.dataset_results_dir = dataset_results_dir
-        self.null_object = null_object
+        
+        self.null_object = not compute
 
     def plot(self, save_path):
         if self.null_object:
@@ -115,8 +116,7 @@ class Multimatch:
         total_values_per_image   = {}
         subjects_scanpaths_files = listdir(self.human_scanpaths_dir)
         for subject_filename in subjects_scanpaths_files:
-            with open(path.join(self.human_scanpaths_dir, subject_filename), 'r') as fp:
-                subject_scanpaths = json.load(fp)
+            subject_scanpaths = utils.load_dict_from_json(path.join(self.human_scanpaths_dir, subject_filename))
             for image_name in model_scanpaths:
                 if not(image_name in subject_scanpaths):
                     continue
@@ -161,19 +161,16 @@ class Multimatch:
         # Check if it was already computed
         multimatch_human_mean_json_file = path.join(path.join(self.dataset_results_dir, model_name), 'multimatch_human_mean_per_image.json')
         if path.exists(multimatch_human_mean_json_file):
-            with open(multimatch_human_mean_json_file, 'r') as fp:
-                multimatch_human_mean_per_image = json.load(fp)
+            multimatch_human_mean_per_image = utils.load_dict_from_json(multimatch_human_mean_json_file)
         else:
             total_values_per_image = {}
             # Compute multimatch for each image for every pair of subjects
             subjects_scanpaths_files = listdir(self.human_scanpaths_dir)
             for subject_filename in list(subjects_scanpaths_files):
                 subjects_scanpaths_files.remove(subject_filename) 
-                with open(path.join(self.human_scanpaths_dir, subject_filename), 'r') as fp:
-                    subject_scanpaths = json.load(fp)
+                subject_scanpaths = utils.load_dict_from_json(path.join(self.human_scanpaths_dir, subject_filename))
                 for subject_to_compare_filename in subjects_scanpaths_files:
-                    with open(path.join(self.human_scanpaths_dir, subject_to_compare_filename), 'r') as fp:
-                        subject_to_compare_scanpaths = json.load(fp)
+                    subject_to_compare_scanpaths = utils.load_dict_from_json(path.join(self.human_scanpaths_dir, subject_to_compare_filename))
                     for image_name in subject_scanpaths.keys():
                         if not (image_name in subject_to_compare_scanpaths and image_name in model_scanpaths):
                             continue
@@ -202,8 +199,7 @@ class Multimatch:
             for image_name in multimatch_human_mean_per_image:
                 multimatch_human_mean_per_image[image_name] = (np.divide(multimatch_human_mean_per_image[image_name], total_values_per_image[image_name])).tolist()
             
-            with open(multimatch_human_mean_json_file, 'w') as fp:
-                json.dump(multimatch_human_mean_per_image, fp, indent=4)
+            utils.save_to_json(multimatch_human_mean_json_file, multimatch_human_mean_per_image)
 
         self.multimatch_values[model_name] = {'human_mean' : multimatch_human_mean_per_image} 
 

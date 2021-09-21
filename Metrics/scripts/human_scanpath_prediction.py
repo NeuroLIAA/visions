@@ -1,27 +1,27 @@
 from os import listdir, path, getcwd, chdir
 from tqdm import tqdm
 from scipy.stats import multivariate_normal
+from . import utils
 import pandas as pd
 import numpy as np
-import utils
 import numba
 
 class HumanScanpathPrediction:
-    def __init__(self, dataset_name, human_scanpaths_dir, dataset_results_dir, models_dir, null_object):
+    def __init__(self, dataset_name, human_scanpaths_dir, dataset_results_dir, models_dir, compute):
         self.models_results = {}
         self.dataset_name   = dataset_name
         self.human_scanpaths_dir = human_scanpaths_dir
         self.dataset_results_dir = dataset_results_dir
         self.models_dir          = models_dir
 
-        self.null_object = null_object
+        self.null_object = not compute
 
     def compute_metrics_for_model(self, model_name):
         if self.null_object:
             return
             
         human_scanpaths_files = listdir(self.human_scanpaths_dir)
-        model_output_path     = path.join(dataset_results_dir, model_name)
+        model_output_path     = path.join(self.dataset_results_dir, model_name)
         # Save current working directory and change it to model's directory
         original_wd = getcwd()
         chdir(path.join(self.models_dir, model_name))

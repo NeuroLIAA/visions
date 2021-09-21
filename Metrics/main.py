@@ -1,9 +1,9 @@
-import utils
 import constants
 import argparse
-from multimatch import Multimatch
-from human_scanpath_prediction import HumanScanpathPrediction
-from cumulative_performance import Cumulative_performance
+from scripts.multimatch import Multimatch
+from scripts.human_scanpath_prediction import HumanScanpathPrediction
+from scripts.cumulative_performance import Cumulative_performance
+from scripts import utils
 from os import listdir, path
 
 def main(compute_cumulative_performance, compute_multimatch, compute_human_scanpath_prediction):
@@ -23,9 +23,9 @@ def main(compute_cumulative_performance, compute_multimatch, compute_human_scanp
         multimatch = Multimatch(dataset_name, human_scanpaths_dir, dataset_results_dir, compute_multimatch)
 
         subjects_cumulative_performance = Cumulative_performance(dataset_name, number_of_images, max_scanpath_length, compute_cumulative_performance)
-        subjects_cumulative_performance.add_human_mean(human_scanpaths_dir, humans_color)
+        subjects_cumulative_performance.add_human_mean(human_scanpaths_dir, constants.HUMANS_COLOR)
 
-        human_scanpath_prediction = HumanScanpathPrediction(dataset_name, human_scanpaths_dir, dataset_results_dir, models_dir, compute_human_scanpath_prediction)
+        human_scanpath_prediction = HumanScanpathPrediction(dataset_name, human_scanpaths_dir, dataset_results_dir, constants.MODELS_DIR, compute_human_scanpath_prediction)
 
         # Compute models metrics and compare them with human subjects metrics
         models = listdir(dataset_results_dir)
@@ -37,11 +37,11 @@ def main(compute_cumulative_performance, compute_multimatch, compute_human_scanp
             model_scanpaths_file = path.join(path.join(dataset_results_dir, model_name), 'Scanpaths.json')
             model_scanpaths      = utils.load_dict_from_json(model_scanpaths_file)
 
-            subjects_cumulative_performance.add_model(model_name, model_scanpaths, models_colors[color_index])
+            subjects_cumulative_performance.add_model(model_name, model_scanpaths, constants.MODELS_COLORS[color_index])
 
             # Human multimatch scores are different for each model, since each model uses different image sizes
             multimatch.load_human_mean_per_image(model_name, model_scanpaths)
-            multimatch.add_model_vs_humans_mean_per_image(model_name, model_scanpaths, models_colors[color_index])
+            multimatch.add_model_vs_humans_mean_per_image(model_name, model_scanpaths, constants.MODELS_COLORS[color_index])
 
             human_scanpath_prediction.compute_metrics_for_model(model_name)
 

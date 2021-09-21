@@ -1,16 +1,16 @@
 import matplotlib.pyplot as plt
-import json
 import numpy as np
+from . import utils
 from os import listdir, path
 
 class Cumulative_performance:
-    def __init__(self, dataset_name, number_of_images, max_scanpath_length, null_object):
+    def __init__(self, dataset_name, number_of_images, max_scanpath_length, compute):
         self.dataset_name     = dataset_name
         self.number_of_images = number_of_images
         self.max_scanpath_length = max_scanpath_length
         self.subjects_cumulative_performance = []
 
-        self.null_object = null_object
+        self.null_object = not compute
 
     def add_model(self, model_name, model_scanpaths, model_color):
         if self.null_object:
@@ -29,8 +29,7 @@ class Cumulative_performance:
         humans_cumulative_performance = []
         humans_scanpaths_files = listdir(humans_scanpaths_dir)
         for human_scanpaths_file in humans_scanpaths_files:
-            with open(path.join(humans_scanpaths_dir, human_scanpaths_file), 'r') as fp:
-                human_scanpaths = json.load(fp)
+            human_scanpaths = utils.load_dict_from_json(path.join(humans_scanpaths_dir, human_scanpaths_file))
             if self.dataset_name == 'cIBS':
                 humans_cumulative_performance.append(self.compute_human_cumulative_performance_cIBS(human_scanpaths))
             else:
