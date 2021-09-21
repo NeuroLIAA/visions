@@ -18,7 +18,12 @@ from irl_dcb import utils
 torch.manual_seed(42619)
 np.random.seed(42619)
 
-def run_visualsearch(dataset_name, human_subject, trained_models_dir, hparams, device):
+def main(dataset_name, human_subject):
+    device             = torch.device('cpu')
+    hparams            = path.join('hparams', 'default.json')
+    hparams            = JsonConfig(hparams)
+    trained_models_dir = 'trained_models/'
+
     dcbs_path = path.join(constants.DCBS_PATH, dataset_name)
     # Dir of high and low res belief maps
     DCB_dir_HR = path.join(dcbs_path, 'DCBs/HR/')
@@ -139,11 +144,7 @@ if __name__ == '__main__':
          Useful for computing different metrics. See "Kümmerer, M. & Bethge, M. (2021), State-of-the-Art in Human Scanpath Prediction" for more information')
     args = parser.parse_args()
 
-    device             = torch.device('cpu')
-    dataset_name       = args.dataset
-    human_subject      = args.h
-    trained_models_dir = 'trained_models/'
-    hparams            = path.join('hparams', 'default.json')
-    hparams            = JsonConfig(hparams)
+    dataset_name  = args.dataset
+    human_subject = args.h
 
-    run_visualsearch(dataset_name, human_subject, trained_models_dir, hparams, device)
+    main(dataset_name, human_subject)
