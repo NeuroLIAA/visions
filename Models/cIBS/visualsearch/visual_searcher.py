@@ -52,7 +52,7 @@ class VisualSearcher:
                 initial_fixation (int, int) : row and column of the first fixation on the search image
             Output:
                 image_scanpath   (dict)      : scanpath made by the model on the search image, alongside a 'target_found' field which indicates if the target was found
-                probability_maps (csv files) : if self.save_posterior is True, the posterior of each saccade is stored in a .csv file inside a folder in self.output_path 
+                probability_maps (csv files) : if self.save_probability_maps is True, the probability map for each saccade is stored in a .csv file inside a folder in self.output_path 
                 similarity_maps  (png files) : if self.save_similarity_maps is True, the target similarity map for each image is stored inside a folder in self.output_path
         """
         # Convert prior to grid

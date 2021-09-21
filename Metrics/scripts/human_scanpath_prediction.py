@@ -2,6 +2,7 @@ from os import listdir, path, getcwd, chdir
 from tqdm import tqdm
 from scipy.stats import multivariate_normal
 from . import utils
+from subprocess import run
 import pandas as pd
 import numpy as np
 import numba
@@ -22,15 +23,19 @@ class HumanScanpathPrediction:
             
         human_scanpaths_files = listdir(self.human_scanpaths_dir)
         model_output_path     = path.join(self.dataset_results_dir, model_name)
-        # Save current working directory and change it to model's directory
+        # Save current working directory
         original_wd = getcwd()
-        chdir(path.join(self.models_dir, model_name))
-        # Load model's main
-        module = importlib.import_module('.main')
-        run_visualsearch = getattr(module, 'main')
         for subject in human_scanpaths_files:
             subject_number  = subject[4:6]
-            run_visualsearch(self.dataset_name, int(subject_number))
+
+            # Change working directory
+            chdir(path.join(self.models_dir, model_name))
+            # Command line to run the model with the necessary parameters
+            command = 'python3 main.py -dataset ' + self.dataset_name + ' --h ' + subject_number
+            # Run the model
+            run(command, shell=True, check=True)
+            # Return to original working directory
+            chdir(original_wd)
 
             output_path     = path.join(model_output_path, 'human_subject_' + subject_number)
             human_scanpaths = utils.load_from_json(path.join(output_path, 'Subject_scanpaths.json'))
@@ -42,9 +47,6 @@ class HumanScanpathPrediction:
                 for index in range(1, np.size(human_fixations_x)):          
                     probability_map = pd.read_csv(probability_maps_folder + 'fixation_' + str(index))                
                     self.compute_scanpath_prediction_metrics(probability_map, human_fixations_y[:index], human_fixations_x[:index])
-        
-        # Restore working directory
-        chdir(original_wd)
 
     def compute_scanpath_prediction_metrics(self, probability_map, human_fixations_y, human_fixations_x):
         probability_map = probability_map.to_numpy(dtype=np.float)
