@@ -5,13 +5,17 @@ import matplotlib.pyplot as plt
 from os import listdir, path
 
 class Multimatch:
-    def __init__(self, dataset_name, human_scanpaths_dir, dataset_results_dir):
+    def __init__(self, dataset_name, human_scanpaths_dir, dataset_results_dir, null_object):
         self.multimatch_values = {}
         self.dataset_name = dataset_name
         self.human_scanpaths_dir = human_scanpaths_dir
         self.dataset_results_dir = dataset_results_dir
+        self.null_object = null_object
 
     def plot(self, save_path):
+        if self.null_object:
+            return
+            
         number_of_models = len(self.multimatch_values.keys())
         fig, axs = plt.subplots(1, number_of_models, sharex=True, sharey=True, figsize=(10, 5))
 
@@ -103,9 +107,12 @@ class Multimatch:
         " For each scanpath produced by the model, multimatch is calculated against the scanpath of that same image for every human subject "
         " The mean is computed for each image "
         " Output is a dictionary where the image names are the keys and the multimatch means are the values "
-        multimatch_model_vs_humans_mean_per_image = {}
 
-        total_values_per_image = {}
+        if self.null_object:
+            return
+
+        multimatch_model_vs_humans_mean_per_image = {}
+        total_values_per_image   = {}
         subjects_scanpaths_files = listdir(self.human_scanpaths_dir)
         for subject_filename in subjects_scanpaths_files:
             with open(path.join(self.human_scanpaths_dir, subject_filename), 'r') as fp:
@@ -146,6 +153,10 @@ class Multimatch:
         " To be consistent with the model's scanpaths, human scanpaths are rescaled to match the model's size "
         " The mean is computed for each trial (i.e. for each image) "
         " Output is a dictionary where the image names are the keys and the multimatch means are the values "
+
+        if self.null_object:
+            return
+
         multimatch_human_mean_per_image = {}
         # Check if it was already computed
         multimatch_human_mean_json_file = path.join(path.join(self.dataset_results_dir, model_name), 'multimatch_human_mean_per_image.json')

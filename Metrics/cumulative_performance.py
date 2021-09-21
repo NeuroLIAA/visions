@@ -4,14 +4,18 @@ import numpy as np
 from os import listdir, path
 
 class Cumulative_performance:
-    def __init__(self, dataset_name, number_of_images, max_scanpath_length):
+    def __init__(self, dataset_name, number_of_images, max_scanpath_length, null_object):
         self.dataset_name     = dataset_name
         self.number_of_images = number_of_images
         self.max_scanpath_length = max_scanpath_length
-
         self.subjects_cumulative_performance = []
 
+        self.null_object = null_object
+
     def add_model(self, model_name, model_scanpaths, model_color):
+        if self.null_object:
+            return
+
         # If a model has performed visual search on a small subset of images (less than 80%), it is not included in the metric
         too_few_images = len(model_scanpaths.keys()) < self.number_of_images * 0.8
         if not too_few_images:
@@ -19,6 +23,9 @@ class Cumulative_performance:
             self.subjects_cumulative_performance.append({'subject': model_name, 'cumulative_performance': model_cumulative_performance, 'color': model_color})
     
     def add_human_mean(self, humans_scanpaths_dir, humans_color):
+        if self.null_object:
+            return
+
         humans_cumulative_performance = []
         humans_scanpaths_files = listdir(humans_scanpaths_dir)
         for human_scanpaths_file in humans_scanpaths_files:
@@ -101,6 +108,9 @@ class Cumulative_performance:
         return cumulative_performance_at_particular_fixations
 
     def plot(self, save_path):
+        if self.null_object:
+            return
+            
         fig, ax = plt.subplots()
         for subject in self.subjects_cumulative_performance:
             subject_name = subject['subject']

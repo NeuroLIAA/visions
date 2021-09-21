@@ -1,57 +1,69 @@
-import json
-import numpy as np
+import utils
+import constants
+import argparse
 from multimatch import Multimatch
-from scanpath_prediction import ScanpathPrediction
+from human_scanpath_prediction import HumanScanpathPrediction
 from cumulative_performance import Cumulative_performance
 from os import listdir, path
 
-results_dir  = '../Results/'
-datasets_dir = '../Datasets/'
-models_dir   = '../Models/'
-# To ensure models have the same color in the plots across all datasets
-models_colors = ['#2ca02c', '#d62728', '#ff7f0e']
-humans_color  = '#1f77b4'
+def main(compute_cumulative_performance, compute_multimatch, compute_human_scanpath_prediction):
+    dataset_results_dirs = listdir(constants.RESULTS_DIR)
+    for dataset in dataset_results_dirs:
+        dataset_name = dataset.split('_')[0]
+        dataset_path = path.join(constants.DATASETS_DIR, dataset_name)
+        dataset_info = utils.load_dict_from_json(path.join(dataset_path, 'dataset_info.json'))
 
-dataset_results_dirs = listdir(results_dir)
-for dataset in dataset_results_dirs:
-    dataset_name = dataset.split('_')[0]
-    dataset_path = path.join(datasets_dir, dataset_name)
-    human_scanpaths_dir = path.join(dataset_path, 'human_scanpaths')
-    dataset_results_dir = path.join(results_dir, dataset)
-    with open(path.join(dataset_path, 'dataset_info.json')) as fp:
-        dataset_info = json.load(fp)
+        human_scanpaths_dir = path.join(dataset_path, dataset_info['scanpaths_dir'])
+        dataset_results_dir = path.join(constants.RESULTS_DIR, dataset)
 
-    max_scanpath_length = dataset_info['max_scanpath_length']
-    number_of_images    = dataset_info['number_of_images']
+        max_scanpath_length = dataset_info['max_scanpath_length']
+        number_of_images    = dataset_info['number_of_images']
 
-    # Initialize objects
-    multimatch = Multimatch(dataset_name, human_scanpaths_dir, dataset_results_dir)
+        # Initialize objects
+        multimatch = Multimatch(dataset_name, human_scanpaths_dir, dataset_results_dir, compute_multimatch)
 
-    subjects_cumulative_performance = Cumulative_performance(dataset_name, number_of_images, max_scanpath_length)
-    subjects_cumulative_performance.add_human_mean(human_scanpaths_dir, humans_color)
+        subjects_cumulative_performance = Cumulative_performance(dataset_name, number_of_images, max_scanpath_length, compute_cumulative_performance)
+        subjects_cumulative_performance.add_human_mean(human_scanpaths_dir, humans_color)
 
-    scanpath_prediction = ScanpathPrediction(dataset_name, human_scanpaths_dir, dataset_results_dir, models_dir)
+        human_scanpath_prediction = HumanScanpathPrediction(dataset_name, human_scanpaths_dir, dataset_results_dir, models_dir, compute_human_scanpath_prediction)
 
-    # Compute models metrics and compare them with human subjects metrics
-    models = listdir(dataset_results_dir)
-    color_index = 0
-    for model_name in models:
-        if not(path.isdir(path.join(dataset_results_dir, model_name))):
-            continue
+        # Compute models metrics and compare them with human subjects metrics
+        models = listdir(dataset_results_dir)
+        color_index = 0
+        for model_name in models:
+            if not(path.isdir(path.join(dataset_results_dir, model_name))):
+                continue
 
-        model_scanpaths_file = path.join(path.join(dataset_results_dir, model_name), 'Scanpaths.json')
-        with open(model_scanpaths_file, 'r') as fp:
-            model_scanpaths = json.load(fp)
+            model_scanpaths_file = path.join(path.join(dataset_results_dir, model_name), 'Scanpaths.json')
+            model_scanpaths      = utils.load_dict_from_json(model_scanpaths_file)
 
-        subjects_cumulative_performance.add_model(model_name, model_scanpaths, models_colors[color_index])
+            subjects_cumulative_performance.add_model(model_name, model_scanpaths, models_colors[color_index])
 
-        # Human multimatch scores are different for each model, since each model uses different image sizes
-        multimatch.load_human_mean_per_image(model_name, model_scanpaths)
-        multimatch.add_model_vs_humans_mean_per_image(model_name, model_scanpaths, models_colors[color_index])
+            # Human multimatch scores are different for each model, since each model uses different image sizes
+            multimatch.load_human_mean_per_image(model_name, model_scanpaths)
+            multimatch.add_model_vs_humans_mean_per_image(model_name, model_scanpaths, models_colors[color_index])
 
-        scanpath_prediction.compute_metrics_for_model(model_name)
+            human_scanpath_prediction.compute_metrics_for_model(model_name)
 
-        color_index += 1
-    
-    subjects_cumulative_performance.plot(save_path=dataset_results_dir)
-    multimatch.plot(save_path=dataset_results_dir)
+            color_index += 1
+        
+        subjects_cumulative_performance.plot(save_path=dataset_results_dir)
+        multimatch.plot(save_path=dataset_results_dir)
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='Compute all metrics for each visual search model on each dataset. To only run a subset of them, specify by argument which ones.')
+    parser.add_argument('--perf', '--performance', action='store_true', help='Compute cumulative performance')
+    parser.add_argument('--mm', '--multimatch', action='store_true', help='Compute multimatch on the models')
+    parser.add_argument('--hsp', '--human_scanpath_prediction', action='store_true', help='Compute human scanpath prediction on the models. \
+        See "Kümmerer, M. & Bethge, M. (2021), State-of-the-Art in Human Scanpath Prediction" for more information. WARNING: If not precomputed, EXTREMELY SLOW!')
+
+    args = parser.parse_args()
+
+    # If none were specified, default to True
+    if not (args.perf or args.mm or args.hsp):
+        args.perf = True
+        args.mm   = True
+        args.hsp  = True
+
+    main(args.perf, args.mm, args.hsp)
