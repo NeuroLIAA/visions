@@ -39,14 +39,27 @@ class HumanScanpathPrediction:
 
             output_path     = path.join(model_output_path, 'human_subject_' + subject_number)
             human_scanpaths = utils.load_from_json(path.join(output_path, 'Subject_scanpaths.json'))
+            model_subject_metrics = {}
             for image_name in human_scanpaths:
                 scanpath = human_scanpaths[image_name]
                 human_fixations_x = np.array(scanpath['X'], dtype=int)
                 human_fixations_y = np.array(scanpath['Y'], dtype=int)
                 probability_maps_folder = path.join(output_path, path.join('probability_maps', image_name[:-4]))
+
+                image_rocs, image_nss, image_igs = [], [], []
                 for index in range(1, np.size(human_fixations_x)):          
                     probability_map = pd.read_csv(probability_maps_folder + 'fixation_' + str(index))                
-                    self.compute_scanpath_prediction_metrics(probability_map, human_fixations_y[:index], human_fixations_x[:index])
+                    roc, nss, ig = self.compute_scanpath_prediction_metrics(probability_map, human_fixations_y[:index], human_fixations_x[:index])
+                    image_rocs.append(roc)
+                    image_nss.append(nss)
+                    image_igs.append(ig)
+                
+                model_subject_metrics[image_name] = {'AUC': np.mean(image_rocs), 'NSS': np.mean(image_nss), 'IG': np.mean(image_igs)}
+            
+            utils.save_to_json(path.join(output_path, 'Scanpath_prediction.json'), model_subject_metrics)
+            # Borrar probability maps del modelo
+
+
 
     def compute_scanpath_prediction_metrics(self, probability_map, human_fixations_y, human_fixations_x):
         probability_map = probability_map.to_numpy(dtype=np.float)
@@ -57,7 +70,7 @@ class HumanScanpathPrediction:
         nss = NSS(probability_map, human_fixations_y, human_fixations_x)
         ig  = infogain(probability_map, baseline_map, human_fixations_y, human_fixations_x)
 
-        #en que formato guardar los resultados? json?
+        return roc, nss, ig
 
     def center_gaussian(self, shape):
         sigma  = [[1, 0], [0, 1]]
