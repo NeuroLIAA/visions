@@ -1,11 +1,13 @@
 import json
 import numpy as np
 from multimatch import Multimatch
+from scanpath_prediction import ScanpathPrediction
 from cumulative_performance import Cumulative_performance
 from os import listdir, path
 
 results_dir  = '../Results/'
 datasets_dir = '../Datasets/'
+models_dir   = '../Models/'
 # To ensure models have the same color in the plots across all datasets
 models_colors = ['#2ca02c', '#d62728', '#ff7f0e']
 humans_color  = '#1f77b4'
@@ -28,6 +30,8 @@ for dataset in dataset_results_dirs:
     subjects_cumulative_performance = Cumulative_performance(dataset_name, number_of_images, max_scanpath_length)
     subjects_cumulative_performance.add_human_mean(human_scanpaths_dir, humans_color)
 
+    scanpath_prediction = ScanpathPrediction(dataset_name, human_scanpaths_dir, dataset_results_dir, models_dir)
+
     # Compute models metrics and compare them with human subjects metrics
     models = listdir(dataset_results_dir)
     color_index = 0
@@ -44,6 +48,8 @@ for dataset in dataset_results_dirs:
         # Human multimatch scores are different for each model, since each model uses different image sizes
         multimatch.load_human_mean_per_image(model_name, model_scanpaths)
         multimatch.add_model_vs_humans_mean_per_image(model_name, model_scanpaths, models_colors[color_index])
+
+        scanpath_prediction.compute_metrics_for_model(model_name)
 
         color_index += 1
     
