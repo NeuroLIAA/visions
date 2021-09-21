@@ -6,7 +6,7 @@ from os import path
 
 " Runs visualsearch/main.py according to the supplied parameters "
 
-def main(dataset_name, config_name, image_name, image_range, human_subject, number_of_processes, save_probability_maps):
+def setup_and_run(dataset_name, config_name, image_name, image_range, human_subject, number_of_processes, save_probability_maps):
     dataset_path = path.join(constants.DATASETS_PATH, dataset_name)
     output_path  = path.join(constants.RESULTS_PATH, path.join(dataset_name + '_dataset', 'cIBS'))
 
@@ -20,6 +20,10 @@ def main(dataset_name, config_name, image_name, image_range, human_subject, numb
     trials_properties = loader.load_trials_properties(trials_properties_file, image_name, image_range, human_scanpaths, checkpoint)
 
     visualsearch.run(config, dataset_info, trials_properties, human_scanpaths, output_path, constants.SIGMA)
+
+""" Main method, added to be polymorphic with respect to the other models """
+def main(dataset_name, human_subject):
+    setup_and_run(dataset_name, config_name=default, image_name=None, image_range=None, human_subject=human_subject, number_of_processes='all', save_probability_maps=True)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Run the cIBS Visual Search model')
@@ -43,4 +47,4 @@ if __name__ == "__main__":
         print('Invalid value for --multiprocess argument')
         sys.exit(-1)
 
-    main(args.dataset, args.cfg, args.img, args.rng, args.h, args.m, args.s)
+    setup_and_run(args.dataset, args.cfg, args.img, args.rng, args.h, args.m, args.s)
