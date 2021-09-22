@@ -1,17 +1,23 @@
+import constants
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
 from os import makedirs, path, listdir
 from random import randint
 from skimage import io, transform
 from scripts import utils
-import constants
 import argparse
 import sys
 
+""" Usage:
+    To plot a model's scanpath on a given image:
+        plot_scanpath.py -dataset <dataset_name> -img <image_name> -model <model_name>
+    To plot a (random) human subject's scanpath on a given image:
+        plot_scanpath.py -dataset <dataset_name> -img <image_name> -human
+"""
+
 """ The main method of this script (plot_scanpath) belongs to https://github.com/cvlab-stonybrook/Scanpath_Prediction/plot_scanpath.py """
 
-
-def plot_scanpath(img, xs, ys, fixation_size, bbox=None, title=None, save_path=None):
+def plot_scanpath(img, xs, ys, fixation_size, bbox, title, save_path):
     fig, ax = plt.subplots()
     ax.imshow(img, cmap=plt.cm.gray)
 
@@ -28,9 +34,9 @@ def plot_scanpath(img, xs, ys, fixation_size, bbox=None, title=None, save_path=N
         ax.add_patch(circle)
         plt.annotate("{}".format(i + 1), xy=(xs[i], ys[i] + 3), fontsize=10, ha="center", va="center")
 
-    if bbox is not None:
-        rect = Rectangle((bbox[0], bbox[1]), bbox[2], bbox[3], alpha=0.7, edgecolor='red', facecolor='none', linewidth=2)
-        ax.add_patch(rect)
+    # Draw target's bbox
+    rect = Rectangle((bbox[0], bbox[1]), bbox[2], bbox[3], alpha=0.7, edgecolor='red', facecolor='none', linewidth=2)
+    ax.add_patch(rect)
 
     # To draw grid, useful for plotting cIBS's scanpaths
     # box_size = 32
@@ -47,10 +53,9 @@ def plot_scanpath(img, xs, ys, fixation_size, bbox=None, title=None, save_path=N
 
 
     ax.axis('off')
-    if title is not None:
-        ax.set_title(title)
-    if save_path is not None:
-        plt.savefig(path.join(save_path, title + '.png'))
+    ax.set_title(title)
+
+    plt.savefig(path.join(save_path, title + '.png'))
     plt.show()
     plt.close()
 
@@ -72,7 +77,7 @@ def get_trial_info(image_name, trials_properties):
 
     raise NameError('Image name must be in the dataset')
 
-def rescale_coordinate(value, old_size, new_size, fixation_size, is_grid=False):
+def rescale_coordinate(value, old_size, new_size, fixation_size=None, is_grid=False):
     if is_grid:
         # Rescale fixation to center of the cell in the grid
         return value * fixation_size + (fixation_size // 2)
@@ -80,7 +85,6 @@ def rescale_coordinate(value, old_size, new_size, fixation_size, is_grid=False):
         return (value / old_size) * new_size
 
 def process_image(img_scanpath, subject, image_name, dataset_name, trial_info, images_path):
-    fixation_size     = (img_scanpath['receptive_height'], img_scanpath['receptive_width'])
     scanpath_img_size = (img_scanpath['image_height'], img_scanpath['image_width'])
 
     image_file = path.join(images_path, image_name)
@@ -92,7 +96,8 @@ def process_image(img_scanpath, subject, image_name, dataset_name, trial_info, i
     # cIBS uses a grid for images, it's necessary to upscale it
     if subject == 'cIBS':
         is_grid = True
-        img_size_used = (fixation_size[0] * scanpath_img_size[0], fixation_size[1] * scanpath_img_size[1])
+        img_size_used = (768, 1024)
+        fixation_size = (img_size_used[0] // scanpath_img_size[0], img_size_used[1] // scanpath_img_size[1])
 
     img = transform.resize(img, img_size_used)
     # Rescale scanpath if necessary
@@ -103,8 +108,8 @@ def process_image(img_scanpath, subject, image_name, dataset_name, trial_info, i
         trial_info['target_matched_column'] + trial_info['target_width']]
     
     if not is_grid:
-        bbox[0], bbox[2] = [rescale_coordinate(pos, original_img_size[0], scanpath_img_size[0], fixation_size[1]) for pos in (bbox[0], bbox[2])]
-        bbox[1], bbox[3] = [rescale_coordinate(pos, original_img_size[1], scanpath_img_size[1], fixation_size[0]) for pos in (bbox[1], bbox[3])]
+        bbox[0], bbox[2] = [rescale_coordinate(pos, original_img_size[0], scanpath_img_size[0]) for pos in (bbox[0], bbox[2])]
+        bbox[1], bbox[3] = [rescale_coordinate(pos, original_img_size[1], scanpath_img_size[1]) for pos in (bbox[1], bbox[3])]
     target_height = bbox[2] - bbox[0]
     target_width  = bbox[3] - bbox[1]
     bbox = [bbox[1], bbox[0], target_width, target_height]
