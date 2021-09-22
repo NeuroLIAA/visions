@@ -85,6 +85,7 @@ def rescale_coordinate(value, old_size, new_size, fixation_size=None, is_grid=Fa
         return (value / old_size) * new_size
 
 def process_image(img_scanpath, subject, image_name, dataset_name, trial_info, images_path):
+    fixation_size     = (img_scanpath['receptive_height'], img_scanpath['receptive_width'])
     scanpath_img_size = (img_scanpath['image_height'], img_scanpath['image_width'])
 
     image_file = path.join(images_path, image_name)
@@ -104,12 +105,12 @@ def process_image(img_scanpath, subject, image_name, dataset_name, trial_info, i
     X = [rescale_coordinate(x, scanpath_img_size[1], img_size_used[1], fixation_size[1], is_grid) for x in img_scanpath['X']]
     Y = [rescale_coordinate(y, scanpath_img_size[0], img_size_used[0], fixation_size[0], is_grid) for y in img_scanpath['Y']]
 
-    bbox = [trial_info['target_matched_row'], trial_info['target_matched_column'], trial_info['target_matched_row'] + trial_info['target_height'], \
-        trial_info['target_matched_column'] + trial_info['target_width']]
+    #bbox = [trial_info['target_matched_row'], trial_info['target_matched_column'], trial_info['target_matched_row'] + trial_info['target_height'], \
+    #    trial_info['target_matched_column'] + trial_info['target_width']]
+    bbox = img_scanpath['target_bbox']
     
-    if not is_grid:
-        bbox[0], bbox[2] = [rescale_coordinate(pos, original_img_size[0], scanpath_img_size[0]) for pos in (bbox[0], bbox[2])]
-        bbox[1], bbox[3] = [rescale_coordinate(pos, original_img_size[1], scanpath_img_size[1]) for pos in (bbox[1], bbox[3])]
+    bbox[0], bbox[2] = [rescale_coordinate(pos, original_img_size[0], scanpath_img_size[0], fixation_size[0], is_grid) for pos in (bbox[0], bbox[2])]
+    bbox[1], bbox[3] = [rescale_coordinate(pos, original_img_size[1], scanpath_img_size[1], fixation_size[1], is_grid) for pos in (bbox[1], bbox[3])]
     target_height = bbox[2] - bbox[0]
     target_width  = bbox[3] - bbox[1]
     bbox = [bbox[1], bbox[0], target_width, target_height]
