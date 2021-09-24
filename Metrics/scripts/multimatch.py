@@ -54,7 +54,7 @@ class Multimatch:
         x_vector = []
         y_vector = []
         trials_names = []
-        for image_name in multimatch_values_per_image_x.keys():
+        for image_name in multimatch_values_per_image_x:
             if not(image_name in multimatch_values_per_image_y):
                 continue
 

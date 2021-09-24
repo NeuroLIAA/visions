@@ -57,7 +57,7 @@ class Cumulative_performance:
         for index in range(self.max_scanpath_length + 1):
             targets_found_at_fixation_number.append(0)
 
-        for image_name in scanpaths.keys():
+        for image_name in scanpaths:
             scanpath_info   = scanpaths[image_name]
             scanpath_length = len(scanpath_info['X'])
 
@@ -82,7 +82,7 @@ class Cumulative_performance:
         number_of_scanpaths_with_nine_fixations_max = 0
         number_of_scanpaths_with_thirteen_fixations_max = 0
 
-        for image_name in scanpaths.keys():
+        for image_name in scanpaths:
             scanpath_info   = scanpaths[image_name]
             scanpath_length = len(scanpath_info['X'])
             scanpath_max_fixations = scanpath_info['max_fixations']

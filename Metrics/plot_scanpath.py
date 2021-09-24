@@ -107,8 +107,9 @@ def process_image(img_scanpath, subject, image_name, dataset_name, trial_info, i
 
     bbox = img_scanpath['target_bbox']
 
-    bbox[0], bbox[2] = [rescale_coordinate(pos, original_img_size[0], scanpath_img_size[0], fixation_size[0], is_grid) for pos in (bbox[0], bbox[2])]
-    bbox[1], bbox[3] = [rescale_coordinate(pos, original_img_size[1], scanpath_img_size[1], fixation_size[1], is_grid) for pos in (bbox[1], bbox[3])]
+    if is_grid:
+        bbox[0], bbox[2] = [rescale_coordinate(pos, original_img_size[0], scanpath_img_size[0], fixation_size[0], is_grid) for pos in (bbox[0], bbox[2])]
+        bbox[1], bbox[3] = [rescale_coordinate(pos, original_img_size[1], scanpath_img_size[1], fixation_size[1], is_grid) for pos in (bbox[1], bbox[3])]
     target_height = bbox[2] - bbox[0]
     target_width  = bbox[3] - bbox[1]
     bbox = [bbox[1], bbox[0], target_width, target_height]
