@@ -30,8 +30,8 @@ screen_height = 1050
 screen_width  = 1650
 
 # Estimated value from IRL's model patch size
-receptive_height = 54
-receptive_width  = 54
+receptive_height = 52
+receptive_width  = 52
 
 max_fixations = 45  
 
