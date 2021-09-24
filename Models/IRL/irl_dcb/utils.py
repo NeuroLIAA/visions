@@ -53,6 +53,7 @@ def load_dict_from_json(json_file_path):
         return json.load(json_file)
 
 def cutFixOnTarget(trajs, target_annos, patch_size):
+    targets_found = 0
     for image_name in trajs:
         traj = trajs[image_name]
         key = traj['target_object'] + '_' + image_name
@@ -60,9 +61,12 @@ def cutFixOnTarget(trajs, target_annos, patch_size):
         traj_len = get_num_step2target(traj['X'], traj['Y'], bbox, patch_size)
         if traj_len != 1000:
             traj['target_found'] = True
+            targets_found += 1
         traj['X'] = traj['X'][:traj_len]
         traj['Y'] = traj['Y'][:traj_len]
         traj['target_bbox'] = [bbox[1], bbox[0], bbox[1] + bbox[3], bbox[0] + bbox[2]]
+    
+    return targets_found
 
 def pos_to_action(center_x, center_y, patch_size, patch_num):
     x = center_x // patch_size[0]

@@ -133,7 +133,9 @@ def gen_scanpaths(generator, env_test, test_img_loader, bbox_annos, patch_num, p
                                     for i in range(env_test.batch_size)])
             
     scanpaths = utils.actions2scanpaths(all_actions, patch_num, patch_size, im_w, im_h, dataset_name, max_traj_len)
-    utils.cutFixOnTarget(scanpaths, bbox_annos, patch_size)
+    targets_found = utils.cutFixOnTarget(scanpaths, bbox_annos, patch_size)
+
+    print('Total targets found: ' + str(targets_found) + '/' + str(len(scanpaths)))
 
     return scanpaths
 

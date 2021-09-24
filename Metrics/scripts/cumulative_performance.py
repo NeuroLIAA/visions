@@ -65,7 +65,7 @@ class Cumulative_performance:
                 for index in range(scanpath_length, self.max_scanpath_length + 1):
                     targets_found_at_fixation_number[index] += 1
             
-        subject_cumulative_performance = list(map(lambda x: float(x) / len(scanpaths.keys()), targets_found_at_fixation_number))
+        subject_cumulative_performance = list(map(lambda x: float(x) / len(scanpaths), targets_found_at_fixation_number))
         
         return subject_cumulative_performance
 
