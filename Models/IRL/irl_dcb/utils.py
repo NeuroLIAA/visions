@@ -52,12 +52,12 @@ def load_dict_from_json(json_file_path):
     with open(json_file_path, 'r') as json_file:
         return json.load(json_file)
 
-def cutFixOnTarget(trajs, target_annos):
+def cutFixOnTarget(trajs, target_annos, patch_size):
     for image_name in trajs:
         traj = trajs[image_name]
         key = traj['target_object'] + '_' + image_name
         bbox = target_annos[key]
-        traj_len = get_num_step2target(traj['X'], traj['Y'], bbox)
+        traj_len = get_num_step2target(traj['X'], traj['Y'], bbox, patch_size)
         if traj_len != 1000:
             traj['target_found'] = True
         traj['X'] = traj['X'][:traj_len]
@@ -149,10 +149,10 @@ def collect_trajs(env,
 
     return trajs, probs
 
-def get_num_step2target(X, Y, bbox):
+def get_num_step2target(X, Y, bbox, patch_size):
     X, Y = np.array(X), np.array(Y)
-    on_target_X = np.logical_and(X > bbox[0], X < bbox[0] + bbox[2])
-    on_target_Y = np.logical_and(Y > bbox[1], Y < bbox[1] + bbox[3])
+    on_target_X = np.logical_and(X + patch_size[0] // 2 > bbox[0], X < bbox[0] + bbox[2] + patch_size[0] // 2)
+    on_target_Y = np.logical_and(Y + patch_size[1] // 2 > bbox[1], Y < bbox[1] + bbox[3] + patch_size[1] // 2)
     on_target = np.logical_and(on_target_X, on_target_Y)
     if np.sum(on_target) > 0:
         first_on_target_idx = np.argmax(on_target)
