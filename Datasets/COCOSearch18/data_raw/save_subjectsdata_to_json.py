@@ -13,6 +13,10 @@ from skimage import io, transform
 def rescale_coordinate(value, old_size, new_size):
     return (value / old_size) * new_size
 
+def between_bounds(target_bbox, fix_y, fix_x, receptive_size):
+    return target_bbox[0] <= fix_y + receptive_size[0] and target_bbox[2] >= fix_y - receptive_size[0] and \
+                     target_bbox[1] <= fix_x + receptive_size[1]  and target_bbox[3] >= fix_x - receptive_size[1]
+
 human_scanpaths_train_file = './coco_search18_fixations_TP_train_split1.json' 
 human_scanpaths_valid_file = './coco_search18_fixations_TP_validation_split1.json'
 
@@ -53,6 +57,7 @@ initial_fixation = (509, 816)
 targets_found       = 0
 wrong_targets_found = 0
 largest_scanpath    = 0
+cropped_scanpaths   = 0
 scanpaths_with_shorter_distance_than_receptive_size = 0
 
 trials_properties = []
@@ -95,7 +100,6 @@ for scanpath in human_scanpaths:
 
     scanpath_x      = scanpath['X']
     scanpath_y      = scanpath['Y']
-    scanpath_length = scanpath['length']
     target_bbox     = scanpath['bbox']
     # New target bounding box shape will be [first row, first column, last row, last column]
     target_bbox = [target_bbox[1], target_bbox[0], target_bbox[1] + target_bbox[3], target_bbox[0] + target_bbox[2]]
@@ -108,13 +112,23 @@ for scanpath in human_scanpaths:
 
     initial_fixations_x.append(scanpath_x[0])
     initial_fixations_y.append(scanpath_y[0])
+
+    # Crop scanpaths as soon as a fixation falls between the target's bounding box
+    for index, fixation in enumerate(zip(scanpath_y, scanpath_x)):
+        if between_bounds(target_bbox, fixation[0], fixation[1], (receptive_height, receptive_width)):
+            scanpath_x = scanpath_x[:index + 1]
+            scanpath_y = scanpath_y[:index + 1]
+            cropped_scanpaths += 1
+            if not target_found:
+                target_found   = True
+                targets_found += 1
+            break
     
+    scanpath_length = len(scanpath_x)
     last_fixation_x = scanpath_x[scanpath_length - 1]
     last_fixation_y = scanpath_y[scanpath_length - 1]
     # Sanity check
-    between_bounds = target_bbox[0] <= last_fixation_y + receptive_height and target_bbox[2] >= last_fixation_y - receptive_height and \
-                     target_bbox[1] <= last_fixation_x + receptive_width  and target_bbox[3] >= last_fixation_x - receptive_width
-    if target_found and not between_bounds:
+    if target_found and not between_bounds(target_bbox, last_fixation_y, last_fixation_x, (receptive_height, receptive_width)):
         print('Subject: ' + str(current_subject) + '; trial: ' + image_name + '. Last fixation doesn\'t fall between target\'s bounds')
         print('Target bbox: ' + str(target_bbox) + '. Last fixation: ' + str((last_fixation_y, last_fixation_x)) + '\n')
         target_found = False
@@ -192,4 +206,5 @@ print('Total targets found: ' + str(targets_found) + '. Wrong targets found: ' +
 print('Initial fixation mean: ' + str(initial_fixation_mean))
 print('Number of unused images: ' + str(unused_images))
 print('Largest target found scanpath: ' + str(largest_scanpath))
+print('Number of cropped scanpaths: ' + str(cropped_scanpaths))
 print('Scanpaths where saccades have shorter distance than ' + str((receptive_height, receptive_width)) + ': ' + str(scanpaths_with_shorter_distance_than_receptive_size))
