@@ -54,7 +54,7 @@ class TargetSimilarity():
             # Calculate target similarity based on a specific method  
             target_similarity_map = self.compute_target_similarity(image, target, target_bbox)
             if self.save_similarity_maps:
-                utils.save_similarity_map(self.save_path, filename, target_similarity_map)
+                utils.save_similarity_map(save_path, filename, target_similarity_map)
         
         # Add target similarity and visibility info to mu
         self.add_info_to_mu(target_similarity_map, visibility_map)
