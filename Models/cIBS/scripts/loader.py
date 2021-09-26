@@ -71,8 +71,9 @@ def load_dataset_info(dataset_path):
     dataset_info['images_dir']    = path.join(dataset_path, dataset_info['images_dir'])
     dataset_info['targets_dir']   = path.join(dataset_path, dataset_info['targets_dir'])
     dataset_info['scanpaths_dir'] = path.join(dataset_path, dataset_info['scanpaths_dir'])
-    # Add saliency dir
+    # Add saliency and target similarity maps dirs
     dataset_info['saliency_dir']  = path.join(constants.SALIENCY_PATH, dataset_info['dataset_name'])
+    dataset_info['target_similarity_dir'] = path.join(constants.TARGET_SIMILARITY_PATH, dataset_info['dataset_name'])
 
     return dataset_info
 

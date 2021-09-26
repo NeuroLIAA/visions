@@ -24,12 +24,13 @@ def run(config, dataset_info, trials_properties, human_scanpaths, output_path, s
                 image_size        (int, int) : image size on which the model will operate
                 save_similarity_maps (bool)  : indicates whether to save the target similarity map for each image in bayesian search
             Dataset info (dict). One entry. Fields:
-                name          (string) : name of the dataset
-                images_dir    (string) : folder path where search images are stored
-                targets_dir   (string) : folder path where the targets are stored
-                saliency_dir  (string) : folder path where the saliency maps are stored
-                image_height  (int)    : default image height (in pixels)
-                image_width   (int)    : default image width (in pixels)
+                name          (string)         : name of the dataset
+                images_dir    (string)         : folder path where search images are stored
+                targets_dir   (string)         : folder path where the targets are stored
+                saliency_dir  (string)         : folder path where the saliency maps are stored
+                target_similarity_dir (string) : folder path where the target similarity maps are stored
+                image_height  (int)            : default image height (in pixels)
+                image_width   (int)            : default image width (in pixels)
             Trials properties (dict):
                 Each entry specifies the data of the image on which to run the visual search model. Fields:
                 image  (string)               : image name (where to look)
@@ -48,9 +49,10 @@ def run(config, dataset_info, trials_properties, human_scanpaths, output_path, s
             Output_path/probability_maps/: In this folder, the probability map computed for each saccade is stored. This is done for every image in trials_properties. (Only if save_probability_maps is true.)
             Output_path/similarity_maps/: In this folder, the target similarity map computed for each image is stored. This is done for every image in trials_properties. (Only if save_similarity_maps is true.)
     """
-    images_dir    = dataset_info['images_dir']
-    targets_dir   = dataset_info['targets_dir']
-    saliency_dir  = dataset_info['saliency_dir']
+    images_dir            = dataset_info['images_dir']
+    targets_dir           = dataset_info['targets_dir']
+    saliency_dir          = dataset_info['saliency_dir']
+    target_similarity_dir = dataset_info['target_similarity_dir']
     prior_name    = config['prior']
     
     image_size = (dataset_info['image_height'], dataset_info['image_width'])
@@ -61,7 +63,7 @@ def run(config, dataset_info, trials_properties, human_scanpaths, output_path, s
     # Initialize objects
     grid            = Grid(np.array(model_image_size), cell_size)
     visibility_map  = VisibilityMap(model_image_size, grid, sigma)
-    visual_searcher = VisualSearcher(config, grid, visibility_map, output_path, human_scanpaths)
+    visual_searcher = VisualSearcher(config, grid, visibility_map, target_similarity_dir, output_path, human_scanpaths)
 
     # Rescale human scanpaths' coordinates (if any) to those of the grid
     utils.rescale_scanpaths(grid, human_scanpaths)

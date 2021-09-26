@@ -75,12 +75,11 @@ def save_probability_map(output_path, image_name, probability_map, fixation_numb
     posterior_df = pd.DataFrame(probability_map)
     posterior_df.to_csv(path.join(save_path, 'fixation_' + str(fixation_number + 1) + '.csv'))
 
-def save_similarity_map(output_path, image_name, method, target_similarity_map):
-    save_path = path.join(output_path, 'similarity_maps')
-    if not path.exists(save_path):
-        makedirs(save_path)
+def save_similarity_map(output_path, filename, target_similarity_map):
+    if not path.exists(output_path):
+        makedirs(output_path)
 
-    io.imsave(path.join(save_path, method + '_' + image_name + '.png'), img_as_ubyte(target_similarity_map), check_contrast=False)
+    io.imsave(path.join(output_path, filename), img_as_ubyte(target_similarity_map), check_contrast=False)
 
 def add_white_gaussian_noise(image, snr_db):
     """ Input:

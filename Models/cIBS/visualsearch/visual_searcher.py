@@ -7,12 +7,12 @@ import time
 import importlib
 
 class VisualSearcher: 
-    def __init__(self, config, grid, visibility_map, output_path, human_scanpaths):
+    def __init__(self, config, grid, visibility_map, target_similarity_dir, output_path, human_scanpaths):
         " Creates a new instance of the visual search model "
         """ Input:
                 Config (dict). One entry. Fields:
                     search_model          (string) : bayesian, greedy
-                    target_similarity     (string) : correlation, geisler
+                    target_similarity     (string) : correlation, geisler, ssim, ivsn
                     prior                 (string) : deepgaze, mlnet, flat, center
                     max_saccades          (int)    : maximum number of saccades allowed
                     cell_size             (int)    : size (in pixels) of the cells in the grid
@@ -21,6 +21,7 @@ class VisualSearcher:
                     save_probability_maps (bool)   : indicates whether to save the probability map to a file after each saccade or not
                     proc_number           (int)    : number of processes on which to execute bayesian search
                     save_similarity_maps  (bool)   : indicates whether to save the target similarity map for each image in bayesian search
+                target_similarity_dir (string)  : folder path where the target similarity maps are stored
                 human_scanpaths (dict)          : if not empty, it contains the human scanpaths which the model will use as fixations
                 grid            (Grid)          : representation of an image with cells instead of pixels
                 visibility_map  (VisibilityMap) : visibility map with the size of the grid
@@ -36,6 +37,7 @@ class VisualSearcher:
         self.number_of_processes      = config['proc_number']
         self.visibility_map           = visibility_map
         self.search_model             = self.initialize_model(config['search_model'], config['norm_cdf_tolerance'])
+        self.target_similarity_dir    = target_similarity_dir
         self.target_similarity_method = config['target_similarity']
         self.output_path              = output_path
         self.human_scanpaths          = human_scanpaths
@@ -162,6 +164,6 @@ class VisualSearcher:
         # Get the class
         target_similarity_class = getattr(module, self.target_similarity_method.capitalize())
         target_similarity_map   = target_similarity_class(image_name, image, target, target_bbox, self.visibility_map, self.scale_factor, self.additive_shift, self.grid, self.seed, \
-            self.number_of_processes, self.save_similarity_maps, self.output_path)
+            self.number_of_processes, self.save_similarity_maps, self.target_similarity_dir)
         return target_similarity_map
 
