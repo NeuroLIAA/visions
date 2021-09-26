@@ -46,10 +46,8 @@ def remove_trials_already_processed(trials_properties, scanpaths):
     
     return remaining_trials
 
-def save_scanpaths(output_path, scanpaths, human_scanpaths):
-    save_to_json(path.join(output_path, 'Scanpaths.json'), scanpaths)
-    if human_scanpaths:
-        save_to_json(path.join(output_path, 'Subject_scanpaths.json'), human_scanpaths)
+def save_scanpaths(output_path, scanpaths, filename='Scanpaths.json'):
+    save_to_json(path.join(output_path, filename), scanpaths)
 
 def save_to_json(file, data):
     with open(file, 'w') as json_file:

@@ -106,7 +106,10 @@ def run(config, dataset_info, trials_properties, human_scanpaths, output_path, s
         sys.exit(0)
 
     time_elapsed = time.time() - start + previous_time
-    utils.save_scanpaths(output_path, scanpaths, human_scanpaths)
+    if human_scanpaths:
+        utils.save_scanpaths(output_path, human_scanpaths, filename='Subject_scanpaths.json')
+    else:
+        utils.save_scanpaths(output_path, scanpaths)
     utils.erase_checkpoint(output_path)
 
     print('Total targets found: ' + str(targets_found) + '/' + str(len(scanpaths)))
