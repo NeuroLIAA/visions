@@ -43,7 +43,6 @@ class TargetSimilarity():
         self.sigma = np.ones(shape=self.mu.shape)
         # Variance now depends on the visibility
         self.sigma = self.sigma / (visibility_map.normalized_at_every_fixation() * scale_factor + additive_shift)
-
               
         # If precomputed, load target similarity map
         save_path = path.join(self.target_similarity_dir, self.__class__.__name__)

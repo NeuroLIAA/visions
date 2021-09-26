@@ -13,7 +13,7 @@ def run(config, dataset_info, trials_properties, human_scanpaths, output_path, s
     """ Input:
             Config (dict). One entry. Fields:
                 search_model      (string)   : bayesian, greedy
-                target_similarity (string)   : correlation, geisler
+                target_similarity (string)   : correlation, geisler, ssim, ivsn
                 prior             (string)   : deepgaze, mlnet, flat, center
                 max_saccades      (int)      : maximum number of saccades allowed
                 cell_size         (int)      : size (in pixels) of the cells in the grid
@@ -73,7 +73,7 @@ def run(config, dataset_info, trials_properties, human_scanpaths, output_path, s
     # If resuming execution, load previously generated data
     scanpaths, targets_found, previous_time = utils.load_data_from_checkpoint(output_path)
 
-    trial_number = len(scanpaths.keys())
+    trial_number = len(scanpaths)
     total_trials = len(trials_properties) + trial_number
     start = time.time()
     try:
@@ -109,5 +109,5 @@ def run(config, dataset_info, trials_properties, human_scanpaths, output_path, s
     utils.save_scanpaths(output_path, scanpaths, human_scanpaths)
     utils.erase_checkpoint(output_path)
 
-    print('Total targets found: ' + str(targets_found) + '/' + str(len(scanpaths.keys())))
+    print('Total targets found: ' + str(targets_found) + '/' + str(len(scanpaths)))
     print('Total time elapsed:  ' + str(round(time_elapsed, 4))   + ' seconds')
