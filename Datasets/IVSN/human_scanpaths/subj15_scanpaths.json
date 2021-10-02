@@ -812,39 +812,6 @@
         "target_object": "TBD",
         "max_fixations": 80
     },
-    "img041.jpg": {
-        "subject": "15",
-        "dataset": "IVSN Natural Design Dataset",
-        "image_height": 1024,
-        "image_width": 1280,
-        "screen_height": 1024,
-        "screen_width": 1280,
-        "receptive_height": 45,
-        "receptive_width": 45,
-        "target_found": true,
-        "target_bbox": [
-            12,
-            406,
-            557,
-            702
-        ],
-        "X": [
-            613
-        ],
-        "Y": [
-            528
-        ],
-        "T": [
-            261,
-            194,
-            138,
-            462,
-            234,
-            310
-        ],
-        "target_object": "TBD",
-        "max_fixations": 80
-    },
     "img032.jpg": {
         "subject": "15",
         "dataset": "IVSN Natural Design Dataset",
@@ -2929,48 +2896,6 @@
         "target_object": "TBD",
         "max_fixations": 80
     },
-    "img183.jpg": {
-        "subject": "15",
-        "dataset": "IVSN Natural Design Dataset",
-        "image_height": 1024,
-        "image_width": 1280,
-        "screen_height": 1024,
-        "screen_width": 1280,
-        "receptive_height": 45,
-        "receptive_width": 45,
-        "target_found": true,
-        "target_bbox": [
-            462,
-            620,
-            499,
-            672
-        ],
-        "X": [
-            629
-        ],
-        "Y": [
-            519
-        ],
-        "T": [
-            197,
-            266,
-            162,
-            160,
-            124,
-            182,
-            242,
-            288,
-            352,
-            394,
-            220,
-            118,
-            228,
-            204,
-            334
-        ],
-        "target_object": "TBD",
-        "max_fixations": 80
-    },
     "img235.jpg": {
         "subject": "15",
         "dataset": "IVSN Natural Design Dataset",
@@ -3163,35 +3088,6 @@
             132,
             178,
             274
-        ],
-        "target_object": "TBD",
-        "max_fixations": 80
-    },
-    "img165.jpg": {
-        "subject": "15",
-        "dataset": "IVSN Natural Design Dataset",
-        "image_height": 1024,
-        "image_width": 1280,
-        "screen_height": 1024,
-        "screen_width": 1280,
-        "receptive_height": 45,
-        "receptive_width": 45,
-        "target_found": true,
-        "target_bbox": [
-            432,
-            568,
-            508,
-            720
-        ],
-        "X": [
-            622
-        ],
-        "Y": [
-            518
-        ],
-        "T": [
-            305,
-            752
         ],
         "target_object": "TBD",
         "max_fixations": 80
@@ -4924,35 +4820,6 @@
         "target_object": "car",
         "max_fixations": 80
     },
-    "img115.jpg": {
-        "subject": "15",
-        "dataset": "IVSN Natural Design Dataset",
-        "image_height": 1024,
-        "image_width": 1280,
-        "screen_height": 1024,
-        "screen_width": 1280,
-        "receptive_height": 45,
-        "receptive_width": 45,
-        "target_found": true,
-        "target_bbox": [
-            488,
-            613,
-            540,
-            638
-        ],
-        "X": [
-            625
-        ],
-        "Y": [
-            490
-        ],
-        "T": [
-            220,
-            170
-        ],
-        "target_object": "TBD",
-        "max_fixations": 80
-    },
     "img224.jpg": {
         "subject": "15",
         "dataset": "IVSN Natural Design Dataset",
@@ -5660,40 +5527,6 @@
             250,
             138,
             372
-        ],
-        "target_object": "TBD",
-        "max_fixations": 80
-    },
-    "img120.jpg": {
-        "subject": "15",
-        "dataset": "IVSN Natural Design Dataset",
-        "image_height": 1024,
-        "image_width": 1280,
-        "screen_height": 1024,
-        "screen_width": 1280,
-        "receptive_height": 45,
-        "receptive_width": 45,
-        "target_found": true,
-        "target_bbox": [
-            282,
-            645,
-            581,
-            709
-        ],
-        "X": [
-            621,
-            587,
-            675
-        ],
-        "Y": [
-            507,
-            613,
-            458
-        ],
-        "T": [
-            315,
-            96,
-            410
         ],
         "target_object": "TBD",
         "max_fixations": 80
@@ -9502,99 +9335,6 @@
             314,
             60,
             82
-        ],
-        "target_object": "TBD",
-        "max_fixations": 80
-    },
-    "img027.jpg": {
-        "subject": "15",
-        "dataset": "IVSN Natural Design Dataset",
-        "image_height": 1024,
-        "image_width": 1280,
-        "screen_height": 1024,
-        "screen_width": 1280,
-        "receptive_height": 45,
-        "receptive_width": 45,
-        "target_found": true,
-        "target_bbox": [
-            407,
-            439,
-            546,
-            642
-        ],
-        "X": [
-            620
-        ],
-        "Y": [
-            509
-        ],
-        "T": [
-            297,
-            126,
-            254,
-            98,
-            170,
-            326,
-            180,
-            188,
-            250,
-            184,
-            164,
-            338,
-            162,
-            232,
-            80,
-            214,
-            214,
-            166,
-            316,
-            302,
-            406,
-            200,
-            212,
-            220,
-            194,
-            234,
-            520,
-            308,
-            124,
-            422,
-            236,
-            192,
-            114,
-            122,
-            236,
-            134,
-            324,
-            260,
-            360,
-            200,
-            156,
-            280,
-            256,
-            404,
-            338,
-            248,
-            94,
-            178,
-            294,
-            362,
-            408,
-            638,
-            222,
-            148,
-            574,
-            130,
-            302,
-            298,
-            154,
-            350,
-            158,
-            258,
-            446,
-            670,
-            298,
-            518
         ],
         "target_object": "TBD",
         "max_fixations": 80
