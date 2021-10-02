@@ -5,6 +5,7 @@
     "image_width": 1024,
     "max_scanpath_length": 16,
     "receptive_size": [32, 32],
+    "mean_target_size": [72, 72],
     "images_dir": "images/",
     "targets_dir": "templates/",
     "scanpaths_dir": "human_scanpaths/"
