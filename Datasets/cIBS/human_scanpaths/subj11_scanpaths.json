@@ -64,14 +64,12 @@
         "X": [
             600.1,
             520.2,
-            303.2,
-            304.0
+            303.2
         ],
         "Y": [
             731.8,
             506.29999999999995,
-            580.5,
-            580.4
+            580.5
         ],
         "T": [
             1138,
@@ -166,7 +164,7 @@
             149,
             163
         ],
-        "target_object": "TBD",
+        "target_object": "potted plant",
         "max_fixations": 13
     },
     "grayscale_100_oliva.jpg": {
@@ -189,15 +187,13 @@
             412.1,
             489.5,
             638.3,
-            750.1,
-            763.5
+            750.1
         ],
         "Y": [
             327.5,
             332.3,
             341.0,
-            378.2,
-            398.20000000000005
+            378.2
         ],
         "T": [
             1393,
@@ -206,7 +202,7 @@
             197,
             241
         ],
-        "target_object": "TBD",
+        "target_object": "potted plant",
         "max_fixations": 5
     },
     "grayscale_16_housebeautiful.jpg": {
@@ -332,7 +328,7 @@
             192,
             425
         ],
-        "target_object": "TBD",
+        "target_object": "potted plant",
         "max_fixations": 3
     },
     "grayscale_45_oliva.jpg": {
@@ -437,16 +433,12 @@
         "X": [
             978.5999999999999,
             684.2,
-            577.8,
-            616.3,
-            635.7
+            577.8
         ],
         "Y": [
             97.5,
             208.39999999999998,
-            199.8,
-            198.10000000000002,
-            163.7
+            199.8
         ],
         "T": [
             1000,
@@ -467,7 +459,7 @@
         "screen_width": 1280,
         "receptive_height": 32,
         "receptive_width": 32,
-        "target_found": true,
+        "target_found": false,
         "target_bbox": [
             578,
             50,
@@ -492,7 +484,7 @@
             290,
             272
         ],
-        "target_object": "TBD",
+        "target_object": "cup",
         "max_fixations": 5
     },
     "grayscale_5_opensource.jpg": {
@@ -655,7 +647,7 @@
             122,
             391
         ],
-        "target_object": "TBD",
+        "target_object": "potted plant",
         "max_fixations": 13
     },
     "grayscale_70_oliva.jpg": {
@@ -678,21 +670,13 @@
             892.7,
             795.2,
             778.7,
-            867.5,
-            870.3,
-            891.2,
-            848.1,
-            869.1
+            867.5
         ],
         "Y": [
             477.0,
             332.2,
             254.60000000000002,
-            357.6,
-            349.0,
-            360.8,
-            360.2,
-            370.0
+            357.6
         ],
         "T": [
             609,
@@ -741,7 +725,7 @@
             115,
             2499
         ],
-        "target_object": "TBD",
+        "target_object": "bottle",
         "max_fixations": 13
     },
     "grayscale_3_kitchen.jpg": {
@@ -805,7 +789,7 @@
         "screen_width": 1280,
         "receptive_height": 32,
         "receptive_width": 32,
-        "target_found": false,
+        "target_found": true,
         "target_bbox": [
             306,
             951,
@@ -815,28 +799,12 @@
         "X": [
             1019.4,
             721.2,
-            1023.0,
-            597.0,
-            346.2,
-            383.6,
-            144.5,
-            1023.0,
-            834.8,
-            774.9,
             1023.0
         ],
         "Y": [
             39.0,
             260.2,
-            371.2,
-            457.0,
-            448.3,
-            315.7,
-            416.2,
-            389.9,
-            322.5,
-            343.5,
-            378.9
+            371.2
         ],
         "T": [
             496,
@@ -894,7 +862,7 @@
             365,
             2556
         ],
-        "target_object": "TBD",
+        "target_object": "cup",
         "max_fixations": 5
     },
     "grayscale_7_kitchen.jpg": {
@@ -974,7 +942,7 @@
             344,
             197
         ],
-        "target_object": "TBD",
+        "target_object": "bowl",
         "max_fixations": 13
     },
     "grayscale_4_other.jpg": {
@@ -1020,7 +988,7 @@
             430,
             233
         ],
-        "target_object": "TBD",
+        "target_object": "cup",
         "max_fixations": 13
     },
     "grayscale_10_oliva.jpg": {
@@ -1151,8 +1119,7 @@
             306.2,
             737.9,
             629.8,
-            844.6,
-            883.6
+            844.6
         ],
         "Y": [
             611.0,
@@ -1161,8 +1128,7 @@
             481.70000000000005,
             465.1,
             476.20000000000005,
-            273.4,
-            309.3
+            273.4
         ],
         "T": [
             1501,
@@ -1174,7 +1140,7 @@
             172,
             1288
         ],
-        "target_object": "TBD",
+        "target_object": "bowl",
         "max_fixations": 9
     },
     "grayscale_50_oliva.jpg": {
@@ -1241,16 +1207,14 @@
             530.8,
             513.6,
             908.7,
-            168.3,
-            149.8
+            168.3
         ],
         "Y": [
             70.9,
             174.8,
             300.7,
             366.3,
-            346.9,
-            331.9
+            346.9
         ],
         "T": [
             1243,
@@ -1322,16 +1286,12 @@
         "X": [
             828.7,
             639.8,
-            676.6,
-            627.4,
-            725.0
+            676.6
         ],
         "Y": [
             610.9,
             445.9,
-            287.0,
-            267.2,
-            265.2
+            287.0
         ],
         "T": [
             1347,
@@ -1573,7 +1533,7 @@
             176,
             1196
         ],
-        "target_object": "TBD",
+        "target_object": "bowl",
         "max_fixations": 9
     },
     "grayscale_14_oliva.jpg": {
@@ -1598,9 +1558,7 @@
             130.3,
             134.3,
             242.5,
-            876.2,
-            967.8,
-            826.6
+            876.2
         ],
         "Y": [
             468.70000000000005,
@@ -1608,9 +1566,7 @@
             383.70000000000005,
             323.0,
             373.6,
-            374.4,
-            406.1,
-            336.9
+            374.4
         ],
         "T": [
             395,
@@ -1696,7 +1652,7 @@
             293,
             271
         ],
-        "target_object": "TBD",
+        "target_object": "cup",
         "max_fixations": 9
     },
     "grayscale_16_opensource.jpg": {
@@ -1720,18 +1676,14 @@
             609.9,
             791.2,
             891.3,
-            966.0,
-            936.4000000000001,
-            947.5999999999999
+            966.0
         ],
         "Y": [
             41.30000000000001,
             242.39999999999998,
             396.1,
             442.20000000000005,
-            451.6,
-            437.9,
-            437.1
+            451.6
         ],
         "T": [
             1488,
@@ -1742,7 +1694,7 @@
             336,
             656
         ],
-        "target_object": "TBD",
+        "target_object": "potted plant",
         "max_fixations": 9
     },
     "grayscale_4_oliva.jpg": {
@@ -1785,7 +1737,7 @@
             224,
             460
         ],
-        "target_object": "TBD",
+        "target_object": "potted plant",
         "max_fixations": 5
     },
     "grayscale_61_oliva.jpg": {
@@ -1822,7 +1774,7 @@
             199,
             1947
         ],
-        "target_object": "TBD",
+        "target_object": "bowl",
         "max_fixations": 13
     },
     "grayscale_6_other.jpg": {
@@ -2077,7 +2029,7 @@
             160,
             143
         ],
-        "target_object": "TBD",
+        "target_object": "cup",
         "max_fixations": 5
     },
     "grayscale_30_opensource.jpg": {
@@ -2114,7 +2066,7 @@
             225,
             1023
         ],
-        "target_object": "TBD",
+        "target_object": "potted plant",
         "max_fixations": 3
     },
     "grayscale_64_oliva.jpg": {
@@ -2194,7 +2146,7 @@
             301,
             534
         ],
-        "target_object": "TBD",
+        "target_object": "bowl",
         "max_fixations": 3
     },
     "grayscale_15_housebeautiful.jpg": {
@@ -2444,17 +2396,13 @@
             560.0,
             600.4,
             615.7,
-            904.7,
-            982.3,
-            902.5999999999999
+            904.7
         ],
         "Y": [
             508.79999999999995,
             357.8,
             331.9,
-            412.5,
-            385.6,
-            389.6
+            412.5
         ],
         "T": [
             480,
@@ -2476,7 +2424,7 @@
         "screen_width": 1280,
         "receptive_height": 32,
         "receptive_width": 32,
-        "target_found": false,
+        "target_found": true,
         "target_bbox": [
             561,
             951,
@@ -2486,18 +2434,12 @@
         "X": [
             809.6,
             632.6,
-            961.3,
-            1023.0,
-            273.4,
-            185.3
+            961.3
         ],
         "Y": [
             546.8,
             561.9,
-            557.9,
-            564.2,
-            625.9,
-            576.3
+            557.9
         ],
         "T": [
             1472,
@@ -2534,8 +2476,7 @@
             173.0,
             587.9,
             960.7,
-            944.5,
-            890.1
+            944.5
         ],
         "Y": [
             680.8,
@@ -2545,8 +2486,7 @@
             250.0,
             317.5,
             482.4,
-            272.4,
-            293.2
+            272.4
         ],
         "T": [
             1431,
@@ -2559,7 +2499,7 @@
             201,
             145
         ],
-        "target_object": "TBD",
+        "target_object": "bowl",
         "max_fixations": 9
     },
     "grayscale_23_oliva.jpg": {
@@ -2596,7 +2536,7 @@
             152,
             417
         ],
-        "target_object": "TBD",
+        "target_object": "knife",
         "max_fixations": 3
     },
     "grayscale_56_oliva.jpg": {
@@ -2633,7 +2573,7 @@
             199,
             316
         ],
-        "target_object": "TBD",
+        "target_object": "bottle",
         "max_fixations": 3
     },
     "grayscale_2_housebeautiful.jpg": {
@@ -2673,7 +2613,7 @@
             167,
             187
         ],
-        "target_object": "TBD",
+        "target_object": "bowl",
         "max_fixations": 13
     },
     "grayscale_12_housebeautiful.jpg": {
@@ -2698,8 +2638,7 @@
             341.8,
             352.8,
             775.4,
-            767.0,
-            774.0
+            767.0
         ],
         "Y": [
             353.4,
@@ -2707,8 +2646,7 @@
             460.70000000000005,
             477.4,
             510.6,
-            496.6,
-            469.29999999999995
+            496.6
         ],
         "T": [
             1769,
@@ -2719,7 +2657,7 @@
             644,
             2507
         ],
-        "target_object": "TBD",
+        "target_object": "potted plant",
         "max_fixations": 9
     },
     "grayscale_8_kitchen.jpg": {
@@ -2793,7 +2731,7 @@
             102,
             640
         ],
-        "target_object": "TBD",
+        "target_object": "chair",
         "max_fixations": 3
     },
     "grayscale_62_oliva.jpg": {
@@ -3022,7 +2960,7 @@
             131,
             173
         ],
-        "target_object": "TBD",
+        "target_object": "cup",
         "max_fixations": 5
     },
     "grayscale_31_oliva.jpg": {
@@ -3043,13 +2981,11 @@
         ],
         "X": [
             304.3,
-            691.3,
-            655.5
+            691.3
         ],
         "Y": [
             166.89999999999998,
-            236.2,
-            276.1
+            236.2
         ],
         "T": [
             1659,
@@ -3167,7 +3103,7 @@
             161,
             390
         ],
-        "target_object": "TBD",
+        "target_object": "bowl",
         "max_fixations": 3
     },
     "grayscale_55_oliva.jpg": {
@@ -3201,7 +3137,7 @@
             220,
             411
         ],
-        "target_object": "TBD",
+        "target_object": "bottle",
         "max_fixations": 3
     },
     "grayscale_71_oliva.jpg": {
@@ -3315,7 +3251,7 @@
             127,
             1764
         ],
-        "target_object": "TBD",
+        "target_object": "potted plant",
         "max_fixations": 9
     },
     "grayscale_5_housebeautiful.jpg": {
@@ -3355,7 +3291,7 @@
             151,
             208
         ],
-        "target_object": "TBD",
+        "target_object": "bottle",
         "max_fixations": 13
     },
     "grayscale_28_housebeautiful.jpg": {
@@ -3380,8 +3316,7 @@
             901.9000000000001,
             951.7,
             192.7,
-            106.5,
-            149.0
+            106.5
         ],
         "Y": [
             323.2,
@@ -3389,8 +3324,7 @@
             484.0,
             538.5,
             628.3,
-            609.3,
-            567.7
+            609.3
         ],
         "T": [
             1693,
@@ -3401,7 +3335,7 @@
             192,
             1986
         ],
-        "target_object": "TBD",
+        "target_object": "potted plant",
         "max_fixations": 9
     },
     "grayscale_63_oliva.jpg": {
@@ -3527,7 +3461,7 @@
             140,
             85
         ],
-        "target_object": "TBD",
+        "target_object": "clock",
         "max_fixations": 13
     },
     "grayscale_21_kitchen.jpg": {
@@ -3598,7 +3532,7 @@
             134,
             1711
         ],
-        "target_object": "TBD",
+        "target_object": "bowl",
         "max_fixations": 13
     },
     "grayscale_18_opensource.jpg": {
@@ -3647,7 +3581,7 @@
         "screen_width": 1280,
         "receptive_height": 32,
         "receptive_width": 32,
-        "target_found": false,
+        "target_found": true,
         "target_bbox": [
             472,
             800,
@@ -3657,14 +3591,12 @@
         "X": [
             608.4,
             672.4,
-            792.8,
-            989.2
+            792.8
         ],
         "Y": [
             751.1,
             583.2,
-            538.1,
-            543.2
+            538.1
         ],
         "T": [
             1578,
@@ -3695,15 +3627,13 @@
             886.0,
             641.0,
             732.2,
-            904.7,
-            842.2
+            904.7
         ],
         "Y": [
             728.7,
             477.29999999999995,
             394.20000000000005,
-            374.5,
-            377.9
+            374.5
         ],
         "T": [
             480,
@@ -3712,7 +3642,7 @@
             177,
             205
         ],
-        "target_object": "TBD",
+        "target_object": "potted plant",
         "max_fixations": 5
     },
     "grayscale_6_airbnb.jpg": {
@@ -3758,7 +3688,7 @@
             303,
             2129
         ],
-        "target_object": "TBD",
+        "target_object": "potted plant",
         "max_fixations": 13
     },
     "grayscale_38_housebeautiful.jpg": {
@@ -3850,7 +3780,7 @@
             170,
             259
         ],
-        "target_object": "TBD",
+        "target_object": "potted plant",
         "max_fixations": 13
     },
     "grayscale_74_oliva.jpg": {
@@ -3988,7 +3918,7 @@
             193,
             235
         ],
-        "target_object": "TBD",
+        "target_object": "bowl",
         "max_fixations": 9
     },
     "grayscale_35_housebeautiful.jpg": {
@@ -4055,7 +3985,7 @@
         "screen_width": 1280,
         "receptive_height": 32,
         "receptive_width": 32,
-        "target_found": false,
+        "target_found": true,
         "target_bbox": [
             375,
             440,
@@ -4067,30 +3997,14 @@
             506.6,
             535.8,
             294.7,
-            433.5,
-            512.4,
-            937.5999999999999,
-            968.9000000000001,
-            483.79999999999995,
-            482.70000000000005,
-            68.80000000000001,
-            172.89999999999998,
-            305.8
+            433.5
         ],
         "Y": [
             558.4,
             517.6,
             441.79999999999995,
             429.0,
-            387.70000000000005,
-            361.5,
-            403.29999999999995,
-            385.0,
-            719.1,
-            577.2,
-            415.79999999999995,
-            357.0,
-            337.7
+            387.70000000000005
         ],
         "T": [
             289,
@@ -4142,7 +4056,7 @@
             187,
             91
         ],
-        "target_object": "TBD",
+        "target_object": "potted plant",
         "max_fixations": 3
     },
     "grayscale_3_other.jpg": {
@@ -4358,7 +4272,7 @@
             173,
             419
         ],
-        "target_object": "TBD",
+        "target_object": "fork",
         "max_fixations": 3
     },
     "grayscale_8_oliva.jpg": {
@@ -4554,20 +4468,14 @@
             213.2,
             366.3,
             186.10000000000002,
-            79.69999999999999,
-            21.5,
-            13.900000000000006,
-            62.900000000000006
+            79.69999999999999
         ],
         "Y": [
             127.39999999999998,
             129.0,
             394.5,
             383.6,
-            376.8,
-            425.29999999999995,
-            430.79999999999995,
-            415.1
+            376.8
         ],
         "T": [
             199,
@@ -4619,7 +4527,7 @@
             144,
             258
         ],
-        "target_object": "TBD",
+        "target_object": "bowl",
         "max_fixations": 13
     },
     "grayscale_16_oliva.jpg": {
@@ -4644,9 +4552,7 @@
             699.7,
             683.4,
             687.4,
-            699.9,
-            678.9,
-            746.7
+            699.9
         ],
         "Y": [
             592.7,
@@ -4654,9 +4560,7 @@
             363.4,
             283.3,
             269.1,
-            259.2,
-            258.3,
-            243.2
+            259.2
         ],
         "T": [
             269,
@@ -4717,7 +4621,7 @@
             189,
             486
         ],
-        "target_object": "TBD",
+        "target_object": "cup",
         "max_fixations": 9
     },
     "grayscale_1_opensource.jpg": {
