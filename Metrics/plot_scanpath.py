@@ -170,7 +170,7 @@ if __name__ == '__main__':
                 while human_subject in checked_subjects:
                     human_subject = randint(0, number_of_subjects - 1)
         
-        subject = 'Human subject ' + str(human_subject + 1)
+        subject = 'Human subject ' + human_scanpaths_files[human_subject][4:6]
     
     dataset_path = path.join(constants.DATASETS_DIR, args.dataset)
     dataset_info = utils.load_dict_from_json(path.join(dataset_path, 'dataset_info.json'))
