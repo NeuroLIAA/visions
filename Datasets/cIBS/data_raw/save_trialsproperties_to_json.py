@@ -1,7 +1,6 @@
-from scipy.io import loadmat
-import json
 from os import listdir, path
-import re
+from scipy.io import loadmat
+import utils
 
 targets_positions_file = 'target_positions_filtered.mat'
 targets_positions_mat = loadmat(targets_positions_file)
@@ -11,8 +10,10 @@ initial_fixations_file = 'initial_fixations.mat'
 initial_fixations_mat = loadmat(initial_fixations_file)
 initial_fixations_mat = initial_fixations_mat['initial_fixations']
 
+targets_categories = utils.load_dict_from_json('targets_categories.json')
+
 image_height = 768
-image_width = 1024
+image_width  = 1024
 
 trials_properties = []
 for record in range(len(targets_positions_mat[0])):
@@ -28,17 +29,14 @@ for record in range(len(targets_positions_mat[0])):
     initial_fixation_row    = int(initial_fixations_mat['initial_fix'][0][record][0][0]) - 1
     initial_fixation_column = int(initial_fixations_mat['initial_fix'][0][record][0][1]) - 1
 
+    target_object = "TBD"
+    if image_name in targets_categories:
+        target_object = targets_categories[image_name]['target_object']
+
     trials_properties.append({ "image" : image_name, "target" : template_name, "dataset" : "cIBS Dataset", "target_matched_row" : matched_row, "target_matched_column" : matched_column, \
          "target_height" : target_height, "target_width" : target_width, "image_height" : image_height, "image_width" : image_width, "initial_fixation_row" : initial_fixation_row, "initial_fixation_column" : initial_fixation_column, \
-         "target_object" : "TBD"})
+         "target_object" : target_object})
 
+trials_properties = utils.sorted_alphanumeric(trials_properties)
 
-def sorted_alphanumeric(data):
-    convert = lambda text: int(text) if text.isdigit() else text.lower()
-    alphanum_key = lambda key: [ convert(c) for c in re.split('([0-9]+)', key['image']) ] 
-    return sorted(data, key=alphanum_key)
-
-trials_properties = sorted_alphanumeric(trials_properties)
-
-with open('../trials_properties.json', 'w') as fp:
-    json.dump(trials_properties, fp, indent=4)
+utils.save_to_json('../trials_properties.json', trials_properties)
