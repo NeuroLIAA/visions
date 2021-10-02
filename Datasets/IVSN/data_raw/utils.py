@@ -58,7 +58,7 @@ def get_name(img_id, _type):
     return name
 
 def load_filtered_images():
-    filtered_images_file = open('filtered_images', 'r')
+    filtered_images_file = open('trivial_images.txt', 'r')
     filtered_images = []
     for line in filtered_images_file:
         filtered_images.append(line.strip())
