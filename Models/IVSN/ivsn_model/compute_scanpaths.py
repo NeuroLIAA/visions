@@ -62,10 +62,10 @@ def create_scanpath_for_trial(trial, attention_map, human_trial_scanpath, image_
         scanpath_x.append(int(posX))
         scanpath_y.append(int(posY))
 
-        fixated_window_leftX  = max(posX - receptive_size // 2 + 1, 0)
-        fixated_window_leftY  = max(posY - receptive_size // 2 + 1, 0)
-        fixated_window_rightX = min(posX + receptive_size // 2, image_size[1])
-        fixated_window_rightY = min(posY + receptive_size // 2, image_size[0])
+        fixated_window_leftX  = max(posX - receptive_size[1] // 2 + 1, 0)
+        fixated_window_leftY  = max(posY - receptive_size[0] // 2 + 1, 0)
+        fixated_window_rightX = min(posX + receptive_size[1] // 2, image_size[1])
+        fixated_window_rightY = min(posY + receptive_size[0] // 2, image_size[0])
 
         # Apply inhibition of return
         attention_map[fixated_window_leftY:fixated_window_rightY, fixated_window_leftX:fixated_window_rightX] = 0
