@@ -4,7 +4,7 @@
     "image_height": 1024,
     "image_width": 1280,
     "max_scanpath_length": 30,
-    "receptive_size": 200,
+    "receptive_size": [45, 45],
     "images_dir": "stimuli/",
     "targets_dir": "targets/",
     "scanpaths_dir": "human_scanpaths/"
