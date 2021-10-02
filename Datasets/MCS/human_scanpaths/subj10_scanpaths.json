@@ -6,8 +6,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             147,
@@ -40,9 +40,9 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
-        "target_found": true,
+        "receptive_height": 20,
+        "receptive_width": 20,
+        "target_found": false,
         "target_bbox": [
             174,
             212,
@@ -62,7 +62,9 @@
             197.20000000000005,
             273.29999999999995,
             358.0,
-            280.4
+            280.4,
+            291.9,
+            257.70000000000005
         ],
         "Y": [
             274.1,
@@ -77,7 +79,9 @@
             427.79999999999995,
             437.9,
             180.89999999999998,
-            169.10000000000002
+            169.10000000000002,
+            285.3,
+            231.7
         ],
         "T": [
             226,
@@ -92,7 +96,9 @@
             131,
             103,
             229,
-            356
+            356,
+            210,
+            102
         ],
         "target_object": "microwave",
         "max_fixations": 80
@@ -104,8 +110,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             141,
@@ -147,8 +153,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             386,
@@ -187,8 +193,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             352,
@@ -224,8 +230,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             174,
@@ -261,9 +267,9 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
-        "target_found": true,
+        "receptive_height": 20,
+        "receptive_width": 20,
+        "target_found": false,
         "target_bbox": [
             1,
             378,
@@ -301,8 +307,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             56,
@@ -344,9 +350,9 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
-        "target_found": true,
+        "receptive_height": 20,
+        "receptive_width": 20,
+        "target_found": false,
         "target_bbox": [
             225,
             1,
@@ -357,19 +363,22 @@
             259.6,
             277.70000000000005,
             225.20000000000005,
-            112.0
+            112.0,
+            339.79999999999995
         ],
         "Y": [
             260.8,
             242.5,
             235.89999999999998,
-            279.1
+            279.1,
+            276.1
         ],
         "T": [
             336,
             151,
             232,
-            415
+            415,
+            76
         ],
         "target_object": "microwave",
         "max_fixations": 80
@@ -381,8 +390,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             136,
@@ -439,8 +448,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             1,
@@ -479,8 +488,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             143,
@@ -491,17 +500,20 @@
         "X": [
             260.20000000000005,
             240.10000000000002,
-            433.9
+            433.9,
+            477.6
         ],
         "Y": [
             265.5,
             272.4,
-            216.89999999999998
+            216.89999999999998,
+            178.3
         ],
         "T": [
             532,
             227,
-            178
+            178,
+            236
         ],
         "target_object": "microwave",
         "max_fixations": 80
@@ -513,8 +525,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             103,
@@ -526,19 +538,22 @@
             251.10000000000002,
             192.29999999999995,
             131.2,
-            128.89999999999998
+            128.89999999999998,
+            109.60000000000002
         ],
         "Y": [
             271.7,
             253.89999999999998,
             172.0,
-            143.2
+            143.2,
+            136.3
         ],
         "T": [
             430,
             290,
             206,
-            253
+            253,
+            509
         ],
         "target_object": "microwave",
         "max_fixations": 80
@@ -550,8 +565,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             148,
@@ -587,8 +602,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             165,
@@ -599,17 +614,20 @@
         "X": [
             258.29999999999995,
             248.89999999999998,
-            296.0
+            296.0,
+            377.79999999999995
         ],
         "Y": [
             282.5,
             283.5,
-            180.7
+            180.7,
+            164.5
         ],
         "T": [
             450,
             304,
-            113
+            113,
+            177
         ],
         "target_object": "microwave",
         "max_fixations": 80
@@ -621,8 +639,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             46,
@@ -649,8 +667,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             129,
@@ -689,8 +707,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             206,
@@ -726,8 +744,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             266,
@@ -769,8 +787,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             136,
@@ -780,15 +798,18 @@
         ],
         "X": [
             255.20000000000005,
-            274.20000000000005
+            274.20000000000005,
+            302.79999999999995
         ],
         "Y": [
             277.6,
-            196.10000000000002
+            196.10000000000002,
+            175.8
         ],
         "T": [
             808,
-            243
+            243,
+            166
         ],
         "target_object": "microwave",
         "max_fixations": 80
@@ -800,8 +821,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             1,
@@ -837,9 +858,9 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
-        "target_found": true,
+        "receptive_height": 20,
+        "receptive_width": 20,
+        "target_found": false,
         "target_bbox": [
             329,
             92,
@@ -904,8 +925,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             96,
@@ -932,8 +953,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": false,
         "target_bbox": [
             353,
@@ -978,8 +999,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             67,
@@ -1006,8 +1027,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             188,
@@ -1040,8 +1061,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             56,
@@ -1068,8 +1089,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             299,
@@ -1078,13 +1099,22 @@
             477
         ],
         "X": [
-            261.70000000000005
+            261.70000000000005,
+            235.20000000000005,
+            194.70000000000005,
+            376.6
         ],
         "Y": [
-            278.7
+            278.7,
+            286.0,
+            286.8,
+            321.4
         ],
         "T": [
-            230
+            230,
+            189,
+            249,
+            136
         ],
         "target_object": "microwave",
         "max_fixations": 80
@@ -1096,8 +1126,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": false,
         "target_bbox": [
             0,
@@ -1136,9 +1166,9 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
-        "target_found": true,
+        "receptive_height": 20,
+        "receptive_width": 20,
+        "target_found": false,
         "target_bbox": [
             208,
             46,
@@ -1170,8 +1200,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             147,
@@ -1185,7 +1215,8 @@
             482.79999999999995,
             281.0,
             169.10000000000002,
-            185.20000000000005
+            185.20000000000005,
+            201.10000000000002
         ],
         "Y": [
             284.8,
@@ -1193,7 +1224,8 @@
             300.2,
             244.3,
             259.8,
-            194.39999999999998
+            194.39999999999998,
+            176.5
         ],
         "T": [
             776,
@@ -1201,7 +1233,8 @@
             226,
             315,
             232,
-            562
+            562,
+            31
         ],
         "target_object": "microwave",
         "max_fixations": 80
@@ -1213,8 +1246,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             113,
@@ -1247,8 +1280,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             163,
@@ -1281,8 +1314,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             227,
@@ -1292,15 +1325,18 @@
         ],
         "X": [
             253.60000000000002,
-            222.60000000000002
+            222.60000000000002,
+            217.89999999999998
         ],
         "Y": [
             282.7,
-            280.1
+            280.1,
+            262.9
         ],
         "T": [
             521,
-            316
+            316,
+            81
         ],
         "target_object": "microwave",
         "max_fixations": 80
@@ -1312,8 +1348,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": false,
         "target_bbox": [
             128,
@@ -1373,8 +1409,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             225,
@@ -1386,19 +1422,22 @@
             268.1,
             255.5,
             210.89999999999998,
-            50.5
+            50.5,
+            26.600000000000023
         ],
         "Y": [
             277.8,
             285.3,
             295.5,
-            305.5
+            305.5,
+            292.3
         ],
         "T": [
             269,
             271,
             235,
-            210
+            210,
+            298
         ],
         "target_object": "microwave",
         "max_fixations": 80
@@ -1410,8 +1449,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             81,
@@ -1447,8 +1486,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             183,
@@ -1458,15 +1497,21 @@
         ],
         "X": [
             262.20000000000005,
-            264.29999999999995
+            264.29999999999995,
+            244.0,
+            212.70000000000005
         ],
         "Y": [
             283.2,
-            216.5
+            216.5,
+            241.7,
+            233.39999999999998
         ],
         "T": [
             77,
-            330
+            330,
+            196,
+            231
         ],
         "target_object": "microwave",
         "max_fixations": 80
@@ -1478,8 +1523,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             231,
@@ -1515,9 +1560,9 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
-        "target_found": true,
+        "receptive_height": 20,
+        "receptive_width": 20,
+        "target_found": false,
         "target_bbox": [
             131,
             96,
@@ -1549,8 +1594,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             64,
@@ -1586,8 +1631,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             124,
@@ -1596,13 +1641,22 @@
             395
         ],
         "X": [
-            254.0
+            254.0,
+            337.29999999999995,
+            201.10000000000002,
+            276.1
         ],
         "Y": [
-            266.3
+            266.3,
+            264.7,
+            254.5,
+            213.89999999999998
         ],
         "T": [
-            229
+            229,
+            118,
+            338,
+            326
         ],
         "target_object": "microwave",
         "max_fixations": 80
@@ -1614,8 +1668,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             188,
@@ -1642,8 +1696,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             281,
@@ -1656,21 +1710,24 @@
             277.9,
             214.20000000000005,
             322.29999999999995,
-            489.70000000000005
+            489.70000000000005,
+            567.7
         ],
         "Y": [
             272.7,
             257.6,
             263.3,
             327.2,
-            329.5
+            329.5,
+            361.9
         ],
         "T": [
             294,
             229,
             233,
             143,
-            69
+            69,
+            556
         ],
         "target_object": "microwave",
         "max_fixations": 80
@@ -1682,8 +1739,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             159,
@@ -1725,8 +1782,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             158,
@@ -1738,19 +1795,22 @@
             253.39999999999998,
             328.0,
             247.60000000000002,
-            230.70000000000005
+            230.70000000000005,
+            233.10000000000002
         ],
         "Y": [
             274.2,
             329.6,
             290.5,
-            207.5
+            207.5,
+            168.39999999999998
         ],
         "T": [
             92,
             228,
             415,
-            175
+            175,
+            415
         ],
         "target_object": "microwave",
         "max_fixations": 80
@@ -1762,9 +1822,9 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
-        "target_found": true,
+        "receptive_height": 20,
+        "receptive_width": 20,
+        "target_found": false,
         "target_bbox": [
             221,
             151,
@@ -1802,8 +1862,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             2,
@@ -1848,8 +1908,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             213,
@@ -1876,8 +1936,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": false,
         "target_bbox": [
             210,
@@ -1928,8 +1988,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             0,
@@ -1956,8 +2016,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             21,
@@ -1993,8 +2053,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             271,
@@ -2014,7 +2074,9 @@
             487.70000000000005,
             518.6,
             305.20000000000005,
-            368.0
+            368.0,
+            175.89999999999998,
+            367.20000000000005
         ],
         "Y": [
             251.5,
@@ -2028,7 +2090,9 @@
             252.39999999999998,
             268.6,
             226.7,
-            327.2
+            327.2,
+            260.2,
+            281.6
         ],
         "T": [
             88,
@@ -2042,7 +2106,9 @@
             215,
             153,
             259,
-            215
+            215,
+            127,
+            226
         ],
         "target_object": "microwave",
         "max_fixations": 80
@@ -2054,8 +2120,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": false,
         "target_bbox": [
             149,
@@ -2100,8 +2166,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             222,
@@ -2128,8 +2194,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": false,
         "target_bbox": [
             50,
@@ -2171,8 +2237,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             114,
@@ -2208,8 +2274,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             450,
@@ -2224,7 +2290,9 @@
             204.89999999999998,
             159.89999999999998,
             27.0,
-            9.600000000000023
+            9.600000000000023,
+            -12.399999999999977,
+            11.0
         ],
         "Y": [
             251.5,
@@ -2233,7 +2301,9 @@
             240.0,
             213.8,
             356.4,
-            434.1
+            434.1,
+            336.9,
+            487.6
         ],
         "T": [
             85,
@@ -2242,7 +2312,9 @@
             282,
             106,
             286,
-            255
+            255,
+            209,
+            383
         ],
         "target_object": "microwave",
         "max_fixations": 80
@@ -2254,8 +2326,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             6,
@@ -2294,8 +2366,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             3,
@@ -2331,8 +2403,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             253,
@@ -2343,17 +2415,23 @@
         "X": [
             251.20000000000005,
             226.39999999999998,
-            164.79999999999995
+            164.79999999999995,
+            205.0,
+            67.39999999999998
         ],
         "Y": [
             270.0,
             269.0,
-            264.5
+            264.5,
+            279.4,
+            300.6
         ],
         "T": [
             277,
             142,
-            370
+            370,
+            128,
+            676
         ],
         "target_object": "microwave",
         "max_fixations": 80
@@ -2365,8 +2443,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             72,
@@ -2396,8 +2474,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             114,
@@ -2408,17 +2486,20 @@
         "X": [
             247.79999999999995,
             233.70000000000005,
-            183.5
+            183.5,
+            184.60000000000002
         ],
         "Y": [
             259.3,
             237.2,
-            230.5
+            230.5,
+            203.39999999999998
         ],
         "T": [
             74,
             201,
-            474
+            474,
+            96
         ],
         "target_object": "microwave",
         "max_fixations": 80
@@ -2430,9 +2511,9 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
-        "target_found": true,
+        "receptive_height": 20,
+        "receptive_width": 20,
+        "target_found": false,
         "target_bbox": [
             182,
             497,
@@ -2470,8 +2551,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             14,
@@ -2507,8 +2588,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             198,
@@ -2535,8 +2616,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             154,
@@ -2575,8 +2656,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             172,
@@ -2585,13 +2666,19 @@
             435
         ],
         "X": [
-            236.0
+            236.0,
+            189.39999999999998,
+            275.6
         ],
         "Y": [
-            270.2
+            270.2,
+            280.9,
+            207.39999999999998
         ],
         "T": [
-            439
+            439,
+            260,
+            431
         ],
         "target_object": "microwave",
         "max_fixations": 80
@@ -2603,8 +2690,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             15,
@@ -2637,8 +2724,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             270,
@@ -2665,8 +2752,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             162,
@@ -2680,7 +2767,8 @@
             198.10000000000002,
             174.0,
             187.70000000000005,
-            176.79999999999995
+            176.79999999999995,
+            194.29999999999995
         ],
         "Y": [
             272.7,
@@ -2688,7 +2776,8 @@
             282.5,
             258.0,
             214.89999999999998,
-            199.7
+            199.7,
+            197.3
         ],
         "T": [
             245,
@@ -2696,7 +2785,8 @@
             322,
             99,
             313,
-            302
+            302,
+            90
         ],
         "target_object": "microwave",
         "max_fixations": 80
@@ -2708,8 +2798,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             175,
@@ -2742,8 +2832,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             207,
@@ -2776,8 +2866,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             271,
@@ -2816,8 +2906,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": false,
         "target_bbox": [
             213,
@@ -2874,8 +2964,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             0,
@@ -2911,8 +3001,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": false,
         "target_bbox": [
             72,
@@ -2957,8 +3047,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             1,
@@ -3000,8 +3090,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             13,
@@ -3014,21 +3104,24 @@
             227.79999999999995,
             427.20000000000005,
             89.69999999999999,
-            36.19999999999999
+            36.19999999999999,
+            41.0
         ],
         "Y": [
             270.3,
             262.4,
             203.5,
             222.10000000000002,
-            153.60000000000002
+            153.60000000000002,
+            130.60000000000002
         ],
         "T": [
             418,
             307,
             128,
             252,
-            493
+            493,
+            158
         ],
         "target_object": "microwave",
         "max_fixations": 80
@@ -3040,8 +3133,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             206,
@@ -3068,8 +3161,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             192,
@@ -3099,8 +3192,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": false,
         "target_bbox": [
             227,
@@ -3139,8 +3232,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": false,
         "target_bbox": [
             18,
@@ -3179,8 +3272,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": false,
         "target_bbox": [
             249,
@@ -3228,8 +3321,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             150,
@@ -3256,8 +3349,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             8,
@@ -3314,8 +3407,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": false,
         "target_bbox": [
             177,
@@ -3348,9 +3441,9 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
-        "target_found": true,
+        "receptive_height": 20,
+        "receptive_width": 20,
+        "target_found": false,
         "target_bbox": [
             39,
             170,
@@ -3397,8 +3490,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             87,
@@ -3428,8 +3521,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": false,
         "target_bbox": [
             204,
@@ -3471,8 +3564,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             128,
@@ -3499,9 +3592,9 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
-        "target_found": true,
+        "receptive_height": 20,
+        "receptive_width": 20,
+        "target_found": false,
         "target_bbox": [
             21,
             332,
@@ -3548,8 +3641,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             333,
@@ -3585,8 +3678,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": false,
         "target_bbox": [
             162,
@@ -3619,8 +3712,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             213,
@@ -3650,9 +3743,9 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
-        "target_found": true,
+        "receptive_height": 20,
+        "receptive_width": 20,
+        "target_found": false,
         "target_bbox": [
             126,
             22,
@@ -3687,9 +3780,9 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
-        "target_found": true,
+        "receptive_height": 20,
+        "receptive_width": 20,
+        "target_found": false,
         "target_bbox": [
             77,
             382,
@@ -3699,17 +3792,20 @@
         "X": [
             267.6,
             400.29999999999995,
-            393.1
+            393.1,
+            458.20000000000005
         ],
         "Y": [
             263.7,
             183.8,
-            151.0
+            151.0,
+            138.7
         ],
         "T": [
             799,
             169,
-            131
+            131,
+            327
         ],
         "target_object": "clock",
         "max_fixations": 80
@@ -3721,8 +3817,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": false,
         "target_bbox": [
             112,
@@ -3752,8 +3848,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             96,
@@ -3783,8 +3879,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             177,
@@ -3814,8 +3910,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             200,
@@ -3845,8 +3941,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             131,
@@ -3879,9 +3975,9 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
-        "target_found": true,
+        "receptive_height": 20,
+        "receptive_width": 20,
+        "target_found": false,
         "target_bbox": [
             203,
             224,
@@ -3913,8 +4009,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             1,
@@ -3941,9 +4037,9 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
-        "target_found": true,
+        "receptive_height": 20,
+        "receptive_width": 20,
+        "target_found": false,
         "target_bbox": [
             163,
             231,
@@ -3975,9 +4071,9 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
-        "target_found": true,
+        "receptive_height": 20,
+        "receptive_width": 20,
+        "target_found": false,
         "target_bbox": [
             114,
             89,
@@ -3987,17 +4083,20 @@
         "X": [
             268.0,
             196.70000000000005,
-            78.19999999999999
+            78.19999999999999,
+            208.89999999999998
         ],
         "Y": [
             272.8,
             117.69999999999999,
-            149.0
+            149.0,
+            185.0
         ],
         "T": [
             750,
             332,
-            411
+            411,
+            113
         ],
         "target_object": "clock",
         "max_fixations": 80
@@ -4009,8 +4108,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             181,
@@ -4037,9 +4136,9 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
-        "target_found": true,
+        "receptive_height": 20,
+        "receptive_width": 20,
+        "target_found": false,
         "target_bbox": [
             74,
             235,
@@ -4071,8 +4170,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             261,
@@ -4099,8 +4198,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             267,
@@ -4127,8 +4226,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             345,
@@ -4158,8 +4257,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": false,
         "target_bbox": [
             18,
@@ -4192,9 +4291,9 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
-        "target_found": true,
+        "receptive_height": 20,
+        "receptive_width": 20,
+        "target_found": false,
         "target_bbox": [
             150,
             373,
@@ -4203,15 +4302,18 @@
         ],
         "X": [
             263.0,
-            399.79999999999995
+            399.79999999999995,
+            403.29999999999995
         ],
         "Y": [
             263.3,
-            187.89999999999998
+            187.89999999999998,
+            179.8
         ],
         "T": [
             748,
-            163
+            163,
+            233
         ],
         "target_object": "clock",
         "max_fixations": 80
@@ -4223,8 +4325,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             406,
@@ -4257,8 +4359,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             151,
@@ -4291,8 +4393,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             337,
@@ -4325,8 +4427,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             344,
@@ -4362,8 +4464,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             148,
@@ -4393,8 +4495,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             268,
@@ -4421,8 +4523,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             140,
@@ -4452,8 +4554,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             126,
@@ -4483,9 +4585,9 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
-        "target_found": true,
+        "receptive_height": 20,
+        "receptive_width": 20,
+        "target_found": false,
         "target_bbox": [
             66,
             350,
@@ -4520,8 +4622,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             100,
@@ -4554,8 +4656,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             218,
@@ -4564,13 +4666,19 @@
             260
         ],
         "X": [
+            236.29999999999995,
+            246.70000000000005,
             236.29999999999995
         ],
         "Y": [
-            260.3
+            260.3,
+            192.8,
+            219.5
         ],
         "T": [
-            783
+            783,
+            133,
+            265
         ],
         "target_object": "clock",
         "max_fixations": 80
@@ -4582,8 +4690,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             123,
@@ -4613,9 +4721,9 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
-        "target_found": true,
+        "receptive_height": 20,
+        "receptive_width": 20,
+        "target_found": false,
         "target_bbox": [
             313,
             281,
@@ -4647,8 +4755,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             136,
@@ -4678,8 +4786,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             185,
@@ -4706,8 +4814,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             209,
@@ -4749,8 +4857,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             198,
@@ -4777,8 +4885,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             113,
@@ -4811,8 +4919,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             309,
@@ -4842,8 +4950,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             124,
@@ -4870,8 +4978,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             350,
@@ -4901,8 +5009,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             318,
@@ -4932,8 +5040,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             36,
@@ -4966,8 +5074,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             361,
@@ -5000,8 +5108,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             216,
@@ -5028,8 +5136,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": false,
         "target_bbox": [
             35,
@@ -5065,8 +5173,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             100,
@@ -5093,8 +5201,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             65,
@@ -5104,15 +5212,18 @@
         ],
         "X": [
             253.0,
-            357.1
+            357.1,
+            364.1
         ],
         "Y": [
             265.7,
-            157.5
+            157.5,
+            138.10000000000002
         ],
         "T": [
             744,
-            142
+            142,
+            176
         ],
         "target_object": "clock",
         "max_fixations": 80
@@ -5124,8 +5235,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             218,
@@ -5152,8 +5263,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             151,
@@ -5163,15 +5274,18 @@
         ],
         "X": [
             246.5,
-            264.20000000000005
+            264.20000000000005,
+            264.79999999999995
         ],
         "Y": [
             252.7,
-            194.0
+            194.0,
+            183.7
         ],
         "T": [
             737,
-            160
+            160,
+            108
         ],
         "target_object": "clock",
         "max_fixations": 80
@@ -5183,8 +5297,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": false,
         "target_bbox": [
             389,
@@ -5217,8 +5331,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             185,
@@ -5245,8 +5359,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": false,
         "target_bbox": [
             369,
@@ -5279,8 +5393,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             100,
@@ -5307,8 +5421,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": false,
         "target_bbox": [
             15,
@@ -5344,8 +5458,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             299,
@@ -5375,8 +5489,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": false,
         "target_bbox": [
             37,
@@ -5418,8 +5532,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             115,
@@ -5455,8 +5569,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             274,
@@ -5465,13 +5579,16 @@
             317
         ],
         "X": [
-            249.29999999999995
+            249.29999999999995,
+            268.70000000000005
         ],
         "Y": [
-            259.0
+            259.0,
+            289.4
         ],
         "T": [
-            799
+            799,
+            430
         ],
         "target_object": "clock",
         "max_fixations": 80
@@ -5483,8 +5600,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": false,
         "target_bbox": [
             269,
@@ -5520,8 +5637,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             220,
@@ -5530,13 +5647,16 @@
             312
         ],
         "X": [
-            243.70000000000005
+            243.70000000000005,
+            262.29999999999995
         ],
         "Y": [
-            260.3
+            260.3,
+            244.5
         ],
         "T": [
-            730
+            730,
+            613
         ],
         "target_object": "clock",
         "max_fixations": 80
@@ -5548,9 +5668,9 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
-        "target_found": true,
+        "receptive_height": 20,
+        "receptive_width": 20,
+        "target_found": false,
         "target_bbox": [
             222,
             10,
@@ -5585,8 +5705,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             206,
@@ -5595,13 +5715,16 @@
             238
         ],
         "X": [
-            245.60000000000002
+            245.60000000000002,
+            195.79999999999995
         ],
         "Y": [
-            254.8
+            254.8,
+            234.8
         ],
         "T": [
-            762
+            762,
+            428
         ],
         "target_object": "clock",
         "max_fixations": 80
@@ -5613,8 +5736,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             246,
@@ -5623,13 +5746,16 @@
             229
         ],
         "X": [
-            243.20000000000005
+            243.20000000000005,
+            164.0
         ],
         "Y": [
-            256.5
+            256.5,
+            295.2
         ],
         "T": [
-            828
+            828,
+            301
         ],
         "target_object": "clock",
         "max_fixations": 80
@@ -5641,8 +5767,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             72,
@@ -5672,8 +5798,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": false,
         "target_bbox": [
             166,
@@ -5706,8 +5832,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             111,
@@ -5740,8 +5866,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             241,
@@ -5768,8 +5894,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             105,
@@ -5799,8 +5925,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             331,
@@ -5836,8 +5962,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": false,
         "target_bbox": [
             182,
@@ -5867,8 +5993,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             118,
@@ -5904,9 +6030,9 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
-        "target_found": true,
+        "receptive_height": 20,
+        "receptive_width": 20,
+        "target_found": false,
         "target_bbox": [
             361,
             175,
@@ -5944,8 +6070,8 @@
         "image_width": 564,
         "screen_height": 800,
         "screen_width": 1280,
-        "receptive_height": 10,
-        "receptive_width": 10,
+        "receptive_height": 20,
+        "receptive_width": 20,
         "target_found": true,
         "target_bbox": [
             218,
@@ -6014,7 +6140,7 @@
         "screen_width": 1280,
         "receptive_height": 10,
         "receptive_width": 10,
-        "target_found": true,
+        "target_found": false,
         "target_bbox": [
             249,
             0,
@@ -6026,21 +6152,30 @@
             112.07381974248928,
             396.4944206008584,
             152.20738197424893,
-            9.440343347639486
+            9.440343347639486,
+            -83.70437768240345,
+            -47.298540772532185,
+            -34.372532188841205
         ],
         "Y": [
             265.53991416309015,
             267.0890987124464,
             208.84944206008583,
             208.80103004291848,
-            237.60618025751074
+            237.60618025751074,
+            280.4024034334764,
+            322.3756223175966,
+            290.56892703862667
         ],
         "T": [
             246,
             139,
             326,
             171,
-            248
+            248,
+            329,
+            386,
+            41
         ],
         "target_object": "microwave",
         "max_fixations": 80
@@ -6101,17 +6236,20 @@
         "X": [
             260.069356223176,
             228.89201716738197,
-            185.36961373390557
+            185.36961373390557,
+            322.90815450643777
         ],
         "Y": [
             266.12085836909876,
             272.22077253218885,
-            381.77716738197427
+            381.77716738197427,
+            418.5218884120172
         ],
         "T": [
             10,
             201,
-            164
+            164,
+            174
         ],
         "target_object": "microwave",
         "max_fixations": 80
@@ -6244,13 +6382,76 @@
             305
         ],
         "X": [
-            282.0484120171674
+            282.0484120171674,
+            241.62437768240346,
+            122.91811158798282,
+            256.29321888412017,
+            309.6432618025751,
+            276.91673819742493,
+            235.13716738197428,
+            446.1167381974249,
+            523.3823175965665,
+            454.2983690987125,
+            179.51175965665234,
+            477.052017167382,
+            463.35141630901285,
+            143.73527896995708,
+            177.2848068669528,
+            162.80961373390556,
+            45.60412017167381,
+            -66.95381974248927,
+            288.97133047210303,
+            334.8175107296138,
+            315.5011158798284,
+            310.3694420600859
         ],
         "Y": [
-            259.92412017167385
+            259.92412017167385,
+            300.9290987124464,
+            289.8427467811159,
+            248.01476394849783,
+            266.8470386266095,
+            267.427982832618,
+            265.2494420600858,
+            258.9558798283262,
+            263.02248927038625,
+            172.2499570815451,
+            257.1162231759657,
+            183.5299570815451,
+            174.52532188841204,
+            273.47948497854077,
+            269.073991416309,
+            199.65115879828326,
+            124.12841201716738,
+            231.60309012875535,
+            313.3225751072962,
+            317.43759656652367,
+            253.63055793991415,
+            241.6727896995708
         ],
         "T": [
-            21
+            21,
+            202,
+            172,
+            183,
+            141,
+            282,
+            284,
+            159,
+            301,
+            281,
+            312,
+            196,
+            227,
+            323,
+            140,
+            166,
+            136,
+            133,
+            197,
+            134,
+            190,
+            449
         ],
         "target_object": "microwave",
         "max_fixations": 80
@@ -6264,7 +6465,7 @@
         "screen_width": 1280,
         "receptive_height": 10,
         "receptive_width": 10,
-        "target_found": true,
+        "target_found": false,
         "target_bbox": [
             282,
             337,
@@ -6451,17 +6652,20 @@
         "X": [
             280.20875536480685,
             170.55553648068667,
-            197.47261802575107
+            197.47261802575107,
+            129.6473819742489
         ],
         "Y": [
             264.2327896995708,
             285.8729613733906,
-            232.95862660944206
+            232.95862660944206,
+            247.0949356223176
         ],
         "T": [
             202,
             158,
-            101
+            101,
+            303
         ],
         "target_object": "microwave",
         "max_fixations": 80
@@ -6475,7 +6679,7 @@
         "screen_width": 1280,
         "receptive_height": 10,
         "receptive_width": 10,
-        "target_found": true,
+        "target_found": false,
         "target_bbox": [
             190,
             361,
@@ -6488,7 +6692,9 @@
             431.7867811158799,
             428.49476394849785,
             399.2539055793992,
-            427.86540772532186
+            427.86540772532186,
+            437.49939914163093,
+            443.7929613733906
         ],
         "Y": [
             262.0542489270386,
@@ -6496,7 +6702,9 @@
             256.34163090128754,
             227.87536480686697,
             253.96944206008587,
-            221.14609442060086
+            221.14609442060086,
+            223.95399141630904,
+            217.41836909871247
         ],
         "T": [
             271,
@@ -6504,7 +6712,9 @@
             187,
             288,
             141,
-            307
+            307,
+            485,
+            44
         ],
         "target_object": "microwave",
         "max_fixations": 80
@@ -6601,7 +6811,7 @@
         "screen_width": 1280,
         "receptive_height": 10,
         "receptive_width": 10,
-        "target_found": true,
+        "target_found": false,
         "target_bbox": [
             188,
             455,
@@ -6617,7 +6827,16 @@
             263.11931330472106,
             266.8470386266095,
             251.4036051502146,
-            430.62489270386266
+            430.62489270386266,
+            397.6563090128756,
+            407.38712446351934,
+            416.4401716738198,
+            441.566008583691,
+            418.8607725321889,
+            201.49081545064382,
+            122.38557939914165,
+            195.63296137339057,
+            157.24223175965665
         ],
         "Y": [
             263.7970815450644,
@@ -6628,7 +6847,16 @@
             179.80223175965665,
             235.37922746781118,
             213.73905579399144,
-            214.65888412017168
+            214.65888412017168,
+            213.69064377682403,
+            179.60858369098713,
+            207.78437768240343,
+            295.7974248927039,
+            278.9016309012876,
+            132.01957081545063,
+            155.0636909871245,
+            264.0875536480687,
+            267.0890987124464
         ],
         "T": [
             222,
@@ -6639,7 +6867,16 @@
             172,
             139,
             105,
-            267
+            267,
+            333,
+            232,
+            225,
+            222,
+            188,
+            238,
+            298,
+            210,
+            93
         ],
         "target_object": "microwave",
         "max_fixations": 80
@@ -6671,7 +6908,8 @@
             519.3641201716738,
             572.6657510729615,
             478.4075536480687,
-            193.98695278969961
+            193.98695278969961,
+            239.10695278969956
         ],
         "Y": [
             254.0662660944206,
@@ -6684,7 +6922,8 @@
             302.57510729613733,
             243.02832618025752,
             427.42969957081544,
-            157.24223175965668
+            157.24223175965668,
+            190.50128755364807
         ],
         "T": [
             70,
@@ -6697,7 +6936,8 @@
             156,
             396,
             158,
-            188
+            188,
+            99
         ],
         "target_object": "microwave",
         "max_fixations": 80
@@ -6724,7 +6964,10 @@
             327.36206008583696,
             233.3943347639485,
             106.70008583690986,
-            273.9636051502146
+            273.9636051502146,
+            225.212703862661,
+            275.56120171673825,
+            219.16120171673822
         ],
         "Y": [
             259.29476394849786,
@@ -6732,7 +6975,10 @@
             235.86334763948497,
             192.72824034334766,
             293.66729613733906,
-            210.5922746781116
+            210.5922746781116,
+            374.1764806866953,
+            259.7788841201717,
+            242.10849785407729
         ],
         "T": [
             60,
@@ -6740,7 +6986,10 @@
             137,
             253,
             192,
-            219
+            219,
+            167,
+            196,
+            147
         ],
         "target_object": "microwave",
         "max_fixations": 80
@@ -6767,7 +7016,8 @@
             186.87038626609444,
             258.56858369098717,
             264.9105579399142,
-            368.02815450643783
+            368.02815450643783,
+            362.46077253218886
         ],
         "Y": [
             262.4415450643777,
@@ -6775,7 +7025,8 @@
             261.08600858369095,
             244.43227467811158,
             193.9869527896996,
-            203.66935622317598
+            203.66935622317598,
+            202.07175965665235
         ],
         "T": [
             223,
@@ -6783,7 +7034,8 @@
             37,
             186,
             178,
-            343
+            343,
+            105
         ],
         "target_object": "microwave",
         "max_fixations": 80
@@ -6831,7 +7083,7 @@
         "screen_width": 1280,
         "receptive_height": 10,
         "receptive_width": 10,
-        "target_found": true,
+        "target_found": false,
         "target_bbox": [
             116,
             415,
@@ -6842,19 +7094,28 @@
             281.7095278969957,
             241.67278969957084,
             127.56566523605152,
-            392.71828326180264
+            392.71828326180264,
+            525.2219742489272,
+            518.7831759656652,
+            548.9922746781116
         ],
         "Y": [
             261.3280686695279,
             256.5836909871245,
             283.9364806866953,
-            189.38781115879829
+            189.38781115879829,
+            189.33939914163093,
+            142.62180257510732,
+            141.7987982832618
         ],
         "T": [
             59,
             128,
             98,
-            181
+            181,
+            245,
+            321,
+            80
         ],
         "target_object": "microwave",
         "max_fixations": 80
@@ -6976,17 +7237,20 @@
         "X": [
             280.35399141630904,
             275.028669527897,
-            202.16858369098713
+            202.16858369098713,
+            186.82197424892703
         ],
         "Y": [
             262.9740772532189,
             184.5466094420601,
-            298.02437768240344
+            298.02437768240344,
+            288.29356223175967
         ],
         "T": [
             215,
             127,
-            260
+            260,
+            238
         ],
         "target_object": "microwave",
         "max_fixations": 80
