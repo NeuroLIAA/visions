@@ -1,53 +1,39 @@
 from skimage import io, measure, color, transform
-from os import listdir
-import json
-import re
+from os import listdir, path
+import utils
 
+""" This script requires the gt files, which include the targets bboxes, to be located at '../gt' """
 
-def sorted_alphanumeric(data):
-    convert = lambda text: int(text) if text.isdigit() else text.lower()
-    alphanum_key = lambda key: [ convert(c) for c in re.split('([0-9]+)', key) ] 
-    return sorted(data, key=alphanum_key)
+gt_dir   = '../gt'
+gt_files = utils.sorted_alphanumeric(listdir(gt_dir))
 
-def getName(imgID, _type):
-    strNumber = str(imgID)
-    if imgID < 100:
-        strNumber = '0' + strNumber
-    if imgID < 10:
-        strNumber = '0' + strNumber
+targets_categories = utils.load_dict_from_json('targets_categories.json')
 
-    if (_type == 'image'):
-        name = 'img' + strNumber + '.jpg'
-    else:
-        name = 't' + strNumber + '.jpg'
-
-    return name
-
-gtDir = '../stimuli/gt/'
-gtFiles = sorted_alphanumeric(listdir(gtDir))
-
-target_positions = []
-for gt in gtFiles:
-    imgID = gt[3:-4]
-    gtImg = io.imread(gtDir + gt)
-    mask = color.rgb2gray(gtImg) > 0.5
+trials_properties = []
+for gt in gt_files:
+    img_id = gt[2:-4]
+    gt_img = io.imread(path.join(gt_dir, gt))
+    mask   = color.rgb2gray(gt_img) > 0.5
     # Label target region
-    label_gtImg = measure.label(mask)
+    label_gt_img = measure.label(mask)
     # Get target region
-    target = measure.regionprops(label_gtImg)
+    target = measure.regionprops(label_gt_img)
     start_row, start_column, end_row, end_column = target[0].bbox
     target_height = end_row - start_row - 1
-    target_width = end_column - start_column - 1
+    target_width  = end_column - start_column - 1
 
-    img_height = gtImg.shape[0]
-    img_width  = gtImg.shape[1]
+    img_height = gt_img.shape[0]
+    img_width  = gt_img.shape[1]
 
-    imgName = getName(int(imgID), 'image')
-    tgName  = getName(int(imgID), 'target')
+    img_name = utils.get_name(int(img_id), 'image')
+    tg_name  = utils.get_name(int(img_id), 'target')
 
-    target_positions.append({ "image" : imgName, "target" : tgName, "dataset" : "IVSN Natural Design Dataset", "target_matched_row" : start_row, "target_matched_column" : start_column, \
-         "target_height" : target_height, "target_width" : target_width, "image_height" : img_height, "image_width" : img_width, "initial_fixation_row" : 511, "initial_fixation_column" : 639})
+    target_object = 'TBD'
+    if img_name in targets_categories:
+        target_object = targets_categories[img_name]['target_object']
 
-jsonStructsFile = open('../trials_properties.json', 'w')
-json.dump(target_positions, jsonStructsFile, indent = 4)
-jsonStructsFile.close()
+    trials_properties.append({ "image" : img_name, "target" : tg_name, "dataset" : "IVSN Natural Design Dataset", "target_matched_row" : start_row, "target_matched_column" : start_column, \
+         "target_height" : target_height, "target_width" : target_width, "image_height" : img_height, "image_width" : img_width, \
+         "initial_fixation_row" : 511, "initial_fixation_column" : 639, "target_object" : target_object})
+
+utils.save_to_json('../trials_properties.json', trials_properties)
