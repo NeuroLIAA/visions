@@ -40,9 +40,9 @@ def run(trials_properties, targets_dir, chopped_dir):
 
     MMConv = nn.Conv2d(num_templates, 1, conv_size, padding=1)
 
-    for trial in trials_properties:
+    for index, trial in enumerate(trials_properties):
         image_name = trial['image']
-        print('Working on ' + image_name)  
+        print('Working on ' + image_name + ' (' + str(index + 1) + '/' + str(len(trials_properties)) + ')...')  
 
         image_id = image_name[:-4]
 
