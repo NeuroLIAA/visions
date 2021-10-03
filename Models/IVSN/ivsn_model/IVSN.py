@@ -59,7 +59,8 @@ def run(trials_properties, targets_dir, chopped_dir):
         chopped_files       = listdir(current_chopped_dir)
         for chopped_image_name in chopped_files:
             # Check for precomputed files
-            if chopped_image_name.endswith('_layertopdown.json'):
+            precomputed_file = path.join(current_chopped_dir, chopped_image_name[:-4] + '_layertopdown.json')
+            if (chopped_image_name.endswith('.jpg') and path.exists(precomputed_file)) or chopped_image_name.endswith('_layertopdown.json'):
                 continue    
 
             chopped_image = Image.open(path.join(current_chopped_dir, chopped_image_name)).convert('RGB')
