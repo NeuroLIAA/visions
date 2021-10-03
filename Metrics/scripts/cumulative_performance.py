@@ -60,8 +60,6 @@ class Cumulative_performance:
             targets_found_at_fixation_number.append(0)
 
         for image_name in scanpaths:
-            if self.dataset_name == 'COCOSearch18':
-                print('Number of images: ' + str(len(scanpaths)))
             scanpath_info   = scanpaths[image_name]
             scanpath_length = len(scanpath_info['X'])
 
