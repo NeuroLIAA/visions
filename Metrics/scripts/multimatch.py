@@ -5,11 +5,12 @@ from . import utils
 from os import listdir, path
 
 class Multimatch:
-    def __init__(self, dataset_name, human_scanpaths_dir, dataset_results_dir, compute):
+    def __init__(self, dataset_name, human_scanpaths_dir, dataset_results_dir, number_of_images, compute):
         self.multimatch_values = {}
         self.dataset_name = dataset_name
         self.human_scanpaths_dir = human_scanpaths_dir
         self.dataset_results_dir = dataset_results_dir
+        self.number_of_images = number_of_images
         
         self.null_object = not compute
 
@@ -17,14 +18,14 @@ class Multimatch:
         if self.null_object:
             return
             
-        number_of_models = len(self.multimatch_values.keys())
+        number_of_models = len(self.multimatch_values)
         fig, axs = plt.subplots(1, number_of_models, sharex=True, sharey=True, figsize=(10, 5))
 
         ax_index = 0
         for model in self.multimatch_values:
             model_name = model
-            model_vs_human_multimatch = self.multimatch_values[model]['model_vs_humans']
-            humans_multimatch         = self.multimatch_values[model]['human_mean']
+            model_vs_human_multimatch = utils.get_random_subset(self.multimatch_values[model]['model_vs_humans'], size=self.number_of_images)
+            humans_multimatch         = utils.get_random_subset(self.multimatch_values[model]['human_mean'], size=self.number_of_images)
             model_color               = self.multimatch_values[model]['plot_color']
 
             self.add_to_plot(axs[ax_index], model_name, model_vs_human_multimatch, humans_multimatch, model_color)

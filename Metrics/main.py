@@ -19,8 +19,12 @@ def main(compute_cumulative_performance, compute_multimatch, compute_human_scanp
         max_scanpath_length = dataset_info['max_scanpath_length']
         number_of_images    = dataset_info['number_of_images']
 
+        # Define subset of images for COCOSearch18
+        if dataset_name == 'COCOSearch18':
+            number_of_images = constants.COCOSEARCH_SUBSET_SIZE
+
         # Initialize objects
-        multimatch = Multimatch(dataset_name, human_scanpaths_dir, dataset_results_dir, compute_multimatch)
+        multimatch = Multimatch(dataset_name, human_scanpaths_dir, dataset_results_dir, number_of_images, compute_multimatch)
 
         subjects_cumulative_performance = Cumulative_performance(dataset_name, number_of_images, max_scanpath_length, compute_cumulative_performance)
         subjects_cumulative_performance.add_human_mean(human_scanpaths_dir, constants.HUMANS_COLOR)

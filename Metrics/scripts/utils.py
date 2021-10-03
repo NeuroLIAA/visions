@@ -1,4 +1,14 @@
 import json
+import random
+import constants
+
+def get_random_subset(trials_dict, size):
+    if len(trials_dict) <= size:
+        return trials_dict
+    
+    random.seed(constants.RANDOM_SEED)
+
+    return dict(random.sample(trials_dict.items(), size))
 
 def load_dict_from_json(json_file_path):
     with open(json_file_path, 'r') as json_file:

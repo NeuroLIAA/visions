@@ -17,8 +17,9 @@ class Cumulative_performance:
             return
 
         # If a model has performed visual search on a small subset of images (less than 80%), it is not included in the metric
-        too_few_images = len(model_scanpaths.keys()) < self.number_of_images * 0.8
+        too_few_images = len(model_scanpaths) < self.number_of_images * 0.8
         if not too_few_images:
+            model_scanpaths = utils.get_random_subset(model_scanpaths, size=self.number_of_images)
             model_cumulative_performance = self.compute_cumulative_performance(model_scanpaths)
             self.subjects_cumulative_performance.append({'subject': model_name, 'cumulative_performance': model_cumulative_performance, 'color': model_color})
     
@@ -30,6 +31,7 @@ class Cumulative_performance:
         humans_scanpaths_files = listdir(humans_scanpaths_dir)
         for human_scanpaths_file in humans_scanpaths_files:
             human_scanpaths = utils.load_dict_from_json(path.join(humans_scanpaths_dir, human_scanpaths_file))
+            human_scanpaths = utils.get_random_subset(human_scanpaths, size=self.number_of_images)
             if self.dataset_name == 'cIBS':
                 humans_cumulative_performance.append(self.compute_human_cumulative_performance_cIBS(human_scanpaths))
             else:
@@ -58,6 +60,8 @@ class Cumulative_performance:
             targets_found_at_fixation_number.append(0)
 
         for image_name in scanpaths:
+            if self.dataset_name == 'COCOSearch18':
+                print('Number of images: ' + str(len(scanpaths)))
             scanpath_info   = scanpaths[image_name]
             scanpath_length = len(scanpath_info['X'])
 
