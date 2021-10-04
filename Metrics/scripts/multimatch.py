@@ -206,9 +206,7 @@ class Multimatch:
 
     def compute_multimatch(self, trial_info, trial_to_compare_info, screen_size):
         target_found   = trial_info['target_found'] and trial_to_compare_info['target_found']
-        # Due to the low numbers of targets found of the IRL model on cIBS dataset, multimatch is computed for all trials
-        is_irl_on_cibs = 'IRL' in trial_to_compare_info['subject'] and 'cIBS' in trial_to_compare_info['dataset']
-        if not (target_found or is_irl_on_cibs):
+        if not target_found:
             return []
 
         trial_scanpath_X = trial_info['X']
