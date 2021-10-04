@@ -29,7 +29,7 @@ def main(dataset_name, human_subject):
     targets_dir       = path.join(dataset_path, dataset_info['targets_dir'])
     max_fixations     = dataset_info['max_scanpath_length']
     images_size       = (dataset_info['image_height'], dataset_info['image_width'])
-    receptive_size    = dataset_info['receptive_size']
+    receptive_size    = [min(dataset_info['mean_target_size']), min(dataset_info['mean_target_size'])]
     dataset_full_name = dataset_info['dataset_name']
 
     preprocessed_images_dir = path.join('chopped_images', dataset_full_name)
