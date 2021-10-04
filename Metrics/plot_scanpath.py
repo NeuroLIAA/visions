@@ -38,7 +38,7 @@ def plot_scanpath(img, xs, ys, fixation_size, bbox, title, save_path):
     rect = Rectangle((bbox[0], bbox[1]), bbox[2], bbox[3], alpha=0.7, edgecolor='red', facecolor='none', linewidth=2)
     ax.add_patch(rect)
 
-    # To draw grid, useful for plotting cIBS's scanpaths
+    # To draw grid, useful for plotting nnIBS's scanpaths
     # box_size = 32
     # box_x = 0
     # box_y = 0
@@ -94,8 +94,8 @@ def process_image(img_scanpath, subject, image_name, dataset_name, trial_info, i
     original_img_size = img.shape[:2]
 
     is_grid = False
-    # cIBS uses a grid for images, it's necessary to upscale it
-    if subject == 'cIBS':
+    # nnIBS uses a grid for images, it's necessary to upscale it
+    if 'IBS' in subject:
         is_grid = True
         img_size_used = (768, 1024)
         fixation_size = (img_size_used[0] // scanpath_img_size[0], img_size_used[1] // scanpath_img_size[1])
