@@ -8,7 +8,7 @@ from os import path
 
 def setup_and_run(dataset_name, config_name, image_name, image_range, human_subject, number_of_processes, save_probability_maps):
     dataset_path = path.join(constants.DATASETS_PATH, dataset_name)
-    output_path  = path.join(constants.RESULTS_PATH, path.join(dataset_name + '_dataset', 'cIBS'))
+    output_path  = path.join(constants.RESULTS_PATH, path.join(dataset_name + '_dataset', 'nnIBS'))
 
     trials_properties_file = path.join(dataset_path, 'trials_properties.json')
 
