@@ -52,6 +52,7 @@ class TargetSimilarity():
             target_similarity_map = io.imread(file_path)
         else:
             # Calculate target similarity based on a specific method  
+            print('Building target similarity map...')
             target_similarity_map = self.compute_target_similarity(image, target, target_bbox)
             if self.save_similarity_maps:
                 utils.save_similarity_map(save_path, filename, target_similarity_map)
