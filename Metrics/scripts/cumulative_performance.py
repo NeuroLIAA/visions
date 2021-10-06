@@ -33,14 +33,14 @@ class Cumulative_performance:
         for human_scanpaths_file in humans_scanpaths_files:
             human_scanpaths = utils.load_dict_from_json(path.join(humans_scanpaths_dir, human_scanpaths_file))
             human_scanpaths = utils.get_random_subset(human_scanpaths, size=self.number_of_images)
-            if self.dataset_name == 'cIBS':
-                humans_cumulative_performance.append(self.compute_human_cumulative_performance_cIBS(human_scanpaths))
+            if self.dataset_name == 'Interiors':
+                humans_cumulative_performance.append(self.compute_human_cumulative_performance_interiors(human_scanpaths))
             else:
                 humans_cumulative_performance.append(self.compute_cumulative_performance(human_scanpaths))
         
-        # cIBS dataset caps the number of maximum saccades for humans at 2, 4, 8 and 12
+        # Interiors dataset caps the number of maximum saccades for humans at 2, 4, 8 and 12
         # Therefore, cumulative performance is calculated at fixation number 3, 5, 9 and 13
-        if self.dataset_name == 'cIBS':
+        if self.dataset_name == 'Interiors':
             number_of_subjects = len(humans_scanpaths_files)
             humans_cumulative_performance_mean = [np.empty(n) for n in np.repeat(number_of_subjects, 4)]
             subject_index = 0
@@ -72,8 +72,8 @@ class Cumulative_performance:
         
         return subject_cumulative_performance
 
-    def compute_human_cumulative_performance_cIBS(self, scanpaths):
-        """ Since the cIBS dataset limits the number of saccades a subject can do at a certain trial, 
+    def compute_human_cumulative_performance_interiors(self, scanpaths):
+        """ Since the Interiors dataset limits the number of saccades a subject can do at a certain trial, 
             human cumulative performance is measured by counting the number of succesful trials in each specific limit (3, 5, 9 or 13 fixations)
             divided by the total number of trials with that limit. """
         cumulative_performance_at_particular_fixations = []
@@ -118,7 +118,7 @@ class Cumulative_performance:
             subject_name = subject['subject']
             subject_cumulative_performance = subject['cumulative_performance'] 
 
-            if subject_name == 'Humans' and self.dataset_name == 'cIBS':
+            if subject_name == 'Humans' and self.dataset_name == 'Interiors':
                 ax.boxplot(subject_cumulative_performance, notch=True, vert=True, whiskerprops={'linestyle': (0, (5, 10)), 'color': subject['color']}, capprops={'color': subject['color']}, \
                     boxprops={'color': subject['color']}, flierprops={'marker': '+', 'markeredgecolor': subject['color']}, medianprops={'color': subject['color']}, positions=[3, 5, 9, 13])
             else:
@@ -148,7 +148,7 @@ class Cumulative_performance:
             subject_name = subject['subject']
             subject_cumulative_performance = list(subject['cumulative_performance'])
             start = 1
-            if subject_name == 'Humans' and self.dataset_name == 'cIBS':
+            if subject_name == 'Humans' and self.dataset_name == 'Interiors':
                 fixations = np.linspace(0, 1, num=len(subject_cumulative_performance))
                 for index, cum_perf in enumerate(subject_cumulative_performance):
                     subject_cumulative_performance[index] = np.mean(cum_perf)
