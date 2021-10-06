@@ -18,7 +18,7 @@ def rescale_coordinate(value, old_size, new_size):
     return floor((value / old_size) * new_size)
 
 def add_scanpath_to_dict(model_name, image_name, image_size, scanpath_x, scanpath_y, target_object, patch_size, max_saccades, dataset_name, dict_):
-    dict_[image_name] = {'subject' : model_name, 'dataset' : dataset_name, 'image_height' : image_size[0], 'image_width' : image_size[1], \
+    dict_[image_name] = {'subject' : model_name, 'dataset' : dataset_name + ' Dataset', 'image_height' : image_size[0], 'image_width' : image_size[1], \
         'receptive_height' : patch_size[1], 'receptive_width' : patch_size[0], 'target_found' : False, 'target_bbox' : np.zeros(shape=4), \
                  'X' : list(map(int, scanpath_x)), 'Y' : list(map(int, scanpath_y)), 'target_object' : target_object, 'max_fixations' : max_saccades + 1
         }
