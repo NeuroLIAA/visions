@@ -27,6 +27,7 @@ number_of_trials    = 0
 targets_found       = 0
 wrong_targets_found = 0
 cropped_scanpaths   = 0
+cropped_fixations   = 0
 collapsed_scanpaths = 0
 collapsed_fixations = 0
 
@@ -93,7 +94,9 @@ for subject_data_file in subjects_files:
         # Crop scanpaths as soon as a fixation falls between the target's bounding box
         target_found, scanpath_x, scanpath_y = utils.crop_scanpath(scanpath_x, scanpath_y, target_bbox, receptive_size)
         if target_found: targets_found += 1
-        if len(scanpath_x) < number_of_fixations: cropped_scanpaths += 1
+        if len(scanpath_x) < number_of_fixations:
+            cropped_scanpaths += 1
+            cropped_fixations += number_of_fixations - len(scanpath_x)
 
         last_fixation_X = scanpath_x[len(scanpath_x) - 1]
         last_fixation_Y = scanpath_y[len(scanpath_y) - 1]
@@ -115,7 +118,7 @@ for subject_data_file in subjects_files:
         scanpath_x = list(map(int, scanpath_x))
         scanpath_y = list(map(int, scanpath_y))
 
-        subject_trials[image_name] = { "subject" : subject_id, "dataset" : "IVSN Natural Design Dataset", "image_height" : image_size[0], "image_width" : image_size[1], \
+        subject_trials[image_name] = { "subject" : subject_id, "dataset" : "Unrestricted Dataset", "image_height" : image_size[0], "image_width" : image_size[1], \
             "screen_height" : screen_size[0], "screen_width" : screen_size[1], "receptive_height" : receptive_size[0], "receptive_width" : receptive_size[1], \
                 "target_found" : target_found, "target_bbox" : target_bbox, "X" : scanpath_x, "Y" : scanpath_y, "T" : fix_time.tolist(), "target_object" : target_object, "max_fixations" : 80}
 
@@ -129,3 +132,4 @@ print("Total targets found: " + str(targets_found) + "/" + str(number_of_trials)
 print("Collapsed scanpaths (discretized in size " + str(receptive_size) + ") : " + str(collapsed_scanpaths))
 print("Number of fixations collapsed: " + str(collapsed_fixations))
 print("Cropped scanpaths (target found earlier): " + str(cropped_scanpaths))
+print("Number of fixations cropped: " + str(cropped_fixations))

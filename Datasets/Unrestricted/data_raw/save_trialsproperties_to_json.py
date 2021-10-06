@@ -32,7 +32,7 @@ for gt in gt_files:
     if img_name in targets_categories:
         target_object = targets_categories[img_name]['target_object']
 
-    trials_properties.append({ "image" : img_name, "target" : tg_name, "dataset" : "IVSN Natural Design Dataset", "target_matched_row" : start_row, "target_matched_column" : start_column, \
+    trials_properties.append({ "image" : img_name, "target" : tg_name, "dataset" : "Unrestricted Dataset", "target_matched_row" : start_row, "target_matched_column" : start_column, \
          "target_height" : target_height, "target_width" : target_width, "image_height" : img_height, "image_width" : img_width, \
          "initial_fixation_row" : 511, "initial_fixation_column" : 639, "target_object" : target_object})
 
