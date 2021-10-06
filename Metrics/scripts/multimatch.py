@@ -56,10 +56,10 @@ class Multimatch:
         y_vector = []
         trials_names = []
         for image_name in multimatch_values_per_image_x:
-            if not(image_name in multimatch_values_per_image_y):
+            if not image_name in multimatch_values_per_image_y:
                 continue
 
-            # Exclude temporal dimension and compute the mean of all the others dimensions
+            # Exclude temporal dimension and compute the mean of all the others dimensions: vector, direction, length, position
             value_x = np.mean(multimatch_values_per_image_x[image_name][:-1])
             value_y = np.mean(multimatch_values_per_image_y[image_name][:-1])
 
@@ -84,6 +84,60 @@ class Multimatch:
         # Get most-similar to less-similar trials names
         scores_diff = np.array(x_vector) - np.array(y_vector)
         self.print_trials_names_in_similarity_order(scores_diff, trials_names, model_name)
+    
+    def save_results(self, save_path, filename):
+        if self.null_object: return
+
+        dataset_metrics_file = path.join(save_path, filename)
+        if path.exists(path.join(save_path, filename)):
+            dataset_metrics = utils.load_dict_from_json(dataset_metrics_file)
+        else:
+            dataset_metrics = {}
+
+        for model in self.multimatch_values:
+            model_vs_human_multimatch = utils.get_random_subset(self.multimatch_values[model]['model_vs_humans'], size=self.number_of_images)
+            humans_multimatch         = utils.get_random_subset(self.multimatch_values[model]['human_mean'], size=self.number_of_images)
+
+            corr_coef, mm_avg, mm_vec, mm_dir, mm_len, mm_pos = self.process_results(model_vs_human_multimatch, humans_multimatch)
+            metrics = {'Corr': corr_coef, 'AvgMM': mm_avg, 'MMvec': mm_vec, 'MMdir': mm_dir, 'MMlen': mm_len, 'MMpos': mm_pos}
+
+            if model in dataset_metrics:
+                dataset_metrics[model].update(metrics)
+            else:
+                dataset_metrics[model] = metrics
+        
+        utils.save_to_json(dataset_metrics_file, dataset_metrics)
+    
+    def process_results(self, model_vs_human_multimatch, humans_multimatch):
+        model_vs_humans_vec  = []
+        model_vs_humans_dir  = []
+        model_vs_humans_pos  = []
+        model_vs_humans_len  = []
+        model_vs_humans_mean = []
+        humans_mean          = []
+        for image_name in model_vs_human_multimatch:
+            if not image_name in humans_multimatch:
+                continue
+
+            # Exclude temporal dimension and keep all the others dimensions: vector, direction, length, position
+            img_model_vs_human = model_vs_human_multimatch[image_name][:-1]
+            img_humans         = humans_multimatch[image_name][:-1]
+
+            model_vs_humans_vec.append(img_model_vs_human[0])
+            model_vs_humans_dir.append(img_model_vs_human[1])
+            model_vs_humans_len.append(img_model_vs_human[2])
+            model_vs_humans_pos.append(img_model_vs_human[3])
+            model_vs_humans_mean.append(np.mean(img_model_vs_human))
+            humans_mean.append(np.mean(img_humans))
+
+        corr_coef = np.corrcoef(model_vs_humans_mean, humans_mean)[0, 1]
+        mm_avg    = np.mean(model_vs_humans_mean)
+        mm_vec    = np.mean(model_vs_humans_vec)
+        mm_dir    = np.mean(model_vs_humans_dir)
+        mm_len    = np.mean(model_vs_humans_len)
+        mm_pos    = np.mean(model_vs_humans_pos)
+
+        return corr_coef, mm_avg, mm_vec, mm_dir, mm_len, mm_pos
 
     def print_trials_names_in_similarity_order(self, scores_diff, trials_names, model_name):
         scores_diff = list(zip(scores_diff, trials_names))
