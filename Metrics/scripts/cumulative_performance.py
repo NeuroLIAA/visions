@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from . import utils
+from scipy import integrate
 from os import listdir, path
 
 class Cumulative_performance:
@@ -133,3 +134,35 @@ class Cumulative_performance:
         plt.ylabel('Cumulative performance')
         plt.savefig(path.join(save_path, 'Cumulative performance.png'))
         plt.show()
+    
+    def save_results(self, save_path, filename):
+        if self.null_object: return
+
+        dataset_metrics_file = path.join(save_path, filename)
+        if path.exists(path.join(save_path, filename)):
+            dataset_metrics = utils.load_dict_from_json(dataset_metrics_file)
+        else:
+            dataset_metrics = {}
+
+        for subject in self.subjects_cumulative_performance:
+            subject_name = subject['subject']
+            subject_cumulative_performance = list(subject['cumulative_performance'])
+            start = 1
+            if subject_name == 'Humans' and self.dataset_name == 'cIBS':
+                fixations = np.linspace(0, 1, num=len(subject_cumulative_performance))
+                for index, cum_perf in enumerate(subject_cumulative_performance):
+                    subject_cumulative_performance[index] = np.mean(cum_perf)
+                
+                start = 0
+            else:
+                fixations = np.linspace(0, 1, num=self.max_scanpath_length)
+            
+            auc = integrate.trapezoid(y=subject_cumulative_performance[start:], x=fixations)
+
+            metrics = {'AUC': auc}
+            if subject_name in dataset_metrics:
+                dataset_metrics[subject_name].update(metrics)
+            else:
+                dataset_metrics[subject_name] = metrics
+        
+        utils.save_to_json(dataset_metrics_file, dataset_metrics)

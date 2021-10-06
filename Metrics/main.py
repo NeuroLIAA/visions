@@ -51,6 +51,7 @@ def main(compute_cumulative_performance, compute_multimatch, compute_human_scanp
 
             color_index += 1
 
+        subjects_cumulative_performance.save_results(save_path=dataset_results_dir, filename=constants.FILENAME)
         multimatch.save_results(save_path=dataset_results_dir, filename=constants.FILENAME)
 
         subjects_cumulative_performance.plot(save_path=dataset_results_dir)
