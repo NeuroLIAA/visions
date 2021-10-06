@@ -1,0 +1,5800 @@
+{
+    "grayscale_11_opensource.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            559,
+            228,
+            631,
+            300
+        ],
+        "X": [
+            616.7,
+            433.70000000000005,
+            344.1,
+            320.4
+        ],
+        "Y": [
+            757.9,
+            455.1,
+            547.6,
+            566.1
+        ],
+        "T": [
+            1594,
+            313,
+            234,
+            826
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_18_housebeautiful.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            400,
+            797,
+            472,
+            869
+        ],
+        "X": [
+            639.8,
+            644.9,
+            451.2,
+            308.6,
+            261.3,
+            295.7,
+            266.9,
+            315.2,
+            611.0,
+            536.4
+        ],
+        "Y": [
+            424.1,
+            489.1,
+            638.2,
+            612.2,
+            724.0,
+            599.7,
+            765.8,
+            590.1,
+            305.7,
+            300.5
+        ],
+        "T": [
+            1720,
+            186,
+            298,
+            554,
+            256,
+            404,
+            185,
+            656,
+            331,
+            539
+        ],
+        "target_object": "potted plant",
+        "max_fixations": 9
+    },
+    "grayscale_100_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            381,
+            713,
+            453,
+            785
+        ],
+        "X": [
+            438.29999999999995,
+            535.6,
+            772.0
+        ],
+        "Y": [
+            337.9,
+            367.4,
+            396.70000000000005
+        ],
+        "T": [
+            592,
+            183,
+            3756
+        ],
+        "target_object": "potted plant",
+        "max_fixations": 5
+    },
+    "grayscale_17_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            490,
+            186,
+            562,
+            258
+        ],
+        "X": [
+            519.5,
+            335.6,
+            277.4
+        ],
+        "Y": [
+            420.20000000000005,
+            461.20000000000005,
+            482.9
+        ],
+        "T": [
+            867,
+            161,
+            176
+        ],
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    "grayscale_16_housebeautiful.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            421,
+            158,
+            493,
+            230
+        ],
+        "X": [
+            542.0,
+            514.6,
+            233.2
+        ],
+        "Y": [
+            404.70000000000005,
+            463.20000000000005,
+            461.0
+        ],
+        "T": [
+            848,
+            168,
+            228
+        ],
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    "grayscale_13_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            138,
+            785,
+            210,
+            857
+        ],
+        "X": [
+            637.6,
+            506.6,
+            591.0,
+            782.5,
+            813.7
+        ],
+        "Y": [
+            461.3,
+            484.7,
+            519.5,
+            454.2,
+            415.1
+        ],
+        "T": [
+            439,
+            67,
+            392,
+            237,
+            881
+        ],
+        "target_object": "TBD",
+        "max_fixations": 5
+    },
+    "grayscale_21_housebeautiful.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            373,
+            63,
+            445,
+            135
+        ],
+        "X": [
+            542.5,
+            535.0,
+            398.3,
+            538.6,
+            930.0999999999999,
+            973.5,
+            74.4
+        ],
+        "Y": [
+            379.7,
+            506.6,
+            575.8,
+            618.0,
+            339.6,
+            357.8,
+            366.3
+        ],
+        "T": [
+            739,
+            150,
+            185,
+            282,
+            207,
+            65,
+            278,
+            183
+        ],
+        "target_object": "TBD",
+        "max_fixations": 9
+    },
+    "grayscale_72_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            328,
+            569,
+            400,
+            641
+        ],
+        "X": [
+            620.8,
+            388.1,
+            596.0,
+            366.6,
+            349.9,
+            638.7,
+            655.2,
+            672.8,
+            1008.5,
+            615.3,
+            1023.0,
+            1023.0
+        ],
+        "Y": [
+            498.5,
+            489.3,
+            569.6,
+            482.8,
+            624.7,
+            540.0,
+            501.1,
+            514.0,
+            508.4,
+            472.9,
+            677.4,
+            584.8
+        ],
+        "T": [
+            570,
+            160,
+            193,
+            423,
+            258,
+            295,
+            267,
+            290,
+            133,
+            147,
+            231,
+            295
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_8_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            172,
+            17,
+            244,
+            89
+        ],
+        "X": [
+            583.1,
+            349.4
+        ],
+        "Y": [
+            512.3,
+            664.8
+        ],
+        "T": [
+            503,
+            504
+        ],
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    "grayscale_21_kitchen.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            341,
+            747,
+            413,
+            819
+        ],
+        "X": [
+            517.0,
+            550.2,
+            423.29999999999995,
+            574.5,
+            676.0,
+            808.4
+        ],
+        "Y": [
+            331.8,
+            337.9,
+            410.79999999999995,
+            442.20000000000005,
+            350.9,
+            357.6
+        ],
+        "T": [
+            318,
+            180,
+            237,
+            122,
+            136,
+            1212
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_14_housebeautiful.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            578,
+            50,
+            650,
+            122
+        ],
+        "X": [
+            525.3,
+            576.0,
+            144.8,
+            78.4
+        ],
+        "Y": [
+            354.1,
+            450.5,
+            517.9,
+            587.1
+        ],
+        "T": [
+            336,
+            105,
+            146,
+            193
+        ],
+        "target_object": "cup",
+        "max_fixations": 13
+    },
+    "grayscale_1_opensource.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            376,
+            700,
+            448,
+            772
+        ],
+        "X": [
+            549.4,
+            451.70000000000005,
+            394.6,
+            128.1,
+            63.19999999999999,
+            775.0
+        ],
+        "Y": [
+            429.79999999999995,
+            476.20000000000005,
+            420.4,
+            532.7,
+            553.9,
+            463.0
+        ],
+        "T": [
+            174,
+            406,
+            197,
+            154,
+            111,
+            175,
+            164
+        ],
+        "target_object": "TBD",
+        "max_fixations": 9
+    },
+    "grayscale_11_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            216,
+            686,
+            288,
+            758
+        ],
+        "X": [
+            516.2,
+            361.0,
+            300.5,
+            239.0,
+            564.4,
+            569.9,
+            747.8
+        ],
+        "Y": [
+            404.6,
+            402.1,
+            459.4,
+            409.79999999999995,
+            198.5,
+            219.5,
+            213.8
+        ],
+        "T": [
+            886,
+            151,
+            159,
+            123,
+            288,
+            325,
+            1466
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_30_housebeautiful.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            260,
+            680,
+            332,
+            752
+        ],
+        "X": [
+            589.0,
+            618.0,
+            712.5,
+            664.2
+        ],
+        "Y": [
+            422.0,
+            450.9,
+            430.4,
+            441.7
+        ],
+        "T": [
+            561,
+            162,
+            149,
+            681
+        ],
+        "target_object": "TBD",
+        "max_fixations": 5
+    },
+    "grayscale_6_other.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            202,
+            743,
+            274,
+            815
+        ],
+        "X": [
+            642.1,
+            517.2,
+            385.4,
+            330.1,
+            529.5,
+            1023.0,
+            360.3,
+            337.4,
+            521.7,
+            663.7,
+            582.0,
+            415.0
+        ],
+        "Y": [
+            481.8,
+            508.2,
+            415.0,
+            347.4,
+            498.8,
+            578.2,
+            573.3,
+            559.2,
+            528.2,
+            514.9,
+            510.9,
+            574.8
+        ],
+        "T": [
+            479,
+            176,
+            231,
+            244,
+            160,
+            267,
+            232,
+            146,
+            232,
+            408,
+            155,
+            390
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_18_opensource.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            217,
+            746,
+            289,
+            818
+        ],
+        "X": [
+            525.3,
+            471.20000000000005,
+            424.9,
+            396.0,
+            103.9,
+            184.10000000000002,
+            116.9,
+            142.7,
+            124.69999999999999,
+            852.0,
+            791.8
+        ],
+        "Y": [
+            359.8,
+            291.0,
+            225.5,
+            229.2,
+            222.89999999999998,
+            184.7,
+            161.0,
+            147.7,
+            195.60000000000002,
+            206.5,
+            225.3
+        ],
+        "T": [
+            759,
+            193,
+            197,
+            308,
+            399,
+            144,
+            287,
+            149,
+            40,
+            222,
+            220
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_98_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            397,
+            855,
+            469,
+            927
+        ],
+        "X": [
+            747.9,
+            714.2,
+            827.0,
+            796.5,
+            617.6,
+            499.4,
+            461.1,
+            514.5,
+            488.9,
+            528.6,
+            555.4,
+            432.6
+        ],
+        "Y": [
+            395.2,
+            389.1,
+            388.6,
+            313.7,
+            452.4,
+            554.8,
+            565.4,
+            568.1,
+            429.6,
+            389.8,
+            421.6,
+            439.4
+        ],
+        "T": [
+            410,
+            257,
+            174,
+            202,
+            148,
+            222,
+            269,
+            252,
+            230,
+            280,
+            160,
+            107
+        ],
+        "target_object": "car",
+        "max_fixations": 13
+    },
+    "grayscale_5_opensource.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            596,
+            695,
+            668,
+            767
+        ],
+        "X": [
+            669.1,
+            838.4,
+            909.1,
+            879.5
+        ],
+        "Y": [
+            477.1,
+            502.7,
+            484.9,
+            515.6
+        ],
+        "T": [
+            373,
+            354,
+            195,
+            418
+        ],
+        "target_object": "TBD",
+        "max_fixations": 5
+    },
+    "grayscale_16_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            172,
+            677,
+            244,
+            749
+        ],
+        "X": [
+            546.1,
+            683.2,
+            700.4,
+            712.6
+        ],
+        "Y": [
+            385.9,
+            355.5,
+            294.8,
+            233.89999999999998
+        ],
+        "T": [
+            861,
+            167,
+            191,
+            162
+        ],
+        "target_object": "TBD",
+        "max_fixations": 9
+    },
+    "grayscale_6_airbnb.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            591,
+            134,
+            663,
+            206
+        ],
+        "X": [
+            535.0,
+            382.2,
+            459.79999999999995,
+            805.8,
+            753.9,
+            925.5,
+            173.0
+        ],
+        "Y": [
+            343.7,
+            410.4,
+            413.1,
+            421.79999999999995,
+            415.6,
+            176.89999999999998,
+            671.6
+        ],
+        "T": [
+            1026,
+            160,
+            139,
+            183,
+            199,
+            247,
+            184,
+            91
+        ],
+        "target_object": "potted plant",
+        "max_fixations": 13
+    },
+    "grayscale_13_kitchen.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            444,
+            788,
+            516,
+            860
+        ],
+        "X": [
+            573.4,
+            573.5,
+            542.1,
+            358.8,
+            375.3,
+            359.3,
+            112.4,
+            896.6,
+            839.5
+        ],
+        "Y": [
+            411.1,
+            456.20000000000005,
+            467.9,
+            336.7,
+            336.0,
+            362.2,
+            392.79999999999995,
+            415.29999999999995,
+            438.4
+        ],
+        "T": [
+            378,
+            208,
+            168,
+            238,
+            246,
+            124,
+            189,
+            222,
+            1689
+        ],
+        "target_object": "TBD",
+        "max_fixations": 9
+    },
+    "grayscale_19_kitchen.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            409,
+            886,
+            481,
+            958
+        ],
+        "X": [
+            634.2,
+            532.8,
+            439.9,
+            526.2,
+            445.0,
+            361.9,
+            800.0,
+            320.7
+        ],
+        "Y": [
+            582.8,
+            597.3,
+            528.8,
+            369.8,
+            339.3,
+            334.2,
+            362.8,
+            339.9
+        ],
+        "T": [
+            271,
+            172,
+            174,
+            345,
+            145,
+            129,
+            279,
+            433
+        ],
+        "target_object": "TBD",
+        "max_fixations": 9
+    },
+    "grayscale_21_opensource.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            397,
+            419,
+            469,
+            491
+        ],
+        "X": [
+            642.4,
+            546.6,
+            335.7,
+            842.0,
+            926.1,
+            887.3,
+            922.4,
+            1019.8,
+            941.4,
+            840.1,
+            830.0,
+            924.4,
+            1010.9
+        ],
+        "Y": [
+            511.6,
+            579.4,
+            647.4,
+            442.1,
+            464.2,
+            464.6,
+            466.7,
+            414.7,
+            441.5,
+            428.9,
+            433.2,
+            443.8,
+            399.8
+        ],
+        "T": [
+            305,
+            290,
+            153,
+            261,
+            110,
+            184,
+            188,
+            190,
+            354,
+            476,
+            143,
+            257,
+            525
+        ],
+        "target_object": "cup",
+        "max_fixations": 13
+    },
+    "grayscale_50_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            130,
+            471,
+            202,
+            543
+        ],
+        "X": [
+            640.0,
+            464.5,
+            586.5,
+            353.4,
+            647.5,
+            424.1,
+            477.3,
+            309.4
+        ],
+        "Y": [
+            506.7,
+            525.2,
+            416.8,
+            429.3,
+            443.8,
+            617.2,
+            601.2,
+            615.2
+        ],
+        "T": [
+            375,
+            178,
+            219,
+            130,
+            165,
+            65,
+            115,
+            101
+        ],
+        "target_object": "TBD",
+        "max_fixations": 9
+    },
+    "grayscale_29_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            328,
+            874,
+            400,
+            946
+        ],
+        "X": [
+            557.8,
+            519.7,
+            484.6,
+            436.79999999999995,
+            84.5,
+            806.0,
+            945.8
+        ],
+        "Y": [
+            366.9,
+            365.2,
+            262.8,
+            246.39999999999998,
+            440.9,
+            298.5,
+            324.2
+        ],
+        "T": [
+            244,
+            180,
+            219,
+            132,
+            326,
+            190,
+            203
+        ],
+        "target_object": "TBD",
+        "max_fixations": 9
+    },
+    "grayscale_13_opensource.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            399,
+            833,
+            471,
+            905
+        ],
+        "X": [
+            624.1,
+            646.5,
+            707.6
+        ],
+        "Y": [
+            511.20000000000005,
+            486.6,
+            723.4
+        ],
+        "T": [
+            364,
+            104,
+            420
+        ],
+        "target_object": "TBD",
+        "max_fixations": 5
+    },
+    "grayscale_58_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            311,
+            939,
+            383,
+            1011
+        ],
+        "X": [
+            661.2,
+            609.4,
+            889.4,
+            1023.0,
+            1023.0
+        ],
+        "Y": [
+            526.6,
+            482.6,
+            437.2,
+            445.9,
+            447.2
+        ],
+        "T": [
+            895,
+            226,
+            194,
+            190,
+            1508
+        ],
+        "target_object": "bowl",
+        "max_fixations": 5
+    },
+    "grayscale_28_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            494,
+            826,
+            566,
+            898
+        ],
+        "X": [
+            539.1,
+            818.2,
+            939.5,
+            883.1
+        ],
+        "Y": [
+            370.9,
+            420.5,
+            458.6,
+            499.6
+        ],
+        "T": [
+            181,
+            186,
+            140,
+            819
+        ],
+        "target_object": "cup",
+        "max_fixations": 13
+    },
+    "grayscale_4_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            69,
+            332,
+            141,
+            404
+        ],
+        "X": [
+            674.8,
+            702.2,
+            734.9,
+            438.4,
+            588.3,
+            595.6,
+            177.4,
+            263.3,
+            647.9
+        ],
+        "Y": [
+            460.2,
+            414.1,
+            390.9,
+            483.3,
+            259.1,
+            210.7,
+            301.5,
+            385.4,
+            387.0
+        ],
+        "T": [
+            486,
+            175,
+            142,
+            156,
+            194,
+            70,
+            216,
+            148,
+            373
+        ],
+        "target_object": "potted plant",
+        "max_fixations": 9
+    },
+    "grayscale_45_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            658,
+            418,
+            730,
+            490
+        ],
+        "X": [
+            512.9,
+            484.20000000000005,
+            418.29999999999995,
+            357.7,
+            794.8,
+            817.9,
+            845.9,
+            494.79999999999995
+        ],
+        "Y": [
+            389.29999999999995,
+            388.4,
+            444.9,
+            594.8,
+            325.9,
+            285.5,
+            273.4,
+            655.3
+        ],
+        "T": [
+            238,
+            171,
+            213,
+            224,
+            217,
+            234,
+            368,
+            251
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_68_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            565,
+            935,
+            637,
+            1007
+        ],
+        "X": [
+            562.5,
+            412.9,
+            363.0,
+            332.0,
+            962.3,
+            977.5999999999999
+        ],
+        "Y": [
+            379.5,
+            520.1,
+            567.3,
+            619.2,
+            530.3,
+            571.3
+        ],
+        "T": [
+            1207,
+            264,
+            158,
+            253,
+            263,
+            2151
+        ],
+        "target_object": "TBD",
+        "max_fixations": 9
+    },
+    "grayscale_4_other.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            324,
+            180,
+            396,
+            252
+        ],
+        "X": [
+            482.1,
+            671.5,
+            593.1,
+            804.7,
+            726.8,
+            602.7,
+            461.4,
+            268.1,
+            208.6,
+            250.8,
+            290.6,
+            328.0,
+            333.4
+        ],
+        "Y": [
+            502.3,
+            509.5,
+            520.5,
+            542.2,
+            555.3,
+            503.6,
+            545.2,
+            533.3,
+            540.0,
+            679.8,
+            767.0,
+            645.4,
+            652.6
+        ],
+        "T": [
+            769,
+            160,
+            83,
+            248,
+            175,
+            165,
+            131,
+            288,
+            199,
+            264,
+            262,
+            277,
+            1161
+        ],
+        "target_object": "cup",
+        "max_fixations": 13
+    },
+    "grayscale_52_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            424,
+            74,
+            496,
+            146
+        ],
+        "X": [
+            520.6,
+            327.7,
+            165.39999999999998
+        ],
+        "Y": [
+            390.1,
+            428.9,
+            443.0
+        ],
+        "T": [
+            998,
+            202,
+            197
+        ],
+        "target_object": "TBD",
+        "max_fixations": 5
+    },
+    "grayscale_4_housebeautiful.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            622,
+            113,
+            694,
+            185
+        ],
+        "X": [
+            588.5,
+            339.5,
+            327.4,
+            288.2,
+            879.0,
+            756.9,
+            884.6,
+            927.3,
+            900.4,
+            721.5,
+            693.2
+        ],
+        "Y": [
+            533.7,
+            617.7,
+            579.8,
+            591.9,
+            554.6,
+            568.5,
+            573.9,
+            542.4,
+            425.8,
+            425.7,
+            429.0
+        ],
+        "T": [
+            193,
+            150,
+            162,
+            205,
+            262,
+            63,
+            206,
+            343,
+            156,
+            185,
+            384
+        ],
+        "target_object": "cup",
+        "max_fixations": 13
+    },
+    "grayscale_84_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            263,
+            746,
+            335,
+            818
+        ],
+        "X": [
+            654.2
+        ],
+        "Y": [
+            578.7
+        ],
+        "T": [
+            295
+        ],
+        "target_object": "chair",
+        "max_fixations": 3
+    },
+    "grayscale_20_housebeautiful.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            435,
+            656,
+            507,
+            728
+        ],
+        "X": [
+            585.6,
+            401.7,
+            553.4,
+            707.9
+        ],
+        "Y": [
+            428.4,
+            464.20000000000005,
+            453.6,
+            478.29999999999995
+        ],
+        "T": [
+            857,
+            74,
+            154,
+            207
+        ],
+        "target_object": "TBD",
+        "max_fixations": 9
+    },
+    "grayscale_7_housebeautiful.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            452,
+            500,
+            524,
+            572
+        ],
+        "X": [
+            628.0,
+            543.8,
+            290.0,
+            202.0
+        ],
+        "Y": [
+            487.9,
+            593.6,
+            653.8,
+            712.4
+        ],
+        "T": [
+            473,
+            124,
+            151,
+            1094
+        ],
+        "target_object": "bowl",
+        "max_fixations": 5
+    },
+    "grayscale_12_housebeautiful.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            418,
+            740,
+            490,
+            812
+        ],
+        "X": [
+            497.0,
+            469.6,
+            348.1,
+            275.4,
+            788.1
+        ],
+        "Y": [
+            363.8,
+            358.8,
+            416.5,
+            465.29999999999995,
+            440.0
+        ],
+        "T": [
+            874,
+            156,
+            341,
+            140,
+            1698
+        ],
+        "target_object": "potted plant",
+        "max_fixations": 5
+    },
+    "grayscale_13_other.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            322,
+            735,
+            394,
+            807
+        ],
+        "X": [
+            648.7,
+            503.0,
+            901.3,
+            952.3,
+            902.6,
+            873.3,
+            849.4,
+            870.5,
+            377.0,
+            274.9,
+            292.3
+        ],
+        "Y": [
+            556.7,
+            597.8,
+            536.3,
+            465.0,
+            621.7,
+            667.4,
+            541.5,
+            545.8,
+            515.3,
+            529.0,
+            767.0
+        ],
+        "T": [
+            322,
+            294,
+            216,
+            193,
+            158,
+            142,
+            328,
+            99,
+            195,
+            173,
+            576
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_18_kitchen.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            256,
+            506,
+            328,
+            578
+        ],
+        "X": [
+            531.0,
+            496.20000000000005
+        ],
+        "Y": [
+            356.1,
+            316.6
+        ],
+        "T": [
+            650,
+            316,
+            234
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_60_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            0,
+            219,
+            72,
+            291
+        ],
+        "X": [
+            688.7,
+            563.5,
+            841.6,
+            457.4,
+            358.0,
+            891.7,
+            349.8,
+            417.9,
+            406.5,
+            643.6,
+            664.8,
+            978.4,
+            808.3
+        ],
+        "Y": [
+            524.9,
+            458.7,
+            383.0,
+            373.7,
+            374.4,
+            370.3,
+            380.4,
+            434.6,
+            499.0,
+            394.3,
+            395.4,
+            753.6,
+            742.1
+        ],
+        "T": [
+            434,
+            200,
+            250,
+            170,
+            222,
+            299,
+            346,
+            166,
+            303,
+            344,
+            971,
+            485,
+            374
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_99_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            566,
+            715,
+            638,
+            787
+        ],
+        "X": [
+            665.6,
+            709.3
+        ],
+        "Y": [
+            425.1,
+            451.4
+        ],
+        "T": [
+            257,
+            636
+        ],
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    "grayscale_63_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            321,
+            699,
+            393,
+            771
+        ],
+        "X": [
+            535.9,
+            468.0,
+            706.1
+        ],
+        "Y": [
+            354.7,
+            350.3,
+            349.3
+        ],
+        "T": [
+            239,
+            150,
+            130
+        ],
+        "target_object": "TBD",
+        "max_fixations": 9
+    },
+    "grayscale_70_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            370,
+            807,
+            442,
+            879
+        ],
+        "X": [
+            631.3,
+            542.6,
+            876.3
+        ],
+        "Y": [
+            479.4,
+            540.3,
+            478.3
+        ],
+        "T": [
+            720,
+            141,
+            145
+        ],
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    "grayscale_27_opensource.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            375,
+            440,
+            447,
+            512
+        ],
+        "X": [
+            561.3
+        ],
+        "Y": [
+            387.79999999999995
+        ],
+        "T": [
+            149
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_6_housebeautiful.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            536,
+            915,
+            608,
+            987
+        ],
+        "X": [
+            684.2,
+            648.2,
+            574.1,
+            621.4,
+            629.8,
+            667.1,
+            654.1,
+            317.3,
+            278.7,
+            198.3,
+            1003.1
+        ],
+        "Y": [
+            492.3,
+            607.0,
+            666.6,
+            657.2,
+            710.7,
+            669.3,
+            671.4,
+            687.1,
+            687.6,
+            677.3,
+            668.8
+        ],
+        "T": [
+            167,
+            449,
+            256,
+            203,
+            171,
+            330,
+            289,
+            163,
+            158,
+            281,
+            1250
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_47_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            391,
+            739,
+            463,
+            811
+        ],
+        "X": [
+            565.0,
+            457.79999999999995,
+            448.79999999999995,
+            760.2
+        ],
+        "Y": [
+            126.5,
+            387.79999999999995,
+            420.0,
+            386.1
+        ],
+        "T": [
+            549,
+            308,
+            60,
+            243,
+            1905
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_34_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            618,
+            126,
+            690,
+            198
+        ],
+        "X": [
+            531.4,
+            469.9,
+            422.20000000000005,
+            175.5
+        ],
+        "Y": [
+            372.8,
+            390.0,
+            501.5,
+            625.1
+        ],
+        "T": [
+            505,
+            294,
+            218,
+            1181
+        ],
+        "target_object": "TBD",
+        "max_fixations": 9
+    },
+    "grayscale_54_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            310,
+            864,
+            382,
+            936
+        ],
+        "X": [
+            618.5,
+            636.4,
+            649.3,
+            665.5,
+            963.1
+        ],
+        "Y": [
+            446.5,
+            435.1,
+            393.2,
+            393.3,
+            412.4
+        ],
+        "T": [
+            592,
+            130,
+            224,
+            215,
+            1211
+        ],
+        "target_object": "potted plant",
+        "max_fixations": 5
+    },
+    "grayscale_6_kitchen.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            400,
+            787,
+            472,
+            859
+        ],
+        "X": [
+            596.8,
+            547.4
+        ],
+        "Y": [
+            437.1,
+            487.8
+        ],
+        "T": [
+            271,
+            566
+        ],
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    "grayscale_9_kitchen.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            146,
+            92,
+            218,
+            164
+        ],
+        "X": [
+            608.8,
+            590.5
+        ],
+        "Y": [
+            454.9,
+            489.1
+        ],
+        "T": [
+            557,
+            766
+        ],
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    "grayscale_15_kitchen.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            270,
+            894,
+            342,
+            966
+        ],
+        "X": [
+            588.8,
+            453.29999999999995,
+            722.4,
+            880.5
+        ],
+        "Y": [
+            320.5,
+            312.1,
+            288.0,
+            305.6
+        ],
+        "T": [
+            276,
+            137,
+            190,
+            230,
+            298
+        ],
+        "target_object": "TBD",
+        "max_fixations": 9
+    },
+    "grayscale_3_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            336,
+            741,
+            408,
+            813
+        ],
+        "X": [
+            532.3,
+            733.0
+        ],
+        "Y": [
+            313.2,
+            354.0
+        ],
+        "T": [
+            557,
+            194,
+            119,
+            262
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_10_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            310,
+            0,
+            382,
+            72
+        ],
+        "X": [
+            616.4,
+            511.79999999999995
+        ],
+        "Y": [
+            473.3,
+            543.0
+        ],
+        "T": [
+            270,
+            89
+        ],
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    "grayscale_20_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            204,
+            48,
+            276,
+            120
+        ],
+        "X": [
+            508.5,
+            549.3,
+            385.6,
+            319.3,
+            305.6,
+            109.9
+        ],
+        "Y": [
+            343.8,
+            374.5,
+            380.5,
+            328.8,
+            229.0,
+            214.39999999999998
+        ],
+        "T": [
+            396,
+            130,
+            310,
+            176,
+            165,
+            235
+        ],
+        "target_object": "TBD",
+        "max_fixations": 9
+    },
+    "grayscale_8_housebeautiful.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            236,
+            620,
+            308,
+            692
+        ],
+        "X": [
+            659.6,
+            495.5,
+            411.2,
+            1005.2,
+            994.0,
+            987.0,
+            988.9
+        ],
+        "Y": [
+            448.1,
+            451.2,
+            583.9,
+            587.8,
+            452.9,
+            410.6,
+            308.7
+        ],
+        "T": [
+            205,
+            174,
+            176,
+            272,
+            184,
+            145,
+            363
+        ],
+        "target_object": "TBD",
+        "max_fixations": 9
+    },
+    "grayscale_2_housebeautiful.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            499,
+            447,
+            571,
+            519
+        ],
+        "X": [
+            552.5,
+            468.70000000000005,
+            438.9
+        ],
+        "Y": [
+            376.5,
+            439.1,
+            494.9
+        ],
+        "T": [
+            536,
+            229,
+            193,
+            392
+        ],
+        "target_object": "bowl",
+        "max_fixations": 13
+    },
+    "grayscale_15_opensource.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            326,
+            401,
+            398,
+            473
+        ],
+        "X": [
+            530.8,
+            606.1,
+            477.6
+        ],
+        "Y": [
+            431.4,
+            409.9,
+            314.9
+        ],
+        "T": [
+            130,
+            86,
+            250
+        ],
+        "target_object": "bowl",
+        "max_fixations": 9
+    },
+    "grayscale_38_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            211,
+            485,
+            283,
+            557
+        ],
+        "X": [
+            759.3,
+            931.8,
+            831.6,
+            591.0,
+            556.7
+        ],
+        "Y": [
+            519.7,
+            473.70000000000005,
+            361.8,
+            323.8,
+            218.60000000000002
+        ],
+        "T": [
+            293,
+            169,
+            151,
+            212,
+            147
+        ],
+        "target_object": "TBD",
+        "max_fixations": 9
+    },
+    "grayscale_17_opensource.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            314,
+            822,
+            386,
+            894
+        ],
+        "X": [
+            903.3,
+            787.2,
+            906.1
+        ],
+        "Y": [
+            721.6,
+            510.20000000000005,
+            345.5
+        ],
+        "T": [
+            177,
+            277,
+            240
+        ],
+        "target_object": "potted plant",
+        "max_fixations": 13
+    },
+    "grayscale_89_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            98,
+            423,
+            170,
+            495
+        ],
+        "X": [
+            0.0,
+            34.900000000000006,
+            15.700000000000003,
+            24.5,
+            28.200000000000003,
+            276.1,
+            437.1
+        ],
+        "Y": [
+            8.199999999999989,
+            10.900000000000006,
+            81.69999999999999,
+            147.5,
+            182.8,
+            153.89999999999998,
+            109.30000000000001
+        ],
+        "T": [
+            263,
+            226,
+            288,
+            218,
+            267,
+            175,
+            194
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_11_kitchen.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            319,
+            135,
+            391,
+            207
+        ],
+        "X": [
+            668.6,
+            1012.8,
+            968.5,
+            560.0
+        ],
+        "Y": [
+            474.4,
+            441.4,
+            425.4,
+            416.7
+        ],
+        "T": [
+            266,
+            126,
+            170,
+            2002
+        ],
+        "target_object": "TBD",
+        "max_fixations": 5
+    },
+    "grayscale_18_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            381,
+            647,
+            453,
+            719
+        ],
+        "X": [
+            462.20000000000005,
+            485.0,
+            405.6,
+            698.9
+        ],
+        "Y": [
+            304.7,
+            297.1,
+            338.2,
+            365.2
+        ],
+        "T": [
+            523,
+            241,
+            291,
+            280
+        ],
+        "target_object": "TBD",
+        "max_fixations": 5
+    },
+    "grayscale_61_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            80,
+            159,
+            152,
+            231
+        ],
+        "X": [
+            652.9,
+            621.0,
+            376.0,
+            357.0,
+            256.5,
+            1023.0,
+            589.2,
+            1023.0
+        ],
+        "Y": [
+            419.8,
+            422.8,
+            404.2,
+            337.5,
+            498.9,
+            493.3,
+            652.9,
+            396.8
+        ],
+        "T": [
+            288,
+            173,
+            226,
+            157,
+            392,
+            243,
+            156,
+            348
+        ],
+        "target_object": "bowl",
+        "max_fixations": 9
+    },
+    "grayscale_14_airbnb.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            256,
+            77,
+            328,
+            149
+        ],
+        "X": [
+            518.1,
+            644.4,
+            613.6,
+            775.6,
+            729.7,
+            681.6,
+            590.6,
+            978.9,
+            812.2,
+            882.7,
+            1023.0,
+            866.4
+        ],
+        "Y": [
+            444.4,
+            420.8,
+            398.3,
+            617.5,
+            637.1,
+            730.2,
+            726.4,
+            445.8,
+            421.6,
+            445.9,
+            477.3,
+            469.1
+        ],
+        "T": [
+            312,
+            184,
+            207,
+            332,
+            216,
+            213,
+            108,
+            235,
+            230,
+            281,
+            269,
+            2082
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_6_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            175,
+            595,
+            247,
+            667
+        ],
+        "X": [
+            556.5,
+            541.4,
+            319.4,
+            771.7,
+            784.5,
+            753.0,
+            402.2,
+            645.3,
+            863.0,
+            137.9,
+            245.7,
+            661.2
+        ],
+        "Y": [
+            332.0,
+            345.8,
+            451.9,
+            427.1,
+            406.0,
+            461.1,
+            448.79999999999995,
+            433.20000000000005,
+            619.3,
+            227.10000000000002,
+            212.7,
+            182.3
+        ],
+        "T": [
+            1279,
+            112,
+            220,
+            166,
+            175,
+            144,
+            269,
+            190,
+            88,
+            346,
+            130,
+            180
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_56_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            358,
+            725,
+            430,
+            797
+        ],
+        "X": [
+            530.6,
+            375.5,
+            574.9,
+            612.0,
+            816.3
+        ],
+        "Y": [
+            480.20000000000005,
+            396.0,
+            364.2,
+            351.8,
+            360.9
+        ],
+        "T": [
+            310,
+            287,
+            262,
+            147,
+            227
+        ],
+        "target_object": "bottle",
+        "max_fixations": 13
+    },
+    "grayscale_53_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            242,
+            859,
+            314,
+            931
+        ],
+        "X": [
+            641.6,
+            511.5,
+            728.6,
+            547.6
+        ],
+        "Y": [
+            439.0,
+            498.5,
+            588.5,
+            565.6
+        ],
+        "T": [
+            1255,
+            230,
+            381,
+            403
+        ],
+        "target_object": "cup",
+        "max_fixations": 3
+    },
+    "grayscale_33_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            357,
+            72,
+            429,
+            144
+        ],
+        "X": [
+            529.0,
+            257.9,
+            130.7
+        ],
+        "Y": [
+            413.70000000000005,
+            376.1,
+            390.70000000000005
+        ],
+        "T": [
+            536,
+            128,
+            173
+        ],
+        "target_object": "cup",
+        "max_fixations": 9
+    },
+    "grayscale_5_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            120,
+            566,
+            192,
+            638
+        ],
+        "X": [
+            525.7,
+            510.1,
+            449.5,
+            301.8,
+            595.5
+        ],
+        "Y": [
+            341.1,
+            340.6,
+            312.4,
+            267.3,
+            155.39999999999998
+        ],
+        "T": [
+            1487,
+            145,
+            267,
+            107,
+            208
+        ],
+        "target_object": "TBD",
+        "max_fixations": 9
+    },
+    "grayscale_34_housebeautiful.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            338,
+            74,
+            410,
+            146
+        ],
+        "X": [
+            554.2,
+            485.70000000000005,
+            479.6,
+            474.70000000000005,
+            173.89999999999998,
+            121.19999999999999
+        ],
+        "Y": [
+            303.8,
+            353.1,
+            266.7,
+            225.8,
+            374.8,
+            363.9
+        ],
+        "T": [
+            179,
+            170,
+            194,
+            166,
+            176,
+            606
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_24_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            345,
+            3,
+            417,
+            75
+        ],
+        "X": [
+            609.7,
+            477.5,
+            297.6
+        ],
+        "Y": [
+            515.3,
+            526.9,
+            465.9
+        ],
+        "T": [
+            416,
+            190,
+            627
+        ],
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    "grayscale_7_kitchen.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            74,
+            629,
+            146,
+            701
+        ],
+        "X": [
+            631.5,
+            534.6,
+            465.5,
+            305.3,
+            267.2,
+            626.6,
+            1023.0,
+            990.0,
+            1019.6,
+            835.2,
+            915.3,
+            1008.0,
+            952.8
+        ],
+        "Y": [
+            488.9,
+            463.0,
+            456.8,
+            562.0,
+            610.0,
+            420.8,
+            505.9,
+            531.7,
+            687.7,
+            453.6,
+            226.7,
+            165.7,
+            170.6
+        ],
+        "T": [
+            282,
+            172,
+            184,
+            140,
+            92,
+            187,
+            351,
+            189,
+            214,
+            231,
+            144,
+            180,
+            469
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_49_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            301,
+            794,
+            373,
+            866
+        ],
+        "X": [
+            1023.0,
+            707.6,
+            622.3,
+            466.5,
+            977.0,
+            886.6,
+            356.7,
+            173.6
+        ],
+        "Y": [
+            767.0,
+            448.7,
+            373.2,
+            370.7,
+            767.0,
+            751.6,
+            729.3,
+            432.5
+        ],
+        "T": [
+            175,
+            313,
+            284,
+            263,
+            293,
+            136,
+            215,
+            426
+        ],
+        "target_object": "TBD",
+        "max_fixations": 9
+    },
+    "grayscale_32_opensource.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            440,
+            757,
+            512,
+            829
+        ],
+        "X": [
+            659.3,
+            693.0,
+            795.3,
+            742.0,
+            1008.7,
+            982.5,
+            299.5,
+            240.9,
+            675.8,
+            687.8,
+            755.4,
+            802.2,
+            704.2,
+            768.6
+        ],
+        "Y": [
+            457.6,
+            465.4,
+            726.8,
+            696.5,
+            347.9,
+            445.4,
+            332.6,
+            339.1,
+            677.9,
+            592.9,
+            706.0,
+            716.4,
+            692.0,
+            767.0
+        ],
+        "T": [
+            1292,
+            133,
+            271,
+            71,
+            314,
+            167,
+            294,
+            394,
+            123,
+            172,
+            254,
+            290,
+            169,
+            104
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_75_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            325,
+            4,
+            397,
+            76
+        ],
+        "X": [
+            582.4,
+            574.4,
+            452.0,
+            1000.7,
+            1023.0,
+            991.5,
+            879.5,
+            804.6,
+            404.4,
+            342.5,
+            88.7,
+            75.2
+        ],
+        "Y": [
+            518.4,
+            418.6,
+            345.3,
+            354.0,
+            362.5,
+            328.5,
+            221.0,
+            223.5,
+            427.3,
+            547.3,
+            493.0,
+            475.3
+        ],
+        "T": [
+            393,
+            158,
+            190,
+            239,
+            150,
+            123,
+            291,
+            74,
+            153,
+            130,
+            231,
+            870
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_85_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            256,
+            860,
+            328,
+            932
+        ],
+        "X": [
+            915.6,
+            599.2,
+            489.20000000000005,
+            670.3,
+            580.4,
+            243.39999999999998,
+            548.5,
+            548.7,
+            910.1,
+            921.0,
+            948.0999999999999,
+            918.5
+        ],
+        "Y": [
+            606.7,
+            287.8,
+            440.79999999999995,
+            479.70000000000005,
+            322.6,
+            151.39999999999998,
+            137.8,
+            98.30000000000001,
+            118.0,
+            206.10000000000002,
+            339.4,
+            233.39999999999998
+        ],
+        "T": [
+            426,
+            414,
+            270,
+            189,
+            136,
+            175,
+            210,
+            252,
+            277,
+            235,
+            167,
+            593
+        ],
+        "target_object": "bowl",
+        "max_fixations": 13
+    },
+    "grayscale_15_housebeautiful.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            587,
+            752,
+            659,
+            824
+        ],
+        "X": [
+            972.5,
+            1023.0,
+            474.1,
+            519.8,
+            784.2
+        ],
+        "Y": [
+            483.20000000000005,
+            489.1,
+            480.1,
+            503.5,
+            581.8
+        ],
+        "T": [
+            371,
+            67,
+            156,
+            122,
+            159
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_14_other.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            438,
+            56,
+            510,
+            128
+        ],
+        "X": [
+            657.2,
+            591.7,
+            751.1,
+            284.0,
+            162.4
+        ],
+        "Y": [
+            569.4,
+            619.8,
+            700.8,
+            606.8,
+            604.8
+        ],
+        "T": [
+            269,
+            187,
+            195,
+            421,
+            414
+        ],
+        "target_object": "TBD",
+        "max_fixations": 5
+    },
+    "grayscale_6_opensource.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            172,
+            365,
+            244,
+            437
+        ],
+        "X": [
+            652.8,
+            567.0,
+            694.7,
+            479.4,
+            878.1,
+            959.4,
+            858.8,
+            835.7,
+            863.0
+        ],
+        "Y": [
+            499.6,
+            502.6,
+            430.0,
+            410.7,
+            690.9,
+            439.6,
+            521.7,
+            584.8,
+            473.1
+        ],
+        "T": [
+            703,
+            130,
+            176,
+            393,
+            325,
+            177,
+            142,
+            244,
+            340
+        ],
+        "target_object": "TBD",
+        "max_fixations": 9
+    },
+    "grayscale_35_housebeautiful.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            368,
+            192,
+            440,
+            264
+        ],
+        "X": [
+            531.9,
+            585.1,
+            575.5,
+            412.6,
+            209.0
+        ],
+        "Y": [
+            226.60000000000002,
+            233.60000000000002,
+            93.69999999999999,
+            394.29999999999995,
+            388.1
+        ],
+        "T": [
+            875,
+            317,
+            268,
+            156,
+            1115
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_35_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            324,
+            442,
+            396,
+            514
+        ],
+        "X": [
+            513.6
+        ],
+        "Y": [
+            305.0
+        ],
+        "T": [
+            674
+        ],
+        "target_object": "cup",
+        "max_fixations": 13
+    },
+    "grayscale_10_opensource.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            356,
+            570,
+            428,
+            642
+        ],
+        "X": [
+            1023.0,
+            633.9,
+            494.1
+        ],
+        "Y": [
+            634.3,
+            505.5,
+            555.0
+        ],
+        "T": [
+            657,
+            165,
+            116
+        ],
+        "target_object": "bottle",
+        "max_fixations": 3
+    },
+    "grayscale_83_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            561,
+            951,
+            633,
+            1023
+        ],
+        "X": [
+            500.70000000000005,
+            358.0,
+            404.2,
+            321.7,
+            334.2,
+            1005.3
+        ],
+        "Y": [
+            455.5,
+            507.20000000000005,
+            640.6,
+            669.9,
+            647.1,
+            570.7
+        ],
+        "T": [
+            181,
+            158,
+            172,
+            260,
+            224,
+            725
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_3_kitchen.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            244,
+            53,
+            316,
+            125
+        ],
+        "X": [
+            350.4,
+            485.4,
+            241.3,
+            187.89999999999998,
+            65.0
+        ],
+        "Y": [
+            569.1,
+            334.4,
+            232.0,
+            218.89999999999998,
+            241.5
+        ],
+        "T": [
+            126,
+            451,
+            143,
+            186,
+            732,
+            313,
+            2204
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_81_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            470,
+            927,
+            542,
+            999
+        ],
+        "X": [
+            678.4,
+            501.5,
+            847.4,
+            966.0999999999999,
+            969.3
+        ],
+        "Y": [
+            283.3,
+            387.20000000000005,
+            413.20000000000005,
+            376.9,
+            502.0
+        ],
+        "T": [
+            775,
+            143,
+            156,
+            143,
+            195
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_27_housebeautiful.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            470,
+            98,
+            542,
+            170
+        ],
+        "X": [
+            503.70000000000005,
+            540.1,
+            506.29999999999995,
+            252.39999999999998,
+            166.0
+        ],
+        "Y": [
+            322.7,
+            320.7,
+            460.79999999999995,
+            460.6,
+            509.20000000000005
+        ],
+        "T": [
+            589,
+            137,
+            220,
+            190,
+            248
+        ],
+        "target_object": "bowl",
+        "max_fixations": 13
+    },
+    "grayscale_42_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            105,
+            228,
+            177,
+            300
+        ],
+        "X": [
+            599.2,
+            678.2,
+            462.4,
+            239.4,
+            848.5,
+            1023.0,
+            1023.0,
+            942.7,
+            306.5
+        ],
+        "Y": [
+            475.4,
+            330.5,
+            233.9,
+            225.9,
+            312.5,
+            509.7,
+            509.1,
+            480.9,
+            677.4
+        ],
+        "T": [
+            491,
+            215,
+            209,
+            101,
+            241,
+            160,
+            132,
+            141,
+            366
+        ],
+        "target_object": "TBD",
+        "max_fixations": 9
+    },
+    "grayscale_1_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            605,
+            106,
+            677,
+            178
+        ],
+        "X": [
+            455.70000000000005,
+            436.70000000000005,
+            411.1,
+            343.9,
+            165.2
+        ],
+        "Y": [
+            370.6,
+            387.6,
+            480.9,
+            563.1,
+            597.7
+        ],
+        "T": [
+            486,
+            274,
+            198,
+            240,
+            149
+        ],
+        "target_object": "cup",
+        "max_fixations": 13
+    },
+    "grayscale_77_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            91,
+            28,
+            163,
+            100
+        ],
+        "X": [
+            549.2,
+            563.5,
+            281.1,
+            585.8,
+            948.5999999999999,
+            169.60000000000002,
+            130.5
+        ],
+        "Y": [
+            323.7,
+            354.8,
+            323.7,
+            464.5,
+            441.1,
+            122.5,
+            88.9
+        ],
+        "T": [
+            463,
+            274,
+            324,
+            158,
+            156,
+            189,
+            861
+        ],
+        "target_object": "TBD",
+        "max_fixations": 9
+    },
+    "grayscale_44_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            316,
+            298,
+            388,
+            370
+        ],
+        "X": [
+            579.8,
+            448.79999999999995,
+            565.8,
+            713.1,
+            806.2,
+            871.5,
+            515.8,
+            608.5,
+            700.4,
+            290.6,
+            388.1,
+            354.6
+        ],
+        "Y": [
+            322.3,
+            436.5,
+            336.8,
+            332.8,
+            337.6,
+            341.2,
+            515.6,
+            505.0,
+            524.3,
+            486.1,
+            486.9,
+            318.6
+        ],
+        "T": [
+            1328,
+            215,
+            164,
+            143,
+            192,
+            137,
+            250,
+            278,
+            120,
+            348,
+            195,
+            202
+        ],
+        "target_object": "bowl",
+        "max_fixations": 13
+    },
+    "grayscale_62_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            360,
+            265,
+            432,
+            337
+        ],
+        "X": [
+            700.8,
+            544.1,
+            812.7,
+            887.3,
+            700.0,
+            248.7,
+            690.9,
+            838.0,
+            907.4,
+            942.8,
+            666.2,
+            712.0
+        ],
+        "Y": [
+            477.8,
+            489.6,
+            538.2,
+            567.5,
+            522.2,
+            565.3,
+            543.7,
+            555.9,
+            578.3,
+            584.9,
+            532.4,
+            533.7
+        ],
+        "T": [
+            81,
+            256,
+            157,
+            214,
+            207,
+            251,
+            221,
+            83,
+            178,
+            100,
+            269,
+            603
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_64_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            312,
+            214,
+            384,
+            286
+        ],
+        "X": [
+            589.9,
+            526.9,
+            702.2,
+            637.3,
+            226.39999999999998
+        ],
+        "Y": [
+            365.5,
+            360.9,
+            354.6,
+            372.3,
+            341.9
+        ],
+        "T": [
+            317,
+            161,
+            180,
+            150,
+            207
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_10_kitchen.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            497,
+            851,
+            569,
+            923
+        ],
+        "X": [
+            644.9,
+            865.3,
+            793.8,
+            874.5,
+            689.3
+        ],
+        "Y": [
+            427.3,
+            425.6,
+            436.2,
+            423.9,
+            418.5
+        ],
+        "T": [
+            597,
+            169,
+            178,
+            108,
+            416
+        ],
+        "target_object": "cup",
+        "max_fixations": 5
+    },
+    "grayscale_43_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            111,
+            750,
+            183,
+            822
+        ],
+        "X": [
+            557.5,
+            812.0,
+            754.2,
+            865.1,
+            847.8,
+            888.7,
+            892.2,
+            804.1
+        ],
+        "Y": [
+            322.1,
+            279.3,
+            231.8,
+            197.39999999999998,
+            142.2,
+            103.9,
+            86.19999999999999,
+            103.80000000000001
+        ],
+        "T": [
+            298,
+            214,
+            146,
+            167,
+            203,
+            293,
+            96,
+            222
+        ],
+        "target_object": "potted plant",
+        "max_fixations": 13
+    },
+    "grayscale_86_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            344,
+            826,
+            416,
+            898
+        ],
+        "X": [
+            569.4,
+            467.9,
+            863.4
+        ],
+        "Y": [
+            350.7,
+            281.0,
+            341.0
+        ],
+        "T": [
+            245,
+            332,
+            571
+        ],
+        "target_object": "potted plant",
+        "max_fixations": 9
+    },
+    "grayscale_2_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            306,
+            951,
+            378,
+            1023
+        ],
+        "X": [
+            524.8,
+            399.4,
+            476.5,
+            58.5,
+            38.5,
+            999.7,
+            993.5
+        ],
+        "Y": [
+            364.1,
+            362.0,
+            263.1,
+            338.9,
+            354.3,
+            466.1,
+            310.4
+        ],
+        "T": [
+            335,
+            246,
+            270,
+            189,
+            127,
+            195,
+            2112
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_38_housebeautiful.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            402,
+            909,
+            474,
+            981
+        ],
+        "X": [
+            608.4,
+            399.9,
+            302.2,
+            966.0
+        ],
+        "Y": [
+            343.0,
+            384.29999999999995,
+            404.1,
+            417.0
+        ],
+        "T": [
+            379,
+            221,
+            324,
+            1153
+        ],
+        "target_object": "TBD",
+        "max_fixations": 9
+    },
+    "grayscale_23_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            482,
+            793,
+            554,
+            865
+        ],
+        "X": [
+            618.8,
+            721.7,
+            604.5,
+            643.5
+        ],
+        "Y": [
+            558.7,
+            529.4,
+            720.6,
+            664.0
+        ],
+        "T": [
+            305,
+            196,
+            413,
+            412
+        ],
+        "target_object": "knife",
+        "max_fixations": 5
+    },
+    "grayscale_22_housebeautiful.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            267,
+            136,
+            339,
+            208
+        ],
+        "X": [
+            703.7,
+            549.5,
+            211.2
+        ],
+        "Y": [
+            309.6,
+            326.8,
+            303.2
+        ],
+        "T": [
+            255,
+            273,
+            105
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_88_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            276,
+            0,
+            348,
+            72
+        ],
+        "X": [
+            600.4,
+            356.4,
+            206.3,
+            134.4,
+            136.1
+        ],
+        "Y": [
+            483.5,
+            607.7,
+            526.6,
+            488.6,
+            526.0
+        ],
+        "T": [
+            567,
+            238,
+            242,
+            196,
+            325
+        ],
+        "target_object": "TBD",
+        "max_fixations": 5
+    },
+    "grayscale_9_other.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            292,
+            807,
+            364,
+            879
+        ],
+        "X": [
+            507.4,
+            484.4,
+            308.8,
+            351.7,
+            159.10000000000002,
+            62.19999999999999,
+            147.6,
+            427.0,
+            572.7,
+            758.0,
+            819.5
+        ],
+        "Y": [
+            274.1,
+            270.7,
+            203.5,
+            204.3,
+            210.10000000000002,
+            297.4,
+            347.4,
+            386.1,
+            390.79999999999995,
+            254.89999999999998,
+            276.1
+        ],
+        "T": [
+            1309,
+            278,
+            468,
+            238,
+            254,
+            209,
+            196,
+            58,
+            188,
+            228,
+            224,
+            235
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_29_housebeautiful.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            132,
+            207,
+            204,
+            279
+        ],
+        "X": [
+            541.7,
+            470.70000000000005,
+            254.89999999999998,
+            543.2,
+            512.8,
+            526.8,
+            248.7,
+            261.1
+        ],
+        "Y": [
+            377.9,
+            532.8,
+            714.6,
+            579.2,
+            468.6,
+            375.4,
+            363.7,
+            211.10000000000002
+        ],
+        "T": [
+            1660,
+            176,
+            133,
+            184,
+            138,
+            139,
+            204,
+            138,
+            168,
+            249
+        ],
+        "target_object": "TBD",
+        "max_fixations": 9
+    },
+    "grayscale_65_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            233,
+            898,
+            305,
+            970
+        ],
+        "X": [
+            583.1,
+            708.3,
+            939.0,
+            892.1,
+            961.3
+        ],
+        "Y": [
+            406.1,
+            424.9,
+            370.8,
+            371.4,
+            235.60000000000002
+        ],
+        "T": [
+            310,
+            258,
+            221,
+            118,
+            248
+        ],
+        "target_object": "bowl",
+        "max_fixations": 5
+    },
+    "grayscale_74_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            190,
+            492,
+            262,
+            564
+        ],
+        "X": [
+            651.7,
+            599.3,
+            546.3,
+            650.7,
+            649.7,
+            652.0,
+            637.7,
+            661.2,
+            614.3,
+            646.9,
+            659.9
+        ],
+        "Y": [
+            542.1,
+            574.7,
+            579.3,
+            514.6,
+            450.5,
+            425.3,
+            393.8,
+            386.6,
+            384.4,
+            369.5,
+            404.0
+        ],
+        "T": [
+            224,
+            198,
+            153,
+            315,
+            232,
+            156,
+            385,
+            61,
+            136,
+            233,
+            300
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_23_housebeautiful.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            647,
+            561,
+            719,
+            633
+        ],
+        "X": [
+            542.2,
+            495.79999999999995,
+            367.1,
+            602.5
+        ],
+        "Y": [
+            358.7,
+            430.9,
+            681.0,
+            669.6
+        ],
+        "T": [
+            496,
+            268,
+            178,
+            223
+        ],
+        "target_object": "TBD",
+        "max_fixations": 9
+    },
+    "grayscale_28_housebeautiful.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            523,
+            94,
+            595,
+            166
+        ],
+        "X": [
+            566.1,
+            520.7,
+            881.6,
+            494.6
+        ],
+        "Y": [
+            422.8,
+            544.4,
+            593.6,
+            495.5
+        ],
+        "T": [
+            54,
+            205,
+            182,
+            493
+        ],
+        "target_object": "potted plant",
+        "max_fixations": 5
+    },
+    "grayscale_31_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            227,
+            614,
+            299,
+            686
+        ],
+        "X": [
+            585.7,
+            405.2
+        ],
+        "Y": [
+            466.1,
+            481.5
+        ],
+        "T": [
+            469,
+            506
+        ],
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    "grayscale_2_opensource.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            266,
+            881,
+            338,
+            953
+        ],
+        "X": [
+            611.7,
+            644.3,
+            675.6,
+            846.8,
+            998.8,
+            1023.0,
+            1020.3,
+            1023.0,
+            1021.7,
+            607.1
+        ],
+        "Y": [
+            444.6,
+            454.4,
+            414.9,
+            386.4,
+            354.7,
+            344.9,
+            342.7,
+            344.5,
+            341.7,
+            568.2
+        ],
+        "T": [
+            2288,
+            350,
+            279,
+            315,
+            793,
+            180,
+            1685,
+            805,
+            217,
+            495
+        ],
+        "target_object": "TBD",
+        "max_fixations": 9
+    },
+    "grayscale_16_opensource.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            364,
+            929,
+            436,
+            1001
+        ],
+        "X": [
+            721.5,
+            911.4,
+            970.4000000000001
+        ],
+        "Y": [
+            325.7,
+            347.4,
+            357.3
+        ],
+        "T": [
+            270,
+            340,
+            2247
+        ],
+        "target_object": "potted plant",
+        "max_fixations": 13
+    },
+    "grayscale_37_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            369,
+            201,
+            441,
+            273
+        ],
+        "X": [
+            640.2,
+            499.3
+        ],
+        "Y": [
+            469.5,
+            472.5
+        ],
+        "T": [
+            515,
+            1617
+        ],
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    "grayscale_94_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            215,
+            869,
+            287,
+            941
+        ],
+        "X": [
+            653.0,
+            796.9,
+            669.6,
+            666.6,
+            437.9,
+            602.2,
+            638.8,
+            702.4
+        ],
+        "Y": [
+            421.6,
+            414.7,
+            468.1,
+            443.5,
+            360.1,
+            650.9,
+            611.4,
+            436.1
+        ],
+        "T": [
+            469,
+            387,
+            348,
+            307,
+            193,
+            217,
+            122,
+            311
+        ],
+        "target_object": "potted plant",
+        "max_fixations": 9
+    },
+    "grayscale_71_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            357,
+            346,
+            429,
+            418
+        ],
+        "X": [
+            584.2,
+            508.9,
+            260.6,
+            129.6,
+            110.6,
+            860.2,
+            929.2,
+            1023.0,
+            950.9,
+            805.4
+        ],
+        "Y": [
+            457.5,
+            539.6,
+            639.8,
+            649.7,
+            673.7,
+            570.5,
+            627.0,
+            694.7,
+            359.6,
+            416.6
+        ],
+        "T": [
+            1370,
+            206,
+            175,
+            208,
+            80,
+            257,
+            288,
+            90,
+            178,
+            329
+        ],
+        "target_object": "TBD",
+        "max_fixations": 9
+    },
+    "grayscale_39_housebeautiful.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            566,
+            579,
+            638,
+            651
+        ],
+        "X": [
+            545.8,
+            476.1,
+            624.4
+        ],
+        "Y": [
+            374.9,
+            490.20000000000005,
+            559.5
+        ],
+        "T": [
+            186,
+            213,
+            1935
+        ],
+        "target_object": "TBD",
+        "max_fixations": 9
+    },
+    "grayscale_36_housebeautiful.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            549,
+            534,
+            621,
+            606
+        ],
+        "X": [
+            545.3,
+            487.20000000000005,
+            552.3
+        ],
+        "Y": [
+            283.9,
+            431.20000000000005,
+            550.5
+        ],
+        "T": [
+            175,
+            263,
+            240
+        ],
+        "target_object": "bowl",
+        "max_fixations": 13
+    },
+    "grayscale_20_opensource.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            166,
+            370,
+            238,
+            442
+        ],
+        "X": [
+            509.20000000000005,
+            500.20000000000005,
+            561.0,
+            476.20000000000005,
+            433.4
+        ],
+        "Y": [
+            404.29999999999995,
+            278.8,
+            145.89999999999998,
+            156.60000000000002,
+            160.7
+        ],
+        "T": [
+            299,
+            183,
+            149,
+            213,
+            565
+        ],
+        "target_object": "cup",
+        "max_fixations": 9
+    },
+    "grayscale_4_kitchen.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            13,
+            408,
+            85,
+            480
+        ],
+        "X": [
+            609.0,
+            635.9,
+            458.4,
+            395.1,
+            346.8,
+            416.1,
+            469.1,
+            250.6,
+            815.5,
+            881.7,
+            803.5,
+            583.8,
+            775.8
+        ],
+        "Y": [
+            440.5,
+            441.9,
+            422.0,
+            423.0,
+            434.9,
+            436.3,
+            428.2,
+            470.0,
+            405.5,
+            415.2,
+            582.2,
+            573.8,
+            427.4
+        ],
+        "T": [
+            460,
+            212,
+            220,
+            209,
+            234,
+            194,
+            195,
+            315,
+            201,
+            189,
+            178,
+            171,
+            340
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_10_housebeautiful.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            520,
+            30,
+            592,
+            102
+        ],
+        "X": [
+            611.6,
+            630.3
+        ],
+        "Y": [
+            439.1,
+            441.3
+        ],
+        "T": [
+            213,
+            158
+        ],
+        "target_object": "potted plant",
+        "max_fixations": 3
+    },
+    "grayscale_40_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            393,
+            16,
+            465,
+            88
+        ],
+        "X": [
+            640.4,
+            456.0,
+            429.1,
+            252.1
+        ],
+        "Y": [
+            444.2,
+            591.1,
+            579.7,
+            607.7
+        ],
+        "T": [
+            1125,
+            319,
+            254,
+            367
+        ],
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    "grayscale_8_other.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            11,
+            373,
+            83,
+            445
+        ],
+        "X": [
+            586.6,
+            602.6,
+            597.8,
+            832.7,
+            980.5,
+            887.2,
+            930.2,
+            1023.0,
+            963.3
+        ],
+        "Y": [
+            531.7,
+            483.4,
+            407.3,
+            332.4,
+            354.3,
+            440.6,
+            372.9,
+            280.0,
+            347.6
+        ],
+        "T": [
+            583,
+            338,
+            230,
+            244,
+            163,
+            260,
+            204,
+            285,
+            1299
+        ],
+        "target_object": "TBD",
+        "max_fixations": 9
+    },
+    "grayscale_15_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            416,
+            661,
+            488,
+            733
+        ],
+        "X": [
+            448.29999999999995,
+            589.3,
+            524.0,
+            51.80000000000001,
+            808.0,
+            826.2,
+            614.0,
+            636.9,
+            852.7,
+            742.4
+        ],
+        "Y": [
+            495.79999999999995,
+            384.70000000000005,
+            311.0,
+            499.5,
+            595.0,
+            425.4,
+            332.7,
+            449.4,
+            435.0,
+            390.20000000000005
+        ],
+        "T": [
+            218,
+            234,
+            147,
+            310,
+            150,
+            240,
+            298,
+            188,
+            184,
+            201
+        ],
+        "target_object": "fork",
+        "max_fixations": 13
+    },
+    "grayscale_14_kitchen.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            344,
+            1,
+            416,
+            73
+        ],
+        "X": [
+            495.4,
+            544.0,
+            747.7,
+            813.6,
+            562.5,
+            149.7,
+            58.69999999999999
+        ],
+        "Y": [
+            361.7,
+            374.1,
+            312.9,
+            305.4,
+            298.9,
+            332.6,
+            347.0
+        ],
+        "T": [
+            251,
+            141,
+            211,
+            70,
+            164,
+            245,
+            266
+        ],
+        "target_object": "potted plant",
+        "max_fixations": 13
+    },
+    "grayscale_59_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            472,
+            800,
+            544,
+            872
+        ],
+        "X": [
+            506.9,
+            567.7,
+            852.7
+        ],
+        "Y": [
+            485.0,
+            435.29999999999995,
+            503.9
+        ],
+        "T": [
+            318,
+            251,
+            1408
+        ],
+        "target_object": "TBD",
+        "max_fixations": 9
+    },
+    "grayscale_92_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            337,
+            227,
+            409,
+            299
+        ],
+        "X": [
+            641.9,
+            621.7,
+            534.6
+        ],
+        "Y": [
+            472.0,
+            473.9,
+            626.0
+        ],
+        "T": [
+            678,
+            186,
+            489
+        ],
+        "target_object": "TBD",
+        "max_fixations": 3
+    },
+    "grayscale_55_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            144,
+            205,
+            216,
+            277
+        ],
+        "X": [
+            627.1,
+            500.7,
+            269.5,
+            169.9,
+            1023.0,
+            650.9,
+            533.2,
+            357.3
+        ],
+        "Y": [
+            481.7,
+            469.7,
+            515.9,
+            676.8,
+            498.2,
+            424.0,
+            443.6,
+            310.3
+        ],
+        "T": [
+            566,
+            219,
+            122,
+            187,
+            270,
+            185,
+            215,
+            1433
+        ],
+        "target_object": "bottle",
+        "max_fixations": 9
+    },
+    "grayscale_73_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            577,
+            322,
+            649,
+            394
+        ],
+        "X": [
+            649.1,
+            539.3,
+            722.2
+        ],
+        "Y": [
+            469.1,
+            527.5,
+            621.1
+        ],
+        "T": [
+            275,
+            142,
+            517
+        ],
+        "target_object": "TBD",
+        "max_fixations": 5
+    },
+    "grayscale_30_opensource.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            240,
+            800,
+            312,
+            872
+        ],
+        "X": [
+            693.3,
+            520.2,
+            654.3,
+            840.3,
+            949.4,
+            1023.0,
+            814.4,
+            756.1,
+            795.3,
+            908.8,
+            764.0,
+            917.9,
+            856.3
+        ],
+        "Y": [
+            572.2,
+            514.1,
+            495.2,
+            547.5,
+            576.2,
+            600.4,
+            460.0,
+            363.1,
+            371.9,
+            295.6,
+            292.9,
+            316.9,
+            338.3
+        ],
+        "T": [
+            660,
+            241,
+            251,
+            184,
+            125,
+            262,
+            109,
+            268,
+            140,
+            248,
+            487,
+            348,
+            134
+        ],
+        "target_object": "potted plant",
+        "max_fixations": 13
+    },
+    "grayscale_3_other.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            404,
+            211,
+            476,
+            283
+        ],
+        "X": [
+            526.0,
+            379.8,
+            574.9,
+            276.4
+        ],
+        "Y": [
+            390.4,
+            404.20000000000005,
+            390.9,
+            410.4
+        ],
+        "T": [
+            269,
+            142,
+            373,
+            326
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_1_housebeautiful.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            155,
+            130,
+            227,
+            202
+        ],
+        "X": [
+            609.7,
+            654.7,
+            528.0,
+            808.9,
+            307.8,
+            1023.0,
+            1023.0,
+            1000.1,
+            463.4
+        ],
+        "Y": [
+            480.8,
+            487.4,
+            552.3,
+            594.0,
+            767.0,
+            617.3,
+            613.0,
+            602.4,
+            434.4
+        ],
+        "T": [
+            478,
+            162,
+            184,
+            169,
+            324,
+            145,
+            211,
+            106,
+            467
+        ],
+        "target_object": "clock",
+        "max_fixations": 9
+    },
+    "grayscale_14_oliva.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            287,
+            808,
+            359,
+            880
+        ],
+        "X": [
+            569.0,
+            798.8
+        ],
+        "Y": [
+            344.9,
+            360.7
+        ],
+        "T": [
+            371,
+            174,
+            181
+        ],
+        "target_object": "TBD",
+        "max_fixations": 13
+    },
+    "grayscale_1_kitchen.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            270,
+            855,
+            342,
+            927
+        ],
+        "X": [
+            500.20000000000005,
+            404.3,
+            760.2,
+            842.9
+        ],
+        "Y": [
+            335.3,
+            336.1,
+            396.1,
+            312.0
+        ],
+        "T": [
+            198,
+            178,
+            250,
+            232,
+            613
+        ],
+        "target_object": "bowl",
+        "max_fixations": 9
+    },
+    "grayscale_7_opensource.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            358,
+            82,
+            430,
+            154
+        ],
+        "X": [
+            618.3,
+            496.9,
+            594.5,
+            673.2,
+            796.4,
+            764.0,
+            931.5
+        ],
+        "Y": [
+            462.2,
+            473.3,
+            494.0,
+            486.8,
+            493.4,
+            343.6,
+            459.2
+        ],
+        "T": [
+            460,
+            234,
+            179,
+            200,
+            150,
+            253,
+            380
+        ],
+        "target_object": "TBD",
+        "max_fixations": 9
+    },
+    "grayscale_5_housebeautiful.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": true,
+        "target_bbox": [
+            239,
+            433,
+            311,
+            505
+        ],
+        "X": [
+            517.9,
+            484.29999999999995
+        ],
+        "Y": [
+            381.9,
+            325.0
+        ],
+        "T": [
+            439,
+            240,
+            184,
+            205
+        ],
+        "target_object": "bottle",
+        "max_fixations": 5
+    },
+    "grayscale_8_kitchen.jpg": {
+        "subject": "10",
+        "dataset": "Interiors Dataset",
+        "image_height": 768,
+        "image_width": 1024,
+        "screen_height": 960,
+        "screen_width": 1280,
+        "receptive_height": 32,
+        "receptive_width": 32,
+        "target_found": false,
+        "target_bbox": [
+            186,
+            155,
+            258,
+            227
+        ],
+        "X": [
+            632.5,
+            464.4,
+            402.3
+        ],
+        "Y": [
+            369.9,
+            315.5,
+            290.3
+        ],
+        "T": [
+            443,
+            182,
+            124
+        ],
+        "target_object": "TBD",
+        "max_fixations": 3
+    }
+}
