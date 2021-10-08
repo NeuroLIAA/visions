@@ -20,16 +20,22 @@ import sys
 def plot_scanpath(img, xs, ys, fixation_size, bbox, title, save_path):
     fig, ax = plt.subplots()
     ax.imshow(img, cmap=plt.cm.gray)
+    initial_color  = 'red'
+    scanpath_color = 'cyan'
 
     for i in range(len(xs)):
         if i > 0:
-            plt.arrow(xs[i - 1], ys[i - 1], xs[i] - xs[i - 1], ys[i] - ys[i - 1], width=3, color='turquoise', alpha=0.5)
+            plt.arrow(xs[i - 1], ys[i - 1], xs[i] - xs[i - 1], ys[i] - ys[i - 1], width=3, color=scanpath_color, alpha=0.5)
 
     for i in range(len(xs)):
+        if i == 0:
+            face_color = initial_color
+        else:
+            face_color = scanpath_color
         circle = plt.Circle((xs[i], ys[i]),
                             radius=fixation_size[1] // 2,
                             edgecolor='red',
-                            facecolor='turquoise',
+                            facecolor=face_color,
                             alpha=0.5)
         ax.add_patch(circle)
         plt.annotate("{}".format(i + 1), xy=(xs[i], ys[i] + 3), fontsize=10, ha="center", va="center")
