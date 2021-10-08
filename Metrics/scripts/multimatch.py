@@ -81,7 +81,7 @@ class Multimatch:
 
         ax.set_title(model_name)
 
-        # Get most-similar to less-similar trials names
+        # Get most similar to less similar trials names
         scores_diff = np.array(x_vector) - np.array(y_vector)
         self.print_trials_names_in_similarity_order(scores_diff, trials_names, model_name)
     
@@ -134,7 +134,7 @@ class Multimatch:
             # Exclude temporal dimension and keep all the others dimensions: vector, direction, length, position
             img_model_vs_human = model_vs_human_multimatch[image_name][:-1]
             img_humans         = humans_multimatch[image_name][:-1]
-
+            
             model_vs_humans_vec.append(img_model_vs_human[0])
             model_vs_humans_dir.append(img_model_vs_human[1])
             model_vs_humans_len.append(img_model_vs_human[2])
@@ -280,7 +280,7 @@ class Multimatch:
         self.multimatch_values[model_name] = {'human_mean' : multimatch_human_mean_per_image} 
 
     def compute_multimatch(self, trial_info, trial_to_compare_info, screen_size):
-        target_found   = trial_info['target_found'] and trial_to_compare_info['target_found']
+        target_found = trial_info['target_found'] and trial_to_compare_info['target_found']
         if not target_found:
             return []
 
