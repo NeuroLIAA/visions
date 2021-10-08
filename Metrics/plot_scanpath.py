@@ -21,7 +21,7 @@ def plot_scanpath(img, xs, ys, fixation_size, bbox, title, save_path):
     fig, ax = plt.subplots()
     ax.imshow(img, cmap=plt.cm.gray)
     initial_color  = 'red'
-    scanpath_color = 'cyan'
+    scanpath_color = 'yellow'
 
     for i in range(len(xs)):
         if i > 0:
