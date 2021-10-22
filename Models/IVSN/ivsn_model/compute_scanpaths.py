@@ -16,10 +16,14 @@ def parse_model_data(preprocessed_images_dir, trials_properties, human_scanpaths
         image_name = trial['image']
         img_id     = image_name[:-4]
 
+        # If following human subject's scanpaths, load them
         human_trial_scanpath = utils.get_human_scanpath_for_trial(human_scanpaths, image_name)
 
         attention_map  = load_model_data(preprocessed_images_dir, img_id, image_size)
         trial_scanpath = create_scanpath_for_trial(trial, attention_map, human_trial_scanpath, image_size, max_fixations, receptive_size, dataset_name, output_path)
+
+        if human_trial_scanpath:
+            utils.save_scanpath_prediction_metrics(human_trial_scanpath, trial['image'], output_path)
 
         scanpaths[image_name] = trial_scanpath
         if trial_scanpath['target_found']:
@@ -40,7 +44,7 @@ def create_scanpath_for_trial(trial, attention_map, human_trial_scanpath, image_
     trial_img_size = (trial['image_height'], trial['image_width'])
     target_bbox    = [utils.rescale_coordinate(target_bbox[i], trial_img_size[i % 2 == 1], image_size[i % 2 == 1]) for i in range(len(target_bbox))]
     # Create template of image size, where there are ones in target's box and zeros elsewhere
-    # TODO: Cambiar a un mecanismo similar al de IRL y cIBS donde simplemente se fija que esté dentro del target bbox
+    # TODO: Cambiar a un mecanismo similar al de IRL y nnIBS donde simplemente se fija que esté dentro del target bbox
     target_template = np.zeros(image_size)
     target_template[target_bbox[0]:target_bbox[2], target_bbox[1]:target_bbox[3]] = 1
 
