@@ -26,14 +26,14 @@ def main(dataset_name, human_subject=None):
 
     dcbs_path = path.join(constants.DCBS_PATH, dataset_name)
     # Dir of high and low res belief maps
-    DCB_dir_HR = path.join(dcbs_path, 'DCBs/HR/')
-    DCB_dir_LR = path.join(dcbs_path, 'DCBs/LR/')
+    DCB_dir_HR = path.join(dcbs_path, path.join('DCBs', 'HR'))
+    DCB_dir_LR = path.join(dcbs_path, path.join('DCBs', 'LR'))
     
     dataset_path = path.join(constants.DATASETS_PATH, dataset_name)
 
     dataset_info      = utils.load_dict_from_json(path.join(dataset_path, 'dataset_info.json'))
     trials_properties = utils.load_dict_from_json(path.join(dataset_path, 'trials_properties.json'))
-    output_path       = path.join(constants.RESULTS_PATH, dataset_name + '_dataset' + '/IRL/')
+    output_path       = path.join(constants.RESULTS_PATH, path.join(dataset_name + '_dataset', 'IRL'))
     
     images_dir     = path.join(dataset_path, dataset_info['images_dir'])
     new_image_size = (hparams.Data.im_h, hparams.Data.im_w)
