@@ -44,7 +44,7 @@ def main(dataset_name, human_subject):
     human_scanpaths     = load_human_scanpaths(human_scanpaths_dir, human_subject, grid_size)
     if human_scanpaths:
         human_subject_str = '0' + str(human_subject) if human_subject < 10 else str(human_subject)
-        output_path = path.join(output_path, 'human_subject_' + human_subject_str)
+        output_path = path.join(output_path, path.join('subjects_predictions', 'human_subject_' + human_subject_str))
 
     hparams.Data.max_traj_length = dataset_info['max_scanpath_length'] - 1
 

@@ -22,7 +22,7 @@ def main(dataset_name, human_subject):
     if human_scanpaths:
         human_subject_str = '0' + str(human_subject) if human_subject < 10 else str(human_subject)
 
-        output_path       = path.join(output_path, 'human_subject_' + human_subject_str)
+        output_path       = path.join(output_path, path.join('subjects_predictions', 'subject_' + human_subject_str))
         trials_properties = utils.keep_human_trials(human_scanpaths, trials_properties)
 
     images_dir        = path.join(dataset_path, dataset_info['images_dir'])

@@ -157,7 +157,7 @@ def create_output_folders(save_path, config_name, image_name, image_range, human
     if human_subject is not None:
         human_subject_str = str(human_subject)
         if human_subject < 10: human_subject_str = '0' + human_subject_str
-        output_path = path.join(output_path, 'human_subject_' + human_subject_str + '/')
+        output_path = path.join(output_path, path.join('subjects_predictions', 'subject_' + human_subject_str + '/'))
 
     makedirs(output_path, exist_ok=True)
 
