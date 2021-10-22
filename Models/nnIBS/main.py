@@ -27,7 +27,7 @@ def main(dataset_name, human_subject):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Run the cIBS Visual Search model')
-    parser.add_argument('-dataset', type=str, help='Name of the dataset on which to run the model. Value must be one of cIBS, COCOSearch18, IVSN or MCS.')
+    parser.add_argument('-dataset', type=str, help='Name of the dataset on which to run the model. Value must be one of Interiors, COCOSearch18, Unrestricted or MCS.')
     parser.add_argument('--cfg', '--config', type=str, default='default', help='Name of configuration setup. Examples: greedy, ssim, ivsn. Default is bayesian, with correlation \
         and deepgaze as prior.', metavar='cfg')
     group = parser.add_mutually_exclusive_group()

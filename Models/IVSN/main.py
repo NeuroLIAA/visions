@@ -43,7 +43,7 @@ def main(dataset_name, human_subject):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Run the IVSN visual search model')
-    parser.add_argument('-dataset', type=str, help='Name of the dataset on which to run the model. Value must be one of cIBS, COCOSearch18, IVSN or MCS.')
+    parser.add_argument('-dataset', type=str, help='Name of the dataset on which to run the model. Value must be one of Interiors, COCOSearch18, Unrestricted or MCS.')
     parser.add_argument('--h', '--human_subject', type=int, default=None, help='Human subject on which the model will follow its scanpaths, saving the probability map for each saccade.\
          Useful for computing different metrics. See "Kümmerer, M. & Bethge, M. (2021), State-of-the-Art in Human Scanpath Prediction" for more information')
 
