@@ -1,6 +1,8 @@
 DATASETS_PATH = '../../Datasets/'
 RESULTS_PATH  = '../../Results/'
 
+PREPROCESSED_IMAGES_PATH = 'chopped_images'
+
 CNN_IMAGE_HEIGHT  = 224
 CNN_IMAGE_WIDTH   = 224
 CNN_TARGET_HEIGHT = 32

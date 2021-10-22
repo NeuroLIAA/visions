@@ -32,7 +32,7 @@ def main(dataset_name, human_subject):
     receptive_size    = [min(dataset_info['mean_target_size']), min(dataset_info['mean_target_size'])]
     dataset_full_name = dataset_info['dataset_name']
 
-    preprocessed_images_dir = path.join('chopped_images', dataset_full_name)
+    preprocessed_images_dir = path.join(constants.PREPROCESSED_IMAGES_PATH, dataset_full_name)
 
     print('Preprocessing images...')
     image_preprocessing.chop_images(images_dir, preprocessed_images_dir, images_size, trials_properties)
