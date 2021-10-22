@@ -18,7 +18,7 @@ from irl_dcb import utils
 torch.manual_seed(42619)
 np.random.seed(42619)
 
-def main(dataset_name, human_subject):
+def main(dataset_name, human_subject=None):
     device             = torch.device('cpu')
     hparams            = path.join('hparams', 'default.json')
     hparams            = JsonConfig(hparams)
