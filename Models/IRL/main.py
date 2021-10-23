@@ -1,28 +1,26 @@
-
 """ Script which runs the IRL model on a given dataset """
 
 import torch
 import numpy as np
 import json
 import argparse
-import constants
+from . import constants
 from tqdm import tqdm
 from os import path, cpu_count
-from dataset import process_eval_data, process_trials, load_human_scanpaths
-from irl_dcb.config import JsonConfig
+from .dataset import process_eval_data, process_trials, load_human_scanpaths
+from .irl_dcb.config import JsonConfig
 from torch.utils.data import DataLoader
-from irl_dcb.models import LHF_Policy_Cond_Small
-from irl_dcb.environment import IRL_Env4LHF
-from irl_dcb import utils
+from .irl_dcb.models import LHF_Policy_Cond_Small
+from .irl_dcb.environment import IRL_Env4LHF
+from .irl_dcb import utils
 
 torch.manual_seed(42619)
 np.random.seed(42619)
 
 def main(dataset_name, human_subject=None):
-    device             = torch.device('cpu')
-    hparams            = path.join('hparams', 'default.json')
-    hparams            = JsonConfig(hparams)
-    trained_models_dir = 'trained_models/'
+    device  = torch.device('cpu')
+    hparams = path.join(constants.HPARAMS_PATH, 'default.json')
+    hparams = JsonConfig(hparams)
 
     dcbs_path = path.join(constants.DCBS_PATH, dataset_name)
     # Dir of high and low res belief maps
@@ -68,7 +66,7 @@ def main(dataset_name, human_subject=None):
                                       len(dataset['catIds']), task_eye,
                                       constants.NUMBER_OF_BELIEF_MAPS).to(device)
     
-    utils.load('best', generator, 'generator', pkg_dir=trained_models_dir, device=device)
+    utils.load('best', generator, 'generator', pkg_dir=constants.TRAINED_MODELS_PATH, device=device)
     generator.eval()
 
     # Build environment
@@ -82,7 +80,7 @@ def main(dataset_name, human_subject=None):
 
     # Generate scanpaths
     print('Generating scanpaths...')
-    predictions = gen_scanpaths(generator,
+    all_actions = gen_scanpaths(generator,
                                 env_test,
                                 img_loader,
                                 bbox_annos,
@@ -94,11 +92,16 @@ def main(dataset_name, human_subject=None):
                                 human_scanpaths,
                                 num_sample=1,
                                 output_path=output_path)
+    
+    scanpaths     = utils.actions2scanpaths(all_actions, hparams.Data.patch_num, hparams.Data.patch_size, hparams.Data.im_w, hparams.Data.im_h, dataset_name, hparams.Data.max_traj_length)
+    targets_found = utils.cutFixOnTarget(scanpaths, bbox_annos, hparams.Data.patch_size)
+
+    print('Total targets found: ' + str(targets_found) + '/' + str(len(scanpaths)))
 
     if human_scanpaths:
         utils.save_scanpaths(output_path, human_scanpaths, filename='Subject_scanpaths.json')
     else:    
-        utils.save_scanpaths(output_path, predictions)
+        utils.save_scanpaths(output_path, scanpaths)
 
 def gen_scanpaths(generator, env_test, test_img_loader, bbox_annos, patch_num, patch_size, max_traj_len, im_w, im_h, human_scanpaths, num_sample, output_path):
     all_actions = []
@@ -131,17 +134,12 @@ def gen_scanpaths(generator, env_test, test_img_loader, bbox_annos, patch_num, p
                 all_actions.extend([(cat_names_batch[i], img_names_batch[i], initial_fix_batch[i],
                                      'present', trajs['actions'][:, i])
                                     for i in range(env_test.batch_size)])
-            
-    scanpaths = utils.actions2scanpaths(all_actions, patch_num, patch_size, im_w, im_h, dataset_name, max_traj_len)
-    targets_found = utils.cutFixOnTarget(scanpaths, bbox_annos, patch_size)
-
-    print('Total targets found: ' + str(targets_found) + '/' + str(len(scanpaths)))
-
-    return scanpaths
+    
+    return all_actions
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Run the IRL visual search model')
-    parser.add_argument('-dataset', type=str, help='Name of the dataset on which to run the model. Value must be one of Interiors, COCOSearch18, Unrestricted or MCS.')
+    parser.add_argument('-dataset', type=str, help='Name of the dataset on which to run the model. Value must be one of cIBS, COCOSearch18, IVSN or MCS.')
     parser.add_argument('--h', '--human_subject', type=int, default=None, help='Human subject on which the model will follow its scanpaths, saving the probability map for each saccade.\
          Useful for computing different metrics. See "Kümmerer, M. & Bethge, M. (2021), State-of-the-Art in Human Scanpath Prediction" for more information')
     args = parser.parse_args()

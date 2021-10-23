@@ -1,11 +1,11 @@
 import numpy as np
-import constants
+from . import constants
 import json
 from itertools import repeat
 from os import path, listdir
-from irl_dcb import utils
-from irl_dcb.data import LHF_IRL
-from irl_dcb.build_belief_maps import build_belief_maps
+from .irl_dcb import utils
+from .irl_dcb.data import LHF_IRL
+from .irl_dcb.build_belief_maps import build_belief_maps
 
 def process_trials(trials_properties, images_dir, human_scanpaths, new_image_size, grid_size, DCB_dir_HR, DCB_dir_LR):
     bbox_annos = {}
@@ -108,7 +108,7 @@ def load_human_scanpaths(human_scanpaths_dir, human_subject, grid_size):
     return human_scanpaths    
 
 def rescale_scanpaths(human_scanpaths, grid_size):
-    for key in human_scanpaths.keys():        
+    for key in human_scanpaths:        
         scanpath     = human_scanpaths[key]
         image_height = scanpath['image_height']
         image_width  = scanpath['image_width']

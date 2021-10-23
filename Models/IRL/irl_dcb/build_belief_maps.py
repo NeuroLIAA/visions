@@ -2,7 +2,7 @@ import numpy as np
 import torch
 import cv2
 from scipy.ndimage import gaussian_filter
-from irl_dcb.run_detectron import run_detectron
+from .run_detectron import run_detectron
 from os import path, makedirs
 
 def create_categories_masks(number_of_categories, output_size, segments_info, panoptic_seg):
