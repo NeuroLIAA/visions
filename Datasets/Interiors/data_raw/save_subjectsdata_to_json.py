@@ -21,6 +21,7 @@ cropped_scanpaths   = 0
 cropped_fixations   = 0
 truncated_scanpaths = 0
 empty_scanpaths     = 0
+trivial_scanpaths   = 0
 
 for subject_file in subjects_files:
     subject_info = loadmat(path.join(subjects_dir, subject_file))
@@ -76,6 +77,10 @@ for subject_file in subjects_files:
         original_scanpath_len = len(scanpath_x)
         # Crop scanpaths as soon as a fixation falls between the target's bounding box
         target_found, scanpath_x, scanpath_y = utils.crop_scanpath(scanpath_x, scanpath_y, target_bbox, receptive_size)
+        # Ignore trivial scanpaths
+        if len(scanpath_x) == 1:
+            trivial_scanpaths += 1
+            continue
         if target_found: targets_found += 1
         if len(scanpath_x) < original_scanpath_len:
             cropped_scanpaths += 1
@@ -123,3 +128,4 @@ print("Cropped scanpaths (target found earlier): " + str(cropped_scanpaths))
 print("Number of cropped fixations: " + str(cropped_fixations))
 print("Truncated scanpaths: " + str(truncated_scanpaths))
 print("Empty scanpaths: " + str(empty_scanpaths))
+print("Trivial scanpaths: " + str(trivial_scanpaths))
