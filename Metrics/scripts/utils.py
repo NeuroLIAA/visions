@@ -1,7 +1,13 @@
 import json
 import random
+import re
 from os import listdir, path
 from .. import constants
+
+def sorted_alphanumeric(data):
+    convert = lambda text: int(text) if text.isdigit() else text.lower()
+    alphanum_key = lambda key: [ convert(c) for c in re.split('([0-9]+)', key) ] 
+    return sorted(data, key=alphanum_key)
 
 def get_dirs(path_):
     files = listdir(path_)
