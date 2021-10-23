@@ -1,6 +1,13 @@
 import json
 import random
+from os import listdir, path
 from .. import constants
+
+def get_dirs(path_):
+    files = listdir(path_)
+    dirs  = [dir_ for dir_ in files if path.isdir(path.join(path_, dir_))]
+
+    return dirs
 
 def get_random_subset(trials_dict, size):
     if len(trials_dict) <= size:

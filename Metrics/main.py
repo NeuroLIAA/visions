@@ -6,15 +6,16 @@ from .scripts.cumulative_performance import Cumulative_performance
 from .scripts import utils
 from os import listdir, path
 
-def main(compute_cumulative_performance, compute_multimatch, compute_human_scanpath_prediction):
-    dataset_results_dirs = listdir(constants.RESULTS_DIR)
-    for dataset in dataset_results_dirs:
-        dataset_name = dataset.split('_')[0]
-        dataset_path = path.join(constants.DATASETS_DIR, dataset_name)
+def main(datasets, models, compute_cumulative_performance, compute_multimatch, compute_human_scanpath_prediction):
+    for dataset_name in datasets:
+        dataset_path = path.join(constants.DATASETS_PATH, dataset_name)
         dataset_info = utils.load_dict_from_json(path.join(dataset_path, 'dataset_info.json'))
 
         human_scanpaths_dir = path.join(dataset_path, dataset_info['scanpaths_dir'])
-        dataset_results_dir = path.join(constants.RESULTS_DIR, dataset)
+        dataset_results_dir = path.join(constants.RESULTS_PATH, dataset_name + '_dataset')
+        if not path.isdir(dataset_results_dir):
+            print('No results found for ' + dataset_name + ' dataset')
+            continue
 
         max_scanpath_length = dataset_info['max_scanpath_length']
         number_of_images    = dataset_info['number_of_images']
@@ -29,13 +30,13 @@ def main(compute_cumulative_performance, compute_multimatch, compute_human_scanp
         subjects_cumulative_performance = Cumulative_performance(dataset_name, number_of_images, max_scanpath_length, compute_cumulative_performance)
         subjects_cumulative_performance.add_human_mean(human_scanpaths_dir, constants.HUMANS_COLOR)
 
-        human_scanpath_prediction = HumanScanpathPrediction(dataset_name, human_scanpaths_dir, dataset_results_dir, constants.MODELS_DIR, compute_human_scanpath_prediction)
+        human_scanpath_prediction = HumanScanpathPrediction(dataset_name, human_scanpaths_dir, dataset_results_dir, constants.MODELS_PATH, compute_human_scanpath_prediction)
 
         # Compute models metrics and compare them with human subjects metrics
-        models = listdir(dataset_results_dir)
         color_index = 0
         for model_name in models:
-            if not(path.isdir(path.join(dataset_results_dir, model_name))):
+            if not path.isdir(path.join(dataset_results_dir, model_name)):
+                print('No results found for ' + model_name + ' in ' + dataset_name + ' dataset')
                 continue
 
             model_scanpaths_file = path.join(path.join(dataset_results_dir, model_name), 'Scanpaths.json')
@@ -59,7 +60,13 @@ def main(compute_cumulative_performance, compute_multimatch, compute_human_scanp
 
 
 if __name__ == "__main__":
+    available_datasets = utils.get_dirs(constants.DATASETS_PATH)
+    available_models   = utils.get_dirs(constants.MODELS_PATH)
     parser = argparse.ArgumentParser(description='Compute all metrics for each visual search model on each dataset. To only run a subset of them, specify by argument which ones.')
+    parser.add_argument('--d', '--datasets', type=str, nargs='*', default=available_datasets, help='Names of the datasets on which to compute the metrics. \
+        Values must be in list: ' + str(available_datasets))
+    parser.add_argument('--m', '--models', type=str, nargs='*', default=available_models, help='Names of the models on which to compute the metrics. \
+        Values must be in list: ' + str(available_models))
     parser.add_argument('--perf', '--performance', action='store_true', help='Compute cumulative performance')
     parser.add_argument('--mm', '--multimatch', action='store_true', help='Compute multimatch on the models')
     parser.add_argument('--hsp', '--human_scanpath_prediction', action='store_true', help='Compute human scanpath prediction on the models. \
@@ -67,10 +74,15 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
+    invalid_models   = not all(model in available_models for model in args.m)
+    invalid_datasets = not all(dataset in available_datasets for dataset in args.d)
+    if (not args.m or invalid_models) or (not args.d or invalid_datasets):
+        raise ValueError('Invalid set of models or datasets')
+
     # If none were specified, default to True
     if not (args.perf or args.mm or args.hsp):
         args.perf = True
         args.mm   = True
         args.hsp  = True
 
-    main(args.perf, args.mm, args.hsp)
+    main(args.d, args.m, args.perf, args.mm, args.hsp)

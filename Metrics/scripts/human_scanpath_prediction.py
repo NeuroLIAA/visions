@@ -6,6 +6,7 @@ from subprocess import run
 import pandas as pd
 import numpy as np
 import numba
+import importlib
 
 class HumanScanpathPrediction:
     def __init__(self, dataset_name, human_scanpaths_dir, dataset_results_dir, models_dir, compute):

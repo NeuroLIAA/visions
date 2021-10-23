@@ -21,6 +21,9 @@ class Multimatch:
         number_of_models = len(self.multimatch_values)
         fig, axs = plt.subplots(1, number_of_models, sharex=True, sharey=True, figsize=(10, 5))
 
+        if number_of_models == 1:
+            axs = [axs]
+
         ax_index = 0
         for model in self.multimatch_values:
             model_name = model
@@ -173,9 +176,9 @@ class Multimatch:
         scores_right_half.sort(key=lambda elem: elem[0])
         scores_left_half.sort(key=lambda elem: elem[0])
         print('Dataset: ' + self.dataset_name + '. Model: ' + model_name + '. Most similar to less similar trials')
-        print('Right half:')
-        print(scores_right_half[:10])
-        print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+        # print('Right half:')
+        # print(scores_right_half[:10])
+        # print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
         print('Left half:')
         print(scores_left_half[:10])
         print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')

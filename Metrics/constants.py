@@ -1,7 +1,7 @@
 # All paths are relative to root
-RESULTS_DIR  = 'Results'
-DATASETS_DIR = 'Datasets'
-MODELS_DIR   = 'Models'
+RESULTS_PATH  = 'Results'
+DATASETS_PATH = 'Datasets'
+MODELS_PATH   = 'Models'
 
 COCOSEARCH_SUBSET_SIZE = 500
 RANDOM_SEED = 1234
