@@ -30,6 +30,7 @@ cropped_scanpaths   = 0
 cropped_fixations   = 0
 collapsed_scanpaths = 0
 collapsed_fixations = 0
+trivial_scanpaths   = 0
 
 min_scanpath_length = 2
 
@@ -65,9 +66,6 @@ for subject_data_file in subjects_files:
         scanpath_y = current_subject_data['FixData']['Fix_posy'][0][0][trial_number][0].flatten() - 1
 
         number_of_fixations = len(scanpath_x)
-        # Skip short scanpaths
-        if number_of_fixations < min_scanpath_length:
-            continue
 
         number_of_trials += 1
         marked_target_found = False
@@ -96,6 +94,10 @@ for subject_data_file in subjects_files:
 
         # Crop scanpaths as soon as a fixation falls between the target's bounding box
         target_found, scanpath_x, scanpath_y = utils.crop_scanpath(scanpath_x, scanpath_y, target_bbox, receptive_size, image_size)
+        # Skip trivial scanpaths
+        if len(scanpath_x) < min_scanpath_length:
+            trivial_scanpaths += 1
+            continue
         if target_found: targets_found += 1
         if len(scanpath_x) < number_of_fixations:
             cropped_scanpaths += 1
@@ -136,3 +138,4 @@ print("Collapsed scanpaths (discretized in size " + str(receptive_size) + ") : "
 print("Number of fixations collapsed: " + str(collapsed_fixations))
 print("Cropped scanpaths (target found earlier): " + str(cropped_scanpaths))
 print("Number of fixations cropped: " + str(cropped_fixations))
+print("Trivial scanpaths: " + str(trivial_scanpaths))
