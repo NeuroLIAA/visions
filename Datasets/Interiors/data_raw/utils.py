@@ -10,11 +10,14 @@ def sorted_alphanumeric(data):
     alphanum_key = lambda key: [ convert(c) for c in re.split('([0-9]+)', key['image']) ] 
     return sorted(data, key=alphanum_key)
 
-def crop_scanpath(scanpath_x, scanpath_y, target_bbox, receptive_size):
+def crop_scanpath(scanpath_x, scanpath_y, target_bbox, receptive_size, image_size):
     target_found = False
     cropped_scanpath_x = list(scanpath_x)
     cropped_scanpath_y = list(scanpath_y)
     for index, fixation in enumerate(zip(scanpath_y, scanpath_x)):
+        # Make sure each fixation is between the image bounds
+        scanpath_x[index] = min(max(0, scanpath_x[index]), image_size[1] - 1)
+        scanpath_y[index] = min(max(0, scanpath_y[index]), image_size[0] - 1)
         if between_bounds(target_bbox, fixation[0], fixation[1], receptive_size):
             cropped_scanpath_x = scanpath_x[:index + 1]
             cropped_scanpath_y = scanpath_y[:index + 1]

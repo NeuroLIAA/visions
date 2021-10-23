@@ -76,7 +76,7 @@ for subject_file in subjects_files:
 
         original_scanpath_len = len(scanpath_x)
         # Crop scanpaths as soon as a fixation falls between the target's bounding box
-        target_found, scanpath_x, scanpath_y = utils.crop_scanpath(scanpath_x, scanpath_y, target_bbox, receptive_size)
+        target_found, scanpath_x, scanpath_y = utils.crop_scanpath(scanpath_x, scanpath_y, target_bbox, receptive_size, (image_height, image_width))
         # Ignore trivial scanpaths
         if len(scanpath_x) == 1:
             trivial_scanpaths += 1
