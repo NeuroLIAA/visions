@@ -8,6 +8,11 @@ import numpy as np
 import numba
 import importlib
 
+""" Computes human scanpath prediction on the visual search models for a given set of datasets. 
+    See "Kümmerer, M. & Bethge, M. (2021), State-of-the-Art in Human Scanpath Prediction" for more information.
+    The methods for computing AUC and NSS were taken from https://github.com/matthias-k/pysaliency/blob/master/pysaliency/metrics.py
+"""
+
 class HumanScanpathPrediction:
     def __init__(self, dataset_name, human_scanpaths_dir, dataset_results_dir, models_dir, compute):
         self.models_results = {}
@@ -31,29 +36,7 @@ class HumanScanpathPrediction:
             print('Running ' + model_name + ' using subject ' + subject_number + ' scanpaths')
             model.main(self.dataset_name, int(subject_number))
 
-            # Levantar los resultados del sujeto sobre todo el dataset y promediarlos
-
-            # Ahora los modelos se encargan de llamar a la función, así pueden borrar los probability maps en cada imagen
-            # output_path     = path.join(model_output_path, 'human_subject_' + subject_number)
-            # human_scanpaths = utils.load_from_json(path.join(output_path, 'Subject_scanpaths.json'))
-            # model_subject_metrics = {}
-            # for image_name in human_scanpaths:
-            #     scanpath = human_scanpaths[image_name]
-            #     human_fixations_x = np.array(scanpath['X'], dtype=int)
-            #     human_fixations_y = np.array(scanpath['Y'], dtype=int)
-            #     probability_maps_folder = path.join(output_path, path.join('probability_maps', image_name[:-4]))
-
-            #     image_rocs, image_nss, image_igs = [], [], []
-            #     for index in range(1, np.size(human_fixations_x)):          
-            #         probability_map = pd.read_csv(probability_maps_folder + 'fixation_' + str(index))                
-            #         roc, nss, ig = self.compute_scanpath_prediction_metrics(probability_map, human_fixations_y[:index], human_fixations_x[:index])
-            #         image_rocs.append(roc)
-            #         image_nss.append(nss)
-            #         image_igs.append(ig)
-                
-            #     model_subject_metrics[image_name] = {'AUC': np.mean(image_rocs), 'NSS': np.mean(image_nss), 'IG': np.mean(image_igs)}
-            
-            # utils.save_to_json(path.join(output_path, 'Scanpath_prediction.json'), model_subject_metrics)
+            # TODO: Levantar los resultados del sujeto sobre todo el dataset y promediarlos
 
 
 
