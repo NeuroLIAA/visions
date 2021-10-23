@@ -63,7 +63,7 @@ def compute_metrics(probability_map, human_fixations_y, human_fixations_x):
     baseline_map    = center_gaussian(probability_map.shape)
 
     roc = np.mean(AUCs(probability_map, human_fixations_y, human_fixations_x)) # ¿Promediamos?
-    nss = NSS(probability_map, human_fixations_y, human_fixations_x)
+    nss = np.mean(NSS(probability_map, human_fixations_y, human_fixations_x)) # ¿Promediamos? 
     ig  = infogain(probability_map, baseline_map, human_fixations_y, human_fixations_x)
 
     return roc, nss, ig
@@ -88,6 +88,7 @@ def normalize(probability_map):
     return normalized_probability_map
 
 def NSS(saliency_map, ground_truth_fixations_y, ground_truth_fixations_x):
+    """ The returned array has length equal to the number of fixations """
     mean = np.mean(saliency_map)
     std  = np.std(saliency_map)
     value = np.copy(saliency_map[ground_truth_fixations_y, ground_truth_fixations_x])
@@ -105,7 +106,6 @@ def infogain(s_map, baseline_map, ground_truth_fixations_y, ground_truth_fixatio
     baseline_map = baseline_map / (np.sum(baseline_map) * 1.0)
 
     temp = []
-
     for i in zip(ground_truth_fixations_x, ground_truth_fixations_y):
         temp.append(np.log2(eps + s_map[i[1], i[0]]) - np.log2(eps + baseline_map[i[1], i[0]]))
 

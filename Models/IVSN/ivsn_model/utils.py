@@ -1,6 +1,7 @@
 import json
 import shutil
 import pandas as pd
+import numpy as np
 from os import path, makedirs, listdir, pardir
 from Metrics.scripts import human_scanpath_prediction
 from math import floor
