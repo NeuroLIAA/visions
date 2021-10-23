@@ -1,6 +1,6 @@
 import json
 import random
-import constants
+from .. import constants
 
 def get_random_subset(trials_dict, size):
     if len(trials_dict) <= size:

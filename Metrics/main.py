@@ -1,9 +1,9 @@
-import constants
+from . import constants
 import argparse
-from scripts.multimatch import Multimatch
-from scripts.human_scanpath_prediction import HumanScanpathPrediction
-from scripts.cumulative_performance import Cumulative_performance
-from scripts import utils
+from .scripts.multimatch import Multimatch
+from .scripts.human_scanpath_prediction import HumanScanpathPrediction
+from .scripts.cumulative_performance import Cumulative_performance
+from .scripts import utils
 from os import listdir, path
 
 def main(compute_cumulative_performance, compute_multimatch, compute_human_scanpath_prediction):
