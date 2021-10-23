@@ -1,7 +1,7 @@
-DATASETS_PATH = '../../Datasets/'
-RESULTS_PATH  = '../../Results/'
+DATASETS_PATH = 'Datasets'
+RESULTS_PATH  = 'Results'
 
-PREPROCESSED_IMAGES_PATH = 'chopped_images'
+PREPROCESSED_IMAGES_PATH = 'Models/IVSN/chopped_images'
 
 CNN_IMAGE_HEIGHT  = 224
 CNN_IMAGE_WIDTH   = 224

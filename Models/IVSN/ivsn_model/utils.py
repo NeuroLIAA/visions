@@ -2,7 +2,7 @@ import json
 import shutil
 import pandas as pd
 from os import path, makedirs, listdir, pardir
-from .. import metrics.scripts.human_scanpath_prediction
+from Metrics.scripts import human_scanpath_prediction
 from math import floor
 
 def rescale_coordinate(value, old_size, new_size):

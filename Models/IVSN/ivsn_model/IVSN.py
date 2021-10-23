@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torchvision.models as models
 import json
-import constants
+from .. import constants
 from . import utils
 from torchvision import transforms
 from os import listdir, path
