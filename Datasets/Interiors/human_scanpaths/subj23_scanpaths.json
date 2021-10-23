@@ -267,46 +267,6 @@
         "target_object": "TBD",
         "max_fixations": 9
     },
-    "grayscale_72_oliva.jpg": {
-        "subject": "23",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 960,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": true,
-        "target_bbox": [
-            328,
-            569,
-            400,
-            641
-        ],
-        "X": [
-            594.4
-        ],
-        "Y": [
-            329.0
-        ],
-        "T": [
-            342,
-            119,
-            309,
-            153,
-            193,
-            340,
-            327,
-            188,
-            183,
-            245,
-            121,
-            174,
-            315
-        ],
-        "target_object": "TBD",
-        "max_fixations": 13
-    },
     "grayscale_8_oliva.jpg": {
         "subject": "23",
         "dataset": "Interiors Dataset",
@@ -1753,7 +1713,7 @@
             217.7,
             156.7,
             126.0,
-            0.0
+            0
         ],
         "T": [
             324,
@@ -1767,34 +1727,6 @@
         ],
         "target_object": "TBD",
         "max_fixations": 13
-    },
-    "grayscale_99_oliva.jpg": {
-        "subject": "23",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 960,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": false,
-        "target_bbox": [
-            566,
-            715,
-            638,
-            787
-        ],
-        "X": [
-            626.3
-        ],
-        "Y": [
-            561.3
-        ],
-        "T": [
-            910
-        ],
-        "target_object": "TBD",
-        "max_fixations": 3
     },
     "grayscale_63_oliva.jpg": {
         "subject": "23",
@@ -1879,34 +1811,6 @@
         ],
         "target_object": "TBD",
         "max_fixations": 3
-    },
-    "grayscale_27_opensource.jpg": {
-        "subject": "23",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 960,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": true,
-        "target_bbox": [
-            375,
-            440,
-            447,
-            512
-        ],
-        "X": [
-            509.20000000000005
-        ],
-        "Y": [
-            415.29999999999995
-        ],
-        "T": [
-            589
-        ],
-        "target_object": "TBD",
-        "max_fixations": 13
     },
     "grayscale_6_housebeautiful.jpg": {
         "subject": "23",

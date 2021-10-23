@@ -1649,34 +1649,6 @@
         "target_object": "TBD",
         "max_fixations": 13
     },
-    "grayscale_18_kitchen.jpg": {
-        "subject": "46",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 960,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": true,
-        "target_bbox": [
-            256,
-            506,
-            328,
-            578
-        ],
-        "X": [
-            536.1
-        ],
-        "Y": [
-            312.1
-        ],
-        "T": [
-            255
-        ],
-        "target_object": "TBD",
-        "max_fixations": 13
-    },
     "grayscale_60_oliva.jpg": {
         "subject": "46",
         "dataset": "Interiors Dataset",
@@ -2575,38 +2547,6 @@
         "target_object": "TBD",
         "max_fixations": 5
     },
-    "grayscale_18_oliva.jpg": {
-        "subject": "46",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 960,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": true,
-        "target_bbox": [
-            381,
-            647,
-            453,
-            719
-        ],
-        "X": [
-            656.0
-        ],
-        "Y": [
-            419.9
-        ],
-        "T": [
-            474,
-            113,
-            158,
-            794,
-            1542
-        ],
-        "target_object": "TBD",
-        "max_fixations": 5
-    },
     "grayscale_61_oliva.jpg": {
         "subject": "46",
         "dataset": "Interiors Dataset",
@@ -3376,67 +3316,6 @@
         ],
         "target_object": "TBD",
         "max_fixations": 13
-    },
-    "grayscale_35_oliva.jpg": {
-        "subject": "46",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 960,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": true,
-        "target_bbox": [
-            324,
-            442,
-            396,
-            514
-        ],
-        "X": [
-            521.5
-        ],
-        "Y": [
-            401.20000000000005
-        ],
-        "T": [
-            637,
-            163,
-            154,
-            172,
-            237,
-            2906
-        ],
-        "target_object": "cup",
-        "max_fixations": 13
-    },
-    "grayscale_10_opensource.jpg": {
-        "subject": "46",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 960,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": true,
-        "target_bbox": [
-            356,
-            570,
-            428,
-            642
-        ],
-        "X": [
-            628.4
-        ],
-        "Y": [
-            391.20000000000005
-        ],
-        "T": [
-            580
-        ],
-        "target_object": "bottle",
-        "max_fixations": 3
     },
     "grayscale_83_oliva.jpg": {
         "subject": "46",
@@ -4789,34 +4668,6 @@
         ],
         "target_object": "TBD",
         "max_fixations": 13
-    },
-    "grayscale_10_housebeautiful.jpg": {
-        "subject": "46",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 960,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": false,
-        "target_bbox": [
-            520,
-            30,
-            592,
-            102
-        ],
-        "X": [
-            576.1
-        ],
-        "Y": [
-            486.7
-        ],
-        "T": [
-            285
-        ],
-        "target_object": "potted plant",
-        "max_fixations": 3
     },
     "grayscale_40_oliva.jpg": {
         "subject": "46",

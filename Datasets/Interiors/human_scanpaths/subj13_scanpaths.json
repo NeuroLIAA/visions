@@ -110,34 +110,6 @@
         "target_object": "potted plant",
         "max_fixations": 5
     },
-    "grayscale_17_oliva.jpg": {
-        "subject": "13",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 960,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": false,
-        "target_bbox": [
-            490,
-            186,
-            562,
-            258
-        ],
-        "X": [
-            620.3
-        ],
-        "Y": [
-            474.1
-        ],
-        "T": [
-            313
-        ],
-        "target_object": "TBD",
-        "max_fixations": 3
-    },
     "grayscale_16_housebeautiful.jpg": {
         "subject": "13",
         "dataset": "Interiors Dataset",
@@ -1579,34 +1551,6 @@
         "target_object": "TBD",
         "max_fixations": 13
     },
-    "grayscale_18_kitchen.jpg": {
-        "subject": "13",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 960,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": true,
-        "target_bbox": [
-            256,
-            506,
-            328,
-            578
-        ],
-        "X": [
-            546.4
-        ],
-        "Y": [
-            313.8
-        ],
-        "T": [
-            938
-        ],
-        "target_object": "TBD",
-        "max_fixations": 13
-    },
     "grayscale_60_oliva.jpg": {
         "subject": "13",
         "dataset": "Interiors Dataset",
@@ -2395,34 +2339,6 @@
             325
         ],
         "target_object": "potted plant",
-        "max_fixations": 13
-    },
-    "grayscale_89_oliva.jpg": {
-        "subject": "13",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 960,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": false,
-        "target_bbox": [
-            98,
-            423,
-            170,
-            495
-        ],
-        "X": [
-            544.4
-        ],
-        "Y": [
-            152.3
-        ],
-        "T": [
-            228
-        ],
-        "target_object": "TBD",
         "max_fixations": 13
     },
     "grayscale_11_kitchen.jpg": {
@@ -3271,36 +3187,6 @@
         ],
         "target_object": "cup",
         "max_fixations": 13
-    },
-    "grayscale_10_opensource.jpg": {
-        "subject": "13",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 960,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": true,
-        "target_bbox": [
-            356,
-            570,
-            428,
-            642
-        ],
-        "X": [
-            645.1
-        ],
-        "Y": [
-            436.0
-        ],
-        "T": [
-            586,
-            165,
-            1146
-        ],
-        "target_object": "bottle",
-        "max_fixations": 3
     },
     "grayscale_83_oliva.jpg": {
         "subject": "13",
@@ -4918,42 +4804,6 @@
         ],
         "target_object": "potted plant",
         "max_fixations": 13
-    },
-    "grayscale_59_oliva.jpg": {
-        "subject": "13",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 960,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": true,
-        "target_bbox": [
-            472,
-            800,
-            544,
-            872
-        ],
-        "X": [
-            837.9
-        ],
-        "Y": [
-            478.9
-        ],
-        "T": [
-            546,
-            82,
-            175,
-            73,
-            243,
-            326,
-            232,
-            301,
-            635
-        ],
-        "target_object": "TBD",
-        "max_fixations": 9
     },
     "grayscale_92_oliva.jpg": {
         "subject": "13",

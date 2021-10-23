@@ -1437,8 +1437,8 @@
             252
         ],
         "X": [
-            0.0,
-            0.0,
+            0,
+            0,
             614.6,
             681.7,
             486.29999999999995,
@@ -3254,7 +3254,7 @@
             905.4,
             351.9,
             22.5,
-            0.0
+            0
         ],
         "Y": [
             448.5,
@@ -5797,38 +5797,6 @@
         ],
         "target_object": "TBD",
         "max_fixations": 9
-    },
-    "grayscale_5_housebeautiful.jpg": {
-        "subject": "26",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 960,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": true,
-        "target_bbox": [
-            239,
-            433,
-            311,
-            505
-        ],
-        "X": [
-            421.9
-        ],
-        "Y": [
-            298.4
-        ],
-        "T": [
-            169,
-            136,
-            153,
-            176,
-            84
-        ],
-        "target_object": "bottle",
-        "max_fixations": 5
     },
     "grayscale_8_kitchen.jpg": {
         "subject": "26",

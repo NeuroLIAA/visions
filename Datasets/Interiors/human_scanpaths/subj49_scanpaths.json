@@ -1129,34 +1129,6 @@
         "target_object": "TBD",
         "max_fixations": 9
     },
-    "grayscale_11_kitchen.jpg": {
-        "subject": "49",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 1024,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": false,
-        "target_bbox": [
-            319,
-            135,
-            391,
-            207
-        ],
-        "X": [
-            646.5
-        ],
-        "Y": [
-            545.0
-        ],
-        "T": [
-            680
-        ],
-        "target_object": "TBD",
-        "max_fixations": 3
-    },
     "grayscale_6_oliva.jpg": {
         "subject": "49",
         "dataset": "Interiors Dataset",
@@ -3535,62 +3507,6 @@
         "target_object": "potted plant",
         "max_fixations": 13
     },
-    "grayscale_14_housebeautiful.jpg": {
-        "subject": "49",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 1024,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": false,
-        "target_bbox": [
-            578,
-            50,
-            650,
-            122
-        ],
-        "X": [
-            545.8
-        ],
-        "Y": [
-            765.7
-        ],
-        "T": [
-            162
-        ],
-        "target_object": "cup",
-        "max_fixations": 3
-    },
-    "grayscale_44_oliva.jpg": {
-        "subject": "49",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 1024,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": false,
-        "target_bbox": [
-            316,
-            298,
-            388,
-            370
-        ],
-        "X": [
-            700.5
-        ],
-        "Y": [
-            376.9
-        ],
-        "T": [
-            416
-        ],
-        "target_object": "bowl",
-        "max_fixations": 3
-    },
     "grayscale_21_housebeautiful.jpg": {
         "subject": "49",
         "dataset": "Interiors Dataset",
@@ -4396,7 +4312,7 @@
             986.5
         ],
         "Y": [
-            0.0,
+            0,
             335.6,
             368.0,
             350.5
@@ -4857,7 +4773,7 @@
             999.7
         ],
         "Y": [
-            0.0,
+            0,
             298.4,
             362.5
         ],

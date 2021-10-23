@@ -682,34 +682,6 @@
         "target_object": "bowl",
         "max_fixations": 3
     },
-    "grayscale_18_kitchen.jpg": {
-        "subject": "47",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 1024,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": true,
-        "target_bbox": [
-            256,
-            506,
-            328,
-            578
-        ],
-        "X": [
-            572.2
-        ],
-        "Y": [
-            275.6
-        ],
-        "T": [
-            184
-        ],
-        "target_object": "TBD",
-        "max_fixations": 9
-    },
     "grayscale_1_oliva.jpg": {
         "subject": "47",
         "dataset": "Interiors Dataset",
@@ -903,41 +875,6 @@
             455
         ],
         "target_object": "TBD",
-        "max_fixations": 9
-    },
-    "grayscale_35_oliva.jpg": {
-        "subject": "47",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 1024,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": true,
-        "target_bbox": [
-            324,
-            442,
-            396,
-            514
-        ],
-        "X": [
-            455.5
-        ],
-        "Y": [
-            397.6
-        ],
-        "T": [
-            306,
-            182,
-            215,
-            117,
-            168,
-            128,
-            241,
-            165
-        ],
-        "target_object": "cup",
         "max_fixations": 9
     },
     "grayscale_42_oliva.jpg": {
@@ -3029,34 +2966,6 @@
         "target_object": "TBD",
         "max_fixations": 9
     },
-    "grayscale_6_airbnb.jpg": {
-        "subject": "47",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 1024,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": false,
-        "target_bbox": [
-            591,
-            134,
-            663,
-            206
-        ],
-        "X": [
-            543.0
-        ],
-        "Y": [
-            589.8
-        ],
-        "T": [
-            428
-        ],
-        "target_object": "potted plant",
-        "max_fixations": 3
-    },
     "grayscale_1_kitchen.jpg": {
         "subject": "47",
         "dataset": "Interiors Dataset",
@@ -4240,7 +4149,7 @@
             88
         ],
         "X": [
-            0.0,
+            0,
             386.9,
             494.4,
             529.0,
@@ -5562,40 +5471,6 @@
             366
         ],
         "target_object": "bowl",
-        "max_fixations": 9
-    },
-    "grayscale_99_oliva.jpg": {
-        "subject": "47",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 1024,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": true,
-        "target_bbox": [
-            566,
-            715,
-            638,
-            787
-        ],
-        "X": [
-            726.6
-        ],
-        "Y": [
-            568.6
-        ],
-        "T": [
-            309,
-            152,
-            61,
-            114,
-            278,
-            62,
-            448
-        ],
-        "target_object": "TBD",
         "max_fixations": 9
     },
     "grayscale_98_oliva.jpg": {

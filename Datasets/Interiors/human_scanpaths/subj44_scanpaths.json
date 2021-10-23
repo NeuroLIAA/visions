@@ -2003,7 +2003,7 @@
             953.0
         ],
         "Y": [
-            0.0,
+            0,
             228.39999999999998,
             330.3,
             300.6
@@ -2050,34 +2050,6 @@
         ],
         "target_object": "potted plant",
         "max_fixations": 13
-    },
-    "grayscale_35_oliva.jpg": {
-        "subject": "44",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 1024,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": false,
-        "target_bbox": [
-            324,
-            442,
-            396,
-            514
-        ],
-        "X": [
-            452.7
-        ],
-        "Y": [
-            179.6
-        ],
-        "T": [
-            178
-        ],
-        "target_object": "cup",
-        "max_fixations": 3
     },
     "grayscale_43_oliva.jpg": {
         "subject": "44",
@@ -3638,7 +3610,7 @@
             567.0,
             339.1,
             29.099999999999994,
-            0.0,
+            0,
             821.8,
             892.0,
             963.3
@@ -5651,7 +5623,7 @@
             987.7,
             905.3,
             107.6,
-            0.0
+            0
         ],
         "Y": [
             402.5,

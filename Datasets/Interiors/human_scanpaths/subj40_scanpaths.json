@@ -274,34 +274,6 @@
         "target_object": "TBD",
         "max_fixations": 9
     },
-    "grayscale_72_oliva.jpg": {
-        "subject": "40",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 960,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": true,
-        "target_bbox": [
-            328,
-            569,
-            400,
-            641
-        ],
-        "X": [
-            613.3
-        ],
-        "Y": [
-            341.9
-        ],
-        "T": [
-            2775
-        ],
-        "target_object": "TBD",
-        "max_fixations": 13
-    },
     "grayscale_8_oliva.jpg": {
         "subject": "40",
         "dataset": "Interiors Dataset",
@@ -2808,36 +2780,6 @@
         "target_object": "TBD",
         "max_fixations": 13
     },
-    "grayscale_56_oliva.jpg": {
-        "subject": "40",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 960,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": true,
-        "target_bbox": [
-            358,
-            725,
-            430,
-            797
-        ],
-        "X": [
-            761.9
-        ],
-        "Y": [
-            347.2
-        ],
-        "T": [
-            189,
-            272,
-            264
-        ],
-        "target_object": "bottle",
-        "max_fixations": 13
-    },
     "grayscale_53_oliva.jpg": {
         "subject": "40",
         "dataset": "Interiors Dataset",
@@ -4338,34 +4280,6 @@
         "target_object": "knife",
         "max_fixations": 5
     },
-    "grayscale_22_housebeautiful.jpg": {
-        "subject": "40",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 960,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": false,
-        "target_bbox": [
-            267,
-            136,
-            339,
-            208
-        ],
-        "X": [
-            473.5
-        ],
-        "Y": [
-            45.19999999999999
-        ],
-        "T": [
-            241
-        ],
-        "target_object": "TBD",
-        "max_fixations": 13
-    },
     "grayscale_88_oliva.jpg": {
         "subject": "40",
         "dataset": "Interiors Dataset",
@@ -4777,34 +4691,6 @@
         "target_object": "potted plant",
         "max_fixations": 13
     },
-    "grayscale_37_oliva.jpg": {
-        "subject": "40",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 960,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": false,
-        "target_bbox": [
-            369,
-            201,
-            441,
-            273
-        ],
-        "X": [
-            598.0
-        ],
-        "Y": [
-            468.5
-        ],
-        "T": [
-            113
-        ],
-        "target_object": "TBD",
-        "max_fixations": 3
-    },
     "grayscale_94_oliva.jpg": {
         "subject": "40",
         "dataset": "Interiors Dataset",
@@ -5212,45 +5098,6 @@
         ],
         "target_object": "TBD",
         "max_fixations": 9
-    },
-    "grayscale_15_oliva.jpg": {
-        "subject": "40",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 960,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": true,
-        "target_bbox": [
-            416,
-            661,
-            488,
-            733
-        ],
-        "X": [
-            647.9
-        ],
-        "Y": [
-            434.1
-        ],
-        "T": [
-            1420,
-            227,
-            168,
-            145,
-            236,
-            243,
-            196,
-            292,
-            339,
-            320,
-            211,
-            1748
-        ],
-        "target_object": "fork",
-        "max_fixations": 13
     },
     "grayscale_14_kitchen.jpg": {
         "subject": "40",

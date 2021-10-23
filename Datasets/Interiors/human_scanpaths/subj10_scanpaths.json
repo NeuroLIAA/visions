@@ -1551,34 +1551,6 @@
         "target_object": "cup",
         "max_fixations": 13
     },
-    "grayscale_84_oliva.jpg": {
-        "subject": "10",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 960,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": false,
-        "target_bbox": [
-            263,
-            746,
-            335,
-            818
-        ],
-        "X": [
-            654.2
-        ],
-        "Y": [
-            578.7
-        ],
-        "T": [
-            295
-        ],
-        "target_object": "chair",
-        "max_fixations": 3
-    },
     "grayscale_20_housebeautiful.jpg": {
         "subject": "10",
         "dataset": "Interiors Dataset",
@@ -1945,34 +1917,6 @@
         ],
         "target_object": "TBD",
         "max_fixations": 3
-    },
-    "grayscale_27_opensource.jpg": {
-        "subject": "10",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 960,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": false,
-        "target_bbox": [
-            375,
-            440,
-            447,
-            512
-        ],
-        "X": [
-            561.3
-        ],
-        "Y": [
-            387.79999999999995
-        ],
-        "T": [
-            149
-        ],
-        "target_object": "TBD",
-        "max_fixations": 13
     },
     "grayscale_6_housebeautiful.jpg": {
         "subject": "10",
@@ -2560,7 +2504,7 @@
             495
         ],
         "X": [
-            0.0,
+            0,
             34.900000000000006,
             15.700000000000003,
             24.5,
@@ -3534,34 +3478,6 @@
             1115
         ],
         "target_object": "TBD",
-        "max_fixations": 13
-    },
-    "grayscale_35_oliva.jpg": {
-        "subject": "10",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 960,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": false,
-        "target_bbox": [
-            324,
-            442,
-            396,
-            514
-        ],
-        "X": [
-            513.6
-        ],
-        "Y": [
-            305.0
-        ],
-        "T": [
-            674
-        ],
-        "target_object": "cup",
         "max_fixations": 13
     },
     "grayscale_10_opensource.jpg": {

@@ -165,34 +165,6 @@
         "target_object": "TBD",
         "max_fixations": 3
     },
-    "grayscale_16_housebeautiful.jpg": {
-        "subject": "55",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 960,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": false,
-        "target_bbox": [
-            421,
-            158,
-            493,
-            230
-        ],
-        "X": [
-            571.0
-        ],
-        "Y": [
-            460.7
-        ],
-        "T": [
-            265
-        ],
-        "target_object": "TBD",
-        "max_fixations": 3
-    },
     "grayscale_13_oliva.jpg": {
         "subject": "55",
         "dataset": "Interiors Dataset",
@@ -1387,34 +1359,6 @@
         "target_object": "cup",
         "max_fixations": 13
     },
-    "grayscale_84_oliva.jpg": {
-        "subject": "55",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 960,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": false,
-        "target_bbox": [
-            263,
-            746,
-            335,
-            818
-        ],
-        "X": [
-            524.2
-        ],
-        "Y": [
-            660.5
-        ],
-        "T": [
-            126
-        ],
-        "target_object": "chair",
-        "max_fixations": 3
-    },
     "grayscale_20_housebeautiful.jpg": {
         "subject": "55",
         "dataset": "Interiors Dataset",
@@ -1451,34 +1395,6 @@
         ],
         "target_object": "TBD",
         "max_fixations": 9
-    },
-    "grayscale_7_housebeautiful.jpg": {
-        "subject": "55",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 960,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": false,
-        "target_bbox": [
-            452,
-            500,
-            524,
-            572
-        ],
-        "X": [
-            518.4
-        ],
-        "Y": [
-            423.9
-        ],
-        "T": [
-            242
-        ],
-        "target_object": "bowl",
-        "max_fixations": 5
     },
     "grayscale_12_housebeautiful.jpg": {
         "subject": "55",
@@ -1764,34 +1680,6 @@
         "target_object": "TBD",
         "max_fixations": 3
     },
-    "grayscale_27_opensource.jpg": {
-        "subject": "55",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 960,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": false,
-        "target_bbox": [
-            375,
-            440,
-            447,
-            512
-        ],
-        "X": [
-            843.7
-        ],
-        "Y": [
-            568.3
-        ],
-        "T": [
-            1139
-        ],
-        "target_object": "TBD",
-        "max_fixations": 13
-    },
     "grayscale_6_housebeautiful.jpg": {
         "subject": "55",
         "dataset": "Interiors Dataset",
@@ -2027,34 +1915,6 @@
             214,
             241,
             355
-        ],
-        "target_object": "TBD",
-        "max_fixations": 3
-    },
-    "grayscale_9_kitchen.jpg": {
-        "subject": "55",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 960,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": false,
-        "target_bbox": [
-            146,
-            92,
-            218,
-            164
-        ],
-        "X": [
-            313.4
-        ],
-        "Y": [
-            647.2
-        ],
-        "T": [
-            223
         ],
         "target_object": "TBD",
         "max_fixations": 3
@@ -5216,7 +5076,7 @@
             88
         ],
         "X": [
-            0.0,
+            0,
             115.1,
             87.4
         ],

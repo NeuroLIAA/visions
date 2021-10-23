@@ -919,38 +919,6 @@
         "target_object": "cup",
         "max_fixations": 13
     },
-    "grayscale_50_oliva.jpg": {
-        "subject": "02",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 960,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": true,
-        "target_bbox": [
-            130,
-            471,
-            202,
-            543
-        ],
-        "X": [
-            465.79999999999995
-        ],
-        "Y": [
-            210.2
-        ],
-        "T": [
-            228,
-            208,
-            185,
-            211,
-            245
-        ],
-        "target_object": "TBD",
-        "max_fixations": 9
-    },
     "grayscale_29_oliva.jpg": {
         "subject": "02",
         "dataset": "Interiors Dataset",
@@ -1393,34 +1361,6 @@
         "target_object": "cup",
         "max_fixations": 13
     },
-    "grayscale_84_oliva.jpg": {
-        "subject": "02",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 960,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": false,
-        "target_bbox": [
-            263,
-            746,
-            335,
-            818
-        ],
-        "X": [
-            673.3
-        ],
-        "Y": [
-            602.8
-        ],
-        "T": [
-            171
-        ],
-        "target_object": "chair",
-        "max_fixations": 3
-    },
     "grayscale_20_housebeautiful.jpg": {
         "subject": "02",
         "dataset": "Interiors Dataset",
@@ -1734,34 +1674,6 @@
         ],
         "target_object": "TBD",
         "max_fixations": 9
-    },
-    "grayscale_70_oliva.jpg": {
-        "subject": "02",
-        "dataset": "Interiors Dataset",
-        "image_height": 768,
-        "image_width": 1024,
-        "screen_height": 960,
-        "screen_width": 1280,
-        "receptive_height": 32,
-        "receptive_width": 32,
-        "target_found": false,
-        "target_bbox": [
-            370,
-            807,
-            442,
-            879
-        ],
-        "X": [
-            644.7
-        ],
-        "Y": [
-            492.9
-        ],
-        "T": [
-            277
-        ],
-        "target_object": "TBD",
-        "max_fixations": 3
     },
     "grayscale_27_opensource.jpg": {
         "subject": "02",
