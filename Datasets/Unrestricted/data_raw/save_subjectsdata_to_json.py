@@ -84,6 +84,9 @@ for subject_data_file in subjects_files:
         number_of_fixations = len(scanpath_x)
         # Get target bounding box
         current_target   = utils.get_trial_for_image_name(trials_properties, image_name)
+        # Trivial images are filtered, ignore scanpath
+        if current_target == None:
+            continue
         target_start_row = current_target['target_matched_row']
         target_start_column = current_target['target_matched_column']
         target_end_row      = target_start_row + current_target['target_height']
@@ -92,7 +95,7 @@ for subject_data_file in subjects_files:
         target_bbox = [target_start_row, target_start_column, target_end_row, target_end_column]
 
         # Crop scanpaths as soon as a fixation falls between the target's bounding box
-        target_found, scanpath_x, scanpath_y = utils.crop_scanpath(scanpath_x, scanpath_y, target_bbox, receptive_size)
+        target_found, scanpath_x, scanpath_y = utils.crop_scanpath(scanpath_x, scanpath_y, target_bbox, receptive_size, image_size)
         if target_found: targets_found += 1
         if len(scanpath_x) < number_of_fixations:
             cropped_scanpaths += 1
