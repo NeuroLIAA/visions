@@ -2188,7 +2188,7 @@
         "Y": [
             531.9,
             590.0,
-            1055.4
+            1049
         ],
         "T": [
             317,
@@ -13603,35 +13603,6 @@
         "target_object": "sink",
         "max_fixations": 45
     },
-    "000000078546.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            646,
-            725,
-            816,
-            1450
-        ],
-        "X": [
-            855.8
-        ],
-        "Y": [
-            636.2
-        ],
-        "T": [
-            213,
-            504
-        ],
-        "target_object": "sink",
-        "max_fixations": 45
-    },
     "000000253854.jpg": {
         "subject": "01",
         "dataset": "COCOSearch18 Dataset",
@@ -22354,35 +22325,6 @@
         "target_object": "tv",
         "max_fixations": 45
     },
-    "000000322407.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            180,
-            840,
-            386,
-            1158
-        ],
-        "X": [
-            931.9
-        ],
-        "Y": [
-            404.8
-        ],
-        "T": [
-            255,
-            372
-        ],
-        "target_object": "tv",
-        "max_fixations": 45
-    },
     "000000445829.jpg": {
         "subject": "01",
         "dataset": "COCOSearch18 Dataset",
@@ -30167,34 +30109,6 @@
         "target_object": "car",
         "max_fixations": 45
     },
-    "000000364491.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            931,
-            141,
-            1029,
-            478
-        ],
-        "X": [
-            840.9
-        ],
-        "Y": [
-            550.2
-        ],
-        "T": [
-            310
-        ],
-        "target_object": "car",
-        "max_fixations": 45
-    },
     "000000101476.jpg": {
         "subject": "01",
         "dataset": "COCOSearch18 Dataset",
@@ -32277,35 +32191,6 @@
         "target_object": "clock",
         "max_fixations": 45
     },
-    "000000474827.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            200,
-            771,
-            406,
-            1000
-        ],
-        "X": [
-            810.2
-        ],
-        "Y": [
-            420.4
-        ],
-        "T": [
-            234,
-            971
-        ],
-        "target_object": "clock",
-        "max_fixations": 45
-    },
     "000000108876.jpg": {
         "subject": "01",
         "dataset": "COCOSearch18 Dataset",
@@ -32338,34 +32223,6 @@
             205,
             231,
             687
-        ],
-        "target_object": "clock",
-        "max_fixations": 45
-    },
-    "000000272626.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            777,
-            777,
-            950,
-            944
-        ],
-        "X": [
-            817.1
-        ],
-        "Y": [
-            431.1
-        ],
-        "T": [
-            303
         ],
         "target_object": "clock",
         "max_fixations": 45
@@ -32669,66 +32526,6 @@
         "T": [
             238,
             876
-        ],
-        "target_object": "clock",
-        "max_fixations": 45
-    },
-    "000000471629.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            62,
-            836,
-            370,
-            1167
-        ],
-        "X": [
-            840.2
-        ],
-        "Y": [
-            346.9
-        ],
-        "T": [
-            216,
-            230,
-            906
-        ],
-        "target_object": "clock",
-        "max_fixations": 45
-    },
-    "000000323774.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            78,
-            679,
-            389,
-            951
-        ],
-        "X": [
-            871.8
-        ],
-        "Y": [
-            404.5
-        ],
-        "T": [
-            223,
-            265,
-            664
         ],
         "target_object": "clock",
         "max_fixations": 45
@@ -33465,34 +33262,6 @@
         "T": [
             234,
             650
-        ],
-        "target_object": "clock",
-        "max_fixations": 45
-    },
-    "000000349588.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            538,
-            1017,
-            839,
-            1341
-        ],
-        "X": [
-            834.4
-        ],
-        "Y": [
-            438.1
-        ],
-        "T": [
-            236
         ],
         "target_object": "clock",
         "max_fixations": 45
@@ -34335,36 +34104,6 @@
             273,
             38,
             173
-        ],
-        "target_object": "cup",
-        "max_fixations": 45
-    },
-    "000000176746.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            78,
-            1433,
-            734,
-            1538
-        ],
-        "X": [
-            1464.1
-        ],
-        "Y": [
-            515.4
-        ],
-        "T": [
-            158,
-            188,
-            258
         ],
         "target_object": "cup",
         "max_fixations": 45
@@ -36599,34 +36338,6 @@
             248,
             269,
             528
-        ],
-        "target_object": "cup",
-        "max_fixations": 45
-    },
-    "000000016757.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            229,
-            311,
-            566,
-            593
-        ],
-        "X": [
-            841.8
-        ],
-        "Y": [
-            415.7
-        ],
-        "T": [
-            197
         ],
         "target_object": "cup",
         "max_fixations": 45
@@ -44283,38 +43994,6 @@
         "target_object": "keyboard",
         "max_fixations": 45
     },
-    "000000441296.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            646,
-            787,
-            813,
-            1302
-        ],
-        "X": [
-            895.5
-        ],
-        "Y": [
-            629.4
-        ],
-        "T": [
-            260,
-            46,
-            145,
-            205,
-            617
-        ],
-        "target_object": "keyboard",
-        "max_fixations": 45
-    },
     "000000137701.jpg": {
         "subject": "01",
         "dataset": "COCOSearch18 Dataset",
@@ -44376,37 +44055,6 @@
             206,
             245,
             680
-        ],
-        "target_object": "keyboard",
-        "max_fixations": 45
-    },
-    "000000461428.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            659,
-            285,
-            829,
-            908
-        ],
-        "X": [
-            882.5
-        ],
-        "Y": [
-            664.3
-        ],
-        "T": [
-            249,
-            154,
-            254,
-            586
         ],
         "target_object": "keyboard",
         "max_fixations": 45
@@ -54510,92 +54158,6 @@
         "target_object": "oven",
         "max_fixations": 45
     },
-    "000000331541.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            869,
-            170,
-            1042,
-            475
-        ],
-        "X": [
-            1289.5
-        ],
-        "Y": [
-            709.0
-        ],
-        "T": [
-            181
-        ],
-        "target_object": "oven",
-        "max_fixations": 45
-    },
-    "000000324764.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            587,
-            1161,
-            1023,
-            1364
-        ],
-        "X": [
-            1258.5
-        ],
-        "Y": [
-            746.0
-        ],
-        "T": [
-            305,
-            686
-        ],
-        "target_object": "oven",
-        "max_fixations": 45
-    },
-    "000000461189.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            508,
-            321,
-            836,
-            573
-        ],
-        "X": [
-            485.5
-        ],
-        "Y": [
-            574.8
-        ],
-        "T": [
-            249,
-            133
-        ],
-        "target_object": "oven",
-        "max_fixations": 45
-    },
     "000000548278.jpg": {
         "subject": "01",
         "dataset": "COCOSearch18 Dataset",
@@ -55443,34 +55005,6 @@
             273,
             257,
             414
-        ],
-        "target_object": "oven",
-        "max_fixations": 45
-    },
-    "100000343634.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            675,
-            689,
-            1042,
-            1036
-        ],
-        "X": [
-            867.2
-        ],
-        "Y": [
-            877.0
-        ],
-        "T": [
-            433
         ],
         "target_object": "oven",
         "max_fixations": 45
@@ -57940,34 +57474,6 @@
             228,
             268,
             32
-        ],
-        "target_object": "potted plant",
-        "max_fixations": 45
-    },
-    "000000217433.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            354,
-            1076,
-            705,
-            1302
-        ],
-        "X": [
-            787.7
-        ],
-        "Y": [
-            548.9
-        ],
-        "T": [
-            314
         ],
         "target_object": "potted plant",
         "max_fixations": 45
@@ -60681,34 +60187,6 @@
         "target_object": "toilet",
         "max_fixations": 45
     },
-    "100000380854.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            649,
-            876,
-            1026,
-            1145
-        ],
-        "X": [
-            859.9
-        ],
-        "Y": [
-            522.8
-        ],
-        "T": [
-            286
-        ],
-        "target_object": "toilet",
-        "max_fixations": 45
-    },
     "000000437391.jpg": {
         "subject": "01",
         "dataset": "COCOSearch18 Dataset",
@@ -60831,34 +60309,6 @@
         "T": [
             265,
             495
-        ],
-        "target_object": "toilet",
-        "max_fixations": 45
-    },
-    "000000232648.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            784,
-            931,
-            1026,
-            1144
-        ],
-        "X": [
-            859.7
-        ],
-        "Y": [
-            526.3
-        ],
-        "T": [
-            299
         ],
         "target_object": "toilet",
         "max_fixations": 45
@@ -60990,34 +60440,6 @@
             264,
             48,
             502
-        ],
-        "target_object": "toilet",
-        "max_fixations": 45
-    },
-    "000000514280.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            784,
-            1168,
-            1043,
-            1404
-        ],
-        "X": [
-            865.5
-        ],
-        "Y": [
-            465.2
-        ],
-        "T": [
-            273
         ],
         "target_object": "toilet",
         "max_fixations": 45
@@ -61264,34 +60686,6 @@
         "target_object": "toilet",
         "max_fixations": 45
     },
-    "000000347068.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            528,
-            1086,
-            846,
-            1246
-        ],
-        "X": [
-            844.7
-        ],
-        "Y": [
-            460.1
-        ],
-        "T": [
-            375
-        ],
-        "target_object": "toilet",
-        "max_fixations": 45
-    },
     "000000168531.jpg": {
         "subject": "01",
         "dataset": "COCOSearch18 Dataset",
@@ -61357,90 +60751,6 @@
             193,
             27,
             560
-        ],
-        "target_object": "toilet",
-        "max_fixations": 45
-    },
-    "100000453397.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            639,
-            833,
-            1039,
-            1207
-        ],
-        "X": [
-            869.3
-        ],
-        "Y": [
-            499.5
-        ],
-        "T": [
-            220
-        ],
-        "target_object": "toilet",
-        "max_fixations": 45
-    },
-    "000000132781.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            685,
-            859,
-            1003,
-            1206
-        ],
-        "X": [
-            833.5
-        ],
-        "Y": [
-            519.1
-        ],
-        "T": [
-            191
-        ],
-        "target_object": "toilet",
-        "max_fixations": 45
-    },
-    "000000390996.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            800,
-            872,
-            1039,
-            1055
-        ],
-        "X": [
-            892.7
-        ],
-        "Y": [
-            553.3
-        ],
-        "T": [
-            257
         ],
         "target_object": "toilet",
         "max_fixations": 45
@@ -61645,34 +60955,6 @@
             270,
             180,
             578
-        ],
-        "target_object": "toilet",
-        "max_fixations": 45
-    },
-    "000000512760.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            771,
-            1076,
-            1030,
-            1436
-        ],
-        "X": [
-            867.2
-        ],
-        "Y": [
-            494.2
-        ],
-        "T": [
-            270
         ],
         "target_object": "toilet",
         "max_fixations": 45
@@ -62171,34 +61453,6 @@
         "target_object": "toilet",
         "max_fixations": 45
     },
-    "000000144196.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            869,
-            744,
-            1042,
-            950
-        ],
-        "X": [
-            937.6
-        ],
-        "Y": [
-            562.5
-        ],
-        "T": [
-            273
-        ],
-        "target_object": "toilet",
-        "max_fixations": 45
-    },
     "000000272866.jpg": {
         "subject": "01",
         "dataset": "COCOSearch18 Dataset",
@@ -62646,62 +61900,6 @@
         "target_object": "toilet",
         "max_fixations": 45
     },
-    "100000513103.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            784,
-            662,
-            1026,
-            888
-        ],
-        "X": [
-            867.6
-        ],
-        "Y": [
-            564.4
-        ],
-        "T": [
-            72
-        ],
-        "target_object": "toilet",
-        "max_fixations": 45
-    },
-    "000000211265.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            643,
-            964,
-            990,
-            1262
-        ],
-        "X": [
-            876.2
-        ],
-        "Y": [
-            564.4
-        ],
-        "T": [
-            261
-        ],
-        "target_object": "toilet",
-        "max_fixations": 45
-    },
     "000000050735.jpg": {
         "subject": "01",
         "dataset": "COCOSearch18 Dataset",
@@ -62867,34 +62065,6 @@
         "target_object": "toilet",
         "max_fixations": 45
     },
-    "000000464602.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            751,
-            961,
-            1043,
-            1325
-        ],
-        "X": [
-            877.7
-        ],
-        "Y": [
-            568.8
-        ],
-        "T": [
-            207
-        ],
-        "target_object": "toilet",
-        "max_fixations": 45
-    },
     "000000504493.jpg": {
         "subject": "01",
         "dataset": "COCOSearch18 Dataset",
@@ -63029,34 +62199,6 @@
         "target_object": "toilet",
         "max_fixations": 45
     },
-    "000000280808.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            728,
-            1063,
-            1043,
-            1371
-        ],
-        "X": [
-            880.3
-        ],
-        "Y": [
-            569.5
-        ],
-        "T": [
-            245
-        ],
-        "target_object": "toilet",
-        "max_fixations": 45
-    },
     "000000136097.jpg": {
         "subject": "01",
         "dataset": "COCOSearch18 Dataset",
@@ -63085,34 +62227,6 @@
             240,
             192,
             596
-        ],
-        "target_object": "toilet",
-        "max_fixations": 45
-    },
-    "000000140821.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            482,
-            1118,
-            1000,
-            1370
-        ],
-        "X": [
-            897.3
-        ],
-        "Y": [
-            580.7
-        ],
-        "T": [
-            240
         ],
         "target_object": "toilet",
         "max_fixations": 45
@@ -63326,62 +62440,6 @@
         "target_object": "toilet",
         "max_fixations": 45
     },
-    "100000195039.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            761,
-            935,
-            1043,
-            1341
-        ],
-        "X": [
-            861.0
-        ],
-        "Y": [
-            534.9
-        ],
-        "T": [
-            280
-        ],
-        "target_object": "toilet",
-        "max_fixations": 45
-    },
-    "000000044816.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            735,
-            1027,
-            981,
-            1197
-        ],
-        "X": [
-            869.2
-        ],
-        "Y": [
-            540.4
-        ],
-        "T": [
-            250
-        ],
-        "target_object": "toilet",
-        "max_fixations": 45
-    },
     "000000452861.jpg": {
         "subject": "01",
         "dataset": "COCOSearch18 Dataset",
@@ -63546,34 +62604,6 @@
         "target_object": "toilet",
         "max_fixations": 45
     },
-    "000000471202.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            744,
-            1184,
-            1029,
-            1416
-        ],
-        "X": [
-            875.4
-        ],
-        "Y": [
-            542.7
-        ],
-        "T": [
-            271
-        ],
-        "target_object": "toilet",
-        "max_fixations": 45
-    },
     "000000305409.jpg": {
         "subject": "01",
         "dataset": "COCOSearch18 Dataset",
@@ -63601,34 +62631,6 @@
         "T": [
             263,
             211
-        ],
-        "target_object": "toilet",
-        "max_fixations": 45
-    },
-    "000000577521.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            662,
-            1050,
-            1026,
-            1325
-        ],
-        "X": [
-            860.9
-        ],
-        "Y": [
-            549.6
-        ],
-        "T": [
-            218
         ],
         "target_object": "toilet",
         "max_fixations": 45
@@ -80951,36 +79953,6 @@
         "target_object": "keyboard",
         "max_fixations": 45
     },
-    "000000225757.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            659,
-            374,
-            849,
-            899
-        ],
-        "X": [
-            901.4
-        ],
-        "Y": [
-            656.8
-        ],
-        "T": [
-            340,
-            251,
-            295
-        ],
-        "target_object": "keyboard",
-        "max_fixations": 45
-    },
     "000000299987.jpg": {
         "subject": "01",
         "dataset": "COCOSearch18 Dataset",
@@ -82458,37 +81430,6 @@
             265,
             254,
             437
-        ],
-        "target_object": "laptop",
-        "max_fixations": 45
-    },
-    "000000472080.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            249,
-            229,
-            642,
-            626
-        ],
-        "X": [
-            634.2
-        ],
-        "Y": [
-            389.7
-        ],
-        "T": [
-            107,
-            181,
-            115,
-            843
         ],
         "target_object": "laptop",
         "max_fixations": 45
@@ -84339,34 +83280,6 @@
         "target_object": "toilet",
         "max_fixations": 45
     },
-    "000000403385.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            485,
-            1023,
-            980,
-            1213
-        ],
-        "X": [
-            863.4
-        ],
-        "Y": [
-            562.9
-        ],
-        "T": [
-            262
-        ],
-        "target_object": "toilet",
-        "max_fixations": 45
-    },
     "000000138819.jpg": {
         "subject": "01",
         "dataset": "COCOSearch18 Dataset",
@@ -84394,34 +83307,6 @@
         "T": [
             229,
             588
-        ],
-        "target_object": "toilet",
-        "max_fixations": 45
-    },
-    "100000281017.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            698,
-            931,
-            1019,
-            1163
-        ],
-        "X": [
-            877.1
-        ],
-        "Y": [
-            561.2
-        ],
-        "T": [
-            293
         ],
         "target_object": "toilet",
         "max_fixations": 45
@@ -85471,34 +84356,6 @@
             178,
             194,
             155
-        ],
-        "target_object": "stop sign",
-        "max_fixations": 45
-    },
-    "000000044520.jpg": {
-        "subject": "01",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            659,
-            915,
-            934,
-            1190
-        ],
-        "X": [
-            818.5
-        ],
-        "Y": [
-            458.6
-        ],
-        "T": [
-            180
         ],
         "target_object": "stop sign",
         "max_fixations": 45

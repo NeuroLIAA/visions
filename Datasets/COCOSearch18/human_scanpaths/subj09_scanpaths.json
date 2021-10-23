@@ -2016,36 +2016,6 @@
         "target_object": "bottle",
         "max_fixations": 45
     },
-    "000000134769.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            39,
-            767,
-            301,
-            931
-        ],
-        "X": [
-            861.8
-        ],
-        "Y": [
-            303.9
-        ],
-        "T": [
-            200,
-            312,
-            401
-        ],
-        "target_object": "bottle",
-        "max_fixations": 45
-    },
     "000000116577.jpg": {
         "subject": "09",
         "dataset": "COCOSearch18 Dataset",
@@ -3651,7 +3621,7 @@
             956.6,
             958.2,
             772.0,
-            1073.3,
+            1049,
             929.6,
             623.1
         ],
@@ -11661,7 +11631,7 @@
             630.5,
             888.4,
             742.0,
-            1111.9,
+            1049,
             1040.1,
             481.1,
             515.4,
@@ -11670,7 +11640,7 @@
             911.1,
             955.9,
             978.0,
-            1103.5,
+            1049,
             746.5,
             695.0,
             635.7,
@@ -12412,34 +12382,6 @@
         "target_object": "chair",
         "max_fixations": 45
     },
-    "000000486087.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            521,
-            278,
-            836,
-            517
-        ],
-        "X": [
-            816.5
-        ],
-        "Y": [
-            573.1
-        ],
-        "T": [
-            284
-        ],
-        "target_object": "chair",
-        "max_fixations": 45
-    },
     "000000060040.jpg": {
         "subject": "09",
         "dataset": "COCOSearch18 Dataset",
@@ -12579,44 +12521,6 @@
         "target_object": "chair",
         "max_fixations": 45
     },
-    "000000067052.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            521,
-            364,
-            891,
-            619
-        ],
-        "X": [
-            624.6
-        ],
-        "Y": [
-            495.2
-        ],
-        "T": [
-            128,
-            53,
-            22,
-            60,
-            189,
-            345,
-            178,
-            308,
-            431,
-            54,
-            175
-        ],
-        "target_object": "chair",
-        "max_fixations": 45
-    },
     "000000533255.jpg": {
         "subject": "09",
         "dataset": "COCOSearch18 Dataset",
@@ -12646,8 +12550,8 @@
             515.0,
             614.7,
             663.4,
-            1074.2,
-            1051.0
+            1049,
+            1049
         ],
         "T": [
             62,
@@ -12860,40 +12764,6 @@
             102,
             98,
             79
-        ],
-        "target_object": "chair",
-        "max_fixations": 45
-    },
-    "000000359853.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            452,
-            292,
-            744,
-            577
-        ],
-        "X": [
-            321.9
-        ],
-        "Y": [
-            562.6
-        ],
-        "T": [
-            63,
-            101,
-            103,
-            279,
-            483,
-            308,
-            214
         ],
         "target_object": "chair",
         "max_fixations": 45
@@ -18273,34 +18143,6 @@
         "target_object": "chair",
         "max_fixations": 45
     },
-    "000000130116.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            439,
-            1237,
-            645,
-            1391
-        ],
-        "X": [
-            766.6
-        ],
-        "Y": [
-            551.3
-        ],
-        "T": [
-            397
-        ],
-        "target_object": "chair",
-        "max_fixations": 45
-    },
     "000000235328.jpg": {
         "subject": "09",
         "dataset": "COCOSearch18 Dataset",
@@ -19684,35 +19526,6 @@
         "T": [
             208,
             362
-        ],
-        "target_object": "clock",
-        "max_fixations": 45
-    },
-    "000000177078.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            121,
-            862,
-            370,
-            967
-        ],
-        "X": [
-            929.3
-        ],
-        "Y": [
-            388.4
-        ],
-        "T": [
-            218,
-            385
         ],
         "target_object": "clock",
         "max_fixations": 45
@@ -22313,8 +22126,8 @@
             235.8,
             228.9,
             319.0,
-            1142.8,
-            1125.6,
+            1049,
+            1049,
             410.9,
             192.7
         ],
@@ -27101,8 +26914,8 @@
             702.7,
             615.6,
             685.0,
-            1099.5,
-            1061.4,
+            1049,
+            1049,
             258.9,
             221.6,
             112.4,
@@ -33828,34 +33641,6 @@
         "target_object": "fork",
         "max_fixations": 45
     },
-    "100000152914.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            252,
-            141,
-            586,
-            259
-        ],
-        "X": [
-            721.2
-        ],
-        "Y": [
-            454.5
-        ],
-        "T": [
-            120
-        ],
-        "target_object": "fork",
-        "max_fixations": 45
-    },
     "100000142970.jpg": {
         "subject": "09",
         "dataset": "COCOSearch18 Dataset",
@@ -34191,34 +33976,6 @@
             148,
             88,
             264
-        ],
-        "target_object": "keyboard",
-        "max_fixations": 45
-    },
-    "000000472639.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            846,
-            597,
-            951,
-            1076
-        ],
-        "X": [
-            825.6
-        ],
-        "Y": [
-            547.3
-        ],
-        "T": [
-            279
         ],
         "target_object": "keyboard",
         "max_fixations": 45
@@ -35824,37 +35581,6 @@
         "target_object": "keyboard",
         "max_fixations": 45
     },
-    "000000461428.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            659,
-            285,
-            829,
-            908
-        ],
-        "X": [
-            882.0
-        ],
-        "Y": [
-            647.5
-        ],
-        "T": [
-            219,
-            187,
-            196,
-            349
-        ],
-        "target_object": "keyboard",
-        "max_fixations": 45
-    },
     "000000130215.jpg": {
         "subject": "09",
         "dataset": "COCOSearch18 Dataset",
@@ -35885,35 +35611,6 @@
             184,
             167,
             321
-        ],
-        "target_object": "keyboard",
-        "max_fixations": 45
-    },
-    "100000365512.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            626,
-            413,
-            780,
-            1033
-        ],
-        "X": [
-            894.5
-        ],
-        "Y": [
-            680.6
-        ],
-        "T": [
-            385,
-            670
         ],
         "target_object": "keyboard",
         "max_fixations": 45
@@ -36013,35 +35710,6 @@
         "target_object": "keyboard",
         "max_fixations": 45
     },
-    "000000030148.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            751,
-            311,
-            987,
-            944
-        ],
-        "X": [
-            898.7
-        ],
-        "Y": [
-            750.1
-        ],
-        "T": [
-            207,
-            260
-        ],
-        "target_object": "keyboard",
-        "max_fixations": 45
-    },
     "000000110518.jpg": {
         "subject": "09",
         "dataset": "COCOSearch18 Dataset",
@@ -36069,35 +35737,6 @@
         "T": [
             240,
             302
-        ],
-        "target_object": "keyboard",
-        "max_fixations": 45
-    },
-    "000000510456.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            751,
-            498,
-            862,
-            898
-        ],
-        "X": [
-            867.0
-        ],
-        "Y": [
-            732.9
-        ],
-        "T": [
-            333,
-            303
         ],
         "target_object": "keyboard",
         "max_fixations": 45
@@ -36201,35 +35840,6 @@
         "target_object": "keyboard",
         "max_fixations": 45
     },
-    "000000400623.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            685,
-            525,
-            917,
-            1059
-        ],
-        "X": [
-            812.3
-        ],
-        "Y": [
-            687.3
-        ],
-        "T": [
-            258,
-            273
-        ],
-        "target_object": "keyboard",
-        "max_fixations": 45
-    },
     "000000015374.jpg": {
         "subject": "09",
         "dataset": "COCOSearch18 Dataset",
@@ -36257,34 +35867,6 @@
         "T": [
             233,
             512
-        ],
-        "target_object": "keyboard",
-        "max_fixations": 45
-    },
-    "000000451053.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            731,
-            554,
-            1036,
-            957
-        ],
-        "X": [
-            820.6
-        ],
-        "Y": [
-            836.5
-        ],
-        "T": [
-            105
         ],
         "target_object": "keyboard",
         "max_fixations": 45
@@ -36542,34 +36124,6 @@
         "T": [
             244,
             377
-        ],
-        "target_object": "keyboard",
-        "max_fixations": 45
-    },
-    "000000530002.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            633,
-            784,
-            787,
-            1016
-        ],
-        "X": [
-            869.8
-        ],
-        "Y": [
-            723.1
-        ],
-        "T": [
-            942
         ],
         "target_object": "keyboard",
         "max_fixations": 45
@@ -37141,36 +36695,6 @@
         "target_object": "keyboard",
         "max_fixations": 45
     },
-    "000000489949.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            662,
-            354,
-            803,
-            1079
-        ],
-        "X": [
-            787.4
-        ],
-        "Y": [
-            688.1
-        ],
-        "T": [
-            274,
-            226,
-            178
-        ],
-        "target_object": "keyboard",
-        "max_fixations": 45
-    },
     "000000543183.jpg": {
         "subject": "09",
         "dataset": "COCOSearch18 Dataset",
@@ -37401,35 +36925,6 @@
         "T": [
             285,
             413
-        ],
-        "target_object": "keyboard",
-        "max_fixations": 45
-    },
-    "000000466136.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            633,
-            800,
-            869,
-            1285
-        ],
-        "X": [
-            885.0
-        ],
-        "Y": [
-            703.6
-        ],
-        "T": [
-            417,
-            601
         ],
         "target_object": "keyboard",
         "max_fixations": 45
@@ -37693,42 +37188,6 @@
             183,
             153,
             239
-        ],
-        "target_object": "keyboard",
-        "max_fixations": 45
-    },
-    "000000341060.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            639,
-            564,
-            747,
-            1154
-        ],
-        "X": [
-            804.0
-        ],
-        "Y": [
-            633.0
-        ],
-        "T": [
-            246,
-            198,
-            207,
-            296,
-            231,
-            243,
-            202,
-            503,
-            144
         ],
         "target_object": "keyboard",
         "max_fixations": 45
@@ -38219,7 +37678,7 @@
         "Y": [
             705.2,
             905.5,
-            1052.8
+            1049
         ],
         "T": [
             199,
@@ -39578,34 +39037,6 @@
             191,
             405,
             372
-        ],
-        "target_object": "knife",
-        "max_fixations": 45
-    },
-    "000000447574.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            393,
-            1250,
-            809,
-            1502
-        ],
-        "X": [
-            1380.9
-        ],
-        "Y": [
-            522.5
-        ],
-        "T": [
-            456
         ],
         "target_object": "knife",
         "max_fixations": 45
@@ -49170,34 +48601,6 @@
         "target_object": "mouse",
         "max_fixations": 45
     },
-    "000000306822.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            600,
-            1112,
-            813,
-            1492
-        ],
-        "X": [
-            1062.3
-        ],
-        "Y": [
-            638.4
-        ],
-        "T": [
-            385
-        ],
-        "target_object": "mouse",
-        "max_fixations": 45
-    },
     "000000123646.jpg": {
         "subject": "09",
         "dataset": "COCOSearch18 Dataset",
@@ -49670,36 +49073,6 @@
         "T": [
             181,
             187
-        ],
-        "target_object": "mouse",
-        "max_fixations": 45
-    },
-    "000000180549.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            708,
-            895,
-            937,
-            1344
-        ],
-        "X": [
-            1037.1
-        ],
-        "Y": [
-            715.4
-        ],
-        "T": [
-            225,
-            144,
-            176
         ],
         "target_object": "mouse",
         "max_fixations": 45
@@ -58958,35 +58331,6 @@
         "target_object": "sink",
         "max_fixations": 45
     },
-    "000000296187.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            127,
-            682,
-            235,
-            1088
-        ],
-        "X": [
-            857.4
-        ],
-        "Y": [
-            246.2
-        ],
-        "T": [
-            82,
-            184
-        ],
-        "target_object": "sink",
-        "max_fixations": 45
-    },
     "100000407349.jpg": {
         "subject": "09",
         "dataset": "COCOSearch18 Dataset",
@@ -60869,34 +60213,6 @@
         "target_object": "sink",
         "max_fixations": 45
     },
-    "000000437575.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            826,
-            895,
-            1016,
-            1272
-        ],
-        "X": [
-            607.1
-        ],
-        "Y": [
-            586.4
-        ],
-        "T": [
-            255
-        ],
-        "target_object": "sink",
-        "max_fixations": 45
-    },
     "000000515809.jpg": {
         "subject": "09",
         "dataset": "COCOSearch18 Dataset",
@@ -61175,34 +60491,6 @@
         "target_object": "sink",
         "max_fixations": 45
     },
-    "000000300470.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            790,
-            1033,
-            1042,
-            1531
-        ],
-        "X": [
-            860.3
-        ],
-        "Y": [
-            547.2
-        ],
-        "T": [
-            224
-        ],
-        "target_object": "sink",
-        "max_fixations": 45
-    },
     "000000404101.jpg": {
         "subject": "09",
         "dataset": "COCOSearch18 Dataset",
@@ -61230,34 +60518,6 @@
         "T": [
             254,
             40
-        ],
-        "target_object": "sink",
-        "max_fixations": 45
-    },
-    "000000458592.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            767,
-            964,
-            927,
-            1308
-        ],
-        "X": [
-            734.7
-        ],
-        "Y": [
-            572.8
-        ],
-        "T": [
-            205
         ],
         "target_object": "sink",
         "max_fixations": 45
@@ -68196,34 +67456,6 @@
         "target_object": "toilet",
         "max_fixations": 45
     },
-    "100000385390.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": false,
-        "target_bbox": [
-            774,
-            593,
-            1029,
-            855
-        ],
-        "X": [
-            802.6
-        ],
-        "Y": [
-            729.2
-        ],
-        "T": [
-            365
-        ],
-        "target_object": "toilet",
-        "max_fixations": 45
-    },
     "100000015704.jpg": {
         "subject": "09",
         "dataset": "COCOSearch18 Dataset",
@@ -69450,35 +68682,6 @@
         "target_object": "toilet",
         "max_fixations": 45
     },
-    "000000506576.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            662,
-            735,
-            862,
-            918
-        ],
-        "X": [
-            850.3
-        ],
-        "Y": [
-            662.6
-        ],
-        "T": [
-            373,
-            242
-        ],
-        "target_object": "toilet",
-        "max_fixations": 45
-    },
     "000000347068.jpg": {
         "subject": "09",
         "dataset": "COCOSearch18 Dataset",
@@ -70234,35 +69437,6 @@
             190,
             102,
             557
-        ],
-        "target_object": "toilet",
-        "max_fixations": 45
-    },
-    "000000414894.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            626,
-            646,
-            862,
-            787
-        ],
-        "X": [
-            790.7
-        ],
-        "Y": [
-            668.2
-        ],
-        "T": [
-            253,
-            268
         ],
         "target_object": "toilet",
         "max_fixations": 45
@@ -72851,38 +72025,6 @@
         "target_object": "tv",
         "max_fixations": 45
     },
-    "000000202086.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            292,
-            436,
-            403,
-            613
-        ],
-        "X": [
-            511.1
-        ],
-        "Y": [
-            375.4
-        ],
-        "T": [
-            192,
-            224,
-            389,
-            297,
-            316
-        ],
-        "target_object": "tv",
-        "max_fixations": 45
-    },
     "000000012983.jpg": {
         "subject": "09",
         "dataset": "COCOSearch18 Dataset",
@@ -74370,35 +73512,6 @@
             178,
             335,
             412
-        ],
-        "target_object": "tv",
-        "max_fixations": 45
-    },
-    "000000429384.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            173,
-            1155,
-            333,
-            1387
-        ],
-        "X": [
-            1264.1
-        ],
-        "Y": [
-            315.9
-        ],
-        "T": [
-            89,
-            373
         ],
         "target_object": "tv",
         "max_fixations": 45
@@ -75894,36 +75007,6 @@
         "target_object": "tv",
         "max_fixations": 45
     },
-    "000000416656.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            232,
-            728,
-            412,
-            970
-        ],
-        "X": [
-            763.4
-        ],
-        "Y": [
-            434.1
-        ],
-        "T": [
-            194,
-            115,
-            210
-        ],
-        "target_object": "tv",
-        "max_fixations": 45
-    },
     "100000421102.jpg": {
         "subject": "09",
         "dataset": "COCOSearch18 Dataset",
@@ -76398,38 +75481,6 @@
         "target_object": "tv",
         "max_fixations": 45
     },
-    "000000117428.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            210,
-            735,
-            410,
-            1013
-        ],
-        "X": [
-            831.7
-        ],
-        "Y": [
-            350.8
-        ],
-        "T": [
-            382,
-            300,
-            222,
-            245,
-            215
-        ],
-        "target_object": "tv",
-        "max_fixations": 45
-    },
     "000000123310.jpg": {
         "subject": "09",
         "dataset": "COCOSearch18 Dataset",
@@ -76620,7 +75671,7 @@
         ],
         "Y": [
             525.9,
-            1109.2,
+            1049,
             430.2
         ],
         "T": [
@@ -78466,7 +77517,7 @@
             515.4,
             576.5,
             598.3,
-            1217.7,
+            1049,
             640.8,
             614.4,
             606.7,
@@ -81440,7 +80491,7 @@
         ],
         "Y": [
             524.4,
-            1064.0,
+            1049,
             391.5
         ],
         "T": [
@@ -81548,37 +80599,6 @@
             246,
             90,
             430
-        ],
-        "target_object": "cup",
-        "max_fixations": 45
-    },
-    "000000080756.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            3,
-            456,
-            416,
-            813
-        ],
-        "X": [
-            835.4
-        ],
-        "Y": [
-            410.5
-        ],
-        "T": [
-            225,
-            140,
-            150,
-            239
         ],
         "target_object": "cup",
         "max_fixations": 45
@@ -84862,34 +83882,6 @@
             492
         ],
         "target_object": "microwave",
-        "max_fixations": 45
-    },
-    "000000012463.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            705,
-            843,
-            967,
-            1259
-        ],
-        "X": [
-            958.0
-        ],
-        "Y": [
-            714.9
-        ],
-        "T": [
-            426
-        ],
-        "target_object": "mouse",
         "max_fixations": 45
     },
     "000000478159.jpg": {
@@ -89227,37 +88219,6 @@
             244,
             278,
             289
-        ],
-        "target_object": "tv",
-        "max_fixations": 45
-    },
-    "100000105538.jpg": {
-        "subject": "09",
-        "dataset": "COCOSearch18 Dataset",
-        "image_height": 1050,
-        "image_width": 1680,
-        "screen_height": 1050,
-        "screen_width": 1650,
-        "receptive_height": 52,
-        "receptive_width": 52,
-        "target_found": true,
-        "target_bbox": [
-            88,
-            754,
-            412,
-            1111
-        ],
-        "X": [
-            816.1
-        ],
-        "Y": [
-            420.2
-        ],
-        "T": [
-            194,
-            196,
-            333,
-            96
         ],
         "target_object": "tv",
         "max_fixations": 45
