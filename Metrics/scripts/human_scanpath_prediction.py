@@ -1,4 +1,4 @@
-from os import listdir, path, getcwd, chdir
+from os import listdir, path
 from tqdm import tqdm
 from scipy.stats import multivariate_normal
 from . import utils
@@ -22,21 +22,14 @@ class HumanScanpathPrediction:
         if self.null_object:
             return
             
-        human_scanpaths_files = listdir(self.human_scanpaths_dir)
+        human_scanpaths_files = utils.sorted_alphanumeric(listdir(self.human_scanpaths_dir))
         model_output_path     = path.join(self.dataset_results_dir, model_name)
-        # Save current working directory
-        original_wd = getcwd()
         for subject in human_scanpaths_files:
             subject_number  = subject[4:6]
 
-            # Change working directory
-            chdir(path.join(self.models_dir, model_name))
-            # Command line to run the model with the necessary parameters
-            command = 'python3 main.py -dataset ' + self.dataset_name + ' --h ' + subject_number
-            # Run the model
-            run(command, shell=True, check=True)
-            # Return to original working directory
-            chdir(original_wd)
+            model = importlib.import_module(self.models_dir + '.' + model_name + '.main')
+            print('Running ' + model_name + ' using subject ' + subject_number + ' scanpaths')
+            model.main(self.dataset_name, int(subject_number))
 
             # Levantar los resultados del sujeto sobre todo el dataset y promediarlos
 
@@ -75,7 +68,7 @@ def compute_metrics(probability_map, human_fixations_y, human_fixations_x):
 
     return roc, nss, ig
 
-def center_gaussian(self, shape):
+def center_gaussian(shape):
     sigma  = [[1, 0], [0, 1]]
     mean   = [shape[0] // 2, shape[1] // 2]
     x_range = np.linspace(0, shape[0], shape[0])
@@ -84,17 +77,17 @@ def center_gaussian(self, shape):
     x_matrix, y_matrix = np.meshgrid(y_range, x_range)
     quantiles = np.transpose([y_matrix.flatten(), x_matrix.flatten()])
     mvn = multivariate_normal.pdf(quantiles, mean=mean, cov=sigma)
-    mvn = np.reshape(mvn_at_fixation, shape)
+    mvn = np.reshape(mvn, shape)
 
     return mvn
 
-def normalize(self, probability_map):
+def normalize(probability_map):
     normalized_probability_map = probability_map - np.min(probability_map)
     normalized_probability_map = normalized_probability_map / np.max(normalized_probability_map)
 
     return normalized_probability_map
 
-def NSS(self, saliency_map, ground_truth_fixations_y, ground_truth_fixations_x):
+def NSS(saliency_map, ground_truth_fixations_y, ground_truth_fixations_x):
     mean = np.mean(saliency_map)
     std  = np.std(saliency_map)
     value = np.copy(saliency_map[ground_truth_fixations_y, ground_truth_fixations_x])
@@ -105,7 +98,7 @@ def NSS(self, saliency_map, ground_truth_fixations_y, ground_truth_fixations_x):
 
     return value
 
-def infogain(self, s_map, baseline_map, ground_truth_fixations_y, ground_truth_fixations_x):
+def infogain(s_map, baseline_map, ground_truth_fixations_y, ground_truth_fixations_x):
     eps = 2.2204e-16
 
     s_map        = s_map / (np.sum(s_map) * 1.0)
@@ -113,12 +106,12 @@ def infogain(self, s_map, baseline_map, ground_truth_fixations_y, ground_truth_f
 
     temp = []
 
-    for i in zip(ground_truth_fixations_y, ground_truth_fixations_x):
+    for i in zip(ground_truth_fixations_x, ground_truth_fixations_y):
         temp.append(np.log2(eps + s_map[i[1], i[0]]) - np.log2(eps + baseline_map[i[1], i[0]]))
 
     return np.mean(temp)
 
-def AUCs(self, probability_map, ground_truth_fixations_y, ground_truth_fixations_x):
+def AUCs(probability_map, ground_truth_fixations_y, ground_truth_fixations_x):
     """ Calculate AUC scores for fixations """
     rocs_per_fixation = []
 
@@ -131,7 +124,7 @@ def AUCs(self, probability_map, ground_truth_fixations_y, ground_truth_fixations
 
     return np.asarray(rocs_per_fixation)
 
-def auc_for_one_positive(self, positive, negatives):
+def auc_for_one_positive(positive, negatives):
     """ Computes the AUC score of one single positive sample agains many negatives.
     The result is equal to general_roc([positive], negatives)[0], but computes much
     faster because one can save sorting the negatives.
