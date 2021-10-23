@@ -160,7 +160,7 @@ class VisualSearcher:
 
     def initialize_target_similarity_map(self, image, target, target_bbox, image_name):
         # Load corresponding module, which has the same name in lower case
-        module = importlib.import_module('.target_similarity.' + self.target_similarity_method.lower(), 'visualsearch')
+        module = importlib.import_module('.target_similarity.' + self.target_similarity_method.lower(), 'Models.nnIBS.visualsearch')
         # Get the class
         target_similarity_class = getattr(module, self.target_similarity_method.capitalize())
         target_similarity_map   = target_similarity_class(image_name, image, target, target_bbox, self.visibility_map, self.scale_factor, self.additive_shift, self.grid, self.seed, \
