@@ -49,6 +49,7 @@ largest_scanpath    = 0
 cropped_scanpaths   = 0
 collapsed_scanpaths = 0
 collapsed_fixations = 0
+trivial_scanpaths   = 0
 
 trials_properties = []
 trials_processed  = []
@@ -76,7 +77,7 @@ for scanpath in human_scanpaths:
             # Remove file from subfolder
             image_path = images_dir + task + '/' + image_name
             if path.exists(image_path):
-                remove(image_path)
+               remove(image_path)
             # Iterate through dict to define a new name for the file
             new_name = image_info['new_name']
             if new_name is None:
@@ -109,7 +110,10 @@ for scanpath in human_scanpaths:
 
     original_scanpath_len = len(scanpath_x)
     # Crop scanpaths as soon as a fixation falls between the target's bounding box
-    target_found, scanpath_x, scanpath_y = utils.crop_scanpath(scanpath_x, scanpath_y, target_bbox, receptive_size)
+    target_found, scanpath_x, scanpath_y = utils.crop_scanpath(scanpath_x, scanpath_y, target_bbox, receptive_size, (image_height, image_width))
+    if len(scanpath_x) == 1:
+        trivial_scanpaths += 1
+        continue
     if target_found: targets_found += 1
     if len(scanpath_x) < original_scanpath_len: cropped_scanpaths += 1
     
@@ -185,3 +189,4 @@ print('Largest target found scanpath: ' + str(largest_scanpath))
 print("Collapsed scanpaths (discretized in size " + str(receptive_size) + ") : " + str(collapsed_scanpaths))
 print("Number of fixations collapsed: " + str(collapsed_fixations))
 print('Cropped scanpaths (target found earlier): ' + str(cropped_scanpaths))
+print('Trivial scanpaths (length one): ' + str(trivial_scanpaths))
