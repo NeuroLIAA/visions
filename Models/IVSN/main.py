@@ -16,21 +16,22 @@ def main(dataset_name, human_subject=None):
     dataset_info      = utils.load_from_dataset(dataset_path, 'dataset_info.json')
     trials_properties = utils.load_from_dataset(dataset_path, 'trials_properties.json')
 
-    # For computing different metrics; used only through argument --h
-    human_scanpaths_dir = path.join(dataset_path, dataset_info['scanpaths_dir'])
-    human_scanpaths     = utils.load_human_scanpaths(human_scanpaths_dir, human_subject)
-    if human_scanpaths:
-        human_subject_str = '0' + str(human_subject) if human_subject < 10 else str(human_subject)
-
-        output_path       = path.join(output_path, path.join('subjects_predictions', 'subject_' + human_subject_str))
-        trials_properties = utils.keep_human_trials(human_scanpaths, trials_properties)
-
     images_dir        = path.join(dataset_path, dataset_info['images_dir'])
     targets_dir       = path.join(dataset_path, dataset_info['targets_dir'])
     max_fixations     = dataset_info['max_scanpath_length']
     images_size       = (dataset_info['image_height'], dataset_info['image_width'])
     receptive_size    = [min(dataset_info['mean_target_size']), min(dataset_info['mean_target_size'])]
     dataset_full_name = dataset_info['dataset_name']
+
+    # For computing different metrics; used only through argument --h
+    human_scanpaths_dir = path.join(dataset_path, dataset_info['scanpaths_dir'])
+    human_scanpaths     = utils.load_human_scanpaths(human_scanpaths_dir, human_subject)
+    if human_scanpaths:
+        human_subject_str = '0' + str(human_subject) if human_subject < 10 else str(human_subject)
+
+        receptive_size    = dataset_info['receptive_size']
+        output_path       = path.join(output_path, path.join('subjects_predictions', 'subject_' + human_subject_str))
+        trials_properties = utils.keep_human_trials(human_scanpaths, trials_properties)
 
     preprocessed_images_dir = path.join(constants.PREPROCESSED_IMAGES_PATH, dataset_full_name)
 
