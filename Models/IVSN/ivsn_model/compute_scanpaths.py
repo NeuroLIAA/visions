@@ -3,6 +3,7 @@ import numpy as np
 from . import utils
 from os import listdir, makedirs, path
 from skimage import io, transform, exposure
+from Metrics.scripts import human_scanpath_prediction
 
 """
 Puts together data produced by the CNN and creates an attention map for the image, which is used to compute the scanpaths, with a winner-takes-all strategy.
@@ -23,7 +24,7 @@ def parse_model_data(preprocessed_images_dir, trials_properties, human_scanpaths
         trial_scanpath = create_scanpath_for_trial(trial, attention_map, human_trial_scanpath, image_size, max_fixations, receptive_size, dataset_name, output_path)
 
         if human_trial_scanpath:
-            utils.save_scanpath_prediction_metrics(human_trial_scanpath, len(trial_scanpath['X']), trial['image'], output_path)
+            human_scanpath_prediction.save_scanpath_prediction_metrics(human_trial_scanpath, len(trial_scanpath['X']), trial['image'], output_path)
 
         scanpaths[image_name] = trial_scanpath
         if trial_scanpath['target_found']:

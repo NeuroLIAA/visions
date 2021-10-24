@@ -5,7 +5,6 @@ import pandas as pd
 from ...scripts import constants
 from os import makedirs, path, remove, listdir, pardir
 from skimage import io, transform, img_as_ubyte
-from Metrics.scripts import human_scanpath_prediction
 
 def rescale_coordinate(value, old_size, new_size):
     return int((value / old_size) * new_size)
@@ -75,35 +74,6 @@ def save_probability_map(output_path, image_name, probability_map, fixation_numb
 
     posterior_df = pd.DataFrame(probability_map)
     posterior_df.to_csv(path.join(save_path, 'fixation_' + str(fixation_number + 1) + '.csv'))
-
-def save_scanpath_prediction_metrics(subject_scanpath, scanpath_length, image_name, output_path):
-    probability_maps_path = path.join(output_path, path.join('probability_maps', image_name[:-4]))
-    probability_maps = listdir(probability_maps_path)
-
-    subject_fixations_x = np.array(subject_scanpath['X'], dtype=int)
-    subject_fixations_y = np.array(subject_scanpath['Y'], dtype=int)
-
-    image_rocs, image_nss, image_igs = [], [], []
-    # Since the model may have found the target earlier due to rescaling, its scanpath length is used.
-    for index in range(1, scanpath_length):
-        probability_map = pd.read_csv(path.join(probability_maps_path, 'fixation_' + str(index) + '.csv'))
-        roc, nss, ig = human_scanpath_prediction.compute_metrics(probability_map, subject_fixations_y[:index], subject_fixations_x[:index])
-        image_rocs.append(roc)
-        image_nss.append(nss)
-        image_igs.append(ig)
-
-    subject   = path.basename(output_path)
-    file_path = path.join(path.join(output_path, pardir), subject + '_results.json')
-    if path.exists(file_path):
-        model_subject_metrics = load_from_json(file_path)
-    else:
-        model_subject_metrics = {}
-    
-    model_subject_metrics[image_name] = {'AUC': np.mean(image_rocs), 'NSS': np.mean(image_nss), 'IG': np.mean(image_igs)}  
-    save_to_json(file_path, model_subject_metrics)
-
-    # Clean up
-    # shutil.rmtree(probability_maps_path)
 
 def save_similarity_map(output_path, filename, target_similarity_map):
     if not path.exists(output_path):

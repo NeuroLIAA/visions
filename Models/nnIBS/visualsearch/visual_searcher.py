@@ -1,5 +1,6 @@
 from .models.bayesian_model import BayesianModel
 from .models.greedy_model   import GreedyModel
+from Metrics.scripts import human_scanpath_prediction
 from .utils import utils
 from . import prior
 import numpy as np
@@ -146,7 +147,7 @@ class VisualSearcher:
         scanpath_y_coordinates = self.get_coordinates(fixations, axis=0)
 
         if self.human_scanpaths:
-            utils.save_scanpath_prediction_metrics(current_human_scanpath, len(scanpath_x_coordinates), image_name, self.output_path)
+            human_scanpath_prediction.save_scanpath_prediction_metrics(current_human_scanpath, len(scanpath_x_coordinates), image_name, self.output_path)
 
         return { 'target_found' : target_found, 'scanpath_x' : scanpath_x_coordinates, 'scanpath_y' : scanpath_y_coordinates }
     

@@ -2,9 +2,10 @@ from os import listdir, path
 from tqdm import tqdm
 from scipy.stats import multivariate_normal
 from . import utils
-from subprocess import run
+from os import path, listdir, pardir
 import pandas as pd
 import numpy as np
+import shutil
 import numba
 import importlib
 
@@ -39,6 +40,35 @@ class HumanScanpathPrediction:
             # TODO: Levantar los resultados del sujeto sobre todo el dataset y promediarlos
 
 
+def save_scanpath_prediction_metrics(subject_scanpath, scanpath_length, image_name, output_path):
+    """ After creating the probability maps for each fixation in a given human subject's scanpath, visual search models call this method """
+    probability_maps_path = path.join(output_path, path.join('probability_maps', image_name[:-4]))
+    probability_maps = listdir(probability_maps_path)
+
+    subject_fixations_x = np.array(subject_scanpath['X'], dtype=int)
+    subject_fixations_y = np.array(subject_scanpath['Y'], dtype=int)
+
+    image_rocs, image_nss, image_igs = [], [], []
+    # Since the model may have found the target earlier due to rescaling, its scanpath length is used.
+    for index in range(1, scanpath_length):
+        probability_map = pd.read_csv(path.join(probability_maps_path, 'fixation_' + str(index) + '.csv'))
+        roc, nss, ig = compute_metrics(probability_map, subject_fixations_y[:index], subject_fixations_x[:index])
+        image_rocs.append(roc)
+        image_nss.append(nss)
+        image_igs.append(ig)
+
+    subject   = path.basename(output_path)
+    file_path = path.join(path.join(output_path, pardir), subject + '_results.json')
+    if path.exists(file_path):
+        model_subject_metrics = utils.load_dict_from_json(file_path)
+    else:
+        model_subject_metrics = {}
+    
+    model_subject_metrics[image_name] = {'AUC': np.mean(image_rocs), 'NSS': np.mean(image_nss), 'IG': np.mean(image_igs)}  
+    utils.save_to_json(file_path, model_subject_metrics)
+
+    # Clean up
+    shutil.rmtree(probability_maps_path)
 
 def compute_metrics(probability_map, human_fixations_y, human_fixations_x):
     probability_map = probability_map.to_numpy(dtype=np.float)
