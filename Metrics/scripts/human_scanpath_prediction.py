@@ -77,7 +77,7 @@ def compute_metrics(probability_map, human_fixations_y, human_fixations_x):
 
     roc = np.mean(AUCs(probability_map, human_fixations_y, human_fixations_x)) # ¿Promediamos?
     nss = np.mean(NSS(probability_map, human_fixations_y, human_fixations_x)) # ¿Promediamos? 
-    ig  = infogain(probability_map, baseline_map, human_fixations_y, human_fixations_x)
+    ig  = np.mean(infogain(probability_map, baseline_map, human_fixations_y, human_fixations_x)) # ¿Promediamos? 
 
     return roc, nss, ig
 
@@ -122,7 +122,7 @@ def infogain(s_map, baseline_map, ground_truth_fixations_y, ground_truth_fixatio
     for i in zip(ground_truth_fixations_x, ground_truth_fixations_y):
         temp.append(np.log2(eps + s_map[i[1], i[0]]) - np.log2(eps + baseline_map[i[1], i[0]]))
 
-    return np.mean(temp)
+    return temp
 
 def AUCs(probability_map, ground_truth_fixations_y, ground_truth_fixations_x):
     """ Calculate AUC scores for fixations """
