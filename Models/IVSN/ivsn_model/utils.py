@@ -26,7 +26,7 @@ def keep_human_trials(human_scanpaths, trials_properties):
 
     return human_trials_properties
 
-def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
+def save_scanpath_prediction_metrics(subject_scanpath, scanpath_length, image_name, output_path):
     probability_maps_path = path.join(output_path, path.join('probability_maps', image_name[:-4]))
     probability_maps = listdir(probability_maps_path)
 
@@ -34,7 +34,7 @@ def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
     subject_fixations_y = np.array(subject_scanpath['Y'], dtype=int)
 
     image_rocs, image_nss, image_igs = [], [], []
-    for index in range(1, np.size(subject_fixations_x)):
+    for index in range(1, scanpath_length):
         probability_map = pd.read_csv(path.join(probability_maps_path, 'fixation_' + str(index) + '.csv'))
         roc, nss, ig = human_scanpath_prediction.compute_metrics(probability_map, subject_fixations_y[:index], subject_fixations_x[:index])
         image_rocs.append(roc)
