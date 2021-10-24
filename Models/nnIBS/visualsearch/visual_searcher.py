@@ -145,6 +145,9 @@ class VisualSearcher:
         scanpath_x_coordinates = self.get_coordinates(fixations, axis=1)
         scanpath_y_coordinates = self.get_coordinates(fixations, axis=0)
 
+        if self.human_scanpaths:
+            utils.save_scanpath_prediction_metrics(current_human_scanpath, len(scanpath_x_coordinates), image_name, self.output_path)
+
         return { 'target_found' : target_found, 'scanpath_x' : scanpath_x_coordinates, 'scanpath_y' : scanpath_y_coordinates }
     
     def get_coordinates(self, fixations, axis):
