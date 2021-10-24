@@ -1,8 +1,10 @@
-from os import makedirs, path, remove
-from skimage import io, transform, img_as_ubyte
 import json
+import shutil
 import numpy  as np
 import pandas as pd
+from ...scripts import constants
+from os import makedirs, path, remove, listdir, pardir
+from skimage import io, transform, img_as_ubyte
 
 def rescale_coordinate(value, old_size, new_size):
     return int((value / old_size) * new_size)
@@ -113,6 +115,9 @@ def are_within_boundaries(top_left_coordinates, bottom_right_coordinates, top_le
 def rescale_scanpaths(grid, human_scanpaths):
     for trial in human_scanpaths:        
         scanpath = human_scanpaths[trial]
+        # Rescale to image size used
+        scanpath['X'] = [rescale_coordinate(x, scanpath['image_width'], constants.IMAGE_SIZE[1]) for x in scanpath['X']]
+        scanpath['Y'] = [rescale_coordinate(y, scanpath['image_height'], constants.IMAGE_SIZE[0]) for y in scanpath['Y']]
         scanpath['Y'], scanpath['X'] = [list(coords) for coords in zip(*list(map(grid.map_to_cell, zip(scanpath['Y'], scanpath['X']))))]
         # Convert to int so it can be saved in JSON format
         scanpath['X'] = [int(x_coord) for x_coord in scanpath['X']]
