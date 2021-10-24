@@ -6,6 +6,7 @@ import pandas as pd
 import os
 from math import floor
 from torch.distributions import Categorical
+from Metrics.scripts import human_scanpath_prediction
 warnings.filterwarnings("ignore", category=UserWarning)
 
 def get_max_scanpath_length(scanpaths_list):
@@ -23,7 +24,7 @@ def add_scanpath_to_dict(model_name, image_name, image_size, scanpath_x, scanpat
                  'X' : list(map(int, scanpath_x)), 'Y' : list(map(int, scanpath_y)), 'target_object' : target_object, 'max_fixations' : max_saccades + 1
         }
 
-def save_probability_maps(probs, human_scanpaths_batch, img_names_batch, output_path):
+def save_and_compute_metrics(probs, human_scanpaths_batch, img_names_batch, output_path):
     for index, trial in enumerate(human_scanpaths_batch):
         trial_length    = len(trial['X'])
         trial_img_name  = img_names_batch[index]
@@ -36,6 +37,8 @@ def save_probability_maps(probs, human_scanpaths_batch, img_names_batch, output_
         for fix_number, prob_map in enumerate(trial_prob_maps):
             prob_map_df = pd.DataFrame(prob_map.numpy())
             prob_map_df.to_csv(os.path.join(save_path, 'fixation_' + str(fix_number + 1) + '.csv'))
+        
+        human_scanpath_prediction.save_scanpath_prediction_metrics(trial, len(trial['X']), trial_img_name, output_path)
 
 
 def save_scanpaths(output_path, scanpaths, filename='Scanpaths.json'):

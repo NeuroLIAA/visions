@@ -42,7 +42,7 @@ def main(dataset_name, human_subject=None):
     human_scanpaths     = load_human_scanpaths(human_scanpaths_dir, human_subject, grid_size)
     if human_scanpaths:
         human_subject_str = '0' + str(human_subject) if human_subject < 10 else str(human_subject)
-        output_path = path.join(output_path, path.join('subjects_predictions', 'human_subject_' + human_subject_str))
+        output_path = path.join(output_path, path.join('subjects_predictions', 'subject_' + human_subject_str))
 
     hparams.Data.max_traj_length = dataset_info['max_scanpath_length'] - 1
 
@@ -130,7 +130,7 @@ def gen_scanpaths(generator, env_test, test_img_loader, bbox_annos, patch_num, p
                                             sample_action=True)
                 
                 if human_scanpaths:
-                    utils.save_probability_maps(probs, human_scanpaths_batch, img_names_batch, output_path)
+                    utils.save_and_compute_metrics(probs, human_scanpaths_batch, img_names_batch, output_path)
                 all_actions.extend([(cat_names_batch[i], img_names_batch[i], initial_fix_batch[i],
                                      'present', trajs['actions'][:, i])
                                     for i in range(env_test.batch_size)])
