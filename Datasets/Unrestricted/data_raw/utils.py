@@ -7,18 +7,18 @@ def between_bounds(target_bbox, fix_y, fix_x, receptive_size):
 
 def crop_scanpath(scanpath_x, scanpath_y, target_bbox, receptive_size, image_size):
     target_found = False
-    cropped_scanpath_x = list(scanpath_x)
-    cropped_scanpath_y = list(scanpath_y)
-    for index, fixation in enumerate(zip(scanpath_y, scanpath_x)):
+    index = 0
+    for fixation in zip(scanpath_y, scanpath_x):
         # Make sure each fixation is between the image bounds
         scanpath_x[index] = min(max(0, scanpath_x[index]), image_size[1] - 1)
         scanpath_y[index] = min(max(0, scanpath_y[index]), image_size[0] - 1)
         if between_bounds(target_bbox, fixation[0], fixation[1], receptive_size):
-            cropped_scanpath_x = scanpath_x[:index + 1]
-            cropped_scanpath_y = scanpath_y[:index + 1]
             target_found = True
             break
+        index += 1
     
+    cropped_scanpath_x = list(scanpath_x[:index + 1])
+    cropped_scanpath_y = list(scanpath_y[:index + 1])
     return target_found, cropped_scanpath_x, cropped_scanpath_y
 
 def collapse_fixations(scanpath_x, scanpath_y, receptive_size):
