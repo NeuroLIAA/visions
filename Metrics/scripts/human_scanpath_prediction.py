@@ -25,9 +25,9 @@ class HumanScanpathPrediction:
         self.null_object = not compute
 
     def compute_metrics_for_model(self, model_name):
-        if self.null_object:
-            return
-            
+        if self.null_object: return
+
+        model_output_path     = path.join(self.dataset_results_dir, model_name)    
         human_scanpaths_files = utils.sorted_alphanumeric(listdir(self.human_scanpaths_dir))
         for subject in human_scanpaths_files:
             subject_number = subject[4:6]
@@ -36,12 +36,27 @@ class HumanScanpathPrediction:
             print('Running ' + model_name + ' using subject ' + subject_number + ' scanpaths')
             model.main(self.dataset_name, int(subject_number))
         
-        # Sum image values across subjects
-        model_output_path      = path.join(self.dataset_results_dir, model_name)
+        average_results_per_image = self.average_results(model_output_path)
+        utils.save_to_json(path.join(model_output_path, 'scanpath_prediction_mean_per_image.json'), average_results_per_image)
+
+        self.compute_model_mean(average_results_per_image)
+    
+    def compute_model_mean(self, average_results_per_image):
+        """ Get the average across all images for a given model in a given dataset """
+        self.models_results[model_name] = {'Scanpath_prediction': {'AUC': 0, 'NSS': 0, 'IG': 0}}
+        number_of_images = len(average_results_per_image)
+        for image_name in average_results_per_image:
+            self.models_results[model_name]['Scanpath_prediction']['AUC'] += average_results_per_image[image_name]['AUC'] / number_of_images
+            self.models_results[model_name]['Scanpath_prediction']['NSS'] += average_results_per_image[image_name]['NSS'] / number_of_images
+            self.models_results[model_name]['Scanpath_prediction']['IG']  += average_results_per_image[image_name]['IG'] / number_of_images
+    
+    def average_results(self, model_output_path):
+        """ Get the average of all subjects for each image """
         subjects_results_path  = path.join(model_output_path, 'subjects_predictions')
         subjects_results_files = utils.list_json_files(subjects_results_path)
         average_results_per_image   = {}
         number_of_results_per_image = {}
+        # Sum image values across subjects
         for subject_file in subject_results_files:
             subject_results = utils.load_dict_from_json(path.join(model_output_path, subject_file))
             for image_name in subject_results:
@@ -60,16 +75,8 @@ class HumanScanpathPrediction:
             average_results_per_image[image_name]['AUC'] /= number_of_results_per_image[image_name]
             average_results_per_image[image_name]['NSS'] /= number_of_results_per_image[image_name]
             average_results_per_image[image_name]['IG']  /= number_of_results_per_image[image_name]
-        
-        utils.save_to_json(path.join(model_output_path, 'scanpath_prediction_mean_per_image.json'), average_results_per_image)
 
-        # Finally, average across all images and get a single value of each metric for the model
-        self.models_results[model_name] = {'Scanpath_prediction': {'AUC': 0, 'NSS': 0, 'IG': 0}}
-        number_of_images = len(average_results_per_image.keys())
-        for image_name in average_results_per_image:
-            self.models_results[model_name]['Scanpath_prediction']['AUC'] += average_results_per_image[image_name]['AUC'] / number_of_images
-            self.models_results[model_name]['Scanpath_prediction']['NSS'] += average_results_per_image[image_name]['NSS'] / number_of_images
-            self.models_results[model_name]['Scanpath_prediction']['IG']  += average_results_per_image[image_name]['IG'] / number_of_images
+        return average_results_per_image
 
     def save_results(self, save_path, filename):
         if self.null_object: return
