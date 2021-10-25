@@ -9,6 +9,15 @@ def dir_is_too_heavy(path):
     
     return nmbytes > constants.MAX_DIR_SIZE
 
+def list_json_files(path):
+    files = listdir(path)
+    json_files = []
+    for file in files:
+        if file.endswith('.json'):
+            json_files.append(file)
+    
+    return json_files
+
 def sorted_alphanumeric(data):
     convert = lambda text: int(text) if text.isdigit() else text.lower()
     alphanum_key = lambda key: [ convert(c) for c in re.split('([0-9]+)', key) ] 

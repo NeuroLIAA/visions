@@ -9,7 +9,7 @@ import shutil
 import numba
 import importlib
 
-""" Computes human scanpath prediction on the visual search models for a given set of datasets. 
+""" Computes human scanpath prediction on the visual search models for a given dataset. 
     See "Kümmerer, M. & Bethge, M. (2021), State-of-the-Art in Human Scanpath Prediction" for more information.
     The methods for computing AUC and NSS were taken from https://github.com/matthias-k/pysaliency/blob/master/pysaliency/metrics.py
 """
@@ -29,16 +29,65 @@ class HumanScanpathPrediction:
             return
             
         human_scanpaths_files = utils.sorted_alphanumeric(listdir(self.human_scanpaths_dir))
-        model_output_path     = path.join(self.dataset_results_dir, model_name)
         for subject in human_scanpaths_files:
-            subject_number  = subject[4:6]
+            subject_number = subject[4:6]
 
             model = importlib.import_module(self.models_dir + '.' + model_name + '.main')
             print('Running ' + model_name + ' using subject ' + subject_number + ' scanpaths')
             model.main(self.dataset_name, int(subject_number))
+        
+        # Sum image values across subjects
+        model_output_path      = path.join(self.dataset_results_dir, model_name)
+        subjects_results_path  = path.join(model_output_path, 'subjects_predictions')
+        subjects_results_files = utils.list_json_files(subjects_results_path)
+        average_results_per_image   = {}
+        number_of_results_per_image = {}
+        for subject_file in subject_results_files:
+            subject_results = utils.load_dict_from_json(path.join(model_output_path, subject_file))
+            for image_name in subject_results:
+                metrics = subject_results[image_name]
+                if image_name in average_results_per_image:
+                    average_results_per_image[image_name]['AUC'] += metrics['AUC']
+                    average_results_per_image[image_name]['NSS'] += metrics['NSS']
+                    average_results_per_image[image_name]['IG']  += metrics['IG']
+                    number_of_results_per_image[image_name] += 1
+                else:
+                    average_results_per_image[image_name]   = metrics
+                    number_of_results_per_image[image_name] = 1
+        
+        # Average image values across subjects
+        for image_name in average_results_per_image:
+            average_results_per_image[image_name]['AUC'] /= number_of_results_per_image[image_name]
+            average_results_per_image[image_name]['NSS'] /= number_of_results_per_image[image_name]
+            average_results_per_image[image_name]['IG']  /= number_of_results_per_image[image_name]
+        
+        utils.save_to_json(path.join(model_output_path, 'scanpath_prediction_mean_per_image.json'), average_results_per_image)
 
-            # TODO: Levantar los resultados del sujeto sobre todo el dataset y promediarlos
+        # Finally, average across all images and get a single value of each metric for the model
+        self.models_results[model_name] = {'Scanpath_prediction': {'AUC': 0, 'NSS': 0, 'IG': 0}}
+        number_of_images = len(average_results_per_image.keys())
+        for image_name in average_results_per_image:
+            self.models_results[model_name]['Scanpath_prediction']['AUC'] += average_results_per_image[image_name]['AUC'] / number_of_images
+            self.models_results[model_name]['Scanpath_prediction']['NSS'] += average_results_per_image[image_name]['NSS'] / number_of_images
+            self.models_results[model_name]['Scanpath_prediction']['IG']  += average_results_per_image[image_name]['IG'] / number_of_images
 
+    def save_results(self, save_path, filename):
+        if self.null_object: return
+
+        dataset_metrics_file = path.join(save_path, filename)
+        if path.exists(path.join(save_path, filename)):
+            dataset_metrics = utils.load_dict_from_json(dataset_metrics_file)
+        else:
+            dataset_metrics = {}
+    
+        for model in self.models_results:
+            metrics = self.models_results[model]
+            if model in dataset_metrics:
+                dataset_metrics[model].update(metrics)
+            else:
+                dataset_metrics[model] = metrics
+
+        utils.save_to_json(dataset_metrics_file, filename)
 
 def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
     """ After creating the probability maps for each fixation in a given human subject's scanpath, visual search models call this method """
@@ -49,7 +98,6 @@ def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
     subject_fixations_y = np.array(subject_scanpath['Y'], dtype=int)
 
     image_rocs, image_nss, image_igs = [], [], []
-    # Since the model may have found the target earlier due to rescaling, its scanpath length is used.
     for index in range(1, len(probability_maps) + 1):
         probability_map = pd.read_csv(path.join(probability_maps_path, 'fixation_' + str(index) + '.csv'))
         roc, nss, ig = compute_metrics(probability_map, subject_fixations_y[:index], subject_fixations_x[:index])
