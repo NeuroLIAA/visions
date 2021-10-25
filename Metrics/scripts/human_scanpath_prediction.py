@@ -39,9 +39,9 @@ class HumanScanpathPrediction:
         average_results_per_image = self.average_results(model_output_path)
         utils.save_to_json(path.join(model_output_path, 'scanpath_prediction_mean_per_image.json'), average_results_per_image)
 
-        self.compute_model_mean(average_results_per_image)
+        self.compute_model_mean(average_results_per_image, model_name)
     
-    def compute_model_mean(self, average_results_per_image):
+    def compute_model_mean(self, average_results_per_image, model_name):
         """ Get the average across all images for a given model in a given dataset """
         self.models_results[model_name] = {'Scanpath_prediction': {'AUC': 0, 'NSS': 0, 'IG': 0}}
         number_of_images = len(average_results_per_image)
@@ -57,8 +57,8 @@ class HumanScanpathPrediction:
         average_results_per_image   = {}
         number_of_results_per_image = {}
         # Sum image values across subjects
-        for subject_file in subject_results_files:
-            subject_results = utils.load_dict_from_json(path.join(model_output_path, subject_file))
+        for subject_file in subjects_results_files:
+            subject_results = utils.load_dict_from_json(path.join(subjects_results_path, subject_file))
             for image_name in subject_results:
                 metrics = subject_results[image_name]
                 if image_name in average_results_per_image:
@@ -94,7 +94,7 @@ class HumanScanpathPrediction:
             else:
                 dataset_metrics[model] = metrics
 
-        utils.save_to_json(dataset_metrics_file, filename)
+        utils.save_to_json(dataset_metrics_file, dataset_metrics)
 
 def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
     """ After creating the probability maps for each fixation in a given human subject's scanpath, visual search models call this method """

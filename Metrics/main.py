@@ -54,6 +54,7 @@ def main(datasets, models, compute_cumulative_performance, compute_multimatch, c
 
         subjects_cumulative_performance.save_results(save_path=dataset_results_dir, filename=constants.FILENAME)
         multimatch.save_results(save_path=dataset_results_dir, filename=constants.FILENAME)
+        human_scanpath_prediction.save_results(save_path=dataset_results_dir, filename=constants.FILENAME)
 
         subjects_cumulative_performance.plot(save_path=dataset_results_dir)
         multimatch.plot(save_path=dataset_results_dir)
