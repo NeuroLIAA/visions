@@ -81,6 +81,12 @@ class VisualSearcher:
             current_human_scanpath  = self.human_scanpaths[image_name]
             current_human_fixations = np.array(list(zip(current_human_scanpath['Y'], current_human_scanpath['X'])))
             self.max_saccades       = current_human_fixations.shape[0] - 1
+            # Check if the probability maps have already been computed and stored
+            prob_maps_for_image = utils.probability_maps_for_image(image_name, self.output_path)
+            if prob_maps_for_image:
+                print('Loaded previously computed probability maps for image ' + image_name)
+                human_scanpath_prediction.save_scanpath_prediction_metrics(current_human_scanpath, len(prob_maps_for_image) + 1, image_name, self.output_path)
+                return {}
         
         # Initialize fixations matrix
         fixations = np.empty(shape=(self.max_saccades + 1, 2), dtype=int)
