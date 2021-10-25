@@ -75,13 +75,13 @@ def save_probability_map(output_path, image_name, probability_map, fixation_numb
     posterior_df = pd.DataFrame(probability_map)
     posterior_df.to_csv(path.join(save_path, 'fixation_' + str(fixation_number + 1) + '.csv'))
 
-def probability_maps_for_image(image_name, output_path):
+def exists_probability_maps_for_image(image_name, output_path):
     probability_maps_path = path.join(output_path, path.join('probability_maps', image_name[:-4]))
     probability_maps = []
     if path.exists(probability_maps_path):
         probability_maps = listdir(probability_maps_path)
 
-    return probability_maps
+    return bool(probability_maps)
 
 def save_similarity_map(output_path, filename, target_similarity_map):
     if not path.exists(output_path):

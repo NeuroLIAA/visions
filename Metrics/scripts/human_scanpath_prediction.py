@@ -40,7 +40,7 @@ class HumanScanpathPrediction:
             # TODO: Levantar los resultados del sujeto sobre todo el dataset y promediarlos
 
 
-def save_scanpath_prediction_metrics(subject_scanpath, scanpath_length, image_name, output_path):
+def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
     """ After creating the probability maps for each fixation in a given human subject's scanpath, visual search models call this method """
     probability_maps_path = path.join(output_path, path.join('probability_maps', image_name[:-4]))
     probability_maps = listdir(probability_maps_path)
@@ -50,7 +50,7 @@ def save_scanpath_prediction_metrics(subject_scanpath, scanpath_length, image_na
 
     image_rocs, image_nss, image_igs = [], [], []
     # Since the model may have found the target earlier due to rescaling, its scanpath length is used.
-    for index in range(1, scanpath_length):
+    for index in range(1, len(probability_maps) + 1):
         probability_map = pd.read_csv(path.join(probability_maps_path, 'fixation_' + str(index) + '.csv'))
         roc, nss, ig = compute_metrics(probability_map, subject_fixations_y[:index], subject_fixations_x[:index])
         image_rocs.append(roc)
