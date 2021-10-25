@@ -2,7 +2,7 @@ from os import listdir, path
 from tqdm import tqdm
 from scipy.stats import multivariate_normal
 from . import utils
-from os import path, listdir, pardir
+from os import path, listdir, pardir, scandir
 import pandas as pd
 import numpy as np
 import shutil
@@ -67,8 +67,9 @@ def save_scanpath_prediction_metrics(subject_scanpath, scanpath_length, image_na
     model_subject_metrics[image_name] = {'AUC': np.mean(image_rocs), 'NSS': np.mean(image_nss), 'IG': np.mean(image_igs)}  
     utils.save_to_json(file_path, model_subject_metrics)
 
-    # Clean up
-    shutil.rmtree(probability_maps_path)
+    # Clean up probability maps if their size is too big
+    if utils.dir_is_too_heavy(probability_maps_path):
+        shutil.rmtree(probability_maps_path)
 
 def compute_metrics(probability_map, human_fixations_y, human_fixations_x):
     probability_map = probability_map.to_numpy(dtype=np.float)

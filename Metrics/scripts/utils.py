@@ -1,8 +1,13 @@
 import json
 import random
 import re
-from os import listdir, path
+from os import listdir, path, scandir
 from .. import constants
+
+def dir_is_too_heavy(path):
+    nmbytes = sum(d.stat().st_size for d in scandir(path) if d.is_file()) / 2**20
+    
+    return nmbytes > constants.MAX_DIR_SIZE
 
 def sorted_alphanumeric(data):
     convert = lambda text: int(text) if text.isdigit() else text.lower()
