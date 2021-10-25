@@ -24,22 +24,36 @@ def add_scanpath_to_dict(model_name, image_name, image_size, scanpath_x, scanpat
                  'X' : list(map(int, scanpath_x)), 'Y' : list(map(int, scanpath_y)), 'target_object' : target_object, 'max_fixations' : max_saccades + 1
         }
 
-def save_and_compute_metrics(probs, human_scanpaths_batch, img_names_batch, output_path):
+def probability_maps_for_batch(img_names_batch, output_path):
+    exist_prob_maps_for_batch = True
+    for image_name in img_names_batch:
+        probability_maps_path = os.path.join(os.path.join(output_path, 'probability_maps'), image_name[:-4])
+        prob_maps_image = []
+        if os.path.exists(probability_maps_path):
+            prob_maps_image = os.listdir(probability_maps_path)
+
+        if not prob_maps_image:
+            exist_prob_maps_for_batch = False
+            break
+    
+    return exist_prob_maps_for_batch
+
+def save_and_compute_metrics(probs, human_scanpaths_batch, img_names_batch, output_path, presaved=False):
     for index, trial in enumerate(human_scanpaths_batch):
         trial_length    = len(trial['X'])
         trial_img_name  = img_names_batch[index]
-        trial_prob_maps = [prob_batch[index] for prob_batch in probs[:trial_length - 1]]
 
         save_path = os.path.join(os.path.join(output_path, 'probability_maps'), trial_img_name[:-4])
         if not os.path.exists(save_path):
             os.makedirs(save_path)
 
-        for fix_number, prob_map in enumerate(trial_prob_maps):
-            prob_map_df = pd.DataFrame(prob_map.numpy())
-            prob_map_df.to_csv(os.path.join(save_path, 'fixation_' + str(fix_number + 1) + '.csv'))
+        if not presaved:
+            trial_prob_maps = [prob_batch[index] for prob_batch in probs[:trial_length - 1]]
+            for fix_number, prob_map in enumerate(trial_prob_maps):
+                prob_map_df = pd.DataFrame(prob_map.numpy())
+                prob_map_df.to_csv(os.path.join(save_path, 'fixation_' + str(fix_number + 1) + '.csv'))
         
-        human_scanpath_prediction.save_scanpath_prediction_metrics(trial, len(trial['X']), trial_img_name, output_path)
-
+        human_scanpath_prediction.save_scanpath_prediction_metrics(trial, trial_img_name, output_path)
 
 def save_scanpaths(output_path, scanpaths, filename='Scanpaths.json'):
     if not os.path.exists(output_path):
