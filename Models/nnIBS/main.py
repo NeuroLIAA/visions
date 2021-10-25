@@ -26,7 +26,7 @@ def main(dataset_name, human_subject=None):
     setup_and_run(dataset_name, config_name='default', image_name=None, image_range=None, human_subject=human_subject, number_of_processes='all', save_probability_maps=False)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Run the cIBS Visual Search model')
+    parser = argparse.ArgumentParser(description='Run the nnIBS Visual Search model')
     parser.add_argument('-dataset', type=str, help='Name of the dataset on which to run the model. Value must be one of cIBS, COCOSearch18, IVSN or MCS.')
     parser.add_argument('--cfg', '--config', type=str, default='default', help='Name of configuration setup. Examples: greedy, ssim, ivsn. Default is bayesian, with correlation \
         and deepgaze as prior.', metavar='cfg')
