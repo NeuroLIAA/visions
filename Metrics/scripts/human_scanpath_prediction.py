@@ -29,15 +29,26 @@ class HumanScanpathPrediction:
 
         model_output_path     = path.join(self.dataset_results_dir, model_name)    
         human_scanpaths_files = utils.sorted_alphanumeric(listdir(self.human_scanpaths_dir))
-        for subject in human_scanpaths_files:
-            subject_number = subject[4:6]
+        model_average_file    = path.join(model_output_path, 'scanpath_prediction_mean_per_image.json')
 
-            model = importlib.import_module(self.models_dir + '.' + model_name + '.main')
-            print('Running ' + model_name + ' using subject ' + subject_number + ' scanpaths')
-            model.main(self.dataset_name, int(subject_number))
-        
-        average_results_per_image = self.average_results(model_output_path)
-        utils.save_to_json(path.join(model_output_path, 'scanpath_prediction_mean_per_image.json'), average_results_per_image)
+        average_results_per_image = {}
+        if path.exists(model_average_file):
+            print('[Scanpath prediction] Found previously computed results for ' + model_name)
+            average_results_per_image = utils.load_dict_from_json(model_average_file)
+
+        if not average_results_per_image:
+            for subject in human_scanpaths_files:
+                subject_number = subject[4:6]
+                if 'subject_' + subject_number + '_results.json' in utils.list_json_files(path.join(model_output_path, 'subjects_predictions')):
+                    print('[Scanpath prediction] Found previously computed results for subject ' + subject_number)
+                    continue
+
+                model = importlib.import_module(self.models_dir + '.' + model_name + '.main')
+                print('[Scanpath prediction] Running ' + model_name + ' in ' + self.dataset_name + ' dataset using subject ' + subject_number + ' scanpaths')
+                model.main(self.dataset_name, int(subject_number))
+            
+            average_results_per_image = self.average_results(model_output_path)
+            utils.save_to_json(model_average_file, average_results_per_image)
 
         self.compute_model_mean(average_results_per_image, model_name)
     
