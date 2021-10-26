@@ -21,8 +21,7 @@ class Multimatch:
         number_of_models = len(self.multimatch_values)
         fig, axs = plt.subplots(1, number_of_models, sharex=True, sharey=True, figsize=(10, 5))
 
-        if number_of_models == 1:
-            axs = [axs]
+        if number_of_models == 1: axs = [axs]
 
         ax_index = 0
         for model in self.multimatch_values:
@@ -101,9 +100,10 @@ class Multimatch:
             model_vs_human_multimatch = utils.get_random_subset(self.multimatch_values[model]['model_vs_humans'], size=self.number_of_images)
             humans_multimatch         = utils.get_random_subset(self.multimatch_values[model]['human_mean'], size=self.number_of_images)
 
-            corr_coef, mm_avg, mm_vec, mm_dir, mm_len, mm_pos, hmm_avg, hmm_vec, hmm_dir, hmm_len, hmm_pos = self.process_results(model_vs_human_multimatch, humans_multimatch)
-            metrics = {'Corr': corr_coef, 'AvgMM': mm_avg, 'MMvec': mm_vec, 'MMdir': mm_dir, 'MMlen': mm_len, 'MMpos': mm_pos}
-            hmetrics = {'AvgMM': hmm_avg, 'MMvec': hmm_vec, 'MMdir': hmm_dir, 'MMlen': hmm_len, 'MMpos': hmm_pos}
+            corr_coef, mm_avg, model_vs_humans_mm, hmm_avg, humans_mm = self.process_results(model_vs_human_multimatch, humans_multimatch)
+            metrics  = {'Corr': corr_coef, 'AvgMM': mm_avg, 'MMvec': model_vs_humans_mm[0], 'MMdir': model_vs_humans_mm[1], \
+                'MMlen': model_vs_humans_mm[2], 'MMpos': model_vs_humans_mm[3]}
+            hmetrics = {'AvgMM': hmm_avg, 'MMvec': humans_mm[0], 'MMdir': humans_mm[1], 'MMlen': humans_mm[2], 'MMpos': humans_mm[3]}
 
             if model in dataset_metrics:
                 dataset_metrics[model].update(metrics)
@@ -111,7 +111,7 @@ class Multimatch:
                 dataset_metrics[model] = metrics
             
             if model == 'IVSN':
-            # Use IVSN computation of Humans Multi-Match since it does not rescale
+                # Use IVSN's computation of Humans Multi-Match for it does not rescale
                 if 'Humans' in dataset_metrics:
                     dataset_metrics['Humans'].update(hmetrics)
                 else:
@@ -120,15 +120,9 @@ class Multimatch:
         utils.save_to_json(dataset_metrics_file, dataset_metrics)
     
     def process_results(self, model_vs_human_multimatch, humans_multimatch):
-        model_vs_humans_vec  = []
-        model_vs_humans_dir  = []
-        model_vs_humans_pos  = []
-        model_vs_humans_len  = []
+        model_vs_humans_mm   = [[], [], [], []]
         model_vs_humans_mean = []
-        humans_vec  = []
-        humans_dir  = []
-        humans_pos  = []
-        humans_len  = []
+        humans_mm   = [[], [], [], []]
         humans_mean = []
         for image_name in model_vs_human_multimatch:
             if not image_name in humans_multimatch:
@@ -137,31 +131,25 @@ class Multimatch:
             # Exclude temporal dimension and keep all the others dimensions: vector, direction, length, position
             img_model_vs_human = model_vs_human_multimatch[image_name][:-1]
             img_humans         = humans_multimatch[image_name][:-1]
-            
-            model_vs_humans_vec.append(img_model_vs_human[0])
-            model_vs_humans_dir.append(img_model_vs_human[1])
-            model_vs_humans_len.append(img_model_vs_human[2])
-            model_vs_humans_pos.append(img_model_vs_human[3])
+
+            for index, dim in enumerate(model_vs_humans_mm):
+                dim.append(img_model_vs_human[index])
+            for index, dim in enumerate(humans_mm):
+                dim.append(img_humans[index])
             model_vs_humans_mean.append(np.mean(img_model_vs_human))
-            humans_vec.append(img_humans[0])
-            humans_dir.append(img_humans[1])
-            humans_len.append(img_humans[2])
-            humans_pos.append(img_humans[3])
             humans_mean.append(np.mean(img_humans))
 
         corr_coef = np.corrcoef(model_vs_humans_mean, humans_mean)[0, 1]
         mm_avg    = np.mean(model_vs_humans_mean)
-        mm_vec    = [np.mean(model_vs_humans_vec), np.std(model_vs_humans_vec)]
-        mm_dir    = [np.mean(model_vs_humans_dir), np.std(model_vs_humans_dir)]
-        mm_len    = [np.mean(model_vs_humans_len), np.std(model_vs_humans_len)]
-        mm_pos    = [np.mean(model_vs_humans_pos), np.std(model_vs_humans_pos)]
-        hmm_avg    = np.mean(humans_mean)
-        hmm_vec    = [np.mean(humans_vec), np.std(humans_vec)]
-        hmm_dir    = [np.mean(humans_dir), np.std(humans_dir)]
-        hmm_len    = [np.mean(humans_len), np.std(humans_len)]
-        hmm_pos    = [np.mean(humans_pos), np.std(humans_pos)]
+        hmm_avg   = np.mean(humans_mean)
 
-        return corr_coef, mm_avg, mm_vec, mm_dir, mm_len, mm_pos, hmm_avg, hmm_vec, hmm_dir, hmm_len, hmm_pos
+        for index, dim in enumerate(model_vs_humans_mm):
+            model_vs_humans_mm[index] = [np.mean(dim), np.std(dim)]
+
+        for index, dim in enumerate(model_vs_humans_mm):
+            humans_mm[index] = [np.mean(dim), np.std(dim)]
+            
+        return corr_coef, mm_avg, model_vs_humans_mm, hmm_avg, humans_mm
 
     def print_trials_names_in_similarity_order(self, scores_diff, trials_names, model_name):
         scores_diff = list(zip(scores_diff, trials_names))
@@ -250,7 +238,7 @@ class Multimatch:
                 subject_scanpaths = utils.load_dict_from_json(path.join(self.human_scanpaths_dir, subject_filename))
                 for subject_to_compare_filename in subjects_scanpaths_files:
                     subject_to_compare_scanpaths = utils.load_dict_from_json(path.join(self.human_scanpaths_dir, subject_to_compare_filename))
-                    for image_name in subject_scanpaths.keys():
+                    for image_name in subject_scanpaths:
                         if not (image_name in subject_to_compare_scanpaths and image_name in model_scanpaths):
                             continue
 
