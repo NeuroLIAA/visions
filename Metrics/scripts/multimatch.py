@@ -91,10 +91,7 @@ class Multimatch:
         if self.null_object: return
 
         dataset_metrics_file = path.join(save_path, filename)
-        if path.exists(path.join(save_path, filename)):
-            dataset_metrics = utils.load_dict_from_json(dataset_metrics_file)
-        else:
-            dataset_metrics = {}
+        dataset_metrics      = utils.load_dict_from_json(dataset_metrics_file)
 
         for model in self.multimatch_values:
             model_vs_human_multimatch = utils.get_random_subset(self.multimatch_values[model]['model_vs_humans'], size=self.number_of_images)
@@ -105,17 +102,11 @@ class Multimatch:
                 'MMlen': model_vs_humans_mm[2], 'MMpos': model_vs_humans_mm[3]}
             hmetrics = {'AvgMM': hmm_avg, 'MMvec': humans_mm[0], 'MMdir': humans_mm[1], 'MMlen': humans_mm[2], 'MMpos': humans_mm[3]}
 
-            if model in dataset_metrics:
-                dataset_metrics[model].update(metrics)
-            else:
-                dataset_metrics[model] = metrics
+            utils.update_dict(dataset_metrics, model, metrics)
             
             if model == 'IVSN':
                 # Use IVSN's computation of Humans Multi-Match for it does not rescale
-                if 'Humans' in dataset_metrics:
-                    dataset_metrics['Humans'].update(hmetrics)
-                else:
-                    dataset_metrics['Humans'] = hmetrics
+                utils.update_dict(dataset_metrics, 'Humans', hmetrics)
         
         utils.save_to_json(dataset_metrics_file, dataset_metrics)
     
@@ -148,7 +139,7 @@ class Multimatch:
 
         for index, dim in enumerate(model_vs_humans_mm):
             humans_mm[index] = [np.mean(dim), np.std(dim)]
-            
+
         return corr_coef, mm_avg, model_vs_humans_mm, hmm_avg, humans_mm
 
     def print_trials_names_in_similarity_order(self, scores_diff, trials_names, model_name):

@@ -31,12 +31,10 @@ class HumanScanpathPrediction:
         human_scanpaths_files = utils.sorted_alphanumeric(listdir(self.human_scanpaths_dir))
         model_average_file    = path.join(model_output_path, 'scanpath_prediction_mean_per_image.json')
 
-        average_results_per_image = {}
-        if path.exists(model_average_file):
+        average_results_per_image = utils.load_dict_from_json(model_average_file)
+        if average_results_per_image:
             print('[Scanpath prediction] Found previously computed results for ' + model_name)
-            average_results_per_image = utils.load_dict_from_json(model_average_file)
-
-        if not average_results_per_image:
+        else:
             for subject in human_scanpaths_files:
                 subject_number = subject[4:6]
                 if 'subject_' + subject_number + '_results.json' in utils.list_json_files(path.join(model_output_path, 'subjects_predictions')):
@@ -93,17 +91,10 @@ class HumanScanpathPrediction:
         if self.null_object: return
 
         dataset_metrics_file = path.join(save_path, filename)
-        if path.exists(path.join(save_path, filename)):
-            dataset_metrics = utils.load_dict_from_json(dataset_metrics_file)
-        else:
-            dataset_metrics = {}
+        dataset_metrics      = utils.load_dict_from_json(dataset_metrics_file)
     
         for model in self.models_results:
-            metrics = self.models_results[model]
-            if model in dataset_metrics:
-                dataset_metrics[model].update(metrics)
-            else:
-                dataset_metrics[model] = metrics
+            utils.update_dict(dataset_metrics, model, self.models_results[model])
 
         utils.save_to_json(dataset_metrics_file, dataset_metrics)
 

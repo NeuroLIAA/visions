@@ -139,10 +139,7 @@ class Cumulative_performance:
         if self.null_object: return
 
         dataset_metrics_file = path.join(save_path, filename)
-        if path.exists(path.join(save_path, filename)):
-            dataset_metrics = utils.load_dict_from_json(dataset_metrics_file)
-        else:
-            dataset_metrics = {}
+        dataset_metrics      = utils.load_dict_from_json(dataset_metrics_file)
 
         for subject in self.subjects_cumulative_performance:
             subject_name = subject['subject']
@@ -158,11 +155,6 @@ class Cumulative_performance:
                 fixations = np.linspace(0, 1, num=self.max_scanpath_length)
             
             auc = integrate.trapezoid(y=subject_cumulative_performance[start:], x=fixations)
-
-            metrics = {'AUC': auc}
-            if subject_name in dataset_metrics:
-                dataset_metrics[subject_name].update(metrics)
-            else:
-                dataset_metrics[subject_name] = metrics
+            utils.update_dict(dataset_metrics, subject_name, {'AUCperf': auc})
         
         utils.save_to_json(dataset_metrics_file, dataset_metrics)

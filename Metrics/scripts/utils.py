@@ -37,9 +37,18 @@ def get_random_subset(trials_dict, size):
 
     return dict(random.sample(trials_dict.items(), size))
 
+def update_dict(dic, key, data):
+    if key in dic:
+        dic[key].update(data)
+    else:
+        dic[key] = data
+
 def load_dict_from_json(json_file_path):
-    with open(json_file_path, 'r') as json_file:
-        return json.load(json_file)
+    if not path.exists(json_file_path):
+        return {}
+    else:
+        with open(json_file_path, 'r') as json_file:
+            return json.load(json_file)
 
 def save_to_json(file, data):
     with open(file, 'w') as json_file:
