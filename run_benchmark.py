@@ -8,9 +8,12 @@ from os import path, listdir
 def main(datasets, models, metrics, force_execution):
     for dataset_name in datasets:
         for model_name in models:
-            if not force_execution and utils.found_precomputed_results(dataset_name, model_name):
+            if force_execution: utils.delete_precomputed_results(dataset_name, model_name)
+
+            if utils.found_precomputed_results(dataset_name, model_name):
                 print('Found precomputed results for ' + model_name + ' on ' + dataset_name + ' dataset')
                 continue
+                
             print('Running ' + model_name + ' on ' + dataset_name + ' dataset')
             model = importlib.import_module(constants.MODELS_PATH + '.' + model_name + '.main')
             model.main(dataset_name)
@@ -33,7 +36,7 @@ if __name__ == "__main__":
         Values must be in list: ' + str(available_models))
     parser.add_argument('--mts', '--metrics', type=str, nargs='*', default=available_metrics, help='Names of the metrics to compute. \
         Values must be in list: ' + str(available_metrics) + '. Leave blank to not run any. WARNING: If not precomputed, human scanpath prediction (hsp) will take a LONG time!')
-    parser.add_argument('--f', '--force', action='store_true', help='Ignore precomputed results and force models\' execution.')
+    parser.add_argument('--f', '--force', action='store_true', help='Deletes all precomputed results and forces models\' execution.')
 
     args = parser.parse_args()
     invalid_models   = not all(model in available_models for model in args.m)

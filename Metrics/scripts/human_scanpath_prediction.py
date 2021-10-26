@@ -44,7 +44,7 @@ class HumanScanpathPrediction:
                     continue
 
                 model = importlib.import_module(self.models_dir + '.' + model_name + '.main')
-                print('[Scanpath prediction] Running ' + model_name + ' in ' + self.dataset_name + ' dataset using subject ' + subject_number + ' scanpaths')
+                print('[Scanpath prediction] Running ' + model_name + ' on ' + self.dataset_name + ' dataset using subject ' + subject_number + ' scanpaths')
                 model.main(self.dataset_name, int(subject_number))
             
             average_results_per_image = self.average_results(model_output_path)
