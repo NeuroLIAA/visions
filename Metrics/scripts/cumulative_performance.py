@@ -20,6 +20,7 @@ class Cumulative_performance:
         # If a model has performed visual search on a small subset of images (less than 80%), it is not included in the metric
         too_few_images = len(model_scanpaths) < self.number_of_images * 0.8
         if not too_few_images:
+            print('[Cumulative performance] Computing ' + model_name + ' mean for ' + self.dataset_name + ' dataset')
             model_scanpaths = utils.get_random_subset(model_scanpaths, size=self.number_of_images)
             model_cumulative_performance = self.compute_cumulative_performance(model_scanpaths)
             self.subjects_cumulative_performance.append({'subject': model_name, 'cumulative_performance': model_cumulative_performance, 'color': model_color})
@@ -30,6 +31,7 @@ class Cumulative_performance:
 
         humans_cumulative_performance = []
         humans_scanpaths_files = listdir(humans_scanpaths_dir)
+        print('[Cumulative performance] Computing human mean for ' + self.dataset_name + ' dataset')
         for human_scanpaths_file in humans_scanpaths_files:
             human_scanpaths = utils.load_dict_from_json(path.join(humans_scanpaths_dir, human_scanpaths_file))
             human_scanpaths = utils.get_random_subset(human_scanpaths, size=self.number_of_images)

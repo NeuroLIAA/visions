@@ -173,6 +173,7 @@ class Multimatch:
         multimatch_model_vs_humans_mean_per_image = {}
         total_values_per_image   = {}
         subjects_scanpaths_files = listdir(self.human_scanpaths_dir)
+        print('[Multi-Match] Computing human-model values for ' + model_name + ' in ' + self.dataset_name + ' dataset')
         for subject_filename in subjects_scanpaths_files:
             subject_scanpaths = utils.load_dict_from_json(path.join(self.human_scanpaths_dir, subject_filename))
             for image_name in model_scanpaths:
@@ -219,8 +220,10 @@ class Multimatch:
         # Check if it was already computed
         multimatch_human_mean_json_file = path.join(path.join(self.dataset_results_dir, model_name), 'multimatch_human_mean_per_image.json')
         if path.exists(multimatch_human_mean_json_file):
+            print('[Multi-Match] Loaded previously computed within human values for ' + model_name + ' in ' + self.dataset_name + ' dataset')
             multimatch_human_mean_per_image = utils.load_dict_from_json(multimatch_human_mean_json_file)
         else:
+            print('[Multi-Match] Computing within human values for ' + model_name + ' in ' + self.dataset_name + ' dataset')
             total_values_per_image = {}
             # Compute multimatch for each image for every pair of subjects
             subjects_scanpaths_files = listdir(self.human_scanpaths_dir)
