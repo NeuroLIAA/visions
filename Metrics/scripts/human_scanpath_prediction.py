@@ -37,7 +37,8 @@ class HumanScanpathPrediction:
         else:
             for subject in human_scanpaths_files:
                 subject_number = subject[4:6]
-                if 'subject_' + subject_number + '_results.json' in utils.list_json_files(path.join(model_output_path, 'subjects_predictions')):
+                subjects_predictions_path  = path.join(model_output_path, 'subjects_predictions')
+                if path.exists(subjects_predictions_path) and 'subject_' + subject_number + '_results.json' in utils.list_json_files(subjects_predictions_path):
                     print('[Scanpath prediction] Found previously computed results for subject ' + subject_number)
                     continue
 
