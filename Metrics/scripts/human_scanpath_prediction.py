@@ -102,6 +102,9 @@ class HumanScanpathPrediction:
 def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
     """ After creating the probability maps for each fixation in a given human subject's scanpath, visual search models call this method """
     probability_maps_path = path.join(output_path, path.join('probability_maps', image_name[:-4]))
+    if not path.exists(probability_maps_path):
+        print('[Scanpath prediction] No probability maps found for ' + image_name)
+        return
     probability_maps = listdir(probability_maps_path)
 
     subject_fixations_x = np.array(subject_scanpath['X'], dtype=int)
