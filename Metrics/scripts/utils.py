@@ -9,6 +9,15 @@ def dir_is_too_heavy(path):
     
     return nmbytes > constants.MAX_DIR_SIZE
 
+def is_contained_in(json_file_1, json_file_2):
+    if not (path.exists(json_file_1) and path.exists(json_file_2)):
+        return False
+    
+    dict_1 = load_dict_from_json(json_file_1)
+    dict_2 = load_dict_from_json(json_file_2)
+
+    return all(image_name in list(dict_2.keys()) for image_name in list(dict_1.keys()))
+
 def list_json_files(path):
     files = listdir(path)
     json_files = []

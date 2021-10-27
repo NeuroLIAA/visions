@@ -37,19 +37,26 @@ class HumanScanpathPrediction:
         else:
             for subject in human_scanpaths_files:
                 subject_number = subject[4:6]
-                subjects_predictions_path  = path.join(model_output_path, 'subjects_predictions')
-                if path.exists(subjects_predictions_path) and 'subject_' + subject_number + '_results.json' in utils.list_json_files(subjects_predictions_path):
-                    print('[Scanpath prediction] Found previously computed results for subject ' + subject_number)
-                    continue
 
-                model = importlib.import_module(self.models_dir + '.' + model_name + '.main')
-                print('[Scanpath prediction] Running ' + model_name + ' on ' + self.dataset_name + ' dataset using subject ' + subject_number + ' scanpaths')
-                model.main(self.dataset_name, int(subject_number))
+                if not self.subject_already_processed(subject, subject_number, model_output_path):
+                    model = importlib.import_module(self.models_dir + '.' + model_name + '.main')
+                    print('[Scanpath prediction] Running ' + model_name + ' on ' + self.dataset_name + ' dataset using subject ' + subject_number + ' scanpaths')
+                    model.main(self.dataset_name, int(subject_number))
             
             average_results_per_image = self.average_results(model_output_path)
             utils.save_to_json(model_average_file, average_results_per_image)
 
         self.compute_model_mean(average_results_per_image, model_name)
+
+    def subject_already_processed(self, subject_file, subject_number, model_output_path):
+        subjects_predictions_path  = path.join(model_output_path, 'subjects_predictions')
+        subject_scanpath_file      = path.join(self.human_scanpaths_dir, subject_file)
+        subject_predictions_file   = path.join(subjects_predictions_path, 'subject_' + subject_number + '_results.json')
+        if utils.is_contained_in(subject_scanpath_file, subject_predictions_file):
+            print('[Scanpath prediction] Found previously computed results for subject ' + subject_number)
+            return True
+        
+        return False
     
     def compute_model_mean(self, average_results_per_image, model_name):
         """ Get the average across all images for a given model in a given dataset """
