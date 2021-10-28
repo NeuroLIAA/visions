@@ -120,7 +120,7 @@ def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
     image_rocs, image_nss, image_igs = [], [], []
     for index in range(1, len(probability_maps) + 1):
         probability_map = pd.read_csv(path.join(probability_maps_path, 'fixation_' + str(index) + '.csv'))
-        roc, nss, ig = compute_metrics(probability_map, subject_fixations_y[:index], subject_fixations_x[:index])
+        roc, nss, ig = compute_metrics(probability_map, subject_fixations_y[:index + 1], subject_fixations_x[:index + 1])
         image_rocs.append(roc)
         image_nss.append(nss)
         image_igs.append(ig)
@@ -169,11 +169,11 @@ def normalize(probability_map):
 
     return normalized_probability_map
 
-def NSS(saliency_map, ground_truth_fixations_y, ground_truth_fixations_x):
+def NSS(probability_map, ground_truth_fixations_y, ground_truth_fixations_x):
     """ The returned array has length equal to the number of fixations """
-    mean = np.mean(saliency_map)
-    std  = np.std(saliency_map)
-    value = np.copy(saliency_map[ground_truth_fixations_y, ground_truth_fixations_x])
+    mean = np.mean(probability_map)
+    std  = np.std(probability_map)
+    value = np.copy(probability_map[ground_truth_fixations_y, ground_truth_fixations_x])
     value -= mean
 
     if std:
