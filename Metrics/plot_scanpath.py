@@ -4,7 +4,6 @@ from matplotlib.patches import Rectangle
 from os import makedirs, path, listdir
 from random import randint
 from skimage import io, transform
-from scripts import utils
 import argparse
 import sys
 
@@ -90,6 +89,13 @@ def rescale_coordinate(value, old_size, new_size, fixation_size=None, is_grid=Fa
     else:
         return (value / old_size) * new_size
 
+def load_dict_from_json(json_file_path):
+    if not path.exists(json_file_path):
+        return {}
+    else:
+        with open(json_file_path, 'r') as json_file:
+            return json.load(json_file)
+
 def process_image(img_scanpath, subject, image_name, dataset_name, trial_info, images_path):
     fixation_size     = (img_scanpath['receptive_height'], img_scanpath['receptive_width'])
     scanpath_img_size = (img_scanpath['image_height'], img_scanpath['image_width'])
@@ -138,7 +144,7 @@ if __name__ == '__main__':
             sys.exit(0)
 
         scanpaths_file = path.join(scanpaths_dir, 'Scanpaths.json')
-        scanpaths      = utils.load_dict_from_json(scanpaths_file)
+        scanpaths      = load_dict_from_json(scanpaths_file)
         
         if args.img != 'notfound':
             if not args.img in scanpaths:
@@ -161,7 +167,7 @@ if __name__ == '__main__':
         checked_subjects = []
         while not target_found:
             scanpaths_file = path.join(human_scanpaths_dir, human_scanpaths_files[human_subject])
-            scanpaths      = utils.load_dict_from_json(scanpaths_file)
+            scanpaths      = load_dict_from_json(scanpaths_file)
             
             if args.img in scanpaths:
                 img_scanpath = scanpaths[args.img]
@@ -179,12 +185,12 @@ if __name__ == '__main__':
         subject = 'Human subject ' + human_scanpaths_files[human_subject][4:6]
     
     dataset_path = path.join(constants.DATASETS_DIR, args.dataset)
-    dataset_info = utils.load_dict_from_json(path.join(dataset_path, 'dataset_info.json'))
+    dataset_info = load_dict_from_json(path.join(dataset_path, 'dataset_info.json'))
     
     images_path = path.join(dataset_path, dataset_info['images_dir'])
 
     trials_properties_file = path.join(dataset_path, 'trials_properties.json')
-    trials_properties      = utils.load_dict_from_json(trials_properties_file)
+    trials_properties      = load_dict_from_json(trials_properties_file)
     
     trial_info = get_trial_info(args.img, trials_properties)
 
