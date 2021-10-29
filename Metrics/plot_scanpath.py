@@ -1,9 +1,9 @@
-import constants
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
 from os import makedirs, path, listdir
 from random import randint
 from skimage import io, transform
+import json
 import argparse
 import sys
 
@@ -15,6 +15,9 @@ import sys
 """
 
 """ The main method of this script (plot_scanpath) belongs to https://github.com/cvlab-stonybrook/Scanpath_Prediction/plot_scanpath.py """
+
+DATASETS_DIR = '../Datasets'
+RESULTS_DIR  = '../Results'
 
 def plot_scanpath(img, xs, ys, fixation_size, bbox, title, save_path):
     fig, ax = plt.subplots()
@@ -138,7 +141,7 @@ if __name__ == '__main__':
     args = parse_args()
 
     if not args.human:
-        scanpaths_dir = path.join(path.join(constants.RESULTS_DIR, args.dataset + '_dataset'), args.model)
+        scanpaths_dir = path.join(path.join(RESULTS_DIR, args.dataset + '_dataset'), args.model)
         if not path.exists(scanpaths_dir):
             print('There are no results for ' + args.model + ' in the ' + args.dataset + ' dataset')
             sys.exit(0)
@@ -153,7 +156,7 @@ if __name__ == '__main__':
             img_scanpath = scanpaths[args.img]
         subject = args.model
     else:
-        human_scanpaths_dir = path.join(path.join(constants.DATASETS_DIR, args.dataset), 'human_scanpaths')
+        human_scanpaths_dir = path.join(path.join(DATASETS_DIR, args.dataset), 'human_scanpaths')
         if not path.exists(human_scanpaths_dir) or not listdir(human_scanpaths_dir):
             print('There are no human subjects scanpaths for this dataset')
             sys.exit(0)
@@ -184,7 +187,7 @@ if __name__ == '__main__':
         
         subject = 'Human subject ' + human_scanpaths_files[human_subject][4:6]
     
-    dataset_path = path.join(constants.DATASETS_DIR, args.dataset)
+    dataset_path = path.join(DATASETS_DIR, args.dataset)
     dataset_info = load_dict_from_json(path.join(dataset_path, 'dataset_info.json'))
     
     images_path = path.join(dataset_path, dataset_info['images_dir'])
