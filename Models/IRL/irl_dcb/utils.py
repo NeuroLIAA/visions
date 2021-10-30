@@ -18,6 +18,10 @@ def get_max_scanpath_length(scanpaths_list):
 def rescale_coordinate(value, old_size, new_size):
     return floor((value / old_size) * new_size)
 
+def are_within_boundaries(top_left_coordinates, bottom_right_coordinates, top_left_coordinates_to_compare, bottom_right_coordinates_to_compare):
+    return top_left_coordinates[0] >= top_left_coordinates_to_compare[0] and top_left_coordinates[1] >= top_left_coordinates_to_compare[1] \
+         and bottom_right_coordinates[0] < bottom_right_coordinates_to_compare[0] and bottom_right_coordinates[1] < bottom_right_coordinates_to_compare[1]
+
 def add_scanpath_to_dict(model_name, image_name, image_size, scanpath_x, scanpath_y, target_object, patch_size, max_saccades, dataset_name, dict_):
     dict_[image_name] = {'subject' : model_name, 'dataset' : dataset_name + ' Dataset', 'image_height' : image_size[0], 'image_width' : image_size[1], \
         'receptive_height' : patch_size[1], 'receptive_width' : patch_size[0], 'target_found' : False, 'target_bbox' : np.zeros(shape=4), \
@@ -40,8 +44,17 @@ def probability_maps_for_batch(img_names_batch, output_path):
 
 def save_and_compute_metrics(probs, human_scanpaths_batch, img_names_batch, output_path, presaved=False):
     for index, trial in enumerate(human_scanpaths_batch):
-        trial_length    = len(trial['X'])
-        trial_img_name  = img_names_batch[index]
+        trial_scanpath_x  = trial['X']
+        trial_scanpath_y  = trial['Y']
+        trial_target_bbox = trial['target_bbox']
+        trial_length      = len(trial_scanpath_x)
+        trial_img_name    = img_names_batch[index]
+
+        # The initial fixation may have fallen under the target's bounding box due to grid rescaling
+        initial_fixation = (trial_scanpath_x[0], trial_scanpath_y[0])
+        if are_within_boundaries(initial_fixation, initial_fixation, (trial_target_bbox[0], trial_target_bbox[1]), (trial_target_bbox[2] + 1, trial_target_bbox[3] + 1)):
+            # If this is the case, do not compute metrics
+            continue
 
         save_path = os.path.join(os.path.join(output_path, 'probability_maps'), trial_img_name[:-4])
         if not os.path.exists(save_path):
@@ -49,7 +62,15 @@ def save_and_compute_metrics(probs, human_scanpaths_batch, img_names_batch, outp
 
         if not presaved:
             trial_prob_maps = [prob_batch[index] for prob_batch in probs[:trial_length - 1]]
+            target_found_earlier = False
             for fix_number, prob_map in enumerate(trial_prob_maps):
+                # The target may have been found earlier than in the subject's scanpath due to grid rescaling
+                if target_found_earlier:
+                    break
+                current_fixation = (trial_scanpath_y[fix_number + 1], trial_scanpath_x[fix_number + 1])
+                if are_within_boundaries(current_fixation, current_fixation, (trial_target_bbox[0], trial_target_bbox[1]), (trial_target_bbox[2] + 1, trial_target_bbox[3] + 1)):
+                    target_found_earlier = True
+
                 prob_map_df = pd.DataFrame(prob_map.numpy())
                 prob_map_df.to_csv(os.path.join(save_path, 'fixation_' + str(fix_number + 1) + '.csv'))
         

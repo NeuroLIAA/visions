@@ -112,5 +112,7 @@ def rescale_scanpaths(human_scanpaths, grid_size):
         scanpath     = human_scanpaths[key]
         image_height = scanpath['image_height']
         image_width  = scanpath['image_width']
+        image_size   = (image_height, image_width)
         scanpath['X'] = [int(utils.rescale_coordinate(x_coord, image_width, grid_size[1])) for x_coord in scanpath['X']]
         scanpath['Y'] = [int(utils.rescale_coordinate(y_coord, image_height, grid_size[0])) for y_coord in scanpath['Y']]
+        scanpath['target_bbox'] = [int(utils.rescale_coordinate(scanpath['target_bbox'][i], image_size[i % 2 == 1], grid_size[i % 2 == 1])) for i in range(len(scanpath['target_bbox']))]
