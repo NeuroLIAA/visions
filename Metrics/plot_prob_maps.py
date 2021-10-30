@@ -32,7 +32,7 @@ def plot_probability_maps(human_scanpath, probability_maps_path, model_name, tit
             fixation_size = 1
 
         initial_color  = 'red'
-        scanpath_color = 'yellow'
+        scanpath_color = 'darkorange'
 
         ax[index].imshow(prob_map_df)
         for i in range(index + 2):
