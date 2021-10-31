@@ -71,7 +71,7 @@ def save_and_compute_metrics(probs, human_scanpaths_batch, img_names_batch, outp
                 if are_within_boundaries(current_fixation, current_fixation, (trial_target_bbox[0], trial_target_bbox[1]), (trial_target_bbox[2] + 1, trial_target_bbox[3] + 1)):
                     target_found_earlier = True
 
-                prob_map_df = pd.DataFrame(prob_map.numpy())
+                prob_map_df = pd.DataFrame(prob_map)
                 prob_map_df.to_csv(os.path.join(save_path, 'fixation_' + str(fix_number + 1) + '.csv'))
         
         human_scanpath_prediction.save_scanpath_prediction_metrics(trial, trial_img_name, output_path)
@@ -166,7 +166,7 @@ def collect_trajs(env,
     prob   = prob.view(prob.size(0), patch_num[1], -1)
     
     status = [env.status]
-    probs  = [prob]
+    probs  = [np.copy(prob.numpy())]
     i = 0
     if is_eval:
         actions = []
@@ -181,7 +181,7 @@ def collect_trajs(env,
                 sample_action,
                 action_mask=env.action_mask)
             
-            probs.append(prob.view(prob.size(0), patch_num[1], -1))
+            probs.append(np.copy(prob.view(prob.size(0), patch_num[1], -1).numpy()))
             i = i + 1
 
         trajs = {
