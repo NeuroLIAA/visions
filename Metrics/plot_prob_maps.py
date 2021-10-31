@@ -1,5 +1,6 @@
 import argparse
 import json
+import re
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -10,7 +11,7 @@ datasets_path = '../Datasets'
 results_path  = '../Results'
 
 def plot_probability_maps(human_scanpath, probability_maps_path, model_name, title):
-    probability_maps = listdir(probability_maps_path)
+    probability_maps = sorted_alphanumeric(listdir(probability_maps_path))
     image_size  = [human_scanpath['image_height'], human_scanpath['image_width']]
     target_bbox = human_scanpath['target_bbox']
 
@@ -71,6 +72,11 @@ def rescale_scanpath(scanpath, image_size):
     scanpath_y_rescaled = [int(y_coord) for y_coord in scanpath_y_rescaled]
 
     return scanpath_x_rescaled, scanpath_y_rescaled
+
+def sorted_alphanumeric(data):
+    convert = lambda text: int(text) if text.isdigit() else text.lower()
+    alphanum_key = lambda key: [ convert(c) for c in re.split('([0-9]+)', key) ] 
+    return sorted(data, key=alphanum_key)
 
 def get_subject_str(subject_id):
     subject_str = str(subject_id)
