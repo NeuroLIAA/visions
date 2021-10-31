@@ -77,7 +77,7 @@ def create_scanpath_for_trial(trial, attention_map, human_trial_scanpath, image_
 
         # Save the probability map for further usage in computing metrics
         if human_fixations and fixation_number < max_fixations - 1:
-            utils.save_probability_map(fixation_number, trial['image'], attention_map, output_path)
+            utils.save_probability_map(fixation_number, trial['image'], np.copy(attention_map), output_path)
 
         # Check if target's box overlaps with the fixated window
         fixated_on_target = np.sum(target_template[fixated_window_leftY:fixated_window_rightY, fixated_window_leftX:fixated_window_rightX]) > 0
