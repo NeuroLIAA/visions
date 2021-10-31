@@ -166,7 +166,7 @@ def collect_trajs(env,
     prob   = prob.view(prob.size(0), patch_num[1], -1)
     
     status = [env.status]
-    probs  = [np.copy(prob.numpy())]
+    probs  = [prob.numpy()]
     i = 0
     if is_eval:
         actions = []
@@ -181,7 +181,7 @@ def collect_trajs(env,
                 sample_action,
                 action_mask=env.action_mask)
             
-            probs.append(np.copy(prob.view(prob.size(0), patch_num[1], -1).numpy()))
+            probs.append(prob.view(prob.size(0), patch_num[1], -1).numpy())
             i = i + 1
 
         trajs = {
