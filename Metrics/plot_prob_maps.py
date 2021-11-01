@@ -10,6 +10,12 @@ from os import path, listdir
 datasets_path = '../Datasets'
 results_path  = '../Results'
 
+def normalize(probability_map):
+    normalized_probability_map = probability_map - np.min(probability_map)
+    normalized_probability_map = normalized_probability_map / np.max(normalized_probability_map)
+
+    return normalized_probability_map
+
 def plot_probability_maps(human_scanpath, probability_maps_path, model_name, title):
     probability_maps = sorted_alphanumeric(listdir(probability_maps_path))
     image_size  = [human_scanpath['image_height'], human_scanpath['image_width']]
@@ -19,6 +25,7 @@ def plot_probability_maps(human_scanpath, probability_maps_path, model_name, tit
     for index, prob_map in enumerate(probability_maps):
         prob_map_df = pd.read_csv(path.join(probability_maps_path, prob_map))
         prob_map_df = prob_map_df.iloc[:, 1:]
+        prob_map_df = normalize(prob_map_df)
         grid_size   = prob_map_df.shape
         scanpath_x, scanpath_y = rescale_scanpath(human_scanpath, grid_size)
 
