@@ -117,11 +117,11 @@ def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
     subject_fixations_x = np.array(subject_scanpath['X'], dtype=int)
     subject_fixations_y = np.array(subject_scanpath['Y'], dtype=int)
 
-    image_rocs, image_nss, image_igs = [], [], []
+    image_roc, image_nss, image_igs = [], [], []
     for index in range(1, len(probability_maps) + 1):
         probability_map = pd.read_csv(path.join(probability_maps_path, 'fixation_' + str(index) + '.csv'))
-        roc, nss, ig = compute_metrics(probability_map, subject_fixations_y[:index + 1], subject_fixations_x[:index + 1])
-        image_rocs.append(roc)
+        auc, nss, ig    = compute_metrics(probability_map, subject_fixations_y[index], subject_fixations_x[index])
+        image_roc.append(auc)
         image_nss.append(nss)
         image_igs.append(ig)
 
@@ -132,23 +132,23 @@ def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
     else:
         model_subject_metrics = {}
     
-    model_subject_metrics[image_name] = {'AUC': np.mean(image_rocs), 'NSS': np.mean(image_nss), 'IG': np.mean(image_igs)}  
+    model_subject_metrics[image_name] = {'AUC': np.mean(image_roc), 'NSS': np.mean(image_nss), 'IG': np.mean(image_igs)}  
     utils.save_to_json(file_path, model_subject_metrics)
 
     # Clean up probability maps if their size is too big
     if utils.dir_is_too_heavy(probability_maps_path):
         shutil.rmtree(probability_maps_path)
 
-def compute_metrics(probability_map, human_fixations_y, human_fixations_x):
+def compute_metrics(probability_map, human_fixation_y, human_fixation_x):
     probability_map = probability_map.to_numpy(dtype=np.float)
     probability_map = normalize(probability_map)
     baseline_map    = center_gaussian(probability_map.shape)
 
-    roc = np.mean(AUCs(probability_map, human_fixations_y, human_fixations_x)) # ¿Promediamos?
-    nss = np.mean(NSS(probability_map, human_fixations_y, human_fixations_x)) # ¿Promediamos? 
-    ig  = np.mean(infogain(probability_map, baseline_map, human_fixations_y, human_fixations_x)) # ¿Promediamos? 
+    auc = AUC(probability_map, human_fixation_y, human_fixation_x)
+    nss = NSS(probability_map, human_fixation_y, human_fixation_x)
+    ig  = infogain(probability_map, baseline_map, human_fixation_y, human_fixation_x)
 
-    return roc, nss, ig
+    return auc, nss, ig
 
 def center_gaussian(shape):
     sigma  = [[1, 0], [0, 1]]
@@ -169,11 +169,11 @@ def normalize(probability_map):
 
     return normalized_probability_map
 
-def NSS(probability_map, ground_truth_fixations_y, ground_truth_fixations_x):
+def NSS(probability_map, ground_truth_fixation_y, ground_truth_fixation_x):
     """ The returned array has length equal to the number of fixations """
-    mean = np.mean(probability_map)
-    std  = np.std(probability_map)
-    value = np.copy(probability_map[ground_truth_fixations_y, ground_truth_fixations_x])
+    mean  = np.mean(probability_map)
+    std   = np.std(probability_map)
+    value = np.copy(probability_map[ground_truth_fixation_y, ground_truth_fixation_x])
     value -= mean
 
     if std:
@@ -181,30 +181,20 @@ def NSS(probability_map, ground_truth_fixations_y, ground_truth_fixations_x):
 
     return value
 
-def infogain(s_map, baseline_map, ground_truth_fixations_y, ground_truth_fixations_x):
+def infogain(s_map, baseline_map, ground_truth_fixation_y, ground_truth_fixation_x):
     eps = 2.2204e-16
 
     s_map        = s_map / (np.sum(s_map) * 1.0)
     baseline_map = baseline_map / (np.sum(baseline_map) * 1.0)
+    
+    return np.log2(eps + s_map[ground_truth_fixation_y, ground_truth_fixation_x]) - np.log2(eps + baseline_map[ground_truth_fixation_y, ground_truth_fixation_x])
 
-    temp = []
-    for i in zip(ground_truth_fixations_x, ground_truth_fixations_y):
-        temp.append(np.log2(eps + s_map[i[1], i[0]]) - np.log2(eps + baseline_map[i[1], i[0]]))
+def AUC(probability_map, ground_truth_fixation_y, ground_truth_fixation_x):
+    """ Calculate AUC score for a given fixation """
+    positive  = probability_map[ground_truth_fixation_y, ground_truth_fixation_x]
+    negatives = probability_map.flatten()
 
-    return temp
-
-def AUCs(probability_map, ground_truth_fixations_y, ground_truth_fixations_x):
-    """ Calculate AUC scores for fixations """
-    rocs_per_fixation = []
-
-    for i in tqdm(range(len(ground_truth_fixations_x)), total=len(ground_truth_fixations_x)):
-        positive  = probability_map[ground_truth_fixations_y[i], ground_truth_fixations_x[i]]
-        negatives = probability_map.flatten()
-
-        this_roc = auc_for_one_positive(positive, negatives)
-        rocs_per_fixation.append(this_roc)
-
-    return np.asarray(rocs_per_fixation)
+    return auc_for_one_positive(positive, negatives)
 
 def auc_for_one_positive(positive, negatives):
     """ Computes the AUC score of one single positive sample agains many negatives.
