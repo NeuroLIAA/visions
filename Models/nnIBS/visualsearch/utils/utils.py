@@ -68,12 +68,12 @@ def load_image(img_path, name, image_size='default'):
     return img
 
 def save_probability_map(output_path, image_name, probability_map, fixation_number):
-    save_path = path.join(output_path, path.join('probability_maps', image_name[:-4]))
+    save_path = path.join(output_path, 'probability_maps', image_name[:-4])
     if not path.exists(save_path):
         makedirs(save_path)
 
     posterior_df = pd.DataFrame(probability_map)
-    posterior_df.to_csv(path.join(save_path, 'fixation_' + str(fixation_number + 1) + '.csv'))
+    posterior_df.to_csv(path.join(save_path, 'fixation_' + str(fixation_number + 1) + '.csv'), index=False)
 
 def exists_probability_maps_for_image(image_name, output_path):
     probability_maps_path = path.join(output_path, path.join('probability_maps', image_name[:-4]))

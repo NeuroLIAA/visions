@@ -31,7 +31,7 @@ def add_scanpath_to_dict(model_name, image_name, image_size, scanpath_x, scanpat
 def probability_maps_for_batch(img_names_batch, output_path):
     exist_prob_maps_for_batch = True
     for image_name in img_names_batch:
-        probability_maps_path = os.path.join(os.path.join(output_path, 'probability_maps'), image_name[:-4])
+        probability_maps_path = os.path.join(output_path, 'probability_maps', image_name[:-4])
         prob_maps_image = []
         if os.path.exists(probability_maps_path):
             prob_maps_image = os.listdir(probability_maps_path)
@@ -56,7 +56,7 @@ def save_and_compute_metrics(probs, human_scanpaths_batch, img_names_batch, outp
             # If this is the case, do not compute metrics
             continue
 
-        save_path = os.path.join(os.path.join(output_path, 'probability_maps'), trial_img_name[:-4])
+        save_path = os.path.join(output_path, 'probability_maps', trial_img_name[:-4])
         if not os.path.exists(save_path):
             os.makedirs(save_path)
 
@@ -72,7 +72,7 @@ def save_and_compute_metrics(probs, human_scanpaths_batch, img_names_batch, outp
                     target_found_earlier = True
 
                 prob_map_df = pd.DataFrame(prob_map)
-                prob_map_df.to_csv(os.path.join(save_path, 'fixation_' + str(fix_number + 1) + '.csv'))
+                prob_map_df.to_csv(os.path.join(save_path, 'fixation_' + str(fix_number + 1) + '.csv'), index=False)
         
         human_scanpath_prediction.save_scanpath_prediction_metrics(trial, trial_img_name, output_path)
 
