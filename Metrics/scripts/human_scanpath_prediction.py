@@ -119,7 +119,7 @@ def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
 
     image_roc, image_nss, image_igs = [], [], []
     for index in range(1, len(probability_maps) + 1):
-        probability_map = pd.read_csv(path.join(probability_maps_path, 'fixation_' + str(index) + '.csv'))
+        probability_map = pd.read_csv(path.join(probability_maps_path, 'fixation_' + str(index) + '.csv')).to_numpy()
         auc, nss, ig    = compute_metrics(probability_map, subject_fixations_y[index], subject_fixations_x[index])
         image_roc.append(auc)
         image_nss.append(nss)
@@ -140,9 +140,7 @@ def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
         shutil.rmtree(probability_maps_path)
 
 def compute_metrics(probability_map, human_fixation_y, human_fixation_x):
-    probability_map = probability_map.to_numpy(dtype=np.float)
-    probability_map = normalize(probability_map)
-    baseline_map    = center_gaussian(probability_map.shape)
+    baseline_map = center_gaussian(probability_map.shape)
 
     auc = AUC(probability_map, human_fixation_y, human_fixation_x)
     nss = NSS(probability_map, human_fixation_y, human_fixation_x)
@@ -163,12 +161,6 @@ def center_gaussian(shape):
 
     return mvn
 
-def normalize(probability_map):
-    normalized_probability_map = probability_map - np.min(probability_map)
-    normalized_probability_map = normalized_probability_map / np.max(normalized_probability_map)
-
-    return normalized_probability_map
-
 def NSS(probability_map, ground_truth_fixation_y, ground_truth_fixation_x):
     """ The returned array has length equal to the number of fixations """
     mean  = np.mean(probability_map)
@@ -184,8 +176,8 @@ def NSS(probability_map, ground_truth_fixation_y, ground_truth_fixation_x):
 def infogain(s_map, baseline_map, ground_truth_fixation_y, ground_truth_fixation_x):
     eps = 2.2204e-16
 
-    s_map        = s_map / (np.sum(s_map) * 1.0)
-    baseline_map = baseline_map / (np.sum(baseline_map) * 1.0)
+    s_map        = s_map / np.sum(s_map)
+    baseline_map = baseline_map / np.sum(baseline_map)
     
     return np.log2(eps + s_map[ground_truth_fixation_y, ground_truth_fixation_x]) - np.log2(eps + baseline_map[ground_truth_fixation_y, ground_truth_fixation_x])
 
