@@ -196,11 +196,11 @@ for subject in subjects_scanpaths:
         scanpath = subject_scanpaths[trial]
         original_scanpath_length = len(scanpath['X'])
         targets_found += scanpath['target_found']
-        # # Collapse consecutive fixations which are closer than receptive_size / 2
-        # scanpath['X'], scanpath['Y'] = utils.collapse_fixations(scanpath['X'], scanpath['Y'], (receptive_height, receptive_width))
-        # if len(scanpath['X']) < original_scanpath_length:
-        #     collapsed_scanpaths += 1
-        #     collapsed_fixations += original_scanpath_length - len(scanpath['X'])
+        # Collapse consecutive fixations which are closer than receptive_size / 2
+        scanpath['X'], scanpath['Y'] = utils.collapse_fixations(scanpath['X'], scanpath['Y'], (receptive_height, receptive_width))
+        if len(scanpath['X']) < original_scanpath_length:
+            collapsed_scanpaths += 1
+            collapsed_fixations += original_scanpath_length - len(scanpath['X'])
 
     utils.save_to_json(path.join(save_path, subject_scanpaths_file), subjects_scanpaths[subject])
 
