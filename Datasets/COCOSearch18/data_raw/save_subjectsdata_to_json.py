@@ -98,12 +98,12 @@ for scanpath in human_scanpaths:
 
     marked_target_found = scanpath['correct']
 
-    # original_scanpath_length = len(scanpath_x)
-    # # Collapse consecutive fixations which are closer than receptive_size / 2
-    # scanpath_x, scanpath_y = utils.collapse_fixations(scanpath_x, scanpath_y, receptive_size)
-    # if len(scanpath_x) < original_scanpath_length:
-    #     collapsed_scanpaths += 1
-    #     collapsed_fixations += original_scanpath_length - len(scanpath_x)
+    original_scanpath_length = len(scanpath_x)
+    # Collapse consecutive fixations which are closer than receptive_size / 2
+    scanpath_x, scanpath_y = utils.collapse_fixations(scanpath_x, scanpath_y, receptive_size)
+    if len(scanpath_x) < original_scanpath_length:
+        collapsed_scanpaths += 1
+        collapsed_fixations += original_scanpath_length - len(scanpath_x)
 
     initial_fixations_x.append(scanpath_x[0])
     initial_fixations_y.append(scanpath_y[0])
