@@ -74,10 +74,10 @@ for subject_data_file in subjects_files:
             marked_target_found = bool(current_subject_data['FixData']['TargetFound'][0][0][trial_number][(number_of_fixations - 1)])
 
         # Collapse consecutive fixations which are closer than receptive_size / 2
-        # scanpath_x, scanpath_y = utils.collapse_fixations(scanpath_x, scanpath_y, receptive_size)
-        # if len(scanpath_x) < number_of_fixations:
-        #     collapsed_scanpaths += 1
-        #     collapsed_fixations += number_of_fixations - len(scanpath_x)
+        scanpath_x, scanpath_y = utils.collapse_fixations(scanpath_x, scanpath_y, receptive_size)
+        if len(scanpath_x) < number_of_fixations:
+            collapsed_scanpaths += 1
+            collapsed_fixations += number_of_fixations - len(scanpath_x)
 
         number_of_fixations = len(scanpath_x)
         # Get target bounding box
