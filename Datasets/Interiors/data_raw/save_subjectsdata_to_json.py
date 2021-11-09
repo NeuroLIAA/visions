@@ -67,12 +67,12 @@ for subject_file in subjects_files:
             continue
         
         number_of_trials += 1
-        # original_scanpath_len = len(scanpath_x)
-        # # Collapse consecutive fixations which are closer than receptive_size / 2
-        # scanpath_x, scanpath_y = utils.collapse_fixations(scanpath_x, scanpath_y, receptive_size)
-        # if len(scanpath_x) < original_scanpath_len:
-        #     collapsed_scanpaths += 1
-        #     collapsed_fixations += original_scanpath_len - len(scanpath_x)
+        original_scanpath_len = len(scanpath_x)
+        # Collapse consecutive fixations which are closer than receptive_size / 2
+        scanpath_x, scanpath_y = utils.collapse_fixations(scanpath_x, scanpath_y, receptive_size)
+        if len(scanpath_x) < original_scanpath_len:
+            collapsed_scanpaths += 1
+            collapsed_fixations += original_scanpath_len - len(scanpath_x)
 
         original_scanpath_len = len(scanpath_x)
         # Crop scanpaths as soon as a fixation falls between the target's bounding box
