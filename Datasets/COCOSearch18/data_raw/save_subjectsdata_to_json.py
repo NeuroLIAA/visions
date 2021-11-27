@@ -14,8 +14,9 @@ human_scanpaths_train_file = './coco_search18_fixations_TP_train_split1.json'
 human_scanpaths_valid_file = './coco_search18_fixations_TP_validation_split1.json'
 
 images_dir      = '../images/'
-targets_dir     = '../templates/'
+targets_dir     = '../targets/'
 scanpaths_dir   = '../human_scanpaths/'
+categories_path = 'categories/'
 
 image_height  = 1050
 image_width   = 1680
@@ -137,7 +138,7 @@ for scanpath in human_scanpaths:
 
     if not image_name in trials_processed:
         # Save trial info
-        target_name = image_name[:-4] + '_template' + image_name[-4:]
+        target_name = image_name[:-4] + '_target' + image_name[-4:]
         target_matched_row    = target_bbox[0]
         target_matched_column = target_bbox[1]
         target_height         = target_bbox[2] - target_matched_row
@@ -147,13 +148,11 @@ for scanpath in human_scanpaths:
                 'image_height' : image_height, 'image_width' : image_width, 'initial_fixation_row' : initial_fixation[0], 'initial_fixation_column' : initial_fixation[1], \
                     'target_object' : task})
 
-        # Crop target
-        image    = io.imread(images_dir + image_name)
-        template = image[target_bbox[0]:target_bbox[2], target_bbox[1]:target_bbox[3]]
         if not path.exists(targets_dir):
             mkdir(targets_dir)
 
-        io.imsave(targets_dir + target_name, template, check_contrast=False)
+        # Copy target
+        shutil.copyfile(path.join(categories_path, task + '.jpg'), path.join(targets_path, target_name))
 
         trials_processed.append(image_name)
 
