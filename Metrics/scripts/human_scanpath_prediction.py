@@ -15,9 +15,10 @@ import importlib
 """
 
 class HumanScanpathPrediction:
-    def __init__(self, dataset_name, human_scanpaths_dir, dataset_results_dir, models_dir, compute):
-        self.models_results = {}
-        self.dataset_name   = dataset_name
+    def __init__(self, dataset_name, human_scanpaths_dir, dataset_results_dir, models_dir, number_of_images, compute):
+        self.models_results      = {}
+        self.dataset_name        = dataset_name
+        self.number_of_images    = number_of_images
         self.human_scanpaths_dir = human_scanpaths_dir
         self.dataset_results_dir = dataset_results_dir
         self.models_dir          = models_dir
@@ -61,11 +62,14 @@ class HumanScanpathPrediction:
     def compute_model_mean(self, average_results_per_image, model_name):
         """ Get the average across all images for a given model in a given dataset """
         self.models_results[model_name] = {'Scanpath_prediction': {'AUC': 0, 'NSS': 0, 'IG': 0}}
-        number_of_images = len(average_results_per_image)
-        for image_name in average_results_per_image:
-            self.models_results[model_name]['Scanpath_prediction']['AUC'] += average_results_per_image[image_name]['AUC'] / number_of_images
-            self.models_results[model_name]['Scanpath_prediction']['NSS'] += average_results_per_image[image_name]['NSS'] / number_of_images
-            self.models_results[model_name]['Scanpath_prediction']['IG']  += average_results_per_image[image_name]['IG'] / number_of_images
+
+        # Get subsample for COCOSearch18 dataset
+        number_of_images            = min(len(average_results_per_image), self.number_of_images)
+        results_per_image_subsample = utils.get_random_subset(average_results_per_image, size=number_of_images)
+        for image_name in results_per_image_subsample:
+            self.models_results[model_name]['Scanpath_prediction']['AUC'] += results_per_image_subsample[image_name]['AUC'] / number_of_images
+            self.models_results[model_name]['Scanpath_prediction']['NSS'] += results_per_image_subsample[image_name]['NSS'] / number_of_images
+            self.models_results[model_name]['Scanpath_prediction']['IG']  += results_per_image_subsample[image_name]['IG'] / number_of_images
     
     def average_results(self, model_output_path):
         """ Get the average of all subjects for each image """

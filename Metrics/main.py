@@ -30,7 +30,7 @@ def main(datasets, models, compute_cumulative_performance, compute_multimatch, c
         subjects_cumulative_performance = Cumulative_performance(dataset_name, number_of_images, max_scanpath_length, compute_cumulative_performance)
         subjects_cumulative_performance.add_human_mean(human_scanpaths_dir, constants.HUMANS_COLOR)
 
-        human_scanpath_prediction = HumanScanpathPrediction(dataset_name, human_scanpaths_dir, dataset_results_dir, constants.MODELS_PATH, compute_human_scanpath_prediction)
+        human_scanpath_prediction = HumanScanpathPrediction(dataset_name, human_scanpaths_dir, dataset_results_dir, constants.MODELS_PATH, number_of_images, compute_human_scanpath_prediction)
 
         # Compute models metrics and compare them with human subjects metrics
         color_index = 0
