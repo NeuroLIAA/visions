@@ -2026,43 +2026,6 @@
         "target_object": "microwave",
         "max_fixations": 80
     },
-    "m000000191806.jpg": {
-        "subject": "02",
-        "dataset": "MCS Dataset",
-        "image_height": 508,
-        "image_width": 564,
-        "screen_height": 800,
-        "screen_width": 1280,
-        "receptive_height": 20,
-        "receptive_width": 20,
-        "target_found": true,
-        "target_bbox": [
-            21,
-            209,
-            117,
-            329
-        ],
-        "X": [
-            250.39999999999998,
-            294.29999999999995,
-            430.6,
-            232.79999999999995
-        ],
-        "Y": [
-            241.2,
-            167.0,
-            174.7,
-            41.30000000000001
-        ],
-        "T": [
-            345,
-            353,
-            309,
-            476
-        ],
-        "target_object": "microwave",
-        "max_fixations": 80
-    },
     "m000000559639.jpg": {
         "subject": "02",
         "dataset": "MCS Dataset",
@@ -4241,43 +4204,6 @@
         "target_object": "clock",
         "max_fixations": 80
     },
-    "c000000475485.jpg": {
-        "subject": "07",
-        "dataset": "MCS Dataset",
-        "image_height": 508,
-        "image_width": 564,
-        "screen_height": 800,
-        "screen_width": 1280,
-        "receptive_height": 20,
-        "receptive_width": 20,
-        "target_found": false,
-        "target_bbox": [
-            29,
-            120,
-            84,
-            167
-        ],
-        "X": [
-            250.60000000000002,
-            316.1,
-            363.70000000000005,
-            488.70000000000005
-        ],
-        "Y": [
-            257.0,
-            183.3,
-            68.1,
-            62.599999999999994
-        ],
-        "T": [
-            300,
-            402,
-            149,
-            142
-        ],
-        "target_object": "clock",
-        "max_fixations": 80
-    },
     "c000000073782.jpg": {
         "subject": "07",
         "dataset": "MCS Dataset",
@@ -4700,74 +4626,6 @@
         "T": [
             755,
             388
-        ],
-        "target_object": "clock",
-        "max_fixations": 80
-    },
-    "c000000416387.jpg": {
-        "subject": "07",
-        "dataset": "MCS Dataset",
-        "image_height": 508,
-        "image_width": 564,
-        "screen_height": 800,
-        "screen_width": 1280,
-        "receptive_height": 20,
-        "receptive_width": 20,
-        "target_found": true,
-        "target_bbox": [
-            137,
-            368,
-            213,
-            429
-        ],
-        "X": [
-            253.79999999999995,
-            374.70000000000005
-        ],
-        "Y": [
-            250.0,
-            205.39999999999998
-        ],
-        "T": [
-            799,
-            120
-        ],
-        "target_object": "clock",
-        "max_fixations": 80
-    },
-    "c000000024582.jpg": {
-        "subject": "07",
-        "dataset": "MCS Dataset",
-        "image_height": 508,
-        "image_width": 564,
-        "screen_height": 800,
-        "screen_width": 1280,
-        "receptive_height": 20,
-        "receptive_width": 20,
-        "target_found": false,
-        "target_bbox": [
-            60,
-            237,
-            76,
-            330
-        ],
-        "X": [
-            254.39999999999998,
-            280.9,
-            293.5,
-            311.70000000000005
-        ],
-        "Y": [
-            252.0,
-            125.5,
-            466.1,
-            445.6
-        ],
-        "T": [
-            736,
-            187,
-            213,
-            157
         ],
         "target_object": "clock",
         "max_fixations": 80
