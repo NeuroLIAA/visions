@@ -53,7 +53,14 @@ def run(trials_properties, targets_dir, chopped_dir):
             transforms.ToTensor(),
             transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
         ])
-        target = target_transformation(target)
+        target       = target_transformation(target)
+        # View as mini-batch of size 1
+        # cast as 32-bit float since the model parameters are 32-bit floats
+        batch_target = target.unsqueeze(0).float()
+        # Get target representation and set as convolution layer's weight
+        with torch.no_grad():
+            output_target  = model_target(batch_target)
+            MMConv.weight  = nn.parameter.Parameter(output_target, requires_grad=False)
 
         current_chopped_dir = path.join(chopped_dir, image_id)
         chopped_files       = listdir(current_chopped_dir)
@@ -71,16 +78,10 @@ def run(trials_properties, targets_dir, chopped_dir):
             ])
             chopped_image = image_transformation(chopped_image)
 
-            # View as mini-batch of size 1
-            # cast as 32-bit float since the model parameters are 32-bit floats
             batch_stimuli = chopped_image.unsqueeze(0).float()
-            batch_target  = target.unsqueeze(0).float()
-
             with torch.no_grad():
-                # Get the feature maps
+                # Get the feature map
                 output_stimuli = model_stimuli(batch_stimuli).squeeze()
-                output_target  = model_target(batch_target)
-                MMConv.weight  = nn.parameter.Parameter(output_target, requires_grad=False)
                 # Output is the convolution of both representations
                 chopped_attention_map = MMConv(output_stimuli.unsqueeze(0)).squeeze() 
 
