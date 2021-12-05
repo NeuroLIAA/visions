@@ -1,5 +1,6 @@
 import multimatch_gaze as mm
 import numpy as np
+from scipy import stats
 import matplotlib.pyplot as plt
 from . import utils
 from os import listdir, path
@@ -97,8 +98,8 @@ class Multimatch:
             model_vs_human_multimatch = utils.get_random_subset(self.multimatch_values[model]['model_vs_humans'], size=self.number_of_images)
             humans_multimatch         = utils.get_random_subset(self.multimatch_values[model]['human_mean'], size=self.number_of_images)
 
-            corr_coef, mm_avg, model_vs_humans_mm, hmm_avg, humans_mm = self.process_results(model_vs_human_multimatch, humans_multimatch)
-            metrics  = {'Corr': corr_coef, 'AvgMM': mm_avg, 'MMvec': model_vs_humans_mm[0], 'MMdir': model_vs_humans_mm[1], \
+            corr_coef, pvalues, mm_avg, model_vs_humans_mm, hmm_avg, humans_mm = self.process_results(model_vs_human_multimatch, humans_multimatch)
+            metrics  = {'Corr': corr_coef, 'p-values': pvalues, 'AvgMM': mm_avg, 'MMvec': model_vs_humans_mm[0], 'MMdir': model_vs_humans_mm[1], \
                 'MMlen': model_vs_humans_mm[2], 'MMpos': model_vs_humans_mm[3]}
             hmetrics = {'AvgMM': hmm_avg, 'MMvec': humans_mm[0], 'MMdir': humans_mm[1], 'MMlen': humans_mm[2], 'MMpos': humans_mm[3]}
 
@@ -131,6 +132,7 @@ class Multimatch:
             humans_mean.append(np.mean(img_humans))
 
         corr_coef = np.corrcoef(model_vs_humans_mean, humans_mean)[0, 1]
+        pvalues = stats.pearsonr(model_vs_humans_mean, humans_mean)
         mm_avg    = np.mean(model_vs_humans_mean)
         hmm_avg   = np.mean(humans_mean)
 
@@ -140,7 +142,7 @@ class Multimatch:
         for index, dim in enumerate(model_vs_humans_mm):
             humans_mm[index] = [np.mean(dim), np.std(dim)]
 
-        return corr_coef, mm_avg, model_vs_humans_mm, hmm_avg, humans_mm
+        return corr_coef, pvalues, mm_avg, model_vs_humans_mm, hmm_avg, humans_mm
 
     def print_trials_names_in_similarity_order(self, scores_diff, trials_names, model_name):
         scores_diff = list(zip(scores_diff, trials_names))
