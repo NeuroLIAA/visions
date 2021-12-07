@@ -2,6 +2,7 @@ from os import path
 # Configuration constants
 # All paths are relative to root
 
+CONFIG_NAME   = 'default'
 CONFIG_DIR    = path.join('Models', 'nnIBS', 'configs')
 DATASETS_PATH = 'Datasets'
 RESULTS_PATH  = 'Results'
