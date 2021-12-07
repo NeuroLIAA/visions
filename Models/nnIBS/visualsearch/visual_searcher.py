@@ -101,7 +101,7 @@ class VisualSearcher:
 
         # Initialize variables for computing each fixation        
         likelihood = np.zeros(shape=grid_size)
-        posterior  = np.zeros(shape=grid_size)
+        posterior  = image_prior
 
         # Search
         print('Fixation:', end=' ')
@@ -125,11 +125,7 @@ class VisualSearcher:
                 break
 
             likelihood = likelihood + target_similarity_map.at_fixation(current_fixation) * (np.square(self.visibility_map.at_fixation(current_fixation)))
-            if fixation_number == 0:
-                likelihood_times_prior = image_prior * np.exp(likelihood)
-            else:
-                likelihood_times_prior = posterior * np.exp(likelihood)
-
+            likelihood_times_prior = posterior * np.exp(likelihood)
             marginal  = np.sum(likelihood_times_prior)
             posterior = likelihood_times_prior / marginal
 
