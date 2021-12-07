@@ -124,11 +124,10 @@ class VisualSearcher:
             if fixation_number == self.max_saccades:
                 break
 
+            likelihood = likelihood + target_similarity_map.at_fixation(current_fixation) * (np.square(self.visibility_map.at_fixation(current_fixation)))
             if fixation_number == 0:
-                likelihood = target_similarity_map.at_fixation(current_fixation) * (np.square(self.visibility_map.at_fixation(current_fixation)))
                 likelihood_times_prior = image_prior * np.exp(likelihood)
             else:
-                likelihood = likelihood + target_similarity_map.at_fixation(current_fixation) * (np.square(self.visibility_map.at_fixation(current_fixation)))
                 likelihood_times_prior = posterior * np.exp(likelihood)
 
             marginal  = np.sum(likelihood_times_prior)
