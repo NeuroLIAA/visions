@@ -1,5 +1,4 @@
 import json
-import shutil
 from os import listdir, path, mkdir
 from skimage import io, transform, img_as_ubyte
 from utils import rescale_coordinate, rename_image
@@ -19,9 +18,8 @@ initial_fixation = (new_image_size[0] / 2, new_image_size[1] / 2)
 
 trials_properties = []
 trials_properties_file = '../trials_properties.json'
-targets_save_path   = '../targets/'
+templates_save_path = '../templates/'
 images_save_path    = '../images/'
-categories_path     = 'categories'
 
 test_images = listdir(test_images_dir)
 train_microwave_images = listdir(train_microwave_images_dir)
@@ -62,13 +60,15 @@ for index in range(len(images_files)):
         
         target_height = rescaled_target_bbox[2] - rescaled_target_bbox[0]
         target_width  = rescaled_target_bbox[3] - rescaled_target_bbox[1]
-        
-        target_name = new_image_name[:-4] + '_target' + new_image_name[-4:]
-        if not path.exists(targets_save_path):
-            mkdir(targets_save_path)
-        shutil.copyfile(path.join(categories_path, category + '.jpg'), path.join(targets_save_path, target_name))
+        template = image[rescaled_target_bbox[0]:rescaled_target_bbox[2], rescaled_target_bbox[1]:rescaled_target_bbox[3]]
+        template_name = new_image_name[:-4] + '_template' + new_image_name[-4:]
 
-        trials_properties.append({'image' : new_image_name, 'target' : target_name, 'dataset' : 'MCS Dataset', \
+        io.imsave(path.join(images_save_path, new_image_name), img_as_ubyte(image))
+        if not path.exists(templates_save_path):
+            mkdir(templates_save_path)
+        io.imsave(path.join(templates_save_path, template_name), img_as_ubyte(template))
+
+        trials_properties.append({'image' : new_image_name, 'target' : template_name, 'dataset' : 'MCS Dataset', \
             'target_matched_row' : rescaled_target_bbox[0], 'target_matched_column' : rescaled_target_bbox[1], 'target_height' : target_height, 'target_width' : target_width, \
                 'image_height' : new_image_size[0], 'image_width' : new_image_size[1], 'initial_fixation_row' : int(initial_fixation[0]), 'initial_fixation_column' : int(initial_fixation[1]), \
                     'target_object' : category})
