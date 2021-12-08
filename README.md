@@ -3,7 +3,7 @@
 ## Installation
 Python 3 is required. To install, run:
 ```
-git clone git@github.com:FerminT/VisualSearchBenchmark.git
+git clone --branch SVRHM git@github.com:FerminT/VisualSearchBenchmark.git
 pip3 install -r ./VisualSearchBenchmark
 ```
 
@@ -24,3 +24,7 @@ Runs ```nnIBS``` on the ```COCOSearch18``` and ```Interiors``` datasets, and the
 ```
 python3 run_benchmark.py --d COCOSearch18 Interiors --m nnIBS --mts mm perf
 ```
+## How to cite us
+If you use our work, please cite us:
+
+Travi, F., Ruarte, G., Bujia, G. & Kamienkowski, J. E. (2021). Benchmarking human visual search computational models: models comparison and reference datasets. *In Shared Visual Representations in Human & Machine intelligence, 2021 NeurIPS workshop.*
