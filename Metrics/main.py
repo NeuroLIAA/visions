@@ -1,7 +1,6 @@
 from . import constants
 import argparse
 from .scripts.multimatch import Multimatch
-from .scripts.human_scanpath_prediction import HumanScanpathPrediction
 from .scripts.cumulative_performance import Cumulative_performance
 from .scripts import utils
 from os import listdir, path
@@ -30,8 +29,6 @@ def main(datasets, models, compute_cumulative_performance, compute_multimatch, c
         subjects_cumulative_performance = Cumulative_performance(dataset_name, number_of_images, max_scanpath_length, compute_cumulative_performance)
         subjects_cumulative_performance.add_human_mean(human_scanpaths_dir, constants.HUMANS_COLOR)
 
-        human_scanpath_prediction = HumanScanpathPrediction(dataset_name, human_scanpaths_dir, dataset_results_dir, constants.MODELS_PATH, number_of_images, compute_human_scanpath_prediction)
-
         # Compute models metrics and compare them with human subjects metrics
         color_index = 0
         for model_name in models:
@@ -48,13 +45,10 @@ def main(datasets, models, compute_cumulative_performance, compute_multimatch, c
             multimatch.load_human_mean_per_image(model_name, model_scanpaths)
             multimatch.add_model_vs_humans_mean_per_image(model_name, model_scanpaths, constants.MODELS_COLORS[color_index])
 
-            human_scanpath_prediction.compute_metrics_for_model(model_name)
-
             color_index += 1
 
         subjects_cumulative_performance.save_results(save_path=dataset_results_dir, filename=constants.FILENAME)
         multimatch.save_results(save_path=dataset_results_dir, filename=constants.FILENAME)
-        human_scanpath_prediction.save_results(save_path=dataset_results_dir, filename=constants.FILENAME)
 
         subjects_cumulative_performance.plot(save_path=dataset_results_dir)
         multimatch.plot(save_path=dataset_results_dir)
@@ -70,8 +64,6 @@ if __name__ == "__main__":
         Values must be in list: ' + str(available_models))
     parser.add_argument('--perf', '--performance', action='store_true', help='Compute cumulative performance')
     parser.add_argument('--mm', '--multimatch', action='store_true', help='Compute multimatch on the models')
-    parser.add_argument('--hsp', '--human_scanpath_prediction', action='store_true', help='Compute human scanpath prediction on the models. \
-        See "Kümmerer, M. & Bethge, M. (2021), State-of-the-Art in Human Scanpath Prediction" for more information. WARNING: If not precomputed, EXTREMELY SLOW!')
 
     args = parser.parse_args()
 
