@@ -24,14 +24,14 @@ def main(dataset_name, human_subject=None):
 
     dcbs_path = path.join(constants.DCBS_PATH, dataset_name)
     # Dir of high and low res belief maps
-    DCB_dir_HR = path.join(dcbs_path, path.join('DCBs', 'HR'))
-    DCB_dir_LR = path.join(dcbs_path, path.join('DCBs', 'LR'))
+    DCB_dir_HR = path.join(dcbs_path, 'DCBs', 'HR')
+    DCB_dir_LR = path.join(dcbs_path, 'DCBs', 'LR')
     
     dataset_path = path.join(constants.DATASETS_PATH, dataset_name)
 
     dataset_info      = utils.load_dict_from_json(path.join(dataset_path, 'dataset_info.json'))
     trials_properties = utils.load_dict_from_json(path.join(dataset_path, 'trials_properties.json'))
-    output_path       = path.join(constants.RESULTS_PATH, path.join(dataset_name + '_dataset', 'IRL'))
+    output_path       = path.join(constants.RESULTS_PATH, dataset_name + '_dataset', 'IRL')
     
     images_dir     = path.join(dataset_path, dataset_info['images_dir'])
     new_image_size = (hparams.Data.im_h, hparams.Data.im_w)
@@ -42,7 +42,7 @@ def main(dataset_name, human_subject=None):
     human_scanpaths     = load_human_scanpaths(human_scanpaths_dir, human_subject, grid_size)
     if human_scanpaths:
         human_subject_str = '0' + str(human_subject) if human_subject < 10 else str(human_subject)
-        output_path = path.join(output_path, path.join('subjects_predictions', 'subject_' + human_subject_str))
+        output_path = path.join(output_path, 'subjects_predictions', 'subject_' + human_subject_str)
 
     hparams.Data.max_traj_length = dataset_info['max_scanpath_length'] - 1
 
