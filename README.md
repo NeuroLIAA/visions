@@ -12,7 +12,7 @@ Runs all models in every dataset and compute all metrics (by default, precompute
 ```
 python3 run_benchmark.py
 ```
-
+The code was tested in Ubuntu 16.04 and later.
 #### Optional parameters
 * ```--d dataset1_name dataset2_name .. ```: runs the visual search models in the datasets specified. Each dataset name corresponds to its folder's name in [```Datasets```](./Datasets).
 * ```--m model1_name model2_name .. ```: runs the specified visual search models. Each model name corresponds to its folder's name in [```Models```](./Models).
