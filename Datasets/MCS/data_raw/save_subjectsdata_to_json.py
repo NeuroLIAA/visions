@@ -86,7 +86,7 @@ for index, row in train_scanpaths.iterrows():
             'screen_height': display_size_train[0], 'screen_width': display_size_train[1],  'receptive_height': receptive_height, 'receptive_width': receptive_width, 'target_found': False, \
                 'target_bbox': rescaled_target_bbox, 'X': [], 'Y': [], 'T': [], 'target_object': category, 'max_fixations': max_fixations}
 
-    current_fix_x, current_fix_y = utils.convert_coordinate(row['CURRENT_FIX_X'], row['CURRENT_FIX_Y'], new_image_size[1], new_image_size[0], display_size_train, is_train=True)
+    current_fix_x, current_fix_y = utils.convert_coordinate(row['CURRENT_FIX_X'], row['CURRENT_FIX_Y'], original_img_size[1], original_img_size[0], display_size_train, new_image_size, is_train=True)
 
     trial_scanpath['X'].append(current_fix_x)
     trial_scanpath['Y'].append(current_fix_y)
@@ -155,10 +155,10 @@ for index, row in test_scanpaths.iterrows():
         else:
             subject_name = str(subject_num)
         trial_scanpath = {'subject': subject_name, 'dataset': 'MCS Dataset', 'image_height': new_image_size[0], 'image_width': new_image_size[1], \
-            'screen_height': display_size_train[0], 'screen_width': display_size_train[1],  'receptive_height': 10, 'receptive_width': 10, 'target_found': False, \
+            'screen_height': display_size_train[0], 'screen_width': display_size_train[1],  'receptive_height': receptive_height, 'receptive_width': receptive_width, 'target_found': False, \
                 'target_bbox': rescaled_target_bbox, 'X': [], 'Y': [], 'T': [], 'target_object': category, 'max_fixations': max_fixations}
 
-    current_fix_x, current_fix_y = utils.convert_coordinate(row['CURRENT_FIX_X'], row['CURRENT_FIX_Y'], new_image_size[1], new_image_size[0], display_size_test, is_train=False)
+    current_fix_x, current_fix_y = utils.convert_coordinate(row['CURRENT_FIX_X'], row['CURRENT_FIX_Y'], original_img_size[1], original_img_size[0], display_size_test, new_image_size, is_train=False)
 
     trial_scanpath['X'].append(current_fix_x)
     trial_scanpath['Y'].append(current_fix_y)

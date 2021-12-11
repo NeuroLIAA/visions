@@ -47,7 +47,7 @@ def collapse_fixations(scanpath_x, scanpath_y, receptive_size):
 
     return collapsed_scanpath_x, collapsed_scanpath_y
 
-def convert_coordinate(X, Y, im_w, im_h, display_size, is_train):
+def convert_coordinate(X, Y, im_w, im_h, display_size, new_img_size, is_train):
     """
     convert from display coordinate to pixel coordinate
 
@@ -82,6 +82,13 @@ def convert_coordinate(X, Y, im_w, im_h, display_size, is_train):
         scale = im_w / float(new_w)
         X = (X - dif_ux) * scale
         Y = (Y - dif_uy) * scale
+
+    # Cap
+    X = min(max(0, X), im_w - 1)
+    Y = min(max(0, Y), im_h - 1)
+    # Convert to new image size
+    X = rescale_coordinate(X, im_w, new_img_size[1])
+    Y = rescale_coordinate(Y, im_h, new_img_size[0])
     return X, Y
 
 def rescale_coordinate(value, old_size, new_size):
