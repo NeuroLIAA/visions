@@ -63,9 +63,8 @@ def main(datasets, models, compute_cumulative_performance, compute_multimatch, c
 
         subjects_cumulative_performance.plot(save_path=dataset_results_dir)
         multimatch.plot(save_path=dataset_results_dir)
-        human_scanpath_prediction.print_results()
 
-        utils.plot_table(results_table, title=dataset_name + ' dataset')
+        utils.plot_table(results_table, title=dataset_name + ' dataset', save_path=dataset_results_dir)
 
 
 if __name__ == "__main__":

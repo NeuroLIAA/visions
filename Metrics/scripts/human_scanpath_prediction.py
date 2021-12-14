@@ -109,14 +109,6 @@ class HumanScanpathPrediction:
 
         utils.save_to_json(dataset_metrics_file, dataset_metrics)
 
-    def print_results():
-        if self.null_object: return
-
-        print('[Human Scanpath Prediction] ' + self.dataset_name + ' dataset: ')
-        for model in self.models_results:
-            model_metrics = self.models_results[model]
-            print('(' + model + ') AUC:' + model_metrics['AUChsp'] + '; NSS: ' + model_metrics['NSShsp'])
-
 def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
     """ After creating the probability maps for each fixation in a given human subject's scanpath, visual search models call this method """
     probability_maps_path = path.join(output_path, path.join('probability_maps', image_name[:-4]))

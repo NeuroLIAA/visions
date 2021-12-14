@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from os import listdir, path, scandir
 from .. import constants
 
-def plot_table(df, title):
+def plot_table(df, title, save_path):
     fig, ax = plt.subplots()
     fig.patch.set_visible(False)
     ax.axis('off')
@@ -16,6 +16,7 @@ def plot_table(df, title):
 
     fig.tight_layout()
     fig.suptitle(title)
+    plt.savefig(path.join(save_path, 'Table.png'))
     plt.show()
 
 def create_df(dict_):
