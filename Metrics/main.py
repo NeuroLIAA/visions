@@ -7,6 +7,7 @@ from .scripts import utils
 from os import listdir, path
 
 def main(datasets, models, compute_cumulative_performance, compute_multimatch, compute_human_scanpath_prediction):
+    datasets_results = {}
     for dataset_name in datasets:
         dataset_path = path.join(constants.DATASETS_PATH, dataset_name)
         dataset_info = utils.load_dict_from_json(path.join(dataset_path, 'dataset_info.json'))
@@ -56,9 +57,15 @@ def main(datasets, models, compute_cumulative_performance, compute_multimatch, c
         multimatch.save_results(save_path=dataset_results_dir, filename=constants.FILENAME)
         human_scanpath_prediction.save_results(save_path=dataset_results_dir, filename=constants.FILENAME)
 
+        dataset_results = utils.load_dict_from_json(path.join(dataset_results_dir, constants.FILENAME))
+        results_table   = utils.create_df(dataset_results)
+        datasets_results[dataset_name] = dataset_results
+
         subjects_cumulative_performance.plot(save_path=dataset_results_dir)
         multimatch.plot(save_path=dataset_results_dir)
         human_scanpath_prediction.print_results()
+
+        utils.plot_table(results_table, title=dataset_name + ' dataset')
 
 
 if __name__ == "__main__":

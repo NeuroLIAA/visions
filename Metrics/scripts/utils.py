@@ -1,8 +1,25 @@
 import json
 import random
 import re
+import pandas as pd
+import matplotlib.pyplot as plt
 from os import listdir, path, scandir
 from .. import constants
+
+def plot_table(df, title):
+    fig, ax = plt.subplots()
+    fig.patch.set_visible(False)
+    ax.axis('off')
+    ax.axis('tight')
+
+    ax.table(cellText=df.values, colLabels=df.columns, loc='center')
+
+    fig.tight_layout()
+    fig.suptitle(title)
+    plt.show()
+
+def create_df(dict_):
+    return pd.DataFrame.from_dict(dict_)
 
 def dir_is_too_heavy(path):
     nmbytes = sum(d.stat().st_size for d in scandir(path) if d.is_file()) / 2**20
