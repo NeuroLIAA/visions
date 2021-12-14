@@ -157,6 +157,6 @@ class Cumulative_performance:
                 fixations = np.linspace(0, 1, num=self.max_scanpath_length)
             
             auc = integrate.trapezoid(y=subject_cumulative_performance[start:], x=fixations)
-            utils.update_dict(dataset_metrics, subject_name, {'AUCperf': auc})
+            utils.update_dict(dataset_metrics, subject_name, {'AUCperf': np.round(auc, 3)})
         
         utils.save_to_json(dataset_metrics_file, dataset_metrics)

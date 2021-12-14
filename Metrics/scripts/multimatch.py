@@ -133,14 +133,14 @@ class Multimatch:
 
         corr_coef_pvalue = pearsonr(model_vs_humans_mean, humans_mean)
         
-        mm_avg    = np.mean(model_vs_humans_mean)
-        hmm_avg   = np.mean(humans_mean)
+        mm_avg    = np.round(np.mean(model_vs_humans_mean), 3)
+        hmm_avg   = np.round(np.mean(humans_mean), 3)
 
         for index, dim in enumerate(model_vs_humans_mm):
-            model_vs_humans_mm[index] = [np.mean(dim), np.std(dim)]
+            model_vs_humans_mm[index] = [np.round(np.mean(dim), 3), np.round(np.std(dim), 3)]
 
-        for index, dim in enumerate(model_vs_humans_mm):
-            humans_mm[index] = [np.mean(dim), np.std(dim)]
+        for index, dim in enumerate(humans_mm):
+            humans_mm[index] = [np.round(np.mean(dim), 3), np.round(np.std(dim), 3)]
 
         return corr_coef_pvalue, mm_avg, model_vs_humans_mm, hmm_avg, humans_mm
 

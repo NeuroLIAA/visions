@@ -58,7 +58,7 @@ def main(datasets, models, compute_cumulative_performance, compute_multimatch, c
         human_scanpath_prediction.save_results(save_path=dataset_results_dir, filename=constants.FILENAME)
 
         dataset_results = utils.load_dict_from_json(path.join(dataset_results_dir, constants.FILENAME))
-        results_table   = utils.create_df(dataset_results)
+        results_table   = utils.create_df(dataset_results).T
         datasets_results[dataset_name] = dataset_results
 
         subjects_cumulative_performance.plot(save_path=dataset_results_dir)

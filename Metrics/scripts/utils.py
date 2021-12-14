@@ -12,10 +12,15 @@ def plot_table(df, title, save_path, filename):
     ax.axis('off')
     ax.axis('tight')
 
-    ax.table(cellText=df.values, colLabels=df.columns, loc='center')
+    table = ax.table(cellText=df.values, colLabels=df.columns, rowLabels=df.index, loc='center')
+    table.auto_set_column_width(list(range(len(df.columns))))
+    table.auto_set_font_size(False)
+    table.set_fontsize(12)
+    table.scale(1.5, 1.5)
 
     fig.tight_layout()
     fig.suptitle(title)
+    fig.set_size_inches(9, 5)
     plt.savefig(path.join(save_path, filename))
     plt.show()
 
