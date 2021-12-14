@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from os import listdir, path, scandir
 from .. import constants
 
-def plot_table(df, title, save_path):
+def plot_table(df, title, save_path, filename):
     fig, ax = plt.subplots()
     fig.patch.set_visible(False)
     ax.axis('off')
@@ -16,8 +16,30 @@ def plot_table(df, title, save_path):
 
     fig.tight_layout()
     fig.suptitle(title)
-    plt.savefig(path.join(save_path, 'Table.png'))
+    plt.savefig(path.join(save_path, filename))
     plt.show()
+
+def average_results(datasets_results_dict, save_path, filename):
+    final_table = {}
+    for dataset in datasets_results_dict:
+        dataset_res   = datasets_results_dict[dataset]
+        human_aucperf = dataset_res['Humans']['AUCperf']
+
+        final_table[model] = {'AUCperf': 0, 'AvgMM': 0, 'AUChsp': 0, 'NSShsp': 0, 'Score': 0}
+        for model in dataset_res:
+            # AUCperf is expressed as the absolute difference between Human and model's AUCperf
+            dif_aucperf = abs(human_aucperf - dataset_res[model]['AUCperf'])
+            final_table[model]['AUCperf'] += dif_aucperf / len(datasets_results_dict)
+            final_table[model]['AvgMM']   += dataset_res[model]['AvgMM'] / len(datasets_results_dict)
+            final_table[model]['AUChsp']  += dataset_res[model]['AUChsp'] / len(datasets_results_dict)
+            final_table[model]['NSShsp']  += dataset_res[model]['NSShsp'] / len(datasets_results_dict)
+
+            final_table[model]['Score'] += (final_table[model]['AUCperf'] + final_table[model]['AvgMM'] + final_table[model]['AUChsp'] + final_table[model]['NSShsp']) / 4
+    
+    save_to_json(path.join(save_path, filename), final_table)
+    final_table = create_df(final_table).T
+
+    return final_table.sort_values(by=['Score'])
 
 def create_df(dict_):
     return pd.DataFrame.from_dict(dict_)
