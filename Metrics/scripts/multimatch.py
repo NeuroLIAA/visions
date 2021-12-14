@@ -99,7 +99,7 @@ class Multimatch:
             humans_multimatch         = utils.get_random_subset(self.multimatch_values[model]['human_mean'], size=self.number_of_images)
 
             corr_coef_pvalue, mm_avg, model_vs_humans_mm, hmm_avg, humans_mm = self.process_results(model_vs_human_multimatch, humans_multimatch)
-            metrics  = {'Corr': corr_coef_pvalue, 'AvgMM': mm_avg, 'MMvec': model_vs_humans_mm[0], 'MMdir': model_vs_humans_mm[1], \
+            metrics  = {'AvgMM': mm_avg, 'MMvec': model_vs_humans_mm[0], 'MMdir': model_vs_humans_mm[1], \
                 'MMlen': model_vs_humans_mm[2], 'MMpos': model_vs_humans_mm[3]}
             hmetrics = {'AvgMM': hmm_avg, 'MMvec': humans_mm[0], 'MMdir': humans_mm[1], 'MMlen': humans_mm[2], 'MMpos': humans_mm[3]}
 
@@ -131,7 +131,6 @@ class Multimatch:
             model_vs_humans_mean.append(np.mean(img_model_vs_human))
             humans_mean.append(np.mean(img_humans))
 
-        #corr_coef = np.corrcoef(model_vs_humans_mean, humans_mean)[0, 1]
         corr_coef_pvalue = pearsonr(model_vs_humans_mean, humans_mean)
         
         mm_avg    = np.mean(model_vs_humans_mean)
