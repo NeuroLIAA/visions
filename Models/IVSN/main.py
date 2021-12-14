@@ -10,7 +10,7 @@ from os import path
 
 def main(dataset_name, human_subject=None):
     dataset_path = path.join(constants.DATASETS_PATH, dataset_name)
-    output_path  = path.join(constants.RESULTS_PATH, path.join(dataset_name + '_dataset', 'IVSN'))
+    output_path  = path.join(constants.RESULTS_PATH, dataset_name + '_dataset', 'IVSN')
 
     # Load dataset information
     dataset_info      = utils.load_from_dataset(dataset_path, 'dataset_info.json')
@@ -30,7 +30,7 @@ def main(dataset_name, human_subject=None):
         human_subject_str = '0' + str(human_subject) if human_subject < 10 else str(human_subject)
 
         #receptive_size    = dataset_info['receptive_size']
-        output_path       = path.join(output_path, path.join('subjects_predictions', 'subject_' + human_subject_str))
+        output_path       = path.join(output_path, 'subjects_predictions', 'subject_' + human_subject_str)
         trials_properties = utils.keep_human_trials(human_scanpaths, trials_properties)
 
     preprocessed_images_dir = path.join(constants.PREPROCESSED_IMAGES_PATH, dataset_full_name)
