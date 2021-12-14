@@ -66,8 +66,9 @@ def main(datasets, models, compute_cumulative_performance, compute_multimatch, c
 
         utils.plot_table(results_table, title=dataset_name + ' dataset', save_path=dataset_results_dir, filename='Table.png')
 
-    final_table = utils.average_results(datasets_results, save_path=constants.RESULTS_PATH, filename='Scores.json')
-    utils.plot_table(final_table, title='Ranking', save_path=constants.RESULTS_PATH, filename='Ranking.png')
+    if compute_cumulative_performance and compute_multimatch and compute_human_scanpath_prediction:
+        final_table = utils.average_results(datasets_results, save_path=constants.RESULTS_PATH, filename='Scores.json')
+        utils.plot_table(final_table, title='Ranking', save_path=constants.RESULTS_PATH, filename='Ranking.png')
 
 if __name__ == "__main__":
     available_datasets = utils.get_dirs(constants.DATASETS_PATH)
