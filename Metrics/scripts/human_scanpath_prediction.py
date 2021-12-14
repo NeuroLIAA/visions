@@ -61,14 +61,14 @@ class HumanScanpathPrediction:
     
     def compute_model_mean(self, average_results_per_image, model_name):
         """ Get the average across all images for a given model in a given dataset """
-        self.models_results[model_name] = {'Human_scanpath_prediction': {'AUC': 0, 'NSS': 0}}
+        self.models_results[model_name] = {'AUChsp': 0, 'NSShsp': 0}}
 
         # Get subsample for COCOSearch18 dataset
         number_of_images            = min(len(average_results_per_image), self.number_of_images)
         results_per_image_subsample = utils.get_random_subset(average_results_per_image, size=number_of_images)
         for image_name in results_per_image_subsample:
-            self.models_results[model_name]['Human_scanpath_prediction']['AUC'] += results_per_image_subsample[image_name]['AUC'] / number_of_images
-            self.models_results[model_name]['Human_scanpath_prediction']['NSS'] += results_per_image_subsample[image_name]['NSS'] / number_of_images
+            self.models_results[model_name]['AUChsp'] += results_per_image_subsample[image_name]['AUC'] / number_of_images
+            self.models_results[model_name]['NSShsp'] += results_per_image_subsample[image_name]['NSS'] / number_of_images
     
     def average_results(self, model_output_path):
         """ Get the average of all subjects for each image """
@@ -115,7 +115,7 @@ class HumanScanpathPrediction:
         print('[Human Scanpath Prediction] ' + self.dataset_name + ' dataset: ')
         for model in self.models_results:
             model_metrics = self.models_results[model]
-            print('(' + model + ') AUC:' + model_metrics['AUC'] + '; NSS: ' + model_metrics['NSS'])
+            print('(' + model + ') AUC:' + model_metrics['AUChsp'] + '; NSS: ' + model_metrics['NSShsp'])
 
 def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
     """ After creating the probability maps for each fixation in a given human subject's scanpath, visual search models call this method """
