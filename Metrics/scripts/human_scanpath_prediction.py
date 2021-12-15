@@ -105,6 +105,10 @@ class HumanScanpathPrediction:
         dataset_metrics      = utils.load_dict_from_json(dataset_metrics_file)
     
         for model in self.models_results:
+            # Round
+            for metric in self.models_results[model]:
+                self.models_results[model][metric] = np.round(self.models_results[model][metric], 3)
+                
             utils.update_dict(dataset_metrics, model, self.models_results[model])
 
         utils.save_to_json(dataset_metrics_file, dataset_metrics)

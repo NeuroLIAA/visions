@@ -35,8 +35,8 @@ def average_results(datasets_results_dict, save_path, filename):
             if not model in final_table:
                 final_table[model] = {'AUCperf': 0, 'AvgMM': 0, 'AUChsp': 0, 'NSShsp': 0, 'Score': 0}
                 
-            # AUCperf is expressed as the absolute difference between Human and model's AUCperf
-            dif_aucperf = abs(human_aucperf - dataset_res[model]['AUCperf'])
+            # AUCperf is expressed as 1 subtracted the absolute difference between Human and model's AUCperf, maximizing the score of those models who were closest to human subjects
+            dif_aucperf = 1 - abs(human_aucperf - dataset_res[model]['AUCperf'])
             final_table[model]['AUCperf'] += dif_aucperf / len(datasets_results_dict)
             final_table[model]['AvgMM']   += dataset_res[model]['AvgMM'] / len(datasets_results_dict)
             final_table[model]['AUChsp']  += dataset_res[model]['AUChsp'] / len(datasets_results_dict)
