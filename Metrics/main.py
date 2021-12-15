@@ -2,7 +2,7 @@ from . import constants
 import argparse
 from .scripts.multimatch import Multimatch
 from .scripts.human_scanpath_prediction import HumanScanpathPrediction
-from .scripts.cumulative_performance import Cumulative_performance
+from .scripts.cumulative_performance import CumulativePerformance
 from .scripts import utils
 from os import listdir, path
 
@@ -28,7 +28,7 @@ def main(datasets, models, compute_cumulative_performance, compute_multimatch, c
         # Initialize objects
         multimatch = Multimatch(dataset_name, human_scanpaths_dir, dataset_results_dir, number_of_images, compute_multimatch)
 
-        subjects_cumulative_performance = Cumulative_performance(dataset_name, number_of_images, max_scanpath_length, compute_cumulative_performance)
+        subjects_cumulative_performance = CumulativePerformance(dataset_name, number_of_images, max_scanpath_length, compute_cumulative_performance)
         subjects_cumulative_performance.add_human_mean(human_scanpaths_dir, constants.HUMANS_COLOR)
 
         human_scanpath_prediction = HumanScanpathPrediction(dataset_name, human_scanpaths_dir, dataset_results_dir, constants.MODELS_PATH, number_of_images, compute_human_scanpath_prediction)

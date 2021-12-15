@@ -4,7 +4,7 @@ from . import utils
 from scipy import integrate
 from os import listdir, path
 
-class Cumulative_performance:
+class CumulativePerformance:
     def __init__(self, dataset_name, number_of_images, max_scanpath_length, compute):
         self.dataset_name     = dataset_name
         self.number_of_images = number_of_images
