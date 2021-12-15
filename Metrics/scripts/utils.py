@@ -12,7 +12,7 @@ def plot_table(df, title, save_path, filename):
     ax.axis('off')
     ax.axis('tight')
 
-    table = ax.table(cellText=df.values, colLabels=df.columns, rowLabels=df.index, loc='center')
+    table = ax.table(cellText=df.values, colLabels=df.columns, rowLabels=df.index, colColours=['peachpuff'] * len(df.columns), rowColours=['peachpuff'] * len(df.index), loc='center')
     table.auto_set_column_width(list(range(len(df.columns))))
     table.auto_set_font_size(False)
     table.set_fontsize(12)
@@ -30,8 +30,11 @@ def average_results(datasets_results_dict, save_path, filename):
         dataset_res   = datasets_results_dict[dataset]
         human_aucperf = dataset_res['Humans']['AUCperf']
 
-        final_table[model] = {'AUCperf': 0, 'AvgMM': 0, 'AUChsp': 0, 'NSShsp': 0, 'Score': 0}
         for model in dataset_res:
+            if model == 'Humans': continue
+            if not model in final_table:
+                final_table[model] = {'AUCperf': 0, 'AvgMM': 0, 'AUChsp': 0, 'NSShsp': 0, 'Score': 0}
+                
             # AUCperf is expressed as the absolute difference between Human and model's AUCperf
             dif_aucperf = abs(human_aucperf - dataset_res[model]['AUCperf'])
             final_table[model]['AUCperf'] += dif_aucperf / len(datasets_results_dict)

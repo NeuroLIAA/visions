@@ -139,7 +139,7 @@ def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
     utils.save_to_json(file_path, model_subject_metrics)
 
     # Clean up probability maps if their size is too big
-    if not (image_name in ['grayscale_44_oliva.jpg', 'grayscale_6_airbnb.jpg', 'grayscale_1_kitchen.jpg'] and subject == 'subject_01') and utils.dir_is_too_heavy(probability_maps_path):
+    if utils.dir_is_too_heavy(probability_maps_path):
         shutil.rmtree(probability_maps_path)
 
 def compute_metrics(probability_map, human_fixation_y, human_fixation_x):
