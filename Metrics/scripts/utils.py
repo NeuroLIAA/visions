@@ -26,6 +26,7 @@ def plot_table(df, title, save_path, filename):
 
 def average_results(datasets_results_dict, save_path, filename):
     final_table = {}
+    number_of_datasets = len(datasets_results_dict)
     for dataset in datasets_results_dict:
         dataset_res   = datasets_results_dict[dataset]
         human_aucperf = dataset_res['Humans']['AUCperf']
@@ -34,15 +35,24 @@ def average_results(datasets_results_dict, save_path, filename):
             if model == 'Humans': continue
             if not model in final_table:
                 final_table[model] = {'AUCperf': 0, 'AvgMM': 0, 'AUChsp': 0, 'NSShsp': 0, 'Score': 0}
+            number_of_metrics  = 4
                 
-            # AUCperf is expressed as 1 subtracted the absolute difference between Human and model's AUCperf, maximizing the score of those models who were closest to human subjects
-            dif_aucperf = 1 - abs(human_aucperf - dataset_res[model]['AUCperf'])
-            final_table[model]['AUCperf'] += dif_aucperf / len(datasets_results_dict)
-            final_table[model]['AvgMM']   += dataset_res[model]['AvgMM'] / len(datasets_results_dict)
-            final_table[model]['AUChsp']  += dataset_res[model]['AUChsp'] / len(datasets_results_dict)
-            final_table[model]['NSShsp']  += dataset_res[model]['NSShsp'] / len(datasets_results_dict)
+            # AUCperf is not computed for IRL in Interiors and Unrestricted datasets
+            if not 'AUCperf' in dataset_res[model]:
+                dif_aucperf = 0
+                number_of_metrics -= 1
+            else:
+                # AUCperf is expressed as 1 subtracted the absolute difference between Human and model's AUCperf, maximizing the score of those models who were closest to human subjects
+                dif_aucperf = 1 - abs(human_aucperf - dataset_res[model]['AUCperf'])
 
-            final_table[model]['Score'] += (final_table[model]['AUCperf'] + final_table[model]['AvgMM'] + final_table[model]['AUChsp'] + final_table[model]['NSShsp']) / 4
+            not_present = 2 if model == 'IRL' else 0
+
+            final_table[model]['AUCperf'] += dif_aucperf / (number_of_datasets - not_present)
+            final_table[model]['AvgMM']   += dataset_res[model]['AvgMM'] / number_of_datasets
+            final_table[model]['AUChsp']  += dataset_res[model]['AUChsp'] / number_of_datasets
+            final_table[model]['NSShsp']  += dataset_res[model]['NSShsp'] / number_of_datasets
+
+            final_table[model]['Score'] += (final_table[model]['AUCperf'] + final_table[model]['AvgMM'] + final_table[model]['AUChsp'] + final_table[model]['NSShsp']) / number_of_metrics
     
     save_to_json(path.join(save_path, filename), final_table)
     final_table = create_df(final_table).T
