@@ -30,7 +30,7 @@ class HumanScanpathPrediction:
 
         model_output_path     = path.join(self.dataset_results_dir, model_name)    
         human_scanpaths_files = utils.sorted_alphanumeric(listdir(self.human_scanpaths_dir))
-        model_average_file    = path.join(model_output_path, 'scanpath_prediction_mean_per_image.json')
+        model_average_file    = path.join(model_output_path, 'human_scanpath_prediction_mean_per_image.json')
 
         average_results_per_image = utils.load_dict_from_json(model_average_file)
         if average_results_per_image:
@@ -115,7 +115,7 @@ class HumanScanpathPrediction:
 
 def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
     """ After creating the probability maps for each fixation in a given human subject's scanpath, visual search models call this method """
-    probability_maps_path = path.join(output_path, path.join('probability_maps', image_name[:-4]))
+    probability_maps_path = path.join(output_path, 'probability_maps', image_name[:-4])
     if not path.exists(probability_maps_path):
         print('[Human Scanpath Prediction] No probability maps found for ' + image_name)
         return
@@ -132,8 +132,9 @@ def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
         image_nss.append(nss)
         image_igs.append(ig)
 
+    breakpoint()
     subject   = path.basename(output_path)
-    file_path = path.join(path.join(output_path, pardir), subject + '_results.json')
+    file_path = path.join(output_path, pardir, subject + '_results.json')
     if path.exists(file_path):
         model_subject_metrics = utils.load_dict_from_json(file_path)
     else:
