@@ -54,10 +54,16 @@ def average_results(datasets_results_dict, save_path, filename):
 
             final_table[model]['Score'] += (final_table[model]['AUCperf'] + final_table[model]['AvgMM'] + final_table[model]['AUChsp'] + final_table[model]['NSShsp']) / number_of_metrics
     
+    # Round values
+    for model in final_table:
+        scores = final_table[model]
+        for metric in scores:
+            scores[metric] = np.round(scores[metric], 3)
+
     save_to_json(path.join(save_path, filename), final_table)
     final_table = create_df(final_table).T
 
-    return final_table.sort_values(by=['Score'])
+    return final_table.sort_values(by=['Score'], ascending=False)
 
 def create_df(dict_):
     return pd.DataFrame.from_dict(dict_)
