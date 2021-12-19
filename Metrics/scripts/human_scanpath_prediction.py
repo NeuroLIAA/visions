@@ -132,7 +132,6 @@ def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
         image_nss.append(nss)
         image_igs.append(ig)
 
-    breakpoint()
     subject   = path.basename(output_path)
     file_path = path.join(output_path, pardir, subject + '_results.json')
     if path.exists(file_path):

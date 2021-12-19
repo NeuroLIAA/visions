@@ -2,6 +2,7 @@ import json
 import random
 import re
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 from os import listdir, path, scandir
 from .. import constants
@@ -20,7 +21,7 @@ def plot_table(df, title, save_path, filename):
 
     fig.tight_layout()
     fig.suptitle(title)
-    fig.set_size_inches(9, 5)
+    fig.set_size_inches(10.5, 5)
     plt.savefig(path.join(save_path, filename))
     plt.show()
 
