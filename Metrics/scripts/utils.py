@@ -36,12 +36,10 @@ def average_results(datasets_results_dict, save_path, filename):
             if model == 'Humans': continue
             if not model in final_table:
                 final_table[model] = {'AUCperf': 0, 'AvgMM': 0, 'AUChsp': 0, 'NSShsp': 0, 'Score': 0}
-            number_of_metrics  = 4
                 
             # AUCperf is not computed for IRL in Interiors and Unrestricted datasets
             if not 'AUCperf' in dataset_res[model]:
                 dif_aucperf = 0
-                number_of_metrics -= 1
             else:
                 # AUCperf is expressed as 1 subtracted the absolute difference between Human and model's AUCperf, maximizing the score of those models who were closest to human subjects
                 dif_aucperf = 1 - abs(human_aucperf - dataset_res[model]['AUCperf'])
@@ -52,14 +50,19 @@ def average_results(datasets_results_dict, save_path, filename):
             final_table[model]['AvgMM']   += dataset_res[model]['AvgMM'] / number_of_datasets
             final_table[model]['AUChsp']  += dataset_res[model]['AUChsp'] / number_of_datasets
             final_table[model]['NSShsp']  += dataset_res[model]['NSShsp'] / number_of_datasets
-
-            final_table[model]['Score'] += (final_table[model]['AUCperf'] + final_table[model]['AvgMM'] + final_table[model]['AUChsp'] + final_table[model]['NSShsp']) / number_of_metrics
     
-    # Round values
+    # Average and round values
     for model in final_table:
+        final_score = 0
+        number_of_metrics = 0
+
         scores = final_table[model]
         for metric in scores:
+            if scores[metric] != 0:
+                final_score       += scores[metric]
+                number_of_metrics += 1
             scores[metric] = np.round(scores[metric], 3)
+        final_table[model]['Score'] = np.round(final_score / number_of_metrics, 3)
 
     save_to_json(path.join(save_path, filename), final_table)
     final_table = create_df(final_table).T
