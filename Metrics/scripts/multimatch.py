@@ -156,10 +156,7 @@ class Multimatch:
 
         scores_right_half.sort(key=lambda elem: elem[0])
         scores_left_half.sort(key=lambda elem: elem[0])
-        print('Dataset: ' + self.dataset_name + '. Model: ' + model_name + '. Most similar to less similar trials')
-        # print('Right half:')
-        # print(scores_right_half[:10])
-        # print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+        print('Dataset: ' + self.dataset_name + '. Model: ' + model_name + '. Most similar to least similar trials')
         print('Left half:')
         print(scores_left_half[:10])
         print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
@@ -269,7 +266,7 @@ class Multimatch:
     def compute_multimatch(self, trial_info, trial_to_compare_info, screen_size):
         target_found = trial_info['target_found'] and trial_to_compare_info['target_found']
         if not target_found:
-            return []
+           return []
 
         trial_scanpath_X = trial_info['X']
         trial_scanpath_Y = trial_info['Y']
