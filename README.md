@@ -28,4 +28,23 @@ python3 run_benchmark.py --d COCOSearch18 Interiors --m nnIBS --mts mm perf
 ## How to cite us
 If you use our work, please cite us:
 
-Travi, F., Ruarte, G., Bujia, G. & Kamienkowski, J. E. (2021). Benchmarking human visual search computational models: models comparison and reference datasets. *In Shared Visual Representations in Human & Machine intelligence, 2021 NeurIPS workshop.*
+```
+@inproceedings{
+travi2021benchmarking,
+title={Benchmarking human visual search computational models in natural scenes: models comparison and reference datasets},
+author={Ferm{\'\i}n Travi and Gonzalo Ruarte and Gaston Bujia and Juan E Kamienkowski},
+booktitle={SVRHM 2021 Workshop @ NeurIPS },
+year={2021},
+url={https://openreview.net/forum?id=ng262VIrK08}
+}
+```
+```
+@inproceedings{
+sclar2020modeling,
+title={Modeling human visual search: A combined Bayesian searcher and saliency map approach for eye movement guidance in natural scenes},
+author={Melanie Sclar and Gaston Bujia and Sebastian Vita and Guillermo Solovey and Juan Esteban Kamienkowski},
+booktitle={NeurIPS 2020 Workshop SVRHM},
+year={2020},
+url={https://openreview.net/forum?id=e35q2TmbZbw}
+}
+```
