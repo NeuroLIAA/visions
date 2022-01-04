@@ -6,7 +6,6 @@ import pandas as pd
 import os
 from math import floor
 from torch.distributions import Categorical
-from Metrics.scripts import human_scanpath_prediction
 warnings.filterwarnings("ignore", category=UserWarning)
 
 def get_max_scanpath_length(scanpaths_list):
@@ -41,40 +40,6 @@ def probability_maps_for_batch(img_names_batch, output_path):
             break
     
     return exist_prob_maps_for_batch
-
-def save_and_compute_metrics(probs, human_scanpaths_batch, img_names_batch, output_path, presaved=False):
-    for index, trial in enumerate(human_scanpaths_batch):
-        trial_scanpath_x  = trial['X']
-        trial_scanpath_y  = trial['Y']
-        trial_target_bbox = trial['target_bbox']
-        trial_length      = len(trial_scanpath_x)
-        trial_img_name    = img_names_batch[index]
-
-        # The initial fixation may have fallen under the target's bounding box due to grid rescaling
-        initial_fixation = (trial_scanpath_x[0], trial_scanpath_y[0])
-        if are_within_boundaries(initial_fixation, initial_fixation, (trial_target_bbox[0], trial_target_bbox[1]), (trial_target_bbox[2] + 1, trial_target_bbox[3] + 1)):
-            # If this is the case, do not compute metrics
-            continue
-
-        save_path = os.path.join(output_path, 'probability_maps', trial_img_name[:-4])
-        if not os.path.exists(save_path):
-            os.makedirs(save_path)
-
-        if not presaved:
-            trial_prob_maps = [prob_batch[index] for prob_batch in probs[:trial_length - 1]]
-            target_found_earlier = False
-            for fix_number, prob_map in enumerate(trial_prob_maps):
-                # The target may have been found earlier than in the subject's scanpath due to grid rescaling
-                if target_found_earlier:
-                    break
-                current_fixation = (trial_scanpath_y[fix_number + 1], trial_scanpath_x[fix_number + 1])
-                if are_within_boundaries(current_fixation, current_fixation, (trial_target_bbox[0], trial_target_bbox[1]), (trial_target_bbox[2] + 1, trial_target_bbox[3] + 1)):
-                    target_found_earlier = True
-
-                prob_map_df = pd.DataFrame(prob_map)
-                prob_map_df.to_csv(os.path.join(save_path, 'fixation_' + str(fix_number + 1) + '.csv'), index=False)
-        
-        human_scanpath_prediction.save_scanpath_prediction_metrics(trial, trial_img_name, output_path)
 
 def save_scanpaths(output_path, scanpaths, filename='Scanpaths.json'):
     if not os.path.exists(output_path):

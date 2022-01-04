@@ -116,10 +116,6 @@ def gen_scanpaths(generator, env_test, test_img_loader, bbox_annos, patch_num, p
             if human_scanpaths:
                 human_scanpaths_batch = [human_scanpaths[image_name] for image_name in img_names_batch]
                 max_traj_len_batch    = utils.get_max_scanpath_length(human_scanpaths_batch) - 1
-                # Check for precomputed probability maps
-                if utils.probability_maps_for_batch(img_names_batch, output_path):
-                    utils.save_and_compute_metrics(None, human_scanpaths_batch, img_names_batch, output_path, presaved=True)
-                    continue
 
             env_test.set_data(batch, max_traj_len_batch)
             with torch.no_grad():
@@ -132,9 +128,7 @@ def gen_scanpaths(generator, env_test, test_img_loader, bbox_annos, patch_num, p
                                             human_scanpaths_batch,
                                             is_eval=True,
                                             sample_action=True)
-                
-                if human_scanpaths:
-                    utils.save_and_compute_metrics(probs, human_scanpaths_batch, img_names_batch, output_path)
+
                 all_actions.extend([(cat_names_batch[i], img_names_batch[i], initial_fix_batch[i],
                                      'present', trajs['actions'][:, i])
                                     for i in range(env_test.batch_size)])

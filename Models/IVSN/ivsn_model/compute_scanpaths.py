@@ -3,7 +3,6 @@ import numpy as np
 from . import utils
 from os import listdir, makedirs, path
 from skimage import io, transform, exposure
-from Metrics.scripts import human_scanpath_prediction
 
 """
 Puts together data produced by the CNN and creates an attention map for the image, which is used to compute the scanpaths, with a winner-takes-all strategy.
@@ -17,14 +16,8 @@ def parse_model_data(preprocessed_images_dir, trials_properties, human_scanpaths
         image_name = trial['image']
         img_id     = image_name[:-4]
 
-        # If following human subject's scanpaths, load them
-        human_trial_scanpath = utils.get_human_scanpath_for_trial(human_scanpaths, image_name)
-
         attention_map  = load_model_data(preprocessed_images_dir, img_id, image_size)
         trial_scanpath = create_scanpath_for_trial(trial, attention_map, human_trial_scanpath, image_size, max_fixations, receptive_size, dataset_name, output_path)
-
-        if human_trial_scanpath:
-            human_scanpath_prediction.save_scanpath_prediction_metrics(human_trial_scanpath, trial['image'], output_path)
 
         scanpaths[image_name] = trial_scanpath
         if trial_scanpath['target_found']:
@@ -74,10 +67,6 @@ def create_scanpath_for_trial(trial, attention_map, human_trial_scanpath, image_
 
         # Apply inhibition of return
         attention_map[fixated_window_leftY:fixated_window_rightY, fixated_window_leftX:fixated_window_rightX] = 0
-
-        # Save the probability map for further usage in computing metrics
-        if human_fixations and fixation_number < max_fixations - 1:
-            utils.save_probability_map(fixation_number, trial['image'], attention_map, output_path)
 
         # Check if target's box overlaps with the fixated window
         fixated_on_target = np.sum(target_template[fixated_window_leftY:fixated_window_rightY, fixated_window_leftX:fixated_window_rightX]) > 0
