@@ -4,9 +4,10 @@
 Python 3 is required. To install, run:
 ```
 git clone git@github.com:FerminT/VisualSearchBenchmark.git
-pip3 install -r ./VisualSearchBenchmark
+pip3 install -r ./VisualSearchBenchmark/requirements.txt
 ```
 
+```Detectron2``` needs to be installed separately (see [detectron2/installation](https://detectron2.readthedocs.io/en/latest/tutorials/install.html)). It is only needed if you're going to run the IRL model on new images.
 ## Usage
 Runs all models in every dataset and compute all metrics (by default, precomputed results are loaded):
 ```
