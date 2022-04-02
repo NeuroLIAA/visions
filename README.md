@@ -1,5 +1,15 @@
 # Visual Search in natural scenes Benchmark
 
+## Ranking
+Current models' score, relative to human subjects, averaged across all datasets:
+|       | AUCperf | AvgMM | AUChsp | NSShsp | Score |
+| ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
+| **nnIBS**   | **0.873**       | **0.842** | **0.738** | 1.133 | **0.897** |
+| **IRL**     | 0.847       | 0.802 | 0.647 | **1.135** | 0.858 |
+| **IVSN**    | 0.86        | 0.801 | 0.608 | 0.826 | 0.774 |
+
+```AUCperf``` measures efficiency, while ```AvgMM```, ```AUChsp``` and ```NSShsp``` focus on scanpath similarity and prediction, respectively. The precise definition of each one can be found at [```Metrics```](./Metrics). The scores for each independent dataset can be found at its corresponding directory in [```Results```](./Results).
+
 ## Installation
 Python 3 is required. To install, run:
 ```
@@ -48,4 +58,4 @@ url={https://openreview.net/forum?id=e35q2TmbZbw}
 }
 ```
 
-The exact materials used for the paper can be found at the [SVRHM branch](https://github.com/FerminT/VisualSearchBenchmark/tree/SVRHM)
+The exact materials used for the paper can be found at the [SVRHM branch](https://github.com/FerminT/VisualSearchBenchmark/tree/SVRHM).
