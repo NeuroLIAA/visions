@@ -2,7 +2,6 @@ from os import path, mkdir, listdir, remove
 import shutil
 import utils
 import numpy as np
-from skimage import io, transform
 
 """ This script requires that the COCOSearch18 images are in the folder ../images.
     Since the same image can be used for several tasks, those images are renamed as separate files for each task.
@@ -152,7 +151,7 @@ for scanpath in human_scanpaths:
             mkdir(targets_dir)
 
         # Copy target
-        shutil.copyfile(path.join(categories_path, task + '.jpg'), path.join(targets_path, target_name))
+        shutil.copyfile(path.join(categories_path, task + '.jpg'), path.join(targets_dir, target_name))
 
         trials_processed.append(image_name)
 
