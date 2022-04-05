@@ -1,11 +1,11 @@
 {
     "dataset_name": "COCOSearch18 Dataset",
-    "number_of_images": 2489,
+    "number_of_images": 612,
     "image_height": 1050,
     "image_width": 1680,
     "max_scanpath_length": 10,
     "receptive_size": [52, 52],
-    "mean_target_size": [254, 280],
+    "mean_target_size": [260, 287],
     "images_dir": "images/",
     "targets_dir": "targets/",
     "scanpaths_dir": "human_scanpaths/"

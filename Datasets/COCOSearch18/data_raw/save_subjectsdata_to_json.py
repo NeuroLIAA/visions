@@ -9,8 +9,7 @@ import numpy as np
     Only 80% of the dataset is available, so there are some images that are never used in the human trials files.
 """
 
-human_scanpaths_train_file = './coco_search18_fixations_TP_train_split1.json' 
-human_scanpaths_valid_file = './coco_search18_fixations_TP_validation_split1.json'
+human_scanpaths_test_file = 'coco_search18_fixations_TP_test.json'
 
 images_dir      = '../images/'
 targets_dir     = '../targets/'
@@ -30,9 +29,7 @@ max_fixations = 45
 if not path.exists(scanpaths_dir):
     mkdir(scanpaths_dir)
 
-human_scanpaths_train = utils.load_dict_from_json(human_scanpaths_train_file)
-human_scanpaths_valid = utils.load_dict_from_json(human_scanpaths_valid_file)
-human_scanpaths       = human_scanpaths_train + human_scanpaths_valid
+human_scanpaths = utils.load_dict_from_json(human_scanpaths_test_file)
 
 images_tasks  = {}
 unused_images = 0
