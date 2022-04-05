@@ -3,7 +3,6 @@ RESULTS_PATH  = 'Results'
 DATASETS_PATH = 'Datasets'
 MODELS_PATH   = 'Models'
 
-COCOSEARCH_SUBSET_SIZE = 500
 RANDOM_SEED = 1234
 MAX_DIR_SIZE = 10 # MBytes, for probability maps dirs
 
