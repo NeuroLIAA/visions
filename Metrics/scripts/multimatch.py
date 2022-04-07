@@ -268,26 +268,18 @@ class Multimatch:
         if not target_found:
            return []
 
-        trial_scanpath_X = trial_info['X']
-        trial_scanpath_Y = trial_info['Y']
-        trial_image_width  = trial_info['image_width']
-        trial_image_height = trial_info['image_height']
-        trial_scanpath_length = len(trial_scanpath_X)
-        trial_scanpath_time = self.get_scanpath_time(trial_info, trial_scanpath_length)
-
-        trial_to_compare_image_width  = trial_to_compare_info['image_width']
-        trial_to_compare_image_height = trial_to_compare_info['image_height']
-
-        trial_to_compare_scanpath_X = trial_to_compare_info['X']
-        trial_to_compare_scanpath_Y = trial_to_compare_info['Y']
-        trial_to_compare_scanpath_length = len(trial_to_compare_scanpath_X)
-        trial_to_compare_scanpath_time = self.get_scanpath_time(trial_to_compare_info, trial_to_compare_scanpath_length)
+        trial_scanpath_X, trial_scanpath_Y = trial_info['X'], trial_info['Y']
+        trial_to_compare_scanpath_X, trial_to_compare_scanpath_Y = trial_to_compare_info['X'], trial_to_compare_info['Y']
 
         # Rescale accordingly
-        trial_scanpath_X = [self.rescale_coordinate(x, trial_image_width, screen_size[0]) for x in trial_scanpath_X]
-        trial_scanpath_Y = [self.rescale_coordinate(y, trial_image_height, screen_size[1]) for y in trial_scanpath_Y]
-        trial_to_compare_scanpath_X = [self.rescale_coordinate(x, trial_to_compare_image_width, screen_size[0]) for x in trial_to_compare_scanpath_X]
-        trial_to_compare_scanpath_Y = [self.rescale_coordinate(y, trial_to_compare_image_height, screen_size[1]) for y in trial_to_compare_scanpath_Y]
+        trial_scanpath_X, trial_scanpath_Y = self.rescale(trial_info, screen_size)
+        trial_to_compare_scanpath_X, trial_to_compare_scanpath_Y = self.rescale(trial_to_compare_info, screen_size)
+
+        trial_scanpath_length            = len(trial_scanpath_X)
+        trial_to_compare_scanpath_length = len(trial_to_compare_scanpath_X)
+
+        trial_scanpath_time            = self.get_scanpath_time(trial_info, trial_scanpath_length)
+        trial_to_compare_scanpath_time = self.get_scanpath_time(trial_to_compare_info, trial_to_compare_scanpath_length)
 
         # Multimatch can't be computed for scanpaths with length shorter than 3
         if trial_scanpath_length < 3 or trial_to_compare_scanpath_length < 3:
@@ -306,6 +298,12 @@ class Multimatch:
             scanpath_time = [0.3] * length
         
         return scanpath_time
+
+    def rescale(self, trial_info, screen_size):
+        trial_scanpath_X = [self.rescale_coordinate(x, trial_info['image_width'], screen_size[0]) for x in trial_info['X']]
+        trial_scanpath_Y = [self.rescale_coordinate(y, trial_info['image_height'], screen_size[1]) for y in trial_info['Y']]
+
+        return trial_scanpath_X, trial_scanpath_Y
 
     def rescale_coordinate(self, value, old_size, new_size):
         return (value / old_size) * new_size
