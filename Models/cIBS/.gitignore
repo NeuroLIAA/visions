@@ -1,0 +1,29 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+__pypackages__/
+
+# DeepGazeII data
+visualsearch/utils/deepgaze/DeepGazeII.ckpt.data-00000-of-00001
+visualsearch/utils/deepgaze/DeepGazeII.ckpt.index
+visualsearch/utils/deepgaze/DeepGazeII.ckpt.meta
+visualsearch/utils/deepgaze/centerbias.npy
+
+# Target similarity maps
+data/target_similarity_maps

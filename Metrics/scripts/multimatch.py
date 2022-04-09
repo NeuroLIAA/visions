@@ -2,7 +2,6 @@ import multimatch_gaze as mm
 import numpy as np
 import matplotlib.pyplot as plt
 from . import utils
-from scipy.stats import pearsonr
 from os import listdir, path
 
 class Multimatch:
@@ -72,8 +71,8 @@ class Multimatch:
             y_vector.append(value_y)
 
         # Set same scale for every dataset
-        ax.set_ylim(0.55, 1.0)
-        ax.set_xlim(0.55, 1.0)
+        ax.set_ylim(0.65, 1.0)
+        ax.set_xlim(0.65, 1.0)
         # Plot multimatch
         ax.scatter(x_vector, y_vector, color=plot_color, alpha=0.5)
 
@@ -86,7 +85,7 @@ class Multimatch:
 
         # Get most similar to less similar trials names
         scores_diff = np.array(x_vector) - np.array(y_vector)
-        # self.print_trials_names_in_similarity_order(scores_diff, trials_names, model_name)
+        #self.print_trials_names_in_similarity_order(scores_diff, trials_names, model_name)
     
     def save_results(self, save_path, filename):
         if self.null_object: return
@@ -98,8 +97,9 @@ class Multimatch:
             model_vs_human_multimatch = utils.get_random_subset(self.multimatch_values[model]['model_vs_humans'], size=self.number_of_images)
             humans_multimatch         = utils.get_random_subset(self.multimatch_values[model]['human_mean'], size=self.number_of_images)
 
-            corr_coef_pvalue, mm_avg, model_vs_humans_mm, hmm_avg, humans_mm = self.process_results(model_vs_human_multimatch, humans_multimatch)
-            metrics  = {'AvgMM': mm_avg, 'MMvec': model_vs_humans_mm[0], 'MMdir': model_vs_humans_mm[1], \
+            corr_coef, mm_avg, model_vs_humans_mm, hmm_avg, humans_mm = self.process_results(model_vs_human_multimatch, humans_multimatch)
+            print('Model: ' + model + ' Corr_coef: ' + str(corr_coef))
+            metrics  = {'Corr': corr_coef, 'AvgMM': mm_avg, 'MMvec': model_vs_humans_mm[0], 'MMdir': model_vs_humans_mm[1], \
                 'MMlen': model_vs_humans_mm[2], 'MMpos': model_vs_humans_mm[3]}
             hmetrics = {'AvgMM': hmm_avg, 'MMvec': humans_mm[0], 'MMdir': humans_mm[1], 'MMlen': humans_mm[2], 'MMpos': humans_mm[3]}
 
@@ -131,18 +131,17 @@ class Multimatch:
             model_vs_humans_mean.append(np.mean(img_model_vs_human))
             humans_mean.append(np.mean(img_humans))
 
-        corr_coef_pvalue = pearsonr(model_vs_humans_mean, humans_mean)
-        
-        mm_avg    = np.round(np.mean(model_vs_humans_mean), 3)
-        hmm_avg   = np.round(np.mean(humans_mean), 3)
+        corr_coef = np.corrcoef(model_vs_humans_mean, humans_mean)[0, 1]
+        mm_avg    = np.mean(model_vs_humans_mean)
+        hmm_avg   = np.mean(humans_mean)
 
         for index, dim in enumerate(model_vs_humans_mm):
-            model_vs_humans_mm[index] = [np.round(np.mean(dim), 3), np.round(np.std(dim), 3)]
+            model_vs_humans_mm[index] = [np.mean(dim), np.std(dim)]
 
-        for index, dim in enumerate(humans_mm):
-            humans_mm[index] = [np.round(np.mean(dim), 3), np.round(np.std(dim), 3)]
+        for index, dim in enumerate(model_vs_humans_mm):
+            humans_mm[index] = [np.mean(dim), np.std(dim)]
 
-        return corr_coef_pvalue, mm_avg, model_vs_humans_mm, hmm_avg, humans_mm
+        return corr_coef, mm_avg, model_vs_humans_mm, hmm_avg, humans_mm
 
     def print_trials_names_in_similarity_order(self, scores_diff, trials_names, model_name):
         scores_diff = list(zip(scores_diff, trials_names))
@@ -156,7 +155,10 @@ class Multimatch:
 
         scores_right_half.sort(key=lambda elem: elem[0])
         scores_left_half.sort(key=lambda elem: elem[0])
-        print('Dataset: ' + self.dataset_name + '. Model: ' + model_name + '. Most similar to least similar trials')
+        print('Dataset: ' + self.dataset_name + '. Model: ' + model_name + '. Most similar to less similar trials')
+        # print('Right half:')
+        # print(scores_right_half[:10])
+        # print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
         print('Left half:')
         print(scores_left_half[:10])
         print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
@@ -266,19 +268,21 @@ class Multimatch:
     def compute_multimatch(self, trial_info, trial_to_compare_info, screen_size):
         target_found = trial_info['target_found'] and trial_to_compare_info['target_found']
         if not target_found:
-           return []
+            return []
 
-        trial_scanpath_X, trial_scanpath_Y = trial_info['X'], trial_info['Y']
-        trial_to_compare_scanpath_X, trial_to_compare_scanpath_Y = trial_to_compare_info['X'], trial_to_compare_info['Y']
+        trial_scanpath_X = trial_info['X']
+        trial_scanpath_Y = trial_info['Y']
+
+        trial_to_compare_scanpath_X = trial_to_compare_info['X']
+        trial_to_compare_scanpath_Y = trial_to_compare_info['Y']
 
         # Rescale accordingly
-        trial_scanpath_X, trial_scanpath_Y = self.rescale(trial_info, screen_size)
-        trial_to_compare_scanpath_X, trial_to_compare_scanpath_Y = self.rescale(trial_to_compare_info, screen_size)
+        trial_scanpath_X, trial_scanpath_Y = self.rescale_and_crop(trial_info, screen_size)
+        trial_to_compare_scanpath_X, trial_to_compare_scanpath_Y = self.rescale_and_crop(trial_to_compare_info, screen_size)
 
-        trial_scanpath_length            = len(trial_scanpath_X)
+        trial_scanpath_length = len(trial_scanpath_X)
+        trial_scanpath_time = self.get_scanpath_time(trial_info, trial_scanpath_length)
         trial_to_compare_scanpath_length = len(trial_to_compare_scanpath_X)
-
-        trial_scanpath_time            = self.get_scanpath_time(trial_info, trial_scanpath_length)
         trial_to_compare_scanpath_time = self.get_scanpath_time(trial_to_compare_info, trial_to_compare_scanpath_length)
 
         # Multimatch can't be computed for scanpaths with length shorter than 3
@@ -299,11 +303,55 @@ class Multimatch:
         
         return scanpath_time
 
-    def rescale(self, trial_info, screen_size):
+    def rescale_and_crop(self, trial_info, screen_size):
+        # Rescale
         trial_scanpath_X = [self.rescale_coordinate(x, trial_info['image_width'], screen_size[0]) for x in trial_info['X']]
         trial_scanpath_Y = [self.rescale_coordinate(y, trial_info['image_height'], screen_size[1]) for y in trial_info['Y']]
+
+        image_size       = (trial_info['image_height'], trial_info['image_width'])
+        target_bbox      = trial_info['target_bbox']
+        target_bbox      = [self.rescale_coordinate(target_bbox[i], image_size[i % 2 == 1], screen_size[i % 2 == 1]) for i in range(len(target_bbox))]
+        receptive_size   = [1, 1]
+
+        trial_scanpath_X, trial_scanpath_Y = self.collapse_fixations(trial_scanpath_X, trial_scanpath_Y, receptive_size)
+        trial_scanpath_X, trial_scanpath_Y = self.crop_scanpath(trial_scanpath_X, trial_scanpath_Y, target_bbox, receptive_size)
 
         return trial_scanpath_X, trial_scanpath_Y
 
     def rescale_coordinate(self, value, old_size, new_size):
-        return (value / old_size) * new_size
+        return int((value / old_size) * new_size)
+
+    def between_bounds(self, target_bbox, fix_y, fix_x, receptive_size):
+        return target_bbox[0] <= fix_y + receptive_size[0] // 2 and target_bbox[2] >= fix_y - receptive_size[0] // 2 and \
+            target_bbox[1] <= fix_x + receptive_size[1] // 2 and target_bbox[3] >= fix_x - receptive_size[1] // 2
+
+    def crop_scanpath(self, scanpath_x, scanpath_y, target_bbox, receptive_size):
+        index = 0
+        for fixation in zip(scanpath_y, scanpath_x):
+            if self.between_bounds(target_bbox, fixation[0], fixation[1], receptive_size):
+                break
+            index += 1
+        
+        cropped_scanpath_x = list(scanpath_x[:index + 1])
+        cropped_scanpath_y = list(scanpath_y[:index + 1])
+        return cropped_scanpath_x, cropped_scanpath_y
+
+    def collapse_fixations(self, scanpath_x, scanpath_y, receptive_size):
+        collapsed_scanpath_x = list(scanpath_x)
+        collapsed_scanpath_y = list(scanpath_y)
+        index = 0
+        while index < len(collapsed_scanpath_x) - 1:
+            abs_difference_x = [abs(fix_1 - fix_2) for fix_1, fix_2 in zip(collapsed_scanpath_x, collapsed_scanpath_x[1:])]
+            abs_difference_y = [abs(fix_1 - fix_2) for fix_1, fix_2 in zip(collapsed_scanpath_y, collapsed_scanpath_y[1:])]
+
+            if abs_difference_x[index] < receptive_size[1] / 2 and abs_difference_y[index] < receptive_size[0] / 2:
+                # new_fix_x = (collapsed_scanpath_x[index] + collapsed_scanpath_x[index + 1]) / 2
+                # new_fix_y = (collapsed_scanpath_y[index] + collapsed_scanpath_y[index + 1]) / 2
+                # collapsed_scanpath_x[index] = new_fix_x
+                # collapsed_scanpath_y[index] = new_fix_y
+                del collapsed_scanpath_x[index + 1]
+                del collapsed_scanpath_y[index + 1]
+            else:
+                index += 1
+
+        return collapsed_scanpath_x, collapsed_scanpath_y
