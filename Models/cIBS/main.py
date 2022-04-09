@@ -8,7 +8,7 @@ from os import path
 
 def setup_and_run(dataset_name, config_name, image_name, image_range, human_subject, number_of_processes, save_probability_maps):
     dataset_path = path.join(constants.DATASETS_PATH, dataset_name)
-    output_path  = path.join(constants.RESULTS_PATH, path.join(dataset_name + '_dataset', 'nnIBS'))
+    output_path  = path.join(constants.RESULTS_PATH, path.join(dataset_name + '_dataset', 'cIBS'))
 
     trials_properties_file = path.join(dataset_path, 'trials_properties.json')
 
@@ -27,7 +27,7 @@ def main(dataset_name, human_subject=None):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Run the nnIBS Visual Search model')
-    parser.add_argument('-dataset', type=str, help='Name of the dataset on which to run the model. Value must be one of cIBS, COCOSearch18, IVSN or MCS.')
+    parser.add_argument('-dataset', type=str, help='Name of the dataset on which to run the model. Value must be one of Interiors, COCOSearch18, Unrestricted or MCS.')
     parser.add_argument('--cfg', '--config', type=str, default='default', help='Name of configuration setup. Examples: greedy, ssim, ivsn. Default is bayesian, with correlation \
         and deepgaze as prior.', metavar='cfg')
     group = parser.add_mutually_exclusive_group()
