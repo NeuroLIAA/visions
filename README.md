@@ -4,8 +4,8 @@
 Current models' score, relative to human subjects, averaged across all datasets:
 |       | AUCperf | AvgMM | AUChsp | NSShsp | Score |
 | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
-| **nnIBS**   | **0.867**       | **0.843** | **0.737** | 1.133 | **0.892** |
-| **IRL**     | 0.836       | 0.798 | 0.644 | **1.102** | 0.845 |
+| **nnIBS**   | **0.867**       | **0.843** | **0.737** | **1.12** | **0.892** |
+| **IRL**     | 0.836       | 0.798 | 0.644 | 1.102 | 0.845 |
 | **IVSN**    | 0.851        | 0.802 | 0.606 | 0.835 | 0.774 |
 
 ```AUCperf``` measures efficiency, while ```AvgMM```, ```AUChsp``` and ```NSShsp``` focus on scanpath similarity and prediction, respectively. The precise definition of each one can be found at [```Metrics```](./Metrics). The scores for each independent dataset can be found at its corresponding directory in [```Results```](./Results).
