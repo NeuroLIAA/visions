@@ -41,11 +41,11 @@ class Ssim(TargetSimilarity):
             procs.append(proc)
             proc.start()
         
-        number_of_tasks_completed = self.number_of_processes
+        running_tasks = self.number_of_processes
 
-        while not (number_of_tasks_completed == 0):            
-            ssim_values += values_queue.get()
-            number_of_tasks_completed -=1
+        while running_tasks:
+            ssim_values   += values_queue.get()
+            running_tasks -=1
 
         # Wait for each process to complete
         for proc in procs:
