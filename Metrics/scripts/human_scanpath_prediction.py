@@ -63,7 +63,6 @@ class HumanScanpathPrediction:
         """ Get the average across all images for a given model in a given dataset """
         self.models_results[model_name] = {'AUChsp': 0, 'NSShsp': 0}
 
-        # Get subsample for COCOSearch18 dataset
         number_of_images            = min(len(average_results_per_image), self.number_of_images)
         results_per_image_subsample = utils.get_random_subset(average_results_per_image, size=number_of_images)
         for image_name in results_per_image_subsample:

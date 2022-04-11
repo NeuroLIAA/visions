@@ -19,6 +19,7 @@ def main(datasets, models, compute_cumulative_performance, compute_multimatch, c
             continue
 
         max_scanpath_length = dataset_info['max_scanpath_length']
+        # If desired, this number can be less than the total and the same random subset will be used for all models
         number_of_images    = dataset_info['number_of_images']
 
         # Initialize objects
