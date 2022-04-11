@@ -185,7 +185,7 @@ class Multimatch:
                 screen_height = model_scanpaths[image_name]['image_height']
                 screen_width  = model_scanpaths[image_name]['image_width']
 
-                trial_multimatch_result = self.compute_multimatch(subject_trial_info, model_trial_info, (screen_width, screen_height))
+                trial_multimatch_result = self.compute_multimatch(subject_trial_info, model_trial_info, (screen_height, screen_width))
 
                 # Check if result is empty
                 if not trial_multimatch_result:
@@ -241,7 +241,7 @@ class Multimatch:
                         screen_height = model_scanpaths[image_name]['image_height']
                         screen_width  = model_scanpaths[image_name]['image_width']
 
-                        trial_multimatch_result = self.compute_multimatch(subject_trial_info, subject_to_compare_trial_info, (screen_width, screen_height))
+                        trial_multimatch_result = self.compute_multimatch(subject_trial_info, subject_to_compare_trial_info, (screen_height, screen_width))
 
                         # Check if result is empty
                         if not trial_multimatch_result:
@@ -288,7 +288,7 @@ class Multimatch:
         trial_scanpath = np.array(list(zip(trial_scanpath_X, trial_scanpath_Y, trial_scanpath_time)), dtype=[('start_x', '<f8'), ('start_y', '<f8'), ('duration', '<f8')])
         trial_to_compare_scanpath = np.array(list(zip(trial_to_compare_scanpath_X, trial_to_compare_scanpath_Y, trial_to_compare_scanpath_time)), dtype=[('start_x', '<f8'), ('start_y', '<f8'), ('duration', '<f8')])
 
-        return mm.docomparison(trial_scanpath, trial_to_compare_scanpath, screen_size)
+        return mm.docomparison(trial_scanpath, trial_to_compare_scanpath, (screen_size[1], screen_size[0]))
 
     def get_scanpath_time(self, trial_info, length):
         if 'T' in trial_info:
@@ -300,8 +300,8 @@ class Multimatch:
         return scanpath_time
 
     def rescale(self, trial_info, screen_size):
-        trial_scanpath_X = [self.rescale_coordinate(x, trial_info['image_width'], screen_size[0]) for x in trial_info['X']]
-        trial_scanpath_Y = [self.rescale_coordinate(y, trial_info['image_height'], screen_size[1]) for y in trial_info['Y']]
+        trial_scanpath_X = [self.rescale_coordinate(x, trial_info['image_width'], screen_size[1]) for x in trial_info['X']]
+        trial_scanpath_Y = [self.rescale_coordinate(y, trial_info['image_height'], screen_size[0]) for y in trial_info['Y']]
 
         return trial_scanpath_X, trial_scanpath_Y
 
