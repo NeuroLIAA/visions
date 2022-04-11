@@ -4,7 +4,7 @@ import re
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from os import listdir, path, scandir
+from os import listdir, makedirs, path, scandir
 from .. import constants
 
 def plot_table(df, title, save_path, filename):
@@ -124,6 +124,10 @@ def load_dict_from_json(json_file_path):
 def save_to_json(file, data):
     with open(file, 'w') as json_file:
         json.dump(data, json_file, indent=4)
+
+def save_to_csv(data, filepath):
+    df = pd.DataFrame(data)
+    df.to_csv(filepath, index=False)        
 
 def rescale_and_crop(trial_info, new_size):
     trial_scanpath_X = [rescale_coordinate(x, trial_info['image_width'], new_size[1]) for x in trial_info['X']]

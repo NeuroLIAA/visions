@@ -129,7 +129,7 @@ def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
     image_roc, image_nss, image_igs = [], [], []
     for index in range(1, len(probability_maps) + 1):
         probability_map = pd.read_csv(path.join(probability_maps_path, 'fixation_' + str(index) + '.csv')).to_numpy()
-        auc, nss, ig    = compute_metrics(probability_map, subject_fixations_y[index], subject_fixations_x[index], dataset_name)
+        auc, nss, ig    = compute_metrics(probability_map, subject_fixations_y[index], subject_fixations_x[index], dataset_name, output_path)
         image_roc.append(auc)
         image_nss.append(nss)
         image_igs.append(ig)
@@ -148,8 +148,8 @@ def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
     if utils.dir_is_too_heavy(probability_maps_path):
         shutil.rmtree(probability_maps_path)
 
-def compute_metrics(probability_map, human_fixation_y, human_fixation_x, dataset_name):
-    baseline_map = center_bias(probability_map.shape, dataset_name)
+def compute_metrics(probability_map, human_fixation_y, human_fixation_x, dataset_name, output_path):
+    baseline_map = center_bias(probability_map.shape, dataset_name, output_path)
     # baseline_map = center_gaussian(probability_map.shape)
 
     # import matplotlib.pyplot as plt
@@ -163,7 +163,11 @@ def compute_metrics(probability_map, human_fixation_y, human_fixation_x, dataset
 
     return auc, nss, ig
 
-def center_bias(shape, dataset_name):
+def center_bias(shape, dataset_name, output_path):
+    filepath = path.join(output_path, pardir, 'center_bias.csv')
+    if path.exists(filepath):
+        return pd.read_csv(filepath).to_numpy()
+
     dataset_path = path.join(constants.DATASETS_PATH, dataset_name)
     dataset_info = utils.load_dict_from_json(path.join(dataset_path, 'dataset_info.json'))
     human_scanpaths_dir = path.join(dataset_path, dataset_info['scanpaths_dir'])
@@ -189,9 +193,11 @@ def center_bias(shape, dataset_name):
     positions = np.vstack([X.ravel(), Y.ravel()])
     values = np.vstack([scanpaths_Y, scanpaths_X])
     kernel = gaussian_kde(values)
-    Z = np.reshape(kernel(positions).T, X.shape)
+    centerbias = np.reshape(kernel(positions).T, X.shape)
 
-    return Z
+    utils.save_to_csv(centerbias, filepath)
+
+    return centerbias
 
 def center_gaussian(shape):
     sigma  = [[1, 0], [0, 1]]
