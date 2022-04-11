@@ -1,8 +1,10 @@
-from os import listdir, path
-from tqdm import tqdm
-from scipy.stats import multivariate_normal
+from ctypes import util
+from email.mime import base
+from random import gauss
+from scipy.stats import multivariate_normal, gaussian_kde
 from . import utils
-from os import path, listdir, pardir, scandir
+from .. import constants
+from os import path, listdir, pardir
 import pandas as pd
 import numpy as np
 import shutil
@@ -119,6 +121,7 @@ def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
         print('[Human Scanpath Prediction] No probability maps found for ' + image_name)
         return
     probability_maps = listdir(probability_maps_path)
+    dataset_name     = subject_scanpath['dataset'][:-8]
 
     subject_fixations_x = np.array(subject_scanpath['X'], dtype=int)
     subject_fixations_y = np.array(subject_scanpath['Y'], dtype=int)
@@ -126,7 +129,7 @@ def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
     image_roc, image_nss, image_igs = [], [], []
     for index in range(1, len(probability_maps) + 1):
         probability_map = pd.read_csv(path.join(probability_maps_path, 'fixation_' + str(index) + '.csv')).to_numpy()
-        auc, nss, ig    = compute_metrics(probability_map, subject_fixations_y[index], subject_fixations_x[index])
+        auc, nss, ig    = compute_metrics(probability_map, subject_fixations_y[index], subject_fixations_x[index], dataset_name)
         image_roc.append(auc)
         image_nss.append(nss)
         image_igs.append(ig)
@@ -145,14 +148,50 @@ def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
     if utils.dir_is_too_heavy(probability_maps_path):
         shutil.rmtree(probability_maps_path)
 
-def compute_metrics(probability_map, human_fixation_y, human_fixation_x):
-    baseline_map = center_gaussian(probability_map.shape)
+def compute_metrics(probability_map, human_fixation_y, human_fixation_x, dataset_name):
+    baseline_map = center_bias(probability_map.shape, dataset_name)
+    # baseline_map = center_gaussian(probability_map.shape)
+
+    # import matplotlib.pyplot as plt
+    # plt.imshow(baseline_map)
+    # plt.colorbar()
+    # plt.show()
 
     auc = AUC(probability_map, human_fixation_y, human_fixation_x)
     nss = NSS(probability_map, human_fixation_y, human_fixation_x)
     ig  = infogain(probability_map, baseline_map, human_fixation_y, human_fixation_x)
 
     return auc, nss, ig
+
+def center_bias(shape, dataset_name):
+    dataset_path = path.join(constants.DATASETS_PATH, dataset_name)
+    dataset_info = utils.load_dict_from_json(path.join(dataset_path, 'dataset_info.json'))
+    human_scanpaths_dir = path.join(dataset_path, dataset_info['scanpaths_dir'])
+
+    scanpaths_X = []
+    scanpaths_Y = []
+    for subject_file in listdir(human_scanpaths_dir):
+        subject_scanpaths = utils.load_dict_from_json(path.join(human_scanpaths_dir, subject_file))
+        for image_name in subject_scanpaths:
+            trial = subject_scanpaths[image_name]
+            trial_scanpath_X = [utils.rescale_coordinate(x, trial['image_width'], shape[1]) for x in trial['X']]
+            trial_scanpath_Y = [utils.rescale_coordinate(y, trial['image_height'], shape[0]) for y in trial['Y']]
+
+            scanpaths_X += trial_scanpath_X
+            scanpaths_Y += trial_scanpath_Y
+
+    scanpaths_X = np.array(scanpaths_X)
+    scanpaths_Y = np.array(scanpaths_Y)
+
+    xmin, xmax = scanpaths_X.min(), scanpaths_X.max()
+    ymin, ymax = scanpaths_Y.min(), scanpaths_Y.max()
+    X, Y = np.mgrid[ymin:ymax:(shape[0] * 1j), xmin:xmax:(shape[1] * 1j)]
+    positions = np.vstack([X.ravel(), Y.ravel()])
+    values = np.vstack([scanpaths_Y, scanpaths_X])
+    kernel = gaussian_kde(values)
+    Z = np.reshape(kernel(positions).T, X.shape)
+
+    return Z
 
 def center_gaussian(shape):
     sigma  = [[1, 0], [0, 1]]
