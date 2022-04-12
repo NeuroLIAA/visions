@@ -1,3 +1,4 @@
+from email.mime import image
 import multimatch_gaze as mm
 import numpy as np
 import matplotlib.pyplot as plt
@@ -182,22 +183,11 @@ class Multimatch:
                 model_trial_info   = model_scanpaths[image_name]
                 subject_trial_info = subject_scanpaths[image_name]
 
-                screen_height = model_scanpaths[image_name]['image_height']
-                screen_width  = model_scanpaths[image_name]['image_width']
+                receptive_size = utils.get_dims(model_scanpaths[image_name], subject_trial_info[image_name], key='receptive')
+                screen_size    = utils.get_dims(model_scanpaths[image_name], subject_trial_info[image_name], key='image')
 
-                trial_multimatch_result = self.compute_multimatch(subject_trial_info, model_trial_info, (screen_height, screen_width))
-
-                # Check if result is empty
-                if not trial_multimatch_result:
-                    continue
-
-                if image_name in multimatch_model_vs_humans_mean_per_image:
-                    multimatch_trial_value_acum = multimatch_model_vs_humans_mean_per_image[image_name]
-                    multimatch_model_vs_humans_mean_per_image[image_name] = np.add(multimatch_trial_value_acum, trial_multimatch_result)
-                    total_values_per_image[image_name] += 1 
-                else:
-                    multimatch_model_vs_humans_mean_per_image[image_name] = trial_multimatch_result
-                    total_values_per_image[image_name] = 1
+                self.add_multimatch_to_dict(image_name, subject_trial_info, model_trial_info, multimatch_model_vs_humans_mean_per_image,
+                    total_values_per_image, screen_size, receptive_size)
 
         # Compute mean per image
         for image_name in multimatch_model_vs_humans_mean_per_image:
@@ -238,22 +228,11 @@ class Multimatch:
                         subject_trial_info = subject_scanpaths[image_name]
                         subject_to_compare_trial_info = subject_to_compare_scanpaths[image_name]
 
-                        screen_height = model_scanpaths[image_name]['image_height']
-                        screen_width  = model_scanpaths[image_name]['image_width']
+                        receptive_size = utils.get_dims(model_scanpaths[image_name], subject_trial_info[image_name], key='receptive')
+                        screen_size    = utils.get_dims(model_scanpaths[image_name], subject_trial_info[image_name], key='image')
 
-                        trial_multimatch_result = self.compute_multimatch(subject_trial_info, subject_to_compare_trial_info, (screen_height, screen_width))
-
-                        # Check if result is empty
-                        if not trial_multimatch_result:
-                            continue
-
-                        if image_name in multimatch_human_mean_per_image:
-                            multimatch_trial_value_acum = multimatch_human_mean_per_image[image_name]
-                            multimatch_human_mean_per_image[image_name] = np.add(multimatch_trial_value_acum, trial_multimatch_result)
-                            total_values_per_image[image_name] += 1 
-                        else:
-                            multimatch_human_mean_per_image[image_name] = trial_multimatch_result
-                            total_values_per_image[image_name] = 1
+                        self.add_multimatch_to_dict(image_name, subject_trial_info, subject_to_compare_trial_info, multimatch_human_mean_per_image,
+                            total_values_per_image, screen_size, receptive_size)
 
             # Compute mean per image
             for image_name in multimatch_human_mean_per_image:
@@ -261,7 +240,19 @@ class Multimatch:
             
             utils.save_to_json(multimatch_human_mean_json_file, multimatch_human_mean_per_image)
 
-        self.multimatch_values[model_name] = {'human_mean' : multimatch_human_mean_per_image} 
+        self.multimatch_values[model_name] = {'human_mean' : multimatch_human_mean_per_image}
+
+    def add_multimatch_to_dict(self, image_name, trial_info, trial_to_compare_info, multimatch_dict, counter_dict, screen_size, receptive_size):
+        multimatch_trial_values = self.compute_multimatch(trial_info, trial_to_compare_info, screen_size, receptive_size)
+
+        if multimatch_trial_values:
+            if image_name in multimatch_dict:
+                multimatch_values_acum = multimatch_dict[image_name]
+                multimatch_dict[image_name] = np.add(multimatch_values_acum, multimatch_trial_values)
+                counter_dict[image_name] += 1 
+            else:
+                multimatch_dict[image_name] = multimatch_trial_values
+                counter_dict[image_name] = 1
 
     def compute_multimatch(self, trial_info, trial_to_compare_info, screen_size):
         target_found = trial_info['target_found'] and trial_to_compare_info['target_found']

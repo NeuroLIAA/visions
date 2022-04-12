@@ -127,7 +127,14 @@ def save_to_json(file, data):
 
 def save_to_csv(data, filepath):
     df = pd.DataFrame(data)
-    df.to_csv(filepath, index=False)        
+    df.to_csv(filepath, index=False)
+
+def get_dims(model_trial, subject_trial, key):
+    " Lower bound for receptive size "
+    if key == 'receptive' and model_trial[key + '_width'] > subject_trial[key + '_width']:
+        return (subject_trial[key + '_height'], subject_trial[key + '_width'])
+    
+    return (model_trial[key + '_height'], model_trial[key + '_width'])
 
 def rescale_and_crop(trial_info, new_size):
     trial_scanpath_X = [rescale_coordinate(x, trial_info['image_width'], new_size[1]) for x in trial_info['X']]
@@ -170,6 +177,10 @@ def collapse_fixations(scanpath_x, scanpath_y, receptive_size):
         abs_difference_y = [abs(fix_1 - fix_2) for fix_1, fix_2 in zip(collapsed_scanpath_y, collapsed_scanpath_y[1:])]
 
         if abs_difference_x[index] < receptive_size[1] / 2 and abs_difference_y[index] < receptive_size[0] / 2:
+            new_fix_x = (collapsed_scanpath_x[index] + collapsed_scanpath_x[index + 1]) / 2
+            new_fix_y = (collapsed_scanpath_y[index] + collapsed_scanpath_y[index + 1]) / 2
+            collapsed_scanpath_x[index] = new_fix_x
+            collapsed_scanpath_y[index] = new_fix_y
             del collapsed_scanpath_x[index + 1]
             del collapsed_scanpath_y[index + 1]
         else:
