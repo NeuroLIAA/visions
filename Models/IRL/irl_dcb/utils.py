@@ -14,9 +14,57 @@ def get_max_scanpath_length(scanpaths_list):
         return max(list(map(lambda scanpath: len(scanpath['X']), scanpaths_list)))
     else:
         return 0
+        
+def rescale_and_crop(trial_info, new_size, receptive_size):
+    trial_scanpath_X = [rescale_coordinate(x, trial_info['image_width'], new_size[1]) for x in trial_info['X']]
+    trial_scanpath_Y = [rescale_coordinate(y, trial_info['image_height'], new_size[0]) for y in trial_info['Y']]
+
+    image_size       = (trial_info['image_height'], trial_info['image_width'])
+    target_bbox      = trial_info['target_bbox']
+    target_bbox      = [rescale_coordinate(target_bbox[i], image_size[i % 2 == 1], new_size[i % 2 == 1]) for i in range(len(target_bbox))]
+
+    trial_scanpath_X, trial_scanpath_Y = collapse_fixations(trial_scanpath_X, trial_scanpath_Y, receptive_size)
+    trial_scanpath_X, trial_scanpath_Y = crop_scanpath(trial_scanpath_X, trial_scanpath_Y, target_bbox, receptive_size)
+
+    return trial_scanpath_X, trial_scanpath_Y        
 
 def rescale_coordinate(value, old_size, new_size):
-    return floor((value / old_size) * new_size)
+    return int((value / old_size) * new_size)
+
+def between_bounds(target_bbox, fix_y, fix_x, receptive_size):
+    return target_bbox[0] <= fix_y + receptive_size[0] // 2 and target_bbox[2] >= fix_y - receptive_size[0] // 2 and \
+        target_bbox[1] <= fix_x + receptive_size[1] // 2 and target_bbox[3] >= fix_x - receptive_size[1] // 2
+
+def crop_scanpath(scanpath_x, scanpath_y, target_bbox, receptive_size):
+    index = 0
+    for fixation in zip(scanpath_y, scanpath_x):
+        if between_bounds(target_bbox, fixation[0], fixation[1], receptive_size):
+            break
+        index += 1
+    
+    cropped_scanpath_x = list(scanpath_x[:index + 1])
+    cropped_scanpath_y = list(scanpath_y[:index + 1])
+    return cropped_scanpath_x, cropped_scanpath_y
+
+def collapse_fixations(scanpath_x, scanpath_y, receptive_size):
+    collapsed_scanpath_x = list(scanpath_x)
+    collapsed_scanpath_y = list(scanpath_y)
+    index = 0
+    while index < len(collapsed_scanpath_x) - 1:
+        abs_difference_x = [abs(fix_1 - fix_2) for fix_1, fix_2 in zip(collapsed_scanpath_x, collapsed_scanpath_x[1:])]
+        abs_difference_y = [abs(fix_1 - fix_2) for fix_1, fix_2 in zip(collapsed_scanpath_y, collapsed_scanpath_y[1:])]
+
+        if abs_difference_x[index] < receptive_size[1] / 2 and abs_difference_y[index] < receptive_size[0] / 2:
+            new_fix_x = (collapsed_scanpath_x[index] + collapsed_scanpath_x[index + 1]) / 2
+            new_fix_y = (collapsed_scanpath_y[index] + collapsed_scanpath_y[index + 1]) / 2
+            collapsed_scanpath_x[index] = new_fix_x
+            collapsed_scanpath_y[index] = new_fix_y
+            del collapsed_scanpath_x[index + 1]
+            del collapsed_scanpath_y[index + 1]
+        else:
+            index += 1
+
+    return collapsed_scanpath_x, collapsed_scanpath_y
 
 def are_within_boundaries(top_left_coordinates, bottom_right_coordinates, top_left_coordinates_to_compare, bottom_right_coordinates_to_compare):
     return top_left_coordinates[0] >= top_left_coordinates_to_compare[0] and top_left_coordinates[1] >= top_left_coordinates_to_compare[1] \
@@ -68,8 +116,8 @@ def save_and_compute_metrics(probs, human_scanpaths_batch, img_names_batch, outp
                 if target_found_earlier:
                     break
                 current_fixation = (trial_scanpath_y[fix_number + 1], trial_scanpath_x[fix_number + 1])
-                if are_within_boundaries(current_fixation, current_fixation, (trial_target_bbox[0], trial_target_bbox[1]), (trial_target_bbox[2] + 1, trial_target_bbox[3] + 1)):
-                    target_found_earlier = True
+                target_found_earlier = are_within_boundaries(current_fixation, current_fixation, 
+                    (trial_target_bbox[0], trial_target_bbox[1]), (trial_target_bbox[2] + 1, trial_target_bbox[3] + 1))
 
                 prob_map_df = pd.DataFrame(prob_map)
                 prob_map_df.to_csv(os.path.join(save_path, 'fixation_' + str(fix_number + 1) + '.csv'), index=False)
