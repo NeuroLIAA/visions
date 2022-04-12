@@ -26,6 +26,8 @@ def rescale_and_crop(trial_info, new_size, receptive_size):
     trial_scanpath_X, trial_scanpath_Y = collapse_fixations(trial_scanpath_X, trial_scanpath_Y, receptive_size)
     trial_scanpath_X, trial_scanpath_Y = crop_scanpath(trial_scanpath_X, trial_scanpath_Y, target_bbox, receptive_size)
 
+    trial_scanpath_X, trial_scanpath_Y = list(map(int, trial_scanpath_X)), list(map(int, trial_scanpath_Y))
+
     return trial_scanpath_X, trial_scanpath_Y        
 
 def rescale_coordinate(value, old_size, new_size):
@@ -55,8 +57,8 @@ def collapse_fixations(scanpath_x, scanpath_y, receptive_size):
         abs_difference_y = [abs(fix_1 - fix_2) for fix_1, fix_2 in zip(collapsed_scanpath_y, collapsed_scanpath_y[1:])]
 
         if abs_difference_x[index] < receptive_size[1] / 2 and abs_difference_y[index] < receptive_size[0] / 2:
-            new_fix_x = (collapsed_scanpath_x[index] + collapsed_scanpath_x[index + 1]) / 2
-            new_fix_y = (collapsed_scanpath_y[index] + collapsed_scanpath_y[index + 1]) / 2
+            new_fix_x = (collapsed_scanpath_x[index] + collapsed_scanpath_x[index + 1]) // 2
+            new_fix_y = (collapsed_scanpath_y[index] + collapsed_scanpath_y[index + 1]) // 2
             collapsed_scanpath_x[index] = new_fix_x
             collapsed_scanpath_y[index] = new_fix_y
             del collapsed_scanpath_x[index + 1]
