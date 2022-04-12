@@ -100,6 +100,7 @@ class Multimatch:
             humans_multimatch         = utils.get_random_subset(self.multimatch_values[model]['human_mean'], size=self.number_of_images)
 
             corr_coef_pvalue, mm_avg, model_vs_humans_mm, hmm_avg, humans_mm = self.process_results(model_vs_human_multimatch, humans_multimatch)
+            print('Model: ' + model + ' Corr: ' + str(corr_coef_pvalue))
             metrics  = {'AvgMM': mm_avg, 'MMvec': model_vs_humans_mm[0], 'MMdir': model_vs_humans_mm[1], \
                 'MMlen': model_vs_humans_mm[2], 'MMpos': model_vs_humans_mm[3]}
             hmetrics = {'AvgMM': hmm_avg, 'MMvec': humans_mm[0], 'MMdir': humans_mm[1], 'MMlen': humans_mm[2], 'MMpos': humans_mm[3]}
@@ -183,8 +184,8 @@ class Multimatch:
                 model_trial_info   = model_scanpaths[image_name]
                 subject_trial_info = subject_scanpaths[image_name]
 
-                receptive_size = utils.get_dims(model_scanpaths[image_name], subject_trial_info[image_name], key='receptive')
-                screen_size    = utils.get_dims(model_scanpaths[image_name], subject_trial_info[image_name], key='image')
+                receptive_size = utils.get_dims(model_trial_info, subject_trial_info, key='receptive')
+                screen_size    = utils.get_dims(model_trial_info, subject_trial_info, key='image')
 
                 self.add_multimatch_to_dict(image_name, subject_trial_info, model_trial_info, multimatch_model_vs_humans_mean_per_image,
                     total_values_per_image, screen_size, receptive_size)
@@ -228,8 +229,8 @@ class Multimatch:
                         subject_trial_info = subject_scanpaths[image_name]
                         subject_to_compare_trial_info = subject_to_compare_scanpaths[image_name]
 
-                        receptive_size = utils.get_dims(model_scanpaths[image_name], subject_trial_info[image_name], key='receptive')
-                        screen_size    = utils.get_dims(model_scanpaths[image_name], subject_trial_info[image_name], key='image')
+                        receptive_size = utils.get_dims(model_scanpaths[image_name], subject_trial_info, key='receptive')
+                        screen_size    = utils.get_dims(model_scanpaths[image_name], subject_trial_info, key='image')
 
                         self.add_multimatch_to_dict(image_name, subject_trial_info, subject_to_compare_trial_info, multimatch_human_mean_per_image,
                             total_values_per_image, screen_size, receptive_size)
@@ -254,7 +255,7 @@ class Multimatch:
                 multimatch_dict[image_name] = multimatch_trial_values
                 counter_dict[image_name] = 1
 
-    def compute_multimatch(self, trial_info, trial_to_compare_info, screen_size):
+    def compute_multimatch(self, trial_info, trial_to_compare_info, screen_size, receptive_size):
         target_found = trial_info['target_found'] and trial_to_compare_info['target_found']
         if not target_found:
            return []
@@ -263,14 +264,14 @@ class Multimatch:
         trial_to_compare_scanpath_X, trial_to_compare_scanpath_Y = trial_to_compare_info['X'], trial_to_compare_info['Y']
 
         # Rescale accordingly
-        trial_scanpath_X, trial_scanpath_Y = self.rescale(trial_info, screen_size)
-        trial_to_compare_scanpath_X, trial_to_compare_scanpath_Y = self.rescale(trial_to_compare_info, screen_size)
+        trial_scanpath_X, trial_scanpath_Y = utils.rescale_and_crop(trial_info, screen_size, receptive_size)
+        trial_to_compare_scanpath_X, trial_to_compare_scanpath_Y = utils.rescale_and_crop(trial_to_compare_info, screen_size, receptive_size)
 
         trial_scanpath_length            = len(trial_scanpath_X)
         trial_to_compare_scanpath_length = len(trial_to_compare_scanpath_X)
 
-        trial_scanpath_time            = self.get_scanpath_time(trial_info, trial_scanpath_length)
-        trial_to_compare_scanpath_time = self.get_scanpath_time(trial_to_compare_info, trial_to_compare_scanpath_length)
+        trial_scanpath_time            = utils.get_scanpath_time(trial_info, trial_scanpath_length)
+        trial_to_compare_scanpath_time = utils.get_scanpath_time(trial_to_compare_info, trial_to_compare_scanpath_length)
 
         # Multimatch can't be computed for scanpaths with length shorter than 3
         if trial_scanpath_length < 3 or trial_to_compare_scanpath_length < 3:
@@ -280,21 +281,3 @@ class Multimatch:
         trial_to_compare_scanpath = np.array(list(zip(trial_to_compare_scanpath_X, trial_to_compare_scanpath_Y, trial_to_compare_scanpath_time)), dtype=[('start_x', '<f8'), ('start_y', '<f8'), ('duration', '<f8')])
 
         return mm.docomparison(trial_scanpath, trial_to_compare_scanpath, (screen_size[1], screen_size[0]))
-
-    def get_scanpath_time(self, trial_info, length):
-        if 'T' in trial_info:
-            scanpath_time = [t * 0.0001 for t in trial_info['T']]
-        else:
-            # Dummy
-            scanpath_time = [0.3] * length
-        
-        return scanpath_time
-
-    def rescale(self, trial_info, screen_size):
-        trial_scanpath_X = [self.rescale_coordinate(x, trial_info['image_width'], screen_size[1]) for x in trial_info['X']]
-        trial_scanpath_Y = [self.rescale_coordinate(y, trial_info['image_height'], screen_size[0]) for y in trial_info['Y']]
-
-        return trial_scanpath_X, trial_scanpath_Y
-
-    def rescale_coordinate(self, value, old_size, new_size):
-        return (value / old_size) * new_size

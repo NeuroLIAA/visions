@@ -136,14 +136,22 @@ def get_dims(model_trial, subject_trial, key):
     
     return (model_trial[key + '_height'], model_trial[key + '_width'])
 
-def rescale_and_crop(trial_info, new_size):
+def get_scanpath_time(trial_info, length):
+    if 'T' in trial_info:
+        scanpath_time = [t * 0.0001 for t in trial_info['T']]
+    else:
+        # Dummy
+        scanpath_time = [0.3] * length
+    
+    return scanpath_time
+
+def rescale_and_crop(trial_info, new_size, receptive_size):
     trial_scanpath_X = [rescale_coordinate(x, trial_info['image_width'], new_size[1]) for x in trial_info['X']]
     trial_scanpath_Y = [rescale_coordinate(y, trial_info['image_height'], new_size[0]) for y in trial_info['Y']]
 
     image_size       = (trial_info['image_height'], trial_info['image_width'])
     target_bbox      = trial_info['target_bbox']
     target_bbox      = [rescale_coordinate(target_bbox[i], image_size[i % 2 == 1], new_size[i % 2 == 1]) for i in range(len(target_bbox))]
-    receptive_size   = [1, 1]
 
     trial_scanpath_X, trial_scanpath_Y = collapse_fixations(trial_scanpath_X, trial_scanpath_Y, receptive_size)
     trial_scanpath_X, trial_scanpath_Y = crop_scanpath(trial_scanpath_X, trial_scanpath_Y, target_bbox, receptive_size)
