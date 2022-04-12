@@ -1,6 +1,5 @@
 import argparse
 from . import constants
-import json
 from .ivsn_model import image_preprocessing, IVSN, compute_scanpaths, utils
 from os import path
 

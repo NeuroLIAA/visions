@@ -1,7 +1,6 @@
 import torch
 import torch.nn as nn
 import torchvision.models as models
-import json
 from .. import constants
 from . import utils
 from torchvision import transforms

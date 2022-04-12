@@ -1,5 +1,5 @@
 from skimage import io, transform, img_as_ubyte
-from os import listdir, path, mkdir, makedirs
+from os import path, makedirs
 from .. import constants
 
 """

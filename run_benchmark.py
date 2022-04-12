@@ -3,7 +3,6 @@ import argparse
 import utils
 import importlib
 import Metrics.main as metrics_module
-from os import path, listdir
 
 def main(datasets, models, metrics, force_execution):
     for dataset_name in datasets:

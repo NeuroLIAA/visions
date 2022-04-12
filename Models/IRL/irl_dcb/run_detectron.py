@@ -2,7 +2,6 @@
 import numpy as np
 import os, sys, cv2
 import argparse
-import torch
 # Ignore deprecated warning
 import warnings
 warnings.simplefilter('ignore', UserWarning)

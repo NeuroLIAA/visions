@@ -4,7 +4,7 @@ import re
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from os import listdir, makedirs, path, scandir
+from os import listdir, path, scandir
 from .. import constants
 
 def plot_table(df, title, save_path, filename):

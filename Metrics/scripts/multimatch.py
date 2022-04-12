@@ -1,4 +1,3 @@
-from email.mime import image
 import multimatch_gaze as mm
 import numpy as np
 import matplotlib.pyplot as plt

@@ -4,7 +4,7 @@ from .scripts.multimatch import Multimatch
 from .scripts.human_scanpath_prediction import HumanScanpathPrediction
 from .scripts.cumulative_performance import CumulativePerformance
 from .scripts import utils
-from os import listdir, path
+from os import path
 
 def main(datasets, models, compute_cumulative_performance, compute_multimatch, compute_human_scanpath_prediction):
     datasets_results = {}

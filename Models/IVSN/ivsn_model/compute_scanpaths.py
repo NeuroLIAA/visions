@@ -1,7 +1,6 @@
-import json
 import numpy as np
 from . import utils
-from os import listdir, makedirs, path
+from os import listdir, path
 from skimage import io, transform, exposure
 from Metrics.scripts import human_scanpath_prediction
 
