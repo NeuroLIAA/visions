@@ -1,6 +1,3 @@
-from ctypes import util
-from email.mime import base
-from random import gauss
 from scipy.stats import multivariate_normal, gaussian_kde
 from . import utils
 from .. import constants

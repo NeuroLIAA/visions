@@ -1,4 +1,3 @@
-from os import listdir, path
 from scipy.io import loadmat
 import utils
 

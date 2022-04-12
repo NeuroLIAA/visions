@@ -1,7 +1,7 @@
 import json
 import shutil
 from os import listdir, path, mkdir
-from skimage import io, transform, img_as_ubyte
+from skimage import io, transform
 from utils import rescale_coordinate, rename_image
 
 """ This script requires that all original images of the MCS dataset are placed in the '../images' folder """

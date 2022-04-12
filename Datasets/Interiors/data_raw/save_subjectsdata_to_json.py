@@ -1,4 +1,3 @@
-import json
 import utils
 from scipy.io import loadmat
 from os import listdir, path, mkdir

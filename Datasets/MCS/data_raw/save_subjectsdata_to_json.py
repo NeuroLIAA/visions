@@ -1,8 +1,6 @@
-import json
-from os import listdir, path, mkdir
+from os import path, mkdir
 import utils
 import pandas as pd
-import numpy as np
 
 train_microwave_scanpaths_file = 'gaze/train/microwave_fixations.csv'
 train_clock_scanpaths_file     = 'gaze/train/clock_fixations.csv'

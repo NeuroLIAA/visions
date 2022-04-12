@@ -1,4 +1,4 @@
-from skimage import io, measure, color, transform
+from skimage import io, measure, color
 from os import listdir, path
 import utils
 

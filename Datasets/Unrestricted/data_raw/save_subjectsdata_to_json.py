@@ -1,6 +1,4 @@
 from scipy.io import loadmat
-import numpy as np
-import json
 import utils
 from os import listdir, mkdir, path
 
