@@ -106,8 +106,10 @@ def load_human_scanpaths(human_scanpaths_dir, human_subject, grid_size):
     return human_scanpaths    
 
 def rescale_scanpaths(human_scanpaths, grid_size):
-    for key in human_scanpaths:        
+    for key in list(human_scanpaths):
         scanpath     = human_scanpaths[key]
         image_size   = (scanpath['image_height'], scanpath['image_width'])
         scanpath['X'], scanpath['Y'] = utils.rescale_and_crop(scanpath, grid_size, [1, 1])
         scanpath['target_bbox']      = [int(utils.rescale_coordinate(scanpath['target_bbox'][i], image_size[i % 2 == 1], grid_size[i % 2 == 1])) for i in range(len(scanpath['target_bbox']))]
+        if len(scanpath['X']) <= 1:
+            del human_scanpaths[key]
