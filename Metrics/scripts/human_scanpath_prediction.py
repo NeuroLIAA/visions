@@ -60,13 +60,14 @@ class HumanScanpathPrediction:
     
     def compute_model_mean(self, average_results_per_image, model_name):
         """ Get the average across all images for a given model in a given dataset """
-        self.models_results[model_name] = {'AUChsp': 0, 'NSShsp': 0}
+        self.models_results[model_name] = {'AUChsp': 0, 'NSShsp': 0, 'IGhsp': 0}
 
         number_of_images            = min(len(average_results_per_image), self.number_of_images)
         results_per_image_subsample = utils.get_random_subset(average_results_per_image, size=number_of_images)
         for image_name in results_per_image_subsample:
             self.models_results[model_name]['AUChsp'] += results_per_image_subsample[image_name]['AUC'] / number_of_images
             self.models_results[model_name]['NSShsp'] += results_per_image_subsample[image_name]['NSS'] / number_of_images
+            self.models_results[model_name]['IGhsp'] += results_per_image_subsample[image_name]['IG'] / number_of_images
     
     def average_results(self, model_output_path):
         """ Get the average of all subjects for each image """
