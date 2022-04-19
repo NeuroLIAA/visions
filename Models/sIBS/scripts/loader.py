@@ -1,4 +1,5 @@
 import json
+import sys
 from os import makedirs, listdir, path, remove, cpu_count
 from . import constants
 
@@ -8,8 +9,8 @@ def load_checkpoint(output_path):
     if path.exists(checkpoint_file):
         answer = input('Checkpoint found! Resume execution? (Y/N): ').upper()
         if answer not in ['Y', 'N']:
-            print('Invalid answer. Please try again')
-            load_checkpoint(output_path)
+            print('Invalid answer. Exiting...')
+            sys.exit(-1)
         if answer == 'Y':
             checkpoint = load_dict_from_json(checkpoint_file)
             print('Checkpoint loaded. Resuming execution...\n')
