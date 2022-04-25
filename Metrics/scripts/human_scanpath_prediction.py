@@ -1,6 +1,5 @@
-from scipy.stats import multivariate_normal, gaussian_kde
+from scipy.stats import gaussian_kde
 from . import utils
-from .. import constants
 from os import path, listdir, pardir
 import pandas as pd
 import numpy as np
@@ -127,7 +126,6 @@ def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
     image_roc, image_nss, image_igs = [], [], []
     for index in range(1, len(probability_maps) + 1):
         probability_map = pd.read_csv(path.join(probability_maps_path, 'fixation_' + str(index) + '.csv')).to_numpy()
-        # baseline_map  = center_gaussian(probability_map.shape)
         # baseline_map  = center_bias(probability_map.shape, image_name, dataset_name, output_path)
         baseline_map    = uniform(probability_map.shape)
         auc, nss, ig    = compute_metrics(baseline_map, probability_map, subject_fixations_y[index], subject_fixations_x[index])
@@ -150,11 +148,6 @@ def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
         shutil.rmtree(probability_maps_path)
 
 def compute_metrics(baseline_map, probability_map, human_fixation_y, human_fixation_x):
-    # import matplotlib.pyplot as plt
-    # plt.imshow(baseline_map)
-    # plt.colorbar()
-    # plt.show()
-
     auc = AUC(probability_map, human_fixation_y, human_fixation_x)
     nss = NSS(probability_map, human_fixation_y, human_fixation_x)
     ig  = infogain(probability_map, baseline_map, human_fixation_y, human_fixation_x)
@@ -165,54 +158,16 @@ def uniform(shape):
     return np.ones(shape)
 
 def center_bias(shape, current_image, dataset_name, output_path):
-    filepath = path.join(output_path, pardir, 'center_bias.csv')
-    # if path.exists(filepath):
-    #     return pd.read_csv(filepath).to_numpy()
+    filepath = path.join(output_path, pardir, 'center_biases', current_image[:-4] + '.csv')
+    if path.exists(filepath):
+        return pd.read_csv(filepath).to_numpy()
 
-    dataset_path = path.join(constants.DATASETS_PATH, dataset_name)
-    dataset_info = utils.load_dict_from_json(path.join(dataset_path, 'dataset_info.json'))
-    human_scanpaths_dir = path.join(dataset_path, dataset_info['scanpaths_dir'])
+    scanpaths_X, scanpaths_Y = utils.aggregate_scanpaths(dataset_name, model_size=shape, excluded_image=current_image)
+    centerbias = utils.gaussian_kde(scanpaths_X, scanpaths_Y, shape)
 
-    scanpaths_X = []
-    scanpaths_Y = []
-    for subject_file in listdir(human_scanpaths_dir):
-        subject_scanpaths = utils.load_dict_from_json(path.join(human_scanpaths_dir, subject_file))
-        for image_name in subject_scanpaths:
-            trial = subject_scanpaths[image_name]
-            trial_scanpath_X = [utils.rescale_coordinate(x, trial['image_width'], shape[1]) for x in trial['X']]
-            trial_scanpath_Y = [utils.rescale_coordinate(y, trial['image_height'], shape[0]) for y in trial['Y']]
-
-            if image_name != current_image:
-                scanpaths_X += trial_scanpath_X
-                scanpaths_Y += trial_scanpath_Y
-
-    scanpaths_X = np.array(scanpaths_X)
-    scanpaths_Y = np.array(scanpaths_Y)
-
-    xmin, xmax = scanpaths_X.min(), scanpaths_X.max()
-    ymin, ymax = scanpaths_Y.min(), scanpaths_Y.max()
-    X, Y = np.mgrid[ymin:ymax:(shape[0] * 1j), xmin:xmax:(shape[1] * 1j)]
-    positions = np.vstack([X.ravel(), Y.ravel()])
-    values = np.vstack([scanpaths_Y, scanpaths_X])
-    kernel = gaussian_kde(values)
-    centerbias = np.reshape(kernel(positions).T, X.shape)
-
-    # utils.save_to_csv(centerbias, filepath)
+    utils.save_to_csv(centerbias, filepath)
 
     return centerbias
-
-def center_gaussian(shape):
-    sigma  = [[1, 0], [0, 1]]
-    mean   = [shape[0] // 2, shape[1] // 2]
-    x_range = np.linspace(0, shape[0], shape[0])
-    y_range = np.linspace(0, shape[1], shape[1])
-
-    x_matrix, y_matrix = np.meshgrid(y_range, x_range)
-    quantiles = np.transpose([y_matrix.flatten(), x_matrix.flatten()])
-    mvn = multivariate_normal.pdf(quantiles, mean=mean, cov=sigma)
-    mvn = np.reshape(mvn, shape)
-
-    return mvn
 
 def NSS(probability_map, ground_truth_fixation_y, ground_truth_fixation_x):
     """ The returned array has length equal to the number of fixations """

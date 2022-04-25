@@ -195,3 +195,37 @@ def collapse_fixations(scanpath_x, scanpath_y, receptive_size):
             index += 1
 
     return collapsed_scanpath_x, collapsed_scanpath_y
+
+def aggregate_scanpaths(dataset_name, model_size, excluded_image):
+    dataset_path = path.join(constants.DATASETS_PATH, dataset_name)
+    dataset_info = load_dict_from_json(path.join(dataset_path, 'dataset_info.json'))
+    human_scanpaths_dir = path.join(dataset_path, dataset_info['scanpaths_dir'])
+
+    scanpaths_X = []
+    scanpaths_Y = []
+    for subject_file in listdir(human_scanpaths_dir):
+        subject_scanpaths = load_dict_from_json(path.join(human_scanpaths_dir, subject_file))
+        for image_name in subject_scanpaths:
+            trial = subject_scanpaths[image_name]
+            trial_scanpath_X = [rescale_coordinate(x, trial['image_width'], model_size[1]) for x in trial['X']]
+            trial_scanpath_Y = [rescale_coordinate(y, trial['image_height'], model_size[0]) for y in trial['Y']]
+
+            if image_name != excluded_image:
+                scanpaths_X += trial_scanpath_X
+                scanpaths_Y += trial_scanpath_Y
+
+    scanpaths_X = np.array(scanpaths_X)
+    scanpaths_Y = np.array(scanpaths_Y)
+
+    return scanpaths_X, scanpaths_Y
+
+def gaussian_kde(scanpaths_X, scanpaths_Y, shape):
+    xmin, xmax = scanpaths_X.min(), scanpaths_X.max()
+    ymin, ymax = scanpaths_Y.min(), scanpaths_Y.max()
+    X, Y = np.mgrid[ymin:ymax:(shape[0] * 1j), xmin:xmax:(shape[1] * 1j)]
+    positions = np.vstack([X.ravel(), Y.ravel()])
+    values = np.vstack([scanpaths_Y, scanpaths_X])
+    kernel = gaussian_kde(values)
+    gkde_grid = np.reshape(kernel(positions).T, X.shape)
+
+    return gkde_grid
