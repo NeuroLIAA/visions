@@ -31,7 +31,7 @@ def main(datasets, models, compute_cumulative_performance, compute_multimatch, c
 
         # Compute models metrics and compare them with human subjects metrics
         color_index = 0
-        for model_name in models:
+        for model_name in sorted(models):
             if not path.isdir(path.join(dataset_results_dir, model_name)):
                 print('No results found for ' + model_name + ' in ' + dataset_name + ' dataset')
                 continue

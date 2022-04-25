@@ -9,5 +9,5 @@ MAX_DIR_SIZE = 10 # MBytes, for probability maps dirs
 FILENAME = 'Metrics.json'
 
 # To ensure models have the same color in the plots across all datasets
-MODELS_COLORS = ['#2ca02c', '#d62728', '#ff7f0e']
+MODELS_COLORS = ['#2ca02c', '#ff7f0e', '#d62728']
 HUMANS_COLOR  = '#1f77b4'
