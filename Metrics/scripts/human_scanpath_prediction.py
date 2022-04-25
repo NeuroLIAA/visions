@@ -127,7 +127,10 @@ def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
     image_roc, image_nss, image_igs = [], [], []
     for index in range(1, len(probability_maps) + 1):
         probability_map = pd.read_csv(path.join(probability_maps_path, 'fixation_' + str(index) + '.csv')).to_numpy()
-        auc, nss, ig    = compute_metrics(probability_map, subject_fixations_y[index], subject_fixations_x[index], dataset_name, output_path)
+        # baseline_map  = center_gaussian(probability_map.shape)
+        # baseline_map  = center_bias(probability_map.shape, image_name, dataset_name, output_path)
+        baseline_map    = uniform(probability_map.shape)
+        auc, nss, ig    = compute_metrics(baseline_map, probability_map, subject_fixations_y[index], subject_fixations_x[index])
         image_roc.append(auc)
         image_nss.append(nss)
         image_igs.append(ig)
@@ -146,10 +149,7 @@ def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
     if utils.dir_is_too_heavy(probability_maps_path):
         shutil.rmtree(probability_maps_path)
 
-def compute_metrics(probability_map, human_fixation_y, human_fixation_x, dataset_name, output_path):
-    baseline_map = center_bias(probability_map.shape, dataset_name, output_path)
-    # baseline_map = center_gaussian(probability_map.shape)
-
+def compute_metrics(baseline_map, probability_map, human_fixation_y, human_fixation_x):
     # import matplotlib.pyplot as plt
     # plt.imshow(baseline_map)
     # plt.colorbar()
@@ -161,10 +161,13 @@ def compute_metrics(probability_map, human_fixation_y, human_fixation_x, dataset
 
     return auc, nss, ig
 
-def center_bias(shape, dataset_name, output_path):
+def uniform(shape):
+    return np.ones(shape)
+
+def center_bias(shape, current_image, dataset_name, output_path):
     filepath = path.join(output_path, pardir, 'center_bias.csv')
-    if path.exists(filepath):
-        return pd.read_csv(filepath).to_numpy()
+    # if path.exists(filepath):
+    #     return pd.read_csv(filepath).to_numpy()
 
     dataset_path = path.join(constants.DATASETS_PATH, dataset_name)
     dataset_info = utils.load_dict_from_json(path.join(dataset_path, 'dataset_info.json'))
@@ -179,8 +182,9 @@ def center_bias(shape, dataset_name, output_path):
             trial_scanpath_X = [utils.rescale_coordinate(x, trial['image_width'], shape[1]) for x in trial['X']]
             trial_scanpath_Y = [utils.rescale_coordinate(y, trial['image_height'], shape[0]) for y in trial['Y']]
 
-            scanpaths_X += trial_scanpath_X
-            scanpaths_Y += trial_scanpath_Y
+            if image_name != current_image:
+                scanpaths_X += trial_scanpath_X
+                scanpaths_Y += trial_scanpath_Y
 
     scanpaths_X = np.array(scanpaths_X)
     scanpaths_Y = np.array(scanpaths_Y)
@@ -193,7 +197,7 @@ def center_bias(shape, dataset_name, output_path):
     kernel = gaussian_kde(values)
     centerbias = np.reshape(kernel(positions).T, X.shape)
 
-    utils.save_to_csv(centerbias, filepath)
+    # utils.save_to_csv(centerbias, filepath)
 
     return centerbias
 
