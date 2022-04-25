@@ -105,10 +105,7 @@ class Multimatch:
             hmetrics = {'AvgMM': hmm_avg, 'MMvec': humans_mm[0], 'MMdir': humans_mm[1], 'MMlen': humans_mm[2], 'MMpos': humans_mm[3]}
 
             utils.update_dict(dataset_metrics, model, metrics)
-            
-            if model == 'IVSN':
-                # Use IVSN's computation of Humans Multi-Match for it does not rescale
-                utils.update_dict(dataset_metrics, 'Humans', hmetrics)
+            utils.update_dict(dataset_metrics, 'Humans', hmetrics)
         
         utils.save_to_json(dataset_metrics_file, dataset_metrics)
     
