@@ -4,7 +4,8 @@ import re
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from os import listdir, path, scandir
+from os import listdir, path, scandir, makedirs
+from scipy.stats import gaussian_kde as _gaussian_kde
 from .. import constants
 
 def plot_table(df, title, save_path, filename):
@@ -122,10 +123,18 @@ def load_dict_from_json(json_file_path):
             return json.load(json_file)
 
 def save_to_json(file, data):
+    dir_ = path.dirname(file)
+    if not path.exists(dir_):
+        makedirs(dir_)
+
     with open(file, 'w') as json_file:
         json.dump(data, json_file, indent=4)
 
 def save_to_csv(data, filepath):
+    dir_ = path.dirname(filepath)
+    if not path.exists(dir_):
+        makedirs(dir_)
+
     df = pd.DataFrame(data)
     df.to_csv(filepath, index=False)
 
@@ -225,7 +234,7 @@ def gaussian_kde(scanpaths_X, scanpaths_Y, shape):
     X, Y = np.mgrid[ymin:ymax:(shape[0] * 1j), xmin:xmax:(shape[1] * 1j)]
     positions = np.vstack([X.ravel(), Y.ravel()])
     values = np.vstack([scanpaths_Y, scanpaths_X])
-    kernel = gaussian_kde(values)
+    kernel = _gaussian_kde(values)
     gkde_grid = np.reshape(kernel(positions).T, X.shape)
 
     return gkde_grid
