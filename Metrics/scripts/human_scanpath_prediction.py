@@ -1,4 +1,3 @@
-from scipy.stats import gaussian_kde
 from . import utils
 from os import path, listdir, pardir
 import pandas as pd
@@ -59,14 +58,15 @@ class HumanScanpathPrediction:
     
     def compute_model_mean(self, average_results_per_image, model_name):
         """ Get the average across all images for a given model in a given dataset """
-        self.models_results[model_name] = {'AUChsp': 0, 'NSShsp': 0, 'IGhsp': 0}
+        self.models_results[model_name] = {'AUChsp': 0, 'NSShsp': 0, 'IGhsp': 0, 'LLhsp': 0}
 
         number_of_images            = min(len(average_results_per_image), self.number_of_images)
         results_per_image_subsample = utils.get_random_subset(average_results_per_image, size=number_of_images)
         for image_name in results_per_image_subsample:
             self.models_results[model_name]['AUChsp'] += results_per_image_subsample[image_name]['AUC'] / number_of_images
             self.models_results[model_name]['NSShsp'] += results_per_image_subsample[image_name]['NSS'] / number_of_images
-            self.models_results[model_name]['IGhsp'] += results_per_image_subsample[image_name]['IG'] / number_of_images
+            self.models_results[model_name]['IGhsp']  += results_per_image_subsample[image_name]['IG'] / number_of_images
+            self.models_results[model_name]['LLhsp']  += results_per_image_subsample[image_name]['LL'] / number_of_images
     
     def average_results(self, model_output_path):
         """ Get the average of all subjects for each image """
@@ -83,6 +83,7 @@ class HumanScanpathPrediction:
                     average_results_per_image[image_name]['AUC'] += metrics['AUC']
                     average_results_per_image[image_name]['NSS'] += metrics['NSS']
                     average_results_per_image[image_name]['IG']  += metrics['IG']
+                    average_results_per_image[image_name]['LL']  += metrics['LL']
                     number_of_results_per_image[image_name] += 1
                 else:
                     average_results_per_image[image_name]   = metrics
@@ -93,6 +94,7 @@ class HumanScanpathPrediction:
             average_results_per_image[image_name]['AUC'] /= number_of_results_per_image[image_name]
             average_results_per_image[image_name]['NSS'] /= number_of_results_per_image[image_name]
             average_results_per_image[image_name]['IG']  /= number_of_results_per_image[image_name]
+            average_results_per_image[image_name]['LL']  /= number_of_results_per_image[image_name]
 
         return average_results_per_image
 
@@ -123,15 +125,16 @@ def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
     subject_fixations_x = np.array(subject_scanpath['X'], dtype=int)
     subject_fixations_y = np.array(subject_scanpath['Y'], dtype=int)
 
-    image_roc, image_nss, image_igs = [], [], []
+    image_aucs, image_nss, image_igs, image_lls = [], [], [], []
     for index in range(1, len(probability_maps) + 1):
-        probability_map = pd.read_csv(path.join(probability_maps_path, 'fixation_' + str(index) + '.csv')).to_numpy()
-        # baseline_map  = center_bias(probability_map.shape, image_name, dataset_name, output_path)
-        baseline_map    = uniform(probability_map.shape)
-        auc, nss, ig    = compute_metrics(baseline_map, probability_map, subject_fixations_y[index], subject_fixations_x[index])
-        image_roc.append(auc)
+        probability_map  = pd.read_csv(path.join(probability_maps_path, 'fixation_' + str(index) + '.csv')).to_numpy()
+        baseline_ig      = center_bias(probability_map.shape, image_name, dataset_name, output_path)
+        baseline_ll      = uniform(probability_map.shape)
+        auc, nss, ig, ll = compute_metrics(baseline_ig, baseline_ll, probability_map, subject_fixations_y[index], subject_fixations_x[index])
+        image_aucs.append(auc)
         image_nss.append(nss)
         image_igs.append(ig)
+        image_lls.append(ll)
 
     subject   = path.basename(output_path)
     file_path = path.join(output_path, pardir, subject + '_results.json')
@@ -140,19 +143,20 @@ def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
     else:
         model_subject_metrics = {}
     
-    model_subject_metrics[image_name] = {'AUC': np.mean(image_roc), 'NSS': np.mean(image_nss), 'IG': np.mean(image_igs)}  
+    model_subject_metrics[image_name] = {'AUC': np.mean(image_aucs), 'NSS': np.mean(image_nss), 'IG': np.mean(image_igs), 'LL': np.mean(image_lls)}  
     utils.save_to_json(file_path, model_subject_metrics)
 
     # Clean up probability maps if their size is too big
     if utils.dir_is_too_heavy(probability_maps_path):
         shutil.rmtree(probability_maps_path)
 
-def compute_metrics(baseline_map, probability_map, human_fixation_y, human_fixation_x):
+def compute_metrics(baseline_ig, baseline_ll, probability_map, human_fixation_y, human_fixation_x):
     auc = AUC(probability_map, human_fixation_y, human_fixation_x)
     nss = NSS(probability_map, human_fixation_y, human_fixation_x)
-    ig  = infogain(probability_map, baseline_map, human_fixation_y, human_fixation_x)
+    ig  = infogain(probability_map, baseline_ig, human_fixation_y, human_fixation_x)
+    ll  = infogain(probability_map, baseline_ll, human_fixation_y, human_fixation_x)
 
-    return auc, nss, ig
+    return auc, nss, ig, ll
 
 def uniform(shape):
     return np.ones(shape)
