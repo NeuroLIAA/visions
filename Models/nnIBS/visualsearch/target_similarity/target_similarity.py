@@ -51,6 +51,8 @@ class TargetSimilarity():
         if path.exists(file_path):
             target_similarity_map = io.imread(file_path)
         else:
+            if not utils.is_coloured(image) and utils.is_coloured(target):
+                target = utils.to_grayscale(target)
             # Calculate target similarity based on a specific method  
             print('Building target similarity map...')
             target_similarity_map = self.compute_target_similarity(image, target, target_bbox)

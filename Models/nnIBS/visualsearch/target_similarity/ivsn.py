@@ -4,7 +4,7 @@ import torchvision.models as models
 import numpy as np
 from .target_similarity import TargetSimilarity
 from torchvision import transforms
-from skimage import io, img_as_ubyte, exposure, transform
+from skimage import img_as_ubyte, exposure, transform
 from PIL import Image
 
 """ Use attention map built by the IVSN model as a target similarity map. """

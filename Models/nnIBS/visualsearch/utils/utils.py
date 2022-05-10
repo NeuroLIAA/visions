@@ -1,9 +1,14 @@
 import json
 import numpy  as np
 import pandas as pd
-from ...scripts import constants
 from os import makedirs, path, remove, listdir
 from skimage import io, transform, img_as_ubyte
+
+def is_coloured(image):
+    return len(image.shape) > 2
+
+def to_grayscale(image):
+    return color.rgb2gray(image)
 
 def load_data_from_checkpoint(output_path):
     checkpoint_file = path.join(output_path, 'checkpoint.json')

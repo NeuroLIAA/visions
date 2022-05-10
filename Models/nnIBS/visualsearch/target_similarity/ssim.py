@@ -54,9 +54,8 @@ class Ssim(TargetSimilarity):
         return ssim_values
 
     def ssim_process_chunk(self, image, target, image_size, target_size, ssim_values, chunk, values_queue, off_bounds_area):
-        coloured = False
-        if len(image.shape) >= 3:
-            coloured = True
+        coloured = len(image.shape) > 2
+
         for row in chunk: 
             for column in range(0, image_size[1]):
                 target_to_use, row_in_image, column_in_image, end_row, end_column= self.handle_image_borders(target, off_bounds_area, row, column, target_size, image_size)
@@ -72,9 +71,7 @@ class Ssim(TargetSimilarity):
         ssim_values = np.zeros(shape=image_size, dtype= np.dtype('float32'))
         off_bounds_area = self.get_image_off_bounds_area(target_size)
 
-        coloured = False
-        if len(image.shape) >= 3:
-            coloured = True
+        coloured = len(image.shape) > 2
 
         for row in range(0, image_size[0]): 
             for column in range(0, image_size[1]):
