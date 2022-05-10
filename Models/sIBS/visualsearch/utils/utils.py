@@ -1,9 +1,15 @@
 import json
 import numpy  as np
 import pandas as pd
-from ...scripts import constants
 from os import makedirs, path, remove, listdir
-from skimage import io, transform, img_as_ubyte
+from skimage import io, transform, img_as_ubyte, color
+
+
+def is_coloured(image):
+    return len(image.shape) > 2
+
+def to_grayscale(image):
+    return color.rgb2gray(image)
 
 def load_data_from_checkpoint(output_path):
     checkpoint_file = path.join(output_path, 'checkpoint.json')
@@ -107,7 +113,7 @@ def add_scanpath_to_dict(image_name, image_scanpath, target_bbox, target_object,
     target_bbox_in_grid[0], target_bbox_in_grid[1] = grid.map_to_cell((target_bbox[0], target_bbox[1]))
     target_bbox_in_grid[2], target_bbox_in_grid[3] = grid.map_to_cell((target_bbox[2], target_bbox[3]))
 
-    dict_[image_name] = {'subject' : 'sIBS Model', 'dataset' : dataset_name, 'image_height' : int(grid.size()[0]), 'image_width' : int(grid.size()[1]), \
+    dict_[image_name] = {'subject' : 'cIBS Model', 'dataset' : dataset_name, 'image_height' : int(grid.size()[0]), 'image_width' : int(grid.size()[1]), \
         'receptive_height' : 1, 'receptive_width' : 1, 'target_found' : target_found, 'target_bbox' : target_bbox_in_grid.tolist(), \
                  'X' : list(map(int, scanpath_x)), 'Y' : list(map(int, scanpath_y)), 'target_object' : target_object, 'max_fixations' : config['max_saccades'] + 1
         }

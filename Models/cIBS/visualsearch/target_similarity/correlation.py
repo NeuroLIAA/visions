@@ -1,6 +1,7 @@
 from .target_similarity import TargetSimilarity
 from skimage.feature import match_template
 from skimage import transform, img_as_ubyte
+from ..utils import utils
 
 """ Target similarity is computed via normalized cross correlation """
 
@@ -19,7 +20,7 @@ class Correlation(TargetSimilarity):
             target = img_as_ubyte(transform.resize(target, target_size_in_image))
             
         cross_correlation = match_template(image, target, pad_input=True)
-        if len(cross_correlation.shape) > 2:
+        if utils.is_coloured(cross_correlation):
             # If it's coloured, convert to single channel using skimage rgb2gray formula
             cross_correlation = cross_correlation[:, :, 0] * 0.2125 + \
                                 cross_correlation[:, :, 1] * 0.7154 + \
