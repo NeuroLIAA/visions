@@ -205,26 +205,11 @@ def collapse_fixations(scanpath_x, scanpath_y, receptive_size):
 
     return collapsed_scanpath_x, collapsed_scanpath_y
 
-def aggregate_scanpaths(dataset_name, model_size, excluded_image):
-    dataset_path = path.join(constants.DATASETS_PATH, dataset_name)
-    dataset_info = load_dict_from_json(path.join(dataset_path, 'dataset_info.json'))
-    human_scanpaths_dir = path.join(dataset_path, dataset_info['scanpaths_dir'])
+def load_center_bias_fixations(model_size):
+    center_bias_fixs = load_dict_from_json(constants.CENTER_BIAS_FIXATIONS)
 
-    scanpaths_X = []
-    scanpaths_Y = []
-    for subject_file in listdir(human_scanpaths_dir):
-        subject_scanpaths = load_dict_from_json(path.join(human_scanpaths_dir, subject_file))
-        for image_name in subject_scanpaths:
-            trial = subject_scanpaths[image_name]
-            trial_scanpath_X = [rescale_coordinate(x, trial['image_width'], model_size[1]) for x in trial['X']]
-            trial_scanpath_Y = [rescale_coordinate(y, trial['image_height'], model_size[0]) for y in trial['Y']]
-
-            if image_name != excluded_image:
-                scanpaths_X += trial_scanpath_X
-                scanpaths_Y += trial_scanpath_Y
-
-    scanpaths_X = np.array(scanpaths_X)
-    scanpaths_Y = np.array(scanpaths_Y)
+    scanpaths_X = [rescale_coordinate(x, constants.CENTER_BIAS_SIZE[1], model_size[1]) for x in center_bias_fixs['X']]
+    scanpaths_Y = [rescale_coordinate(y, constants.CENTER_BIAS_SIZE[0], model_size[0]) for y in center_bias_fixs['Y']]
 
     return scanpaths_X, scanpaths_Y
 
