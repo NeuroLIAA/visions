@@ -1,3 +1,4 @@
+from email.mime import base
 from . import utils
 from .. import constants
 from os import path, listdir, pardir
@@ -102,6 +103,16 @@ class HumanScanpathPrediction:
         return average_per_image
 
     def add_baseline_models(self):
+        baseline_results = utils.load_dict_from_json(path.join(self.dataset_results_dir, 'baseline_hsp.json'))
+        if baseline_results:
+            center_bias_average_per_image, uniform_average_per_image = baseline_results['center_bias'], baseline_results['uniform']
+        else:
+            center_bias_average_per_image, uniform_average_per_image = self.run_baseline_models()
+
+        self.compute_model_mean(center_bias_average_per_image, 'center_bias')
+        self.compute_model_mean(uniform_average_per_image, 'uniform')
+
+    def run_baseline_models(self):
         """ Compute every metric for center bias and uniform models in the given dataset """
         dataset_info = utils.load_dataset_metadata(self.dataset_name)
         image_size   = (dataset_info['image_height'], dataset_info['image_width'])
@@ -139,8 +150,10 @@ class HumanScanpathPrediction:
         center_bias_average_per_image = self.get_average_per_image(center_bias_results)
         uniform_average_per_image     = self.get_average_per_image(uniform_results)
 
-        self.compute_model_mean(center_bias_average_per_image, 'center_bias')
-        self.compute_model_mean(uniform_average_per_image, 'uniform')
+        baseline_results = {'center_bias': center_bias_average_per_image, 'uniform': uniform_average_per_image}
+        utils.save_to_json(path.join(self.dataset_results_dir, 'baseline_hsp.json'), baseline_results)
+
+        return center_bias_average_per_image, uniform_average_per_image
 
     def save_results(self, save_path, filename):
         if self.null_object: return
