@@ -64,6 +64,12 @@ def average_results(datasets_results_dict, save_path, filename):
 
     return final_table.sort_values(by=['Score'], ascending=False)
 
+def load_dataset_metadata(dataset_name):
+    dataset_path = path.join(constants.DATASETS_PATH, dataset_name)
+    dataset_info = load_dict_from_json(path.join(dataset_path, 'dataset_info.json'))
+
+    return dataset_info
+
 def create_df(dict_):
     return pd.DataFrame.from_dict(dict_)
 

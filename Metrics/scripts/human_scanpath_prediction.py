@@ -99,6 +99,46 @@ class HumanScanpathPrediction:
 
         return average_results_per_image
 
+    def add_baseline_models(self):
+        """ Compute every metric for center bias and uniform models in the given dataset """
+        dataset_info = utils.load_dataset_metadata(self.dataset_name)
+        image_size   = (dataset_info['image_height'], dataset_info['image_width'])
+
+        center_bias_path  = path.join(constants.CENTER_BIAS_PATH, self.dataset_name)
+        center_bias_model = center_bias(image_size, center_bias_path)
+        uniform_model     = uniform(image_size)
+
+        center_bias_results = {}
+        uniform_results     = {}
+
+        subjects_scanpaths_path  = path.join(constants.DATASETS_PATH, self.dataset_name, dataset_info['scanpaths_dir'])
+        subjects_scanpaths_files = listdir(subjects_scanpaths_path)
+        for subject_scanpaths_file in subjects_scanpaths_files:
+            subject = subject_scanpaths_file[:-4]
+            subject_scanpaths = utils.load_dict_from_json(path.join(subjects_scanpaths_path, subject_scanpaths_file))
+            for image_name in subject_scanpaths:
+                trial_info = subject_scanpaths[image_name]
+                scanpath_x = trial_info['X']
+                scanpath_y = trial_info['Y']
+
+                trial_aucs_cb, trial_nss_cb, trial_igs_cb, trial_lls_cb = compute_trial_metrics(len(scanpath_x), scanpath_x, scanpath_y, \
+                    prob_maps_path=None, center_bias_path=center_bias_path, baseline_map=center_bias_model)
+                trial_aucs_uni, trial_nss_uni, trial_igs_uni, trial_lls_uni = compute_trial_metrics(len(scanpath_x), scanpath_x, scanpath_y, \
+                    prob_maps_path=None, center_bias_path=center_bias_path, baseline_map=uniform_model)
+
+                if subject in center_bias_results and subject in uniform_results:
+                    center_bias_results[subject][image_name] = {'AUC': np.mean(trial_aucs_cb), 'NSS': np.mean(trial_nss_cb), 'IG': np.mean(trial_igs_cb), 'LL': np.mean(trial_lls_cb)}
+                    uniform_results[subject][image_name]     = {'AUC': np.mean(trial_aucs_uni), 'NSS': np.mean(trial_nss_uni), 'IG': np.mean(trial_igs_uni), 'LL': np.mean(trial_lls_uni)}
+                else:
+                    center_bias_results[subject] = {image_name: {'AUC': np.mean(trial_aucs_cb), 'NSS': np.mean(trial_nss_cb), 'IG': np.mean(trial_igs_cb), 'LL': np.mean(trial_lls_cb)}}
+                    uniform_results[subject]     = {image_name: {'AUC': np.mean(trial_aucs_uni), 'NSS': np.mean(trial_nss_uni), 'IG': np.mean(trial_igs_uni), 'LL': np.mean(trial_lls_uni)}}
+
+        center_bias_average_per_image = self.get_average_per_image(center_bias_results)
+        uniform_average_per_image     = self.get_average_per_image(uniform_results)
+
+        self.compute_model_mean(center_bias_average_per_image, 'center_bias')
+        self.compute_model_mean(uniform_average_per_image, 'uniform')
+
     def save_results(self, save_path, filename):
         if self.null_object: return
 
@@ -116,6 +156,7 @@ class HumanScanpathPrediction:
 
 def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
     """ After creating the probability maps for each fixation in a given human subject's scanpath, visual search models call this method """
+    center_bias_path      = path.join(output_path, pardir)
     probability_maps_path = path.join(output_path, 'probability_maps', image_name[:-4])
     if not path.exists(probability_maps_path):
         print('[Human Scanpath Prediction] No probability maps found for ' + image_name)
@@ -125,16 +166,7 @@ def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
     subject_fixations_x = np.array(subject_scanpath['X'], dtype=int)
     subject_fixations_y = np.array(subject_scanpath['Y'], dtype=int)
 
-    image_aucs, image_nss, image_igs, image_lls = [], [], [], []
-    for index in range(1, len(probability_maps) + 1):
-        probability_map  = pd.read_csv(path.join(probability_maps_path, 'fixation_' + str(index) + '.csv')).to_numpy()
-        baseline_ig      = center_bias(probability_map.shape, path.join(output_path, pardir))
-        baseline_ll      = uniform(probability_map.shape)
-        auc, nss, ig, ll = compute_metrics(baseline_ig, baseline_ll, probability_map, subject_fixations_y[index], subject_fixations_x[index])
-        image_aucs.append(auc)
-        image_nss.append(nss)
-        image_igs.append(ig)
-        image_lls.append(ll)
+    trial_aucs, trial_nss, trial_igs, trial_lls = compute_trial_metrics(len(probability_maps) + 1, subject_fixations_x, subject_fixations_y, probability_maps_path, center_bias_path)
 
     subject   = path.basename(output_path)
     file_path = path.join(output_path, pardir, subject + '_results.json')
@@ -143,14 +175,31 @@ def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
     else:
         model_subject_metrics = {}
     
-    model_subject_metrics[image_name] = {'AUC': np.mean(image_aucs), 'NSS': np.mean(image_nss), 'IG': np.mean(image_igs), 'LL': np.mean(image_lls)}  
+    model_subject_metrics[image_name] = {'AUC': np.mean(trial_aucs), 'NSS': np.mean(trial_nss), 'IG': np.mean(trial_igs), 'LL': np.mean(trial_lls)}  
     utils.save_to_json(file_path, model_subject_metrics)
 
     # Clean up probability maps if their size is too big
     if utils.dir_is_too_heavy(probability_maps_path):
         shutil.rmtree(probability_maps_path)
 
-def compute_metrics(baseline_ig, baseline_ll, probability_map, human_fixation_y, human_fixation_x):
+def compute_trial_metrics(number_of_fixations, subject_fixations_x, subject_fixations_y, prob_maps_path, center_bias_path, baseline_map=None):
+    trial_aucs, trial_nss, trial_igs, trial_lls = [], [], [], []
+    for index in range(1, number_of_fixations):
+        if baseline_map is None:
+            fixation_prob_map  = pd.read_csv(path.join(prob_maps_path, 'fixation_' + str(index) + '.csv')).to_numpy()
+        else:
+            fixation_prob_map = baseline_map
+        baseline_ig      = center_bias(fixation_prob_map.shape, center_bias_path)
+        baseline_ll      = uniform(fixation_prob_map.shape)
+        auc, nss, ig, ll = compute_fixation_metrics(baseline_ig, baseline_ll, fixation_prob_map, subject_fixations_y[index], subject_fixations_x[index])
+        trial_aucs.append(auc)
+        trial_nss.append(nss)
+        trial_igs.append(ig)
+        trial_lls.append(ll)
+    
+    return trial_aucs, trial_nss, trial_igs, trial_lls
+
+def compute_fixation_metrics(baseline_ig, baseline_ll, probability_map, human_fixation_y, human_fixation_x):
     auc = AUC(probability_map, human_fixation_y, human_fixation_x)
     nss = NSS(probability_map, human_fixation_y, human_fixation_x)
     ig  = infogain(probability_map, baseline_ig, human_fixation_y, human_fixation_x)
