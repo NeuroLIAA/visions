@@ -65,7 +65,7 @@ class HumanScanpathPrediction:
         results_per_image_subsample = utils.get_random_subset(average_results_per_image, size=number_of_images)
         for image_name in results_per_image_subsample:
             for metric in results_per_image_subsample[image_name]:
-                self.model_results[model_name][metric + 'hsp'] += results_per_image_subsample[image_name][metric] / number_of_images
+                self.models_results[model_name][metric + 'hsp'] += results_per_image_subsample[image_name][metric] / number_of_images
 
     def get_model_average_per_image(self, model_output_path):
         subjects_results_path  = path.join(model_output_path, 'subjects_predictions')
@@ -90,7 +90,7 @@ class HumanScanpathPrediction:
                 if image_name in average_per_image:
                     for metric in average_per_image[image_name]:
                         average_per_image[image_name][metric] += trial_results[metric]
-                        number_of_results_per_image[image_name] += 1
+                    number_of_results_per_image[image_name] += 1
                 else:
                     average_per_image[image_name] = trial_results
                     number_of_results_per_image[image_name] = 1
