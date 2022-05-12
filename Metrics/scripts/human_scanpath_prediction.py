@@ -42,7 +42,7 @@ class HumanScanpathPrediction:
                     print('[Human Scanpath Prediction] Running ' + model_name + ' on ' + self.dataset_name + ' dataset using subject ' + subject_number + ' scanpaths')
                     model.main(self.dataset_name, int(subject_number))
             
-            average_results_per_image = self.average_results(model_output_path)
+            average_results_per_image = self.get_model_average_per_image(model_output_path)
             utils.save_to_json(model_average_file, average_results_per_image)
 
         self.compute_model_mean(average_results_per_image, model_name)
@@ -58,46 +58,48 @@ class HumanScanpathPrediction:
         return False
     
     def compute_model_mean(self, average_results_per_image, model_name):
-        """ Get the average across all images for a given model in a given dataset """
+        """ Get the average scores across all images for a given model in a given dataset """
         self.models_results[model_name] = {'AUChsp': 0, 'NSShsp': 0, 'IGhsp': 0, 'LLhsp': 0}
 
         number_of_images            = min(len(average_results_per_image), self.number_of_images)
         results_per_image_subsample = utils.get_random_subset(average_results_per_image, size=number_of_images)
         for image_name in results_per_image_subsample:
-            self.models_results[model_name]['AUChsp'] += results_per_image_subsample[image_name]['AUC'] / number_of_images
-            self.models_results[model_name]['NSShsp'] += results_per_image_subsample[image_name]['NSS'] / number_of_images
-            self.models_results[model_name]['IGhsp']  += results_per_image_subsample[image_name]['IG'] / number_of_images
-            self.models_results[model_name]['LLhsp']  += results_per_image_subsample[image_name]['LL'] / number_of_images
-    
-    def average_results(self, model_output_path):
-        """ Get the average of all subjects for each image """
+            for metric in results_per_image_subsample[image_name]:
+                self.model_results[model_name][metric + 'hsp'] += results_per_image_subsample[image_name][metric] / number_of_images
+
+    def get_model_average_per_image(self, model_output_path):
         subjects_results_path  = path.join(model_output_path, 'subjects_predictions')
         subjects_results_files = utils.list_json_files(subjects_results_path)
-        average_results_per_image   = {}
-        number_of_results_per_image = {}
-        # Sum image values across subjects
-        for subject_file in subjects_results_files:
-            subject_results = utils.load_dict_from_json(path.join(subjects_results_path, subject_file))
-            for image_name in subject_results:
-                metrics = subject_results[image_name]
-                if image_name in average_results_per_image:
-                    average_results_per_image[image_name]['AUC'] += metrics['AUC']
-                    average_results_per_image[image_name]['NSS'] += metrics['NSS']
-                    average_results_per_image[image_name]['IG']  += metrics['IG']
-                    average_results_per_image[image_name]['LL']  += metrics['LL']
-                    number_of_results_per_image[image_name] += 1
-                else:
-                    average_results_per_image[image_name]   = metrics
-                    number_of_results_per_image[image_name] = 1
-        
-        # Average image values across subjects
-        for image_name in average_results_per_image:
-            average_results_per_image[image_name]['AUC'] /= number_of_results_per_image[image_name]
-            average_results_per_image[image_name]['NSS'] /= number_of_results_per_image[image_name]
-            average_results_per_image[image_name]['IG']  /= number_of_results_per_image[image_name]
-            average_results_per_image[image_name]['LL']  /= number_of_results_per_image[image_name]
 
-        return average_results_per_image
+        average_per_image = self.get_average_per_image(subjects_results_files, load_from_file=True, filespath=subjects_results_path)
+
+        return average_per_image
+
+    def get_average_per_image(self, subjects_results, load_from_file=False, filespath=None):
+        """ Get the average score for each image of all subjects for a given model """
+        average_per_image = {}
+        number_of_results_per_image  = {}
+        for subject in subjects_results:
+            if load_from_file:
+                subject_results = utils.load_dict_from_json(path.join(filespath, subject))
+            else:
+                subject_results = subjects_results[subject]
+
+            for image_name in subject_results:
+                trial_results = subject_results[image_name]
+                if image_name in average_per_image:
+                    for metric in average_per_image[image_name]:
+                        average_per_image[image_name][metric] += trial_results[metric]
+                        number_of_results_per_image[image_name] += 1
+                else:
+                    average_per_image[image_name] = trial_results
+                    number_of_results_per_image[image_name] = 1
+
+        for image_name in average_per_image:
+            for metric in average_per_image[image_name]:
+                average_per_image[image_name][metric] /= number_of_results_per_image[image_name]
+        
+        return average_per_image
 
     def add_baseline_models(self):
         """ Compute every metric for center bias and uniform models in the given dataset """
