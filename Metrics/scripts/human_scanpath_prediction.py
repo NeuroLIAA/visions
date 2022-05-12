@@ -1,4 +1,5 @@
 from . import utils
+from .. import constants
 from os import path, listdir, pardir
 import pandas as pd
 import numpy as np
@@ -127,7 +128,7 @@ def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
     image_aucs, image_nss, image_igs, image_lls = [], [], [], []
     for index in range(1, len(probability_maps) + 1):
         probability_map  = pd.read_csv(path.join(probability_maps_path, 'fixation_' + str(index) + '.csv')).to_numpy()
-        baseline_ig      = center_bias(probability_map.shape, output_path)
+        baseline_ig      = center_bias(probability_map.shape, path.join(output_path, pardir))
         baseline_ll      = uniform(probability_map.shape)
         auc, nss, ig, ll = compute_metrics(baseline_ig, baseline_ll, probability_map, subject_fixations_y[index], subject_fixations_x[index])
         image_aucs.append(auc)
@@ -158,10 +159,10 @@ def compute_metrics(baseline_ig, baseline_ll, probability_map, human_fixation_y,
     return auc, nss, ig, ll
 
 def uniform(shape):
-    return np.ones(shape)
+    return np.ones(shape) / (shape[0] * shape[1])
 
 def center_bias(shape, output_path):
-    filepath = path.join(output_path, pardir, 'center_bias.csv')
+    filepath = path.join(output_path, 'center_bias.csv')
     if path.exists(filepath):
         return pd.read_csv(filepath).to_numpy()
 
