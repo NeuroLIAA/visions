@@ -50,6 +50,8 @@ def main(datasets, models, compute_cumulative_performance, compute_multimatch, c
 
             color_index += 1
 
+        human_scanpath_prediction.add_baseline_models()
+
         subjects_cumulative_performance.save_results(save_path=dataset_results_dir, filename=constants.FILENAME)
         multimatch.save_results(save_path=dataset_results_dir, filename=constants.FILENAME)
         human_scanpath_prediction.save_results(save_path=dataset_results_dir, filename=constants.FILENAME)

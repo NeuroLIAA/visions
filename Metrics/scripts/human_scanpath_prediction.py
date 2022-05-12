@@ -114,14 +114,15 @@ class HumanScanpathPrediction:
         uniform_results     = {}
 
         subjects_scanpaths_path  = path.join(constants.DATASETS_PATH, self.dataset_name, dataset_info['scanpaths_dir'])
-        subjects_scanpaths_files = listdir(subjects_scanpaths_path)
+        subjects_scanpaths_files = utils.sorted_alphanumeric(listdir(subjects_scanpaths_path))
         for subject_scanpaths_file in subjects_scanpaths_files:
-            subject = subject_scanpaths_file[:-4]
+            subject = subject_scanpaths_file[:-5]
+            print('[Human Scanpath Prediction] Running baseline models on ' + self.dataset_name + ' dataset using ' + subject)
             subject_scanpaths = utils.load_dict_from_json(path.join(subjects_scanpaths_path, subject_scanpaths_file))
             for image_name in subject_scanpaths:
                 trial_info = subject_scanpaths[image_name]
-                scanpath_x = trial_info['X']
-                scanpath_y = trial_info['Y']
+                scanpath_x = [int(x) for x in trial_info['X']]
+                scanpath_y = [int(y) for y in trial_info['Y']]
 
                 trial_aucs_cb, trial_nss_cb, trial_igs_cb, trial_lls_cb = compute_trial_metrics(len(scanpath_x), scanpath_x, scanpath_y, \
                     prob_maps_path=None, center_bias_path=center_bias_path, baseline_map=center_bias_model)
