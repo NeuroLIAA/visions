@@ -220,12 +220,10 @@ def load_center_bias_fixations(model_size):
     return scanpaths_X, scanpaths_Y
 
 def gaussian_kde(scanpaths_X, scanpaths_Y, shape):
-    xmin, xmax = scanpaths_X.min(), scanpaths_X.max()
-    ymin, ymax = scanpaths_Y.min(), scanpaths_Y.max()
-    X, Y = np.mgrid[ymin:ymax:(shape[0] * 1j), xmin:xmax:(shape[1] * 1j)]
+    X, Y = np.mgrid[0:shape[0], 0:shape[1]] + 0.5
     positions = np.vstack([X.ravel(), Y.ravel()])
     values = np.vstack([scanpaths_Y, scanpaths_X])
     kernel = _gaussian_kde(values)
-    gkde_grid = np.reshape(kernel(positions).T, X.shape)
+    gkde_grid = np.reshape(kernel(positions), X.shape)
 
     return gkde_grid
