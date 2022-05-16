@@ -6,7 +6,8 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from os import listdir, path, scandir, makedirs
-from scipy.stats import gaussian_kde as _gaussian_kde
+from sklearn.neighbors import KernelDensity
+from sklearn.model_selection import GridSearchCV
 from .. import constants
 
 def plot_table(df, title, save_path, filename):
@@ -232,10 +233,24 @@ def load_center_bias_fixations(model_size):
     return scanpaths_X, scanpaths_Y
 
 def gaussian_kde(scanpaths_X, scanpaths_Y, shape):
-    X, Y = np.mgrid[0:shape[0], 0:shape[1]] + 0.5
-    positions = np.vstack([X.ravel(), Y.ravel()])
-    values = np.vstack([scanpaths_Y, scanpaths_X])
-    kernel = _gaussian_kde(values)
-    gkde_grid = np.reshape(kernel(positions), X.shape)
+    values = np.vstack([scanpaths_Y, scanpaths_X]).T
 
-    return gkde_grid
+    # Perform a grid search to look for the optimal bandwidth (i.e. the one that maximizes log-likelihood)
+    # Define search space (values estimated from previous executions)
+    if np.log(shape[0] * shape[1]) < 10:
+        bandwidths = 10 ** np.linspace(-1, 1, 100)
+    else:
+        bandwidths = np.linspace(10, 60, 100)
+
+    grid = GridSearchCV(KernelDensity(kernel='gaussian'),
+                        {'bandwidth': bandwidths}, n_jobs=-1)
+    grid.fit(values)
+
+    print('Best bandwidth for gaussian KDE found at ' + str(grid.best_params_['bandwidth']))
+
+    X, Y = np.mgrid[0:shape[0], 0:shape[1]] + 0.5
+    positions = np.vstack([X.ravel(), Y.ravel()]).T
+    gkde   = grid.best_estimator_.fit(values)
+    scores = np.exp(gkde.score_samples(positions))
+
+    return scores.reshape(shape)
