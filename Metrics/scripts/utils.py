@@ -1,6 +1,7 @@
 import json
 import random
 import re
+import pickle
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -73,6 +74,11 @@ def load_dataset_metadata(dataset_name):
 def create_df(dict_):
     return pd.DataFrame.from_dict(dict_)
 
+def create_dirs(filepath):
+    dir_ = path.dirname(filepath)
+    if not path.exists(dir_):
+        makedirs(dir_)  
+
 def dir_is_too_heavy(path):
     nmbytes = sum(d.stat().st_size for d in scandir(path) if d.is_file()) / 2**20
     
@@ -121,6 +127,10 @@ def update_dict(dic, key, data):
     else:
         dic[key] = data
 
+def load_pickle(pickle_filepath):
+    with open(pickle_filepath, 'rb') as fp:
+        return pickle.load(fp)  
+
 def load_dict_from_json(json_file_path):
     if not path.exists(json_file_path):
         return {}
@@ -128,18 +138,20 @@ def load_dict_from_json(json_file_path):
         with open(json_file_path, 'r') as json_file:
             return json.load(json_file)
 
-def save_to_json(file, data):
-    dir_ = path.dirname(file)
-    if not path.exists(dir_):
-        makedirs(dir_)
+def save_to_pickle(data, filepath):
+    create_dirs(filepath)
 
-    with open(file, 'w') as json_file:
+    with open(filepath, 'wb') as fp:
+        pickle.dump(data, fp)
+
+def save_to_json(filepath, data):
+    create_dirs(filepath)
+
+    with open(filepath, 'w') as json_file:
         json.dump(data, json_file, indent=4)
 
 def save_to_csv(data, filepath):
-    dir_ = path.dirname(filepath)
-    if not path.exists(dir_):
-        makedirs(dir_)
+    create_dirs(filepath)
 
     df = pd.DataFrame(data)
     df.to_csv(filepath, index=False)
