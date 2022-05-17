@@ -102,16 +102,19 @@ class HumanScanpathPrediction:
         return average_per_image
 
     def add_baseline_models(self):
-        baseline_results = utils.load_dict_from_json(path.join(self.dataset_results_dir, 'baseline_hsp.json'))
+        baseline_filepath = path.join(self.dataset_results_dir, 'baseline_hsp.json')
+        baseline_results  = utils.load_dict_from_json(baseline_filepath)
         if baseline_results:
-            center_bias_average_per_image, uniform_average_per_image = baseline_results['center_bias'], baseline_results['uniform']
+            center_bias_average_per_image, uniform_average_per_image, gold_standard_average_per_image = \
+                baseline_results['center_bias'], baseline_results['uniform'], baseline_results['gold_standard']
         else:
-            center_bias_average_per_image, uniform_average_per_image = self.run_baseline_models()
+            center_bias_average_per_image, uniform_average_per_image, gold_standard_average_per_image = self.run_baseline_models(baseline_filepath)
 
         self.compute_model_mean(center_bias_average_per_image, 'center_bias')
         self.compute_model_mean(uniform_average_per_image, 'uniform')
+        self.compute_model_mean(gold_standard_average_per_image, 'gold_standard')
 
-    def run_baseline_models(self):
+    def run_baseline_models(self, filepath):
         """ Compute every metric for center bias and uniform models in the given dataset """
         dataset_path = path.join(constants.DATASETS_PATH, self.dataset_name)
         dataset_info = utils.load_dict_from_json(path.join(dataset_path, 'dataset_info.json'))
@@ -120,8 +123,9 @@ class HumanScanpathPrediction:
         center_bias_model = center_bias(shape=image_size)
         uniform_model     = uniform(shape=image_size)
 
-        center_bias_results = {}
-        uniform_results     = {}
+        center_bias_results   = {}
+        uniform_results       = {}
+        gold_standard_results = {}
 
         subjects_scanpaths_path  = path.join(dataset_path, dataset_info['scanpaths_dir'])
         subjects_scanpaths_files = utils.sorted_alphanumeric(listdir(subjects_scanpaths_path))
@@ -140,21 +144,26 @@ class HumanScanpathPrediction:
                     prob_maps_path=None, baseline_map=center_bias_model)
                 trial_aucs_uni, trial_nss_uni, trial_igs_uni, trial_lls_uni = compute_trial_metrics(len(scanpath_x), scanpath_x, scanpath_y, \
                     prob_maps_path=None, baseline_map=uniform_model)
+                trial_aucs_gs, trial_nss_gs, trial_igs_gs, trial_lls_gs = compute_trial_metrics(len(scanpath_x), scanpath_x, scanpath_y, \
+                    prob_maps_path=None, baseline_map=gold_standard_model)
 
                 if subject in center_bias_results and subject in uniform_results:
-                    center_bias_results[subject][image_name] = {'AUC': np.mean(trial_aucs_cb), 'NSS': np.mean(trial_nss_cb), 'IG': np.mean(trial_igs_cb), 'LL': np.mean(trial_lls_cb)}
-                    uniform_results[subject][image_name]     = {'AUC': np.mean(trial_aucs_uni), 'NSS': np.mean(trial_nss_uni), 'IG': np.mean(trial_igs_uni), 'LL': np.mean(trial_lls_uni)}
+                    center_bias_results[subject][image_name]   = {'AUC': np.mean(trial_aucs_cb), 'NSS': np.mean(trial_nss_cb), 'IG': np.mean(trial_igs_cb), 'LL': np.mean(trial_lls_cb)}
+                    uniform_results[subject][image_name]       = {'AUC': np.mean(trial_aucs_uni), 'NSS': np.mean(trial_nss_uni), 'IG': np.mean(trial_igs_uni), 'LL': np.mean(trial_lls_uni)}
+                    gold_standard_results[subject][image_name] = {'AUC': np.mean(trial_aucs_gs), 'NSS': np.mean(trial_nss_gs), 'IG': np.mean(trial_igs_gs), 'LL': np.mean(trial_lls_gs)}
                 else:
-                    center_bias_results[subject] = {image_name: {'AUC': np.mean(trial_aucs_cb), 'NSS': np.mean(trial_nss_cb), 'IG': np.mean(trial_igs_cb), 'LL': np.mean(trial_lls_cb)}}
-                    uniform_results[subject]     = {image_name: {'AUC': np.mean(trial_aucs_uni), 'NSS': np.mean(trial_nss_uni), 'IG': np.mean(trial_igs_uni), 'LL': np.mean(trial_lls_uni)}}
+                    center_bias_results[subject]   = {image_name: {'AUC': np.mean(trial_aucs_cb), 'NSS': np.mean(trial_nss_cb), 'IG': np.mean(trial_igs_cb), 'LL': np.mean(trial_lls_cb)}}
+                    uniform_results[subject]       = {image_name: {'AUC': np.mean(trial_aucs_uni), 'NSS': np.mean(trial_nss_uni), 'IG': np.mean(trial_igs_uni), 'LL': np.mean(trial_lls_uni)}}
+                    gold_standard_results[subject] = {image_name: {'AUC': np.mean(trial_aucs_gs), 'NSS': np.mean(trial_nss_gs), 'IG': np.mean(trial_igs_gs), 'LL': np.mean(trial_lls_gs)}}
 
-        center_bias_average_per_image = self.get_average_per_image(center_bias_results)
-        uniform_average_per_image     = self.get_average_per_image(uniform_results)
+        center_bias_average_per_image   = self.get_average_per_image(center_bias_results)
+        uniform_average_per_image       = self.get_average_per_image(uniform_results)
+        gold_standard_average_per_image = self.get_average_per_image(gold_standard_results)
 
-        baseline_results = {'center_bias': center_bias_average_per_image, 'uniform': uniform_average_per_image}
-        utils.save_to_json(path.join(self.dataset_results_dir, 'baseline_hsp.json'), baseline_results)
+        baseline_results = {'center_bias': center_bias_average_per_image, 'uniform': uniform_average_per_image, 'gold_standard': gold_standard_average_per_image}
+        utils.save_to_json(filepath, baseline_results)
 
-        return center_bias_average_per_image, uniform_average_per_image
+        return center_bias_average_per_image, uniform_average_per_image, gold_standard_average_per_image
 
     def save_results(self, save_path, filename):
         if self.null_object: return
@@ -247,6 +256,12 @@ def gold_standard(dataset_name, image_name, image_size, subjects_scanpaths_path,
         return utils.load_pickle(filepath)
     
     bandwidth = utils.get_gs_bandwidth(dataset_gs_path, image_name, image_size, subjects_scanpaths_path)
+    scanpaths_X, scanpaths_Y = utils.aggregate_scanpaths(subjects_scanpaths_path, image_name, excluded_subject)
+    goldstandard_model = utils.gaussian_kde(scanpaths_X, scanpaths_Y, image_size, bandwidth)
+
+    utils.save_to_pickle(goldstandard_model, filepath)
+
+    return goldstandard_model
 
 def NSS(probability_map, ground_truth_fixation_y, ground_truth_fixation_x):
     """ The returned array has length equal to the number of fixations """

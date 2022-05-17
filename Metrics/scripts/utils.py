@@ -218,12 +218,14 @@ def collapse_fixations(scanpath_x, scanpath_y, receptive_size):
 
     return collapsed_scanpath_x, collapsed_scanpath_y
 
-def aggregate_scanpaths(subjects_scanpaths_path, image_name):
+def aggregate_scanpaths(subjects_scanpaths_path, image_name, excluded_subject='None'):
     subjects_scanpaths_files = sorted_alphanumeric(listdir(subjects_scanpaths_path))
 
     scanpaths_X = []
     scanpaths_Y = []
     for subject_file in subjects_scanpaths_files:
+        if excluded_subject in subject_file:
+            continue
         subject_scanpaths = load_dict_from_json(path.join(subjects_scanpaths_path, subject_file))
         if image_name in subject_scanpaths:
             trial = subject_scanpaths[image_name]
@@ -264,7 +266,7 @@ def search_bandwidth(values, shape):
                         {'bandwidth': bandwidths}, n_jobs=-1)
     grid.fit(values)
 
-    return grid.best_params_['bandwidth'], grid.best_estimator_
+    return grid.best_params_['bandwidth']
 
 def load_center_bias_fixations(model_size):
     center_bias_fixs = load_dict_from_json(constants.CENTER_BIAS_FIXATIONS)
@@ -274,14 +276,15 @@ def load_center_bias_fixations(model_size):
 
     return scanpaths_X, scanpaths_Y
 
-def gaussian_kde(scanpaths_X, scanpaths_Y, shape):
+def gaussian_kde(scanpaths_X, scanpaths_Y, shape, bandwidth=None):
     values = np.vstack([scanpaths_Y, scanpaths_X]).T
 
-    _, best_estimator = search_bandwidth(values, shape)
+    if bandwidth is None:
+        bandwidth = search_bandwidth(values, shape)
 
     X, Y = np.mgrid[0:shape[0], 0:shape[1]] + 0.5
     positions = np.vstack([X.ravel(), Y.ravel()]).T
-    gkde   = best_estimator.fit(values)
+    gkde   = KernelDensity(kernel='gaussian', bandwidth=bandwidth).fit(values)
     scores = np.exp(gkde.score_samples(positions))
 
     return scores.reshape(shape)
