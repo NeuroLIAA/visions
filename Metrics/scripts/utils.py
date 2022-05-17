@@ -237,30 +237,13 @@ def aggregate_scanpaths(subjects_scanpaths_path, image_name, excluded_subject='N
 
     return scanpaths_X, scanpaths_Y
 
-def get_gs_bandwidth(dataset_gs_path, image_name, image_size, subjects_scanpaths_path):
-    bandwidths_file = path.join(dataset_gs_path, 'optimal_bandwidths.json')
-    bandwidths_dict = load_dict_from_json(bandwidths_file)
-
-    if image_name in bandwidths_dict:
-        return bandwidths_dict[image_name]
-    
-    scanpaths_X, scanpaths_Y = aggregate_scanpaths(subjects_scanpaths_path, image_name)
-    values = np.vstack([scanpaths_Y, scanpaths_X]).T
-    best_bandwidth = search_bandwidth(values, image_size)
-
-    bandwidths_dict[image_name] = best_bandwidth
-
-    save_to_json(bandwidths_file, bandwidths_dict)
-
-    return best_bandwidth
-
 def search_bandwidth(values, shape):
     """ Perform a grid search to look for the optimal bandwidth (i.e. the one that maximizes log-likelihood) """
     # Define search space (values estimated from previous executions)
     if np.log(shape[0] * shape[1]) < 10:
         bandwidths = 10 ** np.linspace(-1, 1, 100)
     else:
-        bandwidths = np.linspace(10, 60, 100)
+        bandwidths = np.linspace(15, 70, 200)
     
     grid = GridSearchCV(KernelDensity(kernel='gaussian'),
                         {'bandwidth': bandwidths}, n_jobs=-1)

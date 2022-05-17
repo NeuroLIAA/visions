@@ -248,18 +248,9 @@ def center_bias(shape):
 
     return centerbias
 
-def gold_standard(dataset_name, image_name, image_size, subjects_scanpaths_path, excluded_subject):
-    dataset_name += '_dataset'
-    dataset_gs_path = path.join(constants.GOLD_STANDARD_PATH, dataset_name)
-    filepath = path.join(dataset_gs_path, image_name, excluded_subject + '.pkl')
-    if path.exists(filepath):
-        return utils.load_pickle(filepath)
-    
-    bandwidth = utils.get_gs_bandwidth(dataset_gs_path, image_name, image_size, subjects_scanpaths_path)
+def gold_standard(image_name, image_size, subjects_scanpaths_path, excluded_subject):    
     scanpaths_X, scanpaths_Y = utils.aggregate_scanpaths(subjects_scanpaths_path, image_name, excluded_subject)
-    goldstandard_model = utils.gaussian_kde(scanpaths_X, scanpaths_Y, image_size, bandwidth)
-
-    utils.save_to_pickle(goldstandard_model, filepath)
+    goldstandard_model = utils.gaussian_kde(scanpaths_X, scanpaths_Y, image_size)
 
     return goldstandard_model
 
