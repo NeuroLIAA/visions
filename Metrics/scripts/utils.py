@@ -71,7 +71,7 @@ def create_df(dict_):
 
 def create_dirs(filepath):
     dir_ = path.dirname(filepath)
-    if not path.exists(dir_):
+    if len(dir_) > 0 and not path.exists(dir_):
         makedirs(dir_)  
 
 def dir_is_too_heavy(path):
@@ -246,7 +246,7 @@ def get_gs_bandwidth(dataset_gs_path, image_name, image_size, subjects_scanpaths
     
     scanpaths_X, scanpaths_Y = aggregate_scanpaths(subjects_scanpaths_path, image_name)
     values = np.vstack([scanpaths_Y, scanpaths_X]).T
-    best_bandwidth, _ = search_bandwidth(values, image_size)
+    best_bandwidth = search_bandwidth(values, image_size)
 
     bandwidths_dict[image_name] = best_bandwidth
 

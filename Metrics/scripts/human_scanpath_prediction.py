@@ -134,7 +134,7 @@ class HumanScanpathPrediction:
             print('[Human Scanpath Prediction] Running baseline models on ' + self.dataset_name + ' dataset using ' + subject + ' scanpaths')
             subject_scanpaths = utils.load_dict_from_json(path.join(subjects_scanpaths_path, subject_scanpaths_file))
             for image_name in subject_scanpaths:
-                gold_standard_model = gold_standard(self.dataset_name, image_name[:-4], image_size, subjects_scanpaths_path, excluded_subject=subject)
+                gold_standard_model = gold_standard(self.dataset_name, image_name, image_size, subjects_scanpaths_path, excluded_subject=subject)
 
                 trial_info = subject_scanpaths[image_name]
                 scanpath_x = [int(x) for x in trial_info['X']]
@@ -147,7 +147,7 @@ class HumanScanpathPrediction:
                 trial_aucs_gs, trial_nss_gs, trial_igs_gs, trial_lls_gs = compute_trial_metrics(len(scanpath_x), scanpath_x, scanpath_y, \
                     prob_maps_path=None, baseline_map=gold_standard_model)
 
-                if subject in center_bias_results and subject in uniform_results:
+                if subject in center_bias_results and subject in uniform_results and subject in gold_standard_results:
                     center_bias_results[subject][image_name]   = {'AUC': np.mean(trial_aucs_cb), 'NSS': np.mean(trial_nss_cb), 'IG': np.mean(trial_igs_cb), 'LL': np.mean(trial_lls_cb)}
                     uniform_results[subject][image_name]       = {'AUC': np.mean(trial_aucs_uni), 'NSS': np.mean(trial_nss_uni), 'IG': np.mean(trial_igs_uni), 'LL': np.mean(trial_lls_uni)}
                     gold_standard_results[subject][image_name] = {'AUC': np.mean(trial_aucs_gs), 'NSS': np.mean(trial_nss_gs), 'IG': np.mean(trial_igs_gs), 'LL': np.mean(trial_lls_gs)}
