@@ -66,12 +66,6 @@ def average_results(datasets_results_dict, save_path, filename):
 
     return final_table.sort_values(by=['Score'], ascending=False)
 
-def load_dataset_metadata(dataset_name):
-    dataset_path = path.join(constants.DATASETS_PATH, dataset_name)
-    dataset_info = load_dict_from_json(path.join(dataset_path, 'dataset_info.json'))
-
-    return dataset_info
-
 def create_df(dict_):
     return pd.DataFrame.from_dict(dict_)
 
@@ -224,6 +218,54 @@ def collapse_fixations(scanpath_x, scanpath_y, receptive_size):
 
     return collapsed_scanpath_x, collapsed_scanpath_y
 
+def aggregate_scanpaths(subjects_scanpaths_path, image_name):
+    subjects_scanpaths_files = sorted_alphanumeric(listdir(subjects_scanpaths_path))
+
+    scanpaths_X = []
+    scanpaths_Y = []
+    for subject_file in subjects_scanpaths_files:
+        subject_scanpaths = load_dict_from_json(path.join(subjects_scanpaths_path, subject_file))
+        if image_name in subject_scanpaths:
+            trial = subject_scanpaths[image_name]
+            scanpaths_X += trial['X']
+            scanpaths_Y += trial['Y']
+
+    scanpaths_X = np.array(scanpaths_X)
+    scanpaths_Y = np.array(scanpaths_Y)
+
+    return scanpaths_X, scanpaths_Y
+
+def get_gs_bandwidth(dataset_gs_path, image_name, image_size, subjects_scanpaths_path):
+    bandwidths_file = path.join(dataset_gs_path, 'optimal_bandwidths.json')
+    bandwidths_dict = load_dict_from_json(bandwidths_file)
+
+    if image_name in bandwidths_dict:
+        return bandwidths_dict[image_name]
+    
+    scanpaths_X, scanpaths_Y = aggregate_scanpaths(subjects_scanpaths_path, image_name)
+    values = np.vstack([scanpaths_Y, scanpaths_X]).T
+    best_bandwidth, _ = search_bandwidth(values, image_size)
+
+    bandwidths_dict[image_name] = best_bandwidth
+
+    save_to_json(bandwidths_file, bandwidths_dict)
+
+    return best_bandwidth
+
+def search_bandwidth(values, shape):
+    """ Perform a grid search to look for the optimal bandwidth (i.e. the one that maximizes log-likelihood) """
+    # Define search space (values estimated from previous executions)
+    if np.log(shape[0] * shape[1]) < 10:
+        bandwidths = 10 ** np.linspace(-1, 1, 100)
+    else:
+        bandwidths = np.linspace(10, 60, 100)
+    
+    grid = GridSearchCV(KernelDensity(kernel='gaussian'),
+                        {'bandwidth': bandwidths}, n_jobs=-1)
+    grid.fit(values)
+
+    return grid.best_params_['bandwidth'], grid.best_estimator_
+
 def load_center_bias_fixations(model_size):
     center_bias_fixs = load_dict_from_json(constants.CENTER_BIAS_FIXATIONS)
 
@@ -235,22 +277,11 @@ def load_center_bias_fixations(model_size):
 def gaussian_kde(scanpaths_X, scanpaths_Y, shape):
     values = np.vstack([scanpaths_Y, scanpaths_X]).T
 
-    # Perform a grid search to look for the optimal bandwidth (i.e. the one that maximizes log-likelihood)
-    # Define search space (values estimated from previous executions)
-    if np.log(shape[0] * shape[1]) < 10:
-        bandwidths = 10 ** np.linspace(-1, 1, 100)
-    else:
-        bandwidths = np.linspace(10, 60, 100)
-
-    grid = GridSearchCV(KernelDensity(kernel='gaussian'),
-                        {'bandwidth': bandwidths}, n_jobs=-1)
-    grid.fit(values)
-
-    print('Best bandwidth for gaussian KDE found at ' + str(grid.best_params_['bandwidth']))
+    _, best_estimator = search_bandwidth(values, shape)
 
     X, Y = np.mgrid[0:shape[0], 0:shape[1]] + 0.5
     positions = np.vstack([X.ravel(), Y.ravel()]).T
-    gkde   = grid.best_estimator_.fit(values)
+    gkde   = best_estimator.fit(values)
     scores = np.exp(gkde.score_samples(positions))
 
     return scores.reshape(shape)

@@ -113,7 +113,8 @@ class HumanScanpathPrediction:
 
     def run_baseline_models(self):
         """ Compute every metric for center bias and uniform models in the given dataset """
-        dataset_info = utils.load_dataset_metadata(self.dataset_name)
+        dataset_path = path.join(constants.DATASETS_PATH, self.dataset_name)
+        dataset_info = utils.load_dict_from_json(path.join(dataset_path, 'dataset_info.json'))
         image_size   = (dataset_info['image_height'], dataset_info['image_width'])
 
         center_bias_model = center_bias(shape=image_size)
@@ -122,13 +123,15 @@ class HumanScanpathPrediction:
         center_bias_results = {}
         uniform_results     = {}
 
-        subjects_scanpaths_path  = path.join(constants.DATASETS_PATH, self.dataset_name, dataset_info['scanpaths_dir'])
+        subjects_scanpaths_path  = path.join(dataset_path, dataset_info['scanpaths_dir'])
         subjects_scanpaths_files = utils.sorted_alphanumeric(listdir(subjects_scanpaths_path))
         for subject_scanpaths_file in subjects_scanpaths_files:
-            subject = subject_scanpaths_file[:-5]
-            print('[Human Scanpath Prediction] Running baseline models on ' + self.dataset_name + ' dataset using ' + subject)
+            subject = subject_scanpaths_file[:-15]
+            print('[Human Scanpath Prediction] Running baseline models on ' + self.dataset_name + ' dataset using ' + subject + ' scanpaths')
             subject_scanpaths = utils.load_dict_from_json(path.join(subjects_scanpaths_path, subject_scanpaths_file))
             for image_name in subject_scanpaths:
+                gold_standard_model = gold_standard(self.dataset_name, image_name[:-4], image_size, subjects_scanpaths_path, excluded_subject=subject)
+
                 trial_info = subject_scanpaths[image_name]
                 scanpath_x = [int(x) for x in trial_info['X']]
                 scanpath_y = [int(y) for y in trial_info['Y']]
@@ -235,6 +238,15 @@ def center_bias(shape):
     utils.save_to_pickle(centerbias, filepath)
 
     return centerbias
+
+def gold_standard(dataset_name, image_name, image_size, subjects_scanpaths_path, excluded_subject):
+    dataset_name += '_dataset'
+    dataset_gs_path = path.join(constants.GOLD_STANDARD_PATH, dataset_name)
+    filepath = path.join(dataset_gs_path, image_name, excluded_subject + '.pkl')
+    if path.exists(filepath):
+        return utils.load_pickle(filepath)
+    
+    bandwidth = utils.get_gs_bandwidth(dataset_gs_path, image_name, image_size, subjects_scanpaths_path)
 
 def NSS(probability_map, ground_truth_fixation_y, ground_truth_fixation_x):
     """ The returned array has length equal to the number of fixations """

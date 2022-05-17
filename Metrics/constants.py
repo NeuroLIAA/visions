@@ -9,7 +9,8 @@ MAX_DIR_SIZE = 10 # MBytes, for probability maps dirs
 
 FILENAME = 'Metrics.json'
 
-# Constants for center bias model
+# Constants for baseline models
+GOLD_STANDARD_PATH    = path.join('Metrics', 'gold_standard')
 CENTER_BIAS_PATH      = path.join('Metrics', 'center_bias')
 CENTER_BIAS_FIXATIONS = path.join(CENTER_BIAS_PATH, 'cat2000_fixations.json')
 CENTER_BIAS_SIZE      = (1080, 1920)
