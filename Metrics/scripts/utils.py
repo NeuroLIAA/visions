@@ -24,7 +24,7 @@ def plot_table(df, title, save_path, filename):
 
     fig.tight_layout()
     fig.suptitle(title)
-    fig.set_size_inches(10.5, 5)
+    fig.set_size_inches(12, 5)
     plt.savefig(path.join(save_path, filename))
     plt.show()
 
