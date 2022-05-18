@@ -54,14 +54,14 @@ class Ssim(TargetSimilarity):
         return ssim_values
 
     def ssim_process_chunk(self, image, target, image_size, target_size, ssim_values, chunk, values_queue, off_bounds_area):
-        coloured = len(image.shape) > 2
+        channel_axis = 2 if len(image.shape) > 2 else None
 
         for row in chunk: 
             for column in range(0, image_size[1]):
                 target_to_use, row_in_image, column_in_image, end_row, end_column= self.handle_image_borders(target, off_bounds_area, row, column, target_size, image_size)
                 pixels_in_interval = image[row_in_image:end_row, column_in_image:end_column]
                 if np.shape(pixels_in_interval)[0] >= 7 and np.shape(pixels_in_interval)[1] >= 7:
-                    ssim_result = ssim(pixels_in_interval, target_to_use, multichannel=coloured)
+                    ssim_result = ssim(pixels_in_interval, target_to_use, channel_axis=channel_axis)
                 else:
                     ssim_result = 0
                 ssim_values[row, column] = ssim_result
@@ -71,14 +71,14 @@ class Ssim(TargetSimilarity):
         ssim_values = np.zeros(shape=image_size, dtype= np.dtype('float32'))
         off_bounds_area = self.get_image_off_bounds_area(target_size)
 
-        coloured = len(image.shape) > 2
+        channel_axis = 2 if len(image.shape) > 2 else None
 
         for row in range(0, image_size[0]): 
             for column in range(0, image_size[1]):
                 target_to_use, row_in_image, column_in_image, end_row, end_column= self.handle_image_borders(target, off_bounds_area, row, column, target_size, image_size)
                 pixels_in_interval = image[row_in_image:end_row, column_in_image:end_column]
                 if np.shape(pixels_in_interval)[0] >= 7 and np.shape(pixels_in_interval)[1] >= 7:
-                    ssim_result = ssim(pixels_in_interval, target_to_use, multichannel=coloured)
+                    ssim_result = ssim(pixels_in_interval, target_to_use, channel_axis=channel_axis)
                 else:
                     ssim_result = 0
                 ssim_values[row, column] = ssim_result
