@@ -38,9 +38,10 @@
             0.822,
             0.072
         ],
-        "AUChsp": 0.636,
-        "NSShsp": 0.93,
-        "IGhsp": -4.127
+        "AUChsp": 0.635,
+        "NSShsp": 0.919,
+        "IGhsp": -3.693,
+        "LLhsp": -3.74
     },
     "nnIBS": {
         "AUCperf": 0.516,
@@ -63,7 +64,8 @@
         ],
         "AUChsp": 0.751,
         "NSShsp": 0.97,
-        "IGhsp": -0.06
+        "IGhsp": 0.457,
+        "LLhsp": 0.319
     },
     "IRL": {
         "AUCperf": 0.728,
@@ -86,6 +88,7 @@
         ],
         "AUChsp": 0.801,
         "NSShsp": 2.493,
-        "IGhsp": -1.914
+        "IGhsp": -1.404,
+        "LLhsp": -1.546
     }
 }
