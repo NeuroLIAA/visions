@@ -134,7 +134,7 @@ class HumanScanpathPrediction:
             print('[Human Scanpath Prediction] Running baseline models on ' + self.dataset_name + ' dataset using ' + subject + ' scanpaths')
             subject_scanpaths = utils.load_dict_from_json(path.join(subjects_scanpaths_path, subject_scanpaths_file))
             for image_name in subject_scanpaths:
-                gold_standard_model = gold_standard(self.dataset_name, image_name, image_size, subjects_scanpaths_path, excluded_subject=subject)
+                gold_standard_model = gold_standard(image_name, image_size, subjects_scanpaths_path, excluded_subject=subject)
 
                 trial_info = subject_scanpaths[image_name]
                 scanpath_x = [int(x) for x in trial_info['X']]
