@@ -103,29 +103,22 @@ class HumanScanpathPrediction:
 
     def add_baseline_models(self):
         baseline_filepath = path.join(self.dataset_results_dir, 'baseline_hsp.json')
-        baseline_results  = utils.load_dict_from_json(baseline_filepath)
-        if baseline_results:
-            center_bias_average_per_image, uniform_average_per_image, gold_standard_average_per_image = \
-                baseline_results['center_bias'], baseline_results['uniform'], baseline_results['gold_standard']
-        else:
-            center_bias_average_per_image, uniform_average_per_image, gold_standard_average_per_image = self.run_baseline_models(baseline_filepath)
+        baseline_averages = utils.load_dict_from_json(baseline_filepath)
+        if not baseline_averages:
+            baseline_averages = self.run_baseline_models(baseline_filepath)
 
-        self.compute_model_mean(center_bias_average_per_image, 'center_bias')
-        self.compute_model_mean(uniform_average_per_image, 'uniform')
-        self.compute_model_mean(gold_standard_average_per_image, 'gold_standard')
+        for model in baseline_averages:
+            self.compute_model_mean(baseline_averages[model], model)
 
     def run_baseline_models(self, filepath):
-        """ Compute every metric for center bias and uniform models in the given dataset """
+        """ Compute every metric for center bias, uniform and gold standard models in the given dataset """
         dataset_path = path.join(constants.DATASETS_PATH, self.dataset_name)
         dataset_info = utils.load_dict_from_json(path.join(dataset_path, 'dataset_info.json'))
         image_size   = (dataset_info['image_height'], dataset_info['image_width'])
 
-        center_bias_model = center_bias(shape=image_size)
-        uniform_model     = uniform(shape=image_size)
-
-        center_bias_results   = {}
-        uniform_results       = {}
-        gold_standard_results = {}
+        baseline_models = {'center_bias': {'probability_map': center_bias(shape=image_size), 'results': {}}, \
+                            'uniform': {'probability_map': uniform(shape=image_size), 'results': {}},
+                            'gold_standard': {'probability_map': None, 'results': {}}}
 
         subjects_scanpaths_path  = path.join(dataset_path, dataset_info['scanpaths_dir'])
         subjects_scanpaths_files = utils.sorted_alphanumeric(listdir(subjects_scanpaths_path))
@@ -135,39 +128,31 @@ class HumanScanpathPrediction:
             subject_scanpaths = utils.load_dict_from_json(path.join(subjects_scanpaths_path, subject_scanpaths_file))
             for image_name in subject_scanpaths:
                 gold_standard_model = gold_standard(image_name, image_size, subjects_scanpaths_path, excluded_subject=subject)
+                baseline_models['gold_standard']['probability_map'] = gold_standard_model
 
                 trial_info = subject_scanpaths[image_name]
                 scanpath_x = [int(x) for x in trial_info['X']]
                 scanpath_y = [int(y) for y in trial_info['Y']]
 
-                trial_aucs_cb, trial_nss_cb, trial_igs_cb, trial_lls_cb = compute_trial_metrics(len(scanpath_x), scanpath_x, scanpath_y, \
-                    prob_maps_path=None, baseline_map=center_bias_model)
-                trial_aucs_uni, trial_nss_uni, trial_igs_uni, trial_lls_uni = compute_trial_metrics(len(scanpath_x), scanpath_x, scanpath_y, \
-                    prob_maps_path=None, baseline_map=uniform_model)
-                # In datasets where the number of subjects is low, there may be no other image scanpath to compute the gold standard with
-                if gold_standard_model is not None:
-                    trial_aucs_gs, trial_nss_gs, trial_igs_gs, trial_lls_gs = compute_trial_metrics(len(scanpath_x), scanpath_x, scanpath_y, \
-                        prob_maps_path=None, baseline_map=gold_standard_model)
+                for model in baseline_models:
+                    probability_map = baseline_models[model]['probability_map']
+                    if probability_map is not None:
+                        trial_aucs, trial_nss, trial_igs, trial_lls = compute_trial_metrics(len(scanpath_x), scanpath_x, scanpath_y, \
+                            prob_maps_path=None, baseline_map=probability_map)
+                        
+                        model_results = baseline_models[model]['results']
+                        if subject in model_results:
+                            model_results[subject][image_name] = {'AUC': np.mean(trial_aucs), 'NSS': np.mean(trial_nss), 'IG': np.mean(trial_igs), 'LL': np.mean(trial_lls)}
+                        else:
+                            model_results[subject] = {image_name: {'AUC': np.mean(trial_aucs), 'NSS': np.mean(trial_nss), 'IG': np.mean(trial_igs), 'LL': np.mean(trial_lls)}}
 
-                if subject in center_bias_results and subject in uniform_results and subject in gold_standard_results:
-                    center_bias_results[subject][image_name]   = {'AUC': np.mean(trial_aucs_cb), 'NSS': np.mean(trial_nss_cb), 'IG': np.mean(trial_igs_cb), 'LL': np.mean(trial_lls_cb)}
-                    uniform_results[subject][image_name]       = {'AUC': np.mean(trial_aucs_uni), 'NSS': np.mean(trial_nss_uni), 'IG': np.mean(trial_igs_uni), 'LL': np.mean(trial_lls_uni)}
-                    if gold_standard_model is not None:
-                        gold_standard_results[subject][image_name] = {'AUC': np.mean(trial_aucs_gs), 'NSS': np.mean(trial_nss_gs), 'IG': np.mean(trial_igs_gs), 'LL': np.mean(trial_lls_gs)}
-                else:
-                    center_bias_results[subject]   = {image_name: {'AUC': np.mean(trial_aucs_cb), 'NSS': np.mean(trial_nss_cb), 'IG': np.mean(trial_igs_cb), 'LL': np.mean(trial_lls_cb)}}
-                    uniform_results[subject]       = {image_name: {'AUC': np.mean(trial_aucs_uni), 'NSS': np.mean(trial_nss_uni), 'IG': np.mean(trial_igs_uni), 'LL': np.mean(trial_lls_uni)}}
-                    if gold_standard_model is not None:
-                        gold_standard_results[subject] = {image_name: {'AUC': np.mean(trial_aucs_gs), 'NSS': np.mean(trial_nss_gs), 'IG': np.mean(trial_igs_gs), 'LL': np.mean(trial_lls_gs)}}
+        baseline_averages = {}
+        for model in baseline_models:
+            baseline_averages[model] = self.get_average_per_image(baseline_models[model]['results'])
 
-        center_bias_average_per_image   = self.get_average_per_image(center_bias_results)
-        uniform_average_per_image       = self.get_average_per_image(uniform_results)
-        gold_standard_average_per_image = self.get_average_per_image(gold_standard_results)
+        utils.save_to_json(filepath, baseline_averages)
 
-        baseline_results = {'center_bias': center_bias_average_per_image, 'uniform': uniform_average_per_image, 'gold_standard': gold_standard_average_per_image}
-        utils.save_to_json(filepath, baseline_results)
-
-        return center_bias_average_per_image, uniform_average_per_image, gold_standard_average_per_image
+        return baseline_averages
 
     def save_results(self, save_path, filename):
         if self.null_object: return
