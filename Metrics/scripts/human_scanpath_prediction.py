@@ -261,12 +261,13 @@ def gold_standard(image_name, image_size, subjects_scanpaths_path, excluded_subj
 
     return goldstandard_model
 
-def NSS(probability_map, ground_truth_fixation_y, ground_truth_fixation_x):
+def NSS(probability_map, ground_truth_fixation_y, ground_truth_fixation_x, eps=2.2204e-20):
     """ The returned array has length equal to the number of fixations """
     mean  = np.mean(probability_map)
     std   = np.std(probability_map)
     value = np.copy(probability_map[ground_truth_fixation_y, ground_truth_fixation_x])
     value -= mean
+    value = value if eps < value else 0.0
 
     if std:
         value /= std
