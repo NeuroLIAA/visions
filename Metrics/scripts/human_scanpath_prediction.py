@@ -144,17 +144,21 @@ class HumanScanpathPrediction:
                     prob_maps_path=None, baseline_map=center_bias_model)
                 trial_aucs_uni, trial_nss_uni, trial_igs_uni, trial_lls_uni = compute_trial_metrics(len(scanpath_x), scanpath_x, scanpath_y, \
                     prob_maps_path=None, baseline_map=uniform_model)
-                trial_aucs_gs, trial_nss_gs, trial_igs_gs, trial_lls_gs = compute_trial_metrics(len(scanpath_x), scanpath_x, scanpath_y, \
-                    prob_maps_path=None, baseline_map=gold_standard_model)
+                # In datasets where the number of subjects is low, there may be no other image scanpath to compute the gold standard with
+                if gold_standard_model is not None:
+                    trial_aucs_gs, trial_nss_gs, trial_igs_gs, trial_lls_gs = compute_trial_metrics(len(scanpath_x), scanpath_x, scanpath_y, \
+                        prob_maps_path=None, baseline_map=gold_standard_model)
 
                 if subject in center_bias_results and subject in uniform_results and subject in gold_standard_results:
                     center_bias_results[subject][image_name]   = {'AUC': np.mean(trial_aucs_cb), 'NSS': np.mean(trial_nss_cb), 'IG': np.mean(trial_igs_cb), 'LL': np.mean(trial_lls_cb)}
                     uniform_results[subject][image_name]       = {'AUC': np.mean(trial_aucs_uni), 'NSS': np.mean(trial_nss_uni), 'IG': np.mean(trial_igs_uni), 'LL': np.mean(trial_lls_uni)}
-                    gold_standard_results[subject][image_name] = {'AUC': np.mean(trial_aucs_gs), 'NSS': np.mean(trial_nss_gs), 'IG': np.mean(trial_igs_gs), 'LL': np.mean(trial_lls_gs)}
+                    if gold_standard_model is not None:
+                        gold_standard_results[subject][image_name] = {'AUC': np.mean(trial_aucs_gs), 'NSS': np.mean(trial_nss_gs), 'IG': np.mean(trial_igs_gs), 'LL': np.mean(trial_lls_gs)}
                 else:
                     center_bias_results[subject]   = {image_name: {'AUC': np.mean(trial_aucs_cb), 'NSS': np.mean(trial_nss_cb), 'IG': np.mean(trial_igs_cb), 'LL': np.mean(trial_lls_cb)}}
                     uniform_results[subject]       = {image_name: {'AUC': np.mean(trial_aucs_uni), 'NSS': np.mean(trial_nss_uni), 'IG': np.mean(trial_igs_uni), 'LL': np.mean(trial_lls_uni)}}
-                    gold_standard_results[subject] = {image_name: {'AUC': np.mean(trial_aucs_gs), 'NSS': np.mean(trial_nss_gs), 'IG': np.mean(trial_igs_gs), 'LL': np.mean(trial_lls_gs)}}
+                    if gold_standard_model is not None:
+                        gold_standard_results[subject] = {image_name: {'AUC': np.mean(trial_aucs_gs), 'NSS': np.mean(trial_nss_gs), 'IG': np.mean(trial_igs_gs), 'LL': np.mean(trial_lls_gs)}}
 
         center_bias_average_per_image   = self.get_average_per_image(center_bias_results)
         uniform_average_per_image       = self.get_average_per_image(uniform_results)
@@ -250,7 +254,10 @@ def center_bias(shape):
 
 def gold_standard(image_name, image_size, subjects_scanpaths_path, excluded_subject):    
     scanpaths_X, scanpaths_Y = utils.aggregate_scanpaths(subjects_scanpaths_path, image_name, excluded_subject)
-    goldstandard_model = utils.gaussian_kde(scanpaths_X, scanpaths_Y, image_size)
+    if len(scanpaths_X) == 0:
+        goldstandard_model = None
+    else:
+        goldstandard_model = utils.gaussian_kde(scanpaths_X, scanpaths_Y, image_size)
 
     return goldstandard_model
 

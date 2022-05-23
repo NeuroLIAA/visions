@@ -240,7 +240,7 @@ def aggregate_scanpaths(subjects_scanpaths_path, image_name, excluded_subject='N
 
     return scanpaths_X, scanpaths_Y
 
-def search_bandwidth(values, shape):
+def search_bandwidth(values, shape, splits=5):
     """ Perform a grid search to look for the optimal bandwidth (i.e. the one that maximizes log-likelihood) """
     # Define search space (values estimated from previous executions)
     if np.log(shape[0] * shape[1]) < 10:
@@ -248,8 +248,9 @@ def search_bandwidth(values, shape):
     else:
         bandwidths = np.linspace(15, 70, 200)
     
+    n_splits = min(values.shape[0], splits)
     grid = GridSearchCV(KernelDensity(kernel='gaussian'),
-                        {'bandwidth': bandwidths}, n_jobs=-1)
+                        {'bandwidth': bandwidths}, n_jobs=-1, cv=n_splits)
     grid.fit(values)
 
     return grid.best_params_['bandwidth']
