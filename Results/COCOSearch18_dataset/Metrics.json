@@ -90,5 +90,23 @@
         "NSShsp": 2.493,
         "IGhsp": -1.404,
         "LLhsp": -1.546
+    },
+    "center_bias": {
+        "AUChsp": 0.716,
+        "NSShsp": 0.392,
+        "IGhsp": 0.0,
+        "LLhsp": -0.07
+    },
+    "uniform": {
+        "AUChsp": 0.5,
+        "NSShsp": -1.0,
+        "IGhsp": 0.07,
+        "LLhsp": 0.0
+    },
+    "gold_standard": {
+        "AUChsp": 0.957,
+        "NSShsp": 4.183,
+        "IGhsp": 3.174,
+        "LLhsp": 3.103
     }
 }

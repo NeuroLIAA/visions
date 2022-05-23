@@ -25,5 +25,32 @@
         "IGhsp": -4.828,
         "LLhsp": -4.899,
         "Score": -1.055
+    },
+    "center_bias": {
+        "AUCperf": 0.0,
+        "AvgMM": 0.0,
+        "AUChsp": 0.72,
+        "NSShsp": 0.767,
+        "IGhsp": 0.0,
+        "LLhsp": 0.071,
+        "Score": 0.52
+    },
+    "uniform": {
+        "AUCperf": 0.0,
+        "AvgMM": 0.0,
+        "AUChsp": 0.5,
+        "NSShsp": 0.5,
+        "IGhsp": -0.071,
+        "LLhsp": 0.0,
+        "Score": 0.31
+    },
+    "gold_standard": {
+        "AUCperf": 0.0,
+        "AvgMM": 0.0,
+        "AUChsp": 0.898,
+        "NSShsp": 2.616,
+        "IGhsp": 1.934,
+        "LLhsp": 1.952,
+        "Score": 1.85
     }
 }
