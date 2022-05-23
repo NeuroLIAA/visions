@@ -22,7 +22,6 @@ def plot_table(df, title, save_path, filename):
     table.set_fontsize(12)
     table.scale(1.5, 1.5)
 
-    fig.tight_layout()
     fig.suptitle(title)
     fig.set_size_inches(13, 5)
     plt.savefig(path.join(save_path, filename))

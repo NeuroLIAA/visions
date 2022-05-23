@@ -2,7 +2,7 @@
     "IVSN": {
         "AUCperf": 0.851,
         "AvgMM": 0.802,
-        "AUChsp": 0.605,
+        "AUChsp": 0.606,
         "NSShsp": 0.832,
         "IGhsp": -4.289,
         "LLhsp": -4.18,
@@ -10,7 +10,7 @@
     },
     "nnIBS": {
         "AUCperf": 0.867,
-        "AvgMM": 0.844,
+        "AvgMM": 0.843,
         "AUChsp": 0.739,
         "NSShsp": 1.134,
         "IGhsp": 0.434,
@@ -39,10 +39,10 @@
         "AUCperf": 0.0,
         "AvgMM": 0.0,
         "AUChsp": 0.5,
-        "NSShsp": 0.5,
+        "NSShsp": 0.0,
         "IGhsp": -0.071,
         "LLhsp": 0.0,
-        "Score": 0.31
+        "Score": 0.215
     },
     "gold_standard": {
         "AUCperf": 0.0,
