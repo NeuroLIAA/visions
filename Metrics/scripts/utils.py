@@ -41,24 +41,26 @@ def average_results(datasets_results_dict, save_path, filename):
             if not model in final_table:
                 final_table[model] = {}
                 for metric in metrics:
-                    final_table[model][metric] = 0
-                final_table[model]['Score'] = 0
+                    final_table[model][metric] = 0.0
+                final_table[model]['Score'] = 0.0
             
-            # AUCperf is expressed as 1 subtracted the absolute difference between Human and model's AUCperf, maximizing the score of those models who were closest to human subjects
-            dif_aucperf = 1 - abs(human_aucperf - dataset_res[model]['AUCperf'])
+            if 'AUCperf' in dataset_res[model]:
+                # AUCperf is expressed as 1 subtracted the absolute difference between Human and model's AUCperf, maximizing the score of those models who were closest to human subjects
+                dif_aucperf = 1 - abs(human_aucperf - dataset_res[model]['AUCperf'])
+                final_table[model]['AUCperf'] += dif_aucperf / number_of_datasets
 
-            final_table[model]['AUCperf'] += dif_aucperf / number_of_datasets
             for metric in metrics[1:]:
-                final_table[model][metric] += dataset_res[model][metric] / number_of_datasets
+                if metric in dataset_res[model]:
+                    final_table[model][metric] += dataset_res[model][metric] / number_of_datasets
     
     # Average and round values
     for model in final_table:
-        final_score = 0
+        final_score = 0.0
         number_of_metrics = 0
 
         scores = final_table[model]
         for metric in scores:
-            if scores[metric] != 0:
+            if scores[metric] != 0.0:
                 final_score       += scores[metric]
                 number_of_metrics += 1
             scores[metric] = np.round(scores[metric], 3)
