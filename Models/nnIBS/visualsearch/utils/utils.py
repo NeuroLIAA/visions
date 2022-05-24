@@ -2,7 +2,7 @@ import json
 import numpy  as np
 import pandas as pd
 from os import makedirs, path, remove, listdir
-from skimage import io, transform, img_as_ubyte
+from skimage import io, transform, img_as_ubyte, color
 
 def is_coloured(image):
     return len(image.shape) > 2
