@@ -4,7 +4,7 @@ from .scripts.multimatch import Multimatch
 from .scripts.human_scanpath_prediction import HumanScanpathPrediction
 from .scripts.cumulative_performance import CumulativePerformance
 from .scripts import utils
-from os import listdir, path
+from os import path
 
 def main(datasets, models, compute_cumulative_performance, compute_multimatch, compute_human_scanpath_prediction):
     datasets_results = {}
@@ -19,6 +19,7 @@ def main(datasets, models, compute_cumulative_performance, compute_multimatch, c
             continue
 
         max_scanpath_length = dataset_info['max_scanpath_length']
+        # If desired, this number can be less than the total and the same random subset will be used for all models
         number_of_images    = dataset_info['number_of_images']
 
         # Initialize objects
@@ -31,7 +32,7 @@ def main(datasets, models, compute_cumulative_performance, compute_multimatch, c
 
         # Compute models metrics and compare them with human subjects metrics
         color_index = 0
-        for model_name in sorted(models):
+        for model_name in models:
             if not path.isdir(path.join(dataset_results_dir, model_name)):
                 print('No results found for ' + model_name + ' in ' + dataset_name + ' dataset')
                 continue
@@ -48,6 +49,8 @@ def main(datasets, models, compute_cumulative_performance, compute_multimatch, c
             human_scanpath_prediction.compute_metrics_for_model(model_name)
 
             color_index += 1
+
+        human_scanpath_prediction.add_baseline_models()
 
         subjects_cumulative_performance.save_results(save_path=dataset_results_dir, filename=constants.FILENAME)
         multimatch.save_results(save_path=dataset_results_dir, filename=constants.FILENAME)

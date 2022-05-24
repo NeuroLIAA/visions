@@ -72,8 +72,8 @@ class Multimatch:
             y_vector.append(value_y)
 
         # Set same scale for every dataset
-        ax.set_ylim(0.65, 1.0)
-        ax.set_xlim(0.65, 1.0)
+        ax.set_ylim(0.55, 1.0)
+        ax.set_xlim(0.55, 1.0)
         # Plot multimatch
         ax.scatter(x_vector, y_vector, color=plot_color, alpha=0.5)
 
@@ -105,7 +105,10 @@ class Multimatch:
             hmetrics = {'AvgMM': hmm_avg, 'MMvec': humans_mm[0], 'MMdir': humans_mm[1], 'MMlen': humans_mm[2], 'MMpos': humans_mm[3]}
 
             utils.update_dict(dataset_metrics, model, metrics)
-            utils.update_dict(dataset_metrics, 'Humans', hmetrics)
+            
+            if model == 'IVSN':
+                # Use IVSN's computation of Humans Multi-Match for it does not rescale
+                utils.update_dict(dataset_metrics, 'Humans', hmetrics)
         
         utils.save_to_json(dataset_metrics_file, dataset_metrics)
     

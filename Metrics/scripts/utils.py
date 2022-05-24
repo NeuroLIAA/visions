@@ -1,10 +1,13 @@
 import json
 import random
 import re
+import pickle
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from os import listdir, path, scandir
+from os import listdir, path, scandir, makedirs
+from sklearn.neighbors import KernelDensity
+from sklearn.model_selection import GridSearchCV
 from .. import constants
 
 def plot_table(df, title, save_path, filename):
@@ -19,14 +22,14 @@ def plot_table(df, title, save_path, filename):
     table.set_fontsize(12)
     table.scale(1.5, 1.5)
 
-    fig.tight_layout()
     fig.suptitle(title)
-    fig.set_size_inches(10.5, 5)
+    fig.set_size_inches(13, 5)
     plt.savefig(path.join(save_path, filename))
     plt.show()
 
 def average_results(datasets_results_dict, save_path, filename):
     final_table = {}
+    metrics = ['AUCperf', 'AvgMM', 'AUChsp', 'NSShsp', 'IGhsp', 'LLhsp']
     number_of_datasets = len(datasets_results_dict)
     for dataset in datasets_results_dict:
         dataset_res   = datasets_results_dict[dataset]
@@ -35,24 +38,28 @@ def average_results(datasets_results_dict, save_path, filename):
         for model in dataset_res:
             if model == 'Humans': continue
             if not model in final_table:
-                final_table[model] = {'AUCperf': 0, 'AvgMM': 0, 'AUChsp': 0, 'NSShsp': 0, 'Score': 0}
+                final_table[model] = {}
+                for metric in metrics:
+                    final_table[model][metric] = 0.0
+                final_table[model]['Score'] = 0.0
             
-            # AUCperf is expressed as 1 subtracted the absolute difference between Human and model's AUCperf, maximizing the score of those models who were closest to human subjects
-            dif_aucperf = 1 - abs(human_aucperf - dataset_res[model]['AUCperf'])
+            if 'AUCperf' in dataset_res[model]:
+                # AUCperf is expressed as 1 subtracted the absolute difference between Human and model's AUCperf, maximizing the score of those models who were closest to human subjects
+                dif_aucperf = 1 - abs(human_aucperf - dataset_res[model]['AUCperf'])
+                final_table[model]['AUCperf'] += dif_aucperf / number_of_datasets
 
-            final_table[model]['AUCperf'] += dif_aucperf / number_of_datasets
-            final_table[model]['AvgMM']   += dataset_res[model]['AvgMM'] / number_of_datasets
-            final_table[model]['AUChsp']  += dataset_res[model]['AUChsp'] / number_of_datasets
-            final_table[model]['NSShsp']  += dataset_res[model]['NSShsp'] / number_of_datasets
+            for metric in metrics[1:]:
+                if metric in dataset_res[model]:
+                    final_table[model][metric] += dataset_res[model][metric] / number_of_datasets
     
     # Average and round values
     for model in final_table:
-        final_score = 0
+        final_score = 0.0
         number_of_metrics = 0
 
         scores = final_table[model]
         for metric in scores:
-            if scores[metric] != 0:
+            if scores[metric] != 0.0:
                 final_score       += scores[metric]
                 number_of_metrics += 1
             scores[metric] = np.round(scores[metric], 3)
@@ -65,6 +72,11 @@ def average_results(datasets_results_dict, save_path, filename):
 
 def create_df(dict_):
     return pd.DataFrame.from_dict(dict_)
+
+def create_dirs(filepath):
+    dir_ = path.dirname(filepath)
+    if len(dir_) > 0 and not path.exists(dir_):
+        makedirs(dir_)  
 
 def dir_is_too_heavy(path):
     nmbytes = sum(d.stat().st_size for d in scandir(path) if d.is_file()) / 2**20
@@ -114,6 +126,10 @@ def update_dict(dic, key, data):
     else:
         dic[key] = data
 
+def load_pickle(pickle_filepath):
+    with open(pickle_filepath, 'rb') as fp:
+        return pickle.load(fp)  
+
 def load_dict_from_json(json_file_path):
     if not path.exists(json_file_path):
         return {}
@@ -121,11 +137,21 @@ def load_dict_from_json(json_file_path):
         with open(json_file_path, 'r') as json_file:
             return json.load(json_file)
 
-def save_to_json(file, data):
-    with open(file, 'w') as json_file:
+def save_to_pickle(data, filepath):
+    create_dirs(filepath)
+
+    with open(filepath, 'wb') as fp:
+        pickle.dump(data, fp)
+
+def save_to_json(filepath, data):
+    create_dirs(filepath)
+
+    with open(filepath, 'w') as json_file:
         json.dump(data, json_file, indent=4)
 
 def save_to_csv(data, filepath):
+    create_dirs(filepath)
+
     df = pd.DataFrame(data)
     df.to_csv(filepath, index=False)
 
@@ -195,3 +221,58 @@ def collapse_fixations(scanpath_x, scanpath_y, receptive_size):
             index += 1
 
     return collapsed_scanpath_x, collapsed_scanpath_y
+
+def aggregate_scanpaths(subjects_scanpaths_path, image_name, excluded_subject='None'):
+    subjects_scanpaths_files = sorted_alphanumeric(listdir(subjects_scanpaths_path))
+
+    scanpaths_X = []
+    scanpaths_Y = []
+    for subject_file in subjects_scanpaths_files:
+        if excluded_subject in subject_file:
+            continue
+        subject_scanpaths = load_dict_from_json(path.join(subjects_scanpaths_path, subject_file))
+        if image_name in subject_scanpaths:
+            trial = subject_scanpaths[image_name]
+            scanpaths_X += trial['X']
+            scanpaths_Y += trial['Y']
+
+    scanpaths_X = np.array(scanpaths_X)
+    scanpaths_Y = np.array(scanpaths_Y)
+
+    return scanpaths_X, scanpaths_Y
+
+def search_bandwidth(values, shape, splits=5):
+    """ Perform a grid search to look for the optimal bandwidth (i.e. the one that maximizes log-likelihood) """
+    # Define search space (values estimated from previous executions)
+    if np.log(shape[0] * shape[1]) < 10:
+        bandwidths = 10 ** np.linspace(-1, 1, 100)
+    else:
+        bandwidths = np.linspace(15, 70, 200)
+    
+    n_splits = min(values.shape[0], splits)
+    grid = GridSearchCV(KernelDensity(kernel='gaussian'),
+                        {'bandwidth': bandwidths}, n_jobs=-1, cv=n_splits)
+    grid.fit(values)
+
+    return grid.best_params_['bandwidth']
+
+def load_center_bias_fixations(model_size):
+    center_bias_fixs = load_dict_from_json(constants.CENTER_BIAS_FIXATIONS)
+
+    scanpaths_X = np.array([rescale_coordinate(x, constants.CENTER_BIAS_SIZE[1], model_size[1]) for x in center_bias_fixs['X']])
+    scanpaths_Y = np.array([rescale_coordinate(y, constants.CENTER_BIAS_SIZE[0], model_size[0]) for y in center_bias_fixs['Y']])
+
+    return scanpaths_X, scanpaths_Y
+
+def gaussian_kde(scanpaths_X, scanpaths_Y, shape, bandwidth=None):
+    values = np.vstack([scanpaths_Y, scanpaths_X]).T
+
+    if bandwidth is None:
+        bandwidth = search_bandwidth(values, shape)
+
+    X, Y = np.mgrid[0:shape[0], 0:shape[1]] + 0.5
+    positions = np.vstack([X.ravel(), Y.ravel()]).T
+    gkde   = KernelDensity(kernel='gaussian', bandwidth=bandwidth).fit(values)
+    scores = np.exp(gkde.score_samples(positions))
+
+    return scores.reshape(shape)
