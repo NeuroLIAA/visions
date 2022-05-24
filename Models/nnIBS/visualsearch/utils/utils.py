@@ -8,7 +8,7 @@ def is_coloured(image):
     return len(image.shape) > 2
 
 def to_grayscale(image):
-    return color.rgb2gray(image)
+    return img_as_ubyte(color.rgb2gray(image))
 
 def load_data_from_checkpoint(output_path):
     checkpoint_file = path.join(output_path, 'checkpoint.json')
