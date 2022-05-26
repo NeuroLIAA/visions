@@ -63,12 +63,10 @@ def main(datasets, models, compute_cumulative_performance, compute_multimatch, c
         multimatch.plot(save_path=dataset_results_dir)
 
         dataset_results_table = utils.create_table(dataset_results)
-        dataset_results_table.to_csv(dataset_name + '.csv', index=False)
         utils.plot_table(dataset_results_table, title=dataset_name + ' dataset', save_path=dataset_results_dir, filename='Table.png')
 
     if compute_cumulative_performance and compute_multimatch and compute_human_scanpath_prediction:
         final_table = utils.average_results(datasets_results, save_path=constants.RESULTS_PATH, filename='Scores.json')
-        final_table.to_csv('Ranking.csv', index=False)
         utils.plot_table(final_table, title='Ranking', save_path=constants.RESULTS_PATH, filename='Ranking.png')
 
 if __name__ == "__main__":
