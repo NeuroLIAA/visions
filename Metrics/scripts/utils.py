@@ -23,52 +23,68 @@ def plot_table(df, title, save_path, filename):
     table.scale(1.5, 1.5)
 
     fig.suptitle(title)
-    fig.set_size_inches(13, 5)
+    fig.set_size_inches(14, 5)
     plt.savefig(path.join(save_path, filename))
     plt.show()
 
 def average_results(datasets_results_dict, save_path, filename):
-    final_table = {}
-    metrics = ['AUCperf', 'AvgMM', 'AUChsp', 'NSShsp', 'IGhsp', 'LLhsp']
+    results_average = {}
+    metrics = ['AUCperf', 'Corr', 'AvgMM', 'AUChsp', 'NSShsp', 'IGhsp', 'LLhsp']
     number_of_datasets = len(datasets_results_dict)
     for dataset in datasets_results_dict:
         dataset_res   = datasets_results_dict[dataset]
-        human_aucperf = dataset_res['Humans']['AUCperf']
 
         for model in dataset_res:
-            if model == 'Humans': continue
-            if not model in final_table:
-                final_table[model] = {}
-                for metric in metrics:
-                    final_table[model][metric] = 0.0
-                final_table[model]['Score'] = 0.0
-            
-            if 'AUCperf' in dataset_res[model]:
-                # AUCperf is expressed as 1 subtracted the absolute difference between Human and model's AUCperf, maximizing the score of those models who were closest to human subjects
-                dif_aucperf = 1 - abs(human_aucperf - dataset_res[model]['AUCperf'])
-                final_table[model]['AUCperf'] += dif_aucperf / number_of_datasets
+            if not model in results_average:
+                results_average[model] = {}
 
-            for metric in metrics[1:]:
+            for metric in metrics:
                 if metric in dataset_res[model]:
-                    final_table[model][metric] += dataset_res[model][metric] / number_of_datasets
+                    if metric in results_average[model]:
+                        results_average[model][metric] += dataset_res[model][metric] / number_of_datasets
+                    else:
+                        results_average[model][metric] = dataset_res[model][metric] / number_of_datasets
     
-    # Average and round values
-    for model in final_table:
-        final_score = 0.0
+    final_table = create_table(results_average)
+    save_to_json(path.join(save_path, filename), results_average)
+
+    return final_table
+
+def create_table(results_dict):
+    add_score(results_dict)
+    table = create_df(results_dict).T
+    # Move Score to the last position
+    table = table[[metric for metric in table if metric != 'Score'] + ['Score']]
+
+    return table.sort_values(by=['Score'], ascending=False)
+
+def add_score(results_dict):
+    # For each metric, different models are used as reference values
+    reference_models = {'AUCperf': 'Humans', 'AvgMM': 'Humans', \
+        'AUChsp': 'gold_standard', 'NSShsp': 'gold_standard', 'IGhsp': 'gold_standard', 'LLhsp': 'gold_standard'}
+
+    # Only the average across dimensions is used for computing the score
+    excluded_metrics = ['MMvec', 'MMdir', 'MMpos', 'MMlen']
+    
+    for model in results_dict:
+        score = 0.0
         number_of_metrics = 0
 
-        scores = final_table[model]
-        for metric in scores:
-            if scores[metric] != 0.0:
-                final_score       += scores[metric]
-                number_of_metrics += 1
-            scores[metric] = np.round(scores[metric], 3)
-        final_table[model]['Score'] = np.round(final_score / number_of_metrics, 3)
-
-    save_to_json(path.join(save_path, filename), final_table)
-    final_table = create_df(final_table).T
-
-    return final_table.sort_values(by=['Score'], ascending=False)
+        metrics_values = results_dict[model]
+        valid_metrics  = [metric_name for metric_name in metrics_values if metric_name not in excluded_metrics]
+        for metric in valid_metrics:
+            if not metric in reference_models:
+                score += metrics_values[metric]
+            else:    
+                reference_value = results_dict[reference_models[metric]][metric]
+                if metric == 'AUCperf':
+                    # AUCperf is expressed as 1 subtracted the absolute difference between Human and model's AUCperf, maximizing the score of those models who were closest to human subjects
+                    score += 1 - abs(reference_value - metrics_values[metric])
+                else:
+                    score += (metrics_values[metric] - reference_value) / reference_value
+            metrics_values[metric] = np.round(metrics_values[metric], 3)
+            number_of_metrics += 1
+        results_dict[model]['Score'] = np.round(score / number_of_metrics, 3)
 
 def create_df(dict_):
     return pd.DataFrame.from_dict(dict_)

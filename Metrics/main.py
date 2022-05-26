@@ -57,13 +57,13 @@ def main(datasets, models, compute_cumulative_performance, compute_multimatch, c
         human_scanpath_prediction.save_results(save_path=dataset_results_dir, filename=constants.FILENAME)
 
         dataset_results = utils.load_dict_from_json(path.join(dataset_results_dir, constants.FILENAME))
-        results_table   = utils.create_df(dataset_results).T
         datasets_results[dataset_name] = dataset_results
 
         subjects_cumulative_performance.plot(save_path=dataset_results_dir)
         multimatch.plot(save_path=dataset_results_dir)
 
-        utils.plot_table(results_table, title=dataset_name + ' dataset', save_path=dataset_results_dir, filename='Table.png')
+        dataset_results_table = utils.create_table(dataset_results)
+        utils.plot_table(dataset_results_table, title=dataset_name + ' dataset', save_path=dataset_results_dir, filename='Table.png')
 
     if compute_cumulative_performance and compute_multimatch and compute_human_scanpath_prediction:
         final_table = utils.average_results(datasets_results, save_path=constants.RESULTS_PATH, filename='Scores.json')
