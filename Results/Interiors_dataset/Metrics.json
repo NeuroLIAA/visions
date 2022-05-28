@@ -21,6 +21,7 @@
     },
     "cIBS": {
         "AUCperf": 0.521,
+        "Corr": 0.25471658319949203,
         "AvgMM": 0.839,
         "MMvec": [
             0.909,
@@ -37,10 +38,15 @@
         "MMpos": [
             0.835,
             0.038
-        ]
+        ],
+        "AUChsp": 0.695,
+        "NSShsp": 0.942,
+        "IGhsp": 0.876,
+        "LLhsp": 0.185
     },
     "sIBS": {
         "AUCperf": 0.56,
+        "Corr": 0.11184400225393286,
         "AvgMM": 0.836,
         "MMvec": [
             0.905,
@@ -57,10 +63,15 @@
         "MMpos": [
             0.832,
             0.038
-        ]
+        ],
+        "AUChsp": 0.687,
+        "NSShsp": 0.927,
+        "IGhsp": 0.866,
+        "LLhsp": 0.176
     },
     "nnIBS": {
         "AUCperf": 0.534,
+        "Corr": 0.28549399888118,
         "AvgMM": 0.84,
         "MMvec": [
             0.91,
@@ -77,6 +88,28 @@
         "MMpos": [
             0.836,
             0.038
-        ]
+        ],
+        "AUChsp": 0.697,
+        "NSShsp": 0.943,
+        "IGhsp": 0.922,
+        "LLhsp": 0.232
+    },
+    "center_bias": {
+        "AUChsp": 0.665,
+        "NSShsp": 0.55,
+        "IGhsp": 0.0,
+        "LLhsp": -0.407
+    },
+    "uniform": {
+        "AUChsp": 0.5,
+        "NSShsp": 0.0,
+        "IGhsp": 0.407,
+        "LLhsp": 0.0
+    },
+    "gold_standard": {
+        "AUChsp": 0.86,
+        "NSShsp": 1.824,
+        "IGhsp": 1.834,
+        "LLhsp": 1.427
     }
 }

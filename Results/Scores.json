@@ -1,0 +1,58 @@
+{
+    "Humans": {
+        "AUCperf": 0.559,
+        "AvgMM": 0.87,
+        "Score": 0.5
+    },
+    "cIBS": {
+        "AUCperf": 0.5,
+        "Corr": 0.184,
+        "AvgMM": 0.847,
+        "AUChsp": 0.749,
+        "NSShsp": 1.259,
+        "IGhsp": 0.314,
+        "LLhsp": 0.229,
+        "Score": -0.186
+    },
+    "sIBS": {
+        "AUCperf": 0.534,
+        "Corr": 0.128,
+        "AvgMM": 0.843,
+        "AUChsp": 0.74,
+        "NSShsp": 1.248,
+        "IGhsp": 0.312,
+        "LLhsp": 0.228,
+        "Score": -0.193
+    },
+    "nnIBS": {
+        "AUCperf": 0.548,
+        "Corr": 0.147,
+        "AvgMM": 0.843,
+        "AUChsp": 0.739,
+        "NSShsp": 1.267,
+        "IGhsp": 0.438,
+        "LLhsp": 0.354,
+        "Score": -0.168
+    },
+    "center_bias": {
+        "AUChsp": 0.72,
+        "NSShsp": 0.767,
+        "IGhsp": 0.0,
+        "LLhsp": 0.071,
+        "Score": -0.717
+    },
+    "uniform": {
+        "AUChsp": 0.5,
+        "NSShsp": 0.0,
+        "IGhsp": -0.071,
+        "LLhsp": 0.0,
+        "Score": -0.87
+    },
+    "gold_standard": {
+        "AUChsp": 0.898,
+        "NSShsp": 2.616,
+        "IGhsp": 1.934,
+        "LLhsp": 1.952,
+        "Score": 0.0
+    }
+}
