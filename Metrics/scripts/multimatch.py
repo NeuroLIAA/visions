@@ -105,9 +105,8 @@ class Multimatch:
 
             utils.update_dict(dataset_metrics, model, metrics)
             
-            if model == 'IVSN':
-                # Use IVSN's computation of Humans Multi-Match for it does not rescale
-                utils.update_dict(dataset_metrics, 'Humans', hmetrics)
+            # Subjects' score is computed in grid size
+            utils.update_dict(dataset_metrics, 'Humans', hmetrics)
         
         utils.save_to_json(dataset_metrics_file, dataset_metrics)
     
