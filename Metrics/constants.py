@@ -15,5 +15,5 @@ CENTER_BIAS_FIXATIONS = path.join(CENTER_BIAS_PATH, 'cat2000_fixations.json')
 CENTER_BIAS_SIZE      = (1080, 1920)
 
 # To ensure models have the same color in the plots across all datasets
-MODELS_COLORS = ['#2ca02c', '#ff7f0e', '#d62728']
+MODELS_COLORS = ['#ee82ee', '#ff7f0e', '#aaa662']
 HUMANS_COLOR  = '#1f77b4'
