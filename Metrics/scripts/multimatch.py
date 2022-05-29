@@ -72,8 +72,8 @@ class Multimatch:
             y_vector.append(value_y)
 
         # Set same scale for every dataset
-        ax.set_ylim(0.55, 1.0)
-        ax.set_xlim(0.55, 1.0)
+        ax.set_ylim(0.65, 1.0)
+        ax.set_xlim(0.65, 1.0)
         # Plot multimatch
         ax.scatter(x_vector, y_vector, color=plot_color, alpha=0.5)
 
