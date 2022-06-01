@@ -3,11 +3,11 @@ import shutil
 import constants
 
 def delete_precomputed_results(dataset_name, model_name):
-    model_results = path.join(path.join(constants.RESULTS_PATH, dataset_name + '_dataset'), model_name)
+    model_results = path.join(constants.RESULTS_PATH, dataset_name + '_dataset', model_name)
     shutil.rmtree(model_results)
 
 def found_precomputed_results(dataset_name, model_name):
-    results_file = path.join(path.join(path.join(constants.RESULTS_PATH, dataset_name + '_dataset'), model_name), 'Scanpaths.json')
+    results_file = path.join(constants.RESULTS_PATH, dataset_name + '_dataset', model_name, 'Scanpaths.json')
     return path.exists(results_file)
 
 def get_dirs(path_):
