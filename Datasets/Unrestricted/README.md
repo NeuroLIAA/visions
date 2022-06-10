@@ -6,3 +6,6 @@ The official repository can be found [here](https://github.com/kreimanlab/Visual
 
 ## License
 Kreiman's lab license agreement can be found [here](http://klab.tch.harvard.edu/code/license_agreement.pdf)
+
+## Raw data
+To run the processing scripts on the unmodified data, download the file *naturaldesign_seq.mat* and the folder *ProcessScanpath_naturaldesign* from the official repository and place it in the folder ```data_raw```.
