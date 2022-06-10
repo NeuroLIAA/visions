@@ -1,5 +1,5 @@
 # Interiors Dataset
 
-Preprocessed dataset which belongs to the paper *[Sclar, Melanie and Bujia, Gastón and Vita, Sebastián and Solovey, Guillermo and Kamienkowski, Juan Esteban, Modeling human visual search: A combined Bayesian searcher and saliency map approach for eye movement guidance in natural scenes, arXiv preprint arXiv:2009.08373, 2020](https://arxiv.org/pdf/2009.08373.pdf)*.
+Preprocessed dataset which belongs to the paper *[Bujia Gaston, Sclar Melanie, Vita Sebastian, Solovey Guillermo, Kamienkowski Juan Esteban, Modeling Human Visual Search in Natural Scenes: A Combined Bayesian Searcher and Saliency Map Approach, Frontiers in Systems Neuroscience, 16, 2022](https://www.frontiersin.org/articles/10.3389/fnsys.2022.882315/full)*.
 
 Official repository for this project can be found [here](https://github.com/gastonbujia/VisualSearch).
