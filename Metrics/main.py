@@ -37,7 +37,7 @@ def main(datasets, models, compute_cumulative_performance, compute_multimatch, c
                 print('No results found for ' + model_name + ' in ' + dataset_name + ' dataset')
                 continue
 
-            model_scanpaths_file = path.join(path.join(dataset_results_dir, model_name), 'Scanpaths.json')
+            model_scanpaths_file = path.join(dataset_results_dir, model_name, 'Scanpaths.json')
             model_scanpaths      = utils.load_dict_from_json(model_scanpaths_file)
 
             subjects_cumulative_performance.add_model(model_name, model_scanpaths, constants.MODELS_COLORS[color_index])

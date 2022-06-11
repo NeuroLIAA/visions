@@ -1,14 +1,20 @@
-# Visual Search in natural scenes Benchmark
+# ViSioNS: Visual Search in Natural Scenes Benchmark
 
 ## Ranking
 Current models scores, relative to human subjects, averaged across all datasets:
-|       | AUCperf | AvgMM | AUChsp | NSShsp | Score |
-| ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
-| **nnIBS**   | **0.867**       | **0.843** | **0.737** | **1.12** | **0.892** |
-| **IRL**     | 0.836       | 0.798 | 0.644 | 1.102 | 0.845 |
-| **IVSN**    | 0.851        | 0.802 | 0.606 | 0.835 | 0.774 |
+|       | AUC*perf* | AvgMM | Corr | AUC*hsp* | NSS*hsp* | IG*hsp* | LL*hsp* | Score |
+| ----------- | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: |
+| Humans | 0.56 | 0.87 | - | - | - | - | - | - | - |
+| Gold Standard | - | - | - | 0.90 | 2.65 | 1.93 | 1.95 | 0.00 |
+| **nnIBS**   | **0.55**       | 0.84 | 0.15 | 0.74 | **1.27** | **0.44** | **0.35** | -0.17 |
+| cIBS   | 0.51        | **0.85** | **0.17** | **0.75** | 1.26 | 0.31 | 0.23 | -0.19 |
+| sIBS   | 0.54        | 0.84 | 0.13 | 0.74 | 1.25 | 0.31 | 0.23 | -0.19 |
+| Center bias | - | - | - | 0.72 | 0.89 | 0.00 | 0.07 | -0.70 |
+| Uniform | - | - | - | 0.50 | 0.00 | -0.07 | 0.00 | -0.87 |
+| IVSN    | 0.67        | 0.80 | 0.09 | 0.61 | 1.07 | -4.29 | -4.18 | -0.91 |
+| IRL     | 0.40       | 0.80 | 0.04 | 0.65 | 1.24 | -4.83 | -4.90 | -1.00 |
 
-```AUCperf``` measures efficiency, while ```AvgMM```, ```AUChsp``` and ```NSShsp``` focus on scanpath similarity and prediction, respectively. The precise definition of each one can be found at [```Metrics```](./Metrics). The scores for each independent dataset can be found at its corresponding directory in [```Results```](./Results) (see ```Table.png```).
+```AUCperf``` measures efficiency, while ```AvgMM``` is the Multi-Match average between models and subjects. ```Corr``` is the correlation between within-humans Multi-Match (whMM) and human-model Multi-Match (hmMM). Lastly, ```AUChsp```, ```NSShsp```, ```IGhsp``` and ```LLhsp``` focus on human scanpath prediction (HSP). The precise definition of each one can be found at [```Metrics```](./Metrics). The scores for each independent dataset can be found at its corresponding directory in [```Results```](./Results) (see ```Table.png```).
 
 ## Installation
 Python 3.8 or newer is required. To install, run:
@@ -48,13 +54,15 @@ url={https://openreview.net/forum?id=ng262VIrK08}
 }
 ```
 ```
-@inproceedings{
-sclar2020modeling,
-title={Modeling human visual search: A combined Bayesian searcher and saliency map approach for eye movement guidance in natural scenes},
-author={Melanie Sclar and Gaston Bujia and Sebastian Vita and Guillermo Solovey and Juan Esteban Kamienkowski},
-booktitle={NeurIPS 2020 Workshop SVRHM},
-year={2020},
-url={https://openreview.net/forum?id=e35q2TmbZbw}
+@article{Bujia2022vsearch,
+author = {Bujia, Gaston and Sclar, Melanie and Vita, Sebastian and Solovey, Guillermo and Kamienkowski, Juan Esteban},
+doi = {10.3389/fnsys.2022.882315},
+issn = {1662-5137},
+journal = {Frontiers in Systems Neuroscience},
+title = {{Modeling Human Visual Search in Natural Scenes: A Combined Bayesian Searcher and Saliency Map Approach}},
+url = {https://www.frontiersin.org/article/10.3389/fnsys.2022.882315},
+volume = {16},
+year = {2022}
 }
 ```
 
