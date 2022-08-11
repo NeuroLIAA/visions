@@ -140,7 +140,7 @@ class BayesianModel:
         if not visibility_at_target_location:
             min_w = -20
         else:
-            min_w = max(np.max((-20 - b[m > 0]) / m[m > 0]), -20)
+            min_w = max(np.nanmax((-20 - b[m > 0]) / m[m > 0]), -20)
         
         max_w = 20
 
