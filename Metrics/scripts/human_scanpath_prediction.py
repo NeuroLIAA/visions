@@ -184,14 +184,25 @@ def save_scanpath_prediction_metrics(subject_scanpath, image_name, output_path):
 
     subject   = path.basename(output_path)
     file_path = path.join(output_path, pardir, subject + '_results.json')
+    file_path_fixations = file_path[:-5]+'_fixations.json'
     if path.exists(file_path):
         model_subject_metrics = utils.load_dict_from_json(file_path)
+        model_subject_metrics_fixations = utils.load_dict_from_json(file_path_fixations)
     else:
         model_subject_metrics = {}
+        model_subject_metrics_fixations = {}
     
     model_subject_metrics[image_name] = {'AUC': np.mean(trial_aucs), 'NSS': np.mean(trial_nss), 'IG': np.mean(trial_igs), 'LL': np.mean(trial_lls)}  
     utils.save_to_json(file_path, model_subject_metrics)
+    # sin el promedio 
 
+    model_subject_metrics_fixations[image_name] = {'AUC': dict(zip(range(1,len(trial_aucs)+1), trial_aucs)),
+                                                   'NSS': dict(zip(range(1,len(trial_nss)+1), trial_nss)),
+                                                   'IG' : dict(zip(range(1,len(trial_igs)+1), trial_igs)),
+                                                   'LL' : dict(zip(range(1,len(trial_lls)+1), trial_lls))
+                                                   }  
+    utils.save_to_json(file_path_fixations, model_subject_metrics_fixations)
+    
     # Clean up probability maps if their size is too big
     if utils.dir_is_too_heavy(probability_maps_path):
         shutil.rmtree(probability_maps_path)
@@ -256,8 +267,8 @@ def NSS(probability_map, ground_truth_fixation_y, ground_truth_fixation_x, eps=2
 
     if std:
         value /= std
-
-    return value
+    
+    return float(value)
 
 def infogain(s_map, baseline_map, ground_truth_fixation_y, ground_truth_fixation_x):
     eps = 2.2204e-16
