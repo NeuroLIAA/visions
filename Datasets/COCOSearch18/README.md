@@ -9,3 +9,6 @@ Images had to be uploaded to an external server due to their size. The already-p
 
 ## Raw data
 To run the processing scripts on the unmodified data, download the file *coco_search18_fixations_TP_test.json* from the official website and place it in the folder ```data_raw```.
+
+## License
+CVLab's license agreement can be found [here](https://sites.google.com/view/cocosearch/)
