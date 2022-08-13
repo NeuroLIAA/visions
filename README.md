@@ -1,4 +1,5 @@
 # ViSioNS: Visual Search in Natural Scenes Benchmark
+Code repository that belongs to the paper [ViSioNS: Visual Search in Natural Scenes Benchmark](https://openreview.net/forum?id=wPEXGTzZJt), currently under review.
 
 ## Ranking
 Current models scores, relative to human subjects, averaged across all datasets:
@@ -65,5 +66,3 @@ volume = {16},
 year = {2022}
 }
 ```
-
-The exact materials used for the paper can be found at the [SVRHM branch](https://github.com/FerminT/VisualSearchBenchmark/tree/SVRHM).

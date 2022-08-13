@@ -6,3 +6,6 @@ Official website can be found [here](https://sites.google.com/view/mcs-dataset/h
 
 ## Raw data
 To run the processing scripts on the unmodified data, download the folder *gaze* from the official website and place it in the folder ```data_raw```.
+
+## License
+CVLab's license agreement can be found [here](https://sites.google.com/view/mcs-dataset/home)
