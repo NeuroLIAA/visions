@@ -108,11 +108,11 @@ def is_contained_in(json_file_1, json_file_2):
 
     return all(image_name in list(dict_2.keys()) for image_name in list(dict_1.keys()))
 
-def list_json_files(path):
+def list_json_files(path, prefix=''):
     files = listdir(path)
     json_files = []
     for file in files:
-        if file.endswith('.json'):
+        if file.endswith(prefix + '.json'):
             json_files.append(file)
     
     return json_files

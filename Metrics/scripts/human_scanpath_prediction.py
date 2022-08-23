@@ -69,7 +69,7 @@ class HumanScanpathPrediction:
 
     def get_model_average_per_image(self, model_output_path):
         subjects_results_path  = path.join(model_output_path, 'subjects_predictions')
-        subjects_results_files = utils.list_json_files(subjects_results_path)
+        subjects_results_files = utils.list_json_files(subjects_results_path, prefix='_results')
 
         average_per_image = self.get_average_per_image(subjects_results_files, load_from_file=True, filespath=subjects_results_path)
 
