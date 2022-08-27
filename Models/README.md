@@ -1,5 +1,7 @@
 # Models
 Human visual search computational models to be tested. New models can be added by following the specifications described below.
+## Methodology
+For each trial, visual search is carried out until one of these two conditions is met: a) a fixation lands on the target's bounding box, or b) an upper saccade limit is reached.
 ## Input
 Visual search models contain a *main.py* script in their root directory. This script, in turn, includes a method named ```main(dataset_name[, human_subject_id])```. The parameters are as follows:
 * *dataset_name:* Name of the dataset on which to perform visual search. Its directory can be found under ```Datasets/dataset_name```, where two main files reside: ```dataset_info.json``` (dataset's metadata) and ```trials_properties.json``` (metadata of each trial, such as the search image file, target template and bounding box, etc.). The specifications of these files can be found in [```Datasets```](../Datasets).
