@@ -10,7 +10,7 @@ Visual search models contain a *main.py* script in their root directory. This sc
 Visual search models loop through ```Datasets/dataset_name/trials_properties.json```, performing visual search on each of the dataset's images, and store the results as described below.
 
 ## Output
-Results of the visual search are stored in [```Results```](../Results), under the folder ```dataset_name/model_name``` in a file named ```Scanpaths.json```. The file's structure is as follows:
+Results of the visual search are stored in [```Results```](../Results), under the folder ```dataset_name/model_name``` in a file named ```Scanpaths.json```. The structure of the file is as follows:
 ```json
     {
     "image_name":{
