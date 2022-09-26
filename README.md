@@ -45,6 +45,17 @@ python3 run_benchmark.py --d COCOSearch18 Interiors --m nnIBS --mts mm perf
 If you use our work, please cite us:
 ```
 @inproceedings{
+  travi2022visions,
+  title={ViSio{NS}: Visual Search in Natural Scenes Benchmark},
+  author={Ferm{\'\i}n Travi and Gonzalo Ruarte and Gaston Bujia and Juan E Kamienkowski},
+  booktitle={Thirty-sixth Conference on Neural Information Processing Systems Datasets and Benchmarks Track},
+  year={2022},
+  pages={},
+  url={https://openreview.net/forum?id=wPEXGTzZJt}
+}
+```
+```
+@inproceedings{
 travi2021benchmarking,
 title={Benchmarking human visual search computational models in natural scenes: models comparison and reference datasets},
 author={Ferm{\'\i}n Travi and Gonzalo Ruarte and Gaston Bujia and Juan E Kamienkowski},
@@ -66,4 +77,4 @@ year = {2022}
 }
 ```
 
-The exact materials used for the paper can be found at the [SVRHM branch](https://github.com/FerminT/VisualSearchBenchmark/tree/SVRHM).
+The exact materials used for the paper can be found at the [1. NeurIPS 2022 branch](https://github.com/FerminT/VisualSearchBenchmark/tree/NeurIPS), [2. SVRHM 2021 branch](https://github.com/FerminT/VisualSearchBenchmark/tree/SVRHM), [3. Frontiers in Systems Neuroscience repository](https://github.com/gastonbujia/VisualSearch). 
