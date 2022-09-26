@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-import torchvision.models as models
+from torchvision.models import vgg16, VGG16_Weights
 import numpy as np
 from .target_similarity import TargetSimilarity
 from torchvision import transforms
@@ -20,7 +20,7 @@ class Ivsn(TargetSimilarity):
         image_blocks = self.divide_into_blocks(image, (block_height, block_width))
 
         # Load the model
-        model = models.vgg16(pretrained=True)
+        model = vgg16(weights=VGG16_Weights.IMAGENET1K_V1)
 
         conv_size = 1
         num_layers = 31
