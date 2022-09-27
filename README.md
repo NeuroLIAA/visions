@@ -55,16 +55,6 @@ If you use our work, please cite us:
 }
 ```
 ```
-@inproceedings{
-travi2021benchmarking,
-title={Benchmarking human visual search computational models in natural scenes: models comparison and reference datasets},
-author={Ferm{\'\i}n Travi and Gonzalo Ruarte and Gaston Bujia and Juan E Kamienkowski},
-booktitle={SVRHM 2021 Workshop @ NeurIPS },
-year={2021},
-url={https://openreview.net/forum?id=ng262VIrK08}
-}
-```
-```
 @article{Bujia2022vsearch,
 author = {Bujia, Gaston and Sclar, Melanie and Vita, Sebastian and Solovey, Guillermo and Kamienkowski, Juan Esteban},
 doi = {10.3389/fnsys.2022.882315},
