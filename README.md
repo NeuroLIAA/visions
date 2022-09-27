@@ -1,5 +1,4 @@
 # ViSioNS: Visual Search in Natural Scenes Benchmark
-Code repository that belongs to the paper [ViSioNS: Visual Search in Natural Scenes Benchmark](https://openreview.net/forum?id=wPEXGTzZJt), currently under review.
 
 ## Ranking
 Current models scores, relative to human subjects, averaged across all datasets:
@@ -46,12 +45,13 @@ python3 run_benchmark.py --d COCOSearch18 Interiors --m nnIBS --mts mm perf
 If you use our work, please cite us:
 ```
 @inproceedings{
-travi2021benchmarking,
-title={Benchmarking human visual search computational models in natural scenes: models comparison and reference datasets},
-author={Ferm{\'\i}n Travi and Gonzalo Ruarte and Gaston Bujia and Juan E Kamienkowski},
-booktitle={SVRHM 2021 Workshop @ NeurIPS },
-year={2021},
-url={https://openreview.net/forum?id=ng262VIrK08}
+  travi2022visions,
+  title={ViSio{NS}: Visual Search in Natural Scenes Benchmark},
+  author={Ferm{\'\i}n Travi and Gonzalo Ruarte and Gaston Bujia and Juan E Kamienkowski},
+  booktitle={Thirty-sixth Conference on Neural Information Processing Systems Datasets and Benchmarks Track},
+  year={2022},
+  pages={},
+  url={https://openreview.net/forum?id=wPEXGTzZJt}
 }
 ```
 ```
