@@ -7,7 +7,7 @@ from skimage import img_as_ubyte, exposure, transform
 from PIL import Image
 
 def compute_target_similarity(image, target):
-    target_height, target_width = 64, 64
+    target_height, target_width = 80, 80
     block_height, block_width   = 224, 224
     # These blocks will be the input of the CNN
     image_blocks = divide_into_blocks(image, (block_height, block_width))
