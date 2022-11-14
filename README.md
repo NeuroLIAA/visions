@@ -1,4 +1,20 @@
 # ViSioNS: Visual Search in Natural Scenes Benchmark
+## NeurIPS 2022: meet with us!
+Given we will not be able to attend the conference in person, we have decided to set up three virtual meetings with a private Zoom room for those interested in a more in-depth discussion of the work.
+
+- [Zoom room link](https://zoom.us/my/dc.aula01)
+- Dates and time (GMT-5):
+    - **We. 30/11 at 19.15**
+    - **We. 07/12 at 14.15**
+    - **We. 14/12 at 09.00**
+
+## About
+Visual search is an essential part of almost any everyday human interaction with the visual environment. Nowadays, several algorithms are able to predict gaze positions during simple observation, but few models attempt to simulate human behavior during visual search in natural scenes. Furthermore, these models vary widely in their design and exhibit differences in the datasets and metrics with which they were evaluated.
+
+To attend to this problem, we have selected publicly available state-of-the-art visual search models and datasets in natural scenes, and provide a common framework for their evaluation. We apply a unified format and criteria, bridging the gaps between them, and we estimate the models’ efficiency and similarity with humans using a specific set of metrics.
+
+![Scanpath example](Metrics/Plots/Scanpath_example.png#gh-light-mode-only)
+![Scanpath example](Metrics/Plots/Scanpath_example_white.png#gh-dark-mode-only)
 
 ## Ranking
 Current models scores, relative to human subjects, averaged across all datasets:
@@ -14,7 +30,7 @@ Current models scores, relative to human subjects, averaged across all datasets:
 | IVSN    | 0.67        | 0.80 | 0.09 | 0.61 | 1.07 | -4.29 | -4.18 | -0.91 |
 | IRL     | 0.40       | 0.80 | 0.04 | 0.65 | 1.24 | -4.83 | -4.90 | -1.00 |
 
-```AUCperf``` measures efficiency, while ```AvgMM``` is the Multi-Match average between models and subjects. ```Corr``` is the correlation between within-humans Multi-Match (whMM) and human-model Multi-Match (hmMM). Lastly, ```AUChsp```, ```NSShsp```, ```IGhsp``` and ```LLhsp``` focus on human scanpath prediction (HSP). The precise definition of each one can be found at [```Metrics```](./Metrics). The scores for each independent dataset can be found at its corresponding directory in [```Results```](./Results) (see ```Table.png```).
+```AUCperf``` measures efficiency, while ```AvgMM``` is the Multi-Match average between models and subjects. ```Corr``` is the correlation between within-humans Multi-Match (whMM) and human-model Multi-Match (hmMM). Lastly, ```AUChsp```, ```NSShsp```, ```IGhsp``` and ```LLhsp``` focus on human scanpath prediction (HSP). The precise definition of each can be found at [```Metrics```](./Metrics). The scores for individual datasets can be found at their corresponding directory in [```Results```](./Results) (see ```Table.png```).
 
 ## Installation
 Python 3.8 or newer is required. To install, run:
