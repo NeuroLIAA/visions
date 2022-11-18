@@ -43,12 +43,13 @@ python3 run_benchmark.py --d COCOSearch18 Interiors --m nnIBS --mts mm perf
 If you use our work, please cite us:
 ```
 @inproceedings{
-travi2021benchmarking,
-title={Benchmarking human visual search computational models in natural scenes: models comparison and reference datasets},
-author={Ferm{\'\i}n Travi and Gonzalo Ruarte and Gaston Bujia and Juan E Kamienkowski},
-booktitle={SVRHM 2021 Workshop @ NeurIPS },
-year={2021},
-url={https://openreview.net/forum?id=ng262VIrK08}
+  travi2022visions,
+  title={ViSio{NS}: Visual Search in Natural Scenes Benchmark},
+  author={Ferm{\'\i}n Travi and Gonzalo Ruarte and Gaston Bujia and Juan E Kamienkowski},
+  booktitle={Thirty-sixth Conference on Neural Information Processing Systems Datasets and Benchmarks Track},
+  year={2022},
+  pages={},
+  url={https://openreview.net/forum?id=wPEXGTzZJt}
 }
 ```
 ```
@@ -57,11 +58,11 @@ author = {Bujia, Gaston and Sclar, Melanie and Vita, Sebastian and Solovey, Guil
 doi = {10.3389/fnsys.2022.882315},
 issn = {1662-5137},
 journal = {Frontiers in Systems Neuroscience},
-title = {{Modeling Human Visual Search in Natural Scenes: A Combined Bayesian Searcher and Saliency Map Approach}},
+title = {Modeling Human Visual Search in Natural Scenes: A Combined Bayesian Searcher and Saliency Map Approach},
 url = {https://www.frontiersin.org/article/10.3389/fnsys.2022.882315},
 volume = {16},
 year = {2022}
 }
 ```
 
-The exact materials used for the paper can be found at the [SVRHM branch](https://github.com/FerminT/VisualSearchBenchmark/tree/SVRHM).
+The exact materials used for the paper can be found at the [1. NeurIPS 2022 branch](https://github.com/FerminT/VisualSearchBenchmark/tree/NeurIPS), [2. SVRHM 2021 branch](https://github.com/FerminT/VisualSearchBenchmark/tree/SVRHM), [3. Frontiers in Systems Neuroscience repository](https://github.com/gastonbujia/VisualSearch). 
