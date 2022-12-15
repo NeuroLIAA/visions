@@ -1,14 +1,4 @@
 # ViSioNS: Visual Search in Natural Scenes Benchmark
-## NeurIPS 2022: meet with us!
-Given we will not be able to attend the conference in person, we have decided to set up three virtual meetings with a private Zoom room for those interested in a more in-depth discussion of the work.
-
-- [Zoom room link](https://zoom.us/my/dc.aula01)
-- Dates and time (GMT-5):
-    - **We. 30/11 at 19.15**
-    - **We. 07/12 at 14.15**
-    - **We. 14/12 at 09.00**
-- **If prompted for a password**, please write to ftravi(arroba)dc.uba.ar or any of our contact e-mails in the paper
-
 ## About
 Visual search is an essential part of almost any everyday human interaction with the visual environment. Nowadays, several algorithms are able to predict gaze positions during simple observation, but few models attempt to simulate human behavior during visual search in natural scenes. Furthermore, these models vary widely in their design and exhibit differences in the datasets and metrics with which they were evaluated.
 
