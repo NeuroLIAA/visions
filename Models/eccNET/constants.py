@@ -1,5 +1,6 @@
 DATASETS_PATH = 'Datasets'
 RESULTS_PATH  = 'Results'
+VGG16_WEIGHTS = 'Models/eccNET/pretrained_model/vgg16_imagenet_filters.h5'
 
 EYE_RES = 736
 IMG_HEIGHT = 736
