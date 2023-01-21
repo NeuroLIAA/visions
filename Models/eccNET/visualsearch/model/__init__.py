@@ -115,6 +115,8 @@ class VisualSearchModel:
             self.reformat_gt_mask()
 
     def start_search(self, stim_path, tar_path, gt_path, debug_flag=False, attn_map_flag=False):
+        # TODO: gt_path -> target bbox in original coordinates
+        # TODO: add initial fixation parameter in original coordinates
         """
         Perform the visual search on the given search and target image.
         """

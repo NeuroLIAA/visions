@@ -1,6 +1,9 @@
 from pathlib import Path
 import json
 
+def rescale_coordinate(value, old_size, new_size):
+    return int((value / old_size) * new_size)
+
 def load_dict_from_json(json_file_path):
     with open(json_file_path, 'r') as json_file:
         return json.load(json_file)
@@ -26,3 +29,14 @@ def build_expinfo(num_images, max_fixations, img_size, target_size, eye_res, deg
     }
 
     return exp_info
+
+def build_modelcfg(ecc_param, vgg16_weights):
+    model_cfg = {'eccParam': ecc_param,
+                 'ecc_depth': len(ecc_param['ecc_slope']),
+                 'out_layer': [1, 1, 1],
+                 'comp_layer': 'diff',
+                 'vgg_model_path': vgg16_weights,
+                 'model_subname': ""
+    }
+
+    return model_cfg
