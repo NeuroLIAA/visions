@@ -1,6 +1,6 @@
 import numpy as np
 import tensorflow as tf
-import .utils
+from . import utils
 import time
 from tqdm import tqdm
 from pathlib import Path
