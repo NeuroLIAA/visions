@@ -114,15 +114,14 @@ class VisualSearchModel:
         if self.gt_mask is not None:
             self.reformat_gt_mask()
 
-    def start_search(self, stim_path, tar_path, gt_path, debug_flag=False, attn_map_flag=False):
-        # TODO: gt_path -> target bbox in original coordinates
+    def start_search(self, stim_path, tar_path, tg_bbox, debug_flag=False, attn_map_flag=False):
         # TODO: add initial fixation parameter in original coordinates
         """
         Perform the visual search on the given search and target image.
         """
 
         MMconv_l = self.__create_conv_win(tar_path)
-        gt = self.__load_gt(gt_path)
+        gt = self.__load_gt(tg_bbox)
         stimuli = self.__load_stim(stim_path)
         ip_stimuli = preprocess_input(np.uint8(stimuli))
 
@@ -254,17 +253,22 @@ class VisualSearchModel:
 
         return MMconv_l
 
-    def __load_gt(self, gt_path):
+    def __load_gt(self, tg_bbox):
         """
         gt is basically helper array to perform the perfect object recognition. i.e. it gives the bounding box of the region where the target is.
+        FT: changed to build the gt matrix on runtime
         """
+        offset = self.eye_res + self.corner_bias
+        gt = np.zeros((self.stim_shape[0]+2*offset, self.stim_shape[1]+2*offset), dtype=np.uint8)
+        gt[offset+tg_bbox[0]:offset+tg_bbox[2], offset+tg_bbox[1]:offset+tg_bbox[3]] = 1
 
-        gt = cv2.imread(gt_path, 0)
-        gt = cv2.resize(gt, (self.stim_shape[1], self.stim_shape[0]), interpolation = cv2.INTER_AREA)
-        retval, gt = cv2.threshold(gt, 125, 255, cv2.THRESH_BINARY)
-        temp_stim = np.uint8(np.zeros((self.stim_shape[0]+2*(self.eye_res+self.corner_bias), self.stim_shape[1]+2*(self.eye_res+self.corner_bias))))
-        temp_stim[self.eye_res+self.corner_bias:self.stim_shape[0]+self.eye_res+self.corner_bias, self.eye_res+self.corner_bias:self.stim_shape[1]+self.eye_res+self.corner_bias] = np.copy(gt)
-        gt = np.uint8(np.copy(temp_stim/255))
+        # gt = cv2.imread(gt_path, 0)
+        # gt = cv2.resize(gt, (self.stim_shape[1], self.stim_shape[0]), interpolation = cv2.INTER_AREA)
+        # retval, gt = cv2.threshold(gt, 125, 255, cv2.THRESH_BINARY)
+        # temp_stim = np.uint8(np.zeros((self.stim_shape[0]+2*(self.eye_res+self.corner_bias), self.stim_shape[1]+2*(self.eye_res+self.corner_bias))))
+        # temp_stim[self.eye_res+self.corner_bias:self.stim_shape[0]+self.eye_res+self.corner_bias, self.eye_res+self.corner_bias:self.stim_shape[1]+self.eye_res+self.corner_bias] = np.copy(gt)
+        # gt = np.uint8(np.copy(temp_stim/255))
+
         return gt
 
     def __load_stim(self, stim_path):

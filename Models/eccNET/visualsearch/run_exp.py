@@ -21,6 +21,7 @@ def start(trials_properties, exp_info, imgs_path, tgs_path, vgg16_weights, datas
         img_size = (trial['image_height'], trial['image_width'])
         tg_bbox  = [trial['target_matched_row'], trial['target_matched_column'], \
             trial['target_height'] + trial['target_matched_row'], trial['target_width'] + trial['target_matched_column']]
+        tg_bbox  = [utils.rescale_coordinate(tg_bbox[i], img_size[i % 2 == 1], exp_info['stim_shape'][i % 2 == 1]) for i in range(len(tg_bbox))]
         initial_fixation = (trial['initial_fixation_row'], trial['initial_fixation_column'])
 
         trial_fixations = vs_model.start_search(img_path, tg_path, tg_bbox, initial_fixation)
