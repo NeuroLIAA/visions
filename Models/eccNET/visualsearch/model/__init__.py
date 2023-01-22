@@ -114,8 +114,7 @@ class VisualSearchModel:
         if self.gt_mask is not None:
             self.reformat_gt_mask()
 
-    def start_search(self, stim_path, tar_path, tg_bbox, debug_flag=False, attn_map_flag=False):
-        # TODO: add initial fixation parameter in original coordinates
+    def start_search(self, stim_path, tar_path, tg_bbox, initial_fix, debug_flag=False, attn_map_flag=False):
         """
         Perform the visual search on the given search and target image.
         """
@@ -124,20 +123,22 @@ class VisualSearchModel:
         gt = self.__load_gt(tg_bbox)
         stimuli = self.__load_stim(stim_path)
         ip_stimuli = preprocess_input(np.uint8(stimuli))
+        visual_field = self.eye_res + self.corner_bias
 
         # eye_res = 736; corner_bias = 64; stim_shape = [736, 896]; model_ip_shape = [1600, 1600] = [2*(eye_res+corner_bias), 2*(eye_res+corner_bias)]
         # stimuli.shape = [2336, 2496] = [stim_shape[0]+2*(eye_res+corner_bias), stim_shape[1]+2*(eye_res+corner_bias)]
-        temp_stim = np.uint8(np.zeros((self.stim_shape[0]+2*(self.eye_res+self.corner_bias), self.stim_shape[1]+2*(self.eye_res+self.corner_bias))))
+        temp_stim = np.uint8(np.zeros((self.stim_shape[0] + 2*visual_field, self.stim_shape[1] + 2*visual_field)))
         if self.gt_mask is None:
-            temp_stim[self.eye_res+self.corner_bias:self.stim_shape[0]+self.eye_res+self.corner_bias, self.eye_res+self.corner_bias:self.stim_shape[1]+self.eye_res+self.corner_bias] = 1
+            temp_stim[visual_field:self.stim_shape[0]+visual_field, visual_field:self.stim_shape[1]+visual_field] = 1
         else:
             temp_stim = np.sum(self.gt_mask, axis=0)
 
         stimuli_area = np.copy(temp_stim)
         mask = np.ones(stimuli.shape)
 
+        # Add initial fixation
         saccade = []
-        (x, y) = int(stimuli.shape[1]/2), int(stimuli.shape[2]/2)
+        (x, y) = int(initial_fix[0] + visual_field), int(initial_fix[1] + visual_field)
         saccade.append((x, y))
 
         attn_maps = []
@@ -152,7 +153,7 @@ class VisualSearchModel:
             if self.gt_mask is not None:
                 ip_stimuli = preprocess_input(np.uint8(mask*stimuli + self.bg_value*(1-mask)))
 
-            vis_area = (ip_stimuli)[:, saccade[-1][0]-self.eye_res-self.corner_bias:saccade[-1][0]+self.eye_res+self.corner_bias, saccade[-1][1]-self.eye_res-self.corner_bias:saccade[-1][1]+self.eye_res+self.corner_bias, :]
+            vis_area = (ip_stimuli)[:, saccade[-1][0]-visual_field:saccade[-1][0]+visual_field, saccade[-1][1]-visual_field:saccade[-1][1]+visual_field, :]
             op_stimuli_l = self.stimuli_model.predict(vis_area)
 
             outf_l = []
@@ -203,13 +204,13 @@ class VisualSearchModel:
 
             if debug_flag:
                 attn_maps.append(out)
-                temp_vis_area = np.copy((stimuli)[0, saccade[-1][0]-self.eye_res-self.corner_bias:saccade[-1][0]+self.eye_res+self.corner_bias, saccade[-1][1]-self.eye_res-self.corner_bias:saccade[-1][1]+self.eye_res+self.corner_bias, :])
+                temp_vis_area = np.copy((stimuli)[0, saccade[-1][0]-visual_field:saccade[-1][0]+visual_field, saccade[-1][1]-visual_field:saccade[-1][1]+visual_field, :])
                 vis_area_crop.append(temp_vis_area)
 
             (x, y) = np.unravel_index(np.argmax(out), out.shape)
-            fxn_x, fxn_y = saccade[-1][0]-self.eye_res-self.corner_bias+x, saccade[-1][1]-self.eye_res-self.corner_bias+y
-            fxn_x, fxn_y = max(fxn_x, self.eye_res+self.corner_bias), max(fxn_y, self.eye_res+self.corner_bias)
-            fxn_x, fxn_y = min(fxn_x, (stimuli.shape[1]-self.eye_res-self.corner_bias)), min(fxn_y, (stimuli.shape[2]-self.eye_res-self.corner_bias))
+            fxn_x, fxn_y = saccade[-1][0]-visual_field+x, saccade[-1][1]-visual_field+y
+            fxn_x, fxn_y = max(fxn_x, visual_field), max(fxn_y, visual_field)
+            fxn_x, fxn_y = min(fxn_x, (stimuli.shape[1]-visual_field)), min(fxn_y, (stimuli.shape[2]-visual_field))
             saccade.append((fxn_x, fxn_y))
 
             if self.gt_mask is not None:
@@ -258,9 +259,9 @@ class VisualSearchModel:
         gt is basically helper array to perform the perfect object recognition. i.e. it gives the bounding box of the region where the target is.
         FT: changed to build the gt matrix on runtime
         """
-        offset = self.eye_res + self.corner_bias
-        gt = np.zeros((self.stim_shape[0]+2*offset, self.stim_shape[1]+2*offset), dtype=np.uint8)
-        gt[offset+tg_bbox[0]:offset+tg_bbox[2], offset+tg_bbox[1]:offset+tg_bbox[3]] = 1
+        visual_field = self.eye_res + self.corner_bias
+        gt = np.zeros((self.stim_shape[0]+2*visual_field, self.stim_shape[1]+2*visual_field), dtype=np.uint8)
+        gt[visual_field+tg_bbox[0]:visual_field+tg_bbox[2], visual_field+tg_bbox[1]:visual_field+tg_bbox[3]] = 1
 
         # gt = cv2.imread(gt_path, 0)
         # gt = cv2.resize(gt, (self.stim_shape[1], self.stim_shape[0]), interpolation = cv2.INTER_AREA)
