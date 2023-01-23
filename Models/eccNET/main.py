@@ -27,4 +27,4 @@ def main(dataset_name, human_subject=None):
     exp_info = utils.build_expinfo(num_images, max_fixations, img_size, target_size, constants.EYE_RES, constants.DEG2PIXEL, constants.DOG_SIZE)
     exp_info['corner_bias'] = constants.CORNER_BIAS
 
-    run_exp.start(trials_properties, exp_info, images_dir, targets_dir, constants.VGG16_WEIGHTS, dataset_fullname, output_path)
+    run_exp.start(trials_properties, exp_info, images_dir, targets_dir, constants.CFG_FILE, constants.VGG16_WEIGHTS, dataset_fullname, output_path)

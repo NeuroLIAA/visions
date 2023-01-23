@@ -1,6 +1,9 @@
+from pathlib import Path
+
 DATASETS_PATH = 'Datasets'
 RESULTS_PATH  = 'Results'
-VGG16_WEIGHTS = 'Models/eccNET/pretrained_model/vgg16_imagenet_filters.h5'
+CFG_FILE      = Path('Models', 'eccNET', 'visualsearch', 'config.json')
+VGG16_WEIGHTS = Path('Models', 'eccNET', 'pretrained_model', 'vgg16_imagenet_filters.h5')
 
 EYE_RES = 736
 IMG_HEIGHT, IMG_WIDTH = 736, 896

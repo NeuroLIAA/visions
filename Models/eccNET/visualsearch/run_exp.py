@@ -6,9 +6,9 @@ from tqdm import tqdm
 from pathlib import Path
 from .model import VisualSearchModel as VisualSearchModel
 
-def start(trials_properties, exp_info, imgs_path, tgs_path, vgg16_weights, dataset_name, output_path):
-    ecc_param = utils.load_dict_from_json('config.json')
-    model_cfg = utils.build_modelcfg(ecc_param, vgg16_weights)
+def start(trials_properties, exp_info, imgs_path, tgs_path, cfg_file, vgg16_weights, dataset_name, output_path):
+    ecc_param = utils.load_dict_from_json(str(cfg_file))
+    model_cfg = utils.build_modelcfg(ecc_param, str(vgg16_weights))
 
     vs_model = VisualSearchModel(model_cfg)
     vs_model.load_exp_info(exp_info, corner_bias=exp_info['corner_bias'])

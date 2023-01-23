@@ -4,7 +4,7 @@ import tensorflow as tf
 import numpy as np
 import cv2
 import math
-from vs_model.ecc_net import load_eccNET, load_VGG16
+from .ecc_net import load_eccNET, load_VGG16
 from tqdm.notebook import tqdm
 from skimage.filters.rank import entropy
 from skimage.morphology import disk, square
@@ -262,13 +262,6 @@ class VisualSearchModel:
         visual_field = self.eye_res + self.corner_bias
         gt = np.zeros((self.stim_shape[0]+2*visual_field, self.stim_shape[1]+2*visual_field), dtype=np.uint8)
         gt[visual_field+tg_bbox[0]:visual_field+tg_bbox[2], visual_field+tg_bbox[1]:visual_field+tg_bbox[3]] = 1
-
-        # gt = cv2.imread(gt_path, 0)
-        # gt = cv2.resize(gt, (self.stim_shape[1], self.stim_shape[0]), interpolation = cv2.INTER_AREA)
-        # retval, gt = cv2.threshold(gt, 125, 255, cv2.THRESH_BINARY)
-        # temp_stim = np.uint8(np.zeros((self.stim_shape[0]+2*(self.eye_res+self.corner_bias), self.stim_shape[1]+2*(self.eye_res+self.corner_bias))))
-        # temp_stim[self.eye_res+self.corner_bias:self.stim_shape[0]+self.eye_res+self.corner_bias, self.eye_res+self.corner_bias:self.stim_shape[1]+self.eye_res+self.corner_bias] = np.copy(gt)
-        # gt = np.uint8(np.copy(temp_stim/255))
 
         return gt
 
