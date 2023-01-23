@@ -118,7 +118,6 @@ class VisualSearchModel:
         """
         Perform the visual search on the given search and target image.
         """
-
         MMconv_l = self.__create_conv_win(tar_path)
         gt = self.__load_gt(tg_bbox)
         stimuli = self.__load_stim(stim_path)
@@ -155,7 +154,7 @@ class VisualSearchModel:
                 ip_stimuli = preprocess_input(np.uint8(mask*stimuli + self.bg_value*(1-mask)))
 
             vis_area = (ip_stimuli)[:, saccade[-1][0]-visual_field:saccade[-1][0]+visual_field, saccade[-1][1]-visual_field:saccade[-1][1]+visual_field, :]
-            op_stimuli_l = self.stimuli_model.predict(vis_area)
+            op_stimuli_l = self.stimuli_model.predict(vis_area, verbose=0)
 
             outf_l = []
             w_l = []
@@ -234,8 +233,8 @@ class VisualSearchModel:
 
         target = loadimg(tar_path, target_size=(self.tar_shape[0], self.tar_shape[1]), rev_img_flag=self.rev_img_flag)
         target = preprocess_input(target)
-        op_target_l = self.target_model.predict(target)
-        op_stimuli_l = self.stimuli_model.predict(np.zeros((1, self.model_ip_shape[0], self.model_ip_shape[1], self.model_ip_shape[2])))
+        op_target_l = self.target_model.predict(target, verbose=0)
+        op_stimuli_l = self.stimuli_model.predict(np.zeros((1, self.model_ip_shape[0], self.model_ip_shape[1], self.model_ip_shape[2])), verbose=0)
 
         MMconv_l = []
 
