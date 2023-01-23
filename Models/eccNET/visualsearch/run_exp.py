@@ -1,9 +1,6 @@
-import numpy as np
-import tensorflow as tf
 from . import utils
 import time
 from tqdm import tqdm
-from pathlib import Path
 from .model import VisualSearchModel as VisualSearchModel
 
 def start(trials_properties, exp_info, imgs_path, tgs_path, cfg_file, vgg16_weights, dataset_name, output_path):
@@ -25,4 +22,13 @@ def start(trials_properties, exp_info, imgs_path, tgs_path, cfg_file, vgg16_weig
         initial_fix = (trial['initial_fixation_row'], trial['initial_fixation_column'])
         initial_fix = [utils.rescale_coordinate(initial_fix[i], img_size[i], exp_info['stim_shape'][i]) for i in range(len(initial_fix))]
 
-        trial_fixations = vs_model.start_search(img_path, tg_path, tg_bbox, initial_fix)
+        trial_fixations, target_found = vs_model.start_search(img_path, tg_path, tg_bbox, initial_fix)
+        targets_found += target_found
+        
+        scanpaths[trial['image']] = utils.build_trialscanpath(trial_fixations, target_found, tg_bbox, img_size=exp_info['stim_shape'], 
+            max_fix=exp_info['NumFix'], receptive_size=exp_info['ior_size'], tg_object=trial['target_object'], dataset=dataset_name)
+        
+    print('Total targets found: {}/{}'.format(targets_found, len(trials_properties)))
+    print('Total time: {:.2f} seconds'.format(time.time() - t0))
+    
+    utils.save_scanpaths(scanpaths, output_path)

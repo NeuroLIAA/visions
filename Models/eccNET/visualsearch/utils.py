@@ -1,4 +1,3 @@
-from pathlib import Path
 import json
 
 def rescale_coordinate(value, old_size, new_size):
@@ -10,6 +9,15 @@ def load_dict_from_json(json_file_path):
 
 def load_from_dataset(dataset_path, filename):
     return load_dict_from_json(dataset_path / filename)
+
+def save_scanpaths(scanpaths, output_path, filename='Scanpaths.json'):
+    if not output_path.exists(): output_path.mkdir(parents=True)
+    
+    save_to_json(output_path / filename, scanpaths)
+
+def save_to_json(file, data):
+    with file.open('w') as json_file:
+        json.dump(data, json_file, indent=4)
 
 def build_expinfo(num_images, max_fixations, img_size, target_size, eye_res, deg_to_pixel, dog_size, weight_pattern='l'):
     exp_info = {'eye_res': eye_res,
@@ -36,7 +44,14 @@ def build_modelcfg(ecc_param, vgg16_weights):
                  'out_layer': [1, 1, 1],
                  'comp_layer': 'diff',
                  'vgg_model_path': vgg16_weights,
-                 'model_subname': ""
+                 'model_subname': ''
     }
 
     return model_cfg
+
+def build_trialscanpath(fixations, tg_found, tg_bbox, img_size, max_fix, receptive_size, tg_object, dataset):
+    scanpath = {'subject' : 'eccNET Model', 'dataset' : dataset, 'image_height' : img_size[0], 'image_width' : img_size[1], \
+        'receptive_height' : receptive_size[0], 'receptive_width': receptive_size[1], 'target_found' : tg_found, 'target_bbox' : tg_bbox, \
+            'X' : fixations[:, 1], 'Y' : fixations[:, 0], 'target_object' : tg_object, 'max_fixations' : max_fix}
+    
+    return scanpath

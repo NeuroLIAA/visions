@@ -143,10 +143,11 @@ class VisualSearchModel:
 
         attn_maps = []
         vis_area_crop = []
-
-        for k in range(self.NumFix):
+        target_found = False
+        for k in range(self.NumFix - 1):
             if self.gt_mask is None:
                 if recog(saccade[-1][0], saccade[-1][1], gt, self.ior_size):
+                    target_found = True
                     break
                 mask = remove_attn(mask, saccade[-1][0], saccade[-1][1], self.ior_size, self.gt_mask)
 
@@ -222,9 +223,9 @@ class VisualSearchModel:
         saccade = np.array(saccade)
 
         if debug_flag:
-            return self.post_process_saccades(saccade), attn_maps, vis_area_crop
+            return self.post_process_saccades(saccade), attn_maps, vis_area_crop, target_found
         else:
-            return self.post_process_saccades(saccade)
+            return self.post_process_saccades(saccade), target_found
 
     def __create_conv_win(self, tar_path):
         """

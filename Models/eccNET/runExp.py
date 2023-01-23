@@ -86,7 +86,6 @@ for model_desc in ecc_models:
         np.save(str(cp_path / ('CP_' + vsm.model_name + '.npy')), CP)
         np.save(str(ifix_path / ('I_' + vsm.model_name + '.npy')), I_data)
         np.save(str(fix_path / (vsm.model_name + '.npy')), data)
-        breakpoint()
 
 print("Total time taken:", time.time()-t_start)
 
