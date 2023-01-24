@@ -56,3 +56,33 @@ def build_trialscanpath(fixations, tg_found, tg_bbox, img_size, max_fix, recepti
     }
     
     return scanpath
+
+def load_human_scanpaths(human_subject, img_size, model_img_size, human_scanpaths_dir):
+    if human_subject is None:
+        return {}
+
+    human_scanpaths_files = [human_scanpaths_file.name for human_scanpaths_file in human_scanpaths_dir.glob('*.json')]
+    human_subject_str     = str(human_subject).zfill(2)
+    human_subject_file    = f'subj{human_subject_str}_scanpaths.json'
+    if not human_subject_file in human_scanpaths_files:
+        raise NameError(f'Scanpaths for subject {human_subject_str} not found!')
+    
+    human_scanpaths = load_dict_from_json(human_scanpaths_dir / human_subject_file)
+    # Convert to int and rescale coordinates
+    for trial in human_scanpaths:
+        scanpath = human_scanpaths[trial]
+        scanpath['X'] = [rescale_coordinate(x_coord, img_size[1], model_img_size[1]) for x_coord in scanpath['X']]
+        scanpath['Y'] = [rescale_coordinate(y_coord, img_size[0], model_img_size[0]) for y_coord in scanpath['Y']]
+
+    return human_scanpaths
+
+def keep_human_trials(human_scanpaths, trials_properties):
+    human_trials_properties = []
+    for trial in trials_properties:
+        if trial['image'] in human_scanpaths:
+            human_trials_properties.append(trial)
+    
+    if not human_trials_properties:
+        raise ValueError('Human subject does not have any scanpaths for the images specified')
+
+    return human_trials_properties

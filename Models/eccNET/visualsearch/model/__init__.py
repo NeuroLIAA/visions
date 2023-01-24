@@ -114,7 +114,7 @@ class VisualSearchModel:
         if self.gt_mask is not None:
             self.reformat_gt_mask()
 
-    def start_search(self, stim_path, tar_path, tg_bbox, initial_fix, debug_flag=False, attn_map_flag=False):
+    def start_search(self, stim_path, tar_path, tg_bbox, initial_fix, human_scanpath, debug_flag=False, attn_map_flag=False):
         """
         Perform the visual search on the given search and target image.
         """
@@ -134,16 +134,23 @@ class VisualSearchModel:
 
         stimuli_area = np.copy(temp_stim)
         mask = np.ones(stimuli.shape)
+        max_fixations = self.NumFix - 1
+
+        human_fixations = []
+        if human_scanpath:
+            human_fixations = list(zip(human_scanpath['Y'], human_scanpath['X']))
+            initial_fix     = human_fixations[0]
+            max_fixations   = len(human_fixations) - 1
 
         # Add initial fixation
         saccade = []
-        (x, y) = int(initial_fix[0] + visual_field), int(initial_fix[1] + visual_field)
+        x, y = int(initial_fix[0] + visual_field), int(initial_fix[1] + visual_field)
         saccade.append((x, y))
 
         attn_maps = []
         vis_area_crop = []
         target_found = False
-        for k in range(self.NumFix - 1):
+        for k in range(max_fixations):
             if self.gt_mask is None:
                 if recog(saccade[-1][0], saccade[-1][1], gt, self.ior_size):
                     target_found = True
@@ -194,14 +201,15 @@ class VisualSearchModel:
 
             temp_stim = np.uint8(np.zeros((self.model_ip_shape[0], self.model_ip_shape[1])))
             stim_mask = np.copy(mask[0,:,:,0]*stimuli_area)
-            stim_mask = (stim_mask)[saccade[-1][0]-self.eye_res:saccade[-1][0]+self.eye_res, saccade[-1][1]-self.eye_res:saccade[-1][1]+self.eye_res]
+            stim_mask = stim_mask[saccade[-1][0]-self.eye_res:saccade[-1][0]+self.eye_res, saccade[-1][1]-self.eye_res:saccade[-1][1]+self.eye_res]
             if self.corner_bias > 0:
                 temp_stim[self.corner_bias:-self.corner_bias, self.corner_bias:-self.corner_bias] = np.copy(stim_mask)
                 stim_mask = np.copy(temp_stim)
 
             out = out - np.min(out)
-            out = out*(stim_mask)
+            out = out * stim_mask
 
+            # TODO: save attention map with the same size as the stimuli (736x896)
             if debug_flag:
                 attn_maps.append(out)
                 temp_vis_area = np.copy((stimuli)[0, saccade[-1][0]-visual_field:saccade[-1][0]+visual_field, saccade[-1][1]-visual_field:saccade[-1][1]+visual_field, :])

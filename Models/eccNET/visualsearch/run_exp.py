@@ -3,7 +3,7 @@ import time
 from tqdm import tqdm
 from .model import VisualSearchModel as VisualSearchModel
 
-def start(trials_properties, exp_info, imgs_path, tgs_path, cfg_file, vgg16_weights, dataset_name, output_path):
+def start(trials_properties, exp_info, imgs_path, tgs_path, human_scanpaths, cfg_file, vgg16_weights, dataset_name, output_path):
     ecc_param = utils.load_dict_from_json(str(cfg_file))
     model_cfg = utils.build_modelcfg(ecc_param, str(vgg16_weights))
 
@@ -22,7 +22,11 @@ def start(trials_properties, exp_info, imgs_path, tgs_path, cfg_file, vgg16_weig
         initial_fix = (trial['initial_fixation_row'], trial['initial_fixation_column'])
         initial_fix = [utils.rescale_coordinate(initial_fix[i], img_size[i], exp_info['stim_shape'][i]) for i in range(len(initial_fix))]
 
-        trial_fixations, target_found = vs_model.start_search(img_path, tg_path, tg_bbox, initial_fix)
+        human_scanpath = None
+        if human_scanpaths:
+            human_scanpath = human_scanpaths[trial['image']]
+
+        trial_fixations, target_found = vs_model.start_search(img_path, tg_path, tg_bbox, initial_fix, human_scanpath)
         targets_found += target_found
         
         scanpaths[trial['image']] = utils.build_trialscanpath(trial_fixations, target_found, tg_bbox, img_size=exp_info['stim_shape'], 
