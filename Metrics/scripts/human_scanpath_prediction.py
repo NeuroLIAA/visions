@@ -200,7 +200,7 @@ def compute_trial_metrics(number_of_fixations, subject_fixations_x, subject_fixa
     trial_aucs, trial_nss, trial_igs, trial_lls = [], [], [], []
     for index in range(1, number_of_fixations):
         if baseline_map is None:
-            fixation_prob_map  = pd.read_csv(path.join(prob_maps_path, 'fixation_' + str(index) + '.csv')).to_numpy()
+            fixation_prob_map = pd.read_csv(path.join(prob_maps_path, 'fixation_' + str(index) + '.csv')).to_numpy()
         else:
             fixation_prob_map = baseline_map
         baseline_ig      = center_bias(fixation_prob_map.shape)

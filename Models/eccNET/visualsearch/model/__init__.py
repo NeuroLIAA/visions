@@ -114,7 +114,7 @@ class VisualSearchModel:
         if self.gt_mask is not None:
             self.reformat_gt_mask()
 
-    def start_search(self, stim_path, tar_path, tg_bbox, initial_fix, human_scanpath, debug_flag=False, attn_map_flag=False):
+    def start_search(self, stim_path, tar_path, tg_bbox, initial_fix, human_scanpath, debug_flag=False):
         """
         Perform the visual search on the given search and target image.
         """
@@ -134,7 +134,7 @@ class VisualSearchModel:
 
         stimuli_area = np.copy(temp_stim)
         mask = np.ones(stimuli.shape)
-        max_fixations = self.NumFix - 1
+        max_fixations = self.NumFix - 1 # subtract initial fixation
 
         human_fixations = []
         if human_scanpath:
@@ -142,7 +142,6 @@ class VisualSearchModel:
             initial_fix     = human_fixations[0]
             max_fixations   = len(human_fixations) - 1
 
-        # Add initial fixation
         saccade = []
         x, y = int(initial_fix[0] + visual_field), int(initial_fix[1] + visual_field)
         saccade.append((x, y))
@@ -208,8 +207,7 @@ class VisualSearchModel:
 
             out = out - np.min(out)
             out = out * stim_mask
-
-            # TODO: save attention map with the same size as the stimuli (736x896)
+            # TODO: save attention map
             if debug_flag:
                 attn_maps.append(out)
                 temp_vis_area = np.copy((stimuli)[0, saccade[-1][0]-visual_field:saccade[-1][0]+visual_field, saccade[-1][1]-visual_field:saccade[-1][1]+visual_field, :])
@@ -219,12 +217,14 @@ class VisualSearchModel:
             fxn_x, fxn_y = saccade[-1][0]-visual_field+x, saccade[-1][1]-visual_field+y
             fxn_x, fxn_y = max(fxn_x, visual_field), max(fxn_y, visual_field)
             fxn_x, fxn_y = min(fxn_x, (stimuli.shape[1]-visual_field)), min(fxn_y, (stimuli.shape[2]-visual_field))
+            # TODO: force to follow human's scanpath if the human's scanpath is provided
             saccade.append((fxn_x, fxn_y))
 
-            if self.gt_mask is not None:
+            if self.gt_mask is not None or k == max_fixations - 1:
                 x, y = saccade[-1][0], saccade[-1][1]
                 mask = remove_attn(mask, x, y, self.ior_size, self.gt_mask)
                 if recog(x, y, gt, self.ior_size):
+                    target_found = True
                     break
 
         saccade = np.array(saccade)
