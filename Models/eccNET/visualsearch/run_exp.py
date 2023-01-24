@@ -2,6 +2,7 @@ from . import utils
 import time
 from tqdm import tqdm
 from .model import VisualSearchModel as VisualSearchModel
+from Metrics.scripts import human_scanpath_prediction
 
 def start(trials_properties, exp_info, imgs_path, tgs_path, human_scanpaths, cfg_file, vgg16_weights, dataset_name, output_path):
     ecc_param = utils.load_dict_from_json(str(cfg_file))
@@ -22,17 +23,21 @@ def start(trials_properties, exp_info, imgs_path, tgs_path, human_scanpaths, cfg
         initial_fix = (trial['initial_fixation_row'], trial['initial_fixation_column'])
         initial_fix = [utils.rescale_coordinate(initial_fix[i], img_size[i], exp_info['stim_shape'][i]) for i in range(len(initial_fix))]
 
-        human_scanpath = None
-        if human_scanpaths:
-            human_scanpath = human_scanpaths[trial['image']]
+        human_scanpath = utils.get_scanpath(human_scanpaths, trial['image'])
 
         trial_fixations, target_found = vs_model.start_search(img_path, tg_path, tg_bbox, initial_fix, human_scanpath, trial['image'], output_path)
         targets_found += target_found
         
+        if human_scanpath:
+            human_scanpath_prediction.save_scanpath_prediction_metrics(human_scanpath, trial['image'], output_path)
+
         scanpaths[trial['image']] = utils.build_trialscanpath(trial_fixations, target_found, tg_bbox, img_size=exp_info['stim_shape'], 
             max_fix=exp_info['NumFix'], receptive_size=exp_info['ior_size'], tg_object=trial['target_object'], dataset=dataset_name)
         
     print('Total targets found: {}/{}'.format(targets_found, len(trials_properties)))
     print('Total time: {:.2f} seconds'.format(time.time() - t0))
     
-    utils.save_scanpaths(scanpaths, output_path)
+    if human_scanpaths:
+        utils.save_scanpaths(human_scanpaths, output_path, filename='Subject_scanpaths.json')
+    else:
+        utils.save_scanpaths(scanpaths, output_path)

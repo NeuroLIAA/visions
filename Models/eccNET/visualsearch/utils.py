@@ -94,3 +94,10 @@ def keep_human_trials(human_scanpaths, trials_properties):
         raise ValueError('Human subject does not have any scanpaths for the images specified')
 
     return human_trials_properties
+
+def get_scanpath(human_scanpaths, img_name):
+    scanpath = {}
+    if human_scanpaths:
+        scanpath = human_scanpaths[img_name]
+    
+    return scanpath
