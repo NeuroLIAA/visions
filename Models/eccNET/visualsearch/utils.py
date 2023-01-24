@@ -1,4 +1,5 @@
 import json
+import pandas as pd
 
 def rescale_coordinate(value, old_size, new_size):
     return int((value / old_size) * new_size)
@@ -18,6 +19,13 @@ def save_scanpaths(scanpaths, output_path, filename='Scanpaths.json'):
 def save_to_json(file, data):
     with file.open('w') as json_file:
         json.dump(data, json_file, indent=4)
+
+def save_probability_map(fix_number, img_name, probability_map, output_path):
+    save_path = output_path / 'probability_maps' / img_name[:-4]
+    if not save_path.exists(): save_path.mkdir(parents=True)
+
+    probability_map_df = pd.DataFrame(probability_map)
+    probability_map_df.to_csv(str(save_path / f'fixation_{fix_number}.csv'), index=False)
 
 def build_expinfo(num_images, max_fixations, img_size, target_size, eye_res, deg_to_pixel, dog_size, weight_pattern='l'):
     exp_info = {'eye_res': eye_res,

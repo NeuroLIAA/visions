@@ -3,11 +3,8 @@ from tensorflow.keras.applications.vgg16 import preprocess_input
 import tensorflow as tf
 import numpy as np
 import cv2
-import math
 from .ecc_net import load_eccNET, load_VGG16
-from tqdm.notebook import tqdm
-from skimage.filters.rank import entropy
-from skimage.morphology import disk, square
+from .. import utils
 
 def loadimg(src, target_size, rev_img_flag=0):
     """
@@ -114,7 +111,7 @@ class VisualSearchModel:
         if self.gt_mask is not None:
             self.reformat_gt_mask()
 
-    def start_search(self, stim_path, tar_path, tg_bbox, initial_fix, human_scanpath, debug_flag=False):
+    def start_search(self, stim_path, tar_path, tg_bbox, initial_fix, human_scanpath, img_name, output_path, debug_flag=False):
         """
         Perform the visual search on the given search and target image.
         """
@@ -207,7 +204,12 @@ class VisualSearchModel:
 
             out = out - np.min(out)
             out = out * stim_mask
-            # TODO: save attention map
+
+            if human_fixations:
+                attnmap_coords = np.unravel_index(np.argmax(stim_mask > 0), stim_mask.shape)
+                attention_map  = out[attnmap_coords[0]:attnmap_coords[0]+self.stim_shape[0], attnmap_coords[1]:attnmap_coords[1]+self.stim_shape[1]]
+                utils.save_probability_map(k + 1, img_name, attention_map, output_path)
+
             if debug_flag:
                 attn_maps.append(out)
                 temp_vis_area = np.copy((stimuli)[0, saccade[-1][0]-visual_field:saccade[-1][0]+visual_field, saccade[-1][1]-visual_field:saccade[-1][1]+visual_field, :])
@@ -217,10 +219,13 @@ class VisualSearchModel:
             fxn_x, fxn_y = saccade[-1][0]-visual_field+x, saccade[-1][1]-visual_field+y
             fxn_x, fxn_y = max(fxn_x, visual_field), max(fxn_y, visual_field)
             fxn_x, fxn_y = min(fxn_x, (stimuli.shape[1]-visual_field)), min(fxn_y, (stimuli.shape[2]-visual_field))
-            # TODO: force to follow human's scanpath if the human's scanpath is provided
-            saccade.append((fxn_x, fxn_y))
+            
+            if not human_fixations:
+                saccade.append((fxn_x, fxn_y))
+            else:
+                saccade.append(human_fixations[k + 1])
 
-            if self.gt_mask is not None or k == max_fixations - 1:
+            if self.gt_mask is not None or k + 1 == max_fixations:
                 x, y = saccade[-1][0], saccade[-1][1]
                 mask = remove_attn(mask, x, y, self.ior_size, self.gt_mask)
                 if recog(x, y, gt, self.ior_size):

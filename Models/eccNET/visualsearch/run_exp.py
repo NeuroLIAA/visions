@@ -26,7 +26,7 @@ def start(trials_properties, exp_info, imgs_path, tgs_path, human_scanpaths, cfg
         if human_scanpaths:
             human_scanpath = human_scanpaths[trial['image']]
 
-        trial_fixations, target_found = vs_model.start_search(img_path, tg_path, tg_bbox, initial_fix, human_scanpath)
+        trial_fixations, target_found = vs_model.start_search(img_path, tg_path, tg_bbox, initial_fix, human_scanpath, trial['image'], output_path)
         targets_found += target_found
         
         scanpaths[trial['image']] = utils.build_trialscanpath(trial_fixations, target_found, tg_bbox, img_size=exp_info['stim_shape'], 
