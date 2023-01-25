@@ -118,19 +118,18 @@ class VisualSearchModel:
         MMconv_l = self.__create_conv_win(tar_path)
         gt = self.__load_gt(tg_bbox)
         stimuli = self.__load_stim(stim_path)
-        ip_stimuli = preprocess_input(np.uint8(stimuli))
+        ip_stimuli = preprocess_input(stimuli)
         visual_field = self.eye_res + self.corner_bias
 
         # eye_res = 736; corner_bias = 64; stim_shape = [736, 896]; model_ip_shape = [1600, 1600] = [2*(eye_res+corner_bias), 2*(eye_res+corner_bias)]
         # stimuli.shape = [2336, 2496] = [stim_shape[0]+2*(eye_res+corner_bias), stim_shape[1]+2*(eye_res+corner_bias)]
-        temp_stim = np.uint8(np.zeros((self.stim_shape[0] + 2*visual_field, self.stim_shape[1] + 2*visual_field)))
+        stimuli_area = np.zeros((self.stim_shape[0] + 2*visual_field, self.stim_shape[1] + 2*visual_field), dtype=np.uint8)
         if self.gt_mask is None:
-            temp_stim[visual_field:self.stim_shape[0]+visual_field, visual_field:self.stim_shape[1]+visual_field] = 1
+            stimuli_area[visual_field:self.stim_shape[0]+visual_field, visual_field:self.stim_shape[1]+visual_field] = 1
         else:
-            temp_stim = np.sum(self.gt_mask, axis=0)
+            stimuli_area = np.sum(self.gt_mask, axis=0)
 
-        stimuli_area = np.copy(temp_stim)
-        mask = np.ones(stimuli.shape)
+        mask = np.ones(stimuli.shape, dtype=np.uint8)
         max_fixations = self.NumFix - 1 # subtract initial fixation
 
         human_fixations = []
@@ -152,9 +151,12 @@ class VisualSearchModel:
                     target_found = True
                     break
                 mask = remove_attn(mask, saccade[-1][0], saccade[-1][1], self.ior_size, self.gt_mask)
-
+                
+            stim_mask = mask[0,:,:,0] * stimuli_area
+            stim_mask = stim_mask[saccade[-1][0]-visual_field:saccade[-1][0]+visual_field, saccade[-1][1]-visual_field:saccade[-1][1]+visual_field]
+            
             if self.gt_mask is not None:
-                ip_stimuli = preprocess_input(np.uint8(mask*stimuli + self.bg_value*(1-mask)))
+                ip_stimuli = preprocess_input(mask*stimuli + self.bg_value*(1-mask))
 
             vis_area = (ip_stimuli)[:, saccade[-1][0]-visual_field:saccade[-1][0]+visual_field, saccade[-1][1]-visual_field:saccade[-1][1]+visual_field, :]
             op_stimuli_l = self.stimuli_model.predict(vis_area, verbose=0)
@@ -189,19 +191,11 @@ class VisualSearchModel:
             out = outf
 
             for j in range(3):
-                g1 = cv2.GaussianBlur(np.copy(out),(self.win_size_l, self.win_size_l), self.win_sigma_l)
-                g2 = cv2.GaussianBlur(np.copy(out),(self.win_size_u, self.win_size_u), self.win_sigma_u)
+                g1 = cv2.GaussianBlur(out,(self.win_size_l, self.win_size_l), self.win_sigma_l)
+                g2 = cv2.GaussianBlur(out,(self.win_size_u, self.win_size_u), self.win_sigma_u)
                 out = out + (g1 - g2)
 
-            out = cv2.resize(out, (self.model_ip_shape[0], self.model_ip_shape[1]), interpolation = cv2.INTER_AREA)
-
-            temp_stim = np.uint8(np.zeros((self.model_ip_shape[0], self.model_ip_shape[1])))
-            stim_mask = np.copy(mask[0,:,:,0]*stimuli_area)
-            stim_mask = stim_mask[saccade[-1][0]-self.eye_res:saccade[-1][0]+self.eye_res, saccade[-1][1]-self.eye_res:saccade[-1][1]+self.eye_res]
-            if self.corner_bias > 0:
-                temp_stim[self.corner_bias:-self.corner_bias, self.corner_bias:-self.corner_bias] = np.copy(stim_mask)
-                stim_mask = np.copy(temp_stim)
-
+            out = cv2.resize(out, self.model_ip_shape[:2], interpolation = cv2.INTER_AREA)
             out = out - np.min(out)
             out = out * stim_mask
 
@@ -212,7 +206,7 @@ class VisualSearchModel:
 
             if debug_flag:
                 attn_maps.append(out)
-                temp_vis_area = np.copy((stimuli)[0, saccade[-1][0]-visual_field:saccade[-1][0]+visual_field, saccade[-1][1]-visual_field:saccade[-1][1]+visual_field, :])
+                temp_vis_area = np.copy(stimuli[0, saccade[-1][0]-visual_field:saccade[-1][0]+visual_field, saccade[-1][1]-visual_field:saccade[-1][1]+visual_field, :])
                 vis_area_crop.append(temp_vis_area)
 
             if not human_fixations:
@@ -284,11 +278,11 @@ class VisualSearchModel:
         Load the search image i.e. the main stimuli in which the modle have to search for the target
         """
 
-        stimuli = loadimg(stim_path, target_size=self.stim_shape[0:2], rev_img_flag=self.rev_img_flag)
-        temp_stim = np.uint8(self.bg_value*np.ones((1, self.stim_shape[0]+2*(self.eye_res+self.corner_bias), self.stim_shape[1]+2*(self.eye_res+self.corner_bias), 3)))
-        temp_stim[:, self.eye_res+self.corner_bias:self.stim_shape[0]+self.eye_res+self.corner_bias, self.eye_res+self.corner_bias:self.stim_shape[1]+self.eye_res+self.corner_bias, :] = np.copy(stimuli)
-        stimuli = np.copy(temp_stim)
-        return stimuli
+        stimuli = loadimg(stim_path, target_size=self.stim_shape[:2], rev_img_flag=self.rev_img_flag)
+        temp_stim = self.bg_value * np.ones((1, self.stim_shape[0]+2*(self.eye_res+self.corner_bias), self.stim_shape[1]+2*(self.eye_res+self.corner_bias), 3), dtype=np.uint8)
+        temp_stim[:, self.eye_res+self.corner_bias:self.stim_shape[0]+self.eye_res+self.corner_bias, self.eye_res+self.corner_bias:self.stim_shape[1]+self.eye_res+self.corner_bias, :] = stimuli
+
+        return temp_stim
 
     def reformat_gt_mask(self):
         """
