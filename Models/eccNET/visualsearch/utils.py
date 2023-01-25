@@ -60,7 +60,7 @@ def build_modelcfg(ecc_param, vgg16_weights):
 def build_trialscanpath(fixations, tg_found, tg_bbox, img_size, max_fix, receptive_size, tg_object, dataset):
     scanpath = {'subject' : 'eccNET Model', 'dataset' : dataset, 'image_height' : img_size[0], 'image_width' : img_size[1], \
             'receptive_height' : receptive_size, 'receptive_width': receptive_size, 'target_found' : tg_found, 'target_bbox' : tg_bbox, \
-            'X' : fixations[:, 1], 'Y' : fixations[:, 0], 'target_object' : tg_object, 'max_fixations' : max_fix
+            'X' : list(fixations[:, 1]), 'Y' : list(fixations[:, 0]), 'target_object' : tg_object, 'max_fixations' : max_fix
     }
     
     return scanpath
