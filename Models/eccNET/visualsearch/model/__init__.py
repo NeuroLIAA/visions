@@ -215,15 +215,15 @@ class VisualSearchModel:
                 temp_vis_area = np.copy((stimuli)[0, saccade[-1][0]-visual_field:saccade[-1][0]+visual_field, saccade[-1][1]-visual_field:saccade[-1][1]+visual_field, :])
                 vis_area_crop.append(temp_vis_area)
 
-            (x, y) = np.unravel_index(np.argmax(out), out.shape)
-            fxn_x, fxn_y = saccade[-1][0]-visual_field+x, saccade[-1][1]-visual_field+y
-            fxn_x, fxn_y = max(fxn_x, visual_field), max(fxn_y, visual_field)
-            fxn_x, fxn_y = min(fxn_x, (stimuli.shape[1]-visual_field)), min(fxn_y, (stimuli.shape[2]-visual_field))
-            
             if not human_fixations:
-                saccade.append((fxn_x, fxn_y))
+                (x, y) = np.unravel_index(np.argmax(out), out.shape)
+                fxn_x, fxn_y = saccade[-1][0] - visual_field + x, saccade[-1][1] - visual_field + y
+                fxn_x, fxn_y = max(fxn_x, visual_field), max(fxn_y, visual_field)
+                fxn_x, fxn_y = min(fxn_x, (stimuli.shape[1]-visual_field)), min(fxn_y, (stimuli.shape[2]-visual_field))
             else:
-                saccade.append(human_fixations[k + 1])
+                fxn_x, fxn_y = human_fixations[k + 1][0] + visual_field, human_fixations[k + 1][1] + visual_field
+            
+            saccade.append((fxn_x, fxn_y))
 
             if self.gt_mask is not None or k + 1 == max_fixations:
                 x, y = saccade[-1][0], saccade[-1][1]
@@ -274,7 +274,8 @@ class VisualSearchModel:
         """
         visual_field = self.eye_res + self.corner_bias
         gt = np.zeros((self.stim_shape[0]+2*visual_field, self.stim_shape[1]+2*visual_field), dtype=np.uint8)
-        gt[visual_field+tg_bbox[0]:visual_field+tg_bbox[2], visual_field+tg_bbox[1]:visual_field+tg_bbox[3]] = 1
+        bbox_offset = np.array(tg_bbox) + visual_field
+        gt[bbox_offset[0]:bbox_offset[2], bbox_offset[1]:bbox_offset[3]] = 1
 
         return gt
 
