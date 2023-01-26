@@ -1,4 +1,7 @@
 # ViSioNS: Visual Search in Natural Scenes Benchmark
+## Updates
+* **eccNET added to the benchmark!** Results will be uploaded soon
+  * This visual search model belongs to the paper [*Gupta SK., Zhang M., Wu C., Wolfe JM., Kreiman G., "Visual Search Asymmetry Deep Nets and Humans Share Similar Inherent Biases", NeurIPS 2021*](https://github.com/kreimanlab/VisualSearchAsymmetry).
 ## About
 Visual search is an essential part of almost any everyday human interaction with the visual environment. Nowadays, several algorithms are able to predict gaze positions during simple observation, but few models attempt to simulate human behavior during visual search in natural scenes. Furthermore, these models vary widely in their design and exhibit differences in the datasets and metrics with which they were evaluated.
 
