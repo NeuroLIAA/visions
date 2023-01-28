@@ -1,4 +1,3 @@
-import argparse
 from . import constants
 from .ivsn_model import image_preprocessing, IVSN, compute_scanpaths, utils
 from os import path
@@ -40,13 +39,3 @@ def main(dataset_name, human_subject=None):
     IVSN.run(trials_properties, targets_dir, preprocessed_images_dir)
     print('Computing scanpaths...')
     compute_scanpaths.parse_model_data(preprocessed_images_dir, trials_properties, human_scanpaths, images_size, max_fixations, receptive_size, dataset_full_name, output_path)
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Run the IVSN visual search model')
-    parser.add_argument('-dataset', type=str, help='Name of the dataset on which to run the model. Value must be one of cIBS, COCOSearch18, IVSN or MCS.')
-    parser.add_argument('--h', '--human_subject', type=int, default=None, help='Human subject on which the model will follow its scanpaths, saving the probability map for each saccade.\
-         Useful for computing different metrics. See "Kümmerer, M. & Bethge, M. (2021), State-of-the-Art in Human Scanpath Prediction" for more information')
-
-    args = parser.parse_args()
-
-    main(args.dataset, args.h)

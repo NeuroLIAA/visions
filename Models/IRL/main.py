@@ -2,7 +2,6 @@
 
 import torch
 import numpy as np
-import argparse
 from . import constants
 from tqdm import tqdm
 from os import path, cpu_count
@@ -139,15 +138,3 @@ def gen_scanpaths(generator, env_test, test_img_loader, bbox_annos, patch_num, p
                                     for i in range(env_test.batch_size)])
     
     return all_actions
-
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Run the IRL visual search model')
-    parser.add_argument('-dataset', type=str, help='Name of the dataset on which to run the model. Value must be one of cIBS, COCOSearch18, IVSN or MCS.')
-    parser.add_argument('--h', '--human_subject', type=int, default=None, help='Human subject on which the model will follow its scanpaths, saving the probability map for each saccade.\
-         Useful for computing different metrics. See "Kümmerer, M. & Bethge, M. (2021), State-of-the-Art in Human Scanpath Prediction" for more information')
-    args = parser.parse_args()
-
-    dataset_name  = args.dataset
-    human_subject = args.h
-
-    main(dataset_name, human_subject)
