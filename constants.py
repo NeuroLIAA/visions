@@ -1,5 +1,6 @@
+from os import path
 DATASETS_PATH = 'Datasets'
-MODELS_PATH   = 'Models'
+MODELS_PATH   = path.join('Models', 'IBS', 'configs')
 METRICS_PATH  = 'Metrics'
 RESULTS_PATH  = 'Results'
 

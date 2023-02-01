@@ -15,3 +15,9 @@ def get_dirs(path_):
     dirs  = [dir_ for dir_ in files if path.isdir(path.join(path_, dir_))]
 
     return dirs
+
+def get_files(path_):
+    files = listdir(path_)
+    files = [file.split('.')[0] for file in files if path.isfile(path.join(path_, file))]
+
+    return files

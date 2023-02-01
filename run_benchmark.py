@@ -3,7 +3,7 @@ import argparse
 import utils
 import importlib
 import Metrics.main as metrics_module
-from os import path, listdir
+from pathlib import Path
 
 def main(datasets, models, metrics, force_execution):
     for dataset_name in datasets:
@@ -15,8 +15,8 @@ def main(datasets, models, metrics, force_execution):
                 continue
                 
             print('Running ' + model_name + ' on ' + dataset_name + ' dataset')
-            model = importlib.import_module(constants.MODELS_PATH + '.' + model_name + '.main')
-            model.main(dataset_name)
+            model = importlib.import_module(str(Path(constants.MODELS_PATH).parents[0]).replace('/', '.') + '.main')
+            model.main(dataset_name, model_name)
     
     if metrics:
         cum_perf   = 'perf' in metrics
@@ -26,7 +26,7 @@ def main(datasets, models, metrics, force_execution):
         metrics_module.main(datasets, models, cum_perf, multimatch, human_scanpath_prediction)
 
 if __name__ == "__main__":
-    available_models   = utils.get_dirs(constants.MODELS_PATH)
+    available_models   = utils.get_files(constants.MODELS_PATH)
     available_datasets = utils.get_dirs(constants.DATASETS_PATH)
     available_metrics  = constants.AVAILABLE_METRICS
     parser = argparse.ArgumentParser(description='Run a given set of visual search models on specific datasets and compute the corresponding metrics')
