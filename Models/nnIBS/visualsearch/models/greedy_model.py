@@ -2,7 +2,7 @@ import numpy as np
 from ..utils import utils
 
 class GreedyModel:
-    def __init__(self, save_similarity_maps):
+    def __init__(self, save_probability_maps):
         self.save_probability_maps = save_probability_maps
 
     def next_fixation(self, posterior, image_name, fixation_number, output_path):
