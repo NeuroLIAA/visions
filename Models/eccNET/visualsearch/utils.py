@@ -1,5 +1,6 @@
 import json
 import pandas as pd
+from skimage import transform, exposure
 
 def rescale_coordinate(value, old_size, new_size):
     return int((value / old_size) * new_size)
@@ -20,9 +21,12 @@ def save_to_json(file, data):
     with file.open('w') as json_file:
         json.dump(data, json_file, indent=4)
 
-def save_probability_map(fix_number, img_name, probability_map, output_path):
+def save_probability_map(fix_number, img_name, probability_map, out_shape, output_path):
     save_path = output_path / 'probability_maps' / img_name[:-4]
     if not save_path.exists(): save_path.mkdir(parents=True)
+    if probability_map.shape != out_shape:
+        probability_map = transform.resize(probability_map, out_shape, preserve_range=True)
+        probability_map = exposure.rescale_intensity(probability_map, out_range=(0, 1))
 
     probability_map_df = pd.DataFrame(probability_map)
     probability_map_df.to_csv(str(save_path / f'fixation_{fix_number}.csv'), index=False)

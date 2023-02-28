@@ -202,7 +202,7 @@ class VisualSearchModel:
             if human_fixations:
                 attnmap_coords = np.unravel_index(np.argmax(stim_mask > 0), stim_mask.shape)
                 attention_map  = out[attnmap_coords[0]:attnmap_coords[0]+self.stim_shape[0], attnmap_coords[1]:attnmap_coords[1]+self.stim_shape[1]]
-                utils.save_probability_map(k + 1, img_name, attention_map, output_path)
+                utils.save_probability_map(k + 1, img_name, attention_map, self.stim_shape[:2], output_path)
 
             if debug_flag:
                 attn_maps.append(out)
