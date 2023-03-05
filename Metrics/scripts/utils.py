@@ -39,17 +39,14 @@ def average_results(datasets_results_dict, save_path, filename):
 
         for model in dataset_res:
             if model not in results_average:
-                results_average[model] = {}
+                results_average[model] = dict.fromkeys(metrics, 0)
 
             for metric in metrics:
                 if metric in dataset_res[model]:
-                    if metric in results_average[model]:
-                        results_average[model][metric] += dataset_res[model][metric] / number_of_datasets
-                    else:
-                        results_average[model][metric] = dataset_res[model][metric] / number_of_datasets
+                    results_average[model][metric] += dataset_res[model][metric] / number_of_datasets
 
     final_table = create_table(results_average)
-    save_to_json(path.join(save_path, filename), results_average)
+    final_table.to_csv(path.join(save_path, filename))
 
     return final_table
 

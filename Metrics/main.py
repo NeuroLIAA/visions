@@ -69,6 +69,6 @@ def main(datasets, models, compute_cumulative_performance, compute_multimatch, c
                              save_path=dataset_results_dir, filename='Table.png')
 
     if compute_cumulative_performance and compute_multimatch and compute_hsp:
-        final_table = utils.average_results(datasets_results, save_path=constants.RESULTS_PATH, filename='Scores.json')
+        final_table = utils.average_results(datasets_results, save_path=constants.RESULTS_PATH, filename='Scores.csv')
         if plot_results:
             utils.plot_table(final_table, title='Ranking', save_path=constants.RESULTS_PATH, filename='Ranking.png')
