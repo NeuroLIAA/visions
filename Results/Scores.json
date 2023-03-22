@@ -17,7 +17,7 @@
     "nnIBS": {
         "AUCperf": 0.548,
         "Corr": 0.147,
-        "AvgMM": 0.844,
+        "AvgMM": 0.843,
         "AUChsp": 0.739,
         "NSShsp": 1.267,
         "IGhsp": 0.438,
@@ -54,5 +54,15 @@
         "IGhsp": 1.934,
         "LLhsp": 1.952,
         "Score": 0.0
+    },
+    "eccNET": {
+        "AUCperf": 0.523,
+        "Corr": 0.19,
+        "AvgMM": 0.84,
+        "AUChsp": 0.658,
+        "NSShsp": 1.03,
+        "IGhsp": -2.201,
+        "LLhsp": -2.078,
+        "Score": -0.566
     }
 }
