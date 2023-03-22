@@ -1,0 +1,4776 @@
+{
+    "grayscale_1_housebeautiful.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            148,
+            113,
+            217,
+            176
+        ],
+        "X": [
+            450,
+            354,
+            146
+        ],
+        "Y": [
+            108,
+            60,
+            172
+        ],
+        "target_object": "clock",
+        "max_fixations": 16
+    },
+    "grayscale_1_kitchen.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            258,
+            748,
+            327,
+            811
+        ],
+        "X": [
+            628,
+            628,
+            772
+        ],
+        "Y": [
+            594,
+            434,
+            290
+        ],
+        "target_object": "bowl",
+        "max_fixations": 16
+    },
+    "grayscale_1_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            579,
+            92,
+            648,
+            155
+        ],
+        "X": [
+            430,
+            478,
+            430,
+            302,
+            110
+        ],
+        "Y": [
+            688,
+            656,
+            720,
+            720,
+            608
+        ],
+        "target_object": "cup",
+        "max_fixations": 16
+    },
+    "grayscale_1_opensource.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            360,
+            612,
+            429,
+            675
+        ],
+        "X": [
+            872,
+            744,
+            728,
+            792,
+            632
+        ],
+        "Y": [
+            629,
+            565,
+            405,
+            357,
+            405
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_2_housebeautiful.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            478,
+            391,
+            547,
+            454
+        ],
+        "X": [
+            730,
+            522,
+            378,
+            410
+        ],
+        "Y": [
+            451,
+            435,
+            419,
+            499
+        ],
+        "target_object": "bowl",
+        "max_fixations": 16
+    },
+    "grayscale_2_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            293,
+            832,
+            362,
+            895
+        ],
+        "X": [
+            754,
+            770,
+            850
+        ],
+        "Y": [
+            6,
+            262,
+            310
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_2_opensource.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            254,
+            770,
+            323,
+            833
+        ],
+        "X": [
+            586,
+            794
+        ],
+        "Y": [
+            537,
+            281
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_3_kitchen.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            233,
+            46,
+            302,
+            109
+        ],
+        "X": [
+            301,
+            477,
+            429,
+            477,
+            429,
+            509,
+            397,
+            77
+        ],
+        "Y": [
+            508,
+            396,
+            316,
+            252,
+            108,
+            108,
+            252,
+            252
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_3_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            322,
+            648,
+            391,
+            711
+        ],
+        "X": [
+            867,
+            707
+        ],
+        "Y": [
+            81,
+            369
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_3_other.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            387,
+            184,
+            456,
+            247
+        ],
+        "X": [
+            244,
+            212
+        ],
+        "Y": [
+            79,
+            415
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_4_housebeautiful.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            596,
+            98,
+            665,
+            161
+        ],
+        "X": [
+            443,
+            443,
+            203,
+            187,
+            155,
+            235,
+            219,
+            123
+        ],
+        "Y": [
+            618,
+            442,
+            250,
+            186,
+            250,
+            250,
+            186,
+            634
+        ],
+        "target_object": "cup",
+        "max_fixations": 16
+    },
+    "grayscale_4_kitchen.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            12,
+            357,
+            81,
+            420
+        ],
+        "X": [
+            595,
+            371
+        ],
+        "Y": [
+            304,
+            48
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_4_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            66,
+            290,
+            135,
+            353
+        ],
+        "X": [
+            617,
+            553,
+            505,
+            89,
+            9,
+            25,
+            313
+        ],
+        "Y": [
+            214,
+            294,
+            278,
+            102,
+            102,
+            54,
+            70
+        ],
+        "target_object": "potted plant",
+        "max_fixations": 16
+    },
+    "grayscale_4_other.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": false,
+        "target_bbox": [
+            310,
+            157,
+            379,
+            220
+        ],
+        "X": [
+            49,
+            369,
+            273,
+            257,
+            337,
+            609,
+            545,
+            609,
+            865,
+            849,
+            865,
+            849,
+            881,
+            801,
+            721,
+            513
+        ],
+        "Y": [
+            37,
+            309,
+            229,
+            341,
+            437,
+            453,
+            405,
+            405,
+            437,
+            357,
+            117,
+            53,
+            0,
+            32,
+            80,
+            368
+        ],
+        "target_object": "cup",
+        "max_fixations": 16
+    },
+    "grayscale_5_housebeautiful.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": false,
+        "target_bbox": [
+            229,
+            378,
+            298,
+            441
+        ],
+        "X": [
+            118,
+            86,
+            134,
+            198,
+            230,
+            406,
+            534,
+            630,
+            710,
+            582,
+            582,
+            614,
+            310,
+            278,
+            278,
+            278
+        ],
+        "Y": [
+            140,
+            236,
+            236,
+            156,
+            28,
+            44,
+            60,
+            76,
+            92,
+            252,
+            284,
+            268,
+            316,
+            540,
+            652,
+            700
+        ],
+        "target_object": "bottle",
+        "max_fixations": 16
+    },
+    "grayscale_5_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": false,
+        "target_bbox": [
+            115,
+            495,
+            184,
+            558
+        ],
+        "X": [
+            840,
+            584,
+            552,
+            616,
+            632,
+            632,
+            696,
+            728,
+            712,
+            856,
+            56,
+            0,
+            208,
+            224,
+            160,
+            80
+        ],
+        "Y": [
+            136,
+            312,
+            520,
+            440,
+            392,
+            328,
+            392,
+            408,
+            328,
+            344,
+            728,
+            728,
+            664,
+            520,
+            536,
+            504
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_5_opensource.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            571,
+            608,
+            640,
+            671
+        ],
+        "X": [
+            870,
+            630
+        ],
+        "Y": [
+            373,
+            581
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_6_airbnb.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": false,
+        "target_bbox": [
+            566,
+            117,
+            635,
+            180
+        ],
+        "X": [
+            443,
+            363,
+            235,
+            155,
+            27,
+            139,
+            251,
+            235,
+            331,
+            395,
+            411,
+            219,
+            267,
+            395,
+            651,
+            651
+        ],
+        "Y": [
+            715,
+            571,
+            411,
+            411,
+            459,
+            443,
+            443,
+            523,
+            427,
+            331,
+            123,
+            219,
+            235,
+            363,
+            443,
+            379
+        ],
+        "target_object": "potted plant",
+        "max_fixations": 16
+    },
+    "grayscale_6_housebeautiful.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            513,
+            800,
+            582,
+            863
+        ],
+        "X": [
+            752,
+            544,
+            448,
+            384,
+            544,
+            480,
+            512,
+            608,
+            688,
+            768,
+            704,
+            880,
+            816
+        ],
+        "Y": [
+            216,
+            136,
+            24,
+            24,
+            264,
+            536,
+            712,
+            712,
+            552,
+            440,
+            456,
+            728,
+            552
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_6_kitchen.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            383,
+            688,
+            452,
+            751
+        ],
+        "X": [
+            550,
+            710
+        ],
+        "Y": [
+            129,
+            417
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_6_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": false,
+        "target_bbox": [
+            167,
+            520,
+            236,
+            583
+        ],
+        "X": [
+            781,
+            749,
+            605,
+            525,
+            477,
+            125,
+            125,
+            45,
+            29,
+            189,
+            221,
+            61,
+            77,
+            109,
+            205,
+            157
+        ],
+        "Y": [
+            436,
+            532,
+            276,
+            292,
+            292,
+            276,
+            228,
+            292,
+            484,
+            484,
+            500,
+            484,
+            276,
+            164,
+            244,
+            292
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_6_opensource.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            164,
+            319,
+            233,
+            382
+        ],
+        "X": [
+            566,
+            502,
+            550,
+            214,
+            310,
+            342
+        ],
+        "Y": [
+            448,
+            512,
+            512,
+            320,
+            352,
+            176
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_6_other.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            193,
+            650,
+            262,
+            713
+        ],
+        "X": [
+            387,
+            515,
+            883,
+            659
+        ],
+        "Y": [
+            109,
+            61,
+            0,
+            224
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_7_housebeautiful.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            433,
+            437,
+            502,
+            500
+        ],
+        "X": [
+            217,
+            425,
+            585,
+            649,
+            633,
+            585,
+            537,
+            441
+        ],
+        "Y": [
+            263,
+            295,
+            519,
+            375,
+            327,
+            327,
+            455,
+            423
+        ],
+        "target_object": "bowl",
+        "max_fixations": 16
+    },
+    "grayscale_7_kitchen.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": false,
+        "target_bbox": [
+            70,
+            550,
+            139,
+            613
+        ],
+        "X": [
+            669,
+            669,
+            509,
+            333,
+            365,
+            317,
+            61,
+            173,
+            317,
+            109,
+            45,
+            317,
+            397,
+            349,
+            333,
+            253
+        ],
+        "Y": [
+            435,
+            323,
+            163,
+            179,
+            387,
+            323,
+            419,
+            483,
+            579,
+            483,
+            563,
+            451,
+            307,
+            323,
+            243,
+            163
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_7_opensource.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            343,
+            71,
+            412,
+            134
+        ],
+        "X": [
+            5,
+            5,
+            21,
+            69
+        ],
+        "Y": [
+            51,
+            211,
+            259,
+            387
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_8_housebeautiful.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            226,
+            542,
+            295,
+            605
+        ],
+        "X": [
+            812,
+            700,
+            700,
+            764,
+            876,
+            764,
+            684,
+            764,
+            764,
+            572,
+            588
+        ],
+        "Y": [
+            482,
+            274,
+            338,
+            354,
+            322,
+            258,
+            146,
+            130,
+            194,
+            178,
+            290
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_8_kitchen.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            178,
+            135,
+            247,
+            198
+        ],
+        "X": [
+            468,
+            532,
+            516,
+            532,
+            420,
+            116,
+            100,
+            164
+        ],
+        "Y": [
+            117,
+            149,
+            197,
+            293,
+            277,
+            341,
+            373,
+            181
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_8_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            164,
+            14,
+            233,
+            77
+        ],
+        "X": [
+            163,
+            307,
+            307,
+            211,
+            115,
+            147,
+            67
+        ],
+        "Y": [
+            517,
+            533,
+            181,
+            117,
+            101,
+            213,
+            197
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_8_other.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            10,
+            326,
+            79,
+            389
+        ],
+        "X": [
+            413,
+            541,
+            413,
+            317,
+            349,
+            477,
+            589,
+            701,
+            621,
+            557,
+            461,
+            349
+        ],
+        "Y": [
+            382,
+            526,
+            526,
+            526,
+            510,
+            350,
+            158,
+            334,
+            350,
+            270,
+            190,
+            94
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_9_kitchen.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            139,
+            80,
+            208,
+            143
+        ],
+        "X": [
+            199,
+            391,
+            599,
+            615,
+            343,
+            407,
+            103
+        ],
+        "Y": [
+            504,
+            520,
+            424,
+            312,
+            168,
+            152,
+            168
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_9_other.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            279,
+            706,
+            348,
+            769
+        ],
+        "X": [
+            429,
+            397,
+            589,
+            621,
+            701
+        ],
+        "Y": [
+            250,
+            394,
+            330,
+            330,
+            266
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_10_housebeautiful.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": false,
+        "target_bbox": [
+            498,
+            26,
+            567,
+            89
+        ],
+        "X": [
+            327,
+            439,
+            503,
+            391,
+            487,
+            519,
+            567,
+            535,
+            407,
+            343,
+            423,
+            423,
+            455,
+            199,
+            151,
+            199
+        ],
+        "Y": [
+            357,
+            453,
+            549,
+            565,
+            629,
+            613,
+            533,
+            437,
+            597,
+            469,
+            533,
+            661,
+            725,
+            725,
+            661,
+            565
+        ],
+        "target_object": "potted plant",
+        "max_fixations": 16
+    },
+    "grayscale_10_kitchen.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": false,
+        "target_bbox": [
+            476,
+            744,
+            545,
+            807
+        ],
+        "X": [
+            585,
+            697,
+            761,
+            697,
+            841,
+            697,
+            697,
+            633,
+            569,
+            377,
+            89,
+            57,
+            105,
+            185,
+            281,
+            201
+        ],
+        "Y": [
+            238,
+            190,
+            222,
+            110,
+            190,
+            62,
+            142,
+            30,
+            126,
+            158,
+            158,
+            206,
+            238,
+            238,
+            302,
+            174
+        ],
+        "target_object": "cup",
+        "max_fixations": 16
+    },
+    "grayscale_10_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            297,
+            0,
+            366,
+            63
+        ],
+        "X": [
+            210,
+            18
+        ],
+        "Y": [
+            613,
+            309
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_10_opensource.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            341,
+            498,
+            410,
+            561
+        ],
+        "X": [
+            826,
+            522
+        ],
+        "Y": [
+            485,
+            389
+        ],
+        "target_object": "bottle",
+        "max_fixations": 16
+    },
+    "grayscale_11_kitchen.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            305,
+            118,
+            374,
+            181
+        ],
+        "X": [
+            461,
+            477,
+            493,
+            653,
+            589,
+            525,
+            397,
+            173,
+            141
+        ],
+        "Y": [
+            372,
+            308,
+            644,
+            628,
+            724,
+            660,
+            676,
+            580,
+            340
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_11_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            207,
+            600,
+            276,
+            663
+        ],
+        "X": [
+            735,
+            671,
+            623
+        ],
+        "Y": [
+            565,
+            421,
+            229
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_11_opensource.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            535,
+            199,
+            604,
+            262
+        ],
+        "X": [
+            511,
+            463,
+            223,
+            223
+        ],
+        "Y": [
+            722,
+            642,
+            386,
+            546
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_12_housebeautiful.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            400,
+            647,
+            469,
+            710
+        ],
+        "X": [
+            384,
+            320,
+            224,
+            176,
+            160,
+            160,
+            192,
+            272,
+            304,
+            336,
+            560,
+            704
+        ],
+        "Y": [
+            319,
+            303,
+            431,
+            463,
+            399,
+            351,
+            351,
+            463,
+            463,
+            479,
+            399,
+            415
+        ],
+        "target_object": "potted plant",
+        "max_fixations": 16
+    },
+    "grayscale_13_kitchen.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            425,
+            689,
+            494,
+            752
+        ],
+        "X": [
+            658,
+            546,
+            546,
+            466,
+            482,
+            514,
+            706
+        ],
+        "Y": [
+            123,
+            507,
+            459,
+            587,
+            507,
+            555,
+            427
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_13_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            132,
+            686,
+            201,
+            749
+        ],
+        "X": [
+            422,
+            566,
+            726,
+            870,
+            726
+        ],
+        "Y": [
+            280,
+            312,
+            328,
+            184,
+            136
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_13_opensource.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            382,
+            728,
+            451,
+            791
+        ],
+        "X": [
+            448,
+            448,
+            352,
+            784,
+            816,
+            656,
+            688,
+            816,
+            752
+        ],
+        "Y": [
+            394,
+            506,
+            506,
+            346,
+            314,
+            154,
+            154,
+            346,
+            410
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_13_other.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            308,
+            643,
+            377,
+            706
+        ],
+        "X": [
+            427,
+            187,
+            283,
+            315,
+            379,
+            171,
+            59,
+            107,
+            155,
+            123,
+            203,
+            299,
+            363,
+            507,
+            667,
+            683
+        ],
+        "Y": [
+            132,
+            356,
+            308,
+            340,
+            468,
+            724,
+            564,
+            564,
+            564,
+            628,
+            612,
+            532,
+            532,
+            388,
+            436,
+            308
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_14_airbnb.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            245,
+            67,
+            314,
+            130
+        ],
+        "X": [
+            331,
+            251,
+            91
+        ],
+        "Y": [
+            49,
+            305,
+            257
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_14_housebeautiful.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            553,
+            43,
+            622,
+            106
+        ],
+        "X": [
+            364,
+            60
+        ],
+        "Y": [
+            719,
+            591
+        ],
+        "target_object": "cup",
+        "max_fixations": 16
+    },
+    "grayscale_14_kitchen.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            329,
+            0,
+            398,
+            63
+        ],
+        "X": [
+            226,
+            370,
+            450,
+            258,
+            18
+        ],
+        "Y": [
+            633,
+            409,
+            201,
+            297,
+            345
+        ],
+        "target_object": "potted plant",
+        "max_fixations": 16
+    },
+    "grayscale_14_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": false,
+        "target_bbox": [
+            275,
+            707,
+            344,
+            770
+        ],
+        "X": [
+            862,
+            686,
+            702,
+            462,
+            286,
+            110,
+            110,
+            254,
+            286,
+            206,
+            190,
+            46,
+            0,
+            0,
+            142,
+            0
+        ],
+        "Y": [
+            624,
+            464,
+            592,
+            432,
+            368,
+            256,
+            288,
+            288,
+            304,
+            336,
+            208,
+            304,
+            448,
+            320,
+            272,
+            352
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_14_other.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            419,
+            49,
+            488,
+            112
+        ],
+        "X": [
+            117,
+            37
+        ],
+        "Y": [
+            113,
+            417
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_15_housebeautiful.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            562,
+            658,
+            631,
+            721
+        ],
+        "X": [
+            378,
+            202,
+            122,
+            106,
+            74,
+            154,
+            218,
+            266,
+            394,
+            570,
+            682
+        ],
+        "Y": [
+            557,
+            461,
+            557,
+            621,
+            717,
+            589,
+            365,
+            397,
+            317,
+            493,
+            589
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_15_kitchen.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            258,
+            782,
+            327,
+            845
+        ],
+        "X": [
+            855,
+            855,
+            807,
+            791,
+            871,
+            871
+        ],
+        "Y": [
+            633,
+            585,
+            217,
+            89,
+            9,
+            345
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_15_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            398,
+            578,
+            467,
+            641
+        ],
+        "X": [
+            328,
+            408,
+            584,
+            616,
+            760,
+            760,
+            712,
+            600
+        ],
+        "Y": [
+            582,
+            438,
+            358,
+            326,
+            438,
+            470,
+            342,
+            422
+        ],
+        "target_object": "fork",
+        "max_fixations": 16
+    },
+    "grayscale_15_opensource.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            312,
+            350,
+            381,
+            413
+        ],
+        "X": [
+            170,
+            298,
+            266,
+            458,
+            554,
+            490,
+            522,
+            602,
+            458,
+            474,
+            426,
+            378
+        ],
+        "Y": [
+            599,
+            327,
+            87,
+            199,
+            407,
+            391,
+            471,
+            519,
+            727,
+            455,
+            423,
+            343
+        ],
+        "target_object": "bowl",
+        "max_fixations": 16
+    },
+    "grayscale_16_housebeautiful.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            403,
+            138,
+            472,
+            201
+        ],
+        "X": [
+            65,
+            161
+        ],
+        "Y": [
+            114,
+            418
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_16_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            164,
+            592,
+            233,
+            655
+        ],
+        "X": [
+            686,
+            622
+        ],
+        "Y": [
+            535,
+            199
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_16_opensource.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            348,
+            812,
+            417,
+            875
+        ],
+        "X": [
+            850,
+            690,
+            578,
+            690,
+            818
+        ],
+        "Y": [
+            40,
+            184,
+            136,
+            264,
+            392
+        ],
+        "target_object": "potted plant",
+        "max_fixations": 16
+    },
+    "grayscale_17_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            469,
+            162,
+            538,
+            225
+        ],
+        "X": [
+            214,
+            118,
+            86,
+            134,
+            182
+        ],
+        "Y": [
+            161,
+            209,
+            385,
+            401,
+            497
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_17_opensource.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": false,
+        "target_bbox": [
+            300,
+            719,
+            369,
+            782
+        ],
+        "X": [
+            775,
+            663,
+            535,
+            487,
+            567,
+            663,
+            679,
+            647,
+            727,
+            775,
+            583,
+            455,
+            391,
+            279,
+            247,
+            295
+        ],
+        "Y": [
+            677,
+            517,
+            453,
+            453,
+            453,
+            581,
+            613,
+            645,
+            517,
+            597,
+            341,
+            341,
+            341,
+            517,
+            629,
+            645
+        ],
+        "target_object": "potted plant",
+        "max_fixations": 16
+    },
+    "grayscale_18_housebeautiful.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            383,
+            697,
+            452,
+            760
+        ],
+        "X": [
+            438,
+            374,
+            390,
+            646,
+            678
+        ],
+        "Y": [
+            288,
+            336,
+            464,
+            384,
+            400
+        ],
+        "target_object": "potted plant",
+        "max_fixations": 16
+    },
+    "grayscale_18_kitchen.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            245,
+            442,
+            314,
+            505
+        ],
+        "X": [
+            715,
+            459
+        ],
+        "Y": [
+            62,
+            270
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_18_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            365,
+            566,
+            434,
+            629
+        ],
+        "X": [
+            753,
+            881,
+            849,
+            481,
+            417,
+            593
+        ],
+        "Y": [
+            696,
+            728,
+            664,
+            536,
+            360,
+            392
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_18_opensource.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            207,
+            652,
+            276,
+            715
+        ],
+        "X": [
+            405,
+            437,
+            789,
+            821,
+            773,
+            773,
+            629,
+            533,
+            325,
+            197,
+            69,
+            69,
+            5,
+            789,
+            693
+        ],
+        "Y": [
+            397,
+            269,
+            189,
+            221,
+            221,
+            285,
+            349,
+            285,
+            285,
+            317,
+            189,
+            381,
+            157,
+            317,
+            285
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_19_kitchen.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            391,
+            775,
+            460,
+            838
+        ],
+        "X": [
+            563,
+            595,
+            691,
+            787
+        ],
+        "Y": [
+            642,
+            418,
+            418,
+            418
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_20_housebeautiful.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            416,
+            574,
+            485,
+            637
+        ],
+        "X": [
+            770,
+            594
+        ],
+        "Y": [
+            160,
+            448
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_20_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            195,
+            42,
+            264,
+            105
+        ],
+        "X": [
+            328,
+            312,
+            168,
+            56,
+            88,
+            152,
+            88,
+            72
+        ],
+        "Y": [
+            30,
+            286,
+            270,
+            302,
+            430,
+            302,
+            302,
+            222
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_20_opensource.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": false,
+        "target_bbox": [
+            159,
+            323,
+            228,
+            386
+        ],
+        "X": [
+            57,
+            153,
+            73,
+            121,
+            217,
+            169,
+            249,
+            313,
+            553,
+            729,
+            665,
+            777,
+            745,
+            553,
+            601,
+            777
+        ],
+        "Y": [
+            299,
+            347,
+            171,
+            171,
+            363,
+            443,
+            555,
+            539,
+            331,
+            123,
+            171,
+            91,
+            251,
+            283,
+            347,
+            283
+        ],
+        "target_object": "cup",
+        "max_fixations": 16
+    },
+    "grayscale_21_housebeautiful.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": false,
+        "target_bbox": [
+            357,
+            55,
+            426,
+            118
+        ],
+        "X": [
+            399,
+            447,
+            431,
+            351,
+            591,
+            719,
+            879,
+            879,
+            815,
+            799,
+            879,
+            639,
+            559,
+            655,
+            543,
+            591
+        ],
+        "Y": [
+            367,
+            655,
+            687,
+            703,
+            463,
+            479,
+            591,
+            543,
+            383,
+            415,
+            399,
+            607,
+            575,
+            687,
+            703,
+            719
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_21_kitchen.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": false,
+        "target_bbox": [
+            326,
+            653,
+            395,
+            716
+        ],
+        "X": [
+            883,
+            835,
+            883,
+            163,
+            131,
+            195,
+            163,
+            51,
+            83,
+            227,
+            435,
+            451,
+            483,
+            627,
+            483,
+            531
+        ],
+        "Y": [
+            95,
+            0,
+            0,
+            464,
+            528,
+            464,
+            528,
+            416,
+            400,
+            320,
+            336,
+            464,
+            464,
+            560,
+            528,
+            352
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_21_opensource.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            380,
+            366,
+            449,
+            429
+        ],
+        "X": [
+            707,
+            691,
+            819,
+            755,
+            867,
+            819,
+            867,
+            691,
+            451
+        ],
+        "Y": [
+            362,
+            298,
+            282,
+            298,
+            122,
+            314,
+            458,
+            586,
+            442
+        ],
+        "target_object": "cup",
+        "max_fixations": 16
+    },
+    "grayscale_22_housebeautiful.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            255,
+            119,
+            324,
+            182
+        ],
+        "X": [
+            375,
+            455,
+            343,
+            135
+        ],
+        "Y": [
+            50,
+            194,
+            322,
+            290
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_23_housebeautiful.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            620,
+            490,
+            689,
+            553
+        ],
+        "X": [
+            791,
+            695,
+            583,
+            519
+        ],
+        "Y": [
+            479,
+            495,
+            543,
+            639
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_23_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            461,
+            693,
+            530,
+            756
+        ],
+        "X": [
+            412,
+            380,
+            636,
+            540,
+            476,
+            684,
+            748,
+            732
+        ],
+        "Y": [
+            507,
+            587,
+            427,
+            315,
+            219,
+            267,
+            331,
+            459
+        ],
+        "target_object": "knife",
+        "max_fixations": 16
+    },
+    "grayscale_24_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            330,
+            2,
+            399,
+            65
+        ],
+        "X": [
+            188,
+            172,
+            140,
+            60,
+            28
+        ],
+        "Y": [
+            66,
+            162,
+            290,
+            274,
+            322
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_27_housebeautiful.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            450,
+            85,
+            519,
+            148
+        ],
+        "X": [
+            154,
+            202,
+            394,
+            490,
+            714,
+            714,
+            730,
+            826,
+            762,
+            666,
+            554,
+            362,
+            218,
+            58,
+            10,
+            90
+        ],
+        "Y": [
+            144,
+            192,
+            208,
+            208,
+            192,
+            288,
+            464,
+            496,
+            464,
+            528,
+            720,
+            720,
+            528,
+            560,
+            496,
+            544
+        ],
+        "target_object": "bowl",
+        "max_fixations": 16
+    },
+    "grayscale_27_opensource.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            359,
+            385,
+            428,
+            448
+        ],
+        "X": [
+            710,
+            710,
+            518,
+            326,
+            374,
+            406
+        ],
+        "Y": [
+            511,
+            719,
+            623,
+            351,
+            303,
+            383
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_28_housebeautiful.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": false,
+        "target_bbox": [
+            501,
+            82,
+            570,
+            145
+        ],
+        "X": [
+            329,
+            345,
+            297,
+            41,
+            41,
+            105,
+            41,
+            25,
+            89,
+            105,
+            233,
+            473,
+            681,
+            793,
+            793,
+            681
+        ],
+        "Y": [
+            286,
+            334,
+            398,
+            542,
+            414,
+            414,
+            270,
+            222,
+            174,
+            254,
+            142,
+            206,
+            142,
+            254,
+            318,
+            334
+        ],
+        "target_object": "potted plant",
+        "max_fixations": 16
+    },
+    "grayscale_28_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            473,
+            722,
+            542,
+            785
+        ],
+        "X": [
+            441,
+            729
+        ],
+        "Y": [
+            489,
+            489
+        ],
+        "target_object": "cup",
+        "max_fixations": 16
+    },
+    "grayscale_29_housebeautiful.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": false,
+        "target_bbox": [
+            126,
+            181,
+            195,
+            244
+        ],
+        "X": [
+            454,
+            470,
+            246,
+            214,
+            262,
+            198,
+            246,
+            262,
+            166,
+            6,
+            790,
+            822,
+            774,
+            678,
+            502,
+            502
+        ],
+        "Y": [
+            379,
+            331,
+            395,
+            443,
+            283,
+            347,
+            427,
+            523,
+            715,
+            587,
+            363,
+            507,
+            539,
+            683,
+            555,
+            443
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_29_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            314,
+            764,
+            383,
+            827
+        ],
+        "X": [
+            504,
+            728,
+            808
+        ],
+        "Y": [
+            472,
+            488,
+            328
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_30_housebeautiful.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": false,
+        "target_bbox": [
+            249,
+            595,
+            318,
+            658
+        ],
+        "X": [
+            332,
+            364,
+            476,
+            476,
+            332,
+            156,
+            156,
+            108,
+            124,
+            204,
+            92,
+            140,
+            156,
+            108,
+            108,
+            92
+        ],
+        "Y": [
+            403,
+            307,
+            243,
+            67,
+            147,
+            195,
+            227,
+            195,
+            371,
+            611,
+            627,
+            611,
+            483,
+            499,
+            227,
+            291
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_30_opensource.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            230,
+            700,
+            299,
+            763
+        ],
+        "X": [
+            429,
+            525,
+            493,
+            653,
+            653,
+            701
+        ],
+        "Y": [
+            172,
+            220,
+            332,
+            108,
+            44,
+            268
+        ],
+        "target_object": "potted plant",
+        "max_fixations": 16
+    },
+    "grayscale_31_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            217,
+            537,
+            286,
+            600
+        ],
+        "X": [
+            265,
+            569
+        ],
+        "Y": [
+            166,
+            246
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_32_opensource.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            421,
+            662,
+            490,
+            725
+        ],
+        "X": [
+            764,
+            716,
+            556,
+            588,
+            492,
+            668
+        ],
+        "Y": [
+            121,
+            73,
+            617,
+            553,
+            537,
+            457
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_33_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            342,
+            63,
+            411,
+            126
+        ],
+        "X": [
+            390,
+            86
+        ],
+        "Y": [
+            264,
+            360
+        ],
+        "target_object": "cup",
+        "max_fixations": 16
+    },
+    "grayscale_34_housebeautiful.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            323,
+            64,
+            392,
+            127
+        ],
+        "X": [
+            322,
+            226,
+            34
+        ],
+        "Y": [
+            121,
+            393,
+            361
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_34_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            592,
+            110,
+            661,
+            173
+        ],
+        "X": [
+            263,
+            407,
+            327,
+            231,
+            119
+        ],
+        "Y": [
+            310,
+            342,
+            518,
+            502,
+            598
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_35_housebeautiful.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            352,
+            168,
+            421,
+            231
+        ],
+        "X": [
+            467,
+            227
+        ],
+        "Y": [
+            207,
+            399
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_35_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            310,
+            386,
+            379,
+            449
+        ],
+        "X": [
+            278,
+            166,
+            262,
+            406
+        ],
+        "Y": [
+            38,
+            390,
+            422,
+            342
+        ],
+        "target_object": "cup",
+        "max_fixations": 16
+    },
+    "grayscale_36_housebeautiful.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            526,
+            467,
+            595,
+            530
+        ],
+        "X": [
+            449,
+            257,
+            241,
+            257,
+            209,
+            145,
+            145,
+            257,
+            481
+        ],
+        "Y": [
+            221,
+            157,
+            45,
+            413,
+            445,
+            445,
+            397,
+            461,
+            573
+        ],
+        "target_object": "bowl",
+        "max_fixations": 16
+    },
+    "grayscale_37_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            353,
+            175,
+            422,
+            238
+        ],
+        "X": [
+            298,
+            394,
+            314,
+            474,
+            538,
+            538,
+            378,
+            410,
+            202
+        ],
+        "Y": [
+            59,
+            395,
+            379,
+            587,
+            475,
+            507,
+            475,
+            475,
+            395
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_38_housebeautiful.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            385,
+            795,
+            454,
+            858
+        ],
+        "X": [
+            518,
+            438,
+            390,
+            326,
+            518,
+            774,
+            726,
+            758,
+            838
+        ],
+        "Y": [
+            356,
+            420,
+            420,
+            356,
+            452,
+            580,
+            436,
+            308,
+            436
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_38_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            202,
+            424,
+            271,
+            487
+        ],
+        "X": [
+            142,
+            14,
+            0,
+            64,
+            0,
+            176,
+            288,
+            480,
+            496
+        ],
+        "Y": [
+            229,
+            437,
+            725,
+            677,
+            517,
+            693,
+            677,
+            357,
+            293
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_39_housebeautiful.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            542,
+            506,
+            611,
+            569
+        ],
+        "X": [
+            799,
+            751,
+            527
+        ],
+        "Y": [
+            388,
+            516,
+            580
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_40_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            376,
+            14,
+            445,
+            77
+        ],
+        "X": [
+            6,
+            38,
+            38
+        ],
+        "Y": [
+            70,
+            294,
+            390
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_42_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            100,
+            199,
+            169,
+            262
+        ],
+        "X": [
+            483,
+            451,
+            195
+        ],
+        "Y": [
+            339,
+            275,
+            147
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_43_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            106,
+            656,
+            175,
+            719
+        ],
+        "X": [
+            409,
+            473,
+            505,
+            681
+        ],
+        "Y": [
+            298,
+            266,
+            202,
+            122
+        ],
+        "target_object": "potted plant",
+        "max_fixations": 16
+    },
+    "grayscale_44_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            302,
+            260,
+            371,
+            323
+        ],
+        "X": [
+            581,
+            437,
+            405,
+            293
+        ],
+        "Y": [
+            204,
+            332,
+            396,
+            332
+        ],
+        "target_object": "bowl",
+        "max_fixations": 16
+    },
+    "grayscale_45_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            630,
+            365,
+            699,
+            428
+        ],
+        "X": [
+            98,
+            370,
+            482,
+            354,
+            450
+        ],
+        "Y": [
+            559,
+            367,
+            399,
+            399,
+            671
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_47_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            374,
+            646,
+            443,
+            709
+        ],
+        "X": [
+            478,
+            670
+        ],
+        "Y": [
+            144,
+            400
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_49_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            288,
+            694,
+            357,
+            757
+        ],
+        "X": [
+            892,
+            716
+        ],
+        "Y": [
+            614,
+            310
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_50_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": false,
+        "target_bbox": [
+            124,
+            412,
+            193,
+            475
+        ],
+        "X": [
+            631,
+            631,
+            519,
+            407,
+            247,
+            247,
+            279,
+            215,
+            199,
+            135,
+            55,
+            23,
+            119,
+            199,
+            327,
+            439
+        ],
+        "Y": [
+            433,
+            353,
+            305,
+            449,
+            305,
+            401,
+            417,
+            529,
+            593,
+            561,
+            449,
+            561,
+            497,
+            433,
+            449,
+            449
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_52_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": false,
+        "target_bbox": [
+            406,
+            64,
+            475,
+            127
+        ],
+        "X": [
+            154,
+            330,
+            586,
+            666,
+            618,
+            666,
+            650,
+            682,
+            810,
+            826,
+            858,
+            858,
+            778,
+            698,
+            634,
+            522
+        ],
+        "Y": [
+            103,
+            327,
+            199,
+            87,
+            455,
+            455,
+            519,
+            583,
+            615,
+            551,
+            455,
+            391,
+            391,
+            455,
+            359,
+            247
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_53_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            231,
+            751,
+            300,
+            814
+        ],
+        "X": [
+            470,
+            422,
+            358,
+            246,
+            246,
+            278,
+            278,
+            262,
+            54,
+            230,
+            214,
+            230,
+            38,
+            822,
+            742,
+            758
+        ],
+        "Y": [
+            294,
+            438,
+            438,
+            326,
+            262,
+            326,
+            246,
+            374,
+            726,
+            598,
+            358,
+            406,
+            278,
+            406,
+            374,
+            294
+        ],
+        "target_object": "cup",
+        "max_fixations": 16
+    },
+    "grayscale_54_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            297,
+            756,
+            366,
+            819
+        ],
+        "X": [
+            489,
+            329,
+            185,
+            153,
+            105,
+            57,
+            201,
+            345,
+            521,
+            553,
+            633,
+            649,
+            665,
+            681,
+            777
+        ],
+        "Y": [
+            227,
+            131,
+            131,
+            195,
+            435,
+            435,
+            435,
+            435,
+            419,
+            307,
+            227,
+            323,
+            243,
+            371,
+            323
+        ],
+        "target_object": "potted plant",
+        "max_fixations": 16
+    },
+    "grayscale_55_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            138,
+            179,
+            207,
+            242
+        ],
+        "X": [
+            523,
+            475,
+            379,
+            539,
+            459,
+            203
+        ],
+        "Y": [
+            147,
+            243,
+            339,
+            323,
+            339,
+            227
+        ],
+        "target_object": "bottle",
+        "max_fixations": 16
+    },
+    "grayscale_56_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            343,
+            634,
+            412,
+            697
+        ],
+        "X": [
+            479,
+            703
+        ],
+        "Y": [
+            653,
+            365
+        ],
+        "target_object": "bottle",
+        "max_fixations": 16
+    },
+    "grayscale_58_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            298,
+            821,
+            367,
+            884
+        ],
+        "X": [
+            747,
+            875,
+            443,
+            283,
+            235,
+            331,
+            411,
+            315,
+            315,
+            539,
+            635,
+            811,
+            843
+        ],
+        "Y": [
+            9,
+            0,
+            320,
+            320,
+            352,
+            384,
+            608,
+            576,
+            496,
+            720,
+            560,
+            496,
+            304
+        ],
+        "target_object": "bowl",
+        "max_fixations": 16
+    },
+    "grayscale_59_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            452,
+            700,
+            521,
+            763
+        ],
+        "X": [
+            429,
+            461,
+            621,
+            733
+        ],
+        "Y": [
+            577,
+            513,
+            529,
+            481
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_60_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            0,
+            191,
+            69,
+            254
+        ],
+        "X": [
+            496,
+            208
+        ],
+        "Y": [
+            202,
+            26
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_61_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            76,
+            139,
+            145,
+            202
+        ],
+        "X": [
+            476,
+            156
+        ],
+        "Y": [
+            182,
+            102
+        ],
+        "target_object": "bowl",
+        "max_fixations": 16
+    },
+    "grayscale_62_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            345,
+            231,
+            414,
+            294
+        ],
+        "X": [
+            575,
+            351,
+            255
+        ],
+        "Y": [
+            399,
+            415,
+            383
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_63_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": false,
+        "target_bbox": [
+            307,
+            611,
+            376,
+            674
+        ],
+        "X": [
+            742,
+            726,
+            502,
+            342,
+            230,
+            390,
+            470,
+            614,
+            422,
+            358,
+            358,
+            550,
+            646,
+            758,
+            870,
+            598
+        ],
+        "Y": [
+            667,
+            603,
+            715,
+            635,
+            395,
+            59,
+            59,
+            43,
+            59,
+            187,
+            219,
+            59,
+            43,
+            11,
+            0,
+            75
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_64_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": false,
+        "target_bbox": [
+            299,
+            187,
+            368,
+            250
+        ],
+        "X": [
+            529,
+            657,
+            609,
+            497,
+            321,
+            225,
+            1,
+            81,
+            289,
+            449,
+            385,
+            561,
+            529,
+            673,
+            673,
+            817
+        ],
+        "Y": [
+            377,
+            345,
+            393,
+            537,
+            521,
+            617,
+            713,
+            649,
+            633,
+            345,
+            313,
+            489,
+            537,
+            441,
+            377,
+            297
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_65_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": false,
+        "target_bbox": [
+            223,
+            785,
+            292,
+            848
+        ],
+        "X": [
+            537,
+            441,
+            153,
+            217,
+            409,
+            521,
+            457,
+            505,
+            521,
+            441,
+            377,
+            153,
+            201,
+            233,
+            73,
+            857
+        ],
+        "Y": [
+            411,
+            491,
+            427,
+            395,
+            411,
+            491,
+            571,
+            571,
+            523,
+            523,
+            443,
+            379,
+            427,
+            427,
+            443,
+            491
+        ],
+        "target_object": "bowl",
+        "max_fixations": 16
+    },
+    "grayscale_68_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            541,
+            818,
+            610,
+            881
+        ],
+        "X": [
+            716,
+            748,
+            844
+        ],
+        "Y": [
+            265,
+            329,
+            569
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_70_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            354,
+            706,
+            423,
+            769
+        ],
+        "X": [
+            724,
+            676,
+            724
+        ],
+        "Y": [
+            732,
+            684,
+            380
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_71_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            342,
+            302,
+            411,
+            365
+        ],
+        "X": [
+            629,
+            133,
+            325
+        ],
+        "Y": [
+            490,
+            538,
+            362
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_72_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            314,
+            497,
+            383,
+            560
+        ],
+        "X": [
+            356,
+            468,
+            468
+        ],
+        "Y": [
+            63,
+            175,
+            383
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_73_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            552,
+            281,
+            621,
+            344
+        ],
+        "X": [
+            233,
+            41,
+            9,
+            297
+        ],
+        "Y": [
+            255,
+            159,
+            335,
+            591
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_74_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            182,
+            430,
+            251,
+            493
+        ],
+        "X": [
+            676,
+            708,
+            740,
+            836,
+            868,
+            740,
+            804,
+            740,
+            532,
+            452
+        ],
+        "Y": [
+            466,
+            338,
+            338,
+            306,
+            306,
+            418,
+            402,
+            370,
+            322,
+            226
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_75_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            311,
+            3,
+            380,
+            66
+        ],
+        "X": [
+            335,
+            527,
+            767,
+            799,
+            0
+        ],
+        "Y": [
+            443,
+            331,
+            235,
+            235,
+            363
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_77_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            87,
+            24,
+            156,
+            87
+        ],
+        "X": [
+            308,
+            372,
+            356,
+            260,
+            52,
+            36
+        ],
+        "Y": [
+            325,
+            485,
+            677,
+            693,
+            309,
+            117
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_81_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            450,
+            811,
+            519,
+            874
+        ],
+        "X": [
+            583,
+            711,
+            855,
+            839
+        ],
+        "Y": [
+            292,
+            260,
+            372,
+            468
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_83_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            537,
+            832,
+            606,
+            895
+        ],
+        "X": [
+            599,
+            471,
+            439,
+            295,
+            7,
+            7,
+            55,
+            7,
+            7,
+            167,
+            295,
+            439,
+            871,
+            871
+        ],
+        "Y": [
+            388,
+            484,
+            596,
+            628,
+            692,
+            436,
+            308,
+            228,
+            340,
+            468,
+            452,
+            404,
+            724,
+            548
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_84_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            252,
+            652,
+            321,
+            715
+        ],
+        "X": [
+            431,
+            399,
+            207,
+            271,
+            175,
+            175,
+            303,
+            335,
+            415,
+            559,
+            655
+        ],
+        "Y": [
+            489,
+            393,
+            425,
+            329,
+            361,
+            265,
+            105,
+            105,
+            9,
+            249,
+            281
+        ],
+        "target_object": "chair",
+        "max_fixations": 16
+    },
+    "grayscale_85_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            245,
+            752,
+            314,
+            815
+        ],
+        "X": [
+            798,
+            782
+        ],
+        "Y": [
+            622,
+            286
+        ],
+        "target_object": "bowl",
+        "max_fixations": 16
+    },
+    "grayscale_86_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            329,
+            722,
+            398,
+            785
+        ],
+        "X": [
+            609,
+            737
+        ],
+        "Y": [
+            667,
+            347
+        ],
+        "target_object": "potted plant",
+        "max_fixations": 16
+    },
+    "grayscale_88_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": false,
+        "target_bbox": [
+            264,
+            0,
+            333,
+            63
+        ],
+        "X": [
+            192,
+            288,
+            288,
+            320,
+            544,
+            592,
+            624,
+            640,
+            496,
+            528,
+            672,
+            688,
+            848,
+            784,
+            880,
+            816
+        ],
+        "Y": [
+            593,
+            545,
+            593,
+            673,
+            673,
+            673,
+            689,
+            337,
+            289,
+            257,
+            305,
+            177,
+            161,
+            33,
+            1,
+            225
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_89_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            93,
+            370,
+            162,
+            433
+        ],
+        "X": [
+            175,
+            399
+        ],
+        "Y": [
+            365,
+            109
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_92_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            322,
+            198,
+            391,
+            261
+        ],
+        "X": [
+            309,
+            341,
+            213
+        ],
+        "Y": [
+            25,
+            201,
+            361
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_94_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": false,
+        "target_bbox": [
+            206,
+            760,
+            275,
+            823
+        ],
+        "X": [
+            886,
+            742,
+            438,
+            486,
+            454,
+            518,
+            486,
+            518,
+            422,
+            390,
+            246,
+            118,
+            198,
+            198,
+            230,
+            278
+        ],
+        "Y": [
+            567,
+            727,
+            551,
+            599,
+            503,
+            599,
+            391,
+            231,
+            231,
+            311,
+            311,
+            359,
+            343,
+            407,
+            439,
+            311
+        ],
+        "target_object": "potted plant",
+        "max_fixations": 16
+    },
+    "grayscale_98_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            380,
+            748,
+            449,
+            811
+        ],
+        "X": [
+            578,
+            770
+        ],
+        "Y": [
+            151,
+            407
+        ],
+        "target_object": "car",
+        "max_fixations": 16
+    },
+    "grayscale_99_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            542,
+            625,
+            611,
+            688
+        ],
+        "X": [
+            891,
+            667
+        ],
+        "Y": [
+            348,
+            572
+        ],
+        "target_object": "TBD",
+        "max_fixations": 16
+    },
+    "grayscale_100_oliva.jpg": {
+        "subject": "eccNET Model",
+        "dataset": "Interiors Dataset",
+        "image_height": 736,
+        "image_width": 896,
+        "receptive_height": 64,
+        "receptive_width": 64,
+        "target_found": true,
+        "target_bbox": [
+            365,
+            623,
+            434,
+            686
+        ],
+        "X": [
+            350,
+            478,
+            398,
+            638
+        ],
+        "Y": [
+            324,
+            500,
+            532,
+            372
+        ],
+        "target_object": "potted plant",
+        "max_fixations": 16
+    }
+}
