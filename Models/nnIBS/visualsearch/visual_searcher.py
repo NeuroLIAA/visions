@@ -66,7 +66,7 @@ class VisualSearcher:
             print(image_name + ': prior image\'s dimensions don\'t match dataset\'s dimensions')
             return {}
         # Sum probabilities
-        image_prior = prior.sum(image_prior, self.max_saccades)
+        image_prior = prior.sum(image_prior)
       
         # Convert target bounding box to grid cells
         target_bbox_in_grid = np.empty(len(target_bbox), dtype=np.int)
