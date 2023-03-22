@@ -68,7 +68,7 @@ class VisualSearcher:
             print(image_name + ': prior image\'s dimensions don\'t match dataset\'s dimensions')
             return {}
         # Sum probabilities
-        image_prior = prior.sum(image_prior, self.max_saccades)
+        image_prior = prior.sum(image_prior)
       
         # Convert target bounding box to grid cells
         target_bbox_in_grid = np.empty(len(target_bbox), dtype=np.int)
@@ -104,7 +104,6 @@ class VisualSearcher:
 
         # Initialize variables for computing each fixation        
         likelihood = np.zeros(shape=grid_size)
-        posterior  = image_prior
 
         # Search
         print('Fixation:', end=' ')
@@ -128,7 +127,7 @@ class VisualSearcher:
                 break
 
             likelihood = likelihood + target_similarity_map.at_fixation(current_fixation) * (np.square(self.visibility_map.at_fixation(current_fixation)))
-            likelihood_times_prior = posterior * np.exp(likelihood)
+            likelihood_times_prior = image_prior * np.exp(likelihood)
             marginal  = np.sum(likelihood_times_prior)
             posterior = likelihood_times_prior / marginal
 

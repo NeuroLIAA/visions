@@ -29,7 +29,7 @@ def load(image, image_name, image_size, prior_name, prior_dir):
     return prior
 
 # TODO: Definir para qué sirve la función y asignarle mejores nombres
-def sum(prior, max_saccades):
+def sum(prior, max_saccades=15):
     """ Input:
             prior (2D array)   : prior where probabilites will be summed
             max_saccades (int) : maximum possible number of saccades
