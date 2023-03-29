@@ -56,14 +56,16 @@ python3 run_benchmark.py --d COCOSearch18 Interiors --m nnIBS --mts mm perf
 ## How to cite us
 If you use our work, please cite us:
 ```
-@inproceedings{
-  travi2022visions,
-  title={ViSio{NS}: Visual Search in Natural Scenes Benchmark},
-  author={Ferm{\'\i}n Travi and Gonzalo Ruarte and Gaston Bujia and Juan E Kamienkowski},
-  booktitle={Thirty-sixth Conference on Neural Information Processing Systems Datasets and Benchmarks Track},
-  year={2022},
-  pages={},
-  url={https://openreview.net/forum?id=wPEXGTzZJt}
+@inproceedings{travi2022visions,
+ author = {Travi, Ferm\'{\i}n and Ruarte, Gonzalo and Bujia, Gaston and Kamienkowski, Juan Esteban},
+ booktitle = {Advances in Neural Information Processing Systems},
+ editor = {S. Koyejo and S. Mohamed and A. Agarwal and D. Belgrave and K. Cho and A. Oh},
+ pages = {11987--12000},
+ publisher = {Curran Associates, Inc.},
+ title = {ViSioNS: Visual Search in Natural Scenes Benchmark},
+ url = {https://proceedings.neurips.cc/paper_files/paper/2022/file/4ea14e6090343523ddcd5d3ca449695f-Paper-Datasets_and_Benchmarks.pdf},
+ volume = {35},
+ year = {2022}
 }
 ```
 ```
