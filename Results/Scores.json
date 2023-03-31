@@ -4,35 +4,35 @@
         "AvgMM": 0.87,
         "Score": 0.5
     },
-    "cIBS": {
-        "AUCperf": 0.508,
-        "Corr": 0.167,
-        "AvgMM": 0.847,
-        "AUChsp": 0.749,
-        "NSShsp": 1.259,
-        "IGhsp": 0.314,
-        "LLhsp": 0.229,
-        "Score": -0.189
-    },
     "nnIBS": {
-        "AUCperf": 0.548,
-        "Corr": 0.147,
-        "AvgMM": 0.844,
-        "AUChsp": 0.739,
-        "NSShsp": 1.267,
+        "AUCperf": 0.482,
+        "Corr": 0.249,
+        "AvgMM": 0.849,
+        "AUChsp": 0.736,
+        "NSShsp": 1.32,
         "IGhsp": 0.438,
         "LLhsp": 0.354,
-        "Score": -0.169
+        "Score": -0.161
     },
     "sIBS": {
-        "AUCperf": 0.54,
-        "Corr": 0.134,
-        "AvgMM": 0.844,
+        "AUCperf": 0.474,
+        "Corr": 0.192,
+        "AvgMM": 0.847,
         "AUChsp": 0.74,
-        "NSShsp": 1.248,
-        "IGhsp": 0.312,
-        "LLhsp": 0.228,
-        "Score": -0.192
+        "NSShsp": 1.317,
+        "IGhsp": 0.441,
+        "LLhsp": 0.358,
+        "Score": -0.17
+    },
+    "cIBS": {
+        "AUCperf": 0.452,
+        "Corr": 0.265,
+        "AvgMM": 0.85,
+        "AUChsp": 0.75,
+        "NSShsp": 1.356,
+        "IGhsp": 0.451,
+        "LLhsp": 0.367,
+        "Score": -0.157
     },
     "center_bias": {
         "AUChsp": 0.72,
