@@ -39,11 +39,15 @@ def average_results(datasets_results_dict, save_path, filename):
 
         for model in dataset_res:
             if model not in results_average:
-                results_average[model] = dict.fromkeys(metrics, 0)
+                results_average[model] = {}
 
             for metric in metrics:
                 if metric in dataset_res[model]:
-                    results_average[model][metric] += dataset_res[model][metric] / number_of_datasets
+                    update_value = dataset_res[model][metric] / number_of_datasets
+                    if metric in results_average[model]:
+                        results_average[model][metric] += update_value
+                    else:
+                        results_average[model][metric] = update_value
 
     final_table = create_table(results_average)
     final_table.to_csv(path.join(save_path, filename))
