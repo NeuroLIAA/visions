@@ -1,7 +1,7 @@
 # ViSioNS: Visual Search in Natural Scenes Benchmark
 ## Updates
-* **eccNET added to the benchmark!** Results will be uploaded soon
-  * This visual search model belongs to the paper [*Gupta SK., Zhang M., Wu C., Wolfe JM., Kreiman G., "Visual Search Asymmetry Deep Nets and Humans Share Similar Inherent Biases", NeurIPS 2021*](https://github.com/kreimanlab/VisualSearchAsymmetry).
+* **eccNET added to the benchmark!** ~~Results will be uploaded soon~~ *Results uploaded*
+  * This visual search model belongs to the paper [*Gupta SK., Zhang M., Wu C., Wolfe JM., Kreiman G., "Visual Search Asymmetry: Deep Nets and Humans Share Similar Inherent Biases", NeurIPS 2021*](https://github.com/kreimanlab/VisualSearchAsymmetry).
 ## About
 Visual search is an essential part of almost any everyday human interaction with the visual environment. Nowadays, several algorithms are able to predict gaze positions during simple observation, but few models attempt to simulate human behavior during visual search in natural scenes. Furthermore, these models vary widely in their design and exhibit differences in the datasets and metrics with which they were evaluated.
 
@@ -16,10 +16,8 @@ Current models scores, relative to human subjects, averaged across all datasets:
 | ----------- | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: |
 | Humans | 0.56 | 0.87 | - | - | - | - | - | - | - |
 | Gold Standard | - | - | - | 0.90 | 2.65 | 1.93 | 1.95 | 0.00 |
-| **nnIBS**   | **0.55**       | 0.84 | 0.15 | 0.74 | **1.27** | **0.44** | **0.35** | -0.17 |
-| cIBS   | 0.51        | **0.85** | **0.17** | **0.75** | 1.26 | 0.31 | 0.23 | -0.19 |
-| sIBS   | 0.54        | 0.84 | 0.13 | 0.74 | 1.25 | 0.31 | 0.23 | -0.19 |
-| eccNET   | 0.52        | 0.84 | 0.19 | 0.66 | 1.03 | -2.20 | -2.01 | -0.57 |
+| **nnIBS**   | 0.48 | **0.85** | **0.25** | **0.79** | **1.50** | **0.57** | **0.49** | -0.12 |
+| eccNET   | **0.52** | 0.84 | 0.19 | 0.66 | 1.03 | -2.20 | -2.01 | -0.57 |
 | Center bias | - | - | - | 0.72 | 0.89 | 0.00 | 0.07 | -0.70 |
 | Uniform | - | - | - | 0.50 | 0.00 | -0.07 | 0.00 | -0.87 |
 | IVSN    | 0.67        | 0.80 | 0.09 | 0.61 | 1.07 | -4.29 | -4.18 | -0.91 |
