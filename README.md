@@ -80,3 +80,15 @@ year = {2022}
 ```
 
 The exact materials used for the paper can be found at the [1. NeurIPS 2022 branch](https://github.com/FerminT/VisualSearchBenchmark/tree/NeurIPS), [2. SVRHM 2021 branch](https://github.com/FerminT/VisualSearchBenchmark/tree/SVRHM), [3. Frontiers in Systems Neuroscience repository](https://github.com/gastonbujia/VisualSearch). 
+
+## References
+### Models
+* eccNET: [Gupta SK., Zhang M., Wu C., Wolfe JM., Kreiman G., *Visual Search Asymmetry: Deep Nets and Humans Share Similar Inherent Biases*, NeurIPS 2021.](https://github.com/kreimanlab/VisualSearchAsymmetry)
+* IVSN: [Zhang M. et al., *Finding any Waldo with Zero-shot Invariant and Efficient Visual Search Model*, Nature Comun. 9, 2018.](https://www.nature.com/articles/s41467-018-06217-x)
+* nnIBS: [Bujia G., Sclar M., Vita S., Solovey G., Kamienkowski JE., *Modeling Human Visual Search in Natural Scenes: A Combined Bayesian Searcher and Saliency Map Approach*, Frontiers in Systems Neuroscience, Volume 16, 2022.](https://www.frontiersin.org/article/10.3389/fnsys.2022.882315)
+* IRL: [Yang, Z. et. al., *Predicting Goal-directed Human Attention Using Inverse Reinforcement Learning*, IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2020](http://openaccess.thecvf.com/content_CVPR_2020/html/Yang_Predicting_Goal-Directed_Human_Attention_Using_Inverse_Reinforcement_Learning_CVPR_2020_paper.html)
+### Datasets
+* Interiors: [Bujia G., Sclar M., Vita S., Solovey G., Kamienkowski JE., *Modeling Human Visual Search in Natural Scenes: A Combined Bayesian Searcher and Saliency Map Approach*, Frontiers in Systems Neuroscience, Volume 16, 2022.](https://www.frontiersin.org/article/10.3389/fnsys.2022.882315)
+* Unrestricted: [Zhang M. et al., *Finding any Waldo with Zero-shot Invariant and Efficient Visual Search Model*, Nature Comun. 9, 2018.](https://www.nature.com/articles/s41467-018-06217-x)
+* COCOSearch18: [Chen, Y., Yang, Z., Ahn, S., Samaras, D., Hoai, M., & Zelinsky, G., *COCO-Search18 Fixation Dataset for Predicting Goal-directed Attention Control*, Scientific Reports, 11 (1), 1-11, 2021.](https://www.nature.com/articles/s41598-021-87715-9)
+* MCS: [G.J. Zelinsky et al., *Benchmarking Gaze Prediction for Categorical Visual Search*, CVPR Workshops 2019, 2019.](https://www3.cs.stonybrook.edu/~zhibyang/papers/Gaze_Benchmark_CVPRw.pdf)
