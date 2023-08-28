@@ -23,7 +23,13 @@ Current models scores, relative to human subjects, averaged across all datasets:
 | IVSN    | 0.67        | 0.80 | 0.09 | 0.61 | 1.07 | -4.29 | -4.18 | -0.91 |
 | IRL     | 0.40       | 0.80 | 0.04 | 0.65 | 1.24 | -4.83 | -4.90 | -1.00 |
 
-```AUCperf``` measures efficiency, while ```AvgMM``` is the Multi-Match average between models and subjects. ```Corr``` is the correlation between within-humans Multi-Match (whMM) and human-model Multi-Match (hmMM). Lastly, ```AUChsp```, ```NSShsp```, ```IGhsp``` and ```LLhsp``` focus on human scanpath prediction (HSP). The precise definition of each can be found at [```Metrics```](./Metrics). The scores for individual datasets can be found at their corresponding directory in [```Results```](./Results) (see ```Table.png```).
+```AUCperf``` measures efficiency, while ```AvgMM``` is the Multi-Match average between models and subjects. ```Corr``` is the correlation between within-humans Multi-Match (whMM) and human-model Multi-Match (hmMM). Lastly, ```AUChsp```, ```NSShsp```, ```IGhsp``` and ```LLhsp``` focus on human scanpath prediction (HSP). The precise definition of each can be found at [```Metrics```](./Metrics).
+
+**Scores for individual datasets:**
+* [```Interiors```](./Results/Interiors/Table.png)
+* [```Unrestricted```](./Results/Unrestricted/Table.png)
+* [```COCOSearch18```](./Results/COCOSearch18/Table.png)
+* [```MCS```](./Results/MCS/Table.png)
 
 ## Installation
 Python 3.8 or newer is required. To install, run:
