@@ -74,10 +74,7 @@ for img_data_file in eye_tracking_files:
         if len(scanpath_x) < cropped_scanpath_len: 
             cropped_scanpaths += 1
             
-        if target_found and not utils.between_bounds(target_bbox, scanpath_y[-1], scanpath_x[-1], receptive_size):
-            print('Subject: ' + name + '; trial: ' + img_name + '. Last fixation doesn\'t fall between target\'s bounds')
-            print('Target bbox: ' + str(target_bbox) + '. Last fixation: ' + str((scanpath_y[-1], scanpath_x[-1])) + '\n')
-            target_found = False
+        if not target_found and gotbox:
             wrong_targets_found += 1
         
         if name not in subjects_mapping:
