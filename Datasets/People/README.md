@@ -8,4 +8,4 @@ Official website can be found [here](http://olivalab.mit.edu/SearchModels/).
 Images can be downloaded from the official website and must be placed in the ```images``` folder.
 
 ## Raw data
-To run the processing scripts on the unmodified data, download the eye-tracking data from the official website and place it in the folder ```data_raw/eyeData```.
+To run the processing scripts on the unmodified data, download the eye-tracking data from the official website and place it in the folder ```data_raw/eyeData```. Before running the scripts, three trials should be excluded (due to containing multiple targets): U123_1RBE.jpg, U0126_1LBE.jpg, U0340_1RBH.jpg.
