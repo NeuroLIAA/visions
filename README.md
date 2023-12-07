@@ -1,6 +1,8 @@
 # ViSioNS: Visual Search in Natural Scenes Benchmark
 ## Updates
-* **eccNET added to the benchmark!** ~~Results will be uploaded soon~~ *Results uploaded*
+* **People dataset added to the benchmark!** (Results will be uploaded soon)
+  * This dataset dates back to 2009 and belongs to the paper [*Ehinger, K. A., Hidalgo-Sotelo, B., Torralba, A., & Oliva, A, "Modeling Search for People in 900 Scenes: A combined source model of eye guidance", Visual cognition, 17(6-7), 945–978, 2009*.](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2790194/)
+* **eccNET added to the benchmark!**
   * This visual search model belongs to the paper [*Gupta SK., Zhang M., Wu C., Wolfe JM., Kreiman G., "Visual Search Asymmetry: Deep Nets and Humans Share Similar Inherent Biases", NeurIPS 2021*](https://github.com/kreimanlab/VisualSearchAsymmetry).
 ## About
 Visual search is an essential part of almost any everyday human interaction with the visual environment. Nowadays, several algorithms are able to predict gaze positions during simple observation, but few models attempt to simulate human behavior during visual search in natural scenes. Furthermore, these models vary widely in their design and exhibit differences in the datasets and metrics with which they were evaluated.
@@ -98,3 +100,4 @@ The exact materials used for the paper can be found at the [1. NeurIPS 2022 bran
 * Unrestricted: [Zhang M. et al., *Finding any Waldo with Zero-shot Invariant and Efficient Visual Search Model*, Nature Comun. 9, 2018.](https://www.nature.com/articles/s41467-018-06217-x)
 * COCOSearch18: [Chen, Y., Yang, Z., Ahn, S., Samaras, D., Hoai, M., & Zelinsky, G., *COCO-Search18 Fixation Dataset for Predicting Goal-directed Attention Control*, Scientific Reports, 11 (1), 1-11, 2021.](https://www.nature.com/articles/s41598-021-87715-9)
 * MCS: [G.J. Zelinsky et al., *Benchmarking Gaze Prediction for Categorical Visual Search*, CVPR Workshops 2019, 2019.](https://www3.cs.stonybrook.edu/~zhibyang/papers/Gaze_Benchmark_CVPRw.pdf)
+* People: [Ehinger, K. A., Hidalgo-Sotelo, B., Torralba, A., & Oliva, A, *Modeling Search for People in 900 Scenes: A combined source model of eye guidance*, Visual cognition, 17(6-7), 945–978, 2009.](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2790194/)
