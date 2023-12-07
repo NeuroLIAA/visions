@@ -1,5 +1,6 @@
 import numpy as np
 from os import path
+from pathlib import Path
 from .utils import utils
 from .utils.deepgaze.create_saliencymap import create_saliencymap_for_image
 
@@ -15,13 +16,14 @@ def load(image, image_name, image_size, prior_name, prior_dir):
         Output:
             prior (2D array) : prior corresponding to the image, of the same size
     """
-    prior_path = path.join(prior_dir, prior_name)
+    prior_path = Path(prior_dir) / prior_name
     if prior_name == 'noisy':
         prior = utils.add_white_gaussian_noise(np.ones(shape=image_size), snr_db=25)
     else:
-        if not path.exists(path.join(prior_path, image_name)):
-            create_saliencymap_for_image(image, path.join(prior_path, image_name))
-        prior = utils.load_image(prior_path, image_name)
+        img_prior = prior_path / image_name
+        if not img_prior.exists():
+            create_saliencymap_for_image(image, img_prior)
+        prior = utils.load_image(str(prior_path), image_name)
 
     # Normalize values
     prior = prior / np.max(prior)
