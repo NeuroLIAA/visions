@@ -5,6 +5,7 @@ from . import utils
 from scipy.stats import pearsonr
 from os import listdir, path
 
+
 class Multimatch:
     def __init__(self, dataset_name, human_scanpaths_dir, dataset_results_dir, number_of_images, compute):
         self.multimatch_values = {}
@@ -16,13 +17,14 @@ class Multimatch:
         self.null_object = not compute
 
     def plot(self, save_path):
-        if self.null_object:
-            return
-            
         number_of_models = len(self.multimatch_values)
+        if self.null_object or number_of_models == 0:
+            return
+
         fig, axs = plt.subplots(1, number_of_models, sharex=True, sharey=True, figsize=(10, 5))
 
-        if number_of_models == 1: axs = [axs]
+        if number_of_models == 1:
+            axs = [axs]
 
         ax_index = 0
         for model in self.multimatch_values:
@@ -40,7 +42,7 @@ class Multimatch:
         for ax in axs:
             min_x, max_x = min(min(ax.get_xlim()), min_x), max(max(ax.get_xlim()), max_x)
             min_y, max_y = min(min(ax.get_ylim()), min_y), max(max(ax.get_ylim()), max_y)
-        
+
         for ax in axs:
             # Plot diagonal
             lims = [np.min([min_x, min_y]), np.max([max_x, max_y])]
