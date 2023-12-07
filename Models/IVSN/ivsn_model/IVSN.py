@@ -14,7 +14,7 @@ The results are attention maps, which are then stored in the same folder as the 
 
 def run(trials_properties, targets_dir, chopped_dir):
     # Load the model
-    model = models.vgg16(pretrained=True)
+    model = models.vgg16(weights=VGG16_Weights.IMAGENET1K_V1)
     print('Successfully loaded VGG16 model')
     """
     layers: num_layers, num_templates, conv_size
