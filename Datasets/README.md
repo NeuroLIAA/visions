@@ -5,7 +5,7 @@ For allowing a correct comparison, subjects' scanpaths are processed following t
 * Targets are regarded as having been found if the area covered by a given fixation (determined by an approximation of the size of the fovea) lands on the bounding box of the target.
 * Consecutive fixations whose distance between each other is less than the estimated size of the fovea are lumped together.
 * Scanpaths are cut as soon as the target is found.
-* Search images where the initial fixation lands on the target are excluded.
+* Search images where the initial fixation lands on the target, as well as scanpaths of length one, are excluded.
 * Target templates, as well as their bounding boxes and COCO's category, are provided for all images.
 
 The scripts that perform these changes can be found inside the ```data_raw``` folder of each dataset.

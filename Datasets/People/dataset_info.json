@@ -1,0 +1,12 @@
+{
+    "dataset_name": "People Dataset",
+    "number_of_images": 453,
+    "image_height": 600,
+    "image_width": 800,
+    "max_scanpath_length": 16,
+    "receptive_size": [42, 42],
+    "mean_target_size": [32, 65],
+    "images_dir": "images/",
+    "targets_dir": "targets/",
+    "scanpaths_dir": "human_scanpaths/"
+}
