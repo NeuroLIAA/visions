@@ -15,6 +15,9 @@ from .irl_dcb import utils
 torch.manual_seed(42619)
 np.random.seed(42619)
 
+TARGET_OBJECTS = ['bottle', 'bowl', 'car', 'chair', 'clock', 'cup', 'fork', 'keyboard', 'knife', 'laptop', \
+                    'microwave', 'mouse', 'oven', 'potted plant', 'sink', 'stop sign', 'toilet', 'tv']
+
 def main(dataset_name, human_subject=None):
     device  = torch.device('cpu')
     hparams = path.join(constants.HPARAMS_PATH, 'default.json')
@@ -45,10 +48,15 @@ def main(dataset_name, human_subject=None):
     hparams.Data.max_traj_length = dataset_info['max_scanpath_length'] - 1
 
     # Process trials, creating belief maps when necessary, and get target's bounding box for each trial
-    bbox_annos = process_trials(trials_properties, images_dir, human_scanpaths, new_image_size, grid_size, DCB_dir_HR, DCB_dir_LR)
+    bbox_annos = process_trials(trials_properties, TARGET_OBJECTS, images_dir, human_scanpaths,
+                                new_image_size, grid_size, DCB_dir_HR, DCB_dir_LR)
+    if len(trials_properties) == 0:
+        print(f'No valid trials were found for dataset {dataset_name}')
+        return
 
     # Get categories and load image data
-    dataset = process_eval_data(trials_properties, human_scanpaths, DCB_dir_HR, DCB_dir_LR, bbox_annos, grid_size, hparams)
+    dataset = process_eval_data(trials_properties, TARGET_OBJECTS, human_scanpaths,
+                                DCB_dir_HR, DCB_dir_LR, bbox_annos, grid_size, hparams)
     
     batch_size = min(len(trials_properties), 64)
     img_loader = DataLoader(dataset['img_test'],

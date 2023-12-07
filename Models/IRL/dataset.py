@@ -5,12 +5,13 @@ from .irl_dcb import utils
 from .irl_dcb.data import LHF_IRL
 from .irl_dcb.build_belief_maps import build_belief_maps
 
-def process_trials(trials_properties, images_dir, human_scanpaths, new_image_size, grid_size, DCB_dir_HR, DCB_dir_LR):
+def process_trials(trials_properties, target_objects, images_dir, human_scanpaths,
+                   new_image_size, grid_size, DCB_dir_HR, DCB_dir_LR):
     bbox_annos = {}
     iteration  = 1
     for trial in list(trials_properties):
-        # If the target isn't categorized, remove it
-        if trial['target_object'] == 'TBD':
+        # If the target isn't categorized or inside the trained categories, remove it
+        if trial['target_object'] == 'TBD' or not trial['target_object'] in target_objects:
             trials_properties.remove(trial)
             continue
         
@@ -60,7 +61,8 @@ def rescale_coordinates(trial, old_image_size, new_image_size):
     trial['image_width']  = new_image_width
     trial['image_height'] = new_image_height
 
-def process_eval_data(trials_properties, human_scanpaths, DCB_HR_dir, DCB_LR_dir, target_annos, grid_size, hparams):
+def process_eval_data(trials_properties, target_objects, human_scanpaths,
+                      DCB_HR_dir, DCB_LR_dir, target_annos, grid_size, hparams):
     target_init_fixs = {}
     for trial in trials_properties:
         key = trial['target_object'] + '_' + trial['image']
@@ -70,11 +72,7 @@ def process_eval_data(trials_properties, human_scanpaths, DCB_HR_dir, DCB_LR_dir
             initial_fix = (trial['initial_fixation_column'] / trial['image_width'], trial['initial_fixation_row'] / trial['image_height'])
         target_init_fixs[key] = initial_fix
 
-    # Since the model was trained for these specific categories, the list must always be the same, regardless of the dataset
-    target_objects = ['bottle', 'bowl', 'car', 'chair', 'clock', 'cup', 'fork', 'keyboard', 'knife', 'laptop', \
-        'microwave', 'mouse', 'oven', 'potted plant', 'sink', 'stop sign', 'toilet', 'tv']
-    # target_objects = list(np.unique([x['target_object'] for x in trials_properties]))
-
+    # Since the model was trained for specific categories, the list must always be the same, regardless of the dataset
     catIds = dict(zip(target_objects, list(range(len(target_objects)))))
 
     test_task_img_pair = np.unique([traj['target_object'] + '-' + traj['image'] for traj in trials_properties])
