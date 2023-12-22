@@ -15,7 +15,7 @@ To attend to this problem, we have selected publicly available state-of-the-art 
 ![Scanpath example](Metrics/Plots/Scanpath_example_white.png#gh-dark-mode-only)
 
 ## Ranking
-Current models scores, relative to human subjects, averaged across all datasets(*):
+Current models scores, relative to human subjects, averaged across all datasets (*):
 |       | AUC*perf* | AvgMM | Corr | AUC*hsp* | NSS*hsp* | IG*hsp* | LL*hsp* | Score |
 | ----------- | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: |
 | Humans | 0.62 | 0.87 | - | - | - | - | - | - | - |
