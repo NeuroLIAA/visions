@@ -1,6 +1,8 @@
 # ViSioNS: Visual Search in Natural Scenes Benchmark
 ## Updates
-* **People dataset added to the benchmark!** (Results will be uploaded soon)
+* **MCS dataset was removed from the benchmark**
+  * For not complying with the benchmark's criteria (see the paper for more information).  It can still be run by using the ```--d MCS``` flag.
+* **People dataset added to the benchmark!**
   * This dataset dates back to 2009 and belongs to the paper [*Ehinger, K. A., Hidalgo-Sotelo, B., Torralba, A., & Oliva, A, "Modeling Search for People in 900 Scenes: A combined source model of eye guidance", Visual cognition, 17(6-7), 945–978, 2009*.](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2790194/)
 * **eccNET added to the benchmark!**
   * This visual search model belongs to the paper [*Gupta SK., Zhang M., Wu C., Wolfe JM., Kreiman G., "Visual Search Asymmetry: Deep Nets and Humans Share Similar Inherent Biases", NeurIPS 2021*](https://github.com/kreimanlab/VisualSearchAsymmetry).
@@ -13,25 +15,27 @@ To attend to this problem, we have selected publicly available state-of-the-art 
 ![Scanpath example](Metrics/Plots/Scanpath_example_white.png#gh-dark-mode-only)
 
 ## Ranking
-Current models scores, relative to human subjects, averaged across all datasets:
+Current models scores, relative to human subjects, averaged across all datasets(*):
 |       | AUC*perf* | AvgMM | Corr | AUC*hsp* | NSS*hsp* | IG*hsp* | LL*hsp* | Score |
 | ----------- | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: |
-| Humans | 0.56 | 0.87 | - | - | - | - | - | - | - |
-| Gold Standard | - | - | - | 0.90 | 2.65 | 1.93 | 1.95 | 0.00 |
-| **nnIBS**   | 0.48 | **0.85** | **0.25** | **0.79** | **1.50** | **0.57** | **0.49** | -0.12 |
-| eccNET   | **0.52** | 0.84 | 0.19 | 0.66 | 1.03 | -2.20 | -2.01 | -0.57 |
-| Center bias | - | - | - | 0.72 | 0.89 | 0.00 | 0.07 | -0.70 |
-| Uniform | - | - | - | 0.50 | 0.00 | -0.07 | 0.00 | -0.87 |
-| IVSN    | 0.67        | 0.80 | 0.09 | 0.61 | 1.07 | -4.29 | -4.18 | -0.91 |
-| IRL     | 0.40       | 0.80 | 0.04 | 0.65 | 1.24 | -4.83 | -4.90 | -1.00 |
+| Humans | 0.62 | 0.87 | - | - | - | - | - | - | - |
+| Gold Standard | - | - | - | 0.91 | 2.92 | 2.75 | 2.25 | 0.00 |
+| **nnIBS**   | 0.51 | **0.84** | **0.23** | **0.80** | **1.44** | **1.22** | **0.50** | -0.12 |
+| eccNET   | 0.46 | 0.83 | 0.17 | 0.70 | 1.01 | -0.87 | -1.31 | -0.40 |
+| IVSN    | **0.57**        | 0.80 | 0.12 | 0.62 | 0.85 | -2.05 | -2.53 | -0.56 |
+| IRL     | 0.30       | 0.60 | 0.06 | 0.49 | 0.90 | -3.05 | -3.37 | -0.76 |
+| Uniform | - | - | - | 0.50 | 0.00 | 0.51 | 0.00 | -0.82 |
+| Center bias | - | - | - | 0.66 | 0.54 | 0.00 | -0.51 | -0.83 |
 
 ```AUCperf``` measures efficiency, while ```AvgMM``` is the Multi-Match average between models and subjects. ```Corr``` is the correlation between within-humans Multi-Match (whMM) and human-model Multi-Match (hmMM). Lastly, ```AUChsp```, ```NSShsp```, ```IGhsp``` and ```LLhsp``` focus on human scanpath prediction (HSP). The precise definition of each can be found at [```Metrics```](./Metrics).
+
+(*) IRL was not run in *People* dataset as it is not able to search for people.
 
 **Scores for individual datasets:**
 * [```Interiors```](./Results/Interiors/Table.png)
 * [```Unrestricted```](./Results/Unrestricted/Table.png)
 * [```COCOSearch18```](./Results/COCOSearch18/Table.png)
-* [```MCS```](./Results/MCS/Table.png)
+* [```People```](./Results/People/Table.png)
 
 ## Installation
 Python 3.8 or newer is required. To install, run:
