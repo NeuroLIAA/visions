@@ -32,10 +32,10 @@ Current models scores, relative to human subjects, averaged across all datasets 
 (*) IRL was not run in *People* dataset as it is not able to search for people.
 
 **Scores for individual datasets:**
-* [```Interiors```](./Results/Interiors/Table.png)
-* [```Unrestricted```](./Results/Unrestricted/Table.png)
-* [```COCOSearch18```](./Results/COCOSearch18/Table.png)
-* [```People```](./Results/People/Table.png)
+* [```Interiors```](./Results/Interiors_dataset/Table.png)
+* [```Unrestricted```](./Results/Unrestricted_dataset/Table.png)
+* [```COCOSearch18```](./Results/COCOSearch18_dataset/Table.png)
+* [```People```](./Results/People_dataset/Table.png)
 
 ## Installation
 Python 3.8 or newer is required. To install, run:
