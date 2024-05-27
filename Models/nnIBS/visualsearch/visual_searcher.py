@@ -69,7 +69,7 @@ class VisualSearcher:
         image_prior = prior.sum(image_prior)
       
         # Convert target bounding box to grid cells
-        target_bbox_in_grid = np.empty(len(target_bbox), dtype=np.int)
+        target_bbox_in_grid = np.empty(len(target_bbox), dtype=int)
         target_bbox_in_grid[0], target_bbox_in_grid[1] = self.grid.map_to_cell((target_bbox[0], target_bbox[1]))
         target_bbox_in_grid[2], target_bbox_in_grid[3] = self.grid.map_to_cell((target_bbox[2], target_bbox[3]))
         if not(utils.are_within_boundaries((target_bbox_in_grid[0], target_bbox_in_grid[1]), (target_bbox_in_grid[2], target_bbox_in_grid[3]), np.zeros(2), grid_size)):
