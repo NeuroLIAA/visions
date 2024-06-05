@@ -108,7 +108,7 @@ def add_scanpath_to_dict(image_name, image_scanpath, target_bbox, target_object,
     target_found = image_scanpath['target_found']
     scanpath_x   = image_scanpath['scanpath_x']
     scanpath_y   = image_scanpath['scanpath_y']
-    target_bbox_in_grid = np.empty(len(target_bbox), dtype=np.int)
+    target_bbox_in_grid = np.empty(len(target_bbox), dtype=int)
     target_bbox_in_grid[0], target_bbox_in_grid[1] = grid.map_to_cell((target_bbox[0], target_bbox[1]))
     target_bbox_in_grid[2], target_bbox_in_grid[3] = grid.map_to_cell((target_bbox[2], target_bbox[3]))
 
